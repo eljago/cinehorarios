@@ -1,0 +1,28 @@
+//
+//  UIFont+CH.h
+//  Cine Horarios
+//
+//  Created by Arturo Espinoza Carrasco on 04-09-13.
+//  Copyright (c) 2013 Arturo Espinoza Carrasco. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+typedef NS_ENUM(NSUInteger, CHFontStyle) {
+    CHFontStyleSmaller,
+    CHFontStyleSmall,
+    CHFontStyleNormal,
+    CHFontStyleBig,
+    CHFontStyleBigger,
+    CHFontStyleSmallerBold,
+    CHFontStyleSmallBold,
+    CHFontStyleNormalBold,
+    CHFontStyleBigBold,
+    CHFontStyleBiggerBold
+};
+
+@interface UIFont (CH)
+
++(UIFont *)getSizeForCHFont:(CHFontStyle)cHFontStyle forPreferedContentSize:(NSString *)preferedContentSize;
+
+@end

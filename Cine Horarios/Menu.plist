@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>image</key>
+		<string>LogoCines</string>
+		<key>storyboardID</key>
+		<string>NavCinesVC</string>
+		<key>name</key>
+		<string>Cines</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>LogoFavoritos</string>
+		<key>storyboardID</key>
+		<string>NavFavoritesVC</string>
+		<key>name</key>
+		<string>Favoritos</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>LogoCartelera</string>
+		<key>storyboardID</key>
+		<string>NavCarteleraVC</string>
+		<key>name</key>
+		<string>Cartelera</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>LogoProximamente</string>
+		<key>storyboardID</key>
+		<string>NavComingSoonVC</string>
+		<key>name</key>
+		<string>Próximamente</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>LogoAjustes</string>
+		<key>storyboardID</key>
+		<string>NavSettingsVC</string>
+		<key>name</key>
+		<string>Ajustes</string>
+	</dict>
+</array>
+</plist>
