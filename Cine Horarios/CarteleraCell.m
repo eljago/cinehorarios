@@ -8,7 +8,7 @@
 
 #import "CarteleraCell.h"
 #import "BasicMovie.h"
-#import "FileHandler.h"
+#import "UIImageView+CH.h"
 
 @implementation CarteleraCell
 
@@ -45,13 +45,11 @@
         self.labelGenres.text = @"";
     }
     
-    [FileHandler getImageForImageView:_imageCover usingImageURL:_basicMovie.imageUrl movieImageType:MovieImageTypeCover placeholderImage:nil];
+    [_imageCover setImageWithStringURL:_basicMovie.imageUrl movieImageType:MovieImageTypeCover placeholderImage:nil];
     
     [self setNeedsLayout];
 }
-- (void)cancelImageDownload {
-    [FileHandler cancelDownloadOfImageView:_imageCover];
-}
+
 -(void)setBodyFont:(UIFont *)bodyFont headFont:(UIFont *)headFont {
     self.labelName.font = headFont;
     self.labelDuration.font = bodyFont;

@@ -229,10 +229,7 @@
         return cell;
     }
 }
--(void) tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    FunctionCell *carteleraCell = (FunctionCell *)cell;
-    [carteleraCell cancelImageDownload];
-}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.functions.count > 0) {
         return [FunctionCell heightForCellWithBasicItem:self.functions[indexPath.row] withBodyFont:bodyFont headFont:headFont];

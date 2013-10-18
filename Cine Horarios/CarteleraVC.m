@@ -142,11 +142,6 @@
     [self.tableView reloadData];
 }
 
--(void) tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    CarteleraCell *carteleraCell = (CarteleraCell *)cell;
-    [carteleraCell cancelImageDownload];
-}
-
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

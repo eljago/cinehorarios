@@ -7,9 +7,6 @@
 //
 
 #import "FileHandler.h"
-#import "CineHorariosApiClient.h"
-#import <SDWebImage/UIImageView+WebCache.h>
-#import "AFNetworkActivityIndicatorManager.h"
 
 NSTimeInterval const kMaxJsonsDurationTime = 60*60*3;
 NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
@@ -198,113 +195,6 @@ NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
     }
 }
 
-+ (NSString *) prefixImageURL:(NSString *)imageURL
-                   withString:(NSString *)retinaString {
-    
-    NSMutableArray *imageArray = (NSMutableArray *)[imageURL componentsSeparatedByString:@"/"];
-    NSString *newImageURL;
-    newImageURL = [retinaString stringByAppendingString:[imageArray lastObject]];
-    imageArray[imageArray.count-1] = newImageURL;
-    
-    return [imageArray componentsJoinedByString:@"/"];
-}
-
-+ (NSString *) imageURLForPath:(NSString *)imageURL imageType:(MovieImageType)movieImageType{
-    NSString *imagePath;
-    switch (movieImageType) {
-        case MovieImageTypeCover:
-            imagePath = [FileHandler prefixImageURL:imageURL withString:@"smaller_"];
-            break;
-        case MovieImageTypePortrait:
-            imagePath = [FileHandler prefixImageURL:imageURL withString:@""];
-            break;
-        case MovieImageTypeMovieImageCover:
-            imagePath = [FileHandler prefixImageURL:imageURL withString:@"smaller_"];
-            break;
-        case MovieImageTypeMovieImageFullScreenRetina:
-            imagePath = [FileHandler prefixImageURL:imageURL withString:@""];
-            break;
-        case MovieImageTypeMovieImageFullScreenNoRetina:
-            imagePath = [FileHandler prefixImageURL:imageURL withString:@"small_"];
-            break;
-        case MovieImageTypeCastFullScreenRetina:
-            imagePath = [FileHandler prefixImageURL:imageURL withString:@""];
-            break;
-        case MovieImageTypeCastFullScreenNoRetina:
-            imagePath = [FileHandler prefixImageURL:imageURL withString:@"small_"];
-            break;
-        case MovieImageTypeMovieVideo:
-            imagePath = [FileHandler prefixImageURL:imageURL withString:@"small_"];
-            break;
-            
-        default:
-            return nil;
-            break;
-    }
-    return [kCineHorariosAPIBaseURLString stringByAppendingPathComponent:imagePath];
-}
-+ (NSURL *) nsurlWithImagePath:(NSString *)imageURL imageType:(MovieImageType)movieImageType {
-    return [NSURL URLWithString:[FileHandler imageURLForPath:imageURL imageType:movieImageType]];
-}
-
-+ (NSString *) getLocalImagePathForImageNamed:(NSString *)imageName {
-    NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *localDirPath = [cacheDir stringByAppendingPathComponent:@"images"];
-    if ([filemgr createDirectoryAtPath:localDirPath withIntermediateDirectories:YES attributes:nil error:NULL]) {
-        // Failed to create Directory
-    }
-    return [localDirPath stringByAppendingPathComponent:imageName];
-}
-+ (void) getImageForImageView:(UIImageView *) imageView
-               usingImageURL:(NSString *)imageURL
-              movieImageType:(MovieImageType) movieImageType
-            placeholderImage:(UIImage *)placeholderImage {
-    
-    NSString *imageSaveName = [[imageURL componentsSeparatedByString:@"/"] lastObject];
-    NSFileManager *filemgr = [ NSFileManager defaultManager];
-    NSString *localImagePath = [FileHandler getLocalImagePathForImageNamed:imageSaveName];
-    
-    if ([filemgr fileExistsAtPath:localImagePath]) {
-        imageView.image = [UIImage imageWithContentsOfFile:localImagePath];
-    }
-    else {
-        [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
-        NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
-        
-        [imageView setImageWithURL:nsurl
-                  placeholderImage:placeholderImage
-                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                             
-                             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                 NSString *imageName = [[localImagePath componentsSeparatedByString:@"/"] lastObject];
-                                 NSData *binaryImageData = UIImagePNGRepresentation(image);
-                                 NSString *filePath = [self getLocalImagePathForImageNamed:imageName];
-                                 [binaryImageData writeToFile:filePath atomically:YES];
-                                 [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
-                             });
-                             
-                         }];
-    }
-}
-+ (void) getImageForImageView:(UIImageView *) imageView
-                usingImageURL:(NSString *)imageURL
-               movieImageType:(MovieImageType) movieImageType {
-    
-    [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
-    NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
-    [imageView setImageWithURL:nsurl completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        
-        [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
-    }];
-}
-
-+ (void) cancelDownloadOfImageView:(UIImageView *)imageView {
-    if (imageView.image == nil) {
-        [imageView cancelCurrentImageLoad];
-        [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
-    }
-}
 
 
 #pragma mark - Get Full Local Path for Path

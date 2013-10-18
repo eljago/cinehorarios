@@ -136,10 +136,6 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [ComingSoonCell heightForCellWithBasicItem:self.movies[indexPath.row] withBodyFont:bodyFont headFont:headFont];
 }
--(void) tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    ComingSoonCell *carteleraCell = (ComingSoonCell *)cell;
-    [carteleraCell cancelImageDownload];
-}
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];

@@ -8,7 +8,6 @@
 
 #import "MovieVC.h"
 #import "Movie.h"
-#import "FileHandler.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "MyMultilineLabel.h"
@@ -17,7 +16,7 @@
 #import "CastVC.h"
 #import "WebVC.h"
 #import "VideoItem.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImageView+CH.h"
 #import "MWPhoto.h"
 #import "MBProgressHUD.h"
 #import "MovieCinemasVC.h"
@@ -157,7 +156,7 @@
     
     // PORTRAIT IMAGE
     if (self.portraitImageURL) {
-        [FileHandler getImageForImageView:self.portraitImageView usingImageURL:self.portraitImageURL movieImageType:MovieImageTypePortrait placeholderImage:nil];
+        [self.portraitImageView setImageWithStringURL:self.portraitImageURL movieImageType:MovieImageTypePortrait placeholderImage:nil];
     }
     
     // NAME AND YEAR
@@ -183,7 +182,7 @@
     }
     
     if (self.movie.imageUrl) {
-        [FileHandler getImageForImageView:self.coverImageView usingImageURL:self.movie.imageUrl movieImageType:MovieImageTypeCover placeholderImage:nil];
+        [self.coverImageView setImageWithStringURL:self.movie.imageUrl movieImageType:MovieImageTypeCover];
     }
     
     // SYNOPSIS
@@ -475,7 +474,7 @@
         NSString *imagePath = self.movie.images[indexPath.row];
         UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
         
-        [FileHandler getImageForImageView:imageView usingImageURL:imagePath movieImageType:MovieImageTypeMovieImageCover];
+        [imageView setImageWithStringURL:imagePath movieImageType:MovieImageTypeMovieImageCover];
     }
     // COLLECTION VIEW REPARTO
     else  {
@@ -485,14 +484,10 @@
         
         label.text = actor.name;
         label.font = smallerFont;
-        [FileHandler getImageForImageView:imageView usingImageURL:actor.imageUrl movieImageType:MovieImageTypeMovieImageCover];
+        [imageView setImageWithStringURL:actor.imageUrl movieImageType:MovieImageTypeMovieImageCover];
     }
     
     return cell;
-}
--(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
-    [FileHandler cancelDownloadOfImageView:imageView];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -522,7 +517,7 @@
     }
     viewController.photos = [NSMutableArray array];
     for (NSString *imagePath in self.movie.images) {
-        [viewController.photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[FileHandler imageURLForPath:imagePath imageType:movieImageType]]]];
+        [viewController.photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:imagePath imageType:movieImageType]]]];
     }
     return viewController;
 }
@@ -544,12 +539,12 @@
     }
     castVC.photos = [NSMutableArray array];
     for (Actor *director in self.movie.directors) {
-        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[FileHandler imageURLForPath:director.imageUrl imageType:movieImageType]]];
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:director.imageUrl imageType:movieImageType]]];
         photo.caption = [NSString stringWithFormat:@"Nombre: %@\nDirector",director.name];
         [castVC.photos addObject:photo];
     }
     for (Actor *actor in self.movie.actors) {
-        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[FileHandler imageURLForPath:actor.imageUrl imageType:movieImageType]]];
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:actor.imageUrl imageType:movieImageType]]];
         photo.caption = [NSString stringWithFormat:@"Nombre: %@",actor.name];
         if (!actor.character || ![actor.character isEqualToString:@""]) {
             photo.caption = [photo.caption stringByAppendingFormat:@"\nPersonaje: %@",actor.character];

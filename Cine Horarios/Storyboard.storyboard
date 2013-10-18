@@ -1019,9 +1019,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="eQ5-lr-g83" kind="push" id="Siv-jg-7z2"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1038,14 +1035,14 @@
         <!--Movie TheatersVC-->
         <scene sceneID="hGA-dX-ak0">
             <objects>
-                <tableViewController id="eQ5-lr-g83" customClass="MovieTheatersVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MovieTheatersVC" id="eQ5-lr-g83" customClass="MovieTheatersVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qTj-Kx-BpZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="dpZ-qe-69R">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dpZ-qe-69R" id="dZs-AX-VQP">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -1070,14 +1067,14 @@
         <!--Movie FunctionsVC-->
         <scene sceneID="d5O-Kz-BIf">
             <objects>
-                <tableViewController id="oqn-wU-tZP" customClass="MovieFunctionsVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MovieFunctionsVC" id="oqn-wU-tZP" customClass="MovieFunctionsVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="30" sectionFooterHeight="22" id="Zrg-FR-ZQD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="93" id="pZ0-bM-IYI">
-                                <rect key="frame" x="0.0" y="94" width="320" height="93"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="93"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pZ0-bM-IYI" id="wxq-sz-7wm">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>

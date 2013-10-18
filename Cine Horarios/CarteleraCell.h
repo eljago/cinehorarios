@@ -16,7 +16,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *labelDuration;
 @property (nonatomic, weak) IBOutlet UILabel *labelGenres;
 
-- (void)cancelImageDownload;
 - (void)setBodyFont:(UIFont *)bodyFont headFont:(UIFont *)headFont;
 + (CGFloat)heightForCellWithBasicItem:(BasicMovie *)basicMovie withBodyFont:(UIFont *)bodyFont headFont: (UIFont *)headFont;
 @end

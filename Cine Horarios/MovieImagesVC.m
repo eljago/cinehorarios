@@ -14,6 +14,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "UIImageView+CH.h"
 
 @interface MovieImagesVC () <UICollectionViewDelegateFlowLayout>
 @end
@@ -63,8 +64,7 @@
     NSString *imagePath = self.imagesURL[indexPath.row];
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
     
-    NSURL *nsurl = [NSURL URLWithString:[FileHandler imageURLForPath:imagePath imageType:MovieImageTypeMovieImageCover]];
-    [imageView setImageWithURL:nsurl];
+    [imageView setImageWithStringURL:imagePath movieImageType:MovieImageTypeMovieImageCover];
     
     return cell;
 }

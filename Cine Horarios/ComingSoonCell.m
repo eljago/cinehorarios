@@ -8,7 +8,7 @@
 
 #import "ComingSoonCell.h"
 #import "BasicMovie.h"
-#import "FileHandler.h"
+#import "UIImageView+CH.h"
 
 @implementation ComingSoonCell
 
@@ -40,14 +40,11 @@
         self.labelEstreno.text = @"";
         self.labelDebut.text = @"";
     }
-    
-    [FileHandler getImageForImageView:self.imageCover usingImageURL:_basicMovie.imageUrl movieImageType:MovieImageTypeCover placeholderImage:nil];
+    [self.imageCover setImageWithStringURL:_basicMovie.imageUrl movieImageType:MovieImageTypeCover placeholderImage:nil];
     
     [self setNeedsLayout];
 }
-- (void)cancelImageDownload {
-    [FileHandler cancelDownloadOfImageView:_imageCover];
-}
+
 -(void)setBodyFont:(UIFont *)bodyFont headFont:(UIFont *)headFont {
     self.labelName.font = headFont;
     self.labelEstreno.font = bodyFont;

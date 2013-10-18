@@ -8,7 +8,7 @@
 
 #import "FunctionCell.h"
 #import "Function.h"
-#import "FileHandler.h"
+#import "UIImageView+CH.h"
 
 @implementation FunctionCell
 
@@ -34,13 +34,11 @@
     self.labelTypes.text = function.types;
     self.labelShowtimes.text = function.showtimes;
     
-    [FileHandler getImageForImageView:self.imageCover usingImageURL:function.imageUrl movieImageType:MovieImageTypeCover placeholderImage:nil];
+    [self.imageCover setImageWithStringURL:function.imageUrl movieImageType:MovieImageTypeCover];
     
     [self setNeedsLayout];
 }
-- (void)cancelImageDownload {
-    [FileHandler cancelDownloadOfImageView:_imageCover];
-}
+
 -(void)setBodyFont:(UIFont *)bodyFont headFont:(UIFont *)headFont {
     self.labelName.font = headFont;
     self.labelTypes.font = bodyFont;

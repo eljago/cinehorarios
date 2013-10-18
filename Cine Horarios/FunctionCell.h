@@ -17,7 +17,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *labelTypes;
 @property (nonatomic, weak) IBOutlet UILabel *labelShowtimes;
 
-- (void)cancelImageDownload;
 + (CGFloat)heightForCellWithBasicItem:(Function *)function withBodyFont:(UIFont *)bodyFont headFont: (UIFont *)headFont;
 - (void)setBodyFont:(UIFont *)bodyFont headFont:(UIFont *)headFont;
 @end

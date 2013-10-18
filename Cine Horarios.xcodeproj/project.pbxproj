@@ -17,6 +17,7 @@
 		1639492C17F9BBDB00AB7DE7 /* DirectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1639492B17F9BBDB00AB7DE7 /* DirectorCell.m */; };
 		163BAB211763C34500A81BF7 /* WebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 163BAB201763C34400A81BF7 /* WebVC.m */; };
 		16547FD718106D8C00B6F24C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 16547FD618106D8C00B6F24C /* Localizable.strings */; };
+		16547FDA18108D2300B6F24C /* TheaterFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 16547FD918108D2300B6F24C /* TheaterFunctions.m */; };
 		165F904B1780326300641600 /* FunctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 166595FC177D4A2D00DFB590 /* FunctionCell.m */; };
 		16692A32180C7D8A00166885 /* InitialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16692A31180C7D8A00166885 /* InitialVC.m */; };
 		16692A35180C7DFF00166885 /* MenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16692A34180C7DFF00166885 /* MenuVC.m */; };
@@ -37,6 +38,7 @@
 		3D00E5C0170DDB2400C7DAAE /* TheatersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D00E5BF170DDB2400C7DAAE /* TheatersVC.m */; };
 		3D086043173B08CB0047B90A /* FavoritesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D086042173B08CB0047B90A /* FavoritesVC.m */; };
 		3D111A4E170C93090043D2D2 /* CineHorariosApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D111A4D170C92250043D2D2 /* CineHorariosApiClient.m */; };
+		3D12FF8218110E0300BDA8FB /* UIImageView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D12FF8118110E0300BDA8FB /* UIImageView+CH.m */; };
 		3D137E6817D6DBD6007EC1B1 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D137E6717D6DBD6007EC1B1 /* UIView+AutoLayout.m */; };
 		3D26BDD11743EE3A00A2FCC5 /* CarteleraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D26BDD01743EE3900A2FCC5 /* CarteleraVC.m */; };
 		3D29981517E5AA28001A371D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981417E5AA28001A371D /* UIKit.framework */; };
@@ -56,7 +58,6 @@
 		3D81339B177E3D95006A017C /* CineHorariosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D81339A177E3D95006A017C /* CineHorariosTableViewController.m */; };
 		3D81339E177E3F6E006A017C /* CarteleraCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D81339D177E3F6D006A017C /* CarteleraCell.m */; };
 		3DAF41F117EE572300812177 /* CHNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF41F017EE572300812177 /* CHNavigationBar.m */; };
-		3DAF41F417EE970900812177 /* CHTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF41F317EE970900812177 /* CHTabBar.m */; };
 		3DDB7107170A516B00EC3E51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7106170A516B00EC3E51 /* Foundation.framework */; };
 		3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7108170A516B00EC3E51 /* CoreGraphics.framework */; };
 		3DDB7115170A516B00EC3E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB7114170A516B00EC3E51 /* AppDelegate.m */; };
@@ -85,6 +86,8 @@
 		163BAB1F1763C34400A81BF7 /* WebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebVC.h; sourceTree = "<group>"; };
 		163BAB201763C34400A81BF7 /* WebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebVC.m; sourceTree = "<group>"; };
 		16547FD618106D8C00B6F24C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		16547FD818108D2300B6F24C /* TheaterFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterFunctions.h; sourceTree = "<group>"; };
+		16547FD918108D2300B6F24C /* TheaterFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterFunctions.m; sourceTree = "<group>"; };
 		166595FB177D4A2B00DFB590 /* FunctionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionCell.h; sourceTree = "<group>"; };
 		166595FC177D4A2D00DFB590 /* FunctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FunctionCell.m; sourceTree = "<group>"; tabWidth = 4; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		16692A30180C7D8A00166885 /* InitialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialVC.h; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 		3D086042173B08CB0047B90A /* FavoritesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FavoritesVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3D111A4C170C92250043D2D2 /* CineHorariosApiClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CineHorariosApiClient.h; sourceTree = "<group>"; };
 		3D111A4D170C92250043D2D2 /* CineHorariosApiClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CineHorariosApiClient.m; sourceTree = "<group>"; };
+		3D12FF8018110E0300BDA8FB /* UIImageView+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CH.h"; sourceTree = "<group>"; };
+		3D12FF8118110E0300BDA8FB /* UIImageView+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CH.m"; sourceTree = "<group>"; };
 		3D1318B417F06866005B249C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D137E6617D6DBD6007EC1B1 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		3D137E6717D6DBD6007EC1B1 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
@@ -163,8 +168,6 @@
 		3DA91D34174144A200E3AFB0 /* icloud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icloud.plist; sourceTree = "<group>"; };
 		3DAF41EF17EE572300812177 /* CHNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHNavigationBar.h; sourceTree = "<group>"; };
 		3DAF41F017EE572300812177 /* CHNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHNavigationBar.m; sourceTree = "<group>"; };
-		3DAF41F217EE970900812177 /* CHTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTabBar.h; sourceTree = "<group>"; };
-		3DAF41F317EE970900812177 /* CHTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTabBar.m; sourceTree = "<group>"; };
 		3DDB7100170A516B00EC3E51 /* Cine Horarios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cine Horarios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDB7106170A516B00EC3E51 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3DDB7108170A516B00EC3E51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -292,6 +295,8 @@
 				3D137E6717D6DBD6007EC1B1 /* UIView+AutoLayout.m */,
 				16956FCD17D7E84100355AA7 /* UIFont+CH.h */,
 				16956FCE17D7E84100355AA7 /* UIFont+CH.m */,
+				3D12FF8018110E0300BDA8FB /* UIImageView+CH.h */,
+				3D12FF8118110E0300BDA8FB /* UIImageView+CH.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -307,6 +312,8 @@
 				16C7EB5F173E3582001CF782 /* BasicImageItem.m */,
 				16C7EB61173E3A06001CF782 /* Theater.h */,
 				16C7EB62173E3A06001CF782 /* Theater.m */,
+				16547FD818108D2300B6F24C /* TheaterFunctions.h */,
+				16547FD918108D2300B6F24C /* TheaterFunctions.m */,
 				16C7EB64173E3B7F001CF782 /* Function.h */,
 				16C7EB65173E3B7F001CF782 /* Function.m */,
 				16900CCE1740F1C600399AF5 /* BasicMovie.h */,
@@ -334,8 +341,6 @@
 				3D6F663917E54A7600BEE481 /* MyMultilineLabel.m */,
 				3DAF41EF17EE572300812177 /* CHNavigationBar.h */,
 				3DAF41F017EE572300812177 /* CHNavigationBar.m */,
-				3DAF41F217EE970900812177 /* CHTabBar.h */,
-				3DAF41F317EE970900812177 /* CHTabBar.m */,
 				1639492717F9BB7F00AB7DE7 /* ActorCell.h */,
 				1639492817F9BB7F00AB7DE7 /* ActorCell.m */,
 				1639492A17F9BBDB00AB7DE7 /* DirectorCell.h */,
@@ -514,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D111A4E170C93090043D2D2 /* CineHorariosApiClient.m in Sources */,
+				3D12FF8218110E0300BDA8FB /* UIImageView+CH.m in Sources */,
 				3DDD5AEB18020ACC00720ABD /* MovieCinemasVC.m in Sources */,
 				3DFA54CC170B3512003E2208 /* main.m in Sources */,
 				3D309A2C17A8674000BB5D13 /* UIImage+CH.m in Sources */,
@@ -548,10 +554,10 @@
 				3D3FA6ED174D91CC0067AE57 /* VideoVC.m in Sources */,
 				163BAB211763C34500A81BF7 /* WebVC.m in Sources */,
 				1639492617F9BA1700AB7DE7 /* CastVC.m in Sources */,
+				16547FDA18108D2300B6F24C /* TheaterFunctions.m in Sources */,
 				3D81339B177E3D95006A017C /* CineHorariosTableViewController.m in Sources */,
 				3D4A191917EFA4A200893A65 /* GlobalNavigationController.m in Sources */,
 				3D81339E177E3F6E006A017C /* CarteleraCell.m in Sources */,
-				3DAF41F417EE970900812177 /* CHTabBar.m in Sources */,
 				1630E1AF17D9183800C9D977 /* CHCell.m in Sources */,
 				16692A32180C7D8A00166885 /* InitialVC.m in Sources */,
 				165F904B1780326300641600 /* FunctionCell.m in Sources */,

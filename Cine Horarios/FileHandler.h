@@ -11,17 +11,6 @@
 @class TheatersVC;
 @class FuncionesVC;
 
-typedef enum {
-    MovieImageTypeCover,
-    MovieImageTypePortrait,
-    MovieImageTypeMovieImageCover,
-    MovieImageTypeMovieImageFullScreenRetina,
-    MovieImageTypeMovieImageFullScreenNoRetina,
-    MovieImageTypeCastFullScreenRetina,
-    MovieImageTypeCastFullScreenNoRetina,
-    MovieImageTypeMovieVideo
-} MovieImageType;
-
 
 @interface FileHandler : NSObject
 
@@ -29,18 +18,6 @@ typedef enum {
 
 + (void) removeOldImages;
 + (void) removeOldJsons;
-
-+ (void) getImageForImageView:(UIImageView *) imageView
-               usingImageURL:(NSString *)imageURL
-              movieImageType:(MovieImageType) movieImageType
-            placeholderImage:(UIImage *)placeholderImage;
-
-+ (NSURL *) nsurlWithImagePath:(NSString *)imageURL imageType:(MovieImageType)movieImageType;
-+ (NSString *) imageURLForPath:(NSString *)imageURL imageType:(MovieImageType)movieImageType;
-+ (void) getImageForImageView:(UIImageView *) imageView
-                usingImageURL:(NSString *)imageURL
-               movieImageType:(MovieImageType) movieImageType;
-+ (void) cancelDownloadOfImageView:(UIImageView *)imageView;
 
 + (NSString *)getFullLocalPathForPath:(NSString *)path fileName:(NSString *)fileName;
 @end

@@ -17,7 +17,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *labelEstreno;
 @property (nonatomic, weak) IBOutlet UILabel *labelDebut;
 
-- (void)cancelImageDownload;
 - (void)setBodyFont:(UIFont *)bodyFont headFont:(UIFont *)headFont;
 + (CGFloat)heightForCellWithBasicItem:(BasicMovie *)basicMovie withBodyFont:(UIFont *)bodyFont headFont: (UIFont *)headFont;
 @end

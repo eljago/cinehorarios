@@ -8,8 +8,7 @@
 
 #import "ActorCell.h"
 #import "Actor.h"
-#import "FileHandler.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImageView+CH.h"
 
 @implementation ActorCell
 
@@ -36,8 +35,7 @@
     self.labelName.text = _actor.name;
     self.labelRole.text = _actor.character;
     
-    NSURL *nsurl = [FileHandler nsurlWithImagePath:_actor.imageUrl imageType:MovieImageTypeMovieImageCover];
-    [self.imageCover setImageWithURL:nsurl];
+    [self.imageCover setImageWithStringURL:_actor.imageUrl movieImageType:MovieImageTypeMovieImageCover];
     
     [self setNeedsLayout];
 }
