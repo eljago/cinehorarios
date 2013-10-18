@@ -98,10 +98,8 @@
                                  
                                  dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                      
-                                     NSString *imageName = [[localImagePath componentsSeparatedByString:@"/"] lastObject];
                                      NSData *binaryImageData = UIImagePNGRepresentation(image);
-                                     NSString *filePath = [sself getLocalImagePathForImageNamed:imageName];
-                                     [binaryImageData writeToFile:filePath atomically:YES];
+                                     [binaryImageData writeToFile:localImagePath atomically:YES];
                                  });
                              }
                              failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
