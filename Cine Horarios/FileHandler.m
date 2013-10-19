@@ -155,13 +155,13 @@ NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
                                         }
                                     }
                                 }
-                                if (fileExistsAtPath3 && !isDirectory3) {
+                                else if (fileExistsAtPath3 && !isDirectory3) {
                                     [self deleteFileAtPath:itemPath3 ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];
                                 }
                             }
                         }
                     }
-                    if (fileExistsAtPath2 && !isDirectory2) {
+                    else if (fileExistsAtPath2 && !isDirectory2) {
                         
                         if ([item2 isEqualToString:@"info.json"] || [item2 isEqualToString:@"theaters.json"]) {
                             [self deleteFileAtPath:itemPath2 ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];
@@ -170,7 +170,7 @@ NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
                 }
             }
         }
-        if (fileExistsAtPath && !isDirectory) {
+        else if (fileExistsAtPath && !isDirectory) {
             // billboard.json or comingsoon.json
             if ([item isEqualToString:@"comingsoon.json"] || [item isEqualToString:@"billboard.json"]) {
                 [self deleteFileAtPath:itemPath ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];

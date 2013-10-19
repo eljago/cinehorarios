@@ -9,7 +9,6 @@
 #import "MovieCinemasVC.h"
 #import "UIImageView+AFNetworking.h"
 #import "Theater.h"
-#import "MovieTheatersVC.h"
 #import "MovieFunctionsVC.h"
 #import "Movie.h"
 #import "MBProgressHUD.h"
@@ -235,32 +234,6 @@
     return view;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//        if ([self.cinemas[indexPath.row] isEqualToString:@"Favoritos"]) {
-//            MovieFunctionsVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MovieFunctionsVC"];
-//            NSString *favoriteTheatersString = @"";
-//            for (int i=0; i<[self.theaters[indexPath.row] count]; i++) {
-//                Theater *theater = self.theaters[indexPath.row][i];
-//                favoriteTheatersString = [favoriteTheatersString stringByAppendingFormat:@",%d",theater.itemId];
-//            }
-//            vc.favoriteTheaters = favoriteTheatersString;
-//            vc.favoriteTheaters = self.theaters[indexPath.row];
-//            vc.movieID = self.movieID;
-//            vc.movieName = self.movieName;
-//            vc.title = ((BasicImageItem *)self.cinemas[indexPath.row]).name;
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//        else {
-//            MovieTheatersVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MovieTheatersVC"];
-//            vc.theaters = self.theaters[indexPath.row];
-//            vc.movieID = self.movieID;
-//            vc.movieName = self.movieName;
-//            vc.title = ((BasicImageItem *)self.cinemas[indexPath.row]).name;
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-}
-
 #pragma mark - content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
@@ -273,13 +246,13 @@
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
-//    
-//    MovieTheatersVC *vc = segue.destinationViewController;
-//    vc.theaters = self.theaters[row];
-//    vc.movieID = self.movieID;
-//    vc.movieName = self.movieName;
-//    vc.title = ((BasicImageItem *)self.cinemas[row]).name;
+    if ([[segue identifier] isEqualToString:@"MovieShowtimesToMovieFunctions"]) {
+        NSInteger row = [self.tableView indexPathForCell:sender].row;
+        MovieFunctionsVC *vc = (MovieFunctionsVC *)segue.destinationViewController;
+        vc.theaters = self.theaters[row];
+        vc.movieID = self.movieID;
+        vc.movieName = self.movieName;
+    }
 }
 
 @end

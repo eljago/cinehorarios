@@ -8,7 +8,7 @@
 #import "CineHorariosTableViewController.h"
 
 @interface MovieFunctionsVC : CineHorariosTableViewController
-@property (nonatomic, assign) NSUInteger theaterID;
+@property (nonatomic, strong) NSArray *theaters;
 @property (nonatomic, assign) NSUInteger movieID;
 @property (nonatomic, strong) NSString *movieName;
 @end

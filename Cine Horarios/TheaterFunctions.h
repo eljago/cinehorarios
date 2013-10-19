@@ -11,6 +11,6 @@
 @interface TheaterFunctions : Theater
 
 @property (nonatomic, strong) NSArray *functions;
-+ (void)getMovieTheatersFavoritesWithBlock:(void (^)(NSArray *theaters, NSError *error))block movieID:(NSUInteger )movieID;
++ (void)getMovieTheatersFavoritesWithBlock:(void (^)(NSArray *theaterFunctions, NSError *error))block movieID:(NSUInteger )movieID theaters:(NSArray *)theaters;
 
 @end

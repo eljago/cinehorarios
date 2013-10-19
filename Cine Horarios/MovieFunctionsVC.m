@@ -17,9 +17,10 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "TheaterFunctions.h"
 
 @interface MovieFunctionsVC ()
-@property (nonatomic, strong) NSArray *functions;
+@property (nonatomic, strong) NSArray *theaterFuctions;
 @end
 
 @implementation MovieFunctionsVC {
@@ -40,52 +41,23 @@
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
-    
-    [self getMovieFunctionsForceRemote:NO];
-}
-- (void) getMovieFunctionsForceRemote:(BOOL) forceRemote {
-    
-    if (forceRemote) {
-        [self downloadMovieFunctions];
-    }
-    else {
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
-        NSString *dateString = [NSString stringWithFormat:@"%d-%d-%d",[components year], [components month], [components day]];
-        NSArray *functions = [Function getLocalMovieFunctionsWithMovieID:self.movieID theaterID:self.theaterID dateString:dateString];
-        if (functions.count) {
-            self.functions = functions;
-            [self.tableView reloadData];
-        }
-        else {
-            [self downloadMovieFunctions];
-        }
-    }
+    [self downloadMovieFunctions];
 }
 -(void) downloadMovieFunctions{
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Function getMovieFunctionsWithBlock:^(NSArray *functions, NSError *error)  {
+    
+    [TheaterFunctions getMovieTheatersFavoritesWithBlock:^(NSArray *theaterFunctions, NSError *error) {
         if (!error) {
-            self.functions = functions;
+            self.theaterFuctions = theaterFunctions;
             [self.tableView reloadData];
+            self.tableView.scrollEnabled = YES;
         }
         else {
             [self showAlert];
         }
-        self.tableView.scrollEnabled = YES;
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (self.refreshControl.refreshing) {
-            [self.refreshControl endRefreshing];
-        }
-    } movieID:self.movieID theaterID:self.theaterID date:[NSDate new]];
-}
-
--(void)refreshData {
-    [self.refreshControl beginRefreshing];
-    [self getMovieFunctionsForceRemote:YES];
+    } movieID:self.movieID theaters:self.theaters];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 - (void) showAlert{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
@@ -93,7 +65,7 @@
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
-        [self getMovieFunctionsForceRemote:YES];
+        [self downloadMovieFunctions];
     }
 }
 
@@ -112,10 +84,10 @@
 
 #pragma mark - Table view data source
 
--
-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    Function *function = self.functions[indexPath.row];
+    TheaterFunctions *theater = self.theaterFuctions[indexPath.section];
+    Function *function = theater.functions[indexPath.row];
     CGSize size = CGSizeMake(280.f, 1000.f);
     
     CGRect typesLabelRect = [function.types boundingRectWithSize: size
@@ -134,12 +106,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.theaterFuctions.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.functions count];
+    TheaterFunctions *theater = self.theaterFuctions[section];
+    return theater.functions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -147,7 +120,9 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    Function *function = self.functions[indexPath.row];
+    TheaterFunctions *theater = self.theaterFuctions[indexPath.section];
+    Function *function = theater.functions[indexPath.row];
+    
     UILabel *functionTypes = (UILabel *)[cell viewWithTag:1];
     UILabel *functionShowtimes = (UILabel *)[cell viewWithTag:2];
     functionTypes.text = function.types;
@@ -158,16 +133,14 @@
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [self heightForHeaderView];
-}
--(CGFloat) heightForHeaderView {
     CGSize size = CGSizeMake(310.f, 1000.f);
     
-    CGRect nameLabelRect = [self.movieName boundingRectWithSize: size
-                                                        options: NSStringDrawingUsesLineFragmentOrigin
-                                                     attributes: [NSDictionary dictionaryWithObject:headerFont
-                                                                                             forKey:NSFontAttributeName]
-                                                        context: nil];
+    TheaterFunctions *theater = self.theaterFuctions[section];
+    CGRect nameLabelRect = [theater.name  boundingRectWithSize: size
+                                                       options: NSStringDrawingUsesLineFragmentOrigin
+                                                    attributes: [NSDictionary dictionaryWithObject:headerFont
+                                                                                            forKey:NSFontAttributeName]
+                                                       context: nil];
     
     CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 8.0f;
     
@@ -178,13 +151,15 @@
     return totalHeight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, [self heightForHeaderView])];
+    NSInteger height = [self tableView:self.tableView heightForHeaderInSection:section];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, height)];
     view.backgroundColor = [UIColor tableViewColor];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, [self heightForHeaderView])];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, height)];
     label.numberOfLines = 0;
     label.tag = 40;
     label.font = headerFont;
-    label.text = self.movieName;
+    TheaterFunctions *theater = self.theaterFuctions[section];
+    label.text = theater.name;
     [view addSubview: label];
     return view;
 }

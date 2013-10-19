@@ -19,7 +19,12 @@ NSString *const RemoteMovieTheaterFunctionsPath = @"/api/shows/%d/favorite_theat
     if (!self) {
         return nil;
     }
-    NSLog(@"%@",attributes);
+    NSMutableArray *mutableFunctions = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in attributes[@"functions"]) {
+        Function *function = [[Function alloc] initWithAttributes:dict];
+        [mutableFunctions addObject:function];
+    }
+    self.functions = [[NSMutableArray alloc] initWithArray:mutableFunctions];
     
     return self;
 }
@@ -35,14 +40,20 @@ NSString *const RemoteMovieTheaterFunctionsPath = @"/api/shows/%d/favorite_theat
     return [NSArray arrayWithArray:mutableItems];
 }
 
-+ (void)getMovieTheatersFavoritesWithBlock:(void (^)(NSArray *theaters, NSError *error))block movieID:(NSUInteger )movieID {
++ (void)getMovieTheatersFavoritesWithBlock:(void (^)(NSArray *theaterFunctions, NSError *error))block movieID:(NSUInteger )movieID theaters:(NSArray *)theaters {
     NSString *path = [NSString stringWithFormat:RemoteMovieTheaterFunctionsPath,movieID];
-    [[CineHorariosApiClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    NSString *theatersString = [NSString stringWithFormat:@"%d",((BasicItem *)[theaters firstObject]).itemId];
+    for (int i=1; i<theaters.count;i++) {
+        BasicItem *item = theaters[i];
+        theatersString = [theatersString stringByAppendingFormat:@",%d",item.itemId];
+    }
+
+    [[CineHorariosApiClient sharedClient] GET:path parameters:@{ @"favorites": theatersString } success:^(NSURLSessionDataTask * __unused task, id JSON) {
         
-        NSArray *theaters = [TheaterFunctions theatersFunctionsFromJSON:JSON];
+        NSArray *theaterFunctions = [TheaterFunctions theatersFunctionsFromJSON:JSON];
         
         if (block) {
-            block(theaters, nil);
+            block(theaterFunctions, nil);
         }
     } failure:^(NSURLSessionDataTask * __unused task, NSError *error) {
         if (block) {
