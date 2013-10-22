@@ -9,7 +9,6 @@
 #import "UIImageView+CH.h"
 #import "CineHorariosApiClient.h"
 #import "UIImageView+AFNetworking.h"
-#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation UIImageView (CH)
 
@@ -85,7 +84,8 @@
     }
     else {
         NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
-        NSURLRequest *request = [NSURLRequest requestWithURL:nsurl];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
+        [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
         
         __weak UIImageView *wself = self;
         [self setImageWithURLRequest:request placeholderImage:nil
@@ -111,7 +111,10 @@
                movieImageType:(MovieImageType) movieImageType {
     
     NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
-    [self setImageWithURL:nsurl];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
+    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+    
+    [self setImageWithURLRequest:request placeholderImage:nil success:nil failure:nil];
 }
 
 @end
