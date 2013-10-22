@@ -84,5 +84,9 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
-
+#pragma mark - Interface Orientation
+    
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
 @end

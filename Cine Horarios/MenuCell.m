@@ -24,7 +24,7 @@
     [super awakeFromNib];
     
     UIView *view = [[UIView alloc] initWithFrame:self.bounds];
-    view.backgroundColor = [UIColor darkerMidnightBlue];
+    view.backgroundColor = [UIColor colorWithWhite:1.f alpha:0.10f];
     self.selectedBackgroundView = view;
 }
 

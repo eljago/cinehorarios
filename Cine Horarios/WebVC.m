@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA WEB VIEW" forKey:kGAIScreenName] build]];
     
@@ -84,7 +85,7 @@
 #pragma mark - Interface Orientation
 
 -(NSUInteger)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskLandscapeLeft;
+    return UIInterfaceOrientationMaskAll;
 }
 
 @end

@@ -89,4 +89,11 @@
     self.labelTitle.font = titleFont;
 
 }
+
+#pragma mark - Interface Orientation
+    
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 @end
