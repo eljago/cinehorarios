@@ -24,6 +24,8 @@
 @interface FuncionesVC ()
 @property (nonatomic, strong) NSArray *functions;
 @property (nonatomic, strong) NSString *theater_url;
+@property (nonatomic, strong) UIBarButtonItem *favoriteButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *menuButtonItem;
 @end
 
 @implementation FuncionesVC{
@@ -134,8 +136,13 @@
     favoriteButton.frame = CGRectMake(0, 0, 40, 40);
     [favoriteButton addTarget:self action:@selector(setFavoriteTheater:) forControlEvents:UIControlEventTouchUpInside];
     UIImage *image = [UIImage imageNamed:@"FavoriteHeart"];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(setFavoriteTheater:)];
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor navUnselectedColor];
+    
+    
+    self.menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.favoriteButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(setFavoriteTheater:)];
+    self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
+    
+    self.navigationItem.rightBarButtonItems = @[self.menuButtonItem, self.favoriteButtonItem];
 }
 - (void) setupFavorites{
     
@@ -143,11 +150,11 @@
     NSDictionary *favorites = [dict valueForKey:@"Favorites"];
     NSString *theaterName = [favorites valueForKey:[NSString stringWithFormat:@"%d",self.theaterID]];
     if (theaterName) {
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+        self.favoriteButtonItem.tintColor = [UIColor whiteColor];
         favorite = YES;
     }
     else{
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor navUnselectedColor];
+        self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
         favorite = NO;
     }
 }
@@ -155,10 +162,10 @@
 - (IBAction) setFavoriteTheater:(id)sender{
     favorite = !favorite;
     if (favorite) {
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+        self.favoriteButtonItem.tintColor = [UIColor whiteColor];
     }
     else{
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor navUnselectedColor];
+        self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
     }
     // Notify the previouse view to save the changes locally
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Toggle Favorite"

@@ -34,7 +34,7 @@
         self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuVC"];
     }
     
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+//    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
 - (IBAction)revealMenu:(id)sender
 {

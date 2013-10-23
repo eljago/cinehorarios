@@ -49,6 +49,8 @@
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    
     [self getMovieTheatersForceRemote:NO];
 }
 
