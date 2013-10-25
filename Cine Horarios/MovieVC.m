@@ -456,7 +456,6 @@
 
 #pragma mark - Collection View Methods
 
-
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if ([collectionView isEqual:self.collectionView]) {
         return self.movie.images.count;

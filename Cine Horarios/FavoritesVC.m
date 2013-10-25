@@ -36,6 +36,7 @@
                                                object:nil];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.sideMenuViewController action:@selector(presentMenuViewController)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -50,10 +51,10 @@
     [self loadFavorites];
     
     if ([self.favoriteTheaters count] == 0) {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.navigationItem.leftBarButtonItem.enabled = NO;
     }
     else {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.navigationItem.leftBarButtonItem.enabled = YES;
     }
     [self.tableView reloadData];
 }
@@ -82,11 +83,11 @@
 - (IBAction) enterEditingMode:(UIBarButtonItem *) sender{
     if (self.tableView.isEditing) {
         [self.tableView setEditing:NO animated:YES];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
     }
     else{
         [self.tableView setEditing:YES animated:YES];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(enterEditingMode:)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(enterEditingMode:)];
     }
 }
 
@@ -126,10 +127,10 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         if ([self.favoriteTheaters count] == 0) {
             tableView.editing = NO;
-            self.navigationItem.rightBarButtonItem.enabled = NO;
+            self.navigationItem.leftBarButtonItem.enabled = NO;
         }
         else {
-            self.navigationItem.rightBarButtonItem.enabled = YES;
+            self.navigationItem.leftBarButtonItem.enabled = YES;
         }
     }
 }

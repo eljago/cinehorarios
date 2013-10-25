@@ -39,8 +39,6 @@
 {
     [super viewDidLoad];
     
-    self.title = self.theaterName;
-    
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"FUNCIONES" forKey:kGAIScreenName] build]];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Preferencias Usuario"
@@ -192,7 +190,14 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.functions.count > 0) {
-        return [UIView new];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, [self heightForHeaderView])];
+        view.backgroundColor = [UIColor tableViewColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, [self heightForHeaderView])];
+        label.tag = 40;
+        label.font = headFont;
+        label.text = self.theaterName;
+        [view addSubview: label];
+        return view;
     }
     else {
         if (self.theater_url) {
@@ -210,7 +215,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (self.functions.count > 0) {
-        return 0.01;
+        return [self heightForHeaderView];
     }
     else {
         return 88.f;
@@ -245,21 +250,25 @@
         return 88.f;
     }
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.functions.count > 0) {
-        MovieVC *movieVC = (MovieVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"MovieVC2"];
-        Function *function = self.functions[indexPath.row];
-        movieVC.movieID = function.itemId;
-        movieVC.movieName = function.name;
-        movieVC.portraitImageURL = function.portraitImageURL;
-        [self.navigationController pushViewController:movieVC animated:YES];
+-(CGFloat) heightForHeaderView {
+    CGSize size = CGSizeMake(310.f, 1000.f);
+    
+    CGRect nameLabelRect = [@"Javier" boundingRectWithSize: size
+                                                   options: NSStringDrawingUsesLineFragmentOrigin
+                                                attributes: [NSDictionary dictionaryWithObject:headFont
+                                                                                        forKey:NSFontAttributeName]
+                                                   context: nil];
+    
+    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 8.0f;
+    
+    if (totalHeight <= 25.f) {
+        totalHeight = 25.f;
     }
-    else {
-        WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
-        wvc.urlString = self.theater_url;
-        [self.navigationController pushViewController:wvc animated:YES];
-    }
+    
+    return totalHeight;
 }
+
+#pragma mark - Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
@@ -267,5 +276,21 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"FunctionsToMovie"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        MovieVC *movieVC = segue.destinationViewController;
+        Function *function = self.functions[indexPath.row];
+        movieVC.movieID = function.itemId;
+        movieVC.movieName = function.name;
+        movieVC.portraitImageURL = function.portraitImageURL;
+    }
+    else {
+        WebVC *wvc = segue.destinationViewController;
+        wvc.urlString = self.theater_url;
+    }
+}
 
 @end

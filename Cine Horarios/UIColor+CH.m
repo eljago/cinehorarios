@@ -10,8 +10,11 @@
 
 @implementation UIColor (CH)
 
+//+ (UIColor *)navColor{
+//    return [UIColor colorWithRed:147./255. green:33./255. blue:19./255. alpha:1.f];
+//}
 + (UIColor *)navColor{
-    return [UIColor colorWithRed:147./255. green:33./255. blue:19./255. alpha:1.f];
+    return [UIColor colorWithRed:183./255. green:58./255. blue:52./255. alpha:1.f];
 }
 + (UIColor *)lighterGrayColor{
     return [UIColor colorWithWhite:0.960 alpha:1.000];
