@@ -5,48 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>58D6178B-7A96-4E1F-9143-0C5F0436A525</string>
+	<string>FCF7434A-48F9-4F6D-A58B-EDD8C46E6DA4</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Cine Horarios</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>37164C31-5B1B-486C-B659-30D502642387</key>
-		<string>file://localhost/Users/eljago/Library/Caches/CocoaPods/GitHub/ace942c2138b0006af43fa6c1b1afc8b548d6c3f</string>
-		<key>799BDD50-FE1B-4F8F-B469-973812DF9A72</key>
-		<string>ssh://github.com/eljago/CineHorarios2.git</string>
+		<key>C67AAA27-0551-4E63-B677-084C613A7C0D</key>
+		<string>https://github.com/eljago/CineHorarios3.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Cine Horarios.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>37164C31-5B1B-486C-B659-30D502642387</key>
-		<string>../Pods/MWPhotoBrowser</string>
-		<key>799BDD50-FE1B-4F8F-B469-973812DF9A72</key>
+		<key>C67AAA27-0551-4E63-B677-084C613A7C0D</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/eljago/CineHorarios2.git</string>
+	<string>https://github.com/eljago/CineHorarios3.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>799BDD50-FE1B-4F8F-B469-973812DF9A72</string>
+	<string>C67AAA27-0551-4E63-B677-084C613A7C0D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>799BDD50-FE1B-4F8F-B469-973812DF9A72</string>
+			<string>C67AAA27-0551-4E63-B677-084C613A7C0D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Cine Horarios</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>37164C31-5B1B-486C-B659-30D502642387</string>
-			<key>IDESourceControlWCCName</key>
-			<string>MWPhotoBrowser</string>
 		</dict>
 	</array>
 </dict>
