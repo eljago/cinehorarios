@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import "ECSlidingViewController.h"
 
-@interface InitialVC : ECSlidingViewController
+@interface InitialVC : RESideMenu
 
 @end

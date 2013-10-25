@@ -14,29 +14,16 @@
 
 @implementation InitialVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (void)awakeFromNib
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NavVC"];
+    self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuVC"];
+    self.backgroundImage = [UIImage imageNamed:@"MenuBackground"];
+    self.panGestureEnabled = NO;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-        
-    self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NavCinesVC"];
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Preferred Status Bar Style
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -46,7 +33,7 @@
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    return [self.topViewController supportedInterfaceOrientations];
+    return [self.contentViewController supportedInterfaceOrientations];
 }
 
 @end

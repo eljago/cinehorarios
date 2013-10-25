@@ -13,6 +13,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "RESideMenu.h"
 
 @interface SettingsVC ()
 
@@ -54,7 +55,7 @@
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.sideMenuViewController action:@selector(presentMenuViewController)];
     
     self.label.text = @"Active esta opción para que las imágenes en pantalla completa sean de alta resolución.";
     self.label.font = normalFont;

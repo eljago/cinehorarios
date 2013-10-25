@@ -7,8 +7,6 @@
 //
 
 #import "GlobalNavigationController.h"
-#import "ECSlidingViewController.h"
-#import "MenuVC.h"
 
 @interface GlobalNavigationController ()
 
@@ -29,16 +27,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuVC class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuVC"];
-    }
-    
-    [self.navigationBar addGestureRecognizer:self.slidingViewController.panGesture];
-}
-- (IBAction)revealMenu:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,11 +8,11 @@
 
 #import "MenuVC.h"
 #import "BasicImageItem.h"
-#import "ECSlidingViewController.h"
 #import "GlobalNavigationController.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "MenuCell.h"
+#import "UIViewController+RESideMenu.h"
 
 @interface MenuVC ()
 @property (nonatomic, strong) NSArray *menu;
@@ -20,16 +20,6 @@
 
 @implementation MenuVC {
     UIFont *tableFont;
-    NSInteger selectedRow;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -44,14 +34,9 @@
     
     [self loadMenu];
     self.tableView.tableHeaderView = [self getTableHeaderView];
-    selectedRow = 0;
-    
-    [self.slidingViewController setAnchorRightRevealAmount:220.f];
-    self.slidingViewController.underLeftWidthLayout = ECFullWidth;
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedRow inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 - (void) loadMenu {
     
@@ -86,19 +71,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *identifier = self.menu[indexPath.row][@"storyboardID"];
-    GlobalNavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
     
-    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = self.slidingViewController.topViewController.view.frame;
-        self.slidingViewController.topViewController = navVC;
-        self.slidingViewController.topViewController.view.frame = frame;
-        [self.slidingViewController resetTopView];
-    }];
-    selectedRow = indexPath.row;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01f;
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UINavigationController *navigationController = (UINavigationController *)self.sideMenuViewController.contentViewController;
+    
+    NSString *identifier = self.menu[indexPath.row][@"storyboardID"];
+    navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
+    [self.sideMenuViewController hideMenuViewController];
 }
 
 #pragma mark - content Size Changed
@@ -108,5 +87,6 @@
     
     [self.tableView reloadData];
 }
+
 
 @end

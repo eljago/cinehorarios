@@ -20,6 +20,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "WebVC.h"
 
 @interface FuncionesVC ()
 @property (nonatomic, strong) NSArray *functions;
@@ -137,8 +138,7 @@
     [favoriteButton addTarget:self action:@selector(setFavoriteTheater:) forControlEvents:UIControlEventTouchUpInside];
     UIImage *image = [UIImage imageNamed:@"FavoriteHeart"];
     
-    
-    self.menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.sideMenuViewController action:@selector(presentMenuViewController)];
     self.favoriteButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(setFavoriteTheater:)];
     self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
     
@@ -245,6 +245,21 @@
         return 88.f;
     }
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.functions.count > 0) {
+        MovieVC *movieVC = (MovieVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"MovieVC2"];
+        Function *function = self.functions[indexPath.row];
+        movieVC.movieID = function.itemId;
+        movieVC.movieName = function.name;
+        movieVC.portraitImageURL = function.portraitImageURL;
+        [self.navigationController pushViewController:movieVC animated:YES];
+    }
+    else {
+        WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+        wvc.urlString = self.theater_url;
+        [self.navigationController pushViewController:wvc animated:YES];
+    }
+}
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
@@ -252,15 +267,5 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - Segue
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    MovieVC *movieVC = segue.destinationViewController;
-    NSInteger row = [self.tableView indexPathForSelectedRow].row;
-    Function *function = self.functions[row];
-    movieVC.movieID = function.itemId;
-    movieVC.movieName = function.name;
-    movieVC.portraitImageURL = function.portraitImageURL;
-}
 
 @end

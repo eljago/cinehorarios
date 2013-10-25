@@ -54,12 +54,6 @@
 #define COCOAPODS_VERSION_MINOR_DACircularProgress 1
 #define COCOAPODS_VERSION_PATCH_DACircularProgress 0
 
-// ECSlidingViewController
-#define COCOAPODS_POD_AVAILABLE_ECSlidingViewController
-#define COCOAPODS_VERSION_MAJOR_ECSlidingViewController 1
-#define COCOAPODS_VERSION_MINOR_ECSlidingViewController 3
-#define COCOAPODS_VERSION_PATCH_ECSlidingViewController 1
-
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK 3
@@ -83,6 +77,12 @@
 #define COCOAPODS_VERSION_MAJOR_MWPhotoBrowser_ARC 1
 #define COCOAPODS_VERSION_MINOR_MWPhotoBrowser_ARC 1
 #define COCOAPODS_VERSION_PATCH_MWPhotoBrowser_ARC 3
+
+// RESideMenu
+#define COCOAPODS_POD_AVAILABLE_RESideMenu
+#define COCOAPODS_VERSION_MAJOR_RESideMenu 3
+#define COCOAPODS_VERSION_MINOR_RESideMenu 1
+#define COCOAPODS_VERSION_PATCH_RESideMenu 7
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GlobalNavigationController : UINavigationController
-- (IBAction)revealMenu:(id)sender;
+
 @end
