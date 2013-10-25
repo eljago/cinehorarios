@@ -225,15 +225,20 @@
     return totalHeight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, [self heightForHeaderView])];
-    view.backgroundColor = [UIColor tableViewColor];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, [self heightForHeaderView])];
-    label.numberOfLines = 0;
-    label.tag = 40;
-    label.font = headerFont;
-    label.text = self.movieName;
-    [view addSubview: label];
-    return view;
+    if (self.cinemas.count) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, [self heightForHeaderView])];
+        view.backgroundColor = [UIColor tableViewColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, [self heightForHeaderView])];
+        label.numberOfLines = 0;
+        label.tag = 40;
+        label.font = headerFont;
+        label.text = self.movieName;
+        [view addSubview: label];
+        return view;
+    }
+    else {
+        return [UIView new];
+    }
 }
 
 #pragma mark - content Size Changed

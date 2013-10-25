@@ -43,6 +43,12 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.sideMenuViewController action:@selector(presentMenuViewController)];
     
+    // TopView it's the view over the tableview while it's downloading the data for the first time
+    UIView *topView = [[UIView alloc] initWithFrame:self.view.bounds];
+    topView.backgroundColor = [UIColor tableViewColor];
+    topView.tag = 999;
+    [self.view addSubview:topView];
+    
     [self downloadMovieFunctions];
 }
 -(void) downloadMovieFunctions{
@@ -58,8 +64,18 @@
         else {
             [self showAlert];
         }
+        
+        UIView *frontView = [self.view viewWithTag:999];
+        [UIView animateWithDuration:0.3 animations:^{
+            frontView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            
+            [frontView removeFromSuperview];
+            self.tableView.scrollEnabled = YES;
+        }];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
     } movieID:self.movieID theaters:self.theaters];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 - (void) showAlert{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
@@ -88,22 +104,27 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    TheaterFunctions *theater = self.theaterFuctions[indexPath.section];
-    Function *function = theater.functions[indexPath.row];
-    CGSize size = CGSizeMake(280.f, 1000.f);
-    
-    CGRect typesLabelRect = [function.types boundingRectWithSize: size
-                                                         options: NSStringDrawingUsesLineFragmentOrigin
-                                                      attributes: [NSDictionary dictionaryWithObject:tableFont forKey:NSFontAttributeName]
-                                                         context: nil];
-    CGRect showtimesLabelRect = [function.showtimes boundingRectWithSize: size
-                                                                 options: NSStringDrawingUsesLineFragmentOrigin
-                                                              attributes: [NSDictionary dictionaryWithObject:tableFont forKey:NSFontAttributeName]
-                                                                 context: nil];
-    
-    CGFloat totalHeight = 10.0f + typesLabelRect.size.height + 5.0f + showtimesLabelRect.size.height + 10.0f;
-    
-    return totalHeight;
+    if (self.theaterFuctions.count) {
+        TheaterFunctions *theater = self.theaterFuctions[indexPath.section];
+        Function *function = theater.functions[indexPath.row];
+        CGSize size = CGSizeMake(280.f, 1000.f);
+        
+        CGRect typesLabelRect = [function.types boundingRectWithSize: size
+                                                             options: NSStringDrawingUsesLineFragmentOrigin
+                                                          attributes: [NSDictionary dictionaryWithObject:tableFont forKey:NSFontAttributeName]
+                                                             context: nil];
+        CGRect showtimesLabelRect = [function.showtimes boundingRectWithSize: size
+                                                                     options: NSStringDrawingUsesLineFragmentOrigin
+                                                                  attributes: [NSDictionary dictionaryWithObject:tableFont forKey:NSFontAttributeName]
+                                                                     context: nil];
+        
+        CGFloat totalHeight = 10.0f + typesLabelRect.size.height + 5.0f + showtimesLabelRect.size.height + 10.0f;
+        
+        return totalHeight;
+    }
+    else {
+        return 0.01;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
