@@ -1,12 +1,12 @@
 //
 //  MBProgressHUD.h
-//  Version 0.8
+//  Version 0.5
 //  Created by Matej Bukovinski on 2.4.09.
 //
 
 // This code is distributed under the terms and conditions of the MIT license. 
 
-// Copyright (c) 2013 Matej Bukovinski
+// Copyright (c) 2011 Matej Bukovinski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,8 +38,6 @@ typedef enum {
 	MBProgressHUDModeIndeterminate,
 	/** Progress is shown using a round, pie-chart like, progress view. */
 	MBProgressHUDModeDeterminate,
-	/** Progress is shown using a horizontal progress bar */
-	MBProgressHUDModeDeterminateHorizontalBar,
 	/** Progress is shown using a ring-shaped progress view. */
 	MBProgressHUDModeAnnularDeterminate,
 	/** Shows a custom view */
@@ -52,19 +50,9 @@ typedef enum {
 	/** Opacity animation */
 	MBProgressHUDAnimationFade,
 	/** Opacity + scale animation */
-	MBProgressHUDAnimationZoom,
-	MBProgressHUDAnimationZoomOut = MBProgressHUDAnimationZoom,
-	MBProgressHUDAnimationZoomIn
+	MBProgressHUDAnimationZoom
 } MBProgressHUDAnimation;
 
-
-#ifndef MB_INSTANCETYPE
-#if __has_feature(objc_instancetype)
-	#define MB_INSTANCETYPE instancetype
-#else
-	#define MB_INSTANCETYPE id
-#endif
-#endif
 
 #ifndef MB_STRONG
 #if __has_feature(objc_arc)
@@ -82,10 +70,6 @@ typedef enum {
 #else
 	#define MB_WEAK assign
 #endif
-#endif
-
-#if NS_BLOCKS_AVAILABLE
-typedef void (^MBProgressHUDCompletionBlock)();
 #endif
 
 
@@ -121,7 +105,7 @@ typedef void (^MBProgressHUDCompletionBlock)();
  * @see hideHUDForView:animated:
  * @see animationType
  */
-+ (MB_INSTANCETYPE)showHUDAddedTo:(UIView *)view animated:(BOOL)animated;
++ (MBProgressHUD *)showHUDAddedTo:(UIView *)view animated:(BOOL)animated;
 
 /**
  * Finds the top-most HUD subview and hides it. The counterpart to this method is showHUDAddedTo:animated:.
@@ -144,7 +128,7 @@ typedef void (^MBProgressHUDCompletionBlock)();
  * animations while disappearing.
  * @return the number of HUDs found and removed.
  *
- * @see hideHUDForView:animated:
+ * @see hideAllHUDForView:animated:
  * @see animationType
  */
 + (NSUInteger)hideAllHUDsForView:(UIView *)view animated:(BOOL)animated;
@@ -155,7 +139,7 @@ typedef void (^MBProgressHUDCompletionBlock)();
  * @param view The view that is going to be searched.
  * @return A reference to the last HUD subview discovered.
  */
-+ (MB_INSTANCETYPE)HUDForView:(UIView *)view;
++ (MBProgressHUD *)HUDForView:(UIView *)view;
 
 /**
  * Finds all HUD subviews and returns them.
@@ -164,24 +148,6 @@ typedef void (^MBProgressHUDCompletionBlock)();
  * @return All found HUD views (array of MBProgressHUD objects).
  */
 + (NSArray *)allHUDsForView:(UIView *)view;
-
-/**
- * A convenience constructor that initializes the HUD with the window's bounds. Calls the designated constructor with
- * window.bounds as the parameter.
- *
- * @param window The window instance that will provide the bounds for the HUD. Should be the same instance as
- * the HUD's superview (i.e., the window that the HUD will be added to).
- */
-- (id)initWithWindow:(UIWindow *)window;
-
-/**
- * A convenience constructor that initializes the HUD with the view's bounds. Calls the designated constructor with
- * view.bounds as the parameter
- *
- * @param view The view instance that will provide the bounds for the HUD. Should be the same instance as
- * the HUD's superview (i.e., the view that the HUD will be added to).
- */
-- (id)initWithView:(UIView *)view;
 
 /** 
  * Display the HUD. You need to make sure that the main thread completes its run loop soon after this method call so
@@ -212,7 +178,7 @@ typedef void (^MBProgressHUDCompletionBlock)();
  *
  * @param animated If set to YES the HUD will disappear using the current animationType. If set to NO the HUD will not use
  * animations while disappearing.
- * @param delay Delay in seconds until the HUD is hidden.
+ * @param delay Delay in secons until the HUD is hidden.
  *
  * @see animationType
  */
@@ -232,49 +198,23 @@ typedef void (^MBProgressHUDCompletionBlock)();
  */
 - (void)showWhileExecuting:(SEL)method onTarget:(id)target withObject:(id)object animated:(BOOL)animated;
 
-#if NS_BLOCKS_AVAILABLE
-
-/**
- * Shows the HUD while a block is executing on a background queue, then hides the HUD.
- *
- * @see showAnimated:whileExecutingBlock:onQueue:completionBlock:
- */
-- (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block;
-
-/**
- * Shows the HUD while a block is executing on a background queue, then hides the HUD.
- *
- * @see showAnimated:whileExecutingBlock:onQueue:completionBlock:
- */
-- (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block completionBlock:(MBProgressHUDCompletionBlock)completion;
-
-/**
- * Shows the HUD while a block is executing on the specified dispatch queue, then hides the HUD.
- *
- * @see showAnimated:whileExecutingBlock:onQueue:completionBlock:
- */
-- (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue;
-
 /** 
- * Shows the HUD while a block is executing on the specified dispatch queue, executes completion block on the main queue, and then hides the HUD.
+ * Initializes the HUD with the window's bounds. Calls the designated constructor with
+ * window.bounds as the parameter.
  *
- * @param animated If set to YES the HUD will (dis)appear using the current animationType. If set to NO the HUD will
- * not use animations while (dis)appearing.
- * @param block The block to be executed while the HUD is shown.
- * @param queue The dispatch queue on which the block should be executed.
- * @param completion The block to be executed on completion.
- *
- * @see completionBlock
+ * @param window The window instance that will provide the bounds for the HUD. Should be the same instance as
+ * the HUD's superview (i.e., the window that the HUD will be added to).
  */
-- (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue
-		  completionBlock:(MBProgressHUDCompletionBlock)completion;
+- (id)initWithWindow:(UIWindow *)window;
 
 /**
- * A block that gets called after the HUD was completely hidden.
+ * Initializes the HUD with the view's bounds. Calls the designated constructor with
+ * view.bounds as the parameter
+ * 
+ * @param view The view instance that will provide the bounds for the HUD. Should be the same instance as
+ * the HUD's superview (i.e., the view that the HUD will be added to).
  */
-@property (copy) MBProgressHUDCompletionBlock completionBlock;
-
-#endif
+- (id)initWithView:(UIView *)view;
 
 /** 
  * MBProgressHUD operation mode. The default is MBProgressHUDModeIndeterminate.
@@ -317,16 +257,9 @@ typedef void (^MBProgressHUDCompletionBlock)();
 @property (copy) NSString *detailsLabelText;
 
 /** 
- * The opacity of the HUD window. Defaults to 0.8 (80% opacity). 
+ * The opacity of the HUD window. Defaults to 0.9 (90% opacity). 
  */
 @property (assign) float opacity;
-
-/**
- * The color of the HUD window. Defaults to black. If this property is set, color is set using
- * this UIColor and the opacity property is not used.  using retain because performing copy on
- * UIColor base colors (like [UIColor greenColor]) cause problems with the copyZone.
- */
-@property (MB_STRONG) UIColor *color;
 
 /** 
  * The x-axis offset of the HUD relative to the centre of the superview. 
@@ -334,12 +267,12 @@ typedef void (^MBProgressHUDCompletionBlock)();
 @property (assign) float xOffset;
 
 /** 
- * The y-axis offset of the HUD relative to the centre of the superview. 
+ * The y-ayis offset of the HUD relative to the centre of the superview. 
  */
 @property (assign) float yOffset;
 
 /**
- * The amount of space between the HUD edge and the HUD elements (labels, indicators or custom views). 
+ * The amounth of space between the HUD edge and the HUD elements (labels, indicators or custom views). 
  * Defaults to 20.0
  */
 @property (assign) float margin;
@@ -433,52 +366,9 @@ typedef void (^MBProgressHUDCompletionBlock)();
  */
 @property (nonatomic, assign) float progress;
 
-/**
- * Indicator progress color.
- * Defaults to white [UIColor whiteColor]
- */
-@property (nonatomic, MB_STRONG) UIColor *progressTintColor;
-
-/**
- * Indicator background (non-progress) color.
- * Defaults to translucent white (alpha 0.1)
- */
-@property (nonatomic, MB_STRONG) UIColor *backgroundTintColor;
-
 /*
  * Display mode - NO = round or YES = annular. Defaults to round.
  */
 @property (nonatomic, assign, getter = isAnnular) BOOL annular;
-
-@end
-
-
-/**
- * A flat bar progress view. 
- */
-@interface MBBarProgressView : UIView
-
-/**
- * Progress (0.0 to 1.0)
- */
-@property (nonatomic, assign) float progress;
-
-/**
- * Bar border line color.
- * Defaults to white [UIColor whiteColor].
- */
-@property (nonatomic, MB_STRONG) UIColor *lineColor;
-
-/**
- * Bar background color.
- * Defaults to clear [UIColor clearColor];
- */
-@property (nonatomic, MB_STRONG) UIColor *progressRemainingColor;
-
-/**
- * Bar progress color.
- * Defaults to white [UIColor whiteColor].
- */
-@property (nonatomic, MB_STRONG) UIColor *progressColor;
 
 @end

@@ -91,11 +91,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *identifier = self.menu[indexPath.row][@"storyboardID"];
-    UINavigationController *navigationController = (UINavigationController *)self.slidingViewController.topViewController;
+    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"NavVC"];
     navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
+
     
     [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
         CGRect frame = self.slidingViewController.topViewController.view.frame;
+        self.slidingViewController.topViewController = navigationController;
         self.slidingViewController.topViewController.view.frame = frame;
         [self.slidingViewController resetTopView];
     }];

@@ -94,7 +94,7 @@
 
 // Navigation
 - (void)updateNavigation;
-- (void)jumpToPageAtIndex:(NSUInteger)index;
+- (void)jumpToPageAtIndex:(NSUInteger)index animated:(BOOL)animated;
 - (void)gotoPreviousPage;
 - (void)gotoNextPage;
 
@@ -148,7 +148,7 @@
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
-	if ((self = [self initWithCoder:decoder])) {
+	if ((self = [super initWithCoder:decoder])) {
         [self _initialisation];
 	}
 	return self;
@@ -198,14 +198,16 @@
 }
 
 - (void)releaseAllUnderlyingPhotos:(BOOL)preserveCurrent {
-    for (id p in _photos) {
+    // create a copy in case this array is modified while we are looping through
+    NSArray *photosCopy = [_photos copy];
+    for (id p in photosCopy) {
         if (p != [NSNull null]) {
             if (preserveCurrent && p == [self photoAtIndex:self.currentIndex]) {
                 continue; // skip current
             }
             [p unloadUnderlyingImage];
         }
-    } // Release photos
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -405,6 +407,10 @@
         _leaveStatusBarAlone = [self presentingViewControllerPrefersStatusBarHidden];
     } else {
         _leaveStatusBarAlone = [UIApplication sharedApplication].statusBarHidden;
+    }
+    if (CGRectEqualToRect([[UIApplication sharedApplication] statusBarFrame], CGRectZero)) {
+        // If the frame is zero then definitely leave it alone
+        _leaveStatusBarAlone = YES;
     }
     if (!_leaveStatusBarAlone && self.wantsFullScreenLayout && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         _previousStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
@@ -986,12 +992,12 @@
 	
 }
 
-- (void)jumpToPageAtIndex:(NSUInteger)index {
+- (void)jumpToPageAtIndex:(NSUInteger)index animated:(BOOL)animated {
 	
 	// Change page
 	if (index < [self numberOfPhotos]) {
 		CGRect pageFrame = [self frameForPageAtIndex:index];
-		_pagingScrollView.contentOffset = CGPointMake(pageFrame.origin.x - PADDING, 0);
+        [_pagingScrollView setContentOffset:CGPointMake(pageFrame.origin.x - PADDING, 0) animated:animated];
 		[self updateNavigation];
 	}
 	
@@ -1000,8 +1006,21 @@
 	
 }
 
-- (void)gotoPreviousPage { [self jumpToPageAtIndex:_currentPageIndex-1]; }
-- (void)gotoNextPage { [self jumpToPageAtIndex:_currentPageIndex+1]; }
+- (void)gotoPreviousPage {
+    [self showPreviousPhotoAnimated:NO];
+}
+- (void)gotoNextPage {
+    [self showNextPhotoAnimated:NO];
+}
+
+- (void)showPreviousPhotoAnimated:(BOOL)animated {
+    [self jumpToPageAtIndex:_currentPageIndex-1 animated:animated];
+}
+
+- (void)showNextPhotoAnimated:(BOOL)animated {
+    [self jumpToPageAtIndex:_currentPageIndex+1 animated:animated];
+}
+
 
 #pragma mark - Control Hiding / Showing
 
@@ -1175,7 +1194,7 @@
         index = [self numberOfPhotos]-1;
     _currentPageIndex = index;
 	if ([self isViewLoaded]) {
-        [self jumpToPageAtIndex:index];
+        [self jumpToPageAtIndex:index animated:NO];
         if (!_viewIsActive)
             [self tilePages]; // Force tiling if view is not visible
     }
@@ -1249,7 +1268,7 @@
                     });
 
                     // Show
-                    __weak typeof(self) weakSelf = self;
+                    typeof(self) __weak weakSelf = self;
                     [self.activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
                         weakSelf.activityViewController = nil;
                         [weakSelf hideControlsAfterDelay];
