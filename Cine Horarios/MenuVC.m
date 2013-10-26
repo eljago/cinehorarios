@@ -12,10 +12,11 @@
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "MenuCell.h"
-#import "UIViewController+RESideMenu.h"
+#import "ECSlidingViewController.h"
 
-@interface MenuVC ()
+@interface MenuVC () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSArray *menu;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @end
 
 @implementation MenuVC {
@@ -25,6 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.slidingViewController setAnchorRightRevealAmount:220.0f];
+    self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     
     tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -66,18 +70,35 @@
 
 #pragma mark - Table view data source
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.menu.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    cell.imageView.image = [UIImage imageNamed:self.menu[indexPath.row][@"image"]];
+    cell.textLabel.text = self.menu[indexPath.row][@"name"];
+    
+    return cell;
+}
+
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.textLabel.font = tableFont;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UINavigationController *navigationController = (UINavigationController *)self.sideMenuViewController.contentViewController;
-    
     NSString *identifier = self.menu[indexPath.row][@"storyboardID"];
+    UINavigationController *navigationController = (UINavigationController *)self.slidingViewController.topViewController;
     navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
-    [self.sideMenuViewController hideMenuViewController];
+    
+    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+        CGRect frame = self.slidingViewController.topViewController.view.frame;
+        self.slidingViewController.topViewController.view.frame = frame;
+        [self.slidingViewController resetTopView];
+    }];
 }
 
 #pragma mark - content Size Changed

@@ -7,6 +7,8 @@
 //
 
 #import "GlobalNavigationController.h"
+#import "ECSlidingViewController.h"
+#import "MenuVC.h"
 
 @interface GlobalNavigationController ()
 
@@ -28,15 +30,20 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
-
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillAppear:animated];
+    
+    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuVC class]]) {
+        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuVC"];
+    }
+    
+    [self.navigationBar addGestureRecognizer:self.slidingViewController.panGesture];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+- (IBAction)revealMenu:(id)sender
+{
+    [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
 #pragma mark - Supported Orientations

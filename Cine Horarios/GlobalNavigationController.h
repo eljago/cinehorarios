@@ -10,4 +10,6 @@
 
 @interface GlobalNavigationController : UINavigationController
 
+- (IBAction)revealMenu:(id)sender;
+
 @end

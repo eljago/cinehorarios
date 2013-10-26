@@ -17,10 +17,7 @@
 
 - (void)awakeFromNib
 {
-    self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NavVC"];
-    self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuVC"];
-    self.backgroundImage = [UIImage imageNamed:@"MenuBackground"];
-    self.panGestureEnabled = NO;
+    self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NavVC"];
 }
 
 #pragma mark - Preferred Status Bar Style
@@ -33,7 +30,7 @@
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    return [self.contentViewController supportedInterfaceOrientations];
+    return [self.topViewController supportedInterfaceOrientations];
 }
 
 @end
