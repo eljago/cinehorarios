@@ -46,7 +46,7 @@
                                                            label:self.theaterName
                                                            value:nil] build]];
     
-    headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    headFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
@@ -190,9 +190,11 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.functions.count > 0) {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, [self heightForHeaderView])];
-        view.backgroundColor = [UIColor tableViewColor];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, [self heightForHeaderView])];
+        CGFloat height = [self heightForHeaderWithText:self.theaterName];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, height)];
+        view.backgroundColor = [UIColor navColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, height)];
+        label.textColor = [UIColor whiteColor];
         label.tag = 40;
         label.font = headFont;
         label.text = self.theaterName;
@@ -201,10 +203,14 @@
     }
     else {
         if (self.theater_url) {
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 88.f)];
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, self.view.bounds.size.width - 20, 88.f)];
+            NSString *text = @"Por alguna razón no están los horarios";
+            CGFloat height = [self heightForHeaderWithText:text];
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320.f, height)];
+            view.backgroundColor = [UIColor navColor];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300.f, height)];
+            label.textColor = [UIColor whiteColor];
             label.numberOfLines = 2;
-            label.text = @"No hay funciones registradas para este día";
+            label.text = text;
             [view addSubview:label];
             return view;
         }
@@ -215,10 +221,10 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (self.functions.count > 0) {
-        return [self heightForHeaderView];
+        return [self heightForHeaderWithText:self.theaterName];
     }
     else {
-        return 88.f;
+        return [self heightForHeaderWithText:@"Por alguna razón no están los horarios"];
     }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -236,7 +242,7 @@
         static NSString *CellIdentifier = @"Cell2";
         FunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
-        cell.textLabel.text = @"Ir a la página web del Cine";
+        cell.textLabel.text = [NSString stringWithFormat:@"Ir a la página web de %@", self.theaterName];
         
         return cell;
     }
@@ -247,19 +253,35 @@
         return [FunctionCell heightForCellWithBasicItem:self.functions[indexPath.row] withBodyFont:bodyFont headFont:headFont];
     }
     else {
-        return 88.f;
+        return [self heightForRowWithText:[NSString stringWithFormat:@"Ir a la página web de %@", self.theaterName]];
     }
 }
--(CGFloat) heightForHeaderView {
-    CGSize size = CGSizeMake(310.f, 1000.f);
+-(CGFloat) heightForHeaderWithText:(NSString *)text {
+    CGSize size = CGSizeMake(300.f, 1000.f);
     
-    CGRect nameLabelRect = [@"Javier" boundingRectWithSize: size
+    CGRect nameLabelRect = [text boundingRectWithSize: size
                                                    options: NSStringDrawingUsesLineFragmentOrigin
                                                 attributes: [NSDictionary dictionaryWithObject:headFont
                                                                                         forKey:NSFontAttributeName]
                                                    context: nil];
     
-    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 8.0f;
+    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 5.0f;
+    
+    if (totalHeight <= 25.f) {
+        totalHeight = 25.f;
+    }
+    
+    return totalHeight;
+}-(CGFloat) heightForRowWithText:(NSString *)text {
+    CGSize size = CGSizeMake(270.f, 1000.f);
+    
+    CGRect nameLabelRect = [text boundingRectWithSize: size
+                                              options: NSStringDrawingUsesLineFragmentOrigin
+                                           attributes: [NSDictionary dictionaryWithObject:bodyFont
+                                                                                   forKey:NSFontAttributeName]
+                                              context: nil];
+    
+    CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
     
     if (totalHeight <= 25.f) {
         totalHeight = 25.f;

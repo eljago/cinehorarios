@@ -9,6 +9,9 @@
 @interface UIColor (CH)
 
 + (UIColor *)navColor;
++ (UIColor *)lighterNavColor;
++ (UIColor *)alizarin;
++ (UIColor *)pomegranate;
 + (UIColor *)lighterGrayColor;
 + (UIColor *)darkerMidnightBlue;
 + (UIColor *)midnightBlue;

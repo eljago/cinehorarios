@@ -404,6 +404,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, [self heightForHeaderView])];
     view.backgroundColor = [UIColor tableViewColor];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, [self heightForHeaderView])];
+    label.textColor = [UIColor blackColor];
     label.tag = 40;
     label.font = bigBoldFont;
     [view addSubview: label];
