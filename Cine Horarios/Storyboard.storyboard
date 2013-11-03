@@ -1234,13 +1234,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="83"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="LogoCinemark" translatesAutoresizingMaskIntoConstraints="NO" id="Clp-ZR-7bF">
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoCinemark" translatesAutoresizingMaskIntoConstraints="NO" id="Clp-ZR-7bF">
                                             <rect key="frame" x="20" y="4" width="75" height="75"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="75" id="Aac-Uk-uvY"/>
-                                                <constraint firstAttribute="height" constant="75" id="NM7-e5-d5Y"/>
-                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CINEMARK" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="184" translatesAutoresizingMaskIntoConstraints="NO" id="Hff-D0-YOJ">
                                             <rect key="frame" x="103" y="26" width="184" height="31"/>

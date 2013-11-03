@@ -176,9 +176,9 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     NSInteger height = [self tableView:self.tableView heightForHeaderInSection:section];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, height)];
-    view.backgroundColor = [UIColor navColor];
+    view.backgroundColor = [UIColor tableViewColor];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, height)];
-    label.textColor = [UIColor whiteColor];
+    label.textColor = [UIColor blackColor];
     label.numberOfLines = 0;
     label.tag = 40;
     label.font = headerFont;
