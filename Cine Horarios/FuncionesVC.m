@@ -22,6 +22,8 @@
 #import "GAIFields.h"
 #import "WebVC.h"
 
+NSString *const kHeaderString = @"No se han encontrado los horarios.";
+
 @interface FuncionesVC ()
 @property (nonatomic, strong) NSArray *functions;
 @property (nonatomic, strong) NSString *theater_url;
@@ -203,7 +205,7 @@
     }
     else {
         if (self.theater_url) {
-            NSString *text = @"Por alguna razón no están los horarios";
+            NSString *text = kHeaderString;
             CGFloat height = [self heightForHeaderWithText:text];
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320.f, height)];
             view.backgroundColor = [UIColor navColor];
@@ -224,7 +226,7 @@
         return [self heightForHeaderWithText:self.theaterName];
     }
     else {
-        return [self heightForHeaderWithText:@"Por alguna razón no están los horarios"];
+        return [self heightForHeaderWithText:kHeaderString];
     }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
