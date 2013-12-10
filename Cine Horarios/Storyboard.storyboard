@@ -3,7 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--CarteleraVC - Cartelera-->
@@ -1463,6 +1463,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ce2-6S-cAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-149" y="-1080"/>
+        </scene>
+        <!--Close TheatersVC-->
+        <scene sceneID="evc-kc-qkZ">
+            <objects>
+                <viewController storyboardIdentifier="CloseTheatersVC" id="wM2-ra-6DO" customClass="CloseTheatersVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kYn-SH-FAp"/>
+                        <viewControllerLayoutGuide type="bottom" id="S3f-US-FOY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aOn-ci-wsR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HUU-se-tGy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wM2-ra-6DO" id="jBO-uY-zIm"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HUU-se-tGy" firstAttribute="leading" secondItem="aOn-ci-wsR" secondAttribute="leading" id="Csy-uF-SRe"/>
+                            <constraint firstAttribute="bottom" secondItem="HUU-se-tGy" secondAttribute="bottom" id="Or0-9l-eWl"/>
+                            <constraint firstAttribute="trailing" secondItem="HUU-se-tGy" secondAttribute="trailing" id="dbm-2w-z83"/>
+                            <constraint firstItem="HUU-se-tGy" firstAttribute="top" secondItem="aOn-ci-wsR" secondAttribute="top" id="ylf-bx-kGt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myMap" destination="HUU-se-tGy" id="kfs-ms-5g6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QG1-gZ-JdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-149" y="-1798"/>
         </scene>
     </scenes>
     <resources>

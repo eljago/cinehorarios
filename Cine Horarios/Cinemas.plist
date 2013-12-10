@@ -43,6 +43,14 @@
 		<string>6</string>
 	</dict>
 	<dict>
+		<key>id</key>
+		<string>7</string>
+		<key>name</key>
+		<string>CineStar</string>
+		<key>image</key>
+		<string>LogoCineStar</string>
+	</dict>
+	<dict>
 		<key>image</key>
 		<string>LogoCinesIndependientes</string>
 		<key>name</key>

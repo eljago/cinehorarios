@@ -10,7 +10,7 @@
 
 @interface Theater : BasicItem
 
-@property (nonatomic, readonly) NSUInteger cinemaID;
+@property (nonatomic, assign, readonly) NSUInteger cinemaID;
 
 - (id)initWithAttributes:(NSDictionary *)attributes;
 

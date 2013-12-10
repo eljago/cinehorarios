@@ -4,6 +4,14 @@
 <array>
 	<dict>
 		<key>image</key>
+		<string>LogoCinesCercanos</string>
+		<key>name</key>
+		<string>Cines Cercanos</string>
+		<key>storyboardID</key>
+		<string>CloseTheatersVC</string>
+	</dict>
+	<dict>
+		<key>image</key>
 		<string>LogoCines</string>
 		<key>storyboardID</key>
 		<string>CinesVC</string>

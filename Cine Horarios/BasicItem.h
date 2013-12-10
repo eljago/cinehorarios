@@ -8,7 +8,7 @@
 
 @interface BasicItem : NSObject
 
-@property (nonatomic, readonly) NSUInteger itemId;
+@property (nonatomic, assign, readonly) NSUInteger itemId;
 @property (nonatomic, readonly) NSString *name;
 
 - (id)initWithAttributes:(NSDictionary *)attributes;
