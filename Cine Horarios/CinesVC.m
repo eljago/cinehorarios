@@ -22,6 +22,8 @@
     float _cellHeight;
 }
 
+#pragma mark - UIViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,11 +35,28 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
 }
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma mark - UITableViewController
+#pragma mark Data Source
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.cinemas.count;
 }
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    BasicImageItem *cinema = self.cinemas[indexPath.row];
+    ((UILabel *)[cell viewWithTag:101]).text = cinema.name;
+    ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageNamed:cinema.imageUrl];
+    
+    return cell;
+}
+
+#pragma mark - CinesVC
+#pragma mark Fetch Data
+
 - (void) loadCinemas {
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Cinemas" ofType:@"plist"];
@@ -48,21 +67,6 @@
         [mutableCinemas addObject:[[BasicImageItem alloc] initWithId:[dict[@"id"] integerValue] name:dict[@"name"] imageUrl:dict[@"image"]]];
     }
     self.cinemas = [NSArray arrayWithArray:mutableCinemas];
-}
-
-#pragma mark - Table View Methods
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cinemas.count;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    BasicImageItem *cinema = self.cinemas[indexPath.row];
-    ((UILabel *)[cell viewWithTag:101]).text = cinema.name;
-    ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageNamed:cinema.imageUrl];
-    
-    return cell;
 }
 
 #pragma mark - Segue

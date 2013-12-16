@@ -21,6 +21,7 @@
     UIFont *tableFont;
 }
 
+#pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
@@ -38,11 +39,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
 }
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 // Reload data after coming back from Theater view in case there was an edit
 - (void)viewWillAppear:(BOOL)animated {
@@ -59,39 +55,8 @@
     [self.tableView reloadData];
 }
 
-- (void) loadFavorites{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
-    {
-        plistPath = [[NSBundle mainBundle] pathForResource:@"icloud" ofType:@"plist"];
-    }
-    
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    NSDictionary *favorites = [dict valueForKey:@"Favorites"];
-    NSMutableArray *mutableTheaters = [[NSMutableArray alloc] initWithCapacity:[favorites count]];
-    NSArray *keys = [favorites allKeys];
-    NSArray *values = [favorites allValues];
-    for (int i=0;i<[favorites count];i++){
-        BasicItem *theater = [[BasicItem alloc] initWithId:[[keys objectAtIndex:i] integerValue] name:[values objectAtIndex:i]];
-        [mutableTheaters insertObject:theater atIndex:i];
-    }
-    self.favoriteTheaters = mutableTheaters;
-}
-
-- (IBAction) enterEditingMode:(UIBarButtonItem *) sender{
-    if (self.tableView.isEditing) {
-        [self.tableView setEditing:NO animated:YES];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
-    }
-    else{
-        [self.tableView setEditing:YES animated:YES];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(enterEditingMode:)];
-    }
-}
-
-#pragma mark - Table view data source
+#pragma mark - UITableViewController
+#pragma mark Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -106,7 +71,7 @@
     BasicItem *theater = self.favoriteTheaters[indexPath.row];
     cell.basicItem = theater;
     [cell setFont:tableFont];
-
+    
     return cell;
 }
 
@@ -134,14 +99,59 @@
         }
     }
 }
+
+#pragma mark Delegate
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [CHCell heightForCellWithBasicItem:self.favoriteTheaters[indexPath.row] withFont:tableFont];
 }
+
+#pragma mark - FavoritesVC
+#pragma mark Fetch Data
+
+- (void) loadFavorites{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+    {
+        plistPath = [[NSBundle mainBundle] pathForResource:@"icloud" ofType:@"plist"];
+    }
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    NSDictionary *favorites = [dict valueForKey:@"Favorites"];
+    NSMutableArray *mutableTheaters = [[NSMutableArray alloc] initWithCapacity:[favorites count]];
+    NSArray *keys = [favorites allKeys];
+    NSArray *values = [favorites allValues];
+    for (int i=0;i<[favorites count];i++){
+        BasicItem *theater = [[BasicItem alloc] initWithId:[[keys objectAtIndex:i] integerValue] name:[values objectAtIndex:i]];
+        [mutableTheaters insertObject:theater atIndex:i];
+    }
+    self.favoriteTheaters = mutableTheaters;
+}
+
+#pragma mark IBActions
+
+- (IBAction) enterEditingMode:(UIBarButtonItem *) sender{
+    if (self.tableView.isEditing) {
+        [self.tableView setEditing:NO animated:YES];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
+    }
+    else{
+        [self.tableView setEditing:YES animated:YES];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(enterEditingMode:)];
+    }
+}
+
+#pragma mark - Content Size Changed
+
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     
     [self.tableView reloadData];
 }
+
+#pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     FuncionesVC *functionesVC = segue.destinationViewController;
@@ -151,6 +161,5 @@
     functionesVC.theaterName = theater.name;
     
 }
-
 
 @end

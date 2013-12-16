@@ -18,6 +18,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "TheaterFunctions.h"
+#import "UIView+CH.h"
 
 @interface MovieFunctionsVC ()
 @property (nonatomic, strong) NSArray *theaterFuctions;
@@ -174,18 +175,10 @@
     return totalHeight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSInteger height = [self tableView:self.tableView heightForHeaderInSection:section];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, height)];
-    view.backgroundColor = [UIColor tableViewColor];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, height)];
-    label.textColor = [UIColor blackColor];
-    label.numberOfLines = 0;
-    label.tag = 40;
-    label.font = headerFont;
+    
     TheaterFunctions *theater = self.theaterFuctions[section];
-    label.text = theater.name;
-    [view addSubview: label];
-    return view;
+    
+    return [UIView headerViewForText:theater.name font:headerFont height:[self tableView:self.tableView heightForHeaderInSection:section]];
 }
 
 @end

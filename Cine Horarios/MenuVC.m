@@ -23,6 +23,8 @@
     UIFont *tableFont;
 }
 
+#pragma mark - UIViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,33 +44,9 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
-- (void) loadMenu {
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
-    NSArray *menuLocal = [NSArray arrayWithContentsOfFile:filePath];
-    
-    NSMutableArray *mutableMenu = [NSMutableArray array];
-    for (NSDictionary *dict in menuLocal) {
-        [mutableMenu addObject:@{@"name": dict[@"name"], @"storyboardID": dict[@"storyboardID"], @"image": dict[@"image"]}];
-    }
-    self.menu = [NSArray arrayWithArray:mutableMenu];
-}
-- (UIView *) getTableHeaderView {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 100)];
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(79, 25, 62, 62)];
-    imgView.image = [UIImage imageNamed:@"LogoCineHorarios"];
-    imgView.tintColor = [UIColor whiteColor];
-    imgView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-    [view addSubview:imgView];
-    return view;
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewController
+#pragma mark Data Source
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.menu.count;
@@ -83,6 +61,8 @@
     
     return cell;
 }
+
+#pragma mark Delegate
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.textLabel.font = tableFont;
@@ -103,7 +83,34 @@
     }];
 }
 
-#pragma mark - content Size Changed
+
+#pragma mark - MenuVC
+#pragma mark Fetch Data
+
+- (void) loadMenu {
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
+    NSArray *menuLocal = [NSArray arrayWithContentsOfFile:filePath];
+    
+    NSMutableArray *mutableMenu = [NSMutableArray array];
+    for (NSDictionary *dict in menuLocal) {
+        [mutableMenu addObject:@{@"name": dict[@"name"], @"storyboardID": dict[@"storyboardID"], @"image": dict[@"image"]}];
+    }
+    self.menu = [NSArray arrayWithArray:mutableMenu];
+}
+
+#pragma mark Create View
+- (UIView *) getTableHeaderView {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 100)];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(79, 25, 62, 62)];
+    imgView.image = [UIImage imageNamed:@"LogoCineHorarios"];
+    imgView.tintColor = [UIColor whiteColor];
+    imgView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+    [view addSubview:imgView];
+    return view;
+}
+
+#pragma mark - Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];

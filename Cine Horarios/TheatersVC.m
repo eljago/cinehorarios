@@ -22,11 +22,14 @@
 
 @interface TheatersVC ()
 @property (nonatomic, strong) NSArray *theaters;
+@property (nonatomic, strong) UIAlertView *alert;
 @end
 
 @implementation TheatersVC {
     UIFont *tableFont;
 }
+
+#pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
@@ -55,11 +58,39 @@
     
     [self getTheatersForceRemote:NO];
 }
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)dealloc {
+    self.alert.delegate = nil;
+    self.alert = nil;
 }
+
+#pragma mark - UITableViewController
+#pragma mark Data Source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.theaters count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    CHCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    Theater *theater = self.theaters[indexPath.row];
+    cell.basicItem = theater;
+    [cell setFont:tableFont];
+    
+    return cell;
+}
+
+#pragma mark Delegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [CHCell heightForCellWithBasicItem:self.theaters[indexPath.row] withFont:tableFont];
+}
+
+#pragma mark - TheatersVC
+#pragma mark Fetch Data
 
 - (void) getTheatersForceRemote:(BOOL) forceRemote {
     
@@ -96,13 +127,18 @@
     } cinemaID: self.cinemaID];
 }
 
+#pragma mark Refresh
+
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
     [self getTheatersForceRemote:YES];
 }
+
+#pragma mark AlertView
+
 - (void) showAlert{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
-    [alertView show];
+    self.alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
+    [self.alert show];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
@@ -110,29 +146,7 @@
     }
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.theaters count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    CHCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    Theater *theater = self.theaters[indexPath.row];
-    cell.basicItem = theater;
-    [cell setFont:tableFont];
-    
-    return cell;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [CHCell heightForCellWithBasicItem:self.theaters[indexPath.row] withFont:tableFont];
-}
-
-#pragma mark - content Size Changed
+#pragma mark - Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];

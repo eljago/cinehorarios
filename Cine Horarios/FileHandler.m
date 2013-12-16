@@ -9,7 +9,8 @@
 #import "FileHandler.h"
 
 NSTimeInterval const kMaxJsonsDurationTime = 0;
-NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
+//NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
+NSTimeInterval const kMaxImageDurationTime = 0;
 
 @implementation FileHandler
 

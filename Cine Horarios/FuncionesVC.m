@@ -21,6 +21,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "WebVC.h"
+#import "UIView+CH.h"
 
 NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
@@ -36,6 +37,8 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     UIFont *bodyFont;
     BOOL favorite;
 }
+
+#pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
@@ -64,16 +67,125 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     
     [self getFunctionsForceRemote:NO];
 }
+
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     [self setupFavorites];
 }
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma mark - UITableViewController
+#pragma mark Data Source
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.functions.count > 0) {
+        return self.functions.count;
+    }
+    else {
+        if (self.theater_url) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
 }
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (self.functions.count > 0) {
+        static NSString *CellIdentifier = @"Cell";
+        FunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        cell.function = self.functions[indexPath.row];
+        [cell setBodyFont:bodyFont headFont:headFont];
+        
+        return cell;
+    }
+    else {
+        static NSString *CellIdentifier = @"Cell2";
+        FunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"Ir a la página web de %@", self.theaterName];
+        
+        return cell;
+    }
+}
+
+#pragma mark Delegate
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (self.functions.count > 0) {
+        
+        return [UIView headerViewForText:self.theaterName font:headFont height:[self heightForHeaderWithText:self.theaterName]];
+    }
+    else {
+        if (self.theater_url) {
+            return [UIView headerViewForText:kHeaderString font:headFont height:[self heightForHeaderWithText:kHeaderString]];
+        }
+        else {
+            return [UIView new];
+        }
+    }
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (self.functions.count > 0) {
+        return [self heightForHeaderWithText:self.theaterName];
+    }
+    else {
+        return [self heightForHeaderWithText:kHeaderString];
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.functions.count > 0) {
+        return [FunctionCell heightForCellWithBasicItem:self.functions[indexPath.row] withBodyFont:bodyFont headFont:headFont];
+    }
+    else {
+        return [self heightForRowWithText:[NSString stringWithFormat:@"Ir a la página web de %@", self.theaterName]];
+    }
+}
+
+#pragma mark - FuncionesVC
+#pragma mark Row & Header Height Calculators
+
+-(CGFloat) heightForHeaderWithText:(NSString *)text {
+    CGSize size = CGSizeMake(300.f, 1000.f);
+    
+    CGRect nameLabelRect = [text boundingRectWithSize: size
+                                                   options: NSStringDrawingUsesLineFragmentOrigin
+                                                attributes: [NSDictionary dictionaryWithObject:headFont
+                                                                                        forKey:NSFontAttributeName]
+                                                   context: nil];
+    
+    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 5.0f;
+    
+    if (totalHeight <= 25.f) {
+        totalHeight = 25.f;
+    }
+    
+    return totalHeight;
+}
+
+-(CGFloat) heightForRowWithText:(NSString *)text {
+    CGSize size = CGSizeMake(270.f, 1000.f);
+    
+    CGRect nameLabelRect = [text boundingRectWithSize: size
+                                              options: NSStringDrawingUsesLineFragmentOrigin
+                                           attributes: [NSDictionary dictionaryWithObject:bodyFont
+                                                                                   forKey:NSFontAttributeName]
+                                              context: nil];
+    
+    CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
+    
+    if (totalHeight <= 25.f) {
+        totalHeight = 25.f;
+    }
+    
+    return totalHeight;
+}
+
+#pragma mark Fetch Data
 
 - (void) getFunctionsForceRemote:(BOOL) forceRemote {
     
@@ -118,10 +230,15 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     } theaterID: self.theaterID date:[NSDate date]];
 }
 
+#pragma mark Refresh
+
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
     [self getFunctionsForceRemote:YES];
 }
+
+#pragma mark AlertView
+
 - (void) showAlert{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
     [alertView show];
@@ -131,6 +248,8 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
         [self getFunctionsForceRemote:YES];
     }
 }
+
+#pragma mark Create View
 
 -(void) createButtonItems {
     UIButton *favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -172,124 +291,6 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
                                                         object:self
                                                       userInfo:@{@"TheaterName": self.theaterName,
                                                                  @"TheaterID": [NSNumber numberWithInteger:self.theaterID]}];
-}
-
-#pragma mark -
-#pragma mark TableView methods
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.functions.count > 0) {
-        return self.functions.count;
-    }
-    else {
-        if (self.theater_url) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.functions.count > 0) {
-        CGFloat height = [self heightForHeaderWithText:self.theaterName];
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, height)];
-        view.backgroundColor = [UIColor navColor];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, height)];
-        label.textColor = [UIColor whiteColor];
-        label.tag = 40;
-        label.font = headFont;
-        label.text = self.theaterName;
-        [view addSubview: label];
-        return view;
-    }
-    else {
-        if (self.theater_url) {
-            NSString *text = kHeaderString;
-            CGFloat height = [self heightForHeaderWithText:text];
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320.f, height)];
-            view.backgroundColor = [UIColor navColor];
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300.f, height)];
-            label.textColor = [UIColor whiteColor];
-            label.numberOfLines = 2;
-            label.text = text;
-            [view addSubview:label];
-            return view;
-        }
-        else {
-            return [UIView new];
-        }
-    }
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.functions.count > 0) {
-        return [self heightForHeaderWithText:self.theaterName];
-    }
-    else {
-        return [self heightForHeaderWithText:kHeaderString];
-    }
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (self.functions.count > 0) {
-        static NSString *CellIdentifier = @"Cell";
-        FunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        cell.function = self.functions[indexPath.row];
-        [cell setBodyFont:bodyFont headFont:headFont];
-        
-        return cell;
-    }
-    else {
-        static NSString *CellIdentifier = @"Cell2";
-        FunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        cell.textLabel.text = [NSString stringWithFormat:@"Ir a la página web de %@", self.theaterName];
-        
-        return cell;
-    }
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.functions.count > 0) {
-        return [FunctionCell heightForCellWithBasicItem:self.functions[indexPath.row] withBodyFont:bodyFont headFont:headFont];
-    }
-    else {
-        return [self heightForRowWithText:[NSString stringWithFormat:@"Ir a la página web de %@", self.theaterName]];
-    }
-}
--(CGFloat) heightForHeaderWithText:(NSString *)text {
-    CGSize size = CGSizeMake(300.f, 1000.f);
-    
-    CGRect nameLabelRect = [text boundingRectWithSize: size
-                                                   options: NSStringDrawingUsesLineFragmentOrigin
-                                                attributes: [NSDictionary dictionaryWithObject:headFont
-                                                                                        forKey:NSFontAttributeName]
-                                                   context: nil];
-    
-    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 5.0f;
-    
-    if (totalHeight <= 25.f) {
-        totalHeight = 25.f;
-    }
-    
-    return totalHeight;
-}-(CGFloat) heightForRowWithText:(NSString *)text {
-    CGSize size = CGSizeMake(270.f, 1000.f);
-    
-    CGRect nameLabelRect = [text boundingRectWithSize: size
-                                              options: NSStringDrawingUsesLineFragmentOrigin
-                                           attributes: [NSDictionary dictionaryWithObject:bodyFont
-                                                                                   forKey:NSFontAttributeName]
-                                              context: nil];
-    
-    CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
-    
-    if (totalHeight <= 25.f) {
-        totalHeight = 25.f;
-    }
-    
-    return totalHeight;
 }
 
 #pragma mark - Content Size Changed

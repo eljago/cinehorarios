@@ -26,6 +26,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "UIView+CH.h"
 
 @interface MovieVC () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -56,6 +57,9 @@
     UIFont *normalFont;
     UIFont *bigBoldFont;
 }
+
+#pragma mark - UIViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -95,13 +99,183 @@
     [self getMovieForceRemote:NO];
     
 }
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma mark - UITableViewController
+#pragma mark Data Source
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if ((!self.movie.urlRottenTomatoes || [self.movie.urlRottenTomatoes isEqualToString:@""]) &&
+        (!self.movie.urlImdb || [self.movie.urlImdb isEqualToString:@""]) &&
+        (!self.movie.urlMetacritic || [self.movie.urlMetacritic isEqualToString:@""])) {
+        return 4;
+    }
+    else {
+        return 5;
+    }
 }
 
-# pragma mark - Download Movie related Methods
+#pragma mark Delegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 4) {
+        if ((indexPath.row == 0 && (!self.movie.urlRottenTomatoes || [self.movie.urlRottenTomatoes isEqualToString:@""])) ||
+            (indexPath.row == 1 && (!self.movie.urlImdb || [self.movie.urlImdb isEqualToString:@""])) ||
+            (indexPath.row == 2 && (!self.movie.urlMetacritic || [self.movie.urlMetacritic isEqualToString:@""]))) {
+            return 0.;
+        }
+    }
+    else if (indexPath.section == 3) {
+        if (self.movie.images.count == 0) {
+            return 0.;
+        }
+    }
+    else if (indexPath.section == 2) {
+        if (self.movie.actors.count == 0) {
+            return 0.;
+        }
+    }
+    else if (indexPath.section == 1) {
+        if (self.movie.directors.count == 0) {
+            return 0.;
+        }
+        else {
+            CGSize size = CGSizeMake(277.f, 1000.f);
+            
+            NSMutableArray *directorsNames = [[NSMutableArray alloc] init];
+            for (Actor *actor in self.movie.directors) {
+                [directorsNames addObject:actor.name];
+            }
+            
+            CGRect nameLabelRect = [[directorsNames componentsJoinedByString:@", "] boundingRectWithSize: size
+                                                                                                 options: NSStringDrawingUsesLineFragmentOrigin
+                                                                                              attributes: [NSDictionary dictionaryWithObject:normalFont forKey:NSFontAttributeName]
+                                                                                                 context: nil];
+            
+            CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
+            
+            return totalHeight;
+        }
+    }
+    else if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            CGFloat height;
+            if (self.movie.synopsis) {
+                NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
+                NSTextContainer *container = [[NSTextContainer alloc] initWithSize:CGSizeMake(self.textViewSynopsis.frame.size.width, 1000)];
+                UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.coverImageView.frame.size.width+10, self.coverImageView.frame.size.height+10)];
+                container.exclusionPaths = @[exclusionPath];
+                
+                NSDictionary* attrs = @{NSFontAttributeName: normalFont};
+                
+                NSTextStorage *txtStorage = [[NSTextStorage alloc] initWithString:self.movie.synopsis attributes:attrs];
+                [txtStorage addLayoutManager:layoutManager];
+                [layoutManager addTextContainer:container];
+                
+                height = self.textViewSynopsis.frame.origin.y + [layoutManager boundingRectForGlyphRange:[layoutManager glyphRangeForTextContainer:container] inTextContainer:container].size.height+15.;
+            }
+            else {
+                height = 155.;
+            }
+            return MAX(height, 155.);
+        }
+        else if (indexPath.row == 3) {
+            if ([self.navigationController.viewControllers[0] isMemberOfClass:[ComingSoonVC class]]) {
+                return 0.;
+            }
+        }
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    NSString *text;
+    switch (section) {
+        case 0:
+            text = @"";
+            break;
+        case 1:
+            if (self.movie.directors.count > 1) {
+                text = @"Directores";
+            }
+            else if(self.movie.directors.count == 1){
+                text = @"Director";
+            }
+            else {
+                return [UIView new];
+            }
+            break;
+        case 2:
+            if (self.movie.actors.count == 0) {
+                return [UIView new];
+            }
+            text = @"Reparto";
+            break;
+        case 3:
+            if (self.movie.images.count == 0) {
+                return [UIView new];
+            }
+            text = @"Imágenes";
+            break;
+        case 4:
+            text = @"Calificaciones";
+            break;
+            
+        default:
+            text = @"";
+            break;
+    }
+    return [UIView headerViewForText:text font:bigBoldFont height:[self heightForHeaderView]];
+}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ((indexPath.section == 0 && indexPath.row == 2) || (indexPath.section == 4 && indexPath.row == 1)) {
+        cell.backgroundColor = [UIColor lighterGrayColor];
+    }
+    else {
+        cell.backgroundColor = [UIColor whiteColor];
+    }
+}
+
+
+#pragma mark - MovieVC
+
+#pragma mark Row & Height Calculators
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0.01;
+    }
+    else if (section == 1 && self.movie.directors.count == 0) {
+        return 0.01f;
+    }
+    else if (section == 2 && self.movie.actors.count == 0) {
+        return 0.01f;
+    }
+    else if (section == 3 && self.movie.images.count == 0) {
+        return 0.01f;
+    }
+    else {
+        return [self heightForHeaderView];
+    }
+}
+-(CGFloat) heightForHeaderView {
+    CGSize size = CGSizeMake(310.f, 1000.f);
+    
+    CGRect nameLabelRect = [@"Javier" boundingRectWithSize: size
+                                                   options: NSStringDrawingUsesLineFragmentOrigin
+                                                attributes: [NSDictionary dictionaryWithObject:normalFont
+                                                                                        forKey:NSFontAttributeName]
+                                                   context: nil];
+    
+    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 8.0f;
+    
+    if (totalHeight <= 25.f) {
+        totalHeight = 25.f;
+    }
+    
+    return totalHeight;
+}
+
+#pragma mark Fetch Data
 
 - (void) getMovieForceRemote:(BOOL) forceRemote {
     if (forceRemote) {
@@ -282,176 +456,6 @@
     [self setFontsWithPreferedContentSizeCategory:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     [self.tableView reloadData];
     [self.collectionViewActors reloadData];
-}
-
-#pragma mark - TableView Data Source
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 4) {
-        if ((indexPath.row == 0 && (!self.movie.urlRottenTomatoes || [self.movie.urlRottenTomatoes isEqualToString:@""])) ||
-            (indexPath.row == 1 && (!self.movie.urlImdb || [self.movie.urlImdb isEqualToString:@""])) ||
-            (indexPath.row == 2 && (!self.movie.urlMetacritic || [self.movie.urlMetacritic isEqualToString:@""]))) {
-            return 0.;
-        }
-    }
-    else if (indexPath.section == 3) {
-        if (self.movie.images.count == 0) {
-            return 0.;
-        }
-    }
-    else if (indexPath.section == 2) {
-        if (self.movie.actors.count == 0) {
-            return 0.;
-        }
-    }
-    else if (indexPath.section == 1) {
-        if (self.movie.directors.count == 0) {
-            return 0.;
-        }
-        else {
-            CGSize size = CGSizeMake(277.f, 1000.f);
-            
-            NSMutableArray *directorsNames = [[NSMutableArray alloc] init];
-            for (Actor *actor in self.movie.directors) {
-                [directorsNames addObject:actor.name];
-            }
-            
-            CGRect nameLabelRect = [[directorsNames componentsJoinedByString:@", "] boundingRectWithSize: size
-                                                                                                 options: NSStringDrawingUsesLineFragmentOrigin
-                                                                                              attributes: [NSDictionary dictionaryWithObject:normalFont forKey:NSFontAttributeName]
-                                                                                                 context: nil];
-            
-            CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
-            
-            return totalHeight;
-        }
-    }
-    else if (indexPath.section == 0) {
-        if (indexPath.row == 1) {
-            CGFloat height;
-            if (self.movie.synopsis) {
-                NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
-                NSTextContainer *container = [[NSTextContainer alloc] initWithSize:CGSizeMake(self.textViewSynopsis.frame.size.width, 1000)];
-                UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.coverImageView.frame.size.width+10, self.coverImageView.frame.size.height+10)];
-                container.exclusionPaths = @[exclusionPath];
-                
-                NSDictionary* attrs = @{NSFontAttributeName: normalFont};
-                
-                NSTextStorage *txtStorage = [[NSTextStorage alloc] initWithString:self.movie.synopsis attributes:attrs];
-                [txtStorage addLayoutManager:layoutManager];
-                [layoutManager addTextContainer:container];
-                
-                height = self.textViewSynopsis.frame.origin.y + [layoutManager boundingRectForGlyphRange:[layoutManager glyphRangeForTextContainer:container] inTextContainer:container].size.height+15.;
-            }
-            else {
-                height = 155.;
-            }
-            return MAX(height, 155.);
-        }
-        else if (indexPath.row == 3) {
-            if ([self.navigationController.viewControllers[0] isMemberOfClass:[ComingSoonVC class]]) {
-                return 0.;
-            }
-        }
-    }
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-}
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ((!self.movie.urlRottenTomatoes || [self.movie.urlRottenTomatoes isEqualToString:@""]) &&
-        (!self.movie.urlImdb || [self.movie.urlImdb isEqualToString:@""]) &&
-        (!self.movie.urlMetacritic || [self.movie.urlMetacritic isEqualToString:@""])) {
-        return 4;
-    }
-    else {
-        return 5;
-    }
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 0.01;
-    }
-    else if (section == 1 && self.movie.directors.count == 0) {
-        return 0.01f;
-    }
-    else if (section == 2 && self.movie.actors.count == 0) {
-        return 0.01f;
-    }
-    else if (section == 3 && self.movie.images.count == 0) {
-        return 0.01f;
-    }
-    else {
-        return [self heightForHeaderView];
-    }
-}
--(CGFloat) heightForHeaderView {
-    CGSize size = CGSizeMake(310.f, 1000.f);
-    
-    CGRect nameLabelRect = [@"Javier" boundingRectWithSize: size
-                                                   options: NSStringDrawingUsesLineFragmentOrigin
-                                                attributes: [NSDictionary dictionaryWithObject:normalFont
-                                                                                        forKey:NSFontAttributeName]
-                                                   context: nil];
-    
-    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 8.0f;
-    
-    if (totalHeight <= 25.f) {
-        totalHeight = 25.f;
-    }
-    
-    return totalHeight;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, [self heightForHeaderView])];
-    view.backgroundColor = [UIColor tableViewColor];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, [self heightForHeaderView])];
-    label.textColor = [UIColor blackColor];
-    label.tag = 40;
-    label.font = bigBoldFont;
-    [view addSubview: label];
-    
-    switch (section) {
-        case 0:
-            label.text = @"";
-            break;
-        case 1:
-            if (self.movie.directors.count > 1) {
-                label.text = @"Directores";
-            }
-            else if(self.movie.directors.count == 1){
-                label.text = @"Director";
-            }
-            else {
-                return [UIView new];
-            }
-            break;
-        case 2:
-            if (self.movie.actors.count == 0) {
-                return [UIView new];
-            }
-            label.text = @"Reparto";
-            break;
-        case 3:
-            if (self.movie.images.count == 0) {
-                return [UIView new];
-            }
-            label.text = @"Imágenes";
-            break;
-        case 4:
-            label.text = @"Calificaciones";
-            break;
-            
-        default:
-            break;
-    }
-    return view;
-}
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ((indexPath.section == 0 && indexPath.row == 2) || (indexPath.section == 4 && indexPath.row == 1)) {
-        cell.backgroundColor = [UIColor lighterGrayColor];
-    }
-    else {
-        cell.backgroundColor = [UIColor whiteColor];
-    }
 }
 
 

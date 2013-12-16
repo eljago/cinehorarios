@@ -27,6 +27,7 @@ NSString *const RemoteMovieFunctionsPath = @"api/shows/%d/show_functions.json?th
     _types = [[attributes valueForKeyPath: @"function_types.name"] componentsJoinedByString:@", "];
     
     NSDateFormatter *dateFromStringFormatter = [[NSDateFormatter alloc] init];
+//    [dateFromStringFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
     [dateFromStringFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     NSDateFormatter *stringFromDateFormatter = [[NSDateFormatter alloc] init];
     [stringFromDateFormatter setDateFormat:@"HH':'mm"];
@@ -37,6 +38,7 @@ NSString *const RemoteMovieFunctionsPath = @"api/shows/%d/show_functions.json?th
     [stringFromDateFormatter setLocale:esCL];
     [hourStringFromDate setLocale:esCL];
     
+//    NSArray *timesArray = [attributes valueForKeyPath:@"showtimes"];
     NSArray *timesArray = [attributes valueForKeyPath:@"showtimes.time"];
     NSMutableArray *mutaArray = [[NSMutableArray alloc] init];
     NSMutableArray *pastMidnightTimes = [[NSMutableArray alloc] init];

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		16158EE817805E57002B6F73 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16158EE717805E57002B6F73 /* Storyboard.storyboard */; };
 		162414A417BC946E00083708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 162414A317BC946E00083708 /* Images.xcassets */; };
+		1628571F185F607E00DBD491 /* UIView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 1628571E185F607E00DBD491 /* UIView+CH.m */; };
 		1629F85417FF4EFA001428C1 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1629F85317FF4EFA001428C1 /* SettingsVC.m */; };
 		162FD5681741862300616105 /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = 162FD5671741862300616105 /* Actor.m */; };
 		1630E1AF17D9183800C9D977 /* CHCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1630E1AE17D9183800C9D977 /* CHCell.m */; };
@@ -72,6 +73,8 @@
 		1611F38B17FCB710006C6D09 /* SwatchTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwatchTransition.m; sourceTree = "<group>"; };
 		16158EE717805E57002B6F73 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		162414A317BC946E00083708 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1628571D185F607E00DBD491 /* UIView+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CH.h"; sourceTree = "<group>"; };
+		1628571E185F607E00DBD491 /* UIView+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CH.m"; sourceTree = "<group>"; };
 		1629F85217FF4EFA001428C1 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
 		1629F85317FF4EFA001428C1 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
 		162FD5661741862200616105 /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 				16956FCE17D7E84100355AA7 /* UIFont+CH.m */,
 				3D12FF8018110E0300BDA8FB /* UIImageView+CH.h */,
 				3D12FF8118110E0300BDA8FB /* UIImageView+CH.m */,
+				1628571D185F607E00DBD491 /* UIView+CH.h */,
+				1628571E185F607E00DBD491 /* UIView+CH.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -556,6 +561,7 @@
 				3D29986A17E5E29C001A371D /* MovieImagesVC.m in Sources */,
 				3D3FA6ED174D91CC0067AE57 /* VideoVC.m in Sources */,
 				163BAB211763C34500A81BF7 /* WebVC.m in Sources */,
+				1628571F185F607E00DBD491 /* UIView+CH.m in Sources */,
 				1639492617F9BA1700AB7DE7 /* CastVC.m in Sources */,
 				16547FDA18108D2300B6F24C /* TheaterFunctions.m in Sources */,
 				3D81339B177E3D95006A017C /* CineHorariosTableViewController.m in Sources */,

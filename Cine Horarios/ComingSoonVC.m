@@ -28,6 +28,8 @@
     UIFont *bodyFont;
 }
 
+#pragma mark - UIViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -51,11 +53,40 @@
     [self getComingSoonForceRemote:NO];
     
 }
-- (void)didReceiveMemoryWarning
+
+#pragma mark - UITableViewController
+#pragma mark Data Source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return 1;
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.movies count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    ComingSoonCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    BasicMovie *basicMovie = self.movies[indexPath.row];
+    cell.basicMovie = basicMovie;
+    [cell setBodyFont:bodyFont headFont:headFont];
+    
+    return cell;
+}
+
+#pragma mark Delegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [ComingSoonCell heightForCellWithBasicItem:self.movies[indexPath.row] withBodyFont:bodyFont headFont:headFont];
+}
+
+#pragma mark - ComingSoonVC
+#pragma mark Fetch Data
 
 - (void) getComingSoonForceRemote:(BOOL) forceRemote {
     
@@ -96,10 +127,15 @@
     }];
 }
 
+#pragma mark Refresh
+
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
     [self getComingSoonForceRemote:YES];
 }
+
+#pragma mark AlertView
+
 - (void) showAlert{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
     [alertView show];
@@ -110,33 +146,7 @@
     }
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.movies count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    ComingSoonCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    BasicMovie *basicMovie = self.movies[indexPath.row];
-    cell.basicMovie = basicMovie;
-    [cell setBodyFont:bodyFont headFont:headFont];
-    
-    return cell;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [ComingSoonCell heightForCellWithBasicItem:self.movies[indexPath.row] withBodyFont:bodyFont headFont:headFont];
-}
-
+#pragma mark - Content Size Changed
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
