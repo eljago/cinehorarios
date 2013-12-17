@@ -39,7 +39,6 @@
                                                object:nil];
     
     [self loadMenu];
-    self.tableView.tableHeaderView = [self getTableHeaderView];
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -48,16 +47,21 @@
 #pragma mark - UITableViewController
 #pragma mark Data Source
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.menu.count;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.menu[section] count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.imageView.image = [UIImage imageNamed:self.menu[indexPath.row][@"image"]];
-    cell.textLabel.text = self.menu[indexPath.row][@"name"];
+    UIImageView *imgView = (UIImageView *)[cell viewWithTag:44];
+    imgView.image = [UIImage imageNamed:@"MenuCellBG"];
+    cell.imageView.image = [UIImage imageNamed:self.menu[indexPath.section][indexPath.row][@"image"]];
+    cell.textLabel.text = self.menu[indexPath.section][indexPath.row][@"name"];
     
     return cell;
 }
@@ -70,10 +74,40 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *identifier = self.menu[indexPath.row][@"storyboardID"];
+    NSString *identifier = self.menu[indexPath.section][indexPath.row][@"storyboardID"];
+    [self slideToViewControllerWithIdentifier:identifier];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *text;
+    if (section == 0) {
+        text = @"Cines";
+    }
+    else if (section == 1) {
+        text = @"Películas";
+    }
+    else {
+        text = @"";
+    }
+    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, 70)];
+    view.image = [UIImage imageNamed:@"MenuHeaderBG1"];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20.f, 20.f, 280.f, 50)];
+    label.textColor = [UIColor whiteColor];
+    label.tag = 40;
+    label.font = tableFont;
+    label.text = text;
+    [view addSubview: label];
+    return view;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 70.f;
+}
+
+#pragma mark - MenuVC
+
+- (void) slideToViewControllerWithIdentifier:(NSString *)identifier {
     UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"NavVC"];
     navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
-
     
     [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
         CGRect frame = self.slidingViewController.topViewController.view.frame;
@@ -83,31 +117,20 @@
     }];
 }
 
+#pragma mark - IBActions
 
-#pragma mark - MenuVC
+- (IBAction) clickSettingsButton:(id)sender {
+    
+    NSString *identifier = @"SettingsVC";
+    [self slideToViewControllerWithIdentifier:identifier];
+}
+
 #pragma mark Fetch Data
 
 - (void) loadMenu {
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
-    NSArray *menuLocal = [NSArray arrayWithContentsOfFile:filePath];
-    
-    NSMutableArray *mutableMenu = [NSMutableArray array];
-    for (NSDictionary *dict in menuLocal) {
-        [mutableMenu addObject:@{@"name": dict[@"name"], @"storyboardID": dict[@"storyboardID"], @"image": dict[@"image"]}];
-    }
-    self.menu = [NSArray arrayWithArray:mutableMenu];
-}
-
-#pragma mark Create View
-- (UIView *) getTableHeaderView {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 100)];
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(79, 25, 62, 62)];
-    imgView.image = [UIImage imageNamed:@"LogoCineHorarios"];
-    imgView.tintColor = [UIColor whiteColor];
-    imgView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-    [view addSubview:imgView];
-    return view;
+    self.menu = [NSArray arrayWithContentsOfFile:filePath];
 }
 
 #pragma mark - Content Size Changed

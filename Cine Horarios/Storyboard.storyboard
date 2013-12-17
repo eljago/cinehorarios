@@ -118,14 +118,39 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.1240999538429633" green="0.17664483812088405" blue="0.22698709239130432" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="LhD-Yo-a1Q">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoCineHorarios" translatesAutoresizingMaskIntoConstraints="NO" id="KDH-sE-UZU">
+                                            <rect key="frame" x="80" y="20" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25G-m2-NvX">
+                                            <rect key="frame" x="20" y="31" width="38" height="38"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="LogoAjustes">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="clickSettingsButton:" destination="V2D-gn-99g" eventType="touchUpInside" id="Vib-gU-9Co"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="DG1-MV-U1Z" imageView="aT5-Bi-iuq" style="IBUITableViewCellStyleDefault" id="Pyk-2k-ItZ" customClass="MenuCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="122" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pyk-2k-ItZ" id="jka-cq-Vzc">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Er3-9g-Qpf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Cines" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DG1-MV-U1Z">
                                                     <rect key="frame" x="55" y="0.0" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
@@ -138,6 +163,12 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Er3-9g-Qpf" firstAttribute="top" secondItem="DG1-MV-U1Z" secondAttribute="top" id="28j-jh-Xgk"/>
+                                                <constraint firstAttribute="trailing" secondItem="Er3-9g-Qpf" secondAttribute="trailing" id="IZI-4P-ten"/>
+                                                <constraint firstItem="Er3-9g-Qpf" firstAttribute="bottom" secondItem="DG1-MV-U1Z" secondAttribute="bottom" id="PQ9-6G-o03"/>
+                                                <constraint firstItem="Er3-9g-Qpf" firstAttribute="leading" secondItem="jka-cq-Vzc" secondAttribute="leading" id="ggg-ue-q4g"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -1506,6 +1537,8 @@
         <image name="IconVideos" width="44" height="44"/>
         <image name="ImagesIndicator" width="50" height="100"/>
         <image name="ImagesIndicatorSmall" width="40" height="75"/>
+        <image name="LogoAjustes" width="25" height="25"/>
+        <image name="LogoCineHorarios" width="60" height="60"/>
         <image name="LogoCinemark" width="100" height="100"/>
         <image name="LogoCines" width="25" height="25"/>
         <image name="LogoImdb" width="40" height="40"/>
