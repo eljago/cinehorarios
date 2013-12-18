@@ -12,16 +12,16 @@
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "MenuCell.h"
-#import "ECSlidingViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
 
 @interface MenuVC () <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, strong) UIFont *tableFont;
 @property (nonatomic, strong) NSArray *menu;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UINavigationController *navController;
 @end
 
-@implementation MenuVC {
-    UIFont *tableFont;
-}
+@implementation MenuVC
 
 #pragma mark - UIViewController
 
@@ -29,10 +29,7 @@
 {
     [super viewDidLoad];
     
-    [self.slidingViewController setAnchorRightRevealAmount:220.0f];
-    self.slidingViewController.underLeftWidthLayout = ECFullWidth;
-    
-    tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.navController = (UINavigationController *)self.slidingViewController.topViewController;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
@@ -69,13 +66,13 @@
 #pragma mark Delegate
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.textLabel.font = tableFont;
+    cell.textLabel.font = self.tableFont;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *identifier = self.menu[indexPath.section][indexPath.row][@"storyboardID"];
-    [self slideToViewControllerWithIdentifier:identifier];
+    [self goToViewControllerWithStoryboardIdentifier:identifier];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -94,7 +91,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20.f, 20.f, 280.f, 50)];
     label.textColor = [UIColor whiteColor];
     label.tag = 40;
-    label.font = tableFont;
+    label.font = self.tableFont;
     label.text = text;
     [view addSubview: label];
     return view;
@@ -104,17 +101,21 @@
 }
 
 #pragma mark - MenuVC
+#pragma mark Properties
 
-- (void) slideToViewControllerWithIdentifier:(NSString *)identifier {
-    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"NavVC"];
+- (UIFont *) tableFont {
+    if(_tableFont) return _tableFont;
+    
+    _tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    
+    return _tableFont;
+}
+
+- (void) goToViewControllerWithStoryboardIdentifier:(NSString *)identifier {
+    UINavigationController *navigationController = (UINavigationController *)self.slidingViewController.topViewController;
     navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
     
-    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = self.slidingViewController.topViewController.view.frame;
-        self.slidingViewController.topViewController = navigationController;
-        self.slidingViewController.topViewController.view.frame = frame;
-        [self.slidingViewController resetTopView];
-    }];
+    [self.slidingViewController resetTopViewAnimated:YES];
 }
 
 #pragma mark - IBActions
@@ -122,7 +123,7 @@
 - (IBAction) clickSettingsButton:(id)sender {
     
     NSString *identifier = @"SettingsVC";
-    [self slideToViewControllerWithIdentifier:identifier];
+    [self goToViewControllerWithStoryboardIdentifier:identifier];
 }
 
 #pragma mark Fetch Data
@@ -136,7 +137,7 @@
 #pragma mark - Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     
     [self.tableView reloadData];
 }

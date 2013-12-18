@@ -66,6 +66,7 @@
 		6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57396718273D3400ADB8D9 /* CloseTheatersVC.m */; };
 		6E57396B18273E5F00ADB8D9 /* AnnotationTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57396A18273E5F00ADB8D9 /* AnnotationTheater.m */; };
 		6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396C182755A300ADB8D9 /* CoreLocation.framework */; };
+		6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,6 +181,8 @@
 		6E57396918273E5F00ADB8D9 /* AnnotationTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationTheater.h; sourceTree = "<group>"; };
 		6E57396A18273E5F00ADB8D9 /* AnnotationTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationTheater.m; sourceTree = "<group>"; };
 		6E57396C182755A300ADB8D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6E9A47AF1860F351004BDE46 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
+		6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDynamicTransition.m; sourceTree = "<group>"; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -214,6 +217,8 @@
 		16F008A1180DED1300A15060 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				6E9A47AF1860F351004BDE46 /* MEDynamicTransition.h */,
+				6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				1629F85417FF4EFA001428C1 /* SettingsVC.m in Sources */,
 				16900CC71740F16100399AF5 /* Movie.m in Sources */,
 				16900CD01740F1C600399AF5 /* BasicMovie.m in Sources */,
+				6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */,
 				16692A3D180CAA9600166885 /* MenuCell.m in Sources */,
 				3D309A2917A85DBC00BB5D13 /* UIColor+CH.m in Sources */,
 				3D3C3D741741345C004D1E56 /* VideoItem.m in Sources */,

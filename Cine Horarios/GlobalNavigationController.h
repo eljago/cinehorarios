@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ECSlidingViewController.h"
 
-@interface GlobalNavigationController : UINavigationController
+@interface GlobalNavigationController : UINavigationController <ECSlidingViewControllerDelegate>
 
 - (IBAction)revealMenu:(id)sender;
 

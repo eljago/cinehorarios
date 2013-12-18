@@ -15,11 +15,6 @@
 @implementation InitialVC
 
 
-- (void)awakeFromNib
-{
-    self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NavVC"];
-}
-
 #pragma mark - Preferred Status Bar Style
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

@@ -7,11 +7,13 @@
 //
 
 #import "GlobalNavigationController.h"
-#import "ECSlidingViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
 #import "MenuVC.h"
+#import "MEDynamicTransition.h"
 
-@interface GlobalNavigationController ()
-
+@interface GlobalNavigationController () <UIGestureRecognizerDelegate>
+@property (nonatomic, strong) MEDynamicTransition *transition;
+@property (nonatomic, strong) UIPanGestureRecognizer *transitionPanGesture;
 @end
 
 @implementation GlobalNavigationController
@@ -28,22 +30,45 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuVC class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuVC"];
-    }
+    self.transition.slidingViewController = self.slidingViewController;
+    self.transitionPanGesture.delegate = self;
     
-    [self.navigationBar addGestureRecognizer:self.slidingViewController.panGesture];
+    self.slidingViewController.delegate = self.transition;
+    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
+    self.slidingViewController.customAnchoredGestures = @[self.transitionPanGesture];
+    [self.view addGestureRecognizer:self.transitionPanGesture];
 }
 
-- (IBAction)revealMenu:(id)sender
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    [self.slidingViewController anchorTopViewTo:ECRight];
+    if ([touch.view.superview isKindOfClass:[UICollectionViewCell class]])
+    {
+        return NO;
+    }
+    else return YES;
+}
+
+#pragma mark - GlobalNavigationController
+#pragma mark Properties
+-(MEDynamicTransition *)transition {
+    if (_transition) return _transition;
+    _transition = [[MEDynamicTransition alloc] init];
+    return _transition;
+}
+- (UIPanGestureRecognizer *)transitionPanGesture {
+    if (_transitionPanGesture) return _transitionPanGesture;
+    
+    _transitionPanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.transition action:@selector(handlePanGesture:)];
+    
+    return _transitionPanGesture;
+}
+
+#pragma mark IBActions
+
+- (IBAction)revealMenu:(id)sender {
+    [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 
 #pragma mark - Supported Orientations

@@ -18,7 +18,7 @@ PODS:
   - AFNetworking/UIKit (2.0.1):
     - AFNetworking/NSURLConnection
   - DACircularProgress (2.1.0)
-  - ECSlidingViewController (1.3.1)
+  - ECSlidingViewController (2.0.0-beta2)
   - GoogleAnalytics-iOS-SDK (3.0.1)
   - MBProgressHUD (0.8)
   - MWPhotoBrowser (1.1.3):
@@ -36,14 +36,14 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - ECSlidingViewController (~> 1.3.1)
+  - ECSlidingViewController (~> 2.0.0-beta)
   - GoogleAnalytics-iOS-SDK
   - MWPhotoBrowser
 
 SPEC CHECKSUMS:
   AFNetworking: 867cd74266eeab923f249aa8b3d56899a67cc50e
   DACircularProgress: 8c8f20c8dffdd647fbf570ddecbc2b1b59da5888
-  ECSlidingViewController: 5f9430c154ceed978b525a9bbf43fd5e8b40e532
+  ECSlidingViewController: 097e5451e8628611f17ed27a6e0829fa705f7851
   GoogleAnalytics-iOS-SDK: 4a788a66154b395717a31bfec1050f8c47b6d122
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MWPhotoBrowser: fb848dd98faf03cde1c16573408303deb51388f8

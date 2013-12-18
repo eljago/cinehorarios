@@ -56,9 +56,9 @@
 
 // ECSlidingViewController
 #define COCOAPODS_POD_AVAILABLE_ECSlidingViewController
-#define COCOAPODS_VERSION_MAJOR_ECSlidingViewController 1
-#define COCOAPODS_VERSION_MINOR_ECSlidingViewController 3
-#define COCOAPODS_VERSION_PATCH_ECSlidingViewController 1
+#define COCOAPODS_VERSION_MAJOR_ECSlidingViewController 2
+#define COCOAPODS_VERSION_MINOR_ECSlidingViewController 0
+#define COCOAPODS_VERSION_PATCH_ECSlidingViewController 0
 
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
