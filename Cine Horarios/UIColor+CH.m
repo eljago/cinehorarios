@@ -25,6 +25,21 @@
 + (UIColor *)belizeHole{
     return [UIColor colorWithRed:41./225. green:128./225. blue:185./225. alpha:1.];
 }
++ (UIColor *)orange{
+    return [UIColor colorWithRed:243./225. green:156./225. blue:18./225. alpha:1.];
+}
++ (UIColor *)orange2{
+    return [UIColor colorWithRed:1. green:149./225. blue:0. alpha:1.];
+}
++ (UIColor *)carrot{
+    return [UIColor colorWithRed:230./225. green:126./225. blue:34./225. alpha:1.];
+}
++ (UIColor *)pumpkin{
+    return [UIColor colorWithRed:211./225. green:84./225. blue:0. alpha:1.];
+}
++ (UIColor *)greenSea{
+    return [UIColor colorWithRed:22./225. green:160./225. blue:133./225. alpha:1.];
+}
 + (UIColor *)darkerMidnightBlue {
     return [UIColor colorWithRed:32.f/255.f green:45.f/255.f blue:58.f/255.f alpha:1.f];
 }
@@ -42,6 +57,32 @@
 }
 +(UIColor *)navUnselectedColor {
     return [UIColor colorWithWhite:0.667 alpha:0.4];
+}
++(UIColor *)menuColorForRow:(NSInteger)row {
+    switch (row) {
+        case 0:
+            return [UIColor lightGrayColor];
+            break;
+        case 1:
+            return [UIColor belizeHole];
+            break;
+        case 2:
+            return [UIColor greenSea];
+            break;
+        case 3:
+            return [UIColor orange2];
+            break;
+        case 4:
+            return [UIColor navColor];
+            break;
+        case 5:
+            return [UIColor brownColor];
+            break;
+            
+        default:
+            return [UIColor whiteColor];
+            break;
+    }
 }
 
 + (UIColor *)randomColor {

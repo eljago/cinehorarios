@@ -49,7 +49,12 @@
     
     BasicImageItem *cinema = self.cinemas[indexPath.row];
     ((UILabel *)[cell viewWithTag:101]).text = cinema.name;
-    ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageNamed:cinema.imageUrl];
+    if ([cinema.imageUrl isEqualToString:@""]) {
+        ((UIImageView *)[cell viewWithTag:100]).image = nil;
+    }
+    else {
+        ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageNamed:cinema.imageUrl];
+    }
     
     return cell;
 }

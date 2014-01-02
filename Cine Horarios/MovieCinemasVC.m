@@ -97,7 +97,7 @@
     } movieID:self.movieID];
 }
 - (void) makeArraysUsingTheaters:(NSArray *)theaters {
-    self.theaters = [[NSMutableArray alloc] initWithObjects:[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array], nil];
+    self.theaters = [[NSMutableArray alloc] initWithObjects:[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array], [NSMutableArray array], nil];
     for (Theater *theater in theaters) {
         for (Theater *favTheater in self.favoriteTheaters) {
             if (favTheater.itemId == theater.itemId) {
@@ -197,7 +197,12 @@
     BasicImageItem *cinema = self.cinemas[indexPath.row];
     labelName.text = cinema.name;
     labelName.font = tableFont;
-    imageView.image = [UIImage imageNamed:cinema.imageUrl];
+    if ([cinema.imageUrl isEqualToString:@""]) {
+        imageView.image = nil;
+    }
+    else {
+        imageView.image = [UIImage imageNamed:cinema.imageUrl];
+    }
     
     return cell;
 }

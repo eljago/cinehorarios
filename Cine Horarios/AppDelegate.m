@@ -30,7 +30,6 @@ static int const kGaDispatchPeriod = 30;
     [self setup_icloud_favorites];
     [self setup_appearances];
     
-	[self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -171,6 +170,8 @@ static int const kGaDispatchPeriod = 30;
 
 - (void)setup_appearances
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     self.window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     self.window.tintColor = [UIColor whiteColor];
     

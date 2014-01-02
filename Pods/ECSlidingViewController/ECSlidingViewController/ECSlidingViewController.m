@@ -714,6 +714,7 @@
             }
         }
     } else {
+        ((UINavigationController *)self.topViewController).topViewController.view.userInteractionEnabled = YES;
         self.topViewController.view.userInteractionEnabled = YES;
         [self.gestureView removeFromSuperview];
         for (UIGestureRecognizer *gesture in self.customAnchoredGestures) {

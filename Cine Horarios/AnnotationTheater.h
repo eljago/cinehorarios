@@ -12,11 +12,14 @@
 
 @interface AnnotationTheater : Theater <MKAnnotation>
 
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, readonly, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
+@property (nonatomic, readwrite, assign) double distance;
 
 - (id)initWithAttributes:(NSDictionary *)attributes;
-+ (void)getAnnotationsWithBlock:(void (^)(NSArray *annotations, NSError *error))block;
+-(NSComparisonResult)compareAnnotationsDistance: (AnnotationTheater *)annotation;
++ (NSMutableArray *) getLocalAnnotations;
++ (void)getAnnotationsWithBlock:(void (^)(NSMutableArray *annotations, NSError *error))block;
 
 @end

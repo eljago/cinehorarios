@@ -6,6 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "MWCommon.h"
 #import "MWCaptionView.h"
 #import "MWPhoto.h"
 
@@ -52,14 +53,10 @@ static const CGFloat labelPadding = 10;
 - (CGSize)sizeThatFits:(CGSize)size {
     CGFloat maxHeight = 9999;
     if (_label.numberOfLines > 0) maxHeight = _label.font.leading*_label.numberOfLines;
-//    CGSize textSize = [_label.text sizeWithFont:_label.font 
-//                              constrainedToSize:CGSizeMake(size.width - labelPadding*2, maxHeight)
-//                                  lineBreakMode:_label.lineBreakMode];
-    CGRect textRect = [_label.text boundingRectWithSize:CGSizeMake(size.width - labelPadding*2, maxHeight)
-                                                 options: NSStringDrawingUsesLineFragmentOrigin
-                                              attributes: [NSDictionary dictionaryWithObject:_label.font forKey:NSFontAttributeName]
-                                                context:nil];
-    return CGSizeMake(size.width, textRect.size.height + labelPadding * 2);
+    CGSize textSize = [_label.text sizeWithFont:_label.font 
+                              constrainedToSize:CGSizeMake(size.width - labelPadding*2, maxHeight)
+                                  lineBreakMode:_label.lineBreakMode];
+    return CGSizeMake(size.width, textSize.height + labelPadding * 2);
 }
 
 - (void)setupCaption {
@@ -69,8 +66,8 @@ static const CGFloat labelPadding = 10;
     _label.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _label.opaque = NO;
     _label.backgroundColor = [UIColor clearColor];
-    _label.textAlignment = NSTextAlignmentCenter;
-    _label.lineBreakMode = NSLineBreakByWordWrapping;
+    _label.textAlignment = UITextAlignmentCenter;
+    _label.lineBreakMode = UILineBreakModeWordWrap;
     _label.numberOfLines = 0;
     _label.textColor = [UIColor whiteColor];
     if (SYSTEM_VERSION_LESS_THAN(@"7")) {

@@ -15,11 +15,11 @@
 @implementation InitialVC
 
 
-#pragma mark - Preferred Status Bar Style
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
+//#pragma mark - Preferred Status Bar Style
+//
+//- (UIStatusBarStyle)preferredStatusBarStyle {
+//    return UIStatusBarStyleLightContent;
+//}
 
 #pragma mark - Supported Orientations
 

@@ -38,6 +38,17 @@
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
     self.slidingViewController.customAnchoredGestures = @[self.transitionPanGesture];
     [self.view addGestureRecognizer:self.transitionPanGesture];
+//    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
+//    self.slidingViewController.customAnchoredGestures = @[];
+//    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    
+    self.view.layer.shadowOpacity = 0.75f;
+    self.view.layer.shadowRadius  = 10.0f;
+    self.view.layer.shadowColor   = [UIColor blackColor].CGColor;
+    self.view.layer.shadowPath    = [UIBezierPath bezierPathWithRect:self.view.bounds].CGPath;
+}
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -59,9 +70,7 @@
 }
 - (UIPanGestureRecognizer *)transitionPanGesture {
     if (_transitionPanGesture) return _transitionPanGesture;
-    
     _transitionPanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.transition action:@selector(handlePanGesture:)];
-    
     return _transitionPanGesture;
 }
 

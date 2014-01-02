@@ -35,30 +35,36 @@
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     
+    
     [self loadMenu];
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    if (![self.tableView indexPathForSelectedRow]) {
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    }
+}
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - UITableViewController
 #pragma mark Data Source
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.menu.count;
-}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.menu[section] count];
+    return self.menu.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    UIImageView *imgView = (UIImageView *)[cell viewWithTag:44];
-    imgView.image = [UIImage imageNamed:@"MenuCellBG"];
-    cell.imageView.image = [UIImage imageNamed:self.menu[indexPath.section][indexPath.row][@"image"]];
-    cell.textLabel.text = self.menu[indexPath.section][indexPath.row][@"name"];
+    UILabel *label = (UILabel *)[cell viewWithTag:1];
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
+    imageView.image = [[UIImage imageNamed:self.menu[indexPath.row][@"image"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    imageView.tintColor = [UIColor menuColorForRow:indexPath.row];
+    label.text = self.menu[indexPath.row][@"name"];
     
     return cell;
 }
@@ -71,33 +77,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *identifier = self.menu[indexPath.section][indexPath.row][@"storyboardID"];
-    [self goToViewControllerWithStoryboardIdentifier:identifier];
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSString *text;
-    if (section == 0) {
-        text = @"Cines";
-    }
-    else if (section == 1) {
-        text = @"Películas";
-    }
-    else {
-        text = @"";
-    }
-    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, 70)];
-    view.image = [UIImage imageNamed:@"MenuHeaderBG1"];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20.f, 20.f, 280.f, 50)];
-    label.textColor = [UIColor whiteColor];
-    label.tag = 40;
-    label.font = self.tableFont;
-    label.text = text;
-    [view addSubview: label];
-    return view;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 70.f;
+    NSString *identifier = self.menu[indexPath.row][@"storyboardID"];
+    [self goToViewControllerWithStoryboardIdentifier:identifier indexPath:indexPath];
 }
 
 #pragma mark - MenuVC
@@ -111,19 +92,11 @@
     return _tableFont;
 }
 
-- (void) goToViewControllerWithStoryboardIdentifier:(NSString *)identifier {
+- (void) goToViewControllerWithStoryboardIdentifier:(NSString *)identifier indexPath:(NSIndexPath *)indexPath{
     UINavigationController *navigationController = (UINavigationController *)self.slidingViewController.topViewController;
     navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
     
     [self.slidingViewController resetTopViewAnimated:YES];
-}
-
-#pragma mark - IBActions
-
-- (IBAction) clickSettingsButton:(id)sender {
-    
-    NSString *identifier = @"SettingsVC";
-    [self goToViewControllerWithStoryboardIdentifier:identifier];
 }
 
 #pragma mark Fetch Data

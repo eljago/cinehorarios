@@ -95,9 +95,7 @@
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    
     [self getMovieForceRemote:NO];
-    
 }
 
 #pragma mark - UITableViewController

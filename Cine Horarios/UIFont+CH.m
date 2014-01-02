@@ -8,47 +8,55 @@
 
 #import "UIFont+CH.h"
 
+NSString *const kHelveticaNeue = @"HelveticaNeue-Light";
+NSString *const kHelveticaNeueBold = @"HelveticaNeue";
+
 @implementation UIFont (CH)
 
 +(UIFont *)getSizeForCHFont:(CHFontStyle)cHFontStyle forPreferedContentSize:(NSString *)preferedContentSize {
     CGFloat fontSize;
-    NSString *fontName = @"HelveticaNeue-Light";
+    NSString *fontName;
     
     switch (cHFontStyle) {
         case CHFontStyleSmaller:
             fontSize = 15;
+            fontName = kHelveticaNeue;
             break;
         case CHFontStyleSmall:
             fontSize = 16;
+            fontName = kHelveticaNeue;
             break;
         case CHFontStyleNormal:
             fontSize = 17;
+            fontName = kHelveticaNeue;
             break;
         case CHFontStyleBig:
             fontSize = 18;
+            fontName = kHelveticaNeue;
             break;
         case CHFontStyleBigger:
             fontSize = 19;
+            fontName = kHelveticaNeue;
             break;
         case CHFontStyleSmallerBold:
             fontSize = 15;
-            fontName = @"HelveticaNeue";
+            fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleSmallBold:
             fontSize = 16;
-            fontName = @"HelveticaNeue";
+            fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleNormalBold:
             fontSize = 17;
-            fontName = @"HelveticaNeue";
+            fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleBigBold:
             fontSize = 18;
-            fontName = @"HelveticaNeue";
+            fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleBiggerBold:
             fontSize = 19;
-            fontName = @"HelveticaNeue";
+            fontName = kHelveticaNeueBold;
             break;
         default:
             fontSize = 17;

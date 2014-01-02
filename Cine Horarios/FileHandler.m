@@ -8,9 +8,9 @@
 
 #import "FileHandler.h"
 
+//NSTimeInterval const kMaxJsonsDurationTime = 60*60*24*7;
 NSTimeInterval const kMaxJsonsDurationTime = 0;
-//NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
-NSTimeInterval const kMaxImageDurationTime = 0;
+NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
 
 @implementation FileHandler
 
@@ -95,6 +95,12 @@ NSTimeInterval const kMaxImageDurationTime = 0;
 //        if ([[item pathExtension] isEqualToString:@".json"]) {
 //            //This is Image File with .json Extension
 //        }
+    }
+    
+    // Annotations
+    NSString *theaterAnnotationsPath = [searchPath stringByAppendingPathComponent:@"theater_annotations.json"];
+    if ([filemgr fileExistsAtPath:theaterAnnotationsPath]) {
+        [self deleteFileAtPath:theaterAnnotationsPath ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];
     }
     
     // Functions

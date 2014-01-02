@@ -29,7 +29,18 @@ NSString *const kLocalCoordinatesURL = @"/jsons/theaters";
     return self;
 }
 
-+(NSArray *) annotationsWithJSON:(id)JSON {
+-(NSComparisonResult)compareAnnotationsDistance: (AnnotationTheater *)annotation{
+    if (annotation.distance == self.distance) {
+        return NSOrderedSame;
+    }
+    else if(annotation.distance > self.distance){
+        return NSOrderedAscending;
+    }
+    else
+        return NSOrderedDescending;
+}
+
++(NSMutableArray *) annotationsWithJSON:(id)JSON {
     NSMutableArray *mutableItems;
     if ([JSON isKindOfClass:[NSArray class]]) {
         if ([JSON count] > 0) {
@@ -46,12 +57,12 @@ NSString *const kLocalCoordinatesURL = @"/jsons/theaters";
     else{
         mutableItems = [[NSMutableArray alloc] initWithObjects:[[AnnotationTheater alloc] initWithAttributes:JSON], nil];
     }
-    return [NSArray arrayWithArray:mutableItems];
+    return mutableItems;
 }
 
 #pragma mark - Close Theaters
 
-+ (NSArray *) getLocalAnnotations {
++ (NSMutableArray *) getLocalAnnotations {
     NSString *localJsonPath = [FileHandler getFullLocalPathForPath:kLocalCoordinatesURL fileName:@"annotations.json"];
     NSFileManager *filemgr = [NSFileManager defaultManager];
     
@@ -59,17 +70,17 @@ NSString *const kLocalCoordinatesURL = @"/jsons/theaters";
         NSData *jsonData = [NSData dataWithContentsOfFile: localJsonPath];
         NSError *theError = nil;
         NSArray *JSON = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&theError];
-        NSArray *annotations = [AnnotationTheater annotationsWithJSON:JSON];
+        NSMutableArray *annotations = [AnnotationTheater annotationsWithJSON:JSON];
         return annotations;
     }
     else {
-        return [NSArray array];
+        return [NSMutableArray array];
     }
 }
-+ (void)getAnnotationsWithBlock:(void (^)(NSArray *annotations, NSError *error))block {
++ (void)getAnnotationsWithBlock:(void (^)(NSMutableArray *annotations, NSError *error))block {
     [[CineHorariosApiClient sharedClient] GET:kRemoteCoordinatesURL parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         
-        NSArray *annotations = [self annotationsWithJSON:JSON];
+        NSMutableArray *annotations = [self annotationsWithJSON:JSON];
         
         if (annotations.count > 0) {
             NSError *theError = nil;
@@ -86,7 +97,7 @@ NSString *const kLocalCoordinatesURL = @"/jsons/theaters";
         }
     } failure:^(NSURLSessionDataTask * __unused task, NSError *error) {
         if (block) {
-            block([NSArray array], error);
+            block([NSMutableArray array], error);
         }
     }];
 }

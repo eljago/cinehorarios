@@ -159,7 +159,7 @@
     self.transitionContext = transitionContext;
     
     UIViewController *topViewController = [transitionContext viewControllerForKey:ECTransitionContextTopViewControllerKey];
-    topViewController.view.userInteractionEnabled = NO;
+    ((UINavigationController *)topViewController).topViewController.view.userInteractionEnabled = NO;
     
     if (_isInteractive) {
         UIViewController *underViewController = [transitionContext viewControllerForKey:ECTransitionContextUnderLeftControllerKey];
@@ -277,7 +277,8 @@
     _compositeBehavior = nil;
     _animator = nil;
     
-    self.slidingViewController.topViewController.view.userInteractionEnabled = YES;
+    
+    ((UINavigationController *)self.slidingViewController.topViewController).topViewController.view.userInteractionEnabled = YES;
     UIViewController *topViewController = [self.transitionContext viewControllerForKey:ECTransitionContextTopViewControllerKey];
     if ((self.isPanningRight && self.positiveLeftToRight) || (!self.isPanningRight && !self.positiveLeftToRight)) {
         topViewController.view.frame = [self.transitionContext finalFrameForViewController:topViewController];
