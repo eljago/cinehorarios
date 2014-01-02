@@ -49,6 +49,9 @@
 + (UIColor *)wetAsphalt {
     return [UIColor colorWithRed:52.f/255.f green:73.f/255.f blue:94.f/255.f alpha:1.f];
 }
++ (UIColor *)wisteria {
+    return [UIColor colorWithRed:142.f/255.f green:68.f/255.f blue:173.f/255.f alpha:1.f];
+}
 + (UIColor *)tableViewColor {
     return [UIColor colorWithRed:241.f/255.f green:234.f/255.f blue:227.f/255.f alpha:1.f];
 }
@@ -58,27 +61,52 @@
 +(UIColor *)navUnselectedColor {
     return [UIColor colorWithWhite:0.667 alpha:0.4];
 }
-+(UIColor *)menuColorForRow:(NSInteger)row {
-    switch (row) {
++(UIColor *)menuColorForRow:(NSIndexPath *)indexPath {
+    switch (indexPath.section) {
         case 0:
-            return [UIColor lightGrayColor];
-            break;
+            // Cines
+            switch (indexPath.row) {
+                case 0:
+                    // Todos
+                    return [UIColor greenSea];
+                    break;
+                case 1:
+                    // Favoritos
+                    return [UIColor navColor];
+                    break;
+                case 2:
+                    // Cercanos
+                    return [UIColor orange2];
+                    break;
+                default:
+                    return [UIColor whiteColor];
+                    break;
+            }
         case 1:
-            return [UIColor belizeHole];
-            break;
+            //Peliculas
+            switch (indexPath.row) {
+                case 0:
+                    // Cartelera
+                    return [UIColor wisteria];
+                    break;
+                case 1:
+                    // Próximos Estrenos
+                    return [UIColor belizeHole];
+                    break;
+                default:
+                    return [UIColor whiteColor];
+                    break;
+            }
         case 2:
-            return [UIColor greenSea];
-            break;
-        case 3:
-            return [UIColor orange2];
-            break;
-        case 4:
-            return [UIColor navColor];
-            break;
-        case 5:
-            return [UIColor brownColor];
-            break;
-            
+            switch (indexPath.row) {
+                case 0:
+                    // Ajustes
+                    return [UIColor brownColor];
+                    break;
+                default:
+                    return [UIColor whiteColor];
+                    break;
+            }
         default:
             return [UIColor whiteColor];
             break;

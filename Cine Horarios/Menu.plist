@@ -3,52 +3,73 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>image</key>
-		<string>IconCartelera</string>
-		<key>storyboardID</key>
-		<string>CarteleraVC</string>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>image</key>
+				<string>IconCinemas</string>
+				<key>storyboardID</key>
+				<string>CinesVC</string>
+				<key>name</key>
+				<string>Todos</string>
+			</dict>
+			<dict>
+				<key>image</key>
+				<string>IconFavorites</string>
+				<key>storyboardID</key>
+				<string>FavoritesVC</string>
+				<key>name</key>
+				<string>Favoritos</string>
+			</dict>
+			<dict>
+				<key>image</key>
+				<string>IconCloseTheaters</string>
+				<key>storyboardID</key>
+				<string>CloseTheatersVC</string>
+				<key>name</key>
+				<string>Cercanos</string>
+			</dict>
+		</array>
 		<key>name</key>
-		<string>Cartelera</string>
+		<string>Cines</string>
 	</dict>
 	<dict>
-		<key>image</key>
-		<string>IconComingSoon</string>
-		<key>storyboardID</key>
-		<string>ComingSoonVC</string>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>image</key>
+				<string>IconCartelera</string>
+				<key>storyboardID</key>
+				<string>CarteleraVC</string>
+				<key>name</key>
+				<string>Cartelera</string>
+			</dict>
+			<dict>
+				<key>image</key>
+				<string>IconComingSoon</string>
+				<key>storyboardID</key>
+				<string>ComingSoonVC</string>
+				<key>name</key>
+				<string>Próximos Estrenos</string>
+			</dict>
+		</array>
 		<key>name</key>
-		<string>Próximos Estrenos</string>
+		<string>Películas</string>
 	</dict>
 	<dict>
-		<key>image</key>
-		<string>IconCinemas</string>
-		<key>storyboardID</key>
-		<string>CinesVC</string>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>image</key>
+				<string>IconSettings</string>
+				<key>storyboardID</key>
+				<string>SettingsVC</string>
+				<key>name</key>
+				<string>Ajustes</string>
+			</dict>
+		</array>
 		<key>name</key>
-		<string>Todos</string>
-	</dict>
-	<dict>
-		<key>image</key>
-		<string>IconCloseTheaters</string>
-		<key>name</key>
-		<string>Cercanos</string>
-		<key>storyboardID</key>
-		<string>CloseTheatersVC</string>
-	</dict>
-	<dict>
-		<key>image</key>
-		<string>IconFavorites</string>
-		<key>storyboardID</key>
-		<string>FavoritesVC</string>
-		<key>name</key>
-		<string>Favoritos</string>
-	</dict>
-	<dict>
-		<key>image</key>
-		<string>IconSettings</string>
-		<key>storyboardID</key>
-		<string>SettingsVC</string>
-		<key>name</key>
-		<string>Ajustes</string>
+		<string> </string>
 	</dict>
 </array>
 </plist>

@@ -42,7 +42,6 @@
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     
     // TopView it's the view over the tableview while it's downloading the data for the first time
     UIView *topView = [[UIView alloc] initWithFrame:self.view.bounds];

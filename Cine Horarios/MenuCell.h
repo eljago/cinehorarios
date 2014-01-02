@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuCell : UITableViewCell
-
+@property (nonatomic, weak) IBOutlet UIImageView *imgView;
+@property (nonatomic, weak) IBOutlet UILabel *txtLabel;
 @end

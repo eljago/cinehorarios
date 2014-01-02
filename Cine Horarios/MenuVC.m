@@ -29,14 +29,10 @@
 {
     [super viewDidLoad];
     
-    self.navController = (UINavigationController *)self.slidingViewController.topViewController;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
-    
-    
-    [self loadMenu];
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -52,32 +48,46 @@
 #pragma mark - UITableViewController
 #pragma mark Data Source
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.menu.count;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.menu[section][@"items"] count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    UILabel *label = (UILabel *)[cell viewWithTag:1];
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
-    imageView.image = [[UIImage imageNamed:self.menu[indexPath.row][@"image"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    imageView.tintColor = [UIColor menuColorForRow:indexPath.row];
-    label.text = self.menu[indexPath.row][@"name"];
+    NSDictionary *itemDict = self.menu[indexPath.section][@"items"][indexPath.row];
+    
+    cell.imgView.image = [[UIImage imageNamed:itemDict[@"image"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    cell.imgView.tintColor = [UIColor menuColorForRow:indexPath];
+    cell.txtLabel.text = itemDict[@"name"];
+    cell.txtLabel.highlightedTextColor = [UIColor menuColorForRow:indexPath];
     
     return cell;
 }
 
 #pragma mark Delegate
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 22.)];
+    backgroundView.backgroundColor = [UIColor clearColor];
+    UILabel *labelHeader = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, self.view.bounds.size.width-10, 22.)];
+    labelHeader.font = _tableFont;
+    labelHeader.textColor = [UIColor lighterGrayColor];
+    labelHeader.text = self.menu[section][@"name"];
+    [backgroundView addSubview:labelHeader];
+    return backgroundView;
+}
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.textLabel.font = self.tableFont;
+    ((MenuCell *)cell).txtLabel.font = self.tableFont;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *identifier = self.menu[indexPath.row][@"storyboardID"];
+    NSString *identifier = self.menu[indexPath.section][@"items"][indexPath.row][@"storyboardID"];
     [self goToViewControllerWithStoryboardIdentifier:identifier indexPath:indexPath];
 }
 
@@ -91,26 +101,38 @@
     
     return _tableFont;
 }
+- (NSArray *) menu {
+    if(_menu) return _menu;
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
+    _menu = [NSArray arrayWithContentsOfFile:filePath];
+    
+    return _menu;
+}
+- (UINavigationController *) navController {
+    if(_navController) return _navController;
+    
+    _navController = (UINavigationController *)self.slidingViewController.topViewController;
+    
+    return _navController;
+}
+
+#pragma mark Switch Top VC
 
 - (void) goToViewControllerWithStoryboardIdentifier:(NSString *)identifier indexPath:(NSIndexPath *)indexPath{
     UINavigationController *navigationController = (UINavigationController *)self.slidingViewController.topViewController;
     navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
     
-    [self.slidingViewController resetTopViewAnimated:YES];
-}
-
-#pragma mark Fetch Data
-
-- (void) loadMenu {
+    navigationController.topViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:navigationController action:@selector(revealMenu:)];
+//    navigationController.topViewController.navigationItem.leftBarButtonItem.tintColor = [UIColor menuColorForRow:indexPath];
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
-    self.menu = [NSArray arrayWithContentsOfFile:filePath];
+    [self.slidingViewController resetTopViewAnimated:YES];
 }
 
 #pragma mark - Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     
     [self.tableView reloadData];
 }

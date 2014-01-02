@@ -23,11 +23,10 @@
 @interface TheatersVC ()
 @property (nonatomic, strong) NSArray *theaters;
 @property (nonatomic, strong) UIAlertView *alert;
+@property (nonatomic, strong) UIFont *tableFont;
 @end
 
-@implementation TheatersVC {
-    UIFont *tableFont;
-}
+@implementation TheatersVC
 
 #pragma mark - UIViewController
 
@@ -44,13 +43,10 @@
     
     self.title = self.cinemaName;
     
-    tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
@@ -78,7 +74,7 @@
     
     Theater *theater = self.theaters[indexPath.row];
     cell.basicItem = theater;
-    [cell setFont:tableFont];
+    [cell setFont:self.tableFont];
     
     return cell;
 }
@@ -86,10 +82,20 @@
 #pragma mark Delegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [CHCell heightForCellWithBasicItem:self.theaters[indexPath.row] withFont:tableFont];
+    return [CHCell heightForCellWithBasicItem:self.theaters[indexPath.row] withFont:self.tableFont];
 }
 
 #pragma mark - TheatersVC
+#pragma mark Properties
+
+- (UIFont *) tableFont {
+    if(_tableFont) return _tableFont;
+    
+    _tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    
+    return _tableFont;
+}
+
 #pragma mark Fetch Data
 
 - (void) getTheatersForceRemote:(BOOL) forceRemote {
@@ -149,7 +155,7 @@
 #pragma mark - Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
 
     [self.tableView reloadData];
 }

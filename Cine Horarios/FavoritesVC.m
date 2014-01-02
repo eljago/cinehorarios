@@ -17,9 +17,10 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
-@implementation FavoritesVC {
-    UIFont *tableFont;
-}
+@interface FavoritesVC ()
+@property (nonatomic, strong) UIFont *tableFont;
+@end
+@implementation FavoritesVC
 
 #pragma mark - UIViewController
 
@@ -30,14 +31,12 @@
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"FAVORITOS" forKey:kGAIScreenName] build]];
     
-    tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
 }
 
 // Reload data after coming back from Theater view in case there was an edit
@@ -47,10 +46,10 @@
     [self loadFavorites];
     
     if ([self.favoriteTheaters count] == 0) {
-        self.navigationItem.leftBarButtonItem.enabled = NO;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     else {
-        self.navigationItem.leftBarButtonItem.enabled = YES;
+        self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     [self.tableView reloadData];
 }
@@ -70,7 +69,7 @@
     
     BasicItem *theater = self.favoriteTheaters[indexPath.row];
     cell.basicItem = theater;
-    [cell setFont:tableFont];
+    [cell setFont:self.tableFont];
     
     return cell;
 }
@@ -92,10 +91,10 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         if ([self.favoriteTheaters count] == 0) {
             tableView.editing = NO;
-            self.navigationItem.leftBarButtonItem.enabled = NO;
+            self.navigationItem.rightBarButtonItem.enabled = NO;
         }
         else {
-            self.navigationItem.leftBarButtonItem.enabled = YES;
+            self.navigationItem.rightBarButtonItem.enabled = YES;
         }
     }
 }
@@ -103,10 +102,20 @@
 #pragma mark Delegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [CHCell heightForCellWithBasicItem:self.favoriteTheaters[indexPath.row] withFont:tableFont];
+    return [CHCell heightForCellWithBasicItem:self.favoriteTheaters[indexPath.row] withFont:self.tableFont];
 }
 
 #pragma mark - FavoritesVC
+#pragma mark Properties
+
+- (UIFont *) tableFont {
+    if(_tableFont) return _tableFont;
+    
+    _tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    
+    return _tableFont;
+}
+
 #pragma mark Fetch Data
 
 - (void) loadFavorites{
@@ -135,18 +144,18 @@
 - (IBAction) enterEditingMode:(UIBarButtonItem *) sender{
     if (self.tableView.isEditing) {
         [self.tableView setEditing:NO animated:YES];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
     }
     else{
         [self.tableView setEditing:YES animated:YES];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(enterEditingMode:)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(enterEditingMode:)];
     }
 }
 
 #pragma mark - Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     
     [self.tableView reloadData];
 }

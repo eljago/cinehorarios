@@ -159,6 +159,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="imgView" destination="Nm7-li-HMY" id="lki-OB-LXb"/>
+                                            <outlet property="txtLabel" destination="8qe-oL-gQe" id="2P1-e8-5XV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -195,7 +199,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="topViewControllerStoryboardId" value="NavVC"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="underLeftViewControllerStoryboardId" value="MenuVC"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="anchorRightPeekAmount">
-                            <integer key="value" value="100"/>
+                            <integer key="value" value="90"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </viewController>

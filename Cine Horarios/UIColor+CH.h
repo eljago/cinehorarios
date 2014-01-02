@@ -25,5 +25,5 @@
 + (UIColor *)navUnselectedColor;
 + (UIColor *)randomColor;
 
-+(UIColor *)menuColorForRow:(NSInteger)row;
++(UIColor *)menuColorForRow:(NSIndexPath *)indexPath;
 @end

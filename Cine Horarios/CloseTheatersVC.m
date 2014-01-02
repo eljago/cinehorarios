@@ -38,14 +38,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
     self.myMapHeightConstraint.constant = self.view.bounds.size.height;
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
-    [self createBarMapButtons];
-    
     self.myMap.showsUserLocation = YES;
     
+    [self createBarMapButtons];
     [self getTheatersLocationsForceRemove:NO];
 }
 
@@ -224,11 +221,11 @@
     CGFloat toHeight;
     if (self.myMapHeightConstraint.constant == self.view.bounds.size.height/2) {
         toHeight = self.view.bounds.size.height;
-        [self.navigationItem.leftBarButtonItems[0] setImage:[UIImage imageNamed:@"MapsShowTable"]];
+        [self.navigationItem.rightBarButtonItems[2] setImage:[UIImage imageNamed:@"MapsShowTable"]];
     }
     else {
         toHeight = self.view.bounds.size.height/2;
-        [self.navigationItem.leftBarButtonItems[0] setImage:[UIImage imageNamed:@"MapsHideTable"]];
+        [self.navigationItem.rightBarButtonItems[2] setImage:[UIImage imageNamed:@"MapsHideTable"]];
     }
     self.myMapHeightConstraint.constant = toHeight;
     [self.view setNeedsUpdateConstraints];
@@ -283,7 +280,7 @@
     UIBarButtonItem *buttonCenterUser = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MapsCenterUser"] style:UIBarButtonItemStylePlain target:self action:@selector(centerUser:)];
     UIBarButtonItem *buttonShowTable = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MapsShowTable"] style:UIBarButtonItemStylePlain target:self action:@selector(toggleTheatersTable:)];
     UIBarButtonItem *buttonReloadRegion = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"WebReload"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRegion:)];
-    self.navigationItem.leftBarButtonItems = @[buttonShowTable, buttonCenterUser, buttonReloadRegion];
+    self.navigationItem.rightBarButtonItems = @[buttonCenterUser, buttonReloadRegion, buttonShowTable];
 }
 
 //#pragma mark Fetch Data
