@@ -16,6 +16,8 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "GlobalNavigationController.h"
+#import "UIView+CH.h"
 
 @interface CastVC ()
 
@@ -50,6 +52,14 @@
                                                object:nil];
     
 }
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
+    nvc.transitionPanGesture.enabled = YES;
+    
+    [nvc.navigationBar setShadowImage:[UIImage new]];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -80,6 +90,31 @@
         
         return cell;
     }
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    NSString *text;
+    if (section == 0) {
+        if (self.directors.count == 1) {
+            text = @"Director";
+        }
+        else if (self.directors.count > 1) {
+            text = @"Directores";
+        }
+        else {
+            text = @"";
+        }
+    }
+    else {
+        if (self.actors.count > 0) {
+            text = @"Reparto";
+        }
+        else {
+            text = @"";
+        }
+    }
+    NSInteger height = [UIView heightForHeaderViewWithText:text font:fontName];
+    return [UIView headerViewForText:text font:fontName height:height];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -124,6 +159,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
+    nvc.transitionPanGesture.enabled = NO;
+    
     NSUInteger row = 0;
     if (indexPath.section == 0) {
         row = indexPath.row;
@@ -139,6 +178,20 @@
     
     [self.navigationController pushViewController:browser animated:YES];
     
+}
+
+#pragma mark Row & Height Calculators
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0 && self.directors.count == 0) {
+        return 0.01;
+    }
+    else if (section == 1 && self.actors.count == 0){
+        return 0.01;
+    }
+    else {
+        return [UIView heightForHeaderViewWithText:@"Javier" font:fontName];
+    }
 }
 
 #pragma mark - Photo Browser Delegate

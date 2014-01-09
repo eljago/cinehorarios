@@ -10,13 +10,23 @@
 #import <MapKit/MapKit.h>
 #import "AnnotationTheater.h"
 #import "MBProgressHUD.h"
+#import "UIColor+CH.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+#import "FuncionesVC.h"
+
+NSInteger const kMaxTheaterDistance = 26000;
+NSInteger const kRegionSize = 4000;
+NSInteger const kRegionZoomedSize = 1000;
+NSInteger const kMaxNumberOfCloseTheaters = 3;
 
 @interface CloseTheatersVC () <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak) IBOutlet MKMapView *myMap;
-@property (nonatomic, weak) IBOutlet UITableView *tableview;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *myMapHeightConstraint;
-@property (nonatomic, weak) UIButton *buttonShowTable;
-@property (nonatomic, weak) UIButton *buttoncenterUser;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *myMapBottomSpaceToBotomLayout;
+@property (nonatomic, weak) IBOutlet UIButton *buttonToggleTable;
 @property BOOL userLocationUpdated;
 @property (nonatomic, strong) NSMutableArray *annotations;
 @property (nonatomic, assign) MKCoordinateRegion region;
@@ -39,10 +49,21 @@
 {
     [super viewDidLoad];
     
-    self.myMapHeightConstraint.constant = self.view.bounds.size.height;
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"MAPA" forKey:kGAIScreenName] build]];
+    
     self.myMap.showsUserLocation = YES;
     
-    [self createBarMapButtons];
+    self.tableView.backgroundColor = [UIColor tableViewColor];
+    
+    UIBarButtonItem *buttonCenterUser = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"MapsCenterUser"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(centerUser:)];
+    buttonCenterUser.enabled = NO;
+    
+    UIBarButtonItem *buttonReload = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"MapsCloseTheaters"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRegion:)];
+    buttonReload.enabled = NO;
+    
+    self.navigationItem.rightBarButtonItems = @[buttonCenterUser, buttonReload];
+    
     [self getTheatersLocationsForceRemove:NO];
 }
 
@@ -61,12 +82,10 @@
 //        [self.myMap setCenterCoordinate:userLocation.location.coordinate animated:YES];
         self.userLocationUpdated = YES;
         
-        CLLocationDistance regionWidth = 4000;
-        CLLocationDistance regionHeight = 4000;
+        CLLocationDistance regionWidth = kRegionSize;
+        CLLocationDistance regionHeight = kRegionSize;
         MKCoordinateRegion startRegion = MKCoordinateRegionMakeWithDistance(self.myMap.userLocation.location.coordinate, regionWidth, regionHeight);
         [self.myMap setRegion:startRegion animated:NO];
-        
-
     }
 }
 
@@ -78,7 +97,10 @@
     else {
         self.annotations = [AnnotationTheater getLocalAnnotations];
         if (self.annotations.count) {
-            [self.tableview reloadData];
+            [self.tableView reloadData];
+            for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems) {
+                buttonItem.enabled = YES;
+            }
         }
         else {
             [self downloadTheatersLocations];
@@ -98,7 +120,11 @@
             
             [self calculateRegion];
             [self.myMap setRegion:self.region animated:YES];
-            [self.tableview reloadData];
+            [self.tableView reloadData];
+            
+            for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems) {
+                buttonItem.enabled = YES;
+            }
         }
         else {
             [self showAlert];
@@ -125,11 +151,13 @@
     if (!view) {
         view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
         UIButton *rightCalloutAV = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        rightCalloutAV.tintColor = [UIColor blackColor];
+        rightCalloutAV.tintColor = [UIColor grayColor];
+        [rightCalloutAV setImage:[[UIImage imageNamed:@"WebForward"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         rightCalloutAV.frame = CGRectMake(0, 0, 32, 32);
         view.rightCalloutAccessoryView = rightCalloutAV;
     }
-    switch (((AnnotationTheater *)annotation).cinemaID) {
+    AnnotationTheater *annotationTheater = (AnnotationTheater *)annotation;
+    switch (annotationTheater.cinemaID) {
         case 1:
             view.image = [UIImage imageNamed:@"AnnotationCinemark"];
             break;
@@ -143,7 +171,21 @@
             view.image = [UIImage imageNamed:@"AnnotationCinemundo"];
             break;
         case 5:
-            view.image = [UIImage imageNamed:@"AnnotationCinesIndependientes"];
+            switch (annotationTheater.itemId) {
+                case 47:
+                    view.image = [UIImage imageNamed:@"AnnotationNormandie"];
+                    break;
+                case 46:
+                    view.image = [UIImage imageNamed:@"AnnotationArteAlameda"];
+                    break;
+                case 51:
+                    view.image = [UIImage imageNamed:@"AnnotationElBiografo"];
+                    break;
+                    
+                default:
+                    break;
+            }
+//            view.image = [UIImage imageNamed:@"AnnotationCinesIndependientes"];
             break;
         case 6:
             view.image = [UIImage imageNamed:@"AnnotationCinePavilion"];
@@ -158,6 +200,18 @@
     view.canShowCallout = YES;
     
     return view;
+}
+//-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+//    CLLocationCoordinate2D coordinate = view.annotation.coordinate;
+//    [self zoomMapAtCoordinate:coordinate];
+//}
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    FuncionesVC *functionesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FuncionesVC"];
+    AnnotationTheater *annotation = view.annotation;
+    functionesVC.theaterName = annotation.name;
+    functionesVC.theaterID = annotation.itemId;
+    
+    [self.navigationController pushViewController:functionesVC animated:YES];
 }
 
 #pragma mark - UITableView
@@ -192,7 +246,20 @@
             cell.imageView.image = [UIImage imageNamed:@"LogoCinemundo"];
             break;
         case 5:
-//            cell.imageView.image = [UIImage imageNamed:@"LogoCinesIndependientes"];
+            switch (annotation.itemId) {
+                case 47:
+                    cell.imageView.image = [UIImage imageNamed:@"LogoNormandie"];
+                    break;
+                case 46:
+                    cell.imageView.image = [UIImage imageNamed:@"LogoArteAlameda"];
+                    break;
+                case 51:
+                    cell.imageView.image = [UIImage imageNamed:@"LogoElBiografo"];
+                    break;
+                    
+                default:
+                    break;
+            }
             break;
         case 6:
             cell.imageView.image = [UIImage imageNamed:@"LogoCinePavilion"];
@@ -210,24 +277,47 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CLLocationCoordinate2D coordinate = [self.annotations[indexPath.row] coordinate];
-    CLLocationDistance regionWidth = 1000;
-    CLLocationDistance regionHeight = 1000;
+    [self zoomMapAtCoordinate:coordinate];
+}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row % 2 == 0) {
+        cell.backgroundColor = [UIColor whiteColor];
+    }
+    else {
+        cell.backgroundColor = [UIColor lighterGrayColor];
+    }
+}
+
+#pragma mark - Segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    FuncionesVC *functionesVC = segue.destinationViewController;
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    AnnotationTheater *annotation = self.annotations[indexPath.row];
+    functionesVC.theaterName = annotation.name;
+    functionesVC.theaterID = annotation.itemId;
+}
+
+#pragma mark - CloseTheatersVC
+
+-(void)zoomMapAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    CLLocationDistance regionWidth = kRegionZoomedSize;
+    CLLocationDistance regionHeight = kRegionZoomedSize;
     MKCoordinateRegion startRegion = MKCoordinateRegionMakeWithDistance(coordinate, regionWidth, regionHeight);
     [self.myMap setRegion:startRegion animated:YES];
 }
 
-#pragma mark - CloseTheatersVC
 - (IBAction)toggleTheatersTable:(id)sender {
     CGFloat toHeight;
-    if (self.myMapHeightConstraint.constant == self.view.bounds.size.height/2) {
-        toHeight = self.view.bounds.size.height;
-        [self.navigationItem.rightBarButtonItems[2] setImage:[UIImage imageNamed:@"MapsShowTable"]];
+    if (self.myMapBottomSpaceToBotomLayout.constant == self.view.bounds.size.height/2) {
+        toHeight = 0;
+        [self.buttonToggleTable setImage:[UIImage imageNamed:@"MapsShowTable"] forState:UIControlStateNormal];
     }
     else {
         toHeight = self.view.bounds.size.height/2;
-        [self.navigationItem.rightBarButtonItems[2] setImage:[UIImage imageNamed:@"MapsHideTable"]];
+        [self.buttonToggleTable setImage:[UIImage imageNamed:@"MapsHideTable"] forState:UIControlStateNormal];
     }
-    self.myMapHeightConstraint.constant = toHeight;
+    self.myMapBottomSpaceToBotomLayout.constant = toHeight;
     [self.view setNeedsUpdateConstraints];
     [UIView animateWithDuration:0.25f animations:^{
         [self.view layoutIfNeeded];
@@ -245,9 +335,9 @@
     [lats addObject:[NSNumber numberWithDouble:closestAnnotation.coordinate.latitude]];
     [lngs addObject:[NSNumber numberWithDouble:closestAnnotation.coordinate.longitude]];
     
-    NSArray *closestAnnotationsExceptFirstOne = [self.annotations objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1,4)]];
+    NSArray *closestAnnotationsExceptFirstOne = [self.annotations objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1,kMaxNumberOfCloseTheaters)]];
     for (AnnotationTheater *annotation in closestAnnotationsExceptFirstOne) {
-        if (annotation.distance < 26000) {
+        if (annotation.distance < kMaxTheaterDistance) {
             [lats addObject:[NSNumber numberWithDouble:annotation.coordinate.latitude]];
             [lngs addObject:[NSNumber numberWithDouble:annotation.coordinate.longitude]];
         }
@@ -263,24 +353,23 @@
     CLLocationCoordinate2D annotationsCenter = CLLocationCoordinate2DMake((biggestLat + smallestLat)/2, (biggestLng + smallestLng)/2);
     MKCoordinateSpan annotationsSpan = MKCoordinateSpanMake(biggestLat - smallestLat + 0.025, biggestLng - smallestLng + 0.025);
     self.region = MKCoordinateRegionMake(annotationsCenter, annotationsSpan);
-    self.buttoncenterUser.enabled = YES;
 }
 - (IBAction)reloadRegion:(id)sender {
-    [self.myMap setRegion:self.region animated:YES];
+    if (self.annotations.count) {
+        [self.myMap setRegion:self.region animated:YES];
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 - (IBAction)centerUser:(id)sender {
-    CLLocationDistance regionWidth = 1000;
-    CLLocationDistance regionHeight = 1000;
-    MKCoordinateRegion startRegion = MKCoordinateRegionMakeWithDistance(self.myMap.userLocation.location.coordinate, regionWidth, regionHeight);
-    [self.myMap setRegion:startRegion animated:YES];
-}
-
-#pragma mark - Create LeftBarButtonItems
-- (void) createBarMapButtons {
-    UIBarButtonItem *buttonCenterUser = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MapsCenterUser"] style:UIBarButtonItemStylePlain target:self action:@selector(centerUser:)];
-    UIBarButtonItem *buttonShowTable = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MapsShowTable"] style:UIBarButtonItemStylePlain target:self action:@selector(toggleTheatersTable:)];
-    UIBarButtonItem *buttonReloadRegion = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"WebReload"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRegion:)];
-    self.navigationItem.rightBarButtonItems = @[buttonCenterUser, buttonReloadRegion, buttonShowTable];
+    if (self.annotations.count) {
+        CLLocationDistance regionWidth = kRegionZoomedSize;
+        CLLocationDistance regionHeight = kRegionZoomedSize;
+        MKCoordinateRegion startRegion = MKCoordinateRegionMakeWithDistance(self.myMap.userLocation.location.coordinate, regionWidth, regionHeight);
+        [self.myMap setRegion:startRegion animated:YES];
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 
 //#pragma mark Fetch Data

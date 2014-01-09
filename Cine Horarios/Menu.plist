@@ -6,6 +6,8 @@
 		<key>items</key>
 		<array>
 			<dict>
+				<key>pickerName</key>
+				<string>Todos los Cines</string>
 				<key>image</key>
 				<string>IconCinemas</string>
 				<key>storyboardID</key>
@@ -14,6 +16,8 @@
 				<string>Todos</string>
 			</dict>
 			<dict>
+				<key>pickerName</key>
+				<string>Cines Favoritos</string>
 				<key>image</key>
 				<string>IconFavorites</string>
 				<key>storyboardID</key>
@@ -22,6 +26,8 @@
 				<string>Favoritos</string>
 			</dict>
 			<dict>
+				<key>pickerName</key>
+				<string>Mapa de Cines Cercanos</string>
 				<key>image</key>
 				<string>IconCloseTheaters</string>
 				<key>storyboardID</key>
@@ -37,6 +43,8 @@
 		<key>items</key>
 		<array>
 			<dict>
+				<key>pickerName</key>
+				<string>Cartelera</string>
 				<key>image</key>
 				<string>IconCartelera</string>
 				<key>storyboardID</key>
@@ -45,6 +53,8 @@
 				<string>Cartelera</string>
 			</dict>
 			<dict>
+				<key>pickerName</key>
+				<string>Próximos Estrenos</string>
 				<key>image</key>
 				<string>IconComingSoon</string>
 				<key>storyboardID</key>

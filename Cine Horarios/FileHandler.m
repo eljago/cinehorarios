@@ -8,8 +8,8 @@
 
 #import "FileHandler.h"
 
-//NSTimeInterval const kMaxJsonsDurationTime = 60*60*24*7;
-NSTimeInterval const kMaxJsonsDurationTime = 0;
+NSTimeInterval const kMaxJsonsDurationTime = 60*60*24*7;
+//NSTimeInterval const kMaxJsonsDurationTime = 0;
 NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
 
 @implementation FileHandler
@@ -214,6 +214,27 @@ NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
         // Failed to create Directory
     }
     return [localDirPath stringByAppendingPathComponent:fileName];
+}
+
+#pragma mark - Get Menu Items
++ (void)getMenuDictsAndSelectedIndex:(void (^)(NSArray *menuDicts, NSInteger selectedIndex))block withStoryboardID:(NSString *)identifier {
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
+    NSArray *menu = [NSArray arrayWithContentsOfFile:filePath];
+    
+    NSInteger selectedIndex = 0;
+    
+    NSMutableArray *startingVCsMutable = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in menu) {
+        NSArray *items = dict[@"items"];
+        for (NSDictionary *dict in items) {
+            [startingVCsMutable addObject:dict];
+            if ([dict[@"storyboardID"] isEqualToString:identifier]) {
+                selectedIndex = startingVCsMutable.count-1;
+            }
+        }
+    }
+    block([NSArray arrayWithArray:startingVCsMutable], selectedIndex);
 }
 
 @end

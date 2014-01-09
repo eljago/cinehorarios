@@ -29,7 +29,7 @@
     return [UIColor colorWithRed:243./225. green:156./225. blue:18./225. alpha:1.];
 }
 + (UIColor *)orange2{
-    return [UIColor colorWithRed:1. green:149./225. blue:0. alpha:1.];
+    return [UIColor colorWithRed:231./255. green:146./225. blue:27./255. alpha:1.];
 }
 + (UIColor *)carrot{
     return [UIColor colorWithRed:230./225. green:126./225. blue:34./225. alpha:1.];
@@ -52,6 +52,12 @@
 + (UIColor *)wisteria {
     return [UIColor colorWithRed:142.f/255.f green:68.f/255.f blue:173.f/255.f alpha:1.f];
 }
++ (UIColor *)asbestos {
+    return [UIColor colorWithRed:127.f/255.f green:140.f/255.f blue:141.f/255.f alpha:1.f];
+}
++ (UIColor *)concrete {
+    return [UIColor colorWithRed:149.f/255.f green:165.f/255.f blue:166.f/255.f alpha:1.f];
+}
 + (UIColor *)tableViewColor {
     return [UIColor colorWithRed:241.f/255.f green:234.f/255.f blue:227.f/255.f alpha:1.f];
 }
@@ -61,6 +67,13 @@
 +(UIColor *)navUnselectedColor {
     return [UIColor colorWithWhite:0.667 alpha:0.4];
 }
++(UIColor *)orchidBouquet {
+    return [UIColor colorWithRed:229./255. green:155./255. blue:215./255. alpha:1.];
+}
++(UIColor *)hydrangea {
+    return [UIColor colorWithRed:125./255. green:97./255. blue:186./255. alpha:1.];
+}
+
 +(UIColor *)menuColorForRow:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0:
@@ -87,7 +100,7 @@
             switch (indexPath.row) {
                 case 0:
                     // Cartelera
-                    return [UIColor wisteria];
+                    return [UIColor hydrangea];
                     break;
                 case 1:
                     // Próximos Estrenos

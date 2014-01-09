@@ -11,6 +11,8 @@
 
 @interface GlobalNavigationController : UINavigationController <ECSlidingViewControllerDelegate>
 
+@property (nonatomic, strong) UIPanGestureRecognizer *transitionPanGesture;
+
 - (IBAction)revealMenu:(id)sender;
 
 @end

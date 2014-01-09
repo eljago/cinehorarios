@@ -20,4 +20,5 @@
 + (void) removeOldJsons;
 
 + (NSString *)getFullLocalPathForPath:(NSString *)path fileName:(NSString *)fileName;
++ (void)getMenuDictsAndSelectedIndex:(void (^)(NSArray *menuDicts, NSInteger selectedIndex))block withStoryboardID:(NSString *)identifier;
 @end

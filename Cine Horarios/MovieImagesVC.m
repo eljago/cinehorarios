@@ -15,6 +15,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "UIImageView+CH.h"
+#import "GlobalNavigationController.h"
 
 @interface MovieImagesVC () <UICollectionViewDelegateFlowLayout>
 @end
@@ -27,7 +28,6 @@
 	// Do any additional setup after loading the view.
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA IMAGENES" forKey:kGAIScreenName] build]];
-    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -37,7 +37,12 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
+    nvc.transitionPanGesture.enabled = YES;
+    
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -81,6 +86,9 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
+    nvc.transitionPanGesture.enabled = NO;
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)

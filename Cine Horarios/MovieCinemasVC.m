@@ -19,6 +19,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "UIView+CH.h"
 
 @interface MovieCinemasVC ()
 @property (nonatomic, strong) NSMutableArray *favoriteTheaters;
@@ -212,7 +213,7 @@
     return [self heightForHeaderView];
 }
 -(CGFloat) heightForHeaderView {
-    CGSize size = CGSizeMake(310.f, 1000.f);
+    CGSize size = CGSizeMake(300.f, 1000.f);
     
     CGRect nameLabelRect = [self.movieName boundingRectWithSize: size
                                                    options: NSStringDrawingUsesLineFragmentOrigin
@@ -220,7 +221,7 @@
                                                                                         forKey:NSFontAttributeName]
                                                    context: nil];
     
-    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 8.0f;
+    CGFloat totalHeight = nameLabelRect.size.height * 1.2;
     
     if (totalHeight <= 25.f) {
         totalHeight = 25.f;
@@ -230,16 +231,9 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.cinemas.count) {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, [self heightForHeaderView])];
-        view.backgroundColor = [UIColor tableViewColor];
-        view.alpha = 0.85;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, [self heightForHeaderView])];
-        label.textColor = [UIColor blackColor];
+        UIView *view = [UIView headerViewForText:self.movieName font:headerFont height:[self heightForHeaderView]];
+        UILabel *label = (UILabel *)[view viewWithTag:40];
         label.numberOfLines = 0;
-        label.tag = 40;
-        label.font = headerFont;
-        label.text = self.movieName;
-        [view addSubview: label];
         return view;
     }
     else {

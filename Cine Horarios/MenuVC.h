@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuVC : UIViewController
+@property (nonatomic, strong) NSString *startingVCID;
+-(void)selectRowWithStoryboardID:(NSString *)identifier;
 
 @end

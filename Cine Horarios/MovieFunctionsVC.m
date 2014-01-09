@@ -32,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = self.movieName;
+    
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA FUNCIONES" forKey:kGAIScreenName] build]];
     
@@ -117,8 +120,11 @@
                                                                      options: NSStringDrawingUsesLineFragmentOrigin
                                                                   attributes: [NSDictionary dictionaryWithObject:tableFont forKey:NSFontAttributeName]
                                                                      context: nil];
-        
-        CGFloat totalHeight = 10.0f + typesLabelRect.size.height + 5.0f + showtimesLabelRect.size.height + 10.0f;
+        CGFloat typesHeight = typesLabelRect.size.height;
+        if (!function.types || [function.types isEqualToString:@""]) {
+            typesHeight = 0.;
+        }
+        CGFloat totalHeight = 10.0f + typesHeight + 5.0f + showtimesLabelRect.size.height + 10.0f;
         
         return totalHeight;
     }
@@ -156,28 +162,17 @@
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    CGSize size = CGSizeMake(310.f, 1000.f);
     
     TheaterFunctions *theater = self.theaterFuctions[section];
-    CGRect nameLabelRect = [theater.name  boundingRectWithSize: size
-                                                       options: NSStringDrawingUsesLineFragmentOrigin
-                                                    attributes: [NSDictionary dictionaryWithObject:headerFont
-                                                                                            forKey:NSFontAttributeName]
-                                                       context: nil];
     
-    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 8.0f;
-    
-    if (totalHeight <= 25.f) {
-        totalHeight = 25.f;
-    }
-    
-    return totalHeight;
+    return [UIView heightForHeaderViewWithText:theater.name font:headerFont];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     TheaterFunctions *theater = self.theaterFuctions[section];
+    NSInteger height = [UIView heightForHeaderViewWithText:theater.name font:headerFont];
     
-    return [UIView headerViewForText:theater.name font:headerFont height:[self tableView:self.tableView heightForHeaderInSection:section]];
+    return [UIView headerViewForText:theater.name font:headerFont height:height];
 }
 
 @end

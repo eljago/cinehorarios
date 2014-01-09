@@ -13,6 +13,7 @@
 #import "UIColor+CH.h"
 #import "MenuCell.h"
 #import "UIViewController+ECSlidingViewController.h"
+#import "FileHandler.h"
 
 @interface MenuVC () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UIFont *tableFont;
@@ -33,6 +34,10 @@
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
+    
+    if (self.startingVCID) {
+        [self selectRowWithStoryboardID:self.startingVCID];
+    }
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -117,6 +122,33 @@
     return _navController;
 }
 
+#pragma mark Select Row
+-(void)selectRowWithStoryboardID:(NSString *)identifier {
+    
+    [FileHandler getMenuDictsAndSelectedIndex:^(NSArray *menuDicts, NSInteger selectedIndex) {
+        NSInteger section = 0;
+        NSInteger selectedIndx = selectedIndex;
+        if (selectedIndex <= 2) {
+            section = 0;
+        }
+        else if (selectedIndex <= 4) {
+            section = 1;
+            if (selectedIndex == 3) {
+                selectedIndx = 0;
+            }
+            else {
+                selectedIndx = 1;
+            }
+        }
+        else {
+            section = 2;
+            selectedIndx = 0;
+        }
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:selectedIndx inSection:section] animated:NO scrollPosition:UITableViewRowAnimationTop];
+    } withStoryboardID:identifier];
+    
+}
+
 #pragma mark Switch Top VC
 
 - (void) goToViewControllerWithStoryboardIdentifier:(NSString *)identifier indexPath:(NSIndexPath *)indexPath{
@@ -125,6 +157,10 @@
     
     navigationController.topViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:navigationController action:@selector(revealMenu:)];
 //    navigationController.topViewController.navigationItem.leftBarButtonItem.tintColor = [UIColor menuColorForRow:indexPath];
+    
+    GlobalNavigationController *nvc = (GlobalNavigationController *)navigationController;
+    nvc.transitionPanGesture.enabled = YES;
+    nvc.navigationBar.barTintColor = [UIColor navColor];
     
     [self.slidingViewController resetTopViewAnimated:YES];
 }

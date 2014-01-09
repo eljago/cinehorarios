@@ -13,7 +13,6 @@
 
 @interface GlobalNavigationController () <UIGestureRecognizerDelegate>
 @property (nonatomic, strong) MEDynamicTransition *transition;
-@property (nonatomic, strong) UIPanGestureRecognizer *transitionPanGesture;
 @end
 
 @implementation GlobalNavigationController
@@ -46,6 +45,10 @@
     self.view.layer.shadowRadius  = 10.0f;
     self.view.layer.shadowColor   = [UIColor blackColor].CGColor;
     self.view.layer.shadowPath    = [UIBezierPath bezierPathWithRect:self.view.bounds].CGPath;
+    
+    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuVC class]]) {
+        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuVC"];
+    }
 }
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

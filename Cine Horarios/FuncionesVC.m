@@ -116,12 +116,13 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.functions.count > 0) {
-        
-        return [UIView headerViewForText:self.theaterName font:headFont height:[self heightForHeaderWithText:self.theaterName]];
+        NSInteger height = [UIView heightForHeaderViewWithText:self.theaterName font:headFont];
+        return [UIView headerViewForText:self.theaterName font:headFont height:height];
     }
     else {
         if (self.theater_url) {
-            return [UIView headerViewForText:kHeaderString font:headFont height:[self heightForHeaderWithText:kHeaderString]];
+            NSInteger height = [UIView heightForHeaderViewWithText:kHeaderString font:headFont];
+            return [UIView headerViewForText:kHeaderString font:headFont height:height];
         }
         else {
             return [UIView new];
@@ -130,10 +131,10 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (self.functions.count > 0) {
-        return [self heightForHeaderWithText:self.theaterName];
+        return [UIView heightForHeaderViewWithText:self.theaterName font:headFont];
     }
     else {
-        return [self heightForHeaderWithText:kHeaderString];
+        return [UIView heightForHeaderViewWithText:kHeaderString font:headFont];
     }
 }
 
@@ -149,24 +150,6 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 #pragma mark - FuncionesVC
 #pragma mark Row & Header Height Calculators
 
--(CGFloat) heightForHeaderWithText:(NSString *)text {
-    CGSize size = CGSizeMake(300.f, 1000.f);
-    
-    CGRect nameLabelRect = [text boundingRectWithSize: size
-                                                   options: NSStringDrawingUsesLineFragmentOrigin
-                                                attributes: [NSDictionary dictionaryWithObject:headFont
-                                                                                        forKey:NSFontAttributeName]
-                                                   context: nil];
-    
-    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 5.0f;
-    
-    if (totalHeight <= 25.f) {
-        totalHeight = 25.f;
-    }
-    
-    return totalHeight;
-}
-
 -(CGFloat) heightForRowWithText:(NSString *)text {
     CGSize size = CGSizeMake(270.f, 1000.f);
     
@@ -176,7 +159,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
                                                                                    forKey:NSFontAttributeName]
                                               context: nil];
     
-    CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
+    CGFloat totalHeight = nameLabelRect.size.height * 1.2;
     
     if (totalHeight <= 25.f) {
         totalHeight = 25.f;

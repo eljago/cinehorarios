@@ -27,6 +27,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "UIView+CH.h"
+#import "GlobalNavigationController.h"
 
 @interface MovieVC () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -115,10 +116,20 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 4) {
-        if ((indexPath.row == 0 && (!self.movie.urlRottenTomatoes || [self.movie.urlRottenTomatoes isEqualToString:@""])) ||
-            (indexPath.row == 1 && (!self.movie.urlImdb || [self.movie.urlImdb isEqualToString:@""])) ||
-            (indexPath.row == 2 && (!self.movie.urlMetacritic || [self.movie.urlMetacritic isEqualToString:@""]))) {
-            return 0.;
+        if (indexPath.row == 0){
+            if (!self.movie.urlMetacritic || [self.movie.urlMetacritic isEqualToString:@""]) {
+                return 0.;
+            }
+        }
+        else if(indexPath.row == 1){
+            if (!self.movie.urlImdb || [self.movie.urlImdb isEqualToString:@""]) {
+                return 0.;
+            }
+        }
+        else if (indexPath.row == 2){
+            if (!self.movie.urlRottenTomatoes || [self.movie.urlRottenTomatoes isEqualToString:@""]) {
+                return 0.;
+            }
         }
     }
     else if (indexPath.section == 3) {
@@ -221,7 +232,8 @@
             text = @"";
             break;
     }
-    return [UIView headerViewForText:text font:bigBoldFont height:[self heightForHeaderView]];
+    NSInteger height = [UIView heightForHeaderViewWithText:text font:normalFont];
+    return [UIView headerViewForText:text font:bigBoldFont height:height];
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if ((indexPath.section == 0 && indexPath.row == 2) || (indexPath.section == 4 && indexPath.row == 1)) {
@@ -251,25 +263,8 @@
         return 0.01f;
     }
     else {
-        return [self heightForHeaderView];
+        return [UIView heightForHeaderViewWithText:@"Javier" font:normalFont];
     }
-}
--(CGFloat) heightForHeaderView {
-    CGSize size = CGSizeMake(310.f, 1000.f);
-    
-    CGRect nameLabelRect = [@"Javier" boundingRectWithSize: size
-                                                   options: NSStringDrawingUsesLineFragmentOrigin
-                                                attributes: [NSDictionary dictionaryWithObject:normalFont
-                                                                                        forKey:NSFontAttributeName]
-                                                   context: nil];
-    
-    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 8.0f;
-    
-    if (totalHeight <= 25.f) {
-        totalHeight = 25.f;
-    }
-    
-    return totalHeight;
 }
 
 #pragma mark Fetch Data
@@ -556,6 +551,10 @@
     }
 }
 - (void) pushPhotoBrowserWithIntermediateViewController:(UIViewController *)viewController index:(NSUInteger)index{
+    
+    GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
+    nvc.transitionPanGesture.enabled = NO;
+    
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:(id<MWPhotoBrowserDelegate>)viewController];
     browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
     browser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)

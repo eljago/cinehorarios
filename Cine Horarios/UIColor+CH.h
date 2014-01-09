@@ -24,6 +24,9 @@
 + (UIColor *)tableViewColor;
 + (UIColor *)navUnselectedColor;
 + (UIColor *)randomColor;
++ (UIColor *)wisteria;
++ (UIColor *)asbestos;
++ (UIColor *)concrete;
 
 +(UIColor *)menuColorForRow:(NSIndexPath *)indexPath;
 @end

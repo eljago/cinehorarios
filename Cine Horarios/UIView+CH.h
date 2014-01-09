@@ -11,5 +11,5 @@
 @interface UIView (CH)
 
 + (UIView *) headerViewForText:(NSString *)text font:(UIFont *)font height:(CGFloat)height;
-
++(CGFloat) heightForHeaderViewWithText:(NSString *)text font:(UIFont *)font;
 @end
