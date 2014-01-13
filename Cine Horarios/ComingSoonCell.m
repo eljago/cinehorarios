@@ -40,7 +40,7 @@
         self.labelEstreno.text = @"";
         self.labelDebut.text = @"";
     }
-    [self.imageCover setImageWithStringURL:_basicMovie.imageUrl movieImageType:MovieImageTypeCover placeholderImage:nil];
+    [self.imageCover setImageWithStringURL:_basicMovie.imageUrl movieImageType:MovieImageTypeCover];
     
     [self setNeedsLayout];
 }

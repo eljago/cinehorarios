@@ -45,7 +45,7 @@
         self.labelGenres.text = @"";
     }
     
-    [_imageCover setImageWithStringURL:_basicMovie.imageUrl movieImageType:MovieImageTypeCover placeholderImage:nil];
+    [_imageCover setImageWithStringURL:_basicMovie.imageUrl movieImageType:MovieImageTypeCover];
     
     [self setNeedsLayout];
 }
