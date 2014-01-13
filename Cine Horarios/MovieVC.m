@@ -29,7 +29,7 @@
 #import "UIView+CH.h"
 #import "GlobalNavigationController.h"
 
-@interface MovieVC () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MovieVC () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) Movie *movie;
 
@@ -310,13 +310,14 @@
 }
 - (void) showAlert{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
-    [alertView show];
+    [alertView performSelectorOnMainThread:@selector(show) withObject:Nil waitUntilDone:YES];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
         [self getMovieForceRemote:YES];
     }
 }
+
 
 #pragma mark - Set TableView values
 
@@ -340,13 +341,11 @@
     if (self.movie.duration) {
         self.labelDurationGenres.text = self.movie.duration;
     }
+    if (self.movie.duration && self.movie.genres) {
+        self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingString:@" - "];
+    }
     if (self.movie.genres) {
-        if (self.movie.duration) {
-            self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingFormat:@" - %@",self.movie.genres];
-        }
-        else {
-            self.labelDurationGenres.text = self.movie.genres;
-        }
+        self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingFormat:@"%@",self.movie.genres];
     }
     
     if (self.movie.imageUrl) {

@@ -23,7 +23,7 @@ NSString *const RemoteComingSoonPath = @"/api/shows/comingsoon.json";
         return nil;
     }
     
-    if ([attributes valueForKeyPath:@"genres.name"]) {
+    if ([attributes valueForKeyPath:@"genres.name"] && [[attributes valueForKeyPath:@"genres.name"] count]) {
         _genres = [[attributes valueForKeyPath:@"genres.name"] componentsJoinedByString:@", "];
     }
     

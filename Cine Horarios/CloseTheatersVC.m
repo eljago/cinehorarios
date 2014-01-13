@@ -59,10 +59,13 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     UIBarButtonItem *buttonCenterUser = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"MapsCenterUser"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(centerUser:)];
     buttonCenterUser.enabled = NO;
     
-    UIBarButtonItem *buttonReload = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"MapsCloseTheaters"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRegion:)];
+    UIBarButtonItem *buttonWideView = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"MapsCloseTheaters"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRegion:)];
+    buttonWideView.enabled = NO;
+    
+    UIBarButtonItem *buttonReload = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"WebReload"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(reload)];
     buttonReload.enabled = NO;
     
-    self.navigationItem.rightBarButtonItems = @[buttonCenterUser, buttonReload];
+    self.navigationItem.rightBarButtonItems = @[buttonCenterUser, buttonWideView, buttonReload];
     
     [self getTheatersLocationsForceRemove:NO];
 }
@@ -137,7 +140,12 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 }
 - (void) showAlert{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
-    [alertView show];
+    [alertView performSelectorOnMainThread:@selector(show) withObject:Nil waitUntilDone:YES];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self getTheatersLocationsForceRemove:YES];
+    }
 }
 
 
@@ -369,6 +377,19 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
         [self.myMap setRegion:startRegion animated:YES];
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
+}
+-(void)reload{
+    for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems) {
+        buttonItem.enabled = YES;
+    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self setDistances];
+    [self calculateRegion];
+    [self reloadRegion:nil];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems) {
+        buttonItem.enabled = YES;
     }
 }
 

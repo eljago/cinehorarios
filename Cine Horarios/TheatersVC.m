@@ -144,7 +144,7 @@
 
 - (void) showAlert{
     self.alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
-    [self.alert show];
+    [self.alert performSelectorOnMainThread:@selector(show) withObject:Nil waitUntilDone:YES];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
