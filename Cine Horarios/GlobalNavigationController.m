@@ -36,7 +36,7 @@
     self.slidingViewController.delegate = self.transition;
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
     self.slidingViewController.customAnchoredGestures = @[self.transitionPanGesture];
-    [self.view addGestureRecognizer:self.transitionPanGesture];
+    [self.navigationBar addGestureRecognizer:self.transitionPanGesture];
 //    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
 //    self.slidingViewController.customAnchoredGestures = @[];
 //    [self.view addGestureRecognizer:self.slidingViewController.panGesture];

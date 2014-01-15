@@ -155,9 +155,6 @@
     UINavigationController *navigationController = (UINavigationController *)self.slidingViewController.topViewController;
     navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
     
-    navigationController.topViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:navigationController action:@selector(revealMenu:)];
-//    navigationController.topViewController.navigationItem.leftBarButtonItem.tintColor = [UIColor menuColorForRow:indexPath];
-    
     GlobalNavigationController *nvc = (GlobalNavigationController *)navigationController;
     nvc.transitionPanGesture.enabled = YES;
     nvc.navigationBar.barTintColor = [UIColor navColor];

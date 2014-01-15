@@ -233,7 +233,9 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     self.favoriteButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(setFavoriteTheater:)];
     self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
     
-    self.navigationItem.rightBarButtonItem = self.favoriteButtonItem;
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    
+    self.navigationItem.rightBarButtonItems = @[menuButtonItem, self.favoriteButtonItem];
 }
 - (void) setupFavorites{
     

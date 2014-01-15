@@ -76,6 +76,9 @@
     self.label.text = @"Active esta opción para que las imágenes en pantalla completa sean de alta resolución.";
     self.label.font = normalFont;
     self.labelTitle.font = titleFont;
+    
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.navigationItem.rightBarButtonItem = menuButtonItem;
 }
 
 - (void)didReceiveMemoryWarning

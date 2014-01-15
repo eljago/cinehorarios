@@ -29,7 +29,6 @@
     GlobalNavigationController *navigationController = (GlobalNavigationController *)self.topViewController;
     navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
     
-    navigationController.topViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:navigationController action:@selector(revealMenu:)];
     MenuVC *menuVC = (MenuVC *)self.underLeftViewController;
     menuVC.startingVCID = identifier;
     

@@ -19,7 +19,8 @@
     [super viewDidLoad];
     
     self.tableView.backgroundColor = [UIColor tableViewColor];
-
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.navigationItem.rightBarButtonItem = menuButtonItem;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,4 +65,5 @@
                     }];
     self.alert = nil;
 }
+
 @end

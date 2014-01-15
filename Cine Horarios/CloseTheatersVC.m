@@ -32,6 +32,9 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 @property (nonatomic, assign) MKCoordinateRegion region;
 
 @property (nonatomic, strong) DoAlertView *alert;
+
+@property (nonatomic, strong) UIBarButtonItem *buttonCenterUser;
+@property (nonatomic, strong) UIBarButtonItem *buttonReload;
 @end
 
 @implementation CloseTheatersVC
@@ -58,15 +61,18 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     
     self.tableView.backgroundColor = [UIColor tableViewColor];
     
-    UIBarButtonItem *buttonCenterUser = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"MapsCenterUser"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(centerUser:)];
-    buttonCenterUser.enabled = NO;
+    self.buttonCenterUser = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"MapsCenterUser"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(centerUser:)];
+    self.buttonCenterUser.enabled = NO;
     
-    UIBarButtonItem *buttonReload = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"WebReload"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(reload)];
-    buttonReload.enabled = NO;
+    self.buttonReload = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"WebReload"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(reload)];
+    self.buttonReload.enabled = NO;
     
     self.buttonToggleTable.enabled = NO;
     
-    self.navigationItem.rightBarButtonItems = @[buttonCenterUser, buttonReload];
+    self.navigationItem.leftBarButtonItems = @[self.buttonCenterUser, self.buttonReload];
+    
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.navigationItem.rightBarButtonItem = menuButtonItem;
     
     [self getTheatersLocationsForceRemote:NO];
 }
@@ -298,8 +304,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
             self.buttonToggleTable.enabled = YES;
         }
         else {
-            [self.navigationItem.rightBarButtonItems[1] setEnabled:YES];
-            [self.navigationItem.rightBarButtonItems[0] setEnabled:YES];
+            [self enableBarButtonItems];
             
             [self.alert doYesNo:@"¿Reintentar?"
                             yes:^(DoAlertView *alertView) {
@@ -398,12 +403,12 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     }
 }
 -(void) disableBarButtonItems {
-    [self.navigationItem.rightBarButtonItems[0] setEnabled:NO];
-    [self.navigationItem.rightBarButtonItems[1] setEnabled:NO];
+    [self.buttonCenterUser setEnabled:NO];
+    [self.buttonReload setEnabled:NO];
 }
 -(void) enableBarButtonItems {
-    [self.navigationItem.rightBarButtonItems[0] setEnabled:YES];
-    [self.navigationItem.rightBarButtonItems[1] setEnabled:YES];
+    [self.buttonCenterUser setEnabled:YES];
+    [self.buttonReload setEnabled:YES];
 }
 
 //#pragma mark Fetch Data

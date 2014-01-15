@@ -19,6 +19,7 @@
 
 @interface FavoritesVC ()
 @property (nonatomic, strong) UIFont *tableFont;
+@property (nonatomic, strong) UIBarButtonItem *buttonEdit;
 @end
 @implementation FavoritesVC
 
@@ -35,8 +36,8 @@
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
+    self.buttonEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
+    self.navigationItem.leftBarButtonItem = self.buttonEdit;
 }
 
 // Reload data after coming back from Theater view in case there was an edit
@@ -46,10 +47,10 @@
     [self loadFavorites];
     
     if ([self.favoriteTheaters count] == 0) {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.buttonEdit.enabled = NO;
     }
     else {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.buttonEdit.enabled = YES;
     }
     [self.tableView reloadData];
 }
@@ -91,10 +92,10 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         if ([self.favoriteTheaters count] == 0) {
             tableView.editing = NO;
-            self.navigationItem.rightBarButtonItem.enabled = NO;
+            self.buttonEdit.enabled = NO;
         }
         else {
-            self.navigationItem.rightBarButtonItem.enabled = YES;
+            self.buttonEdit.enabled = YES;
         }
     }
 }
@@ -144,11 +145,11 @@
 - (IBAction) enterEditingMode:(UIBarButtonItem *) sender{
     if (self.tableView.isEditing) {
         [self.tableView setEditing:NO animated:YES];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
+        self.buttonEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
     }
     else{
         [self.tableView setEditing:YES animated:YES];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(enterEditingMode:)];
+        self.buttonEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(enterEditingMode:)];
     }
 }
 
