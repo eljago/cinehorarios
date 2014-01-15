@@ -18,16 +18,17 @@
 
 @implementation DoAlertViewController
 
--(UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
 #pragma mark - View life cycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view = _alertView;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return [UIApplication sharedApplication].statusBarStyle;
 }
 
 @end
@@ -133,9 +134,6 @@
 
 - (void)hideAlert
 {
-    if (_doDone != nil)
-        _doDone(self);
-    
     _nTag = DO_YES_TAG;
     [self hideAnimation];
 }
@@ -200,7 +198,7 @@
     {
         UIButton *btNo = [UIButton buttonWithType:UIButtonTypeCustom];
         btNo.frame = CGRectMake(0, dHeight, _vAlert.frame.size.width / 2.0 - 1, 40);
-        btNo.backgroundColor = DO_BUTTON_BOX_NO;
+        btNo.backgroundColor = DO_BUTTON_BOX;
         btNo.tag = DO_NO_TAG;
         [btNo setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
         [btNo addTarget:self action:@selector(buttonTarget:) forControlEvents:UIControlEventTouchUpInside];
@@ -217,7 +215,7 @@
         else
             btYes.frame = CGRectMake(_vAlert.frame.size.width / 2.0 - 0.5, dHeight, _vAlert.frame.size.width / 2.0 + 0.5, 40);
 
-        btYes.backgroundColor = DO_BUTTON_BOX_YES;
+        btYes.backgroundColor = DO_BUTTON_BOX;
         btYes.tag = DO_YES_TAG;
         [btYes setImage:[UIImage imageNamed:@"check.png"] forState:UIControlStateNormal];
         [btYes addTarget:self action:@selector(buttonTarget:) forControlEvents:UIControlEventTouchUpInside];
@@ -259,16 +257,6 @@
 - (void)buttonTarget:(id)sender
 {
     _nTag = (int)[sender tag];
-    
-    if (_nTag == DO_YES_TAG)
-    {
-        _doYes(self);
-        [self hideAnimation];
-
-        return;
-    }
-    
-    _doNo(self);
     [self hideAnimation];
 }
 
@@ -358,6 +346,16 @@
 
 - (void)hideAlertView
 {
+    if (_doDone != nil)
+        _doDone(self);
+    else
+    {
+        if (_nTag == DO_YES_TAG)
+            _doYes(self);
+        else
+            _doNo(self);
+    }
+    
     [self removeFromSuperview];
     [_alertWindow removeFromSuperview];
     _alertWindow = nil;

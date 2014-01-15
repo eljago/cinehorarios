@@ -24,8 +24,6 @@
 #define DO_TITLE_BOX                DO_RGB(218, 247, 244)
 #define DO_NORMAL_BOX               DO_RGB(255, 255, 255)
 #define DO_BUTTON_BOX               DO_RGB(13, 52, 85)
-#define DO_BUTTON_BOX_NO            DO_RGB(192, 57, 43)
-#define DO_BUTTON_BOX_YES           DO_RGB(39, 174, 96)
 #define DO_DESTRUCTIVE_BOX          DO_RGB(236, 90, 73)
 #define DO_TEXT_COLOR               DO_RGB(13, 52, 85)
 #define DO_DESTRUCTIVE_TEXT_COLOR   DO_RGB(255, 255, 255)

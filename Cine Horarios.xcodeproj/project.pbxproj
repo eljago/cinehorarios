@@ -62,7 +62,6 @@
 		3DDD5AEB18020ACC00720ABD /* MovieCinemasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C7EB56173E0EFF001CF782 /* MovieCinemasVC.m */; };
 		3DDD5AEF18020C8700720ABD /* Cinemas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DDD5AEE18020C8700720ABD /* Cinemas.plist */; };
 		3DFA54CC170B3512003E2208 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB7110170A516B00EC3E51 /* main.m */; };
-		6E4BAA711884977A00E37DAF /* DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4BAA701884977A00E37DAF /* DoAlertView.m */; };
 		6E4BAA7418849D6A00E37DAF /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4BAA7318849D6A00E37DAF /* UIImage+ResizeMagick.m */; };
 		6E4BAA7D1884A49700E37DAF /* check_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA751884A49600E37DAF /* check_black@2x.png */; };
 		6E4BAA7E1884A49700E37DAF /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA761884A49600E37DAF /* check@2x.png */; };
@@ -76,6 +75,7 @@
 		6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57396718273D3400ADB8D9 /* CloseTheatersVC.m */; };
 		6E57396B18273E5F00ADB8D9 /* AnnotationTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57396A18273E5F00ADB8D9 /* AnnotationTheater.m */; };
 		6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396C182755A300ADB8D9 /* CoreLocation.framework */; };
+		6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8686F7188703E4003A91B0 /* DoAlertView.m */; };
 		6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */; };
 /* End PBXBuildFile section */
 
@@ -185,8 +185,6 @@
 		3DDB7113170A516B00EC3E51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DDB7114170A516B00EC3E51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3DDD5AEE18020C8700720ABD /* Cinemas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cinemas.plist; sourceTree = "<group>"; };
-		6E4BAA6F1884977A00E37DAF /* DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoAlertView.h; sourceTree = "<group>"; };
-		6E4BAA701884977A00E37DAF /* DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoAlertView.m; sourceTree = "<group>"; };
 		6E4BAA7218849D6A00E37DAF /* UIImage+ResizeMagick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeMagick.h"; sourceTree = "<group>"; };
 		6E4BAA7318849D6A00E37DAF /* UIImage+ResizeMagick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeMagick.m"; sourceTree = "<group>"; };
 		6E4BAA751884A49600E37DAF /* check_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_black@2x.png"; sourceTree = "<group>"; };
@@ -203,6 +201,8 @@
 		6E57396918273E5F00ADB8D9 /* AnnotationTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationTheater.h; sourceTree = "<group>"; };
 		6E57396A18273E5F00ADB8D9 /* AnnotationTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationTheater.m; sourceTree = "<group>"; };
 		6E57396C182755A300ADB8D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6E8686F6188703E4003A91B0 /* DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoAlertView.h; sourceTree = "<group>"; };
+		6E8686F7188703E4003A91B0 /* DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoAlertView.m; sourceTree = "<group>"; };
 		6E9A47AF1860F351004BDE46 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
 		6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDynamicTransition.m; sourceTree = "<group>"; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -449,8 +449,8 @@
 		6E4BAA851884A4A400E37DAF /* DoAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				6E4BAA6F1884977A00E37DAF /* DoAlertView.h */,
-				6E4BAA701884977A00E37DAF /* DoAlertView.m */,
+				6E8686F6188703E4003A91B0 /* DoAlertView.h */,
+				6E8686F7188703E4003A91B0 /* DoAlertView.m */,
 				6E4BAA751884A49600E37DAF /* check_black@2x.png */,
 				6E4BAA761884A49600E37DAF /* check@2x.png */,
 				6E4BAA771884A49600E37DAF /* close_black@2x.png */,
@@ -585,6 +585,7 @@
 				3D12FF8218110E0300BDA8FB /* UIImageView+CH.m in Sources */,
 				3DDD5AEB18020ACC00720ABD /* MovieCinemasVC.m in Sources */,
 				3DFA54CC170B3512003E2208 /* main.m in Sources */,
+				6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */,
 				3D309A2C17A8674000BB5D13 /* UIImage+CH.m in Sources */,
 				3DDB7115170A516B00EC3E51 /* AppDelegate.m in Sources */,
 				3D00E5C0170DDB2400C7DAAE /* TheatersVC.m in Sources */,
@@ -628,7 +629,6 @@
 				16692A32180C7D8A00166885 /* InitialVC.m in Sources */,
 				165F904B1780326300641600 /* FunctionCell.m in Sources */,
 				16FED04E1780B5F900318D92 /* ComingSoonCell.m in Sources */,
-				6E4BAA711884977A00E37DAF /* DoAlertView.m in Sources */,
 				1639492C17F9BBDB00AB7DE7 /* DirectorCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
