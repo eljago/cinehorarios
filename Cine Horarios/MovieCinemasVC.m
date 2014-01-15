@@ -87,7 +87,9 @@
             [self.tableView reloadData];
         }
         else {
-            [self showAlert];
+            [self alertRetryWithCompleteBlock:^{
+                [self getMovieTheatersForceRemote:YES];
+            }];
         }
         self.tableView.scrollEnabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -130,15 +132,6 @@
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
     [self getMovieTheatersForceRemote:YES];
-}
-- (void) showAlert{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
-    [alertView performSelectorOnMainThread:@selector(show) withObject:Nil waitUntilDone:YES];
-}
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        [self getMovieTheatersForceRemote:YES];
-    }
 }
 
 - (void) loadFavorites {

@@ -65,7 +65,9 @@
             self.tableView.scrollEnabled = YES;
         }
         else {
-            [self showAlert];
+            [self alertRetryWithCompleteBlock:^{
+                [self downloadMovieFunctions];
+            }];
         }
         
         UIView *frontView = [self.view viewWithTag:999];
@@ -79,15 +81,6 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
     } movieID:self.movieID theaters:self.theaters];
-}
-- (void) showAlert{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
-    [alertView performSelectorOnMainThread:@selector(show) withObject:Nil waitUntilDone:YES];
-}
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        [self downloadMovieFunctions];
-    }
 }
 
 #pragma mark - Content Size Changed

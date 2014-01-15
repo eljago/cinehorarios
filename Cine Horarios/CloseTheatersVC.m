@@ -30,6 +30,8 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 @property BOOL userLocationUpdated;
 @property (nonatomic, strong) NSMutableArray *annotations;
 @property (nonatomic, assign) MKCoordinateRegion region;
+
+@property (nonatomic, strong) DoAlertView *alert;
 @end
 
 @implementation CloseTheatersVC
@@ -59,23 +61,14 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     UIBarButtonItem *buttonCenterUser = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"MapsCenterUser"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(centerUser:)];
     buttonCenterUser.enabled = NO;
     
-    UIBarButtonItem *buttonWideView = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"MapsCloseTheaters"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRegion:)];
-    buttonWideView.enabled = NO;
-    
     UIBarButtonItem *buttonReload = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"WebReload"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(reload)];
     buttonReload.enabled = NO;
     
-    self.navigationItem.rightBarButtonItems = @[buttonCenterUser, buttonWideView, buttonReload];
+    self.buttonToggleTable.enabled = NO;
     
-    [self getTheatersLocationsForceRemove:NO];
-}
-
-- (void) setDistances {
-    for (AnnotationTheater *annotation in self.annotations) {
-        CLLocation *location = [[CLLocation alloc] initWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
-        double distance = [location distanceFromLocation:self.myMap.userLocation.location];
-        annotation.distance = distance;
-    }
+    self.navigationItem.rightBarButtonItems = @[buttonCenterUser, buttonReload];
+    
+    [self getTheatersLocationsForceRemote:NO];
 }
 
 #pragma mark - MKMapViewDelegate
@@ -90,64 +83,10 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
         MKCoordinateRegion startRegion = MKCoordinateRegionMakeWithDistance(self.myMap.userLocation.location.coordinate, regionWidth, regionHeight);
         [self.myMap setRegion:startRegion animated:NO];
     }
-}
-
-- (void) getTheatersLocationsForceRemove:(BOOL) forceRemote {
     
-    if (forceRemote) {
-        [self downloadTheatersLocations];
-    }
-    else {
-        self.annotations = [AnnotationTheater getLocalAnnotations];
-        if (self.annotations.count) {
-            [self.tableView reloadData];
-            for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems) {
-                buttonItem.enabled = YES;
-            }
-        }
-        else {
-            [self downloadTheatersLocations];
-        }
-    }
+    [self setDistances];
+    [self.tableView reloadData];
 }
-- (void) downloadTheatersLocations {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [AnnotationTheater getAnnotationsWithBlock:^(NSMutableArray *annotations, NSError *error) {
-        
-        if (!error) {
-            self.annotations = annotations;
-            
-            [self setDistances];
-            [self.annotations sortUsingSelector:@selector(compareAnnotationsDistance:)];
-            [self.myMap addAnnotations: self.annotations];
-            
-            [self calculateRegion];
-            [self.myMap setRegion:self.region animated:YES];
-            [self.tableView reloadData];
-            
-            for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems) {
-                buttonItem.enabled = YES;
-            }
-        }
-        else {
-            [self showAlert];
-        }
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    }];
-}
--(void)refreshData {
-    [self getTheatersLocationsForceRemove:YES];
-}
-- (void) showAlert{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
-    [alertView performSelectorOnMainThread:@selector(show) withObject:Nil waitUntilDone:YES];
-}
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        [self getTheatersLocationsForceRemove:YES];
-    }
-}
-
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -307,6 +246,74 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 }
 
 #pragma mark - CloseTheatersVC
+#pragma mark Alert
+
+- (DoAlertView *) alert {
+    if(_alert) return _alert;
+    
+    _alert = [[DoAlertView alloc] init];
+    _alert.nAnimationType = DoTransitionStylePop;
+    _alert.dRound = 2.0;
+    _alert.bDestructive = NO;
+    
+    return _alert;
+}
+
+#pragma mark Fetch Data
+- (void) getTheatersLocationsForceRemote:(BOOL) forceRemote {
+    
+    if (forceRemote) {
+        [self downloadTheatersLocations];
+    }
+    else {
+        [self disableBarButtonItems];
+        self.annotations = [AnnotationTheater getLocalAnnotations];
+        if (self.annotations.count) {
+            [self.tableView reloadData];
+            [self enableBarButtonItems];
+            self.buttonToggleTable.enabled = YES;
+        }
+        else {
+            [self downloadTheatersLocations];
+        }
+    }
+}
+- (void) downloadTheatersLocations {
+    [self disableBarButtonItems];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [AnnotationTheater getAnnotationsWithBlock:^(NSMutableArray *annotations, NSError *error) {
+        
+        if (!error) {
+            self.annotations = annotations;
+            
+            [self setDistances];
+            [self.annotations sortUsingSelector:@selector(compareAnnotationsDistance:)];
+            [self.myMap addAnnotations: self.annotations];
+            
+            [self calculateRegion];
+            [self.myMap setRegion:self.region animated:YES];
+            [self.tableView reloadData];
+            
+            [self enableBarButtonItems];
+            self.buttonToggleTable.enabled = YES;
+        }
+        else {
+            [self.navigationItem.rightBarButtonItems[1] setEnabled:YES];
+            [self.navigationItem.rightBarButtonItems[0] setEnabled:YES];
+            
+            [self.alert doYesNo:@"¿Reintentar?"
+                            yes:^(DoAlertView *alertView) {
+                                [self getTheatersLocationsForceRemote:YES];
+                            } no:^(DoAlertView *alertView) {
+                                
+                            }];
+            self.alert = nil;
+        }
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    }];
+}
+
+#pragma mark Other Shit
 
 -(void)zoomMapAtCoordinate:(CLLocationCoordinate2D)coordinate {
     CLLocationDistance regionWidth = kRegionZoomedSize;
@@ -370,27 +377,33 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     }
 }
 - (IBAction)centerUser:(id)sender {
+    CLLocationDistance regionWidth = kRegionZoomedSize;
+    CLLocationDistance regionHeight = kRegionZoomedSize;
+    MKCoordinateRegion startRegion = MKCoordinateRegionMakeWithDistance(self.myMap.userLocation.location.coordinate, regionWidth, regionHeight);
+    [self.myMap setRegion:startRegion animated:YES];
     if (self.annotations.count) {
-        CLLocationDistance regionWidth = kRegionZoomedSize;
-        CLLocationDistance regionHeight = kRegionZoomedSize;
-        MKCoordinateRegion startRegion = MKCoordinateRegionMakeWithDistance(self.myMap.userLocation.location.coordinate, regionWidth, regionHeight);
-        [self.myMap setRegion:startRegion animated:YES];
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
 -(void)reload{
-    for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems) {
-        buttonItem.enabled = YES;
+    [self getTheatersLocationsForceRemote:NO];
+
+}
+- (void) setDistances {
+    for (AnnotationTheater *annotation in self.annotations) {
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
+        double distance = [location distanceFromLocation:self.myMap.userLocation.location];
+        annotation.distance = distance;
     }
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self setDistances];
-    [self calculateRegion];
-    [self reloadRegion:nil];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems) {
-        buttonItem.enabled = YES;
-    }
+}
+-(void) disableBarButtonItems {
+    [self.navigationItem.rightBarButtonItems[0] setEnabled:NO];
+    [self.navigationItem.rightBarButtonItems[1] setEnabled:NO];
+}
+-(void) enableBarButtonItems {
+    [self.navigationItem.rightBarButtonItems[0] setEnabled:YES];
+    [self.navigationItem.rightBarButtonItems[1] setEnabled:YES];
 }
 
 //#pragma mark Fetch Data

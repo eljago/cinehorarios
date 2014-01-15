@@ -19,10 +19,10 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "DoAlertView.h"
 
 @interface TheatersVC ()
 @property (nonatomic, strong) NSArray *theaters;
-@property (nonatomic, strong) UIAlertView *alert;
 @property (nonatomic, strong) UIFont *tableFont;
 @end
 
@@ -53,10 +53,6 @@
     self.refreshControl = refreshControl;
     
     [self getTheatersForceRemote:NO];
-}
--(void)dealloc {
-    self.alert.delegate = nil;
-    self.alert = nil;
 }
 
 #pragma mark - UITableViewController
@@ -123,7 +119,9 @@
             [self.tableView reloadData];
         }
         else {
-            [self showAlert];
+            [self alertRetryWithCompleteBlock:^{
+                [self getTheatersForceRemote:YES];
+            }];
         }
         self.tableView.scrollEnabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -138,18 +136,6 @@
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
     [self getTheatersForceRemote:YES];
-}
-
-#pragma mark AlertView
-
-- (void) showAlert{
-    self.alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Problema en la Descarga" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Reintentar", nil];
-    [self.alert performSelectorOnMainThread:@selector(show) withObject:Nil waitUntilDone:YES];
-}
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        [self getTheatersForceRemote:YES];
-    }
 }
 
 #pragma mark - Content Size Changed

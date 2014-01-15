@@ -8,70 +8,73 @@
 
 #import "UIColor+CH.h"
 
+#define DO_RGB(r, g, b)     [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define DO_RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
 @implementation UIColor (CH)
 
 + (UIColor *)navColor{
-    return [UIColor colorWithRed:168./255. green:56./255. blue:48./255. alpha:1.f];
+    return DO_RGB(168, 56, 48);
 }
 + (UIColor *)alizarin{
-    return [UIColor colorWithRed:231./255. green:76./255. blue:60./255. alpha:1.f];
+    return DO_RGB(231, 76, 60);
 }
 + (UIColor *)pomegranate{
-    return [UIColor colorWithRed:192./255. green:57./255. blue:43./255. alpha:1.f];
+    return DO_RGB(192, 57, 43);
 }
 + (UIColor *)lighterGrayColor{
     return [UIColor colorWithWhite:0.960 alpha:1.000];
 }
 + (UIColor *)belizeHole{
-    return [UIColor colorWithRed:41./225. green:128./225. blue:185./225. alpha:1.];
+    return DO_RGB(41, 128, 185);
 }
 + (UIColor *)orange{
-    return [UIColor colorWithRed:243./225. green:156./225. blue:18./225. alpha:1.];
+    return DO_RGB(243, 156, 18);
 }
 + (UIColor *)orange2{
-    return [UIColor colorWithRed:231./255. green:146./225. blue:27./255. alpha:1.];
+    return DO_RGB(231, 146, 27);
 }
 + (UIColor *)carrot{
-    return [UIColor colorWithRed:230./225. green:126./225. blue:34./225. alpha:1.];
+    return DO_RGB(230, 126, 34);
 }
 + (UIColor *)pumpkin{
-    return [UIColor colorWithRed:211./225. green:84./225. blue:0. alpha:1.];
+    return DO_RGB(211, 84, 0);
 }
 + (UIColor *)greenSea{
-    return [UIColor colorWithRed:22./225. green:160./225. blue:133./225. alpha:1.];
+    return DO_RGB(22, 160, 133);
 }
 + (UIColor *)darkerMidnightBlue {
-    return [UIColor colorWithRed:32.f/255.f green:45.f/255.f blue:58.f/255.f alpha:1.f];
+    return DO_RGB(32, 45, 58);
 }
 + (UIColor *)midnightBlue {
-    return [UIColor colorWithRed:44.f/255.f green:62.f/255.f blue:80.f/255.f alpha:1.f];
+    return DO_RGB(44, 62, 80);
 }
 + (UIColor *)wetAsphalt {
-    return [UIColor colorWithRed:52.f/255.f green:73.f/255.f blue:94.f/255.f alpha:1.f];
+    return DO_RGB(52, 73, 94);
 }
 + (UIColor *)wisteria {
-    return [UIColor colorWithRed:142.f/255.f green:68.f/255.f blue:173.f/255.f alpha:1.f];
+    return DO_RGB(142, 68, 173);
 }
 + (UIColor *)asbestos {
-    return [UIColor colorWithRed:127.f/255.f green:140.f/255.f blue:141.f/255.f alpha:1.f];
+    return DO_RGB(127, 140, 141);
 }
 + (UIColor *)concrete {
-    return [UIColor colorWithRed:149.f/255.f green:165.f/255.f blue:166.f/255.f alpha:1.f];
+    return DO_RGB(149, 165, 166);
 }
 + (UIColor *)tableViewColor {
-    return [UIColor colorWithRed:241.f/255.f green:234.f/255.f blue:227.f/255.f alpha:1.f];
+    return DO_RGB(241, 234, 227);
 }
 + (UIColor *)darkerNavColor {
-    return [UIColor colorWithRed:115.f/225.f green:19.f/225.f blue:16.f/225.f alpha:1.f];
+    return DO_RGB(115, 19, 16);
 }
 +(UIColor *)navUnselectedColor {
     return [UIColor colorWithWhite:0.667 alpha:0.4];
 }
 +(UIColor *)orchidBouquet {
-    return [UIColor colorWithRed:229./255. green:155./255. blue:215./255. alpha:1.];
+    return DO_RGB(229, 155, 215);
 }
 +(UIColor *)hydrangea {
-    return [UIColor colorWithRed:125./255. green:97./255. blue:186./255. alpha:1.];
+    return DO_RGB(125, 94, 186);
 }
 
 +(UIColor *)menuColorForRow:(NSIndexPath *)indexPath {

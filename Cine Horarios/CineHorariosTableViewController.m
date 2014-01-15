@@ -40,4 +40,28 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
+#pragma mark - CineHorariosTableViewController
+#pragma mark Properties
+
+- (DoAlertView *) alert {
+    if(_alert) return _alert;
+    
+    _alert = [[DoAlertView alloc] init];
+    _alert.nAnimationType = DoTransitionStylePop;
+    _alert.dRound = 2.0;
+    _alert.bDestructive = NO;
+    
+    return _alert;
+}
+
+#pragma mark Alerts
+-(void) alertRetryWithCompleteBlock:(void (^)())completeBlock {
+    [self.alert doYesNo:@"¿Reintentar?"
+                    yes:^(DoAlertView *alertView) {
+                        completeBlock();
+                    } no:^(DoAlertView *alertView) {
+                        
+                    }];
+    self.alert = nil;
+}
 @end
