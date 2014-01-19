@@ -71,6 +71,11 @@
 		6E4BAA821884A49700E37DAF /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA7A1884A49700E37DAF /* check.png */; };
 		6E4BAA831884A49700E37DAF /* close_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA7B1884A49700E37DAF /* close_black.png */; };
 		6E4BAA841884A49700E37DAF /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA7C1884A49700E37DAF /* close.png */; };
+		6E56CC05188BA56C000AB809 /* Theater2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC04188BA56C000AB809 /* Theater2.m */; };
+		6E56CC08188BAD56000AB809 /* NSArray+FKBMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC07188BAD56000AB809 /* NSArray+FKBMap.m */; };
+		6E56CC0B188BBC0E000AB809 /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC0A188BBC0E000AB809 /* ArrayDataSource.m */; };
+		6E56CC11188BBE7D000AB809 /* BasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC10188BBE7D000AB809 /* BasicCell.m */; };
+		6E56CC15188BC735000AB809 /* BasicCell+Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC14188BC735000AB809 /* BasicCell+Theater.m */; };
 		6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396418273C9900ADB8D9 /* MapKit.framework */; };
 		6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57396718273D3400ADB8D9 /* CloseTheatersVC.m */; };
 		6E57396B18273E5F00ADB8D9 /* AnnotationTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57396A18273E5F00ADB8D9 /* AnnotationTheater.m */; };
@@ -195,6 +200,16 @@
 		6E4BAA7A1884A49700E37DAF /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		6E4BAA7B1884A49700E37DAF /* close_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_black.png; sourceTree = "<group>"; };
 		6E4BAA7C1884A49700E37DAF /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		6E56CC03188BA56C000AB809 /* Theater2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater2.h; sourceTree = "<group>"; };
+		6E56CC04188BA56C000AB809 /* Theater2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater2.m; sourceTree = "<group>"; };
+		6E56CC06188BAD56000AB809 /* NSArray+FKBMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FKBMap.h"; sourceTree = "<group>"; };
+		6E56CC07188BAD56000AB809 /* NSArray+FKBMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FKBMap.m"; sourceTree = "<group>"; };
+		6E56CC09188BBC0E000AB809 /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
+		6E56CC0A188BBC0E000AB809 /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
+		6E56CC0F188BBE7D000AB809 /* BasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicCell.h; sourceTree = "<group>"; };
+		6E56CC10188BBE7D000AB809 /* BasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicCell.m; sourceTree = "<group>"; };
+		6E56CC13188BC735000AB809 /* BasicCell+Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BasicCell+Theater.h"; sourceTree = "<group>"; };
+		6E56CC14188BC735000AB809 /* BasicCell+Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BasicCell+Theater.m"; sourceTree = "<group>"; };
 		6E57396418273C9900ADB8D9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6E57396618273D3400ADB8D9 /* CloseTheatersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloseTheatersVC.h; sourceTree = "<group>"; };
 		6E57396718273D3400ADB8D9 /* CloseTheatersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseTheatersVC.m; sourceTree = "<group>"; };
@@ -259,6 +274,8 @@
 				16C8BC6917D4F4EC00EF7390 /* FileHandler.h */,
 				16C8BC6A17D4F4EC00EF7390 /* FileHandler.m */,
 				3DC9A748170CCA69008B9FF9 /* Views */,
+				6E56CC09188BBC0E000AB809 /* ArrayDataSource.h */,
+				6E56CC0A188BBC0E000AB809 /* ArrayDataSource.m */,
 				3DC9A744170CC432008B9FF9 /* Models */,
 				16158EE717805E57002B6F73 /* Storyboard.storyboard */,
 				3D111A52170C977C0043D2D2 /* Controllers */,
@@ -333,6 +350,8 @@
 				3D12FF8118110E0300BDA8FB /* UIImageView+CH.m */,
 				1628571D185F607E00DBD491 /* UIView+CH.h */,
 				1628571E185F607E00DBD491 /* UIView+CH.m */,
+				6E56CC06188BAD56000AB809 /* NSArray+FKBMap.h */,
+				6E56CC07188BAD56000AB809 /* NSArray+FKBMap.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -360,6 +379,8 @@
 				16900CC61740F16100399AF5 /* Movie.m */,
 				162FD5661741862200616105 /* Actor.h */,
 				162FD5671741862300616105 /* Actor.m */,
+				6E56CC03188BA56C000AB809 /* Theater2.h */,
+				6E56CC04188BA56C000AB809 /* Theater2.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -367,22 +388,9 @@
 		3DC9A748170CCA69008B9FF9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				166595FB177D4A2B00DFB590 /* FunctionCell.h */,
-				166595FC177D4A2D00DFB590 /* FunctionCell.m */,
-				3D81339C177E3F6D006A017C /* CarteleraCell.h */,
-				3D81339D177E3F6D006A017C /* CarteleraCell.m */,
-				16FED04C1780B5F900318D92 /* ComingSoonCell.h */,
-				16FED04D1780B5F900318D92 /* ComingSoonCell.m */,
-				1630E1AD17D9183800C9D977 /* CHCell.h */,
-				1630E1AE17D9183800C9D977 /* CHCell.m */,
 				3D6F663817E54A7600BEE481 /* MyMultilineLabel.h */,
 				3D6F663917E54A7600BEE481 /* MyMultilineLabel.m */,
-				1639492717F9BB7F00AB7DE7 /* ActorCell.h */,
-				1639492817F9BB7F00AB7DE7 /* ActorCell.m */,
-				1639492A17F9BBDB00AB7DE7 /* DirectorCell.h */,
-				1639492B17F9BBDB00AB7DE7 /* DirectorCell.m */,
-				16692A3B180CAA9600166885 /* MenuCell.h */,
-				16692A3C180CAA9600166885 /* MenuCell.m */,
+				6E56CC12188BC6DB000AB809 /* Cells */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -461,6 +469,31 @@
 				6E4BAA7C1884A49700E37DAF /* close.png */,
 			);
 			name = DoAlertView;
+			sourceTree = "<group>";
+		};
+		6E56CC12188BC6DB000AB809 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				166595FB177D4A2B00DFB590 /* FunctionCell.h */,
+				166595FC177D4A2D00DFB590 /* FunctionCell.m */,
+				3D81339C177E3F6D006A017C /* CarteleraCell.h */,
+				3D81339D177E3F6D006A017C /* CarteleraCell.m */,
+				16FED04C1780B5F900318D92 /* ComingSoonCell.h */,
+				16FED04D1780B5F900318D92 /* ComingSoonCell.m */,
+				1630E1AD17D9183800C9D977 /* CHCell.h */,
+				1630E1AE17D9183800C9D977 /* CHCell.m */,
+				1639492717F9BB7F00AB7DE7 /* ActorCell.h */,
+				1639492817F9BB7F00AB7DE7 /* ActorCell.m */,
+				1639492A17F9BBDB00AB7DE7 /* DirectorCell.h */,
+				1639492B17F9BBDB00AB7DE7 /* DirectorCell.m */,
+				16692A3B180CAA9600166885 /* MenuCell.h */,
+				16692A3C180CAA9600166885 /* MenuCell.m */,
+				6E56CC0F188BBE7D000AB809 /* BasicCell.h */,
+				6E56CC10188BBE7D000AB809 /* BasicCell.m */,
+				6E56CC13188BC735000AB809 /* BasicCell+Theater.h */,
+				6E56CC14188BC735000AB809 /* BasicCell+Theater.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -585,6 +618,7 @@
 				3D12FF8218110E0300BDA8FB /* UIImageView+CH.m in Sources */,
 				3DDD5AEB18020ACC00720ABD /* MovieCinemasVC.m in Sources */,
 				3DFA54CC170B3512003E2208 /* main.m in Sources */,
+				6E56CC15188BC735000AB809 /* BasicCell+Theater.m in Sources */,
 				6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */,
 				3D309A2C17A8674000BB5D13 /* UIImage+CH.m in Sources */,
 				3DDB7115170A516B00EC3E51 /* AppDelegate.m in Sources */,
@@ -601,15 +635,18 @@
 				16C7EB63173E3A06001CF782 /* Theater.m in Sources */,
 				16C7EB66173E3B7F001CF782 /* Function.m in Sources */,
 				16692A35180C7DFF00166885 /* MenuVC.m in Sources */,
+				6E56CC11188BBE7D000AB809 /* BasicCell.m in Sources */,
 				1629F85417FF4EFA001428C1 /* SettingsVC.m in Sources */,
 				16900CC71740F16100399AF5 /* Movie.m in Sources */,
 				16900CD01740F1C600399AF5 /* BasicMovie.m in Sources */,
 				6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */,
 				16692A3D180CAA9600166885 /* MenuCell.m in Sources */,
 				3D309A2917A85DBC00BB5D13 /* UIColor+CH.m in Sources */,
+				6E56CC08188BAD56000AB809 /* NSArray+FKBMap.m in Sources */,
 				3D3C3D741741345C004D1E56 /* VideoItem.m in Sources */,
 				162FD5681741862300616105 /* Actor.m in Sources */,
 				6E57396B18273E5F00ADB8D9 /* AnnotationTheater.m in Sources */,
+				6E56CC0B188BBC0E000AB809 /* ArrayDataSource.m in Sources */,
 				3D26BDD11743EE3A00A2FCC5 /* CarteleraVC.m in Sources */,
 				1639492917F9BB7F00AB7DE7 /* ActorCell.m in Sources */,
 				3D6F663A17E54A7600BEE481 /* MyMultilineLabel.m in Sources */,
@@ -619,6 +656,7 @@
 				3D29986A17E5E29C001A371D /* MovieImagesVC.m in Sources */,
 				3D3FA6ED174D91CC0067AE57 /* VideoVC.m in Sources */,
 				163BAB211763C34500A81BF7 /* WebVC.m in Sources */,
+				6E56CC05188BA56C000AB809 /* Theater2.m in Sources */,
 				1628571F185F607E00DBD491 /* UIView+CH.m in Sources */,
 				1639492617F9BA1700AB7DE7 /* CastVC.m in Sources */,
 				16547FDA18108D2300B6F24C /* TheaterFunctions.m in Sources */,

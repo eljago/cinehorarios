@@ -7,23 +7,23 @@
 //
 
 #import "TheatersVC.h"
-#import "Theater.h"
+#import "Theater2.h"
 #import "FuncionesVC.h"
-#import "UIColor+CH.h"
-#import "FileHandler.h"
 #import "UIFont+CH.h"
-#import "CHCell.h"
-#import "UIColor+CH.h"
+#import "BasicCell.h"
+//#import "UIColor+CH.h"
 #import "MBProgressHUD.h"
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-#import "DoAlertView.h"
+#import "ArrayDataSource.h"
+#import "BasicCell+Theater.h"
 
 @interface TheatersVC ()
 @property (nonatomic, strong) NSArray *theaters;
 @property (nonatomic, strong) UIFont *tableFont;
+@property (nonatomic, strong) ArrayDataSource *dataSource;
 @end
 
 @implementation TheatersVC
@@ -33,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupDataSource];
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"COMPLEJOS" forKey:kGAIScreenName] build]];
@@ -55,30 +57,32 @@
     [self getTheatersForceRemote:NO];
 }
 
-#pragma mark - UITableViewController
-#pragma mark Data Source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.theaters count];
+-(void) setupDataSource {
+    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.theaters cellIdentifier:@"Cell" configureCellBlock:^(BasicCell *cell, Theater2 *theater) {
+        [cell configureForTheater:theater];
+    }];
+    self.tableView.dataSource = self.dataSource;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    CHCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    Theater *theater = self.theaters[indexPath.row];
-    cell.basicItem = theater;
-    [cell setFont:self.tableFont];
-    
-    return cell;
-}
+#pragma mark - UITableViewDelegate
 
-#pragma mark Delegate
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    BasicCell *basicCell = (BasicCell *)cell;
+    basicCell.mainLabel.font = self.tableFont;
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [CHCell heightForCellWithBasicItem:self.theaters[indexPath.row] withFont:self.tableFont];
+    Theater2 *theater = self.theaters[indexPath.row];
+    CGSize size = CGSizeMake(270.0, 1000.0);
+    
+    CGRect nameLabelRect = [theater.name boundingRectWithSize: size
+                                                      options: NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes: [NSDictionary dictionaryWithObject:self.tableFont forKey:NSFontAttributeName]
+                                                      context: nil];
+    
+    CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
+    
+    return totalHeight;
 }
 
 #pragma mark - TheatersVC
@@ -100,7 +104,7 @@
         [self downloadTheaters];
     }
     else {
-        self.theaters = [Theater getLocalTheatersWithCinemaID:self.cinemaID];
+//        self.theaters = [Theater getLocalTheatersWithCinemaID:self.cinemaID];
         if (self.theaters.count) {
             [self.tableView reloadData];
         }
@@ -113,9 +117,10 @@
 -(void) downloadTheaters {
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Theater getTheatersWithBlock:^(NSArray *theaters, NSError *error) {
+    [Theater2 getTheatersWithBlock:^(NSArray *theaters, NSError *error) {
         if (!error) {
             self.theaters = theaters;
+            self.dataSource.items = theaters;
             [self.tableView reloadData];
         }
         else {
@@ -151,10 +156,11 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     FuncionesVC *functionesVC = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    Theater *theater = self.theaters[indexPath.row];
+    Theater2 *theater = self.theaters[indexPath.row];
     functionesVC.theaterName = theater.name;
-    functionesVC.theaterID = theater.itemId;
+    functionesVC.theaterID = theater.theaterID;
 }
+
 
 
 @end
