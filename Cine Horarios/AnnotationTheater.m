@@ -63,7 +63,7 @@ NSString *const kLocalCoordinatesURL = @"/jsons/theaters";
 #pragma mark - Close Theaters
 
 + (NSMutableArray *) getLocalAnnotations {
-    NSString *localJsonPath = [FileHandler getFullLocalPathForPath:kLocalCoordinatesURL fileName:@"annotations.json"];
+    NSString *localJsonPath = [FileHandler getFullLocalPathForPath:kLocalCoordinatesURL fileName:@"theater_annotations.json"];
     NSFileManager *filemgr = [NSFileManager defaultManager];
     
     if ([filemgr fileExistsAtPath:localJsonPath]) {

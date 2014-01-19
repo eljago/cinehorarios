@@ -707,7 +707,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "681F75F2-80F0-40B4-8BCF-B3786A6D1A89";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -721,15 +721,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cine Horarios/Cine Horarios-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Cine Horarios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "681F75F2-80F0-40B4-8BCF-B3786A6D1A89";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

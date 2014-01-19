@@ -62,19 +62,21 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     self.tableView.backgroundColor = [UIColor tableViewColor];
     
     self.buttonCenterUser = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"MapsCenterUser"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(centerUser:)];
-    self.buttonCenterUser.enabled = NO;
     
     self.buttonReload = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"WebReload"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(reload)];
-    self.buttonReload.enabled = NO;
     
-    self.buttonToggleTable.enabled = NO;
     
     self.navigationItem.leftBarButtonItems = @[self.buttonCenterUser, self.buttonReload];
     
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;
     
-    [self getTheatersLocationsForceRemote:NO];
+//    [self getTheatersLocationsForceRemote:NO];
+    
+    if (!self.annotations.count) {
+        [self disableBarButtonItems];
+        self.buttonToggleTable.enabled = NO;
+    }
 }
 
 #pragma mark - MKMapViewDelegate
@@ -88,6 +90,8 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
         CLLocationDistance regionHeight = kRegionSize;
         MKCoordinateRegion startRegion = MKCoordinateRegionMakeWithDistance(self.myMap.userLocation.location.coordinate, regionWidth, regionHeight);
         [self.myMap setRegion:startRegion animated:NO];
+        
+        [self getTheatersLocationsForceRemote:NO];
     }
     
     [self setDistances];
@@ -273,9 +277,20 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     }
     else {
         [self disableBarButtonItems];
-        self.annotations = [AnnotationTheater getLocalAnnotations];
+        if (!self.annotations.count)
+            self.annotations = [AnnotationTheater getLocalAnnotations];
+        
         if (self.annotations.count) {
+            [self setDistances];
+            [self.annotations sortUsingSelector:@selector(compareAnnotationsDistance:)];
+            [self.myMap addAnnotations:self.annotations];
+            
+            NSLog(@"%d",self.myMap.annotations.count);
+            
+            [self calculateRegion];
+            [self.myMap setRegion:self.region animated:YES];
             [self.tableView reloadData];
+            
             [self enableBarButtonItems];
             self.buttonToggleTable.enabled = YES;
         }
