@@ -7,37 +7,42 @@
 //
 
 #import "CarteleraVC.h"
-#import "BasicMovie.h"
-#import "CarteleraCell.h"
-#import "UIColor+CH.h"
-#import "FileHandler.h"
+#import "BasicMovie2.h"
+#import "Billboard.h"
+#import "BillboardCell.h"
+#import "BillboardCell+BasicMovie.h"
+#import "Genre.h"
+#import "NSArray+FKBMap.h"
 #import "UIFont+CH.h"
-#import "Movie.h"
 #import "MovieVC.h"
 #import "MBProgressHUD.h"
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "ArrayDataSource.h"
 
 @interface CarteleraVC ()
-@property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) Billboard *billboard;
+@property (nonatomic, strong) ArrayDataSource *dataSource;
+
+@property (nonatomic, strong) UIFont *headFont;
+@property (nonatomic, strong) UIFont *bodyFont;
 @end
 
-@implementation CarteleraVC {
-    UIFont *headFont;
-    UIFont *bodyFont;
-}
+@implementation CarteleraVC
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    [self setupDataSource];
+    
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"CARTELERA" forKey:kGAIScreenName] build]];
     
-    headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
@@ -48,44 +53,37 @@
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
         
-    [self getCarteleraForceRemote:NO];
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (void) getCarteleraForceRemote:(BOOL) forceRemote {
-    
-    if (forceRemote) {
-        [self downloadCartelera];
-    }
-    else {
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            self.movies = [BasicMovie getLocalCartelera];
-            dispatch_async(dispatch_get_main_queue(), ^ {
-                if (self.movies.count) {
-                    [self.tableView reloadData];
-                }
-                else {
-                    [self downloadCartelera];
-                }
-            });
-        });
-    }
+    [self getBillboard];
 }
 
-- (void) downloadCartelera {
+-(void) setupDataSource {
+    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.billboard.movies cellIdentifier:@"Cell" configureCellBlock:^(BillboardCell *cell, BasicMovie2 *basicMovie) {
+        [cell configureForBasicMovie:basicMovie];
+    }];
+    self.tableView.dataSource = self.dataSource;
+}
+- (void) getBillboard {
+    self.billboard = [Billboard loadBillboard];
+    if (self.billboard) {
+        self.dataSource.items = self.billboard.movies;
+        [self.tableView reloadData];
+    }
+    else {
+        [self downloadBillboard];
+    }
+}
+-(void) downloadBillboard {
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [BasicMovie getCarteleraWithBlock:^(NSArray *movies, NSError *error) {
+    [Billboard getBillboardWithBlock:^(Billboard *billboard, NSError *error) {
         if (!error) {
-            self.movies = movies;
+            self.billboard = billboard;
+            self.dataSource.items = self.billboard.movies;
             [self.tableView reloadData];
         }
         else {
             [self alertRetryWithCompleteBlock:^{
-                [self getCarteleraForceRemote:YES];
+                [self getBillboard];
             }];
         }
         self.tableView.scrollEnabled = YES;
@@ -96,41 +94,56 @@
     }];
 }
 
+#pragma mark Refresh
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
-    [self getCarteleraForceRemote:YES];
+    [self getBillboard];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDelegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.movies count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    CarteleraCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    BasicMovie *basicMovie = self.movies[indexPath.row];
-    cell.basicMovie = basicMovie;
-    [cell setBodyFont:bodyFont headFont:headFont];
-    
-    return cell;
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    BillboardCell *billboardCell = (BillboardCell *)cell;
+    billboardCell.mainLabel.font = self.headFont;
+    billboardCell.genresLabel.font = self.bodyFont;
+    billboardCell.durationLabel.font = self.bodyFont;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [CarteleraCell heightForCellWithBasicItem:self.movies[indexPath.row] withBodyFont:bodyFont headFont:headFont];
+    
+    BasicMovie2 *basicMovie = self.billboard.movies[indexPath.row];
+    NSArray *genresNames = [basicMovie.genres fkbMap:^NSString *(Genre *genre) {
+        return genre.name;
+    }];
+    NSString *genres = [genresNames componentsJoinedByString:@", "];
+    NSString *duration = [NSString stringWithFormat:@"%d", basicMovie.duration];
+    
+    CGSize size = CGSizeMake(187.f, 1000.f);
+    
+    CGRect nameLabelRect = [basicMovie.name boundingRectWithSize: size
+                                                         options: NSStringDrawingUsesLineFragmentOrigin
+                                                      attributes: [NSDictionary dictionaryWithObject:self.headFont forKey:NSFontAttributeName]
+                                                         context: nil];
+    CGRect typesLabelRect = [genres boundingRectWithSize: size
+                                                            options: NSStringDrawingUsesLineFragmentOrigin
+                                                         attributes: [NSDictionary dictionaryWithObject:self.bodyFont forKey:NSFontAttributeName]
+                                                            context: nil];
+    CGRect showtimesLabelRect = [duration boundingRectWithSize: size
+                                                                  options: NSStringDrawingUsesLineFragmentOrigin
+                                                               attributes: [NSDictionary dictionaryWithObject:self.bodyFont forKey:NSFontAttributeName]
+                                                                  context: nil];
+    
+    CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 15.0f + typesLabelRect.size.height + 5.0f + showtimesLabelRect.size.height + 10.0f;
+    
+    if (totalHeight <= 140.f) {
+        totalHeight = 140.f;
+    }
+    
+    return totalHeight;
 }
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     [self.tableView reloadData];
 }
 
@@ -139,9 +152,10 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     MovieVC *movieVC = segue.destinationViewController;
     NSInteger row = [self.tableView indexPathForSelectedRow].row;
-    BasicMovie *movie = self.movies[row];
-    movieVC.movieID = movie.itemId;
+    BasicMovie2 *movie = self.billboard.movies[row];
+    movieVC.movieID = movie.movieID;
     movieVC.movieName = movie.name;
     movieVC.portraitImageURL = movie.portraitImageURL;
 }
+
 @end

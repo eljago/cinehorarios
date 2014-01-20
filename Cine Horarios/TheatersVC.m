@@ -102,9 +102,8 @@
 #pragma mark Fetch Data
 
 - (void) getTheaters {
-    self.cinema = [Cinema loadTheaterWithCinemaID:self.cinemaID];
+    self.cinema = [Cinema loadCinemaWithCinemaID:self.cinemaID];
     if (self.cinema) {
-        [self.tableView reloadData];
         self.dataSource.items = self.cinema.theaters;
         [self.tableView reloadData];
     }

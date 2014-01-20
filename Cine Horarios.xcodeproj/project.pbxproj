@@ -84,6 +84,12 @@
 		6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */; };
 		6EA663A6188C8C2200B0FCBE /* Cinema.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663A5188C8C2200B0FCBE /* Cinema.m */; };
 		6EA663A9188CE89E00B0FCBE /* NSFileManager+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663A8188CE89E00B0FCBE /* NSFileManager+CH.m */; };
+		6EA663AC188D012200B0FCBE /* BasicMovie2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663AB188D012200B0FCBE /* BasicMovie2.m */; };
+		6EA663AF188D129B00B0FCBE /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663AE188D129B00B0FCBE /* Genre.m */; };
+		6EA663B2188D19B400B0FCBE /* Billboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663B1188D19B400B0FCBE /* Billboard.m */; };
+		6EA663B5188D20B700B0FCBE /* MTLModelPersistable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663B4188D20B700B0FCBE /* MTLModelPersistable.m */; };
+		6EA663B8188D28A600B0FCBE /* BillboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663B7188D28A600B0FCBE /* BillboardCell.m */; };
+		6EA663BE188D297400B0FCBE /* BillboardCell+BasicMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663BD188D297400B0FCBE /* BillboardCell+BasicMovie.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -226,6 +232,18 @@
 		6EA663A5188C8C2200B0FCBE /* Cinema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cinema.m; sourceTree = "<group>"; };
 		6EA663A7188CE89E00B0FCBE /* NSFileManager+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CH.h"; sourceTree = "<group>"; };
 		6EA663A8188CE89E00B0FCBE /* NSFileManager+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CH.m"; sourceTree = "<group>"; };
+		6EA663AA188D012200B0FCBE /* BasicMovie2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMovie2.h; sourceTree = "<group>"; };
+		6EA663AB188D012200B0FCBE /* BasicMovie2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicMovie2.m; sourceTree = "<group>"; };
+		6EA663AD188D129B00B0FCBE /* Genre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genre.h; sourceTree = "<group>"; };
+		6EA663AE188D129B00B0FCBE /* Genre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Genre.m; sourceTree = "<group>"; };
+		6EA663B0188D19B400B0FCBE /* Billboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Billboard.h; sourceTree = "<group>"; };
+		6EA663B1188D19B400B0FCBE /* Billboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Billboard.m; sourceTree = "<group>"; };
+		6EA663B3188D20B700B0FCBE /* MTLModelPersistable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLModelPersistable.h; sourceTree = "<group>"; };
+		6EA663B4188D20B700B0FCBE /* MTLModelPersistable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLModelPersistable.m; sourceTree = "<group>"; };
+		6EA663B6188D28A600B0FCBE /* BillboardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillboardCell.h; sourceTree = "<group>"; };
+		6EA663B7188D28A600B0FCBE /* BillboardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillboardCell.m; sourceTree = "<group>"; };
+		6EA663BC188D297400B0FCBE /* BillboardCell+BasicMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BillboardCell+BasicMovie.h"; sourceTree = "<group>"; };
+		6EA663BD188D297400B0FCBE /* BillboardCell+BasicMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BillboardCell+BasicMovie.m"; sourceTree = "<group>"; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -391,6 +409,14 @@
 				6E56CC04188BA56C000AB809 /* Theater2.m */,
 				6EA663A4188C8C2200B0FCBE /* Cinema.h */,
 				6EA663A5188C8C2200B0FCBE /* Cinema.m */,
+				6EA663AA188D012200B0FCBE /* BasicMovie2.h */,
+				6EA663AB188D012200B0FCBE /* BasicMovie2.m */,
+				6EA663AD188D129B00B0FCBE /* Genre.h */,
+				6EA663AE188D129B00B0FCBE /* Genre.m */,
+				6EA663B0188D19B400B0FCBE /* Billboard.h */,
+				6EA663B1188D19B400B0FCBE /* Billboard.m */,
+				6EA663B3188D20B700B0FCBE /* MTLModelPersistable.h */,
+				6EA663B4188D20B700B0FCBE /* MTLModelPersistable.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -502,6 +528,10 @@
 				6E56CC10188BBE7D000AB809 /* BasicCell.m */,
 				6E56CC13188BC735000AB809 /* BasicCell+Theater.h */,
 				6E56CC14188BC735000AB809 /* BasicCell+Theater.m */,
+				6EA663B6188D28A600B0FCBE /* BillboardCell.h */,
+				6EA663B7188D28A600B0FCBE /* BillboardCell.m */,
+				6EA663BC188D297400B0FCBE /* BillboardCell+BasicMovie.h */,
+				6EA663BD188D297400B0FCBE /* BillboardCell+BasicMovie.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -629,10 +659,12 @@
 				3DDD5AEB18020ACC00720ABD /* MovieCinemasVC.m in Sources */,
 				3DFA54CC170B3512003E2208 /* main.m in Sources */,
 				6E56CC15188BC735000AB809 /* BasicCell+Theater.m in Sources */,
+				6EA663BE188D297400B0FCBE /* BillboardCell+BasicMovie.m in Sources */,
 				6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */,
 				3D309A2C17A8674000BB5D13 /* UIImage+CH.m in Sources */,
 				3DDB7115170A516B00EC3E51 /* AppDelegate.m in Sources */,
 				3D00E5C0170DDB2400C7DAAE /* TheatersVC.m in Sources */,
+				6EA663AF188D129B00B0FCBE /* Genre.m in Sources */,
 				6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */,
 				3D39B91517208DC70011DF39 /* ComingSoonVC.m in Sources */,
 				16956FCF17D7E84100355AA7 /* UIFont+CH.m in Sources */,
@@ -641,6 +673,7 @@
 				16F86ED817DE8F6D00F2722C /* MovieVC.m in Sources */,
 				16C7EB5D173E3447001CF782 /* BasicItem.m in Sources */,
 				167B9A401804909D00862289 /* MovieFunctionsVC.m in Sources */,
+				6EA663B2188D19B400B0FCBE /* Billboard.m in Sources */,
 				16C7EB60173E3582001CF782 /* BasicImageItem.m in Sources */,
 				16C7EB63173E3A06001CF782 /* Theater.m in Sources */,
 				16C7EB66173E3B7F001CF782 /* Function.m in Sources */,
@@ -656,11 +689,14 @@
 				6E56CC08188BAD56000AB809 /* NSArray+FKBMap.m in Sources */,
 				3D3C3D741741345C004D1E56 /* VideoItem.m in Sources */,
 				162FD5681741862300616105 /* Actor.m in Sources */,
+				6EA663B8188D28A600B0FCBE /* BillboardCell.m in Sources */,
+				6EA663AC188D012200B0FCBE /* BasicMovie2.m in Sources */,
 				6E57396B18273E5F00ADB8D9 /* AnnotationTheater.m in Sources */,
 				6E56CC0B188BBC0E000AB809 /* ArrayDataSource.m in Sources */,
 				3D26BDD11743EE3A00A2FCC5 /* CarteleraVC.m in Sources */,
 				1639492917F9BB7F00AB7DE7 /* ActorCell.m in Sources */,
 				3D6F663A17E54A7600BEE481 /* MyMultilineLabel.m in Sources */,
+				6EA663B5188D20B700B0FCBE /* MTLModelPersistable.m in Sources */,
 				3D521E1A17443FE1009ED580 /* CinesVC.m in Sources */,
 				3D521E1F17445DD5009ED580 /* FuncionesVC.m in Sources */,
 				6E4BAA7418849D6A00E37DAF /* UIImage+ResizeMagick.m in Sources */,

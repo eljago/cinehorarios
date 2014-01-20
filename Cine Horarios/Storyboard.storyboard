@@ -16,7 +16,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="140" id="2Dz-KS-Iyo" customClass="CarteleraCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="140" id="2Dz-KS-Iyo" customClass="BillboardCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Dz-KS-Iyo" id="eaT-qK-JhK">
@@ -76,16 +76,15 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="durationLabel" destination="7RW-wz-YtP" id="Atq-Kj-gdG"/>
+                                    <outlet property="genresLabel" destination="kf1-44-kMu" id="njt-Cs-Odm"/>
                                     <outlet property="imageCover" destination="eBC-WR-O7c" id="3ox-IV-cYp"/>
-                                    <outlet property="labelDuration" destination="7RW-wz-YtP" id="LbB-nV-XOQ"/>
-                                    <outlet property="labelGenres" destination="kf1-44-kMu" id="ZIT-lG-Llu"/>
-                                    <outlet property="labelName" destination="KJC-fn-pSa" id="yip-4S-vMc"/>
+                                    <outlet property="mainLabel" destination="KJC-fn-pSa" id="GOh-wQ-eke"/>
                                     <segue destination="rNi-KW-Ki3" kind="push" identifier="MovieVC" id="z63-K4-9gr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="yfH-g3-9Bz" id="F8C-bS-0yO"/>
                             <outlet property="delegate" destination="yfH-g3-9Bz" id="d9m-xA-ZI0"/>
                         </connections>
                     </tableView>
@@ -1615,8 +1614,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="NT1-KO-izX"/>
         <segue reference="yw0-JB-wjW"/>
+        <segue reference="z63-K4-9gr"/>
         <segue reference="ZrW-Ss-4wn"/>
     </inferredMetricsTieBreakers>
 </document>

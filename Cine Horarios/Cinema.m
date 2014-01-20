@@ -10,7 +10,6 @@
 #import "Theater2.h"
 #import "CineHorariosApiClient.h"
 #import "NSValueTransformer+MTLPredefinedTransformerAdditions.h"
-#import "MTLModel+NSCoding.h"
 #import "NSFileManager+CH.h"
 
 NSString *const kCinemaPath = @"/api/cinemas/%d.json";
@@ -34,8 +33,8 @@ NSString *const kCinemaArchivePath = @"/data/cinemas/";
     [[CineHorariosApiClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         
         NSError *theError = nil;
-        Cinema *cinema = [MTLJSONAdapter modelOfClass:Cinema.class fromJSONDictionary:JSON error:&theError];
-        [cinema persist];
+        Cinema *cinema = [MTLJSONAdapter modelOfClass:self.class fromJSONDictionary:JSON error:&theError];
+        [cinema persistToFile:[[self class] storagePathForCinemaID:cinemaID]];
         
         if (block) {
             block(cinema, nil);
@@ -47,27 +46,9 @@ NSString *const kCinemaArchivePath = @"/data/cinemas/";
     }];
 }
 
-- (void)persist
++ (id)loadCinemaWithCinemaID:(NSUInteger)cinemaID
 {
-    NSMutableData *data = [NSMutableData data];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [self encodeWithCoder:archiver];
-    [archiver finishEncoding];
-    [data writeToFile:[[self class] storagePathForCinemaID:self.cinemaID] atomically:YES];
-}
-
-+ (id)loadTheaterWithCinemaID:(NSUInteger)cinemaID
-{
-    id item = nil;
-    NSString *path = [self storagePathForCinemaID:cinemaID];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path] && ![NSFileManager isFileOldWithPath:path]) {
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        item = [[[self class] alloc] initWithCoder:unarchiver];
-        [unarchiver finishDecoding];
-    }
-    return item;
+    return [self loadFromPath:[self storagePathForCinemaID:cinemaID]];
 }
 
 + (NSString *)storagePathForCinemaID:(NSUInteger)cinemaID

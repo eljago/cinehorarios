@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import "MTLModelPersistable.h"
 #import "MTLJSONAdapter.h"
 
-@interface Cinema : MTLModel <MTLJSONSerializing>
+@interface Cinema : MTLModelPersistable <MTLJSONSerializing>
 
 @property (nonatomic, assign, readonly) NSUInteger cinemaID;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSArray *theaters;
 
 + (void)getCinemaWithBlock:(void (^)(Cinema *cinema, NSError *error))block cinemaID:(NSUInteger )cinemaID;
-+ (id)loadTheaterWithCinemaID:(NSUInteger)cinemaID;
++ (id)loadCinemaWithCinemaID:(NSUInteger)cinemaID;
 
 @end
