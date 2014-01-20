@@ -13,8 +13,5 @@
 
 @property (nonatomic, assign, readonly) NSUInteger theaterID;
 @property (nonatomic, strong, readonly) NSString *name;
-@property (nonatomic, assign, readonly) NSUInteger cinemaID;
-
-+ (void)getTheatersWithBlock:(void (^)(NSArray *theaters, NSError *error))block cinemaID:(NSUInteger )cinemaID;
 
 @end

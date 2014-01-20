@@ -82,6 +82,8 @@
 		6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396C182755A300ADB8D9 /* CoreLocation.framework */; };
 		6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8686F7188703E4003A91B0 /* DoAlertView.m */; };
 		6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */; };
+		6EA663A6188C8C2200B0FCBE /* Cinema.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663A5188C8C2200B0FCBE /* Cinema.m */; };
+		6EA663A9188CE89E00B0FCBE /* NSFileManager+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663A8188CE89E00B0FCBE /* NSFileManager+CH.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +222,10 @@
 		6E8686F7188703E4003A91B0 /* DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoAlertView.m; sourceTree = "<group>"; };
 		6E9A47AF1860F351004BDE46 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
 		6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDynamicTransition.m; sourceTree = "<group>"; };
+		6EA663A4188C8C2200B0FCBE /* Cinema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cinema.h; sourceTree = "<group>"; };
+		6EA663A5188C8C2200B0FCBE /* Cinema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cinema.m; sourceTree = "<group>"; };
+		6EA663A7188CE89E00B0FCBE /* NSFileManager+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CH.h"; sourceTree = "<group>"; };
+		6EA663A8188CE89E00B0FCBE /* NSFileManager+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CH.m"; sourceTree = "<group>"; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -352,6 +358,8 @@
 				1628571E185F607E00DBD491 /* UIView+CH.m */,
 				6E56CC06188BAD56000AB809 /* NSArray+FKBMap.h */,
 				6E56CC07188BAD56000AB809 /* NSArray+FKBMap.m */,
+				6EA663A7188CE89E00B0FCBE /* NSFileManager+CH.h */,
+				6EA663A8188CE89E00B0FCBE /* NSFileManager+CH.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -381,6 +389,8 @@
 				162FD5671741862300616105 /* Actor.m */,
 				6E56CC03188BA56C000AB809 /* Theater2.h */,
 				6E56CC04188BA56C000AB809 /* Theater2.m */,
+				6EA663A4188C8C2200B0FCBE /* Cinema.h */,
+				6EA663A5188C8C2200B0FCBE /* Cinema.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -637,6 +647,7 @@
 				16692A35180C7DFF00166885 /* MenuVC.m in Sources */,
 				6E56CC11188BBE7D000AB809 /* BasicCell.m in Sources */,
 				1629F85417FF4EFA001428C1 /* SettingsVC.m in Sources */,
+				6EA663A9188CE89E00B0FCBE /* NSFileManager+CH.m in Sources */,
 				16900CC71740F16100399AF5 /* Movie.m in Sources */,
 				16900CD01740F1C600399AF5 /* BasicMovie.m in Sources */,
 				6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */,
@@ -660,6 +671,7 @@
 				1628571F185F607E00DBD491 /* UIView+CH.m in Sources */,
 				1639492617F9BA1700AB7DE7 /* CastVC.m in Sources */,
 				16547FDA18108D2300B6F24C /* TheaterFunctions.m in Sources */,
+				6EA663A6188C8C2200B0FCBE /* Cinema.m in Sources */,
 				3D81339B177E3D95006A017C /* CineHorariosTableViewController.m in Sources */,
 				3D4A191917EFA4A200893A65 /* GlobalNavigationController.m in Sources */,
 				3D81339E177E3F6E006A017C /* CarteleraCell.m in Sources */,

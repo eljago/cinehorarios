@@ -11,7 +11,6 @@
 #import "FuncionesVC.h"
 #import "UIFont+CH.h"
 #import "BasicCell.h"
-//#import "UIColor+CH.h"
 #import "MBProgressHUD.h"
 #import "GAI.h"
 #import "GAITracker.h"
@@ -20,10 +19,14 @@
 #import "ArrayDataSource.h"
 #import "BasicCell+Theater.h"
 
+#import "Cinema.h"
+
 @interface TheatersVC ()
 @property (nonatomic, strong) NSArray *theaters;
 @property (nonatomic, strong) UIFont *tableFont;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
+
+@property (nonatomic, strong) Cinema *cinema;
 @end
 
 @implementation TheatersVC
@@ -54,11 +57,11 @@
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    [self getTheatersForceRemote:NO];
+    [self getTheaters];
 }
 
 -(void) setupDataSource {
-    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.theaters cellIdentifier:@"Cell" configureCellBlock:^(BasicCell *cell, Theater2 *theater) {
+    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.cinema.theaters cellIdentifier:@"Cell" configureCellBlock:^(BasicCell *cell, Theater2 *theater) {
         [cell configureForTheater:theater];
     }];
     self.tableView.dataSource = self.dataSource;
@@ -72,7 +75,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    Theater2 *theater = self.theaters[indexPath.row];
+    Theater2 *theater = self.cinema.theaters[indexPath.row];
     CGSize size = CGSizeMake(270.0, 1000.0);
     
     CGRect nameLabelRect = [theater.name boundingRectWithSize: size
@@ -98,34 +101,30 @@
 
 #pragma mark Fetch Data
 
-- (void) getTheatersForceRemote:(BOOL) forceRemote {
-    
-    if (forceRemote) {
-        [self downloadTheaters];
+- (void) getTheaters {
+    self.cinema = [Cinema loadTheaterWithCinemaID:self.cinemaID];
+    if (self.cinema) {
+        [self.tableView reloadData];
+        self.dataSource.items = self.cinema.theaters;
+        [self.tableView reloadData];
     }
     else {
-//        self.theaters = [Theater getLocalTheatersWithCinemaID:self.cinemaID];
-        if (self.theaters.count) {
-            [self.tableView reloadData];
-        }
-        else {
-            [self downloadTheaters];
-        }
+        [self downloadCinema];
     }
 }
 
--(void) downloadTheaters {
+-(void) downloadCinema {
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Theater2 getTheatersWithBlock:^(NSArray *theaters, NSError *error) {
+    [Cinema getCinemaWithBlock:^(Cinema *cinema, NSError *error) {
         if (!error) {
-            self.theaters = theaters;
-            self.dataSource.items = theaters;
+            self.cinema = cinema;
+            self.dataSource.items = cinema.theaters;
             [self.tableView reloadData];
         }
         else {
             [self alertRetryWithCompleteBlock:^{
-                [self getTheatersForceRemote:YES];
+                [self getTheaters];
             }];
         }
         self.tableView.scrollEnabled = YES;
@@ -133,14 +132,14 @@
         if (self.refreshControl.refreshing) {
             [self.refreshControl endRefreshing];
         }
-    } cinemaID: self.cinemaID];
+    } cinemaID:self.cinemaID];
 }
 
 #pragma mark Refresh
 
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
-    [self getTheatersForceRemote:YES];
+    [self getTheaters];
 }
 
 #pragma mark - Content Size Changed
@@ -156,7 +155,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     FuncionesVC *functionesVC = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    Theater2 *theater = self.theaters[indexPath.row];
+    Theater2 *theater = self.cinema.theaters[indexPath.row];
     functionesVC.theaterName = theater.name;
     functionesVC.theaterID = theater.theaterID;
 }
