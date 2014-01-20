@@ -16,7 +16,7 @@
 @property (nonatomic, strong, readonly) NSString *imageURL;
 @property (nonatomic, assign, readonly) NSUInteger duration;
 @property (nonatomic, strong, readonly) NSString *portraitImageURL;
-@property (nonatomic, strong, readonly) NSDate *debut;
+@property (nonatomic, strong, readonly) NSString *debut;
 @property (nonatomic, strong, readonly) NSArray *genres;
 
 @end
