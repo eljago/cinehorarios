@@ -43,10 +43,8 @@
 + (NSValueTransformer *)debutJSONTransformer {
     
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *debut) {
-        NSLog(@"%@",[[BasicMovie2 dateFormatter1] stringFromDate:[[BasicMovie2 dateFormatter2] dateFromString:debut]]);
         return [[BasicMovie2 dateFormatter1] stringFromDate:[[BasicMovie2 dateFormatter2] dateFromString:debut]];
     } reverseBlock:^(NSString *debut) {
-        NSLog(@"%@",[[BasicMovie2 dateFormatter2] stringFromDate:[[BasicMovie2 dateFormatter1] dateFromString:debut]]);
         return [[BasicMovie2 dateFormatter2] stringFromDate:[[BasicMovie2 dateFormatter1] dateFromString:debut]];
     }];
 }

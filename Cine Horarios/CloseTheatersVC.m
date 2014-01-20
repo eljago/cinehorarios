@@ -285,8 +285,6 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
             [self.annotations sortUsingSelector:@selector(compareAnnotationsDistance:)];
             [self.myMap addAnnotations:self.annotations];
             
-            NSLog(@"%d",self.myMap.annotations.count);
-            
             [self calculateRegion];
             [self.myMap setRegion:self.region animated:YES];
             [self.tableView reloadData];
