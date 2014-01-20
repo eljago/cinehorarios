@@ -53,7 +53,7 @@
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
         
-    [self getBillboard];
+    [self getBillboardForceDownload:NO];
 }
 
 -(void) setupDataSource {
@@ -62,14 +62,19 @@
     }];
     self.tableView.dataSource = self.dataSource;
 }
-- (void) getBillboard {
-    self.billboard = [Billboard loadBillboard];
-    if (self.billboard) {
-        self.dataSource.items = self.billboard.movies;
-        [self.tableView reloadData];
+- (void) getBillboardForceDownload:(BOOL)forceDownload {
+    if (forceDownload) {
+        [self downloadBillboard];
     }
     else {
-        [self downloadBillboard];
+        self.billboard = [Billboard loadBillboard];
+        if (self.billboard) {
+            self.dataSource.items = self.billboard.movies;
+            [self.tableView reloadData];
+        }
+        else {
+            [self downloadBillboard];
+        }
     }
 }
 -(void) downloadBillboard {
@@ -83,7 +88,7 @@
         }
         else {
             [self alertRetryWithCompleteBlock:^{
-                [self getBillboard];
+                [self getBillboardForceDownload:YES];
             }];
         }
         self.tableView.scrollEnabled = YES;
@@ -97,7 +102,7 @@
 #pragma mark Refresh
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
-    [self getBillboard];
+    [self getBillboardForceDownload:YES];
 }
 
 #pragma mark - UITableViewDelegate
@@ -109,36 +114,8 @@
     billboardCell.durationLabel.font = self.bodyFont;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     BasicMovie2 *basicMovie = self.billboard.movies[indexPath.row];
-    NSArray *genresNames = [basicMovie.genres fkbMap:^NSString *(Genre *genre) {
-        return genre.name;
-    }];
-    NSString *genres = [genresNames componentsJoinedByString:@", "];
-    NSString *duration = [NSString stringWithFormat:@"%d", basicMovie.duration];
-    
-    CGSize size = CGSizeMake(187.f, 1000.f);
-    
-    CGRect nameLabelRect = [basicMovie.name boundingRectWithSize: size
-                                                         options: NSStringDrawingUsesLineFragmentOrigin
-                                                      attributes: [NSDictionary dictionaryWithObject:self.headFont forKey:NSFontAttributeName]
-                                                         context: nil];
-    CGRect typesLabelRect = [genres boundingRectWithSize: size
-                                                            options: NSStringDrawingUsesLineFragmentOrigin
-                                                         attributes: [NSDictionary dictionaryWithObject:self.bodyFont forKey:NSFontAttributeName]
-                                                            context: nil];
-    CGRect showtimesLabelRect = [duration boundingRectWithSize: size
-                                                                  options: NSStringDrawingUsesLineFragmentOrigin
-                                                               attributes: [NSDictionary dictionaryWithObject:self.bodyFont forKey:NSFontAttributeName]
-                                                                  context: nil];
-    
-    CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 15.0f + typesLabelRect.size.height + 5.0f + showtimesLabelRect.size.height + 10.0f;
-    
-    if (totalHeight <= 140.f) {
-        totalHeight = 140.f;
-    }
-    
-    return totalHeight;
+    return [BillboardCell heightForRowWithBasicMovie:basicMovie headFont:self.headFont bodyFont:self.bodyFont];
 }
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {

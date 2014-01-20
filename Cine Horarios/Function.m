@@ -39,7 +39,7 @@ NSString *const RemoteMovieFunctionsPath = @"api/shows/%d/show_functions.json?th
     [hourStringFromDate setLocale:esCL];
     
 //    NSArray *timesArray = [attributes valueForKeyPath:@"showtimes"];
-    NSArray *timesArray = [attributes valueForKeyPath:@"showtimes.time"];
+    NSArray *timesArray = [attributes valueForKeyPath:@"showtimes"];
     NSMutableArray *mutaArray = [[NSMutableArray alloc] init];
     NSMutableArray *pastMidnightTimes = [[NSMutableArray alloc] init];
     for (NSString *time in timesArray) {

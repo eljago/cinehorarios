@@ -57,7 +57,7 @@
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    [self getTheaters];
+    [self getTheatersForceDownload:NO];
 }
 
 -(void) setupDataSource {
@@ -76,16 +76,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     Theater2 *theater = self.cinema.theaters[indexPath.row];
-    CGSize size = CGSizeMake(270.0, 1000.0);
-    
-    CGRect nameLabelRect = [theater.name boundingRectWithSize: size
-                                                      options: NSStringDrawingUsesLineFragmentOrigin
-                                                   attributes: [NSDictionary dictionaryWithObject:self.tableFont forKey:NSFontAttributeName]
-                                                      context: nil];
-    
-    CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
-    
-    return totalHeight;
+    return [BasicCell heightForRowWithTheater:theater tableFont:self.tableFont];
 }
 
 #pragma mark - TheatersVC
@@ -101,14 +92,22 @@
 
 #pragma mark Fetch Data
 
-- (void) getTheaters {
-    self.cinema = [Cinema loadCinemaWithCinemaID:self.cinemaID];
-    if (self.cinema) {
-        self.dataSource.items = self.cinema.theaters;
-        [self.tableView reloadData];
+- (void) getTheatersForceDownload:(BOOL)forceDownload {
+    if (forceDownload) {
+        [self downloadCinema];
     }
     else {
-        [self downloadCinema];
+        self.cinema = [Cinema loadCinemaWithCinemaID:self.cinemaID];
+        if (self.cinema) {
+            self.dataSource.items = self.cinema.theaters;
+            [self.tableView reloadData];
+            if (self.refreshControl.refreshing) {
+                [self.refreshControl endRefreshing];
+            }
+        }
+        else {
+            [self downloadCinema];
+        }
     }
 }
 
@@ -123,7 +122,7 @@
         }
         else {
             [self alertRetryWithCompleteBlock:^{
-                [self getTheaters];
+                [self getTheatersForceDownload:YES];
             }];
         }
         self.tableView.scrollEnabled = YES;
@@ -138,7 +137,7 @@
 
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
-    [self getTheaters];
+    [self getTheatersForceDownload:YES];
 }
 
 #pragma mark - Content Size Changed

@@ -14,4 +14,17 @@
     self.mainLabel.text = theater.name;
 }
 
++ (CGFloat) heightForRowWithTheater:(Theater2 *)theater tableFont:(UIFont *)font{
+    CGSize size = CGSizeMake(270.0, 1000.0);
+    
+    CGRect nameLabelRect = [theater.name boundingRectWithSize: size
+                                                      options: NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes: [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName]
+                                                      context: nil];
+    
+    CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
+    
+    return totalHeight;
+}
+
 @end
