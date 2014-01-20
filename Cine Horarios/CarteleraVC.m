@@ -129,10 +129,10 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     MovieVC *movieVC = segue.destinationViewController;
     NSInteger row = [self.tableView indexPathForSelectedRow].row;
-    BasicMovie2 *movie = self.billboard.movies[row];
-    movieVC.movieID = movie.movieID;
-    movieVC.movieName = movie.name;
-    movieVC.portraitImageURL = movie.portraitImageURL;
+    BasicMovie2 *basicMovie = self.billboard.movies[row];
+    movieVC.movieID = basicMovie.movieID;
+    movieVC.movieName = basicMovie.name;
+    movieVC.portraitImageURL = basicMovie.portraitImageURL;
 }
 
 @end

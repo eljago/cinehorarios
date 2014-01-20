@@ -10,6 +10,7 @@
 #import "Genre.h"
 #import "UIImageView+CH.h"
 #import "NSArray+FKBMap.h"
+#import "BasicMovie2.h"
 
 @implementation BillboardCell (BasicMovie)
 

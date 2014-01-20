@@ -15,5 +15,7 @@
 
 + (void)getBillboardWithBlock:(void (^)(Billboard *billboard, NSError *error))block;
 + (id)loadBillboard;
++ (void)getComingSoonWithBlock:(void (^)(Billboard *billboard, NSError *error))block;
++ (id)loadComingSoon;
 
 @end

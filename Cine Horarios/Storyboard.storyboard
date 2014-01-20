@@ -1410,7 +1410,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="140" id="3J1-W9-2Tg" customClass="ComingSoonCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="140" id="3J1-W9-2Tg" customClass="ComingSoonCell2">
                                 <rect key="frame" x="0.0" y="22" width="320" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3J1-W9-2Tg" id="PLD-gl-bnJ">
@@ -1470,16 +1470,15 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="debutLabel" destination="Cj2-tf-zPm" id="Dll-Ir-d1s"/>
+                                    <outlet property="debutTitleLabel" destination="skf-LS-8e4" id="f4f-w3-fbf"/>
                                     <outlet property="imageCover" destination="02w-fM-Hs0" id="d7i-Sr-ufN"/>
-                                    <outlet property="labelDebut" destination="Cj2-tf-zPm" id="bnU-gf-zJK"/>
-                                    <outlet property="labelEstreno" destination="skf-LS-8e4" id="fic-93-16W"/>
-                                    <outlet property="labelName" destination="UVQ-Ef-8ow" id="wQK-cb-Nmq"/>
+                                    <outlet property="mainLabel" destination="UVQ-Ef-8ow" id="P2d-H8-zaT"/>
                                     <segue destination="rNi-KW-Ki3" kind="push" id="6Kn-B9-ZqN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="lcy-0k-XSN" id="lgS-WB-q2m"/>
                             <outlet property="delegate" destination="lcy-0k-XSN" id="HQE-kP-5A2"/>
                         </connections>
                     </tableView>

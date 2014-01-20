@@ -7,6 +7,7 @@
 //
 
 #import "BasicCell+Theater.h"
+#import "Theater2.h"
 
 @implementation BasicCell (Theater)
 

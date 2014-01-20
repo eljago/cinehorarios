@@ -90,6 +90,8 @@
 		6EA663B5188D20B700B0FCBE /* MTLModelPersistable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663B4188D20B700B0FCBE /* MTLModelPersistable.m */; };
 		6EA663B8188D28A600B0FCBE /* BillboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663B7188D28A600B0FCBE /* BillboardCell.m */; };
 		6EA663BE188D297400B0FCBE /* BillboardCell+BasicMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663BD188D297400B0FCBE /* BillboardCell+BasicMovie.m */; };
+		6EA663C1188D3DA300B0FCBE /* ComingSoonCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663C0188D3DA300B0FCBE /* ComingSoonCell2.m */; };
+		6EA663C4188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663C3188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -244,6 +246,10 @@
 		6EA663B7188D28A600B0FCBE /* BillboardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillboardCell.m; sourceTree = "<group>"; };
 		6EA663BC188D297400B0FCBE /* BillboardCell+BasicMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BillboardCell+BasicMovie.h"; sourceTree = "<group>"; };
 		6EA663BD188D297400B0FCBE /* BillboardCell+BasicMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BillboardCell+BasicMovie.m"; sourceTree = "<group>"; };
+		6EA663BF188D3DA300B0FCBE /* ComingSoonCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComingSoonCell2.h; sourceTree = "<group>"; };
+		6EA663C0188D3DA300B0FCBE /* ComingSoonCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComingSoonCell2.m; sourceTree = "<group>"; };
+		6EA663C2188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ComingSoonCell2+BasicMovie.h"; sourceTree = "<group>"; };
+		6EA663C3188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ComingSoonCell2+BasicMovie.m"; sourceTree = "<group>"; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -532,6 +538,10 @@
 				6EA663B7188D28A600B0FCBE /* BillboardCell.m */,
 				6EA663BC188D297400B0FCBE /* BillboardCell+BasicMovie.h */,
 				6EA663BD188D297400B0FCBE /* BillboardCell+BasicMovie.m */,
+				6EA663BF188D3DA300B0FCBE /* ComingSoonCell2.h */,
+				6EA663C0188D3DA300B0FCBE /* ComingSoonCell2.m */,
+				6EA663C2188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.h */,
+				6EA663C3188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -677,6 +687,7 @@
 				16C7EB60173E3582001CF782 /* BasicImageItem.m in Sources */,
 				16C7EB63173E3A06001CF782 /* Theater.m in Sources */,
 				16C7EB66173E3B7F001CF782 /* Function.m in Sources */,
+				6EA663C1188D3DA300B0FCBE /* ComingSoonCell2.m in Sources */,
 				16692A35180C7DFF00166885 /* MenuVC.m in Sources */,
 				6E56CC11188BBE7D000AB809 /* BasicCell.m in Sources */,
 				1629F85417FF4EFA001428C1 /* SettingsVC.m in Sources */,
@@ -716,6 +727,7 @@
 				165F904B1780326300641600 /* FunctionCell.m in Sources */,
 				16FED04E1780B5F900318D92 /* ComingSoonCell.m in Sources */,
 				1639492C17F9BBDB00AB7DE7 /* DirectorCell.m in Sources */,
+				6EA663C4188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

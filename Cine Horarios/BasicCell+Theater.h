@@ -7,7 +7,8 @@
 //
 
 #import "BasicCell.h"
-#import "Theater2.h"
+
+@class Theater2;
 
 @interface BasicCell (Theater)
 
