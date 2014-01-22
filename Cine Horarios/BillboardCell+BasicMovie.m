@@ -7,7 +7,6 @@
 //
 
 #import "BillboardCell+BasicMovie.h"
-#import "Genre.h"
 #import "UIImageView+CH.h"
 #import "NSArray+FKBMap.h"
 #import "BasicMovie2.h"
@@ -23,10 +22,7 @@
         self.durationLabel.text = @"";
     }
     if (basicMovie.genres) {
-        NSArray *genresNames = [basicMovie.genres fkbMap:^NSString *(Genre *genre) {
-            return genre.name;
-        }];
-        self.genresLabel.text = [genresNames componentsJoinedByString:@", "];
+        self.genresLabel.text = basicMovie.genres;
     }
     else{
         self.genresLabel.text = @"";
@@ -37,10 +33,7 @@
 }
 
 + (CGFloat) heightForRowWithBasicMovie:(BasicMovie2 *)basicMovie headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont {
-    NSArray *genresNames = [basicMovie.genres fkbMap:^NSString *(Genre *genre) {
-        return genre.name;
-    }];
-    NSString *genres = [genresNames componentsJoinedByString:@", "];
+
     NSString *duration = [NSString stringWithFormat:@"%d", basicMovie.duration];
     
     CGSize size = CGSizeMake(187.f, 1000.f);
@@ -49,7 +42,7 @@
                                                          options: NSStringDrawingUsesLineFragmentOrigin
                                                       attributes: [NSDictionary dictionaryWithObject:headFont forKey:NSFontAttributeName]
                                                          context: nil];
-    CGRect typesLabelRect = [genres boundingRectWithSize: size
+    CGRect typesLabelRect = [basicMovie.genres boundingRectWithSize: size
                                                  options: NSStringDrawingUsesLineFragmentOrigin
                                               attributes: [NSDictionary dictionaryWithObject:bodyFont forKey:NSFontAttributeName]
                                                  context: nil];

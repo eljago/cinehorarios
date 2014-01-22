@@ -123,8 +123,6 @@
     }];
 }
 
-#pragma mark Refresh
-
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
     [self getComingSoonForceDownload:YES];

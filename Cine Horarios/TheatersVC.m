@@ -22,7 +22,7 @@
 #import "Cinema.h"
 
 @interface TheatersVC ()
-@property (nonatomic, strong) NSArray *theaters;
+
 @property (nonatomic, strong) UIFont *tableFont;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
 
@@ -132,8 +132,6 @@
         }
     } cinemaID:self.cinemaID];
 }
-
-#pragma mark Refresh
 
 -(void)refreshData {
     [self.refreshControl beginRefreshing];

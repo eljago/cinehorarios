@@ -8,10 +8,11 @@
 
 #import "FuncionesVC.h"
 #import "FavoritesVC.h"
-#import "FunctionCell.h"
+#import "FunctionCell2.h"
 #import "BasicMovie.h"
 #import "UIColor+CH.h"
-#import "Function.h"
+#import "Theater2.h"
+#import "Function2.h"
 #import "FileHandler.h"
 #import "UIFont+CH.h"
 #import "MovieVC.h"
@@ -22,27 +23,32 @@
 #import "GAIFields.h"
 #import "WebVC.h"
 #import "UIView+CH.h"
+#import "ArrayDataSource.h"
+#import "FunctionCell2+Function.h"
 
 NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 @interface FuncionesVC ()
-@property (nonatomic, strong) NSArray *functions;
+@property (nonatomic, strong) Theater2 *theater;
 @property (nonatomic, strong) NSString *theater_url;
+@property (nonatomic, strong) ArrayDataSource *dataSource;
 @property (nonatomic, strong) UIBarButtonItem *favoriteButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *menuButtonItem;
+
+@property (nonatomic, strong) UIFont *headFont;
+@property (nonatomic, strong) UIFont *bodyFont;
+@property (nonatomic, assign) BOOL favorite;
 @end
 
-@implementation FuncionesVC{
-    UIFont *headFont;
-    UIFont *bodyFont;
-    BOOL favorite;
-}
+@implementation FuncionesVC
 
 #pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupDataSource];
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"FUNCIONES" forKey:kGAIScreenName] build]];
@@ -51,8 +57,8 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
                                                            label:self.theaterName
                                                            value:nil] build]];
     
-    headFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.headFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
@@ -65,7 +71,14 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     [self createButtonItems];
     [self setupFavorites];
     
-    [self getFunctionsForceRemote:NO];
+    [self getTheaterForceDownload:NO];
+}
+
+-(void) setupDataSource {
+    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.theater.functions cellIdentifier:@"Cell" configureCellBlock:^(FunctionCell2 *cell, Function2 *function) {
+        [cell configureForFunction:function];
+    }];
+    self.tableView.dataSource = self.dataSource;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -74,137 +87,56 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     [self setupFavorites];
 }
 
-#pragma mark - UITableViewController
-#pragma mark Data Source
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.functions.count > 0) {
-        return self.functions.count;
-    }
-    else {
-        if (self.theater_url) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (self.functions.count > 0) {
-        static NSString *CellIdentifier = @"Cell";
-        FunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        cell.function = self.functions[indexPath.row];
-        [cell setBodyFont:bodyFont headFont:headFont];
-        
-        return cell;
-    }
-    else {
-        static NSString *CellIdentifier = @"Cell2";
-        FunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        cell.textLabel.text = [NSString stringWithFormat:@"Ir a la página web de %@", self.theaterName];
-        
-        return cell;
-    }
-}
-
-#pragma mark Delegate
+#pragma mark - UITableViewDelegate
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.functions.count > 0) {
-        NSInteger height = [UIView heightForHeaderViewWithText:self.theaterName font:headFont];
-        return [UIView headerViewForText:self.theaterName font:headFont height:height];
-    }
-    else {
-        if (self.theater_url) {
-            NSInteger height = [UIView heightForHeaderViewWithText:kHeaderString font:headFont];
-            return [UIView headerViewForText:kHeaderString font:headFont height:height];
-        }
-        else {
-            return [UIView new];
-        }
-    }
+    
+    NSInteger height = [UIView heightForHeaderViewWithText:self.theaterName font:self.headFont];
+    return [UIView headerViewForText:self.theaterName font:self.headFont height:height];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.functions.count > 0) {
-        return [UIView heightForHeaderViewWithText:self.theaterName font:headFont];
-    }
-    else {
-        return [UIView heightForHeaderViewWithText:kHeaderString font:headFont];
-    }
+    return [UIView heightForHeaderViewWithText:self.theaterName font:self.headFont];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.functions.count > 0) {
-        return [FunctionCell heightForCellWithBasicItem:self.functions[indexPath.row] withBodyFont:bodyFont headFont:headFont];
-    }
-    else {
-        return [self heightForRowWithText:[NSString stringWithFormat:@"Ir a la página web de %@", self.theaterName]];
-    }
+    Function2 *function = self.theater.functions[indexPath.row];
+    return [FunctionCell2 heightForRowWithFunction:function headFont:self.headFont bodyFont:self.bodyFont];
 }
 
 #pragma mark - FuncionesVC
-#pragma mark Row & Header Height Calculators
-
--(CGFloat) heightForRowWithText:(NSString *)text {
-    CGSize size = CGSizeMake(270.f, 1000.f);
-    
-    CGRect nameLabelRect = [text boundingRectWithSize: size
-                                              options: NSStringDrawingUsesLineFragmentOrigin
-                                           attributes: [NSDictionary dictionaryWithObject:bodyFont
-                                                                                   forKey:NSFontAttributeName]
-                                              context: nil];
-    
-    CGFloat totalHeight = nameLabelRect.size.height * 1.2;
-    
-    if (totalHeight <= 25.f) {
-        totalHeight = 25.f;
-    }
-    
-    return totalHeight;
-}
-
 #pragma mark Fetch Data
 
-- (void) getFunctionsForceRemote:(BOOL) forceRemote {
-    
-    if (forceRemote) {
-        [self downloadFunctions];
+- (void) getTheaterForceDownload:(BOOL)forceDownload {
+    if (forceDownload) {
+        [self downloadTheater];
     }
     else {
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
-        NSString *dateString = [NSString stringWithFormat:@"%d-%d-%d",[components year], [components month], [components day]];
-        
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            self.functions = [Function getLocalFunctionsWithTheaterID:self.theaterID dateString:dateString];
-            dispatch_async(dispatch_get_main_queue(), ^ {
-                if (self.functions.count) {
-                    [self.tableView reloadData];
-                }
-                else {
-                    [self downloadFunctions];
-                }
-            });
-        });
+        self.theater = [Theater2 loadTheaterithTheaterID:self.theaterID];
+        if (self.theater) {
+            self.dataSource.items = self.theater.functions;
+            [self.tableView reloadData];
+            if (self.refreshControl.refreshing) {
+                [self.refreshControl endRefreshing];
+            }
+        }
+        else {
+            [self downloadTheater];
+        }
     }
 }
 
--(void) downloadFunctions {
+-(void) downloadTheater {
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Function getFunctionsWithBlock:^(NSArray *functions, NSString *theater_url, NSError *error) {
+    [Theater2 getTheaterWithBlock:^(Theater2 *theater, NSError *error) {
         if (!error) {
-            self.functions = functions;
-            self.theater_url = theater_url;
+            self.theater = theater;
+            self.dataSource.items = theater.functions;
             [self.tableView reloadData];
         }
         else {
             [self alertRetryWithCompleteBlock:^{
-                [self getFunctionsForceRemote:YES];
+                [self getTheaterForceDownload:YES];
             }];
         }
         self.tableView.scrollEnabled = YES;
@@ -212,14 +144,12 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
         if (self.refreshControl.refreshing) {
             [self.refreshControl endRefreshing];
         }
-    } theaterID: self.theaterID date:[NSDate date]];
+    } theaterID:self.theaterID];
 }
-
-#pragma mark Refresh
 
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
-    [self getFunctionsForceRemote:YES];
+    [self getTheaterForceDownload:YES];
 }
 
 #pragma mark Create View
@@ -244,17 +174,17 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     NSString *theaterName = [favorites valueForKey:[NSString stringWithFormat:@"%d",self.theaterID]];
     if (theaterName) {
         self.favoriteButtonItem.tintColor = [UIColor whiteColor];
-        favorite = YES;
+        self.favorite = YES;
     }
     else{
         self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
-        favorite = NO;
+        self.favorite = NO;
     }
 }
 
 - (IBAction) setFavoriteTheater:(id)sender{
-    favorite = !favorite;
-    if (favorite) {
+    self.favorite = !self.favorite;
+    if (self.favorite) {
         self.favoriteButtonItem.tintColor = [UIColor whiteColor];
     }
     else{
@@ -270,8 +200,8 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 #pragma mark - Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     [self.tableView reloadData];
 }
 
@@ -281,8 +211,8 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     if ([[segue identifier] isEqualToString:@"FunctionsToMovie"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         MovieVC *movieVC = segue.destinationViewController;
-        Function *function = self.functions[indexPath.row];
-        movieVC.movieID = function.itemId;
+        Function2 *function = self.theater.functions[indexPath.row];
+        movieVC.movieID = function.movieID;
         movieVC.movieName = function.name;
         movieVC.portraitImageURL = function.portraitImageURL;
     }

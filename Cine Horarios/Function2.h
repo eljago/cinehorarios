@@ -1,22 +1,21 @@
 //
-//  BasicMovie2.h
+//  Function2.h
 //  Cine Horarios
 //
 //  Created by Arturo Espinoza Carrasco on 20-01-14.
 //  Copyright (c) 2014 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import "MTLModelPersistable.h"
 #import "MTLJSONAdapter.h"
 
-@interface BasicMovie2 : MTLModel <MTLJSONSerializing>
+@interface Function2 : MTLModelPersistable <MTLJSONSerializing>
 
 @property (nonatomic, assign, readonly) NSUInteger movieID;
+@property (nonatomic, strong, readonly) NSString *showtimes;
+@property (nonatomic, strong, readonly) NSString *functionTypes;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSString *imageURL;
-@property (nonatomic, assign, readonly) NSUInteger duration;
 @property (nonatomic, strong, readonly) NSString *portraitImageURL;
-@property (nonatomic, strong, readonly) NSString *debut;
-@property (nonatomic, strong, readonly) NSString *genres;
 
 @end

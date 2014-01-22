@@ -11,7 +11,6 @@
 #import "Billboard.h"
 #import "BillboardCell.h"
 #import "BillboardCell+BasicMovie.h"
-#import "Genre.h"
 #import "NSArray+FKBMap.h"
 #import "UIFont+CH.h"
 #import "MovieVC.h"
@@ -99,7 +98,6 @@
     }];
 }
 
-#pragma mark Refresh
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
     [self getBillboardForceDownload:YES];

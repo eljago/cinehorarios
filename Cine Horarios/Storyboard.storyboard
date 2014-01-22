@@ -1126,7 +1126,7 @@
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="144" id="c5H-03-TaX" customClass="FunctionCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="144" id="c5H-03-TaX" customClass="FunctionCell2">
                                 <rect key="frame" x="0.0" y="22" width="320" height="144"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c5H-03-TaX" id="PDd-mv-e0Y">
@@ -1189,9 +1189,9 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="imageCover" destination="Etv-sy-fcz" id="nFB-MM-8kb"/>
-                                    <outlet property="labelName" destination="mmG-Go-nWF" id="cf9-bn-VBa"/>
-                                    <outlet property="labelShowtimes" destination="Dh5-JA-UK6" id="5SY-c5-VyQ"/>
-                                    <outlet property="labelTypes" destination="WzC-Zv-om4" id="46O-J1-Xp0"/>
+                                    <outlet property="mainLabel" destination="mmG-Go-nWF" id="Dfw-ih-ArT"/>
+                                    <outlet property="showtimesLabel" destination="Dh5-JA-UK6" id="C6j-r8-oy6"/>
+                                    <outlet property="typesLabel" destination="WzC-Zv-om4" id="dl6-Ih-AYo"/>
                                     <segue destination="rNi-KW-Ki3" kind="push" identifier="FunctionsToMovie" id="NT1-KO-izX"/>
                                 </connections>
                             </tableViewCell>
@@ -1217,7 +1217,6 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="1J3-Xg-dIA" id="Men-Ya-QS0"/>
                             <outlet property="delegate" destination="1J3-Xg-dIA" id="dn4-FN-xbY"/>
                         </connections>
                     </tableView>
@@ -1614,7 +1613,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="yw0-JB-wjW"/>
-        <segue reference="z63-K4-9gr"/>
-        <segue reference="ZrW-Ss-4wn"/>
+        <segue reference="NT1-KO-izX"/>
+        <segue reference="wId-Qi-Ofr"/>
     </inferredMetricsTieBreakers>
 </document>
