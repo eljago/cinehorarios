@@ -70,6 +70,7 @@
 #pragma mark - UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     BasicCell *basicCell = (BasicCell *)cell;
     basicCell.mainLabel.font = self.tableFont;
 }

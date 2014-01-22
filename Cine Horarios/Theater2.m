@@ -28,7 +28,7 @@ NSString *const kTheaterArchivePath = @"/data/theaters/";
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Function2.class];
 }
 
-+ (void)getTheaterWithBlock:(void (^)(Theater2 *theater, NSError *error))block theaterID:(NSUInteger )theaterID {
++ (void)getTheaterWithBlock:(void (^)(Theater2 *theater, NSError *error))block theaterID:(NSUInteger)theaterID {
     NSString *path = [NSString stringWithFormat:kTheaterPath,theaterID];
     [[CineHorariosApiClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         

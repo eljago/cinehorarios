@@ -33,7 +33,6 @@
 }
 
 + (CGFloat) heightForRowWithBasicMovie:(BasicMovie2 *)basicMovie headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont {
-
     NSString *duration = [NSString stringWithFormat:@"%d", basicMovie.duration];
     
     CGSize size = CGSizeMake(187.f, 1000.f);

@@ -106,6 +106,7 @@
 #pragma mark - UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     BillboardCell *billboardCell = (BillboardCell *)cell;
     billboardCell.mainLabel.font = self.headFont;
     billboardCell.genresLabel.font = self.bodyFont;

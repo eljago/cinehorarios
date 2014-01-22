@@ -89,6 +89,14 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 #pragma mark - UITableViewDelegate
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    FunctionCell2 *functionCell = (FunctionCell2 *)cell;
+    functionCell.mainLabel.font = self.headFont;
+    functionCell.typesLabel.font = self.bodyFont;
+    functionCell.showtimesLabel.font = self.bodyFont;
+}
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     NSInteger height = [UIView heightForHeaderViewWithText:self.theaterName font:self.headFont];

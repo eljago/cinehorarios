@@ -69,6 +69,7 @@
 #pragma mark - UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     ComingSoonCell2 *comingSoonCell = (ComingSoonCell2 *)cell;
     comingSoonCell.mainLabel.font = self.headFont;
     comingSoonCell.debutTitleLabel.font = self.bodyFont;
