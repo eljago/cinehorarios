@@ -27,6 +27,7 @@
 + (UIColor *)wisteria;
 + (UIColor *)asbestos;
 + (UIColor *)concrete;
++(UIColor *)grayYoutubeControls;
 
 +(UIColor *)menuColorForRow:(NSIndexPath *)indexPath;
 @end

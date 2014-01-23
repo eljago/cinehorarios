@@ -7,10 +7,9 @@
 //
 
 #import "FavoritesVC.h"
-#import "BasicItem.h"
 #import "FuncionesVC.h"
-#import "UIColor+CH.h"
-#import "CHCell.h"
+#import "BasicCell.h"
+#import "BasicCell+Theater.m"
 #import "UIFont+CH.h"
 #import "GAI.h"
 #import "GAITracker.h"
@@ -46,7 +45,7 @@
     
     [self loadFavorites];
     
-    if ([self.favoriteTheaters count] == 0) {
+    if (self.favoriteTheaters.count == 0) {
         self.buttonEdit.enabled = NO;
     }
     else {
@@ -55,23 +54,19 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - UITableViewController
-#pragma mark Data Source
+#pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.favoriteTheaters count];
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.favoriteTheaters.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    CHCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
+    static NSString *identifier = @"Cell";
+    BasicCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    BasicItem *theater = self.favoriteTheaters[indexPath.row];
-    cell.basicItem = theater;
-    [cell setFont:self.tableFont];
-    
+    Theater2 *theater = self.favoriteTheaters[indexPath.row];
+    cell.mainLabel.text = theater.name;
+
     return cell;
 }
 
@@ -83,11 +78,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        BasicItem *theater = self.favoriteTheaters[indexPath.row];
+        Theater2 *theater = self.favoriteTheaters[indexPath.row];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Toggle Favorite"
                                                             object:self
                                                           userInfo:@{@"TheaterName": theater.name,
-                                                                     @"TheaterID": [NSNumber numberWithInteger:theater.itemId]}];
+                                                                     @"TheaterID": [NSNumber numberWithInteger:theater.theaterID]}];
         [self.favoriteTheaters removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         if ([self.favoriteTheaters count] == 0) {
@@ -100,10 +95,16 @@
     }
 }
 
-#pragma mark Delegate
+#pragma mark - UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    BasicCell *basicCell = (BasicCell *)cell;
+    basicCell.mainLabel.font = self.tableFont;
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [CHCell heightForCellWithBasicItem:self.favoriteTheaters[indexPath.row] withFont:self.tableFont];
+    return [BasicCell heightForRowWithTheater:self.favoriteTheaters[indexPath.row] tableFont:self.tableFont];
 }
 
 #pragma mark - FavoritesVC
@@ -134,7 +135,9 @@
     NSArray *keys = [favorites allKeys];
     NSArray *values = [favorites allValues];
     for (int i=0;i<[favorites count];i++){
-        BasicItem *theater = [[BasicItem alloc] initWithId:[[keys objectAtIndex:i] integerValue] name:[values objectAtIndex:i]];
+        NSError *error = nil;
+        NSDictionary *dict = @{@"theaterID": [keys objectAtIndex:i], @"name": [values objectAtIndex:i]};
+        Theater2 *theater = [Theater2 modelWithDictionary:dict error:&error];
         [mutableTheaters insertObject:theater atIndex:i];
     }
     self.favoriteTheaters = mutableTheaters;
@@ -166,8 +169,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     FuncionesVC *functionesVC = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    BasicItem *theater = self.favoriteTheaters[indexPath.row];
-    functionesVC.theaterID = theater.itemId;
+    Theater2 *theater = self.favoriteTheaters[indexPath.row];
+    functionesVC.theaterID = theater.theaterID;
     functionesVC.theaterName = theater.name;
     
 }

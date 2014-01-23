@@ -10,11 +10,5 @@
 
 @implementation FunctionCell2
 
--(void)awakeFromNib {
-    [super awakeFromNib];
-    
-    _typesLabel.highlightedTextColor = [UIColor whiteColor];
-    _showtimesLabel.highlightedTextColor = [UIColor whiteColor];
-}
 
 @end

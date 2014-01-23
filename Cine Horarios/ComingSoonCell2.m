@@ -10,11 +10,4 @@
 
 @implementation ComingSoonCell2
 
--(void)awakeFromNib {
-    [super awakeFromNib];
-    
-    _debutTitleLabel.highlightedTextColor = [UIColor whiteColor];
-    _debutLabel.highlightedTextColor = [UIColor whiteColor];
-}
-
 @end

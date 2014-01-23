@@ -93,7 +93,7 @@
     }
     else {
         self.billboard = [Billboard loadComingSoon];
-        if (self.billboard) {
+        if (self.billboard && self.billboard.movies.count > 0) {
             self.dataSource.items = self.billboard.movies;
             [self.tableView reloadData];
         }

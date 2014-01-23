@@ -7,12 +7,11 @@
 //
 
 #import "MovieVC.h"
-#import "Movie.h"
+#import "Movie2.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "MyMultilineLabel.h"
 #import "MovieImagesVC.h"
-#import "Actor.h"
 #import "CastVC.h"
 #import "WebVC.h"
 #import "VideoItem.h"
@@ -28,10 +27,17 @@
 #import "GAIFields.h"
 #import "UIView+CH.h"
 #import "GlobalNavigationController.h"
+#import "Person.h"
+#import "ArrayDataSource.h"
+#import "MovieImageCell.h"
+#import "MovieImageCell+MovieImage.h"
+#import "MovieCastCell.h"
+#import "MovieCastCell+Person.h"
+#import "Cast.h"
 
-@interface MovieVC () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
+@interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, strong) Movie *movie;
+@property (nonatomic, strong) Movie2 *movie;
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionViewActors;
@@ -51,13 +57,17 @@
 @property (nonatomic, weak) IBOutlet UILabel *labelBuscarHorarios;
 @property (nonatomic, weak) IBOutlet UILabel *labelVideos;
 
+@property (nonatomic, strong) Cast *cast;
+
+@property (nonatomic, strong) ArrayDataSource *collectionViewImagesDataSource;
+@property (nonatomic, strong) ArrayDataSource *collectionViewCastDataSource;
+
+@property (nonatomic, strong) UIFont *smallerFont;
+@property (nonatomic, strong) UIFont *normalFont;
+@property (nonatomic, strong) UIFont *bigBoldFont;
 @end
 
-@implementation MovieVC {
-    UIFont *smallerFont;
-    UIFont *normalFont;
-    UIFont *bigBoldFont;
-}
+@implementation MovieVC
 
 #pragma mark - UIViewController
 
@@ -66,6 +76,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self setupDataSources];
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"INFO PELICULA" forKey:kGAIScreenName] build]];
@@ -98,13 +109,219 @@
     [self getMovieForceRemote:NO];
 }
 
+-(void) setupDataSources {
+    self.collectionViewImagesDataSource = [[ArrayDataSource alloc] initWithItems:self.movie.images cellIdentifier:@"Cell" configureCellBlock:^(MovieImageCell *cell, NSString *imageURL) {
+        [cell configureForImageURL:imageURL];
+    }];
+    self.collectionView.dataSource = self.collectionViewImagesDataSource;
+    
+    self.collectionViewCastDataSource = [[ArrayDataSource alloc] initWithItems:self.cast.actors cellIdentifier:@"Cell" configureCellBlock:^(MovieCastCell *cell, Person *person) {
+        [cell configureForPerson:person font:self.smallerFont];
+    }];
+    self.collectionViewActors.dataSource = self.collectionViewCastDataSource;
+}
+
+#pragma mark - MovieVC
+
+#pragma mark Row & Height Calculators
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0.01;
+    }
+    else if (section == 1 && self.cast.directors.count == 0) {
+        return 0.01f;
+    }
+    else if (section == 2 && self.cast.actors.count == 0) {
+        return 0.01f;
+    }
+    else if (section == 3 && self.movie.images.count == 0) {
+        return 0.01f;
+    }
+    else {
+        return [UIView heightForHeaderViewWithText:@"Javier" font:self.normalFont];
+    }
+}
+
+#pragma mark - Fetch Data
+
+- (void) getMovieForceRemote:(BOOL) forceRemote {
+    if (forceRemote) {
+        [self downloadMovie];
+    }
+    else {
+        self.movie = [Movie2 loadMovieWithMovieID:self.movieID];
+        if (self.movie) {
+            [self setPeople];
+            self.collectionViewImagesDataSource.items = self.movie.images;
+            self.collectionViewCastDataSource.items = self.cast.actors;
+            [self setupTableViews];
+            [self.tableView reloadData];
+            if (self.refreshControl.refreshing) {
+                [self.refreshControl endRefreshing];
+            }
+        }
+        else {
+            [self downloadMovie];
+        }
+    }
+}
+- (void) downloadMovie {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Movie2 getCinemaWithBlock:^(Movie2 *movie, NSError *error) {
+        if (!error) {
+            self.movie = movie;
+            [self setPeople];
+            self.collectionViewImagesDataSource.items = self.movie.images;
+            self.collectionViewCastDataSource.items = self.cast.actors;
+            [self setupTableViews];
+            [self.tableView reloadData];
+        }
+        else {
+            [self alertRetryWithCompleteBlock:^{
+                [self getMovieForceRemote:YES];
+            }];
+        }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (self.refreshControl.refreshing) {
+            [self.refreshControl endRefreshing];
+        }
+    } movieID:self.movieID];
+}
+-(void)refreshData {
+    [self.refreshControl beginRefreshing];
+    [self getMovieForceRemote:YES];
+}
+
+#pragma mark Set Actors & Directors
+
+-(void) setPeople {
+    
+    NSMutableArray *actorsMutable = [[NSMutableArray alloc] init];
+    NSMutableArray *directorsMutable = [[NSMutableArray alloc] init];
+    for (Person *person in self.movie.people) {
+        
+        if (person.actor) {
+            [actorsMutable addObject:person];
+        }
+        if (person.director) {
+            [directorsMutable addObject:person];
+        }
+    }
+    self.cast = [[Cast alloc] initWithDirectors:[NSArray arrayWithArray:directorsMutable] actors:[NSArray arrayWithArray:actorsMutable]];
+}
+
+
+#pragma mark - Set TableView values
+
+- (void) setupTableViews {
+    
+    // PORTRAIT IMAGE
+    if (self.portraitImageURL) {
+        [self.portraitImageView setImageWithStringURL:self.portraitImageURL movieImageType:MovieImageTypePortrait placeholderImage:nil];
+    }
+    
+    // NAME AND YEAR
+    if (self.movie.name) {
+        self.labelName.text = self.movie.name;
+    }
+    if (self.movie.year){
+        self.labelName.text = [self.labelName.text stringByAppendingFormat:@" (%d)",self.movie.year];
+    }
+    if (self.movie.nameOriginal && ![self.movie.nameOriginal isEqualToString:@""]){
+        self.labelNameOriginal.text = [NSString stringWithFormat:@"\"%@\"",self.movie.nameOriginal];
+    }
+    if (self.movie.duration) {
+        self.labelDurationGenres.text = [NSString stringWithFormat:@"%d",self.movie.duration];
+    }
+    if (self.movie.duration && self.movie.genres) {
+        self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingString:@" - "];
+    }
+    if (self.movie.genres) {
+        self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingFormat:@"%@",self.movie.genres];
+    }
+    
+    if (self.movie.imageURL) {
+        [self.coverImageView setImageWithStringURL:self.movie.imageURL movieImageType:MovieImageTypeCover];
+    }
+    
+    // SYNOPSIS
+    if (self.movie.information) {
+        self.textViewSynopsis.hidden = NO;
+        NSDictionary* attrs = @{NSFontAttributeName: self.normalFont};
+        
+        NSAttributedString* attrString = [[NSAttributedString alloc] initWithString:self.movie.information
+                                                                         attributes:attrs];
+        
+        self.textViewSynopsis.attributedText = attrString;
+        self.textViewSynopsis.contentOffset = CGPointMake(0, -8);
+    }
+    else {
+        self.textViewSynopsis.hidden = YES;
+    }
+    
+    if (self.cast.directors.count != 0) {
+        Person *director = [self.cast.directors firstObject];
+        self.labelDirector.text = director.name;
+        if (self.cast.directors.count > 1) {
+            for (int i=1; i<self.cast.directors.count; i++) {
+                Person *director2 = self.cast.directors[i];
+                self.labelDirector.text = [self.labelDirector.text stringByAppendingFormat:@", %@",director2.name];
+            }
+        }
+    }
+    if (self.cast.actors.count == 0) {
+        self.collectionViewActors.hidden = YES;
+    }
+    else {
+        self.collectionViewActors.hidden = NO;
+        [self.collectionViewActors reloadData];
+    }
+    if (self.movie.images.count == 0) {
+        self.collectionView.hidden = YES;
+    }
+    else {
+        self.collectionView.hidden = NO;
+        [self.collectionView reloadData];
+    }
+    
+    if (self.movie.imdbScore) {
+        self.labelScoreImdb.text = [NSString stringWithFormat:@"%.1f / 10",self.movie.imdbScore / 10.];
+    }
+    else {
+        self.labelScoreImdb.text = @"?";
+    }
+    if (self.movie.metacriticScore) {
+        self.labelScoreMetacritic.text = [NSString stringWithFormat:@"%d",self.movie.metacriticScore];
+    }
+    else {
+        self.labelScoreMetacritic.text = @"?";
+    }
+    if (self.movie.rottenTomatoesScore) {
+        self.labelScoreRottenTomatoes.text = [NSString stringWithFormat:@"%d",self.movie.rottenTomatoesScore];
+    }
+    else {
+        self.labelScoreRottenTomatoes.text = @"?";
+    }
+    
+    
+    UIView *frontView = [self.view viewWithTag:999];
+    [UIView animateWithDuration:0.3 animations:^{
+        frontView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        
+        [frontView removeFromSuperview];
+        self.tableView.scrollEnabled = YES;
+    }];
+}
+
 #pragma mark - UITableViewController
 #pragma mark Data Source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ((!self.movie.urlRottenTomatoes || [self.movie.urlRottenTomatoes isEqualToString:@""]) &&
-        (!self.movie.urlImdb || [self.movie.urlImdb isEqualToString:@""]) &&
-        (!self.movie.urlMetacritic || [self.movie.urlMetacritic isEqualToString:@""])) {
+    if ((!self.movie.rottenTomatoesURL || [self.movie.rottenTomatoesURL isEqualToString:@""]) &&
+        (!self.movie.imdbCode || [self.movie.imdbCode isEqualToString:@""]) &&
+        (!self.movie.metacriticURL || [self.movie.metacriticURL isEqualToString:@""])) {
         return 4;
     }
     else {
@@ -117,17 +334,17 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 4) {
         if (indexPath.row == 0){
-            if (!self.movie.urlMetacritic || [self.movie.urlMetacritic isEqualToString:@""]) {
+            if (!self.movie.metacriticURL || [self.movie.metacriticURL isEqualToString:@""]) {
                 return 0.;
             }
         }
         else if(indexPath.row == 1){
-            if (!self.movie.urlImdb || [self.movie.urlImdb isEqualToString:@""]) {
+            if (!self.movie.imdbCode || [self.movie.imdbCode isEqualToString:@""]) {
                 return 0.;
             }
         }
         else if (indexPath.row == 2){
-            if (!self.movie.urlRottenTomatoes || [self.movie.urlRottenTomatoes isEqualToString:@""]) {
+            if (!self.movie.rottenTomatoesURL || [self.movie.rottenTomatoesURL isEqualToString:@""]) {
                 return 0.;
             }
         }
@@ -138,25 +355,25 @@
         }
     }
     else if (indexPath.section == 2) {
-        if (self.movie.actors.count == 0) {
+        if (self.movie.people.count == 0) {
             return 0.;
         }
     }
     else if (indexPath.section == 1) {
-        if (self.movie.directors.count == 0) {
+        if (self.cast.directors.count == 0) {
             return 0.;
         }
         else {
             CGSize size = CGSizeMake(277.f, 1000.f);
             
             NSMutableArray *directorsNames = [[NSMutableArray alloc] init];
-            for (Actor *actor in self.movie.directors) {
-                [directorsNames addObject:actor.name];
+            for (Person *director in self.cast.directors) {
+                [directorsNames addObject:director.name];
             }
             
             CGRect nameLabelRect = [[directorsNames componentsJoinedByString:@", "] boundingRectWithSize: size
                                                                                                  options: NSStringDrawingUsesLineFragmentOrigin
-                                                                                              attributes: [NSDictionary dictionaryWithObject:normalFont forKey:NSFontAttributeName]
+                                                                                              attributes: [NSDictionary dictionaryWithObject:self.normalFont forKey:NSFontAttributeName]
                                                                                                  context: nil];
             
             CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
@@ -167,15 +384,15 @@
     else if (indexPath.section == 0) {
         if (indexPath.row == 1) {
             CGFloat height;
-            if (self.movie.synopsis) {
+            if (self.movie.information) {
                 NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
                 NSTextContainer *container = [[NSTextContainer alloc] initWithSize:CGSizeMake(self.textViewSynopsis.frame.size.width, 1000)];
                 UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.coverImageView.frame.size.width+10, self.coverImageView.frame.size.height+10)];
                 container.exclusionPaths = @[exclusionPath];
                 
-                NSDictionary* attrs = @{NSFontAttributeName: normalFont};
+                NSDictionary* attrs = @{NSFontAttributeName: self.normalFont};
                 
-                NSTextStorage *txtStorage = [[NSTextStorage alloc] initWithString:self.movie.synopsis attributes:attrs];
+                NSTextStorage *txtStorage = [[NSTextStorage alloc] initWithString:self.movie.information attributes:attrs];
                 [txtStorage addLayoutManager:layoutManager];
                 [layoutManager addTextContainer:container];
                 
@@ -185,6 +402,11 @@
                 height = 155.;
             }
             return MAX(height, 155.);
+        }
+        else if (indexPath.row == 2) {
+            if (self.movie.videos.count == 0) {
+                return 0.;
+            }
         }
         else if (indexPath.row == 3) {
             if ([self.navigationController.viewControllers[0] isMemberOfClass:[ComingSoonVC class]]) {
@@ -202,10 +424,10 @@
             text = @"";
             break;
         case 1:
-            if (self.movie.directors.count > 1) {
+            if (self.cast.directors.count > 1) {
                 text = @"Directores";
             }
-            else if(self.movie.directors.count == 1){
+            else if(self.cast.directors.count == 1){
                 text = @"Director";
             }
             else {
@@ -213,7 +435,7 @@
             }
             break;
         case 2:
-            if (self.movie.actors.count == 0) {
+            if (self.cast.actors.count == 0) {
                 return [UIView new];
             }
             text = @"Reparto";
@@ -232,8 +454,8 @@
             text = @"";
             break;
     }
-    NSInteger height = [UIView heightForHeaderViewWithText:text font:normalFont];
-    return [UIView headerViewForText:text font:bigBoldFont height:height];
+    NSInteger height = [UIView heightForHeaderViewWithText:text font:self.normalFont];
+    return [UIView headerViewForText:text font:self.bigBoldFont height:height];
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if ((indexPath.section == 0 && indexPath.row == 2) || (indexPath.section == 4 && indexPath.row == 1)) {
@@ -245,240 +467,7 @@
 }
 
 
-#pragma mark - MovieVC
-
-#pragma mark Row & Height Calculators
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 0.01;
-    }
-    else if (section == 1 && self.movie.directors.count == 0) {
-        return 0.01f;
-    }
-    else if (section == 2 && self.movie.actors.count == 0) {
-        return 0.01f;
-    }
-    else if (section == 3 && self.movie.images.count == 0) {
-        return 0.01f;
-    }
-    else {
-        return [UIView heightForHeaderViewWithText:@"Javier" font:normalFont];
-    }
-}
-
-#pragma mark Fetch Data
-
-- (void) getMovieForceRemote:(BOOL) forceRemote {
-    if (forceRemote) {
-        [self downloadMovie];
-    }
-    else {
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            self.movie = [Movie getLocalMovieWithMovieID:self.movieID];
-            dispatch_async(dispatch_get_main_queue(), ^ {
-                if (self.movie) {
-                    [self setupTableViews];
-                }
-                else {
-                    [self downloadMovie];
-                }
-            });
-        });
-    }
-}
-
-- (void) downloadMovie {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Movie getMovieWithBlock:^(Movie *movie, NSError *error) {
-        if (!error) {
-            self.movie = movie;
-            [self setupTableViews];
-        }
-        else {
-            [self alertRetryWithCompleteBlock:^{
-                [self getMovieForceRemote:YES];
-            }];
-        }
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if (self.refreshControl.refreshing) {
-            [self.refreshControl endRefreshing];
-        }
-    } movieID:self.movieID];
-}
--(void)refreshData {
-    [self.refreshControl beginRefreshing];
-    [self getMovieForceRemote:YES];
-}
-
-
-#pragma mark - Set TableView values
-
-- (void) setupTableViews {
-    
-    // PORTRAIT IMAGE
-    if (self.portraitImageURL) {
-        [self.portraitImageView setImageWithStringURL:self.portraitImageURL movieImageType:MovieImageTypePortrait placeholderImage:nil];
-    }
-    
-    // NAME AND YEAR
-    if (self.movie.name) {
-        self.labelName.text = self.movie.name;
-    }
-    if (self.movie.year){
-        self.labelName.text = [self.labelName.text stringByAppendingFormat:@" (%@)",self.movie.year];
-    }
-    if (self.movie.nameOriginal){
-        self.labelNameOriginal.text = [NSString stringWithFormat:@"\"%@\"",self.movie.nameOriginal];
-    }
-    if (self.movie.duration) {
-        self.labelDurationGenres.text = self.movie.duration;
-    }
-    if (self.movie.duration && self.movie.genres) {
-        self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingString:@" - "];
-    }
-    if (self.movie.genres) {
-        self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingFormat:@"%@",self.movie.genres];
-    }
-    
-    if (self.movie.imageUrl) {
-        [self.coverImageView setImageWithStringURL:self.movie.imageUrl movieImageType:MovieImageTypeCover];
-    }
-    
-    // SYNOPSIS
-    if (self.movie.synopsis) {
-        self.textViewSynopsis.hidden = NO;
-        NSDictionary* attrs = @{NSFontAttributeName: normalFont};
-        
-        NSAttributedString* attrString = [[NSAttributedString alloc] initWithString:self.movie.synopsis
-                                                                         attributes:attrs];
-        
-        self.textViewSynopsis.attributedText = attrString;
-        self.textViewSynopsis.contentOffset = CGPointMake(0, -8);
-    }
-    else {
-        self.textViewSynopsis.hidden = YES;
-    }
-    
-    if (self.movie.directors) {
-        Actor *actor = [self.movie.directors firstObject];
-        self.labelDirector.text = actor.name;
-        if (self.movie.directors.count > 1) {
-            for (int i=1; i<self.movie.directors.count; i++) {
-                Actor *actor = self.movie.directors[i];
-                self.labelDirector.text = [self.labelDirector.text stringByAppendingFormat:@", %@",actor.name];
-            }
-        }
-    }
-    if (self.movie.actors.count == 0) {
-        self.collectionViewActors.hidden = YES;
-    }
-    else {
-        self.collectionViewActors.hidden = NO;
-        [self.collectionViewActors reloadData];
-    }
-    if (self.movie.images.count == 0) {
-        self.collectionView.hidden = YES;
-    }
-    else {
-        self.collectionView.hidden = NO;
-        [self.collectionView reloadData];
-    }
-    
-    if (self.movie.scoreImdb) {
-        self.labelScoreImdb.text = self.movie.scoreImdb;
-    }
-    else {
-        self.labelScoreImdb.text = @"?";
-    }
-    if (self.movie.scoreMetacritic) {
-        self.labelScoreMetacritic.text = self.movie.scoreMetacritic;
-    }
-    else {
-        self.labelScoreMetacritic.text = @"?";
-    }
-    if (self.movie.scoreRottenTomatoes) {
-        self.labelScoreRottenTomatoes.text = self.movie.scoreRottenTomatoes;
-    }
-    else {
-        self.labelScoreRottenTomatoes.text = @"?";
-    }
-    
-    
-    UIView *frontView = [self.view viewWithTag:999];
-    [UIView animateWithDuration:0.3 animations:^{
-        frontView.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        
-        [frontView removeFromSuperview];
-        self.tableView.scrollEnabled = YES;
-    }];
-    [self.tableView reloadData];
-}
-
-#pragma mark - Notification Observer method
-
--(void) setFontsWithPreferedContentSizeCategory:(NSString *)preferredContentSizeCategory {
-    smallerFont = [UIFont getSizeForCHFont:CHFontStyleSmaller forPreferedContentSize: preferredContentSizeCategory];
-    normalFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize: preferredContentSizeCategory];
-    bigBoldFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize: preferredContentSizeCategory];
-    self.labelName.font = bigBoldFont;
-    self.labelNameOriginal.font = normalFont;
-    self.labelDurationGenres.font = smallerFont;
-    self.textViewSynopsis.font = normalFont;
-    self.labelScoreImdb.font = normalFont;
-    self.labelScoreMetacritic.font = normalFont;
-    self.labelScoreRottenTomatoes.font = normalFont;
-    self.labelDirector.font = normalFont;
-    self.labelBuscarHorarios.font = normalFont;
-    self.labelVideos.font = normalFont;
-    ((UILabel *)[self.labelScoreImdb.superview viewWithTag:102]).font = normalFont;
-    ((UILabel *)[self.labelScoreMetacritic.superview viewWithTag:102]).font = normalFont;
-    ((UILabel *)[self.labelScoreRottenTomatoes.superview viewWithTag:102]).font = normalFont;
-}
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    [self setFontsWithPreferedContentSizeCategory:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    [self.tableView reloadData];
-    [self.collectionViewActors reloadData];
-}
-
-
-#pragma mark - Collection View Methods
-
--(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if ([collectionView isEqual:self.collectionView]) {
-        return self.movie.images.count;
-    }
-    else {
-        return self.movie.actors.count;
-    }
-}
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *cellIdentifier = @"Cell";
-    UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    // COLLECTION VIEW IMAGENES
-    if ([collectionView isEqual:self.collectionView]) {
-        NSString *imagePath = self.movie.images[indexPath.row];
-        UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
-        
-        [imageView setImageWithStringURL:imagePath movieImageType:MovieImageTypeMovieImageCover];
-    }
-    // COLLECTION VIEW REPARTO
-    else  {
-        Actor *actor = self.movie.actors[indexPath.row];
-        UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
-        UILabel *label = (UILabel *)[cell viewWithTag:101];
-        
-        label.text = actor.name;
-        label.font = smallerFont;
-        [imageView setImageWithStringURL:actor.imageUrl movieImageType:MovieImageTypeMovieImageCover];
-    }
-    
-    return cell;
-}
+#pragma mark - UICollectionViewDelegate
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([collectionView isEqual:self.collectionView]) {
@@ -486,7 +475,7 @@
         [self pushPhotoBrowserWithIntermediateViewController:viewController index:indexPath.row];
     }
     else {
-        NSUInteger row = self.movie.directors.count + indexPath.row;
+        NSUInteger row = self.cast.directors.count + indexPath.row;
         CastVC *viewController = [self instantiateCastVC];
         [self pushPhotoBrowserWithIntermediateViewController:viewController index:row];
     }
@@ -517,8 +506,7 @@
     return viewController;
 }
 - (void) setPropertyValuesToCastVC:(CastVC *)castVC {
-    castVC.directors = self.movie.directors;
-    castVC.actors = self.movie.actors;
+    castVC.cast = self.cast;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     MovieImageType movieImageType;
     if ([defaults boolForKey:@"Retina Images"]) {
@@ -528,13 +516,13 @@
         movieImageType = MovieImageTypeCastFullScreenNoRetina;
     }
     castVC.photos = [NSMutableArray array];
-    for (Actor *director in self.movie.directors) {
-        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:director.imageUrl imageType:movieImageType]]];
+    for (Person *director in self.cast.directors) {
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:director.imageURL imageType:movieImageType]]];
         photo.caption = [NSString stringWithFormat:@"Nombre: %@\nDirector",director.name];
         [castVC.photos addObject:photo];
     }
-    for (Actor *actor in self.movie.actors) {
-        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:actor.imageUrl imageType:movieImageType]]];
+    for (Person *actor in self.cast.actors) {
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:actor.imageURL imageType:movieImageType]]];
         photo.caption = [NSString stringWithFormat:@"Nombre: %@",actor.name];
         if (!actor.character || ![actor.character isEqualToString:@""]) {
             photo.caption = [photo.caption stringByAppendingFormat:@"\nPersonaje: %@",actor.character];
@@ -592,18 +580,18 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         WebVC *wvc = [segue destinationViewController];
         if (indexPath.row == 0) {
-            wvc.urlString = self.movie.urlMetacritic;
+            wvc.urlString = self.movie.metacriticURL;
         }
         else if (indexPath.row == 1) {
-            wvc.urlString = [NSString stringWithFormat:@"http://m.imdb.com/title/%@/",self.movie.urlImdb];
+            wvc.urlString = [NSString stringWithFormat:@"http://m.imdb.com/title/%@/",self.movie.imdbCode];
         }
         else if (indexPath.row == 2) {
-            wvc.urlString = self.movie.urlRottenTomatoes;
+            wvc.urlString = self.movie.rottenTomatoesURL;
         }
     }
     else if ([[segue identifier] isEqualToString:@"MovieToShowtimes"]){
         MovieCinemasVC *vc = (MovieCinemasVC *)[segue destinationViewController];
-        vc.movieID = self.movie.itemId;
+        vc.movieID = self.movie.movieID;
         vc.movieName = self.movie.name;
     }
     else if ([[segue identifier] isEqualToString:@"MovieToVideos"]) {
@@ -616,6 +604,32 @@
 
 -(NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - Notification Observer method
+
+-(void) setFontsWithPreferedContentSizeCategory:(NSString *)preferredContentSizeCategory {
+    self.smallerFont = [UIFont getSizeForCHFont:CHFontStyleSmaller forPreferedContentSize: preferredContentSizeCategory];
+    self.normalFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize: preferredContentSizeCategory];
+    self.bigBoldFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize: preferredContentSizeCategory];
+    self.labelName.font = self.bigBoldFont;
+    self.labelNameOriginal.font = self.normalFont;
+    self.labelDurationGenres.font = self.smallerFont;
+    self.textViewSynopsis.font = self.normalFont;
+    self.labelScoreImdb.font = self.normalFont;
+    self.labelScoreMetacritic.font = self.normalFont;
+    self.labelScoreRottenTomatoes.font = self.normalFont;
+    self.labelDirector.font = self.normalFont;
+    self.labelBuscarHorarios.font = self.normalFont;
+    self.labelVideos.font = self.normalFont;
+    ((UILabel *)[self.labelScoreImdb.superview viewWithTag:102]).font = self.normalFont;
+    ((UILabel *)[self.labelScoreMetacritic.superview viewWithTag:102]).font = self.normalFont;
+    ((UILabel *)[self.labelScoreRottenTomatoes.superview viewWithTag:102]).font = self.normalFont;
+}
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
+    [self setFontsWithPreferedContentSizeCategory:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    [self.tableView reloadData];
+    [self.collectionViewActors reloadData];
 }
 
 #pragma mark - Setup Views
@@ -676,4 +690,6 @@
                                                                                     views:viewsDictionary]];
     
 }
+
+
 @end

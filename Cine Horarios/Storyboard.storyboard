@@ -215,7 +215,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="tfe-dE-hoV" customClass="CHCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="tfe-dE-hoV" customClass="BasicCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tfe-dE-hoV" id="uMH-SG-sFA">
@@ -239,7 +239,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="labelTitle" destination="y3N-O3-wrx" id="5i8-WU-YlG"/>
+                                    <outlet property="mainLabel" destination="y3N-O3-wrx" id="orW-Nr-9Qp"/>
                                     <segue destination="1J3-Xg-dIA" kind="push" id="Edb-Sc-kkF"/>
                                 </connections>
                             </tableViewCell>
@@ -307,7 +307,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="MovieVC" hidesBottomBarWhenPushed="YES" id="rNi-KW-Ki3" customClass="MovieVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Yjm-Tr-dwd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -496,7 +496,7 @@
                                                         <inset key="sectionInset" minX="5" minY="0.0" maxX="50" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="x2f-fd-Kpd">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="x2f-fd-Kpd" customClass="MovieCastCell">
                                                             <rect key="frame" x="5" y="2" width="87" height="164"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -543,10 +543,13 @@
                                                                 <constraint firstItem="R2t-eT-Krd" firstAttribute="centerY" secondItem="iMv-Mq-t5f" secondAttribute="centerY" id="mOX-f7-9Xb"/>
                                                                 <constraint firstItem="R2t-eT-Krd" firstAttribute="top" secondItem="x2f-fd-Kpd" secondAttribute="top" id="nSL-hn-zXV"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <outlet property="imageCover" destination="iMv-Mq-t5f" id="zh7-hg-ipe"/>
+                                                                <outlet property="nameLabel" destination="OLL-vi-TgX" id="zoV-no-wLD"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                     <connections>
-                                                        <outlet property="dataSource" destination="rNi-KW-Ki3" id="Flv-GB-5l4"/>
                                                         <outlet property="delegate" destination="rNi-KW-Ki3" id="V1s-M4-npW"/>
                                                     </connections>
                                                 </collectionView>
@@ -595,7 +598,7 @@
                                                         <inset key="sectionInset" minX="5" minY="0.0" maxX="40" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="3eK-aj-8xO">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="3eK-aj-8xO" customClass="MovieImageCell">
                                                             <rect key="frame" x="5" y="5" width="100" height="100"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -625,10 +628,12 @@
                                                                 <constraint firstAttribute="centerY" secondItem="m0M-bk-lmp" secondAttribute="centerY" id="Y2D-VU-CdV"/>
                                                                 <constraint firstItem="Nl4-Pv-iK9" firstAttribute="top" secondItem="3eK-aj-8xO" secondAttribute="top" id="jxd-ZW-yJT"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <outlet property="imageCover" destination="m0M-bk-lmp" id="3h9-4r-7Mh"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                     <connections>
-                                                        <outlet property="dataSource" destination="rNi-KW-Ki3" id="QT4-de-AiO"/>
                                                         <outlet property="delegate" destination="rNi-KW-Ki3" id="arJ-Qm-cHR"/>
                                                     </connections>
                                                 </collectionView>
@@ -805,12 +810,12 @@
             <objects>
                 <tableViewController storyboardIdentifier="CastVC" id="x8r-f8-pYO" customClass="CastVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="82" sectionHeaderHeight="22" sectionFooterHeight="22" id="wBp-77-Eqk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellDirectors" id="8HF-cb-Obb" customClass="DirectorCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellDirectors" id="8HF-cb-Obb" customClass="CastDirectorCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8HF-cb-Obb" id="C6e-UJ-xiF">
@@ -852,10 +857,10 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="imageCover" destination="lFt-dm-QqP" id="pzu-1r-8hS"/>
-                                    <outlet property="labelName" destination="oJe-AA-1XF" id="PZ0-xE-5b2"/>
+                                    <outlet property="nameLabel" destination="oJe-AA-1XF" id="bil-Io-CQd"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellActors" id="Dxp-cc-hSx" customClass="ActorCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellActors" id="Dxp-cc-hSx" customClass="CastActorCell">
                                 <rect key="frame" x="0.0" y="104" width="320" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dxp-cc-hSx" id="SRX-p1-D7t">
@@ -906,9 +911,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="characterLabel" destination="MOy-nl-rSz" id="Eu4-VA-rfA"/>
                                     <outlet property="imageCover" destination="yvL-bz-8B5" id="bjN-WY-Yme"/>
-                                    <outlet property="labelName" destination="P82-so-JcI" id="Xsg-k5-2Z3"/>
-                                    <outlet property="labelRole" destination="MOy-nl-rSz" id="C0p-Gb-rCi"/>
+                                    <outlet property="nameLabel" destination="P82-so-JcI" id="Lpe-0S-j6Y"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -928,7 +933,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="MovieCinemasVC" id="Kn7-A9-5oa" customClass="MovieCinemasVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="PRu-DP-mg3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -973,7 +978,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="MovieFunctionsVC" id="oqn-wU-tZP" customClass="MovieFunctionsVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="93" sectionHeaderHeight="30" sectionFooterHeight="22" id="Zrg-FR-ZQD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1031,11 +1036,11 @@
                         <viewControllerLayoutGuide type="bottom" id="tet-Hv-ltg"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="1bH-Dh-D4o">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZI2-Yf-jWi">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZI2-Yf-jWi">
+                                <rect key="frame" x="0.0" y="20" width="320" height="484"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -1120,7 +1125,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FuncionesVC" id="1J3-Xg-dIA" customClass="FuncionesVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="270" sectionHeaderHeight="22" sectionFooterHeight="22" id="tQ0-iC-Li1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1195,26 +1200,6 @@
                                     <segue destination="rNi-KW-Ki3" kind="push" identifier="FunctionsToMovie" id="NT1-KO-izX"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell2" textLabel="Kdt-CH-Y51" rowHeight="44" style="IBUITableViewCellStyleDefault" id="hTC-rx-S1y">
-                                <rect key="frame" x="0.0" y="166" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hTC-rx-S1y" id="GLI-vh-1i5">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="270" id="Kdt-CH-Y51">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="fiU-Lv-GKa" kind="push" identifier="FunctionsToWeb" id="wId-Qi-Ofr"/>
-                                </connections>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="delegate" destination="1J3-Xg-dIA" id="dn4-FN-xbY"/>
@@ -1231,7 +1216,7 @@
             <objects>
                 <viewController id="qzZ-iv-eSn" customClass="VideoVC" sceneMemberID="viewController">
                     <webView key="view" contentMode="scaleToFill" id="pZX-3E-AdB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </webView>
@@ -1612,8 +1597,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yw0-JB-wjW"/>
-        <segue reference="wId-Qi-Ofr"/>
-        <segue reference="z63-K4-9gr"/>
+        <segue reference="feD-TT-raZ"/>
+        <segue reference="NT1-KO-izX"/>
+        <segue reference="ZrW-Ss-4wn"/>
     </inferredMetricsTieBreakers>
 </document>

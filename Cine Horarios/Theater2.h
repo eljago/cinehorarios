@@ -13,6 +13,7 @@
 
 @property (nonatomic, assign, readonly) NSUInteger theaterID;
 @property (nonatomic, strong, readonly) NSString *name;
+@property (nonatomic, strong, readonly) NSString *webURL;
 @property (nonatomic, strong, readonly) NSArray *functions;
 
 + (void)getTheaterWithBlock:(void (^)(Theater2 *theater, NSError *error))block theaterID:(NSUInteger )theaterID;

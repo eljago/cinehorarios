@@ -7,19 +7,18 @@
 //
 
 #import "TheatersVC.h"
+#import "Cinema.h"
 #import "Theater2.h"
 #import "FuncionesVC.h"
 #import "UIFont+CH.h"
 #import "BasicCell.h"
+#import "BasicCell+Theater.h"
 #import "MBProgressHUD.h"
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "ArrayDataSource.h"
-#import "BasicCell+Theater.h"
-
-#import "Cinema.h"
 
 @interface TheatersVC ()
 
@@ -99,7 +98,7 @@
     }
     else {
         self.cinema = [Cinema loadCinemaWithCinemaID:self.cinemaID];
-        if (self.cinema) {
+        if (self.cinema && self.cinema.theaters.count > 0) {
             self.dataSource.items = self.cinema.theaters;
             [self.tableView reloadData];
             if (self.refreshControl.refreshing) {

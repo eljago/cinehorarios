@@ -7,8 +7,6 @@
 //
 
 #import "CastVC.h"
-#import "DirectorCell.h"
-#import "ActorCell.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "MWPhotoBrowser.h"
@@ -18,15 +16,19 @@
 #import "GAIFields.h"
 #import "GlobalNavigationController.h"
 #import "UIView+CH.h"
+#import "CastActorCell.h"
+#import "CastActorCell+Person.h"
+#import "CastDirectorCell.h"
+#import "CastDirectorCell+Person.h"
+#import "Person.h"
 
 @interface CastVC ()
 
+@property (nonatomic, strong) UIFont *fontName;
+@property (nonatomic, strong) UIFont *fontRole;
 @end
 
-@implementation CastVC {
-    UIFont *fontName;
-    UIFont *fontRole;
-}
+@implementation CastVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,17 +43,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA REPARTO" forKey:kGAIScreenName] build]];
     
-    fontName = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    fontRole = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.fontName = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.fontRole = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     
 }
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -72,21 +76,17 @@
     
     if (indexPath.section == 0) {
         static NSString *CellIdentifierDirectors = @"CellDirectors";
-        DirectorCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierDirectors];
-        
-        cell.actor = self.directors[indexPath.row];
-        cell.labelName.font = fontName;
+        CastDirectorCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierDirectors];
+        Person *director = self.cast.directors[indexPath.row];
+        [cell configureForPerson:director];
         
         return cell;
     }
     else {
         static NSString *CellIdentifierDirectors = @"CellActors";
-        ActorCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierDirectors];
-        
-        Actor *actor = self.actors[indexPath.row];
-        cell.actor = actor;
-        cell.labelName.font = fontName;
-        cell.labelRole.font = fontRole;
+        CastActorCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierDirectors];
+        Person *actor = self.cast.actors[indexPath.row];
+        [cell configureForPerson:actor];
         
         return cell;
     }
@@ -95,10 +95,10 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     NSString *text;
     if (section == 0) {
-        if (self.directors.count == 1) {
+        if (self.cast.directors.count == 1) {
             text = @"Director";
         }
-        else if (self.directors.count > 1) {
+        else if (self.cast.directors.count > 1) {
             text = @"Directores";
         }
         else {
@@ -106,23 +106,23 @@
         }
     }
     else {
-        if (self.actors.count > 0) {
+        if (self.cast.actors.count > 0) {
             text = @"Reparto";
         }
         else {
             text = @"";
         }
     }
-    NSInteger height = [UIView heightForHeaderViewWithText:text font:fontName];
-    return [UIView headerViewForText:text font:fontName height:height];
+    NSInteger height = [UIView heightForHeaderViewWithText:text font:self.fontName];
+    return [UIView headerViewForText:text font:self.fontName height:height];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        if (self.directors.count == 1) {
+        if (self.cast.directors.count == 1) {
             return @"Director";
         }
-        else if (self.directors.count > 1) {
+        else if (self.cast.directors.count > 1) {
             return @"Directores";
         }
         else {
@@ -130,7 +130,7 @@
         }
     }
     else {
-        if (self.actors.count > 0) {
+        if (self.cast.actors.count > 0) {
             return @"Reparto";
         }
         else {
@@ -143,18 +143,18 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return self.directors.count;
+        return self.cast.directors.count;
     }
     else {
-        return self.actors.count;
+        return self.cast.actors.count;
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return [DirectorCell heightForCellWithActor:self.directors[indexPath.row] withFont:fontName];
+        return [CastDirectorCell heightForRowWithPerson:self.cast.directors[indexPath.row] fontName:self.fontName];
     }
     else {
-        return [ActorCell heightForCellWithActor:self.actors[indexPath.row] withNameFont:fontName roleFont:fontRole];
+        return [CastActorCell heightForRowWithPerson:self.cast.actors[indexPath.row] fontName:self.fontName fontRole:self.fontRole];
     }
 }
 
@@ -168,7 +168,7 @@
         row = indexPath.row;
     }
     else {
-        row = self.directors.count + indexPath.row;
+        row = self.cast.directors.count + indexPath.row;
     }
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     browser.displayActionButton = YES;
@@ -183,14 +183,14 @@
 #pragma mark Row & Height Calculators
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0 && self.directors.count == 0) {
+    if (section == 0 && self.cast.directors.count == 0) {
         return 0.01;
     }
-    else if (section == 1 && self.actors.count == 0){
+    else if (section == 1 && self.cast.actors.count == 0){
         return 0.01;
     }
     else {
-        return [UIView heightForHeaderViewWithText:@"Javier" font:fontName];
+        return [UIView heightForHeaderViewWithText:@"Javier" font:self.fontName];
     }
 }
 
@@ -211,8 +211,8 @@
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     
-    fontName = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    fontRole = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.fontName = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.fontRole = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     [self.tableView reloadData];
 }
 

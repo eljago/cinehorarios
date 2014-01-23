@@ -3,59 +3,59 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>image</key>
+		<key>image_url</key>
 		<string>LogoCinemark</string>
 		<key>name</key>
 		<string>Cinemark</string>
-		<key>id</key>
+		<key>itemID</key>
 		<string>1</string>
 	</dict>
 	<dict>
-		<key>image</key>
+		<key>image_url</key>
 		<string>LogoCineHoyts</string>
 		<key>name</key>
 		<string>Cine Hoyts</string>
-		<key>id</key>
+		<key>itemID</key>
 		<string>2</string>
 	</dict>
 	<dict>
-		<key>image</key>
+		<key>image_url</key>
 		<string>LogoCineplanet</string>
 		<key>name</key>
 		<string>Cineplanet</string>
-		<key>id</key>
+		<key>itemID</key>
 		<string>3</string>
 	</dict>
 	<dict>
-		<key>image</key>
+		<key>image_url</key>
 		<string>LogoCinemundo</string>
 		<key>name</key>
 		<string>Cinemundo</string>
-		<key>id</key>
+		<key>itemID</key>
 		<string>4</string>
 	</dict>
 	<dict>
-		<key>image</key>
+		<key>image_url</key>
 		<string>LogoCinePavilion</string>
 		<key>name</key>
 		<string>Cine Pavilion</string>
-		<key>id</key>
+		<key>itemID</key>
 		<string>6</string>
 	</dict>
 	<dict>
-		<key>id</key>
+		<key>itemID</key>
 		<string>7</string>
 		<key>name</key>
 		<string>CineStar</string>
-		<key>image</key>
+		<key>image_url</key>
 		<string>LogoCineStar</string>
 	</dict>
 	<dict>
-		<key>image</key>
+		<key>image_url</key>
 		<string></string>
 		<key>name</key>
 		<string>Independientes</string>
-		<key>id</key>
+		<key>itemID</key>
 		<string>5</string>
 	</dict>
 </array>

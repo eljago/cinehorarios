@@ -9,7 +9,6 @@
 #import "FuncionesVC.h"
 #import "FavoritesVC.h"
 #import "FunctionCell2.h"
-#import "BasicMovie.h"
 #import "UIColor+CH.h"
 #import "Theater2.h"
 #import "Function2.h"
@@ -30,7 +29,6 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 @interface FuncionesVC ()
 @property (nonatomic, strong) Theater2 *theater;
-@property (nonatomic, strong) NSString *theater_url;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
 @property (nonatomic, strong) UIBarButtonItem *favoriteButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *menuButtonItem;
@@ -120,7 +118,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     }
     else {
         self.theater = [Theater2 loadTheaterithTheaterID:self.theaterID];
-        if (self.theater) {
+        if (self.theater.functions.count > 0) {
             self.dataSource.items = self.theater.functions;
             [self.tableView reloadData];
             if (self.refreshControl.refreshing) {
@@ -139,8 +137,25 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     [Theater2 getTheaterWithBlock:^(Theater2 *theater, NSError *error) {
         if (!error) {
             self.theater = theater;
-            self.dataSource.items = theater.functions;
-            [self.tableView reloadData];
+            if (self.theater && self.theater.functions.count > 0) {
+                self.dataSource.items = self.theater.functions;
+                [self.tableView reloadData];
+            }
+            else {
+                DoAlertView *alert = [[DoAlertView alloc] init];
+                alert.nAnimationType = DoTransitionStylePop;
+                alert.dRound = 2.0;
+                alert.bDestructive = NO;
+                
+                [alert doYesNo:@"Horarios no encontrados" body:[NSString stringWithFormat:@"¿Visitar página web de %@?",self.theater.name] yes:^(DoAlertView *alertView) {
+                    
+                    WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+                    wvc.urlString = self.theater.webURL;
+                    [self.navigationController pushViewController:wvc animated:YES];
+                } no:^(DoAlertView *alertView) {
+                    
+                }];
+            }
         }
         else {
             [self alertRetryWithCompleteBlock:^{
@@ -216,18 +231,12 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"FunctionsToMovie"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        MovieVC *movieVC = segue.destinationViewController;
-        Function2 *function = self.theater.functions[indexPath.row];
-        movieVC.movieID = function.movieID;
-        movieVC.movieName = function.name;
-        movieVC.portraitImageURL = function.portraitImageURL;
-    }
-    else {
-        WebVC *wvc = segue.destinationViewController;
-        wvc.urlString = self.theater_url;
-    }
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    MovieVC *movieVC = segue.destinationViewController;
+    Function2 *function = self.theater.functions[indexPath.row];
+    movieVC.movieID = function.movieID;
+    movieVC.movieName = function.name;
+    movieVC.portraitImageURL = function.portraitImageURL;
 }
 
 @end

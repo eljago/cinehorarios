@@ -11,14 +11,4 @@
 
 @implementation BasicCell
 
--(void)awakeFromNib {
-    [super awakeFromNib];
-    
-    UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = [UIColor belizeHole];
-    [self setSelectedBackgroundView:bgColorView];
-    
-    _mainLabel.highlightedTextColor = [UIColor whiteColor];
-}
-
 @end

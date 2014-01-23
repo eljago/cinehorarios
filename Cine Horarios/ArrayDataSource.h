@@ -10,12 +10,10 @@
 
 typedef void (^ConfigureCellBlock)(id cell, id item);
 
-@interface ArrayDataSource : NSObject <UITableViewDataSource>
+@interface ArrayDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
 @property (nonatomic, strong) NSArray *items;
 
-- (id)initWithItems:(NSArray *)items
-     cellIdentifier:(NSString *)identifier
- configureCellBlock:(ConfigureCellBlock)configureCellBlock;
+- (id)initWithItems:(NSArray *)items cellIdentifier:(NSString *)identifier configureCellBlock:(ConfigureCellBlock)configureCellBlock;
 
 @end

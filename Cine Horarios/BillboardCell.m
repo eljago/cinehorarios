@@ -10,11 +10,4 @@
 
 @implementation BillboardCell
 
--(void)awakeFromNib {
-    [super awakeFromNib];
-    
-    _durationLabel.highlightedTextColor = [UIColor whiteColor];
-    _genresLabel.highlightedTextColor = [UIColor whiteColor];
-}
-
 @end

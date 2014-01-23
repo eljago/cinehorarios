@@ -19,7 +19,8 @@ NSString *const kTheaterArchivePath = @"/data/theaters/";
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"theaterID": @"id"
+             @"theaterID": @"id",
+             @"webURL": @"web_url"
              };
 }
 

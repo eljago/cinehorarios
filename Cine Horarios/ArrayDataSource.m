@@ -17,9 +17,7 @@
 
 @implementation ArrayDataSource
 
-- (id)initWithItems:(NSArray *)items
-     cellIdentifier:(NSString *)identifier
- configureCellBlock:(ConfigureCellBlock)configureCellBlock {
+- (id)initWithItems:(NSArray *)items cellIdentifier:(NSString *)identifier configureCellBlock:(ConfigureCellBlock)configureCellBlock {
     self = [super init];
     if (self) {
         self.items = items;
@@ -34,18 +32,27 @@
     return self.items[indexPath.row];
 }
 
-- (NSInteger)tableView:(UITableView*)tableView
- numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
     return self.items.count;
 }
 
-- (UITableViewCell*)tableView:(UITableView*)tableView
-        cellForRowAtIndexPath:(NSIndexPath*)indexPath {
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     id cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier
                                               forIndexPath:indexPath];
     id item = [self itemAtIndexPath:indexPath];
     self.cellBlock(cell,item);
     return cell;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    id cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.cellIdentifier forIndexPath:indexPath];
+    id item = [self itemAtIndexPath:indexPath];
+    self.cellBlock(cell,item);
+    return cell;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.items.count;
 }
 
 @end

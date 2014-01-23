@@ -8,11 +8,13 @@
 
 #import "CinesVC.h"
 #import "TheatersVC.h"
-#import "BasicImageItem.h"
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "BasicItem2.h"
+#import "BasicItemImage.h"
+#import "MTLJSONAdapter.h"
 
 @interface CinesVC ()
 @property (nonatomic, strong) NSArray *cinemas;
@@ -45,13 +47,13 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    BasicImageItem *cinema = self.cinemas[indexPath.row];
+    BasicItemImage *cinema = self.cinemas[indexPath.row];
     ((UILabel *)[cell viewWithTag:101]).text = cinema.name;
-    if ([cinema.imageUrl isEqualToString:@""]) {
+    if ([cinema.imageURL isEqualToString:@""]) {
         ((UIImageView *)[cell viewWithTag:100]).image = nil;
     }
     else {
-        ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageNamed:cinema.imageUrl];
+        ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageNamed:cinema.imageURL];
     }
     
     return cell;
@@ -67,7 +69,8 @@
     
     NSMutableArray *mutableCinemas = [NSMutableArray array];
     for (NSDictionary *dict in cinemasLocal) {
-        [mutableCinemas addObject:[[BasicImageItem alloc] initWithId:[dict[@"id"] integerValue] name:dict[@"name"] imageUrl:dict[@"image"]]];
+        BasicItemImage *cinema = [MTLJSONAdapter modelOfClass:BasicItem2.class fromJSONDictionary:dict error:NULL];
+        [mutableCinemas addObject:cinema];
     }
     self.cinemas = [NSArray arrayWithArray:mutableCinemas];
 }
@@ -78,8 +81,8 @@
     TheatersVC *theatersViewController = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     
-    BasicImageItem *cinema = self.cinemas[indexPath.row];
-    theatersViewController.cinemaID = cinema.itemId;
+    BasicItemImage *cinema = self.cinemas[indexPath.row];
+    theatersViewController.cinemaID = cinema.itemID;
     theatersViewController.cinemaName = cinema.name;
 }
 

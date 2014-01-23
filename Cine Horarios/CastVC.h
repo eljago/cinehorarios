@@ -7,10 +7,11 @@
 //
 #import "MWPhotoBrowser.h"
 #import "CineHorariosTableViewController.h"
+#import "Cast.h"
 
 @interface CastVC : CineHorariosTableViewController  <MWPhotoBrowserDelegate>
-@property (nonatomic, strong) NSArray *directors;
-@property (nonatomic, strong) NSArray *actors;
+
+@property (nonatomic, strong) Cast *cast;
 @property (nonatomic, strong) NSMutableArray *photos;
 
 @end

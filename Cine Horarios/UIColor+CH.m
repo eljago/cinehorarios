@@ -76,6 +76,9 @@
 +(UIColor *)hydrangea {
     return DO_RGB(125, 94, 186);
 }
++(UIColor *)grayYoutubeControls {
+    return DO_RGB(60, 60, 60);
+}
 
 +(UIColor *)menuColorForRow:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
