@@ -73,6 +73,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     self.navigationItem.rightBarButtonItem = menuButtonItem;
     
 //    [self getTheatersLocationsForceRemote:NO];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     if (!self.annotations) {
         [self disableBarButtonItems];
@@ -304,6 +305,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
             
             [self enableBarButtonItems];
             self.buttonToggleTable.enabled = YES;
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }
         else {
             [self downloadTheatersLocations];
