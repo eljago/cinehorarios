@@ -18,7 +18,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 2.f, 300.f, height)];
     label.textColor = [UIColor whiteColor];
     label.tag = 40;
-    label.font = [UIFont fontWithName:@"DINCondensed-Bold" size:17];
+    label.font = [UIFont fontWithName:@"DINCondensed-Bold" size:font.fontDescriptor.pointSize];
     label.text = text;
     label.textAlignment = NSTextAlignmentLeft;
     [view addSubview: label];
@@ -27,9 +27,11 @@
 +(CGFloat) heightForHeaderViewWithText:(NSString *)text font:(UIFont *)font {
     CGSize size = CGSizeMake(300.f, 1000.f);
     
+    UIFont *newFont = [UIFont fontWithName:@"DINCondensed-Bold" size:font.fontDescriptor.pointSize];
+    
     CGRect nameLabelRect = [text boundingRectWithSize: size
                                                         options: NSStringDrawingUsesLineFragmentOrigin
-                                                     attributes: [NSDictionary dictionaryWithObject:font
+                                                     attributes: [NSDictionary dictionaryWithObject:newFont
                                                                                              forKey:NSFontAttributeName]
                                                         context: nil];
     

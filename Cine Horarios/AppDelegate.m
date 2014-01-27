@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "CinesVC.h"
 #import "AFNetworkActivityIndicatorManager.h"
-#import "BasicItem.h"
 #import "GAI.h"
 #import "FileHandler.h"
 #import "UIColor+CH.h"

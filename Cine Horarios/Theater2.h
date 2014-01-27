@@ -12,11 +12,13 @@
 @interface Theater2 : MTLModelPersistable <MTLJSONSerializing>
 
 @property (nonatomic, assign, readonly) NSUInteger theaterID;
+@property (nonatomic, assign, readonly) NSUInteger cinemaID;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSString *webURL;
 @property (nonatomic, strong, readonly) NSArray *functions;
 
 + (void)getTheaterWithBlock:(void (^)(Theater2 *theater, NSError *error))block theaterID:(NSUInteger )theaterID;
 + (id)loadTheaterithTheaterID:(NSUInteger)theaterID;
++ (void)getMovieTheatersWithBlock:(void (^)(NSArray *theaters, NSError *error))block movieID:(NSUInteger )movieID;
 
 @end

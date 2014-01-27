@@ -8,7 +8,8 @@
 
 #import "NSFileManager+CH.h"
 
-NSUInteger const kMaxFileDuration = 60*60*3;
+//NSUInteger const kMaxFileDuration = 60*60*3;
+NSUInteger const kMaxFileDuration = 0;
 
 @implementation NSFileManager (CH)
 

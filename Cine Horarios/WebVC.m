@@ -11,6 +11,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "FuncionesVC.h"
 
 @interface WebVC ()
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
@@ -44,6 +45,7 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self loadPage:nil];
 }
+
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

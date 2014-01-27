@@ -7,7 +7,6 @@
 //
 
 #import "MenuVC.h"
-#import "BasicImageItem.h"
 #import "GlobalNavigationController.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"

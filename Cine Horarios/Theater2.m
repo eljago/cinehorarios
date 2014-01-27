@@ -11,15 +11,19 @@
 #import "NSValueTransformer+MTLPredefinedTransformerAdditions.h"
 #import "Function2.h"
 #import "NSFileManager+CH.h"
+#import "NSArray+FKBMap.h"
 
 NSString *const kTheaterPath = @"/api/theaters/%d.json";
 NSString *const kTheaterArchivePath = @"/data/theaters/";
+
+NSString *const kShowTheatersPath = @"/api/shows/%d/show_theaters.json";
 
 @implementation Theater2
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"theaterID": @"id",
+             @"cinemaID": @"cinema_id",
              @"webURL": @"web_url"
              };
 }
@@ -55,6 +59,26 @@ NSString *const kTheaterArchivePath = @"/data/theaters/";
 + (NSString *)storagePathForTheaterID:(NSUInteger)theaterID
 {
     return [[NSFileManager storagePathForPath:kTheaterArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.data",theaterID]];
+}
+
+
++ (void)getMovieTheatersWithBlock:(void (^)(NSArray *theaters, NSError *error))block movieID:(NSUInteger )movieID {
+    NSString *path = [NSString stringWithFormat:kShowTheatersPath,movieID];
+    [[CineHorariosApiClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        
+        NSArray *theaters = [JSON fkbMap:^Theater2 *(NSDictionary *theaterDictionary) {
+            NSError *error = nil;
+            return [MTLJSONAdapter modelOfClass:Theater2.class fromJSONDictionary:theaterDictionary error:&error];
+        }];
+        
+        if (block) {
+            block(theaters, nil);
+        }
+    } failure:^(NSURLSessionDataTask * __unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
 }
 
 @end

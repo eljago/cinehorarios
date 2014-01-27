@@ -8,16 +8,14 @@
 
 #import "MovieFunctionsVC.h"
 #import "MBProgressHUD.h"
-#import "Theater.h"
-#import "Movie.h"
-#import "Function.h"
+#import "Function2.h"
+#import "Theater2.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-#import "TheaterFunctions.h"
 #import "UIView+CH.h"
 
 @interface MovieFunctionsVC ()
@@ -45,12 +43,9 @@
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     
-    
-    // TopView it's the view over the tableview while it's downloading the data for the first time
-    UIView *topView = [[UIView alloc] initWithFrame:self.view.bounds];
-    topView.backgroundColor = [UIColor tableViewColor];
-    topView.tag = 999;
-    [self.view addSubview:topView];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
     
     [self downloadMovieFunctions];
 }
@@ -58,7 +53,7 @@
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [TheaterFunctions getMovieTheatersFavoritesWithBlock:^(NSArray *theaterFunctions, NSError *error) {
+    [Function2 getMovieTheatersFavoritesWithBlock:^(NSArray *theaterFunctions, NSError *error) {
         if (!error) {
             self.theaterFuctions = theaterFunctions;
             [self.tableView reloadData];
@@ -69,20 +64,19 @@
                 [self downloadMovieFunctions];
             }];
         }
-        
-        UIView *frontView = [self.view viewWithTag:999];
-        [UIView animateWithDuration:0.3 animations:^{
-            frontView.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            
-            [frontView removeFromSuperview];
-            self.tableView.scrollEnabled = YES;
-        }];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        self.tableView.scrollEnabled = YES;
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if (self.refreshControl.refreshing) {
+            [self.refreshControl endRefreshing];
+        }
         
     } movieID:self.movieID theaters:self.theaters];
 }
 
+-(void)refreshData {
+    [self.refreshControl beginRefreshing];
+    [self downloadMovieFunctions];
+}
 #pragma mark - Content Size Changed
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     headerFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
@@ -101,11 +95,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.theaterFuctions.count) {
-        TheaterFunctions *theater = self.theaterFuctions[indexPath.section];
-        Function *function = theater.functions[indexPath.row];
+        Theater2 *theater = self.theaterFuctions[indexPath.section];
+        Function2 *function = theater.functions[indexPath.row];
         CGSize size = CGSizeMake(280.f, 1000.f);
         
-        CGRect typesLabelRect = [function.types boundingRectWithSize: size
+        CGRect typesLabelRect = [function.functionTypes boundingRectWithSize: size
                                                              options: NSStringDrawingUsesLineFragmentOrigin
                                                           attributes: [NSDictionary dictionaryWithObject:tableFont forKey:NSFontAttributeName]
                                                              context: nil];
@@ -114,7 +108,7 @@
                                                                   attributes: [NSDictionary dictionaryWithObject:tableFont forKey:NSFontAttributeName]
                                                                      context: nil];
         CGFloat typesHeight = typesLabelRect.size.height;
-        if (!function.types || [function.types isEqualToString:@""]) {
+        if (!function.functionTypes || [function.functionTypes isEqualToString:@""]) {
             typesHeight = 0.;
         }
         CGFloat totalHeight = 10.0f + typesHeight + 5.0f + showtimesLabelRect.size.height + 10.0f;
@@ -133,7 +127,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    TheaterFunctions *theater = self.theaterFuctions[section];
+    Theater2 *theater = self.theaterFuctions[section];
     return theater.functions.count;
 }
 
@@ -142,12 +136,12 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    TheaterFunctions *theater = self.theaterFuctions[indexPath.section];
-    Function *function = theater.functions[indexPath.row];
+    Theater2 *theater = self.theaterFuctions[indexPath.section];
+    Function2 *function = theater.functions[indexPath.row];
     
     UILabel *functionTypes = (UILabel *)[cell viewWithTag:1];
     UILabel *functionShowtimes = (UILabel *)[cell viewWithTag:2];
-    functionTypes.text = function.types;
+    functionTypes.text = function.functionTypes;
     functionShowtimes.text = function.showtimes;
     functionTypes.font = tableFont;
     functionShowtimes.font = tableFont;
@@ -156,13 +150,13 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    TheaterFunctions *theater = self.theaterFuctions[section];
+    Theater2 *theater = self.theaterFuctions[section];
     
     return [UIView heightForHeaderViewWithText:theater.name font:headerFont];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    TheaterFunctions *theater = self.theaterFuctions[section];
+    Theater2 *theater = self.theaterFuctions[section];
     NSInteger height = [UIView heightForHeaderViewWithText:theater.name font:headerFont];
     
     return [UIView headerViewForText:theater.name font:headerFont height:height];

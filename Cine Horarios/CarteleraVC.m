@@ -11,7 +11,6 @@
 #import "Billboard.h"
 #import "BillboardCell.h"
 #import "BillboardCell+BasicMovie.h"
-#import "NSArray+FKBMap.h"
 #import "UIFont+CH.h"
 #import "MovieVC.h"
 #import "MBProgressHUD.h"

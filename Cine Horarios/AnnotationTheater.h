@@ -1,25 +1,23 @@
 //
-//  MyAnnotation.h
+//  AnnotationTheater2.h
 //  Cine Horarios
 //
-//  Created by Arturo Espinoza Carrasco on 03-11-13.
-//  Copyright (c) 2013 Arturo Espinoza Carrasco. All rights reserved.
+//  Created by Arturo Espinoza Carrasco on 23-01-14.
+//  Copyright (c) 2014 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "Theater.h"
 
-@interface AnnotationTheater : Theater <MKAnnotation>
+@interface AnnotationTheater : NSObject <MKAnnotation>
 
-@property (nonatomic, readonly, assign) CLLocationCoordinate2D coordinate;
+@property (nonatomic, assign, readonly) NSUInteger theaterID;
+@property (nonatomic, assign, readonly) NSUInteger cinemaID;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
-@property (nonatomic, readwrite, assign) double distance;
+@property (nonatomic, assign, readwrite) double distance;
 
-- (id)initWithAttributes:(NSDictionary *)attributes;
--(NSComparisonResult)compareAnnotationsDistance: (AnnotationTheater *)annotation;
-+ (NSMutableArray *) getLocalAnnotations;
-+ (void)getAnnotationsWithBlock:(void (^)(NSMutableArray *annotations, NSError *error))block;
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSComparisonResult) compareAnnotationsDistance: (AnnotationTheater *)annotation;
 
 @end

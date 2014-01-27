@@ -8,6 +8,7 @@
 
 #import "CloseTheatersVC.h"
 #import <MapKit/MapKit.h>
+#import "AnnotationGroup.h"
 #import "AnnotationTheater.h"
 #import "MBProgressHUD.h"
 #import "UIColor+CH.h"
@@ -28,8 +29,8 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *myMapBottomSpaceToBotomLayout;
 @property (nonatomic, weak) IBOutlet UIButton *buttonToggleTable;
 @property BOOL userLocationUpdated;
-@property (nonatomic, strong) NSMutableArray *annotations;
 @property (nonatomic, assign) MKCoordinateRegion region;
+@property (nonatomic, strong) NSMutableArray *annotations;
 
 @property (nonatomic, strong) DoAlertView *alert;
 
@@ -71,9 +72,9 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;
     
-//    [self getTheatersLocationsForceRemote:NO];
+    [self getTheatersLocationsForceRemote:NO];
     
-    if (!self.annotations.count) {
+    if (!self.annotations) {
         [self disableBarButtonItems];
         self.buttonToggleTable.enabled = NO;
     }
@@ -128,7 +129,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
             view.image = [UIImage imageNamed:@"AnnotationCinemundo"];
             break;
         case 5:
-            switch (annotationTheater.itemId) {
+            switch (annotationTheater.theaterID) {
                 case 47:
                     view.image = [UIImage imageNamed:@"AnnotationNormandie"];
                     break;
@@ -165,8 +166,8 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     FuncionesVC *functionesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FuncionesVC"];
     AnnotationTheater *annotation = view.annotation;
-    functionesVC.theaterName = annotation.name;
-    functionesVC.theaterID = annotation.itemId;
+    functionesVC.theaterName = annotation.title;
+    functionesVC.theaterID = annotation.theaterID;
     
     [self.navigationController pushViewController:functionesVC animated:YES];
 }
@@ -181,8 +182,8 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     AnnotationTheater *annotation = self.annotations[indexPath.row];
-    cell.textLabel.text = annotation.name;
-    double distance = [self.annotations[indexPath.row] distance]/1000;
+    cell.textLabel.text = annotation.title;
+    double distance = annotation.distance/1000;
     NSString *distanceString = [NSString stringWithFormat:@"%.2lf km.",distance];
     if (distance < 1) {
         distanceString = [NSString stringWithFormat:@"%d m.",(int)(distance*1000)];
@@ -203,7 +204,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
             cell.imageView.image = [UIImage imageNamed:@"LogoCinemundo"];
             break;
         case 5:
-            switch (annotation.itemId) {
+            switch (annotation.theaterID) {
                 case 47:
                     cell.imageView.image = [UIImage imageNamed:@"LogoNormandie"];
                     break;
@@ -251,8 +252,8 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     FuncionesVC *functionesVC = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     AnnotationTheater *annotation = self.annotations[indexPath.row];
-    functionesVC.theaterName = annotation.name;
-    functionesVC.theaterID = annotation.itemId;
+    functionesVC.theaterName = annotation.title;
+    functionesVC.theaterID = annotation.theaterID;
 }
 
 #pragma mark - CloseTheatersVC
@@ -269,6 +270,16 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     return _alert;
 }
 
+- (void) createAnnotationsWithAnnotationGroup:(AnnotationGroup *)annotationGroup {
+    NSMutableArray *mutaArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *dictionary in annotationGroup.annotationTheaters) {
+        AnnotationTheater *annotation = [[AnnotationTheater alloc] initWithDictionary:dictionary];
+        if (annotation.coordinate.latitude != 0 && annotation.coordinate.longitude != 0) {
+            [mutaArray addObject:annotation];
+        }
+    }
+    self.annotations = mutaArray;
+}
 #pragma mark Fetch Data
 - (void) getTheatersLocationsForceRemote:(BOOL) forceRemote {
     
@@ -277,8 +288,10 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     }
     else {
         [self disableBarButtonItems];
-        if (!self.annotations.count)
-            self.annotations = [AnnotationTheater getLocalAnnotations];
+        if (!self.annotations && self.annotations.count == 0) {
+            AnnotationGroup *annotationGroup = [AnnotationGroup loadAnnotationGroup];
+            [self createAnnotationsWithAnnotationGroup:annotationGroup];
+        }
         
         if (self.annotations.count) {
             [self setDistances];
@@ -300,21 +313,21 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 - (void) downloadTheatersLocations {
     [self disableBarButtonItems];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [AnnotationTheater getAnnotationsWithBlock:^(NSMutableArray *annotations, NSError *error) {
-        
+    [AnnotationGroup getAnnotationsWithBlock:^(AnnotationGroup *annotationGroup, NSError *error) {
         if (!error) {
-            self.annotations = annotations;
-            
-            [self setDistances];
-            [self.annotations sortUsingSelector:@selector(compareAnnotationsDistance:)];
-            [self.myMap addAnnotations: self.annotations];
-            
-            [self calculateRegion];
-            [self.myMap setRegion:self.region animated:YES];
-            [self.tableView reloadData];
-            
-            [self enableBarButtonItems];
-            self.buttonToggleTable.enabled = YES;
+            [self createAnnotationsWithAnnotationGroup:annotationGroup];
+            if (self.annotations.count) {
+                [self setDistances];
+                [self.annotations sortUsingSelector:@selector(compareAnnotationsDistance:)];
+                [self.myMap addAnnotations:self.annotations];
+                
+                [self calculateRegion];
+                [self.myMap setRegion:self.region animated:YES];
+                [self.tableView reloadData];
+                
+                [self enableBarButtonItems];
+                self.buttonToggleTable.enabled = YES;
+            }
         }
         else {
             [self enableBarButtonItems];

@@ -14,7 +14,6 @@
 #import "MovieImagesVC.h"
 #import "CastVC.h"
 #import "WebVC.h"
-#import "VideoItem.h"
 #import "UIImageView+CH.h"
 #import "MWPhoto.h"
 #import "MBProgressHUD.h"

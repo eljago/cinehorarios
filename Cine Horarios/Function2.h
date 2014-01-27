@@ -18,4 +18,6 @@
 @property (nonatomic, strong, readonly) NSString *imageURL;
 @property (nonatomic, strong, readonly) NSString *portraitImageURL;
 
++ (void)getMovieTheatersFavoritesWithBlock:(void (^)(NSArray *theaterFunctions, NSError *error))block movieID:(NSUInteger )movieID theaters:(NSArray *)theaters;
+
 @end

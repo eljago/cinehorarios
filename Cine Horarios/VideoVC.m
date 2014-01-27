@@ -7,7 +7,7 @@
 //
 
 #import "VideoVC.h"
-#import "VideoItem.h"
+#import "Video.h"
 #import "UIColor+CH.h"
 #import "GAI.h"
 #import "GAITracker.h"
@@ -42,8 +42,8 @@
     
     NSString *iFrameString = @"";
     
-    for (VideoItem *videoItem in self.videos) {
-        iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"<div class=\"video\"><div class=\"title\">%@:</div><iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameborder=\"0\" allowfullscreen></iframe></div>", videoItem.name, 320, 180, videoItem.code]];
+    for (Video *video in self.videos) {
+        iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"<div class=\"video\"><div class=\"title\">%@:</div><iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameborder=\"0\" allowfullscreen></iframe></div>", video.name, 320, 180, video.code]];
     }
     
     NSString *embedHTML = [NSString stringWithFormat:@"<html><head>\

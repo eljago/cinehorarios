@@ -12,8 +12,6 @@
 		1628571F185F607E00DBD491 /* UIView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 1628571E185F607E00DBD491 /* UIView+CH.m */; };
 		1629F85417FF4EFA001428C1 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1629F85317FF4EFA001428C1 /* SettingsVC.m */; };
 		1639492617F9BA1700AB7DE7 /* CastVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1639492517F9BA1700AB7DE7 /* CastVC.m */; };
-		1639492917F9BB7F00AB7DE7 /* ActorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1639492817F9BB7F00AB7DE7 /* ActorCell.m */; };
-		1639492C17F9BBDB00AB7DE7 /* DirectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1639492B17F9BBDB00AB7DE7 /* DirectorCell.m */; };
 		163BAB211763C34500A81BF7 /* WebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 163BAB201763C34400A81BF7 /* WebVC.m */; };
 		16547FD718106D8C00B6F24C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 16547FD618106D8C00B6F24C /* Localizable.strings */; };
 		16692A32180C7D8A00166885 /* InitialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16692A31180C7D8A00166885 /* InitialVC.m */; };
@@ -37,7 +35,6 @@
 		3D309A2917A85DBC00BB5D13 /* UIColor+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D309A2817A85DBC00BB5D13 /* UIColor+CH.m */; };
 		3D309A2C17A8674000BB5D13 /* UIImage+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D309A2B17A8674000BB5D13 /* UIImage+CH.m */; };
 		3D39B91517208DC70011DF39 /* ComingSoonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D39B91417208DC70011DF39 /* ComingSoonVC.m */; };
-		3D3C3D741741345C004D1E56 /* VideoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C3D731741345C004D1E56 /* VideoItem.m */; };
 		3D3FA6ED174D91CC0067AE57 /* VideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FA6EC174D91CB0067AE57 /* VideoVC.m */; };
 		3D4A191917EFA4A200893A65 /* GlobalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A191817EFA4A200893A65 /* GlobalNavigationController.m */; };
 		3D521E1A17443FE1009ED580 /* CinesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D521E1917443FE0009ED580 /* CinesVC.m */; };
@@ -66,14 +63,7 @@
 		6E56CC15188BC735000AB809 /* BasicCell+Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC14188BC735000AB809 /* BasicCell+Theater.m */; };
 		6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396418273C9900ADB8D9 /* MapKit.framework */; };
 		6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57396718273D3400ADB8D9 /* CloseTheatersVC.m */; };
-		6E57396B18273E5F00ADB8D9 /* AnnotationTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57396A18273E5F00ADB8D9 /* AnnotationTheater.m */; };
 		6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396C182755A300ADB8D9 /* CoreLocation.framework */; };
-		6E723B5A1890B57C009DC5BE /* CHCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1630E1AE17D9183800C9D977 /* CHCell.m */; };
-		6E723B5B1890B60E009DC5BE /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C7EB62173E3A06001CF782 /* Theater.m */; };
-		6E723B5C1890B611009DC5BE /* BasicImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C7EB5F173E3582001CF782 /* BasicImageItem.m */; };
-		6E723B5D1890B613009DC5BE /* BasicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C7EB5C173E3447001CF782 /* BasicItem.m */; };
-		6E723B5E1890B62B009DC5BE /* TheaterFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 16547FD918108D2300B6F24C /* TheaterFunctions.m */; };
-		6E723B5F1890B66F009DC5BE /* Function.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C7EB65173E3B7F001CF782 /* Function.m */; };
 		6E723B621890BA4A009DC5BE /* BasicItem2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B611890BA4A009DC5BE /* BasicItem2.m */; };
 		6E723B651890BA8A009DC5BE /* BasicItemImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B641890BA8A009DC5BE /* BasicItemImage.m */; };
 		6E723B6B1891011D009DC5BE /* MovieImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B6A1891011D009DC5BE /* MovieImageCell.m */; };
@@ -85,6 +75,8 @@
 		6E723B7D18910F8D009DC5BE /* CastDirectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B7C18910F8D009DC5BE /* CastDirectorCell.m */; };
 		6E723B8018910FAF009DC5BE /* CastDirectorCell+Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B7F18910FAF009DC5BE /* CastDirectorCell+Person.m */; };
 		6E723B83189112AD009DC5BE /* Cast.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B82189112AD009DC5BE /* Cast.m */; };
+		6E723B8618913BFF009DC5BE /* AnnotationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B8518913BFF009DC5BE /* AnnotationGroup.m */; };
+		6E723B8918913C4A009DC5BE /* AnnotationTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B8818913C4A009DC5BE /* AnnotationTheater.m */; };
 		6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8686F7188703E4003A91B0 /* DoAlertView.m */; };
 		6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */; };
 		6EA663A6188C8C2200B0FCBE /* Cinema.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663A5188C8C2200B0FCBE /* Cinema.m */; };
@@ -99,7 +91,6 @@
 		6EA663C7188DB07600B0FCBE /* FunctionCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663C6188DB07600B0FCBE /* FunctionCell2.m */; };
 		6EA663CA188DB0D300B0FCBE /* FunctionCell2+Function.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663C9188DB0D300B0FCBE /* FunctionCell2+Function.m */; };
 		6EA663CD188DB21D00B0FCBE /* Function2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663CC188DB21D00B0FCBE /* Function2.m */; };
-		6EA663D6188F762D00B0FCBE /* CineHorariosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663D5188F762D00B0FCBE /* CineHorariosVC.m */; };
 		6EA663D9188FD18900B0FCBE /* Movie2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663D8188FD18900B0FCBE /* Movie2.m */; };
 		6EA663DF188FD21100B0FCBE /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663DE188FD21100B0FCBE /* Video.m */; };
 		6EA663E2188FD25F00B0FCBE /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663E1188FD25F00B0FCBE /* Person.m */; };
@@ -114,23 +105,11 @@
 		1628571E185F607E00DBD491 /* UIView+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CH.m"; sourceTree = "<group>"; };
 		1629F85217FF4EFA001428C1 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
 		1629F85317FF4EFA001428C1 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
-		162FD5661741862200616105 /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
-		162FD5671741862300616105 /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
-		1630E1AD17D9183800C9D977 /* CHCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCell.h; sourceTree = "<group>"; };
-		1630E1AE17D9183800C9D977 /* CHCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCell.m; sourceTree = "<group>"; };
 		1639492417F9BA1700AB7DE7 /* CastVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CastVC.h; sourceTree = "<group>"; };
 		1639492517F9BA1700AB7DE7 /* CastVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CastVC.m; sourceTree = "<group>"; };
-		1639492717F9BB7F00AB7DE7 /* ActorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorCell.h; sourceTree = "<group>"; };
-		1639492817F9BB7F00AB7DE7 /* ActorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActorCell.m; sourceTree = "<group>"; };
-		1639492A17F9BBDB00AB7DE7 /* DirectorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectorCell.h; sourceTree = "<group>"; };
-		1639492B17F9BBDB00AB7DE7 /* DirectorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectorCell.m; sourceTree = "<group>"; };
 		163BAB1F1763C34400A81BF7 /* WebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebVC.h; sourceTree = "<group>"; };
 		163BAB201763C34400A81BF7 /* WebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebVC.m; sourceTree = "<group>"; };
 		16547FD618106D8C00B6F24C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		16547FD818108D2300B6F24C /* TheaterFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterFunctions.h; sourceTree = "<group>"; };
-		16547FD918108D2300B6F24C /* TheaterFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterFunctions.m; sourceTree = "<group>"; };
-		166595FB177D4A2B00DFB590 /* FunctionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionCell.h; sourceTree = "<group>"; };
-		166595FC177D4A2D00DFB590 /* FunctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FunctionCell.m; sourceTree = "<group>"; tabWidth = 4; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		16692A30180C7D8A00166885 /* InitialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialVC.h; sourceTree = "<group>"; };
 		16692A31180C7D8A00166885 /* InitialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialVC.m; sourceTree = "<group>"; };
 		16692A33180C7DFF00166885 /* MenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuVC.h; sourceTree = "<group>"; };
@@ -138,30 +117,16 @@
 		16692A36180C7E2B00166885 /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
 		16692A3B180CAA9600166885 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
 		16692A3C180CAA9600166885 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
-		16900CC51740F16100399AF5 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
-		16900CC61740F16100399AF5 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
-		16900CCE1740F1C600399AF5 /* BasicMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMovie.h; sourceTree = "<group>"; };
-		16900CCF1740F1C600399AF5 /* BasicMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicMovie.m; sourceTree = "<group>"; };
 		16956FCD17D7E84100355AA7 /* UIFont+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+CH.h"; sourceTree = "<group>"; };
 		16956FCE17D7E84100355AA7 /* UIFont+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+CH.m"; sourceTree = "<group>"; };
 		16C7EB55173E0EFF001CF782 /* MovieCinemasVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCinemasVC.h; sourceTree = "<group>"; };
 		16C7EB56173E0EFF001CF782 /* MovieCinemasVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCinemasVC.m; sourceTree = "<group>"; };
-		16C7EB5B173E3447001CF782 /* BasicItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicItem.h; sourceTree = "<group>"; };
-		16C7EB5C173E3447001CF782 /* BasicItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicItem.m; sourceTree = "<group>"; };
-		16C7EB5E173E3582001CF782 /* BasicImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicImageItem.h; sourceTree = "<group>"; };
-		16C7EB5F173E3582001CF782 /* BasicImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicImageItem.m; sourceTree = "<group>"; };
-		16C7EB61173E3A06001CF782 /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
-		16C7EB62173E3A06001CF782 /* Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater.m; sourceTree = "<group>"; };
-		16C7EB64173E3B7F001CF782 /* Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
-		16C7EB65173E3B7F001CF782 /* Function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Function.m; sourceTree = "<group>"; };
 		16C8BC6917D4F4EC00EF7390 /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHandler.h; sourceTree = "<group>"; };
 		16C8BC6A17D4F4EC00EF7390 /* FileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHandler.m; sourceTree = "<group>"; };
 		16CF5BED173A460500973229 /* Cine Horarios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cine Horarios.entitlements"; sourceTree = "<group>"; };
 		16F86ED617DE8F6D00F2722C /* MovieVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieVC.h; sourceTree = "<group>"; };
 		16F86ED717DE8F6D00F2722C /* MovieVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieVC.m; sourceTree = "<group>"; };
 		16FE20FE240A4851B2B1F69C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		16FED04C1780B5F900318D92 /* ComingSoonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComingSoonCell.h; sourceTree = "<group>"; };
-		16FED04D1780B5F900318D92 /* ComingSoonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ComingSoonCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3D00E5BE170DDB2400C7DAAE /* TheatersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheatersVC.h; sourceTree = "<group>"; };
 		3D00E5BF170DDB2400C7DAAE /* TheatersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TheatersVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3D086041173B08CB0047B90A /* FavoritesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesVC.h; sourceTree = "<group>"; };
@@ -184,8 +149,6 @@
 		3D309A2B17A8674000BB5D13 /* UIImage+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CH.m"; sourceTree = "<group>"; };
 		3D39B91317208DC70011DF39 /* ComingSoonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComingSoonVC.h; sourceTree = "<group>"; };
 		3D39B91417208DC70011DF39 /* ComingSoonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ComingSoonVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		3D3C3D721741345C004D1E56 /* VideoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoItem.h; sourceTree = "<group>"; };
-		3D3C3D731741345C004D1E56 /* VideoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoItem.m; sourceTree = "<group>"; };
 		3D3FA6EB174D91C90067AE57 /* VideoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoVC.h; sourceTree = "<group>"; };
 		3D3FA6EC174D91CB0067AE57 /* VideoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoVC.m; sourceTree = "<group>"; };
 		3D4A191717EFA4A200893A65 /* GlobalNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalNavigationController.h; sourceTree = "<group>"; };
@@ -198,8 +161,6 @@
 		3D6F663917E54A7600BEE481 /* MyMultilineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMultilineLabel.m; sourceTree = "<group>"; };
 		3D813399177E3D95006A017C /* CineHorariosTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CineHorariosTableViewController.h; sourceTree = "<group>"; };
 		3D81339A177E3D95006A017C /* CineHorariosTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CineHorariosTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		3D81339C177E3F6D006A017C /* CarteleraCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarteleraCell.h; sourceTree = "<group>"; };
-		3D81339D177E3F6D006A017C /* CarteleraCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CarteleraCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3D881271175CD9E30034FDA9 /* MovieFunctionsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieFunctionsVC.h; sourceTree = "<group>"; };
 		3D881272175CD9E30034FDA9 /* MovieFunctionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieFunctionsVC.m; sourceTree = "<group>"; };
 		3DA91D34174144A200E3AFB0 /* icloud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icloud.plist; sourceTree = "<group>"; };
@@ -234,8 +195,6 @@
 		6E57396418273C9900ADB8D9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6E57396618273D3400ADB8D9 /* CloseTheatersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloseTheatersVC.h; sourceTree = "<group>"; };
 		6E57396718273D3400ADB8D9 /* CloseTheatersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseTheatersVC.m; sourceTree = "<group>"; };
-		6E57396918273E5F00ADB8D9 /* AnnotationTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationTheater.h; sourceTree = "<group>"; };
-		6E57396A18273E5F00ADB8D9 /* AnnotationTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationTheater.m; sourceTree = "<group>"; };
 		6E57396C182755A300ADB8D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6E723B601890BA49009DC5BE /* BasicItem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicItem2.h; sourceTree = "<group>"; };
 		6E723B611890BA4A009DC5BE /* BasicItem2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicItem2.m; sourceTree = "<group>"; };
@@ -259,6 +218,10 @@
 		6E723B7F18910FAF009DC5BE /* CastDirectorCell+Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CastDirectorCell+Person.m"; sourceTree = "<group>"; };
 		6E723B81189112AD009DC5BE /* Cast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cast.h; sourceTree = "<group>"; };
 		6E723B82189112AD009DC5BE /* Cast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cast.m; sourceTree = "<group>"; };
+		6E723B8418913BFF009DC5BE /* AnnotationGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationGroup.h; sourceTree = "<group>"; };
+		6E723B8518913BFF009DC5BE /* AnnotationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationGroup.m; sourceTree = "<group>"; };
+		6E723B8718913C4A009DC5BE /* AnnotationTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationTheater.h; sourceTree = "<group>"; };
+		6E723B8818913C4A009DC5BE /* AnnotationTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationTheater.m; sourceTree = "<group>"; };
 		6E8686F6188703E4003A91B0 /* DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoAlertView.h; sourceTree = "<group>"; };
 		6E8686F7188703E4003A91B0 /* DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoAlertView.m; sourceTree = "<group>"; };
 		6E9A47AF1860F351004BDE46 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
@@ -287,8 +250,6 @@
 		6EA663C9188DB0D300B0FCBE /* FunctionCell2+Function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FunctionCell2+Function.m"; sourceTree = "<group>"; };
 		6EA663CB188DB21D00B0FCBE /* Function2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function2.h; sourceTree = "<group>"; };
 		6EA663CC188DB21D00B0FCBE /* Function2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Function2.m; sourceTree = "<group>"; };
-		6EA663D4188F762D00B0FCBE /* CineHorariosVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CineHorariosVC.h; sourceTree = "<group>"; };
-		6EA663D5188F762D00B0FCBE /* CineHorariosVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CineHorariosVC.m; sourceTree = "<group>"; };
 		6EA663D7188FD18900B0FCBE /* Movie2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie2.h; sourceTree = "<group>"; };
 		6EA663D8188FD18900B0FCBE /* Movie2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie2.m; sourceTree = "<group>"; };
 		6EA663DD188FD21100B0FCBE /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
@@ -348,9 +309,9 @@
 				3D111A4D170C92250043D2D2 /* CineHorariosApiClient.m */,
 				16C8BC6917D4F4EC00EF7390 /* FileHandler.h */,
 				16C8BC6A17D4F4EC00EF7390 /* FileHandler.m */,
-				3DC9A748170CCA69008B9FF9 /* Views */,
 				6E56CC09188BBC0E000AB809 /* ArrayDataSource.h */,
 				6E56CC0A188BBC0E000AB809 /* ArrayDataSource.m */,
+				3DC9A748170CCA69008B9FF9 /* Views */,
 				3DC9A744170CC432008B9FF9 /* Models */,
 				16158EE717805E57002B6F73 /* Storyboard.storyboard */,
 				3D111A52170C977C0043D2D2 /* Controllers */,
@@ -363,8 +324,6 @@
 		3D111A51170C97670043D2D2 /* ModelViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				6EA663D4188F762D00B0FCBE /* CineHorariosVC.h */,
-				6EA663D5188F762D00B0FCBE /* CineHorariosVC.m */,
 				3D813399177E3D95006A017C /* CineHorariosTableViewController.h */,
 				3D81339A177E3D95006A017C /* CineHorariosTableViewController.m */,
 				3D4A191717EFA4A200893A65 /* GlobalNavigationController.h */,
@@ -440,26 +399,6 @@
 			children = (
 				6EA663B3188D20B700B0FCBE /* MTLModelPersistable.h */,
 				6EA663B4188D20B700B0FCBE /* MTLModelPersistable.m */,
-				6E57396918273E5F00ADB8D9 /* AnnotationTheater.h */,
-				6E57396A18273E5F00ADB8D9 /* AnnotationTheater.m */,
-				3D3C3D721741345C004D1E56 /* VideoItem.h */,
-				3D3C3D731741345C004D1E56 /* VideoItem.m */,
-				16C7EB5B173E3447001CF782 /* BasicItem.h */,
-				16C7EB5C173E3447001CF782 /* BasicItem.m */,
-				16C7EB5E173E3582001CF782 /* BasicImageItem.h */,
-				16C7EB5F173E3582001CF782 /* BasicImageItem.m */,
-				16C7EB61173E3A06001CF782 /* Theater.h */,
-				16C7EB62173E3A06001CF782 /* Theater.m */,
-				16547FD818108D2300B6F24C /* TheaterFunctions.h */,
-				16547FD918108D2300B6F24C /* TheaterFunctions.m */,
-				16C7EB64173E3B7F001CF782 /* Function.h */,
-				16C7EB65173E3B7F001CF782 /* Function.m */,
-				16900CCE1740F1C600399AF5 /* BasicMovie.h */,
-				16900CCF1740F1C600399AF5 /* BasicMovie.m */,
-				16900CC51740F16100399AF5 /* Movie.h */,
-				16900CC61740F16100399AF5 /* Movie.m */,
-				162FD5661741862200616105 /* Actor.h */,
-				162FD5671741862300616105 /* Actor.m */,
 				6E56CC03188BA56C000AB809 /* Theater2.h */,
 				6E56CC04188BA56C000AB809 /* Theater2.m */,
 				6EA663A4188C8C2200B0FCBE /* Cinema.h */,
@@ -482,6 +421,10 @@
 				6E723B641890BA8A009DC5BE /* BasicItemImage.m */,
 				6E723B81189112AD009DC5BE /* Cast.h */,
 				6E723B82189112AD009DC5BE /* Cast.m */,
+				6E723B8418913BFF009DC5BE /* AnnotationGroup.h */,
+				6E723B8518913BFF009DC5BE /* AnnotationGroup.m */,
+				6E723B8718913C4A009DC5BE /* AnnotationTheater.h */,
+				6E723B8818913C4A009DC5BE /* AnnotationTheater.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -575,18 +518,6 @@
 		6E56CC12188BC6DB000AB809 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				166595FB177D4A2B00DFB590 /* FunctionCell.h */,
-				166595FC177D4A2D00DFB590 /* FunctionCell.m */,
-				3D81339C177E3F6D006A017C /* CarteleraCell.h */,
-				3D81339D177E3F6D006A017C /* CarteleraCell.m */,
-				16FED04C1780B5F900318D92 /* ComingSoonCell.h */,
-				16FED04D1780B5F900318D92 /* ComingSoonCell.m */,
-				1630E1AD17D9183800C9D977 /* CHCell.h */,
-				1630E1AE17D9183800C9D977 /* CHCell.m */,
-				1639492717F9BB7F00AB7DE7 /* ActorCell.h */,
-				1639492817F9BB7F00AB7DE7 /* ActorCell.m */,
-				1639492A17F9BBDB00AB7DE7 /* DirectorCell.h */,
-				1639492B17F9BBDB00AB7DE7 /* DirectorCell.m */,
 				16692A3B180CAA9600166885 /* MenuCell.h */,
 				16692A3C180CAA9600166885 /* MenuCell.m */,
 				6E56CC0F188BBE7D000AB809 /* BasicCell.h */,
@@ -748,19 +679,15 @@
 				3DDD5AEB18020ACC00720ABD /* MovieCinemasVC.m in Sources */,
 				3DFA54CC170B3512003E2208 /* main.m in Sources */,
 				6E56CC15188BC735000AB809 /* BasicCell+Theater.m in Sources */,
-				6E723B5D1890B613009DC5BE /* BasicItem.m in Sources */,
 				6EA663D9188FD18900B0FCBE /* Movie2.m in Sources */,
 				6E723B6E189101A9009DC5BE /* MovieImageCell+MovieImage.m in Sources */,
 				6E723B7A18910CC4009DC5BE /* CastActorCell+Person.m in Sources */,
-				6E723B5C1890B611009DC5BE /* BasicImageItem.m in Sources */,
 				6EA663BE188D297400B0FCBE /* BillboardCell+BasicMovie.m in Sources */,
 				6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */,
 				3D309A2C17A8674000BB5D13 /* UIImage+CH.m in Sources */,
 				6E723B7718910C5F009DC5BE /* CastActorCell.m in Sources */,
-				6E723B5B1890B60E009DC5BE /* Theater.m in Sources */,
 				6EA663CD188DB21D00B0FCBE /* Function2.m in Sources */,
 				3DDB7115170A516B00EC3E51 /* AppDelegate.m in Sources */,
-				6E723B5E1890B62B009DC5BE /* TheaterFunctions.m in Sources */,
 				3D00E5C0170DDB2400C7DAAE /* TheatersVC.m in Sources */,
 				6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */,
 				6EA663DF188FD21100B0FCBE /* Video.m in Sources */,
@@ -772,7 +699,7 @@
 				167B9A401804909D00862289 /* MovieFunctionsVC.m in Sources */,
 				6E723B7D18910F8D009DC5BE /* CastDirectorCell.m in Sources */,
 				6EA663B2188D19B400B0FCBE /* Billboard.m in Sources */,
-				6EA663D6188F762D00B0FCBE /* CineHorariosVC.m in Sources */,
+				6E723B8918913C4A009DC5BE /* AnnotationTheater.m in Sources */,
 				6EA663C1188D3DA300B0FCBE /* ComingSoonCell2.m in Sources */,
 				16692A35180C7DFF00166885 /* MenuVC.m in Sources */,
 				6E56CC11188BBE7D000AB809 /* BasicCell.m in Sources */,
@@ -783,22 +710,19 @@
 				16692A3D180CAA9600166885 /* MenuCell.m in Sources */,
 				3D309A2917A85DBC00BB5D13 /* UIColor+CH.m in Sources */,
 				6E56CC08188BAD56000AB809 /* NSArray+FKBMap.m in Sources */,
-				3D3C3D741741345C004D1E56 /* VideoItem.m in Sources */,
 				6EA663B8188D28A600B0FCBE /* BillboardCell.m in Sources */,
 				6EA663AC188D012200B0FCBE /* BasicMovie2.m in Sources */,
-				6E57396B18273E5F00ADB8D9 /* AnnotationTheater.m in Sources */,
 				6E723B7418910499009DC5BE /* MovieCastCell+Person.m in Sources */,
 				6EA663E2188FD25F00B0FCBE /* Person.m in Sources */,
 				6E723B7118910472009DC5BE /* MovieCastCell.m in Sources */,
 				6E56CC0B188BBC0E000AB809 /* ArrayDataSource.m in Sources */,
 				3D26BDD11743EE3A00A2FCC5 /* CarteleraVC.m in Sources */,
-				1639492917F9BB7F00AB7DE7 /* ActorCell.m in Sources */,
-				6E723B5F1890B66F009DC5BE /* Function.m in Sources */,
 				3D6F663A17E54A7600BEE481 /* MyMultilineLabel.m in Sources */,
 				6E723B6B1891011D009DC5BE /* MovieImageCell.m in Sources */,
 				6EA663B5188D20B700B0FCBE /* MTLModelPersistable.m in Sources */,
 				3D521E1A17443FE1009ED580 /* CinesVC.m in Sources */,
 				3D521E1F17445DD5009ED580 /* FuncionesVC.m in Sources */,
+				6E723B8618913BFF009DC5BE /* AnnotationGroup.m in Sources */,
 				6E723B651890BA8A009DC5BE /* BasicItemImage.m in Sources */,
 				6E4BAA7418849D6A00E37DAF /* UIImage+ResizeMagick.m in Sources */,
 				3D29986A17E5E29C001A371D /* MovieImagesVC.m in Sources */,
@@ -813,9 +737,7 @@
 				3D81339B177E3D95006A017C /* CineHorariosTableViewController.m in Sources */,
 				3D4A191917EFA4A200893A65 /* GlobalNavigationController.m in Sources */,
 				6EA663CA188DB0D300B0FCBE /* FunctionCell2+Function.m in Sources */,
-				6E723B5A1890B57C009DC5BE /* CHCell.m in Sources */,
 				16692A32180C7D8A00166885 /* InitialVC.m in Sources */,
-				1639492C17F9BBDB00AB7DE7 /* DirectorCell.m in Sources */,
 				6EA663C7188DB07600B0FCBE /* FunctionCell2.m in Sources */,
 				6EA663C4188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m in Sources */,
 			);

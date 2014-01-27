@@ -7,12 +7,10 @@
 //
 
 #import "MovieCinemasVC.h"
-#import "UIImageView+AFNetworking.h"
-#import "Theater.h"
+#import "Theater2.h"
+#import "BasicItemImage.h"
 #import "MovieFunctionsVC.h"
-#import "Movie.h"
 #import "MBProgressHUD.h"
-#import "BasicItem.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "GAI.h"
@@ -25,16 +23,17 @@
 @property (nonatomic, strong) NSMutableArray *favoriteTheaters;
 @property (nonatomic, strong) NSMutableArray *cinemas;
 @property (nonatomic, strong) NSMutableArray *theaters;
+
+@property (nonatomic, strong) UIFont *headerFont;
+@property (nonatomic, strong) UIFont *tableFont;
 @end
 
-@implementation MovieCinemasVC {
-    UIFont *headerFont;
-    UIFont *tableFont;
-}
+@implementation MovieCinemasVC
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA CINES" forKey:kGAIScreenName] build]];
     
@@ -43,73 +42,47 @@
     // loads favorite theaters
     [self loadFavorites];
     
-    headerFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.headerFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     
     
-    [self getMovieTheatersForceRemote:NO];
+    [self downloadShowTheaters];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (void) getMovieTheatersForceRemote:(BOOL) forceRemote {
-    
-    if (forceRemote) {
-        [self downloadShowTheaters];
-    }
-    else {
-        NSArray *theaters = [Theater getLocalMovieTheatersWithMovieID:self.movieID];
-        if (theaters.count) {
-            [self loadCinemas];
-            [self makeArraysUsingTheaters:theaters];
-            [self.tableView reloadData];
-        }
-        else {
-            [self downloadShowTheaters];
-        }
-    }
-}
 -(void) downloadShowTheaters{
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Theater getMovieTheatersWithBlock:^(NSArray *theaters, NSError *error) {
+    [Theater2 getMovieTheatersWithBlock:^(NSArray *theaters, NSError *error) {
         if (!error) {
             [self loadCinemas];
             [self makeArraysUsingTheaters:theaters];
-            
             [self.tableView reloadData];
         }
         else {
             [self alertRetryWithCompleteBlock:^{
-                [self getMovieTheatersForceRemote:YES];
+                [self downloadShowTheaters];
             }];
         }
         self.tableView.scrollEnabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (self.refreshControl.refreshing) {
-            [self.refreshControl endRefreshing];
-        }
     } movieID:self.movieID];
 }
 - (void) makeArraysUsingTheaters:(NSArray *)theaters {
     self.theaters = [[NSMutableArray alloc] initWithObjects:[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array], [NSMutableArray array], nil];
-    for (Theater *theater in theaters) {
-        for (Theater *favTheater in self.favoriteTheaters) {
-            if (favTheater.itemId == theater.itemId) {
+    for (Theater2 *theater in theaters) {
+        for (Theater2 *favTheater in self.favoriteTheaters) {
+            if (favTheater.theaterID == theater.theaterID) {
                 [self.theaters[0] addObject:theater];
                 break;
             }
         }
         int i = 0;
-        for (BasicImageItem *cinema in self.cinemas) {
-            if (cinema.itemId == theater.cinemaID) {
+        for (BasicItemImage *cinema in self.cinemas) {
+            if (cinema.itemID == theater.cinemaID) {
                 [self.theaters[i] addObject:theater];
             }
             i++;
@@ -129,11 +102,6 @@
     self.cinemas = newCinemas;
 }
 
--(void)refreshData {
-    [self.refreshControl beginRefreshing];
-    [self getMovieTheatersForceRemote:YES];
-}
-
 - (void) loadFavorites {
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
@@ -146,7 +114,9 @@
         NSArray *keys = [favorites allKeys];
         NSArray *values = [favorites allValues];
         for (int i=0;i<[favorites count];i++){
-            BasicItem *theater = [[BasicItem alloc] initWithId:[[keys objectAtIndex:i] integerValue] name:[values objectAtIndex:i]];
+            NSDictionary *theaterDictionary = @{@"theaterID": [keys objectAtIndex:i],
+                                                @"name": [values objectAtIndex:i]};
+            Theater2 *theater = [[Theater2 alloc] initWithDictionary:theaterDictionary error:NULL];
             [self.favoriteTheaters insertObject:theater atIndex:i];
         }
     }
@@ -161,9 +131,13 @@
     NSArray *cinemasLocal = [NSArray arrayWithContentsOfFile:filePath];
     self.cinemas = [NSMutableArray array];
     
-    [self.cinemas addObject:[[BasicImageItem alloc] initWithId:100 name:@"Favoritos" imageUrl:@"FavoriteHeart"]];
+    NSDictionary *favoritesDictionary = @{@"itemID": @"100",
+                                          @"name": @"Favoritos",
+                                          @"imageURL": @"FavoriteHeart"};
+    [self.cinemas addObject:[[BasicItemImage alloc] initWithDictionary:favoritesDictionary error:NULL]];
     for (NSDictionary *dict in cinemasLocal) {
-        [self.cinemas addObject:[[BasicImageItem alloc] initWithId:[dict[@"id"] integerValue] name:dict[@"name"] imageUrl:dict[@"image"]]];
+        BasicItemImage *cinema = [MTLJSONAdapter modelOfClass:BasicItem2.class fromJSONDictionary:dict error:NULL];
+        [self.cinemas addObject:cinema];
     }
 }
 
@@ -187,14 +161,14 @@
     UILabel *labelName = (UILabel *)[cell viewWithTag:101];
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
     
-    BasicImageItem *cinema = self.cinemas[indexPath.row];
+    BasicItemImage *cinema = self.cinemas[indexPath.row];
     labelName.text = cinema.name;
-    labelName.font = tableFont;
-    if ([cinema.imageUrl isEqualToString:@""]) {
+    labelName.font = self.tableFont;
+    if ([cinema.imageURL isEqualToString:@""]) {
         imageView.image = nil;
     }
     else {
-        imageView.image = [UIImage imageNamed:cinema.imageUrl];
+        imageView.image = [UIImage imageNamed:cinema.imageURL];
     }
     
     return cell;
@@ -210,7 +184,7 @@
     
     CGRect nameLabelRect = [self.movieName boundingRectWithSize: size
                                                    options: NSStringDrawingUsesLineFragmentOrigin
-                                                attributes: [NSDictionary dictionaryWithObject:headerFont
+                                                attributes: [NSDictionary dictionaryWithObject:self.headerFont
                                                                                         forKey:NSFontAttributeName]
                                                    context: nil];
     
@@ -224,7 +198,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.cinemas.count) {
-        UIView *view = [UIView headerViewForText:self.movieName font:headerFont height:[self heightForHeaderView]];
+        UIView *view = [UIView headerViewForText:self.movieName font:self.headerFont height:[self heightForHeaderView]];
         UILabel *label = (UILabel *)[view viewWithTag:40];
         label.numberOfLines = 0;
         return view;
@@ -237,8 +211,8 @@
 #pragma mark - content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    headerFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.headerFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     
     [self.tableView reloadData];
 }
