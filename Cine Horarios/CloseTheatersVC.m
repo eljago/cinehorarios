@@ -72,7 +72,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;
     
-    [self getTheatersLocationsForceRemote:NO];
+//    [self getTheatersLocationsForceRemote:NO];
     
     if (!self.annotations) {
         [self disableBarButtonItems];
@@ -293,7 +293,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
             [self createAnnotationsWithAnnotationGroup:annotationGroup];
         }
         
-        if (self.annotations.count) {
+        if (self.annotations && self.annotations.count) {
             [self setDistances];
             [self.annotations sortUsingSelector:@selector(compareAnnotationsDistance:)];
             [self.myMap addAnnotations:self.annotations];

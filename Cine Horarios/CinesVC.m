@@ -15,6 +15,7 @@
 #import "BasicItem2.h"
 #import "BasicItemImage.h"
 #import "MTLJSONAdapter.h"
+#import "RFRateMe.h"
 
 @interface CinesVC ()
 @property (nonatomic, strong) NSArray *cinemas;
@@ -34,6 +35,8 @@
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"CINES" forKey:kGAIScreenName] build]];
     
     [self loadCinemas];
+    
+    [RFRateMe showRateAlert];
 }
 
 #pragma mark - UITableViewController
