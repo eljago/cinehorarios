@@ -8,11 +8,11 @@
 
 #import "BasicCell.h"
 
-@class Theater2;
+@class Theater;
 
 @interface BasicCell (Theater)
 
-- (void) configureForTheater:(Theater2 *)theater;
-+ (CGFloat) heightForRowWithTheater:(Theater2 *)theater tableFont:(UIFont *)font;
+- (void) configureForTheater:(Theater *)theater;
++ (CGFloat) heightForRowWithTheater:(Theater *)theater tableFont:(UIFont *)font;
 
 @end

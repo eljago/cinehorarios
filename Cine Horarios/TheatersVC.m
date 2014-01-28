@@ -8,7 +8,7 @@
 
 #import "TheatersVC.h"
 #import "Cinema.h"
-#import "Theater2.h"
+#import "Theater.h"
 #import "FuncionesVC.h"
 #import "UIFont+CH.h"
 #import "BasicCell.h"
@@ -60,7 +60,7 @@
 }
 
 -(void) setupDataSource {
-    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.cinema.theaters cellIdentifier:@"Cell" configureCellBlock:^(BasicCell *cell, Theater2 *theater) {
+    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.cinema.theaters cellIdentifier:@"Cell" configureCellBlock:^(BasicCell *cell, Theater *theater) {
         [cell configureForTheater:theater];
     }];
     self.tableView.dataSource = self.dataSource;
@@ -75,7 +75,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    Theater2 *theater = self.cinema.theaters[indexPath.row];
+    Theater *theater = self.cinema.theaters[indexPath.row];
     return [BasicCell heightForRowWithTheater:theater tableFont:self.tableFont];
 }
 
@@ -151,7 +151,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     FuncionesVC *functionesVC = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    Theater2 *theater = self.cinema.theaters[indexPath.row];
+    Theater *theater = self.cinema.theaters[indexPath.row];
     functionesVC.theaterName = theater.name;
     functionesVC.theaterID = theater.theaterID;
 }

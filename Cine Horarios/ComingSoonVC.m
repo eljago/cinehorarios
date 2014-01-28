@@ -7,7 +7,7 @@
 //
 
 #import "ComingSoonVC.h"
-#import "BasicMovie2.h"
+#import "BasicMovie.h"
 #import "Billboard.h"
 #import "ComingSoonCell2.h"
 #import "ComingSoonCell2+BasicMovie.h"
@@ -60,7 +60,7 @@
 }
 
 -(void) setupDataSource {
-    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.billboard.movies cellIdentifier:@"Cell" configureCellBlock:^(ComingSoonCell2 *cell, BasicMovie2 *basicMovie) {
+    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.billboard.movies cellIdentifier:@"Cell" configureCellBlock:^(ComingSoonCell2 *cell, BasicMovie *basicMovie) {
         [cell configureForBasicMovie:basicMovie];
     }];
     self.tableView.dataSource = self.dataSource;
@@ -79,7 +79,7 @@
 #pragma mark Delegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BasicMovie2 *basicMovie = self.billboard.movies[indexPath.row];
+    BasicMovie *basicMovie = self.billboard.movies[indexPath.row];
     return [ComingSoonCell2 heightForRowWithBasicMovie:basicMovie headFont:self.headFont bodyFont:self.bodyFont];
 }
 
@@ -141,7 +141,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     MovieVC *movieVC = segue.destinationViewController;
     NSInteger row = [self.tableView indexPathForSelectedRow].row;
-    BasicMovie2 *basicMovie = self.billboard.movies[row];
+    BasicMovie *basicMovie = self.billboard.movies[row];
     movieVC.movieID = basicMovie.movieID;
     movieVC.movieName = basicMovie.name;
     movieVC.portraitImageURL = basicMovie.portraitImageURL;

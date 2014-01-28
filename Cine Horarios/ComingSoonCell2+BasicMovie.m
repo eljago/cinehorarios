@@ -8,11 +8,11 @@
 
 #import "ComingSoonCell2+BasicMovie.h"
 #import "UIImageView+CH.h"
-#import "BasicMovie2.h"
+#import "BasicMovie.h"
 
 @implementation ComingSoonCell2 (BasicMovie)
 
--(void) configureForBasicMovie:(BasicMovie2 *)basicMovie {
+-(void) configureForBasicMovie:(BasicMovie *)basicMovie {
     
     self.mainLabel.text = basicMovie.name;
     if (basicMovie.debut) {
@@ -27,7 +27,7 @@
     
 }
 
-+ (CGFloat) heightForRowWithBasicMovie:(BasicMovie2 *)basicMovie headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont {
++ (CGFloat) heightForRowWithBasicMovie:(BasicMovie *)basicMovie headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont {
     
     CGSize size = CGSizeMake(187.f, 1000.f);
     

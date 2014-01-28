@@ -6,17 +6,16 @@
 //  Copyright (c) 2014 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import "Movie2.h"
+#import "Movie.h"
 #import "CineHorariosApiClient.h"
 #import "NSValueTransformer+MTLPredefinedTransformerAdditions.h"
 #import "Person.h"
 #import "Video.h"
-#import "NSFileManager+CH.h"
 
 NSString *const kMoviePath = @"/api/shows/%d.json";
 NSString *const kMovieArchivePath = @"/data/shows/";
 
-@implementation Movie2
+@implementation Movie
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
@@ -41,12 +40,12 @@ NSString *const kMovieArchivePath = @"/data/shows/";
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Video.class];
 }
 
-+ (void)getCinemaWithBlock:(void (^)(Movie2 *movie, NSError *error))block movieID:(NSUInteger )movieID {
++ (void)getCinemaWithBlock:(void (^)(Movie *movie, NSError *error))block movieID:(NSUInteger )movieID {
     NSString *path = [NSString stringWithFormat:kMoviePath,movieID];
     [[CineHorariosApiClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         
         NSError *theError = nil;
-        Movie2 *movie = [MTLJSONAdapter modelOfClass:self.class fromJSONDictionary:JSON error:&theError];
+        Movie *movie = [MTLJSONAdapter modelOfClass:self.class fromJSONDictionary:JSON error:&theError];
         [movie persistToFile:[[self class] storagePathForMovieID:movieID]];
         
         if (block) {
@@ -61,12 +60,12 @@ NSString *const kMovieArchivePath = @"/data/shows/";
 
 + (id)loadMovieWithMovieID:(NSUInteger)movieID
 {
-    return [self loadFromPath:[self storagePathForMovieID:movieID]];
+    return [self loadIfOlderThanThreeHoursFromPath:[self storagePathForMovieID:movieID]];
 }
 
 + (NSString *)storagePathForMovieID:(NSUInteger)movieID
 {
-    return [[NSFileManager storagePathForPath:kMovieArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.data",movieID]];
+    return [[self storagePathForPath:kMovieArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.data",movieID]];
 }
 
 @end

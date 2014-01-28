@@ -7,15 +7,15 @@
 //
 
 #import "BasicCell+Theater.h"
-#import "Theater2.h"
+#import "Theater.h"
 
 @implementation BasicCell (Theater)
 
--(void) configureForTheater:(Theater2 *)theater {
+-(void) configureForTheater:(Theater *)theater {
     self.mainLabel.text = theater.name;
 }
 
-+ (CGFloat) heightForRowWithTheater:(Theater2 *)theater tableFont:(UIFont *)font{
++ (CGFloat) heightForRowWithTheater:(Theater *)theater tableFont:(UIFont *)font{
     CGSize size = CGSizeMake(270.0, 1000.0);
     
     CGRect nameLabelRect = [theater.name boundingRectWithSize: size

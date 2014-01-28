@@ -8,8 +8,8 @@
 
 #import "MovieFunctionsVC.h"
 #import "MBProgressHUD.h"
-#import "Function2.h"
-#import "Theater2.h"
+#import "Function.h"
+#import "Theater.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "GAI.h"
@@ -59,7 +59,7 @@
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [Function2 getMovieTheatersFavoritesWithBlock:^(NSArray *theaterFunctions, NSError *error) {
+    [Function getMovieTheatersFavoritesWithBlock:^(NSArray *theaterFunctions, NSError *error) {
         if (!error) {
             self.theaterFuctions = theaterFunctions;
             [self.tableView reloadData];
@@ -110,8 +110,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.theaterFuctions.count) {
-        Theater2 *theater = self.theaterFuctions[indexPath.section];
-        Function2 *function = theater.functions[indexPath.row];
+        Theater *theater = self.theaterFuctions[indexPath.section];
+        Function *function = theater.functions[indexPath.row];
         CGSize size = CGSizeMake(280.f, 1000.f);
         
         CGRect typesLabelRect = [function.functionTypes boundingRectWithSize: size
@@ -142,7 +142,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    Theater2 *theater = self.theaterFuctions[section];
+    Theater *theater = self.theaterFuctions[section];
     return theater.functions.count;
 }
 
@@ -151,8 +151,8 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    Theater2 *theater = self.theaterFuctions[indexPath.section];
-    Function2 *function = theater.functions[indexPath.row];
+    Theater *theater = self.theaterFuctions[indexPath.section];
+    Function *function = theater.functions[indexPath.row];
     
     UILabel *functionTypes = (UILabel *)[cell viewWithTag:1];
     UILabel *functionShowtimes = (UILabel *)[cell viewWithTag:2];
@@ -165,14 +165,14 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    Theater2 *theater = self.theaterFuctions[section];
+    Theater *theater = self.theaterFuctions[section];
     
     return [UIView heightForHeaderViewWithText:theater.name font:headerFont];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    Theater2 *theater = self.theaterFuctions[section];
+    Theater *theater = self.theaterFuctions[section];
     NSInteger height = [UIView heightForHeaderViewWithText:theater.name font:headerFont];
     
     return [UIView headerViewForText:theater.name font:headerFont height:height];

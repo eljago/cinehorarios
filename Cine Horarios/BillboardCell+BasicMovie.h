@@ -8,11 +8,11 @@
 
 #import "BillboardCell.h"
 
-@class BasicMovie2;
+@class BasicMovie;
 
 @interface BillboardCell (BasicMovie)
 
-- (void) configureForBasicMovie:(BasicMovie2 *)basicMovie;
-+ (CGFloat) heightForRowWithBasicMovie:(BasicMovie2 *)basicMovie headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont;
+- (void) configureForBasicMovie:(BasicMovie *)basicMovie;
++ (CGFloat) heightForRowWithBasicMovie:(BasicMovie *)basicMovie headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont;
 
 @end

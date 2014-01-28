@@ -7,7 +7,7 @@
 //
 
 #import "MovieVC.h"
-#import "Movie2.h"
+#import "Movie.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "MyMultilineLabel.h"
@@ -33,10 +33,11 @@
 #import "MovieCastCell.h"
 #import "MovieCastCell+Person.h"
 #import "Cast.h"
+#import "RFRateMe.h"
 
 @interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, strong) Movie2 *movie;
+@property (nonatomic, strong) Movie *movie;
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionViewActors;
@@ -105,6 +106,8 @@
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
+    [RFRateMe showRateAlert];
+    
     [self getMovieForceRemote:NO];
 }
 
@@ -149,7 +152,7 @@
         [self downloadMovie];
     }
     else {
-        self.movie = [Movie2 loadMovieWithMovieID:self.movieID];
+        self.movie = [Movie loadMovieWithMovieID:self.movieID];
         if (self.movie) {
             [self setPeople];
             self.collectionViewImagesDataSource.items = self.movie.images;
@@ -167,7 +170,7 @@
 }
 - (void) downloadMovie {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Movie2 getCinemaWithBlock:^(Movie2 *movie, NSError *error) {
+    [Movie getCinemaWithBlock:^(Movie *movie, NSError *error) {
         if (!error) {
             self.movie = movie;
             [self setPeople];

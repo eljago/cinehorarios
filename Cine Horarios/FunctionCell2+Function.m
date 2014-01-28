@@ -8,11 +8,11 @@
 
 #import "FunctionCell2+Function.h"
 #import "UIImageView+CH.h"
-#import "Function2.h"
+#import "Function.h"
 
 @implementation FunctionCell2 (Function)
 
-- (void) configureForFunction:(Function2 *) function {
+- (void) configureForFunction:(Function *) function {
     self.mainLabel.text = function.name;
     self.typesLabel.text = function.functionTypes;
     self.showtimesLabel.text = function.showtimes;
@@ -20,7 +20,7 @@
     [self.imageCover setImageWithStringURL:function.imageURL movieImageType:MovieImageTypeCover];
 }
 
-+ (CGFloat) heightForRowWithFunction:(Function2 *)function headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont {
++ (CGFloat) heightForRowWithFunction:(Function *)function headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont {
     
     CGSize size = CGSizeMake(187.f, 1000.f);
     

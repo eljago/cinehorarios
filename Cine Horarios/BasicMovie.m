@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import "BasicMovie2.h"
+#import "BasicMovie.h"
 #import "CineHorariosApiClient.h"
 #import "MTLValueTransformer.h"
 
-@implementation BasicMovie2
+@implementation BasicMovie
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{

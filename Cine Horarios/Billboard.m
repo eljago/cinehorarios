@@ -7,10 +7,9 @@
 //
 
 #import "Billboard.h"
-#import "BasicMovie2.h"
+#import "BasicMovie.h"
 #import "CineHorariosApiClient.h"
 #import "NSValueTransformer+MTLPredefinedTransformerAdditions.h"
-#import "NSFileManager+CH.h"
 
 NSString *const kBillboardPath = @"/api/shows/billboard.json";
 NSString *const kComingSoonPath = @"/api/shows/comingsoon.json";
@@ -24,7 +23,7 @@ NSString *const kBillboardArchivePath = @"/data/";
 
 + (NSValueTransformer *)moviesJSONTransformer
 {
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:BasicMovie2.class];
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:BasicMovie.class];
 }
 
 // BILLBOARD
@@ -48,12 +47,12 @@ NSString *const kBillboardArchivePath = @"/data/";
 
 + (id)loadBillboard
 {
-    return [self loadFromPath:[self storagePathBillboard]];
+    return [self loadIfOlderThanThreeHoursFromPath:[self storagePathBillboard]];
 }
 
 + (NSString *)storagePathBillboard
 {
-    return [[NSFileManager storagePathForPath:kBillboardArchivePath] stringByAppendingPathComponent:@"billboard.data"];
+    return [[self storagePathForPath:kBillboardArchivePath] stringByAppendingPathComponent:@"billboard.data"];
 }
 
 // COMING SOON
@@ -77,12 +76,12 @@ NSString *const kBillboardArchivePath = @"/data/";
 
 + (id)loadComingSoon
 {
-    return [self loadFromPath:[self storagePathComingSoon]];
+    return [self loadIfOlderThanThreeHoursFromPath:[self storagePathComingSoon]];
 }
 
 + (NSString *)storagePathComingSoon
 {
-    return [[NSFileManager storagePathForPath:kBillboardArchivePath] stringByAppendingPathComponent:@"comingsoon.data"];
+    return [[self storagePathForPath:kBillboardArchivePath] stringByAppendingPathComponent:@"comingsoon.data"];
 }
 
 @end

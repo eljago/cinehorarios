@@ -10,8 +10,8 @@
 #import "FavoritesVC.h"
 #import "FunctionCell2.h"
 #import "UIColor+CH.h"
-#import "Theater2.h"
-#import "Function2.h"
+#import "Theater.h"
+#import "Function.h"
 #import "FileHandler.h"
 #import "UIFont+CH.h"
 #import "MovieVC.h"
@@ -28,7 +28,7 @@
 NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 @interface FuncionesVC ()
-@property (nonatomic, strong) Theater2 *theater;
+@property (nonatomic, strong) Theater *theater;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
 @property (nonatomic, strong) UIBarButtonItem *favoriteButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *menuButtonItem;
@@ -73,7 +73,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 }
 
 -(void) setupDataSource {
-    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.theater.functions cellIdentifier:@"Cell" configureCellBlock:^(FunctionCell2 *cell, Function2 *function) {
+    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.theater.functions cellIdentifier:@"Cell" configureCellBlock:^(FunctionCell2 *cell, Function *function) {
         [cell configureForFunction:function];
     }];
     self.tableView.dataSource = self.dataSource;
@@ -105,7 +105,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    Function2 *function = self.theater.functions[indexPath.row];
+    Function *function = self.theater.functions[indexPath.row];
     return [FunctionCell2 heightForRowWithFunction:function headFont:self.headFont bodyFont:self.bodyFont];
 }
 
@@ -117,7 +117,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
         [self downloadTheater];
     }
     else {
-        self.theater = [Theater2 loadTheaterithTheaterID:self.theaterID];
+        self.theater = [Theater loadTheaterithTheaterID:self.theaterID];
         if (self.theater.functions.count > 0) {
             self.dataSource.items = self.theater.functions;
             [self.tableView reloadData];
@@ -134,7 +134,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 -(void) downloadTheater {
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Theater2 getTheaterWithBlock:^(Theater2 *theater, NSError *error) {
+    [Theater getTheaterWithBlock:^(Theater *theater, NSError *error) {
         if (!error) {
             self.theater = theater;
             if (self.theater && self.theater.functions.count > 0) {
@@ -233,7 +233,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     MovieVC *movieVC = segue.destinationViewController;
-    Function2 *function = self.theater.functions[indexPath.row];
+    Function *function = self.theater.functions[indexPath.row];
     movieVC.movieID = function.movieID;
     movieVC.movieName = function.name;
     movieVC.portraitImageURL = function.portraitImageURL;

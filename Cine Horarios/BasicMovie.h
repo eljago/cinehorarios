@@ -9,7 +9,7 @@
 #import "MTLModel.h"
 #import "MTLJSONAdapter.h"
 
-@interface BasicMovie2 : MTLModel <MTLJSONSerializing>
+@interface BasicMovie : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, assign, readonly) NSUInteger movieID;
 @property (nonatomic, strong, readonly) NSString *name;

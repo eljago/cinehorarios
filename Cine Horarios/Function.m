@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import "Function2.h"
+#import "Function.h"
 #import "CineHorariosApiClient.h"
-#import "Theater2.h"
+#import "Theater.h"
 #import "NSArray+FKBMap.h"
 
 NSString *const RemoteMovieTheaterFunctionsPath = @"/api/shows/%d/favorite_theaters.json";
 
-@implementation Function2
+@implementation Function
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
@@ -26,16 +26,16 @@ NSString *const RemoteMovieTheaterFunctionsPath = @"/api/shows/%d/favorite_theat
 
 + (void)getMovieTheatersFavoritesWithBlock:(void (^)(NSArray *theaterFunctions, NSError *error))block movieID:(NSUInteger )movieID theaters:(NSArray *)theaters {
     NSString *path = [NSString stringWithFormat:RemoteMovieTheaterFunctionsPath,movieID];
-    NSString *theatersString = [NSString stringWithFormat:@"%d",((Theater2 *)[theaters firstObject]).theaterID];
+    NSString *theatersString = [NSString stringWithFormat:@"%d",((Theater *)[theaters firstObject]).theaterID];
     for (int i=1; i<theaters.count;i++) {
-        Theater2 *theater = theaters[i];
+        Theater *theater = theaters[i];
         theatersString = [theatersString stringByAppendingFormat:@",%d",theater.theaterID];
     }
     
     [[CineHorariosApiClient sharedClient] GET:path parameters:@{ @"favorites": theatersString } success:^(NSURLSessionDataTask * __unused task, id JSON) {
         
-        NSArray *theaterFunctions = [JSON fkbMap:^Theater2 *(NSDictionary *theaterFunctionsDictionary) {
-            return [MTLJSONAdapter modelOfClass:Theater2.class fromJSONDictionary:theaterFunctionsDictionary error:NULL];
+        NSArray *theaterFunctions = [JSON fkbMap:^Theater *(NSDictionary *theaterFunctionsDictionary) {
+            return [MTLJSONAdapter modelOfClass:Theater.class fromJSONDictionary:theaterFunctionsDictionary error:NULL];
         }];
         
         if (block) {

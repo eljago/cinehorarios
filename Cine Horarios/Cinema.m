@@ -7,10 +7,9 @@
 //
 
 #import "Cinema.h"
-#import "Theater2.h"
+#import "Theater.h"
 #import "CineHorariosApiClient.h"
 #import "NSValueTransformer+MTLPredefinedTransformerAdditions.h"
-#import "NSFileManager+CH.h"
 
 NSString *const kCinemaPath = @"/api/cinemas/%d.json";
 NSString *const kCinemaArchivePath = @"/data/cinemas/";
@@ -25,7 +24,7 @@ NSString *const kCinemaArchivePath = @"/data/cinemas/";
 
 + (NSValueTransformer *)theatersJSONTransformer
 {
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Theater2.class];
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Theater.class];
 }
 
 + (void)getCinemaWithBlock:(void (^)(Cinema *cinema, NSError *error))block cinemaID:(NSUInteger )cinemaID {
@@ -48,12 +47,12 @@ NSString *const kCinemaArchivePath = @"/data/cinemas/";
 
 + (id)loadCinemaWithCinemaID:(NSUInteger)cinemaID
 {
-    return [self loadFromPath:[self storagePathForCinemaID:cinemaID]];
+    return [self loadIfOlderThanOneWeekFromPath:[self storagePathForCinemaID:cinemaID]];
 }
 
 + (NSString *)storagePathForCinemaID:(NSUInteger)cinemaID
 {
-    return [[NSFileManager storagePathForPath:kCinemaArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.data",cinemaID]];
+    return [[self storagePathForPath:kCinemaArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.data",cinemaID]];
 }
 
 @end

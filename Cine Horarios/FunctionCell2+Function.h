@@ -8,11 +8,11 @@
 
 #import "FunctionCell2.h"
 
-@class Function2;
+@class Function;
 
 @interface FunctionCell2 (Function2)
 
-- (void) configureForFunction:(Function2 *) function;
-+ (CGFloat) heightForRowWithFunction:(Function2 *)function headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont;
+- (void) configureForFunction:(Function *) function;
++ (CGFloat) heightForRowWithFunction:(Function *)function headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont;
 
 @end

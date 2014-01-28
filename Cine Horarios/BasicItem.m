@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import "BasicItem2.h"
+#import "BasicItem.h"
 #import "BasicItemImage.h"
 
-@implementation BasicItem2
+@implementation BasicItem
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{

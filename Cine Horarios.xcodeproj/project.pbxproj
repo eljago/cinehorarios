@@ -58,7 +58,7 @@
 		6E4BAA841884A49700E37DAF /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA7C1884A49700E37DAF /* close.png */; };
 		6E4F889B1896829000A9CC4F /* RFRateMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F88981896829000A9CC4F /* RFRateMe.m */; };
 		6E4F889C1896829000A9CC4F /* UIAlertView+NSCookbook.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F889A1896829000A9CC4F /* UIAlertView+NSCookbook.m */; };
-		6E56CC05188BA56C000AB809 /* Theater2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC04188BA56C000AB809 /* Theater2.m */; };
+		6E56CC05188BA56C000AB809 /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC04188BA56C000AB809 /* Theater.m */; };
 		6E56CC08188BAD56000AB809 /* NSArray+FKBMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC07188BAD56000AB809 /* NSArray+FKBMap.m */; };
 		6E56CC0B188BBC0E000AB809 /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC0A188BBC0E000AB809 /* ArrayDataSource.m */; };
 		6E56CC11188BBE7D000AB809 /* BasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E56CC10188BBE7D000AB809 /* BasicCell.m */; };
@@ -66,7 +66,7 @@
 		6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396418273C9900ADB8D9 /* MapKit.framework */; };
 		6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57396718273D3400ADB8D9 /* CloseTheatersVC.m */; };
 		6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396C182755A300ADB8D9 /* CoreLocation.framework */; };
-		6E723B621890BA4A009DC5BE /* BasicItem2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B611890BA4A009DC5BE /* BasicItem2.m */; };
+		6E723B621890BA4A009DC5BE /* BasicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B611890BA4A009DC5BE /* BasicItem.m */; };
 		6E723B651890BA8A009DC5BE /* BasicItemImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B641890BA8A009DC5BE /* BasicItemImage.m */; };
 		6E723B6B1891011D009DC5BE /* MovieImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B6A1891011D009DC5BE /* MovieImageCell.m */; };
 		6E723B6E189101A9009DC5BE /* MovieImageCell+MovieImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B6D189101A9009DC5BE /* MovieImageCell+MovieImage.m */; };
@@ -82,8 +82,7 @@
 		6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8686F7188703E4003A91B0 /* DoAlertView.m */; };
 		6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */; };
 		6EA663A6188C8C2200B0FCBE /* Cinema.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663A5188C8C2200B0FCBE /* Cinema.m */; };
-		6EA663A9188CE89E00B0FCBE /* NSFileManager+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663A8188CE89E00B0FCBE /* NSFileManager+CH.m */; };
-		6EA663AC188D012200B0FCBE /* BasicMovie2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663AB188D012200B0FCBE /* BasicMovie2.m */; };
+		6EA663AC188D012200B0FCBE /* BasicMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663AB188D012200B0FCBE /* BasicMovie.m */; };
 		6EA663B2188D19B400B0FCBE /* Billboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663B1188D19B400B0FCBE /* Billboard.m */; };
 		6EA663B5188D20B700B0FCBE /* MTLModelPersistable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663B4188D20B700B0FCBE /* MTLModelPersistable.m */; };
 		6EA663B8188D28A600B0FCBE /* BillboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663B7188D28A600B0FCBE /* BillboardCell.m */; };
@@ -92,8 +91,8 @@
 		6EA663C4188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663C3188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m */; };
 		6EA663C7188DB07600B0FCBE /* FunctionCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663C6188DB07600B0FCBE /* FunctionCell2.m */; };
 		6EA663CA188DB0D300B0FCBE /* FunctionCell2+Function.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663C9188DB0D300B0FCBE /* FunctionCell2+Function.m */; };
-		6EA663CD188DB21D00B0FCBE /* Function2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663CC188DB21D00B0FCBE /* Function2.m */; };
-		6EA663D9188FD18900B0FCBE /* Movie2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663D8188FD18900B0FCBE /* Movie2.m */; };
+		6EA663CD188DB21D00B0FCBE /* Function.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663CC188DB21D00B0FCBE /* Function.m */; };
+		6EA663D9188FD18900B0FCBE /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663D8188FD18900B0FCBE /* Movie.m */; };
 		6EA663DF188FD21100B0FCBE /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663DE188FD21100B0FCBE /* Video.m */; };
 		6EA663E2188FD25F00B0FCBE /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663E1188FD25F00B0FCBE /* Person.m */; };
 /* End PBXBuildFile section */
@@ -188,8 +187,8 @@
 		6E4F88981896829000A9CC4F /* RFRateMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFRateMe.m; sourceTree = "<group>"; };
 		6E4F88991896829000A9CC4F /* UIAlertView+NSCookbook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+NSCookbook.h"; sourceTree = "<group>"; };
 		6E4F889A1896829000A9CC4F /* UIAlertView+NSCookbook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+NSCookbook.m"; sourceTree = "<group>"; };
-		6E56CC03188BA56C000AB809 /* Theater2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater2.h; sourceTree = "<group>"; };
-		6E56CC04188BA56C000AB809 /* Theater2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater2.m; sourceTree = "<group>"; };
+		6E56CC03188BA56C000AB809 /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
+		6E56CC04188BA56C000AB809 /* Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater.m; sourceTree = "<group>"; };
 		6E56CC06188BAD56000AB809 /* NSArray+FKBMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FKBMap.h"; sourceTree = "<group>"; };
 		6E56CC07188BAD56000AB809 /* NSArray+FKBMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FKBMap.m"; sourceTree = "<group>"; };
 		6E56CC09188BBC0E000AB809 /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
@@ -202,8 +201,8 @@
 		6E57396618273D3400ADB8D9 /* CloseTheatersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloseTheatersVC.h; sourceTree = "<group>"; };
 		6E57396718273D3400ADB8D9 /* CloseTheatersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseTheatersVC.m; sourceTree = "<group>"; };
 		6E57396C182755A300ADB8D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		6E723B601890BA49009DC5BE /* BasicItem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicItem2.h; sourceTree = "<group>"; };
-		6E723B611890BA4A009DC5BE /* BasicItem2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicItem2.m; sourceTree = "<group>"; };
+		6E723B601890BA49009DC5BE /* BasicItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicItem.h; sourceTree = "<group>"; };
+		6E723B611890BA4A009DC5BE /* BasicItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicItem.m; sourceTree = "<group>"; };
 		6E723B631890BA8A009DC5BE /* BasicItemImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicItemImage.h; sourceTree = "<group>"; };
 		6E723B641890BA8A009DC5BE /* BasicItemImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicItemImage.m; sourceTree = "<group>"; };
 		6E723B691891011D009DC5BE /* MovieImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieImageCell.h; sourceTree = "<group>"; };
@@ -234,10 +233,8 @@
 		6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDynamicTransition.m; sourceTree = "<group>"; };
 		6EA663A4188C8C2200B0FCBE /* Cinema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cinema.h; sourceTree = "<group>"; };
 		6EA663A5188C8C2200B0FCBE /* Cinema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cinema.m; sourceTree = "<group>"; };
-		6EA663A7188CE89E00B0FCBE /* NSFileManager+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CH.h"; sourceTree = "<group>"; };
-		6EA663A8188CE89E00B0FCBE /* NSFileManager+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CH.m"; sourceTree = "<group>"; };
-		6EA663AA188D012200B0FCBE /* BasicMovie2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMovie2.h; sourceTree = "<group>"; };
-		6EA663AB188D012200B0FCBE /* BasicMovie2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicMovie2.m; sourceTree = "<group>"; };
+		6EA663AA188D012200B0FCBE /* BasicMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMovie.h; sourceTree = "<group>"; };
+		6EA663AB188D012200B0FCBE /* BasicMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicMovie.m; sourceTree = "<group>"; };
 		6EA663B0188D19B400B0FCBE /* Billboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Billboard.h; sourceTree = "<group>"; };
 		6EA663B1188D19B400B0FCBE /* Billboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Billboard.m; sourceTree = "<group>"; };
 		6EA663B3188D20B700B0FCBE /* MTLModelPersistable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLModelPersistable.h; sourceTree = "<group>"; };
@@ -254,10 +251,10 @@
 		6EA663C6188DB07600B0FCBE /* FunctionCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionCell2.m; sourceTree = "<group>"; };
 		6EA663C8188DB0D300B0FCBE /* FunctionCell2+Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FunctionCell2+Function.h"; sourceTree = "<group>"; };
 		6EA663C9188DB0D300B0FCBE /* FunctionCell2+Function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FunctionCell2+Function.m"; sourceTree = "<group>"; };
-		6EA663CB188DB21D00B0FCBE /* Function2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function2.h; sourceTree = "<group>"; };
-		6EA663CC188DB21D00B0FCBE /* Function2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Function2.m; sourceTree = "<group>"; };
-		6EA663D7188FD18900B0FCBE /* Movie2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie2.h; sourceTree = "<group>"; };
-		6EA663D8188FD18900B0FCBE /* Movie2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie2.m; sourceTree = "<group>"; };
+		6EA663CB188DB21D00B0FCBE /* Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
+		6EA663CC188DB21D00B0FCBE /* Function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Function.m; sourceTree = "<group>"; };
+		6EA663D7188FD18900B0FCBE /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		6EA663D8188FD18900B0FCBE /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		6EA663DD188FD21100B0FCBE /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
 		6EA663DE188FD21100B0FCBE /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		6EA663E0188FD25F00B0FCBE /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
@@ -398,8 +395,6 @@
 				1628571E185F607E00DBD491 /* UIView+CH.m */,
 				6E56CC06188BAD56000AB809 /* NSArray+FKBMap.h */,
 				6E56CC07188BAD56000AB809 /* NSArray+FKBMap.m */,
-				6EA663A7188CE89E00B0FCBE /* NSFileManager+CH.h */,
-				6EA663A8188CE89E00B0FCBE /* NSFileManager+CH.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -409,24 +404,24 @@
 			children = (
 				6EA663B3188D20B700B0FCBE /* MTLModelPersistable.h */,
 				6EA663B4188D20B700B0FCBE /* MTLModelPersistable.m */,
-				6E56CC03188BA56C000AB809 /* Theater2.h */,
-				6E56CC04188BA56C000AB809 /* Theater2.m */,
+				6E56CC03188BA56C000AB809 /* Theater.h */,
+				6E56CC04188BA56C000AB809 /* Theater.m */,
 				6EA663A4188C8C2200B0FCBE /* Cinema.h */,
 				6EA663A5188C8C2200B0FCBE /* Cinema.m */,
-				6EA663AA188D012200B0FCBE /* BasicMovie2.h */,
-				6EA663AB188D012200B0FCBE /* BasicMovie2.m */,
+				6EA663AA188D012200B0FCBE /* BasicMovie.h */,
+				6EA663AB188D012200B0FCBE /* BasicMovie.m */,
 				6EA663B0188D19B400B0FCBE /* Billboard.h */,
 				6EA663B1188D19B400B0FCBE /* Billboard.m */,
-				6EA663CB188DB21D00B0FCBE /* Function2.h */,
-				6EA663CC188DB21D00B0FCBE /* Function2.m */,
-				6EA663D7188FD18900B0FCBE /* Movie2.h */,
-				6EA663D8188FD18900B0FCBE /* Movie2.m */,
+				6EA663CB188DB21D00B0FCBE /* Function.h */,
+				6EA663CC188DB21D00B0FCBE /* Function.m */,
+				6EA663D7188FD18900B0FCBE /* Movie.h */,
+				6EA663D8188FD18900B0FCBE /* Movie.m */,
 				6EA663DD188FD21100B0FCBE /* Video.h */,
 				6EA663DE188FD21100B0FCBE /* Video.m */,
 				6EA663E0188FD25F00B0FCBE /* Person.h */,
 				6EA663E1188FD25F00B0FCBE /* Person.m */,
-				6E723B601890BA49009DC5BE /* BasicItem2.h */,
-				6E723B611890BA4A009DC5BE /* BasicItem2.m */,
+				6E723B601890BA49009DC5BE /* BasicItem.h */,
+				6E723B611890BA4A009DC5BE /* BasicItem.m */,
 				6E723B631890BA8A009DC5BE /* BasicItemImage.h */,
 				6E723B641890BA8A009DC5BE /* BasicItemImage.m */,
 				6E723B81189112AD009DC5BE /* Cast.h */,
@@ -689,14 +684,14 @@
 				3DDD5AEB18020ACC00720ABD /* MovieCinemasVC.m in Sources */,
 				3DFA54CC170B3512003E2208 /* main.m in Sources */,
 				6E56CC15188BC735000AB809 /* BasicCell+Theater.m in Sources */,
-				6EA663D9188FD18900B0FCBE /* Movie2.m in Sources */,
+				6EA663D9188FD18900B0FCBE /* Movie.m in Sources */,
 				6E723B6E189101A9009DC5BE /* MovieImageCell+MovieImage.m in Sources */,
 				6E723B7A18910CC4009DC5BE /* CastActorCell+Person.m in Sources */,
 				6EA663BE188D297400B0FCBE /* BillboardCell+BasicMovie.m in Sources */,
 				6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */,
 				3D309A2C17A8674000BB5D13 /* UIImage+CH.m in Sources */,
 				6E723B7718910C5F009DC5BE /* CastActorCell.m in Sources */,
-				6EA663CD188DB21D00B0FCBE /* Function2.m in Sources */,
+				6EA663CD188DB21D00B0FCBE /* Function.m in Sources */,
 				3DDB7115170A516B00EC3E51 /* AppDelegate.m in Sources */,
 				3D00E5C0170DDB2400C7DAAE /* TheatersVC.m in Sources */,
 				6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */,
@@ -713,16 +708,15 @@
 				6EA663C1188D3DA300B0FCBE /* ComingSoonCell2.m in Sources */,
 				16692A35180C7DFF00166885 /* MenuVC.m in Sources */,
 				6E56CC11188BBE7D000AB809 /* BasicCell.m in Sources */,
-				6E723B621890BA4A009DC5BE /* BasicItem2.m in Sources */,
+				6E723B621890BA4A009DC5BE /* BasicItem.m in Sources */,
 				1629F85417FF4EFA001428C1 /* SettingsVC.m in Sources */,
-				6EA663A9188CE89E00B0FCBE /* NSFileManager+CH.m in Sources */,
 				6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */,
 				16692A3D180CAA9600166885 /* MenuCell.m in Sources */,
 				3D309A2917A85DBC00BB5D13 /* UIColor+CH.m in Sources */,
 				6E56CC08188BAD56000AB809 /* NSArray+FKBMap.m in Sources */,
 				6E4F889B1896829000A9CC4F /* RFRateMe.m in Sources */,
 				6EA663B8188D28A600B0FCBE /* BillboardCell.m in Sources */,
-				6EA663AC188D012200B0FCBE /* BasicMovie2.m in Sources */,
+				6EA663AC188D012200B0FCBE /* BasicMovie.m in Sources */,
 				6E4F889C1896829000A9CC4F /* UIAlertView+NSCookbook.m in Sources */,
 				6E723B7418910499009DC5BE /* MovieCastCell+Person.m in Sources */,
 				6EA663E2188FD25F00B0FCBE /* Person.m in Sources */,
@@ -740,7 +734,7 @@
 				3D29986A17E5E29C001A371D /* MovieImagesVC.m in Sources */,
 				3D3FA6ED174D91CC0067AE57 /* VideoVC.m in Sources */,
 				163BAB211763C34500A81BF7 /* WebVC.m in Sources */,
-				6E56CC05188BA56C000AB809 /* Theater2.m in Sources */,
+				6E56CC05188BA56C000AB809 /* Theater.m in Sources */,
 				1628571F185F607E00DBD491 /* UIView+CH.m in Sources */,
 				6E723B8018910FAF009DC5BE /* CastDirectorCell+Person.m in Sources */,
 				1639492617F9BA1700AB7DE7 /* CastVC.m in Sources */,

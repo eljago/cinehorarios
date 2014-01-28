@@ -12,10 +12,9 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-#import "BasicItem2.h"
+#import "BasicItem.h"
 #import "BasicItemImage.h"
 #import "MTLJSONAdapter.h"
-#import "RFRateMe.h"
 
 @interface CinesVC ()
 @property (nonatomic, strong) NSArray *cinemas;
@@ -35,8 +34,6 @@
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"CINES" forKey:kGAIScreenName] build]];
     
     [self loadCinemas];
-    
-    [RFRateMe showRateAlert];
 }
 
 #pragma mark - UITableViewController
@@ -72,7 +69,7 @@
     
     NSMutableArray *mutableCinemas = [NSMutableArray array];
     for (NSDictionary *dict in cinemasLocal) {
-        BasicItemImage *cinema = [MTLJSONAdapter modelOfClass:BasicItem2.class fromJSONDictionary:dict error:NULL];
+        BasicItemImage *cinema = [MTLJSONAdapter modelOfClass:BasicItem.class fromJSONDictionary:dict error:NULL];
         [mutableCinemas addObject:cinema];
     }
     self.cinemas = [NSArray arrayWithArray:mutableCinemas];

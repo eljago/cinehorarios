@@ -9,7 +9,7 @@
 #import "MTLModel.h"
 #import "MTLJSONAdapter.h"
 
-@interface BasicItem2 : MTLModel <MTLJSONSerializing>
+@interface BasicItem : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, assign, readonly) NSUInteger itemID;
 @property (nonatomic, strong, readonly) NSString *name;

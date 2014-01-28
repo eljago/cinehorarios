@@ -9,7 +9,7 @@
 #import "MTLModelPersistable.h"
 #import "MTLJSONAdapter.h"
 
-@interface Movie2 : MTLModelPersistable <MTLJSONSerializing>
+@interface Movie : MTLModelPersistable <MTLJSONSerializing>
 
 @property (nonatomic, assign, readonly) NSUInteger movieID;
 @property (nonatomic, strong, readonly) NSString *name;
@@ -31,7 +31,7 @@
 @property (nonatomic, strong, readonly) NSArray *videos;
 @property (nonatomic, strong, readonly) NSArray *people;
 
-+ (void)getCinemaWithBlock:(void (^)(Movie2 *movie, NSError *error))block movieID:(NSUInteger )movieID;
++ (void)getCinemaWithBlock:(void (^)(Movie *movie, NSError *error))block movieID:(NSUInteger )movieID;
 + (id)loadMovieWithMovieID:(NSUInteger)movieID;
 
 @end

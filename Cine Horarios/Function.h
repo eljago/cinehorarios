@@ -9,7 +9,7 @@
 #import "MTLModelPersistable.h"
 #import "MTLJSONAdapter.h"
 
-@interface Function2 : MTLModelPersistable <MTLJSONSerializing>
+@interface Function : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, assign, readonly) NSUInteger movieID;
 @property (nonatomic, strong, readonly) NSString *showtimes;

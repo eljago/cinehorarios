@@ -7,7 +7,7 @@
 //
 
 #import "MovieCinemasVC.h"
-#import "Theater2.h"
+#import "Theater.h"
 #import "BasicItemImage.h"
 #import "MovieFunctionsVC.h"
 #import "MBProgressHUD.h"
@@ -56,7 +56,7 @@
 -(void) downloadShowTheaters{
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Theater2 getMovieTheatersWithBlock:^(NSArray *theaters, NSError *error) {
+    [Theater getMovieTheatersWithBlock:^(NSArray *theaters, NSError *error) {
         if (!error) {
             [self loadCinemas];
             [self makeArraysUsingTheaters:theaters];
@@ -73,8 +73,8 @@
 }
 - (void) makeArraysUsingTheaters:(NSArray *)theaters {
     self.theaters = [[NSMutableArray alloc] initWithObjects:[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],[NSMutableArray array], [NSMutableArray array], nil];
-    for (Theater2 *theater in theaters) {
-        for (Theater2 *favTheater in self.favoriteTheaters) {
+    for (Theater *theater in theaters) {
+        for (Theater *favTheater in self.favoriteTheaters) {
             if (favTheater.theaterID == theater.theaterID) {
                 [self.theaters[0] addObject:theater];
                 break;
@@ -116,7 +116,7 @@
         for (int i=0;i<[favorites count];i++){
             NSDictionary *theaterDictionary = @{@"theaterID": [keys objectAtIndex:i],
                                                 @"name": [values objectAtIndex:i]};
-            Theater2 *theater = [[Theater2 alloc] initWithDictionary:theaterDictionary error:NULL];
+            Theater *theater = [[Theater alloc] initWithDictionary:theaterDictionary error:NULL];
             [self.favoriteTheaters insertObject:theater atIndex:i];
         }
     }
@@ -136,7 +136,7 @@
                                           @"imageURL": @"FavoriteHeart"};
     [self.cinemas addObject:[[BasicItemImage alloc] initWithDictionary:favoritesDictionary error:NULL]];
     for (NSDictionary *dict in cinemasLocal) {
-        BasicItemImage *cinema = [MTLJSONAdapter modelOfClass:BasicItem2.class fromJSONDictionary:dict error:NULL];
+        BasicItemImage *cinema = [MTLJSONAdapter modelOfClass:BasicItem.class fromJSONDictionary:dict error:NULL];
         [self.cinemas addObject:cinema];
     }
 }

@@ -8,11 +8,11 @@
 
 #import "BillboardCell+BasicMovie.h"
 #import "UIImageView+CH.h"
-#import "BasicMovie2.h"
+#import "BasicMovie.h"
 
 @implementation BillboardCell (BasicMovie)
 
--(void) configureForBasicMovie:(BasicMovie2 *)basicMovie {
+-(void) configureForBasicMovie:(BasicMovie *)basicMovie {
     self.mainLabel.text = basicMovie.name;
     if (basicMovie.duration) {
         self.durationLabel.text = [NSString stringWithFormat:@"%d minutos",basicMovie.duration];
@@ -31,7 +31,7 @@
     
 }
 
-+ (CGFloat) heightForRowWithBasicMovie:(BasicMovie2 *)basicMovie headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont {
++ (CGFloat) heightForRowWithBasicMovie:(BasicMovie *)basicMovie headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont {
     NSString *duration = [NSString stringWithFormat:@"%d", basicMovie.duration];
     
     CGSize size = CGSizeMake(187.f, 1000.f);

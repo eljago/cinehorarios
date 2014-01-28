@@ -64,7 +64,7 @@
     static NSString *identifier = @"Cell";
     BasicCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    Theater2 *theater = self.favoriteTheaters[indexPath.row];
+    Theater *theater = self.favoriteTheaters[indexPath.row];
     cell.mainLabel.text = theater.name;
 
     return cell;
@@ -78,7 +78,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Theater2 *theater = self.favoriteTheaters[indexPath.row];
+        Theater *theater = self.favoriteTheaters[indexPath.row];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Toggle Favorite"
                                                             object:self
                                                           userInfo:@{@"TheaterName": theater.name,
@@ -137,7 +137,7 @@
     for (int i=0;i<[favorites count];i++){
         NSError *error = nil;
         NSDictionary *dict = @{@"theaterID": [keys objectAtIndex:i], @"name": [values objectAtIndex:i]};
-        Theater2 *theater = [Theater2 modelWithDictionary:dict error:&error];
+        Theater *theater = [Theater modelWithDictionary:dict error:&error];
         [mutableTheaters insertObject:theater atIndex:i];
     }
     self.favoriteTheaters = mutableTheaters;
@@ -169,7 +169,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     FuncionesVC *functionesVC = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    Theater2 *theater = self.favoriteTheaters[indexPath.row];
+    Theater *theater = self.favoriteTheaters[indexPath.row];
     functionesVC.theaterID = theater.theaterID;
     functionesVC.theaterName = theater.name;
     

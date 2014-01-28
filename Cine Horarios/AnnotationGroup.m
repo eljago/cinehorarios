@@ -8,7 +8,6 @@
 
 #import "AnnotationGroup.h"
 #import "CineHorariosApiClient.h"
-#import "NSFileManager+CH.h"
 
 NSString *const kAnnotationGroupPath = @"/api/theaters/theater_coordinates.json";
 NSString *const kAnnotationGroupArchivePath = @"/data/";
@@ -38,12 +37,12 @@ NSString *const kAnnotationGroupArchivePath = @"/data/";
 
 + (id)loadAnnotationGroup
 {
-    return [self loadFromPath:[self storagePath]];
+    return [self loadIfOlderThanOneWeekFromPath:[self storagePath]];
 }
 
 + (NSString *)storagePath
 {
-    return [[NSFileManager storagePathForPath:kAnnotationGroupArchivePath] stringByAppendingPathComponent:@"annotations.data"];
+    return [[self storagePathForPath:kAnnotationGroupArchivePath] stringByAppendingPathComponent:@"annotations.data"];
 }
 
 @end
