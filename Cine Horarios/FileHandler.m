@@ -55,6 +55,42 @@ NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
     }
 }
 
+//+ (void) cleanDirectoryAtPath: (NSString *) path {
+//    
+//    // Current Date
+//    NSDate *currentDate = [NSDate date];
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    NSFileManager *filemgr = [NSFileManager defaultManager];
+//    
+//    NSArray *fileList = [filemgr contentsOfDirectoryAtPath:path error:NULL];
+//    BOOL isDirectory;
+//    if (fileList.count == 0) {
+//        [filemgr removeItemAtPath:path error: NULL];
+//    }
+//    else if (fileList.count == 1 && [fileList[0] isEqualToString:@".DS_Store"]) {
+//        
+//        [filemgr removeItemAtPath:[itemPath stringByAppendingPathComponent:fileList2[0]] error: NULL];
+//        [filemgr removeItemAtPath:itemPath error: NULL];
+//    }
+//    else {
+//        for (NSString *item in fileList){
+//            
+//            NSString *itemPath = [path stringByAppendingPathComponent:item];
+//            BOOL fileExistsAtPath = [filemgr fileExistsAtPath:itemPath isDirectory:&isDirectory];
+//            if (fileExistsAtPath && isDirectory) {
+//                //It's a Directory.
+//                [self cleanDirectoryAtPath:itemPath];
+//            }
+//            else if (fileExistsAtPath && !isDirectory) {
+//                // billboard.json or comingsoon.json
+//                if ([item isEqualToString:@"comingsoon.json"] || [item isEqualToString:@"billboard.json"]) {
+//                    [self deleteFileAtPath:itemPath ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];
+//                }
+//            }
+//        }
+//    }
+//}
+
 + (void) removeOldJsons {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];

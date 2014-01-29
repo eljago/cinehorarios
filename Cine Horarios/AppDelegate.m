@@ -21,6 +21,8 @@ static BOOL const kGaDryRun = NO;
 static int const kGaDispatchPeriod = 30;
 
 @implementation AppDelegate
+@synthesize miGeofaro;
+@synthesize miLaunchOptions;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -29,6 +31,10 @@ static int const kGaDispatchPeriod = 30;
     [self setup_icloud_favorites];
     [self setup_appearances];
     
+    
+    //Mensajes Push
+    [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeNewsstandContentAvailability)];
+
     return YES;
 }
 
@@ -60,6 +66,143 @@ static int const kGaDispatchPeriod = 30;
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Application PUSH
+#pragma mark - Push
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString *token= [[[[deviceToken description]
+                        stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]]
+                       stringByReplacingOccurrencesOfString:@" "
+                       withString:@""]
+                      stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSLog(@"token %@",token);
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:token forKey:@"TOKEN"];
+    
+    if (token !=nil)
+    {
+        [self iniciarGeofaro];
+    }
+    
+    //DatosEnvio
+    /*
+     DatosEnvio *datosEnvio =[[DatosEnvio alloc] init];
+     [datosEnvio setDelegate:self];
+     
+     [datosEnvio setRespuestaXML:NO];
+     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token,@"udid", @"1",@"pl",nil];
+     
+     [datosEnvio enviarDatosRuta:@"http://catalogo.modasantiago.cl/register.php?" datos:params];
+     */
+    //NSData *envio = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://54.244.227.53:8000/hios/%@",token]]];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"didReceiveRemoteNotification %@",userInfo);
+    int numero = application.applicationIconBadgeNumber++;
+    [application setApplicationIconBadgeNumber:numero];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    NSLog(@"didReceiveRemoteNotification %@ fetchCompletionHandler",userInfo);
+    
+        NSLog(@"es iOS7");
+        
+        NSDictionary *aps = [userInfo valueForKey:@"aps"];
+        NSLog(@"userInfo %@",aps);
+        NSLog(@"userInfo %i",[[aps valueForKey:@"content-available"] intValue]);
+        BOOL descargar = [[aps valueForKey:@"content-available"] intValue] != 0; // myBool is NO for 0, YES for anything else
+        NSLog(@"%i",descargar);
+        if (descargar)
+        {
+            NSLog(@"descargar");
+        }else{
+            NSLog(@"no descargar");
+        }
+        
+        /*
+         NSURL *urlx = [NSURL URLWithString:@"http://www.geofaro.com"];
+         
+         NSURLRequest *reqt = [NSURLRequest requestWithURL:urlx];
+         
+         NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration backgroundSessionConfiguration:@"download"] delegate:self delegateQueue:nil];
+         [urlSession downloadTaskWithURL:urlx];
+         */
+        /*[urlSession downloadTaskWithRequest:reqt completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+         
+         if (!error) {
+         
+         NSLog(@"LLEGO %@", response);
+         
+         }else{
+         
+         NSLog(@"Error!");
+         }
+         
+         }];
+         */
+        NSLog(@"HAREMOS OTRA COSA");
+        //[_miBLE iniciar:_miLaunchOptions];
+    
+    
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+{
+    NSLog(@">.<");
+}
+
+/* Sent periodically to notify the delegate of download progress. */
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten
+totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+    
+    NSLog(@"^_^");
+}
+
+/* Sent when a download has been resumed. If a download failed with an
+ * error, the -userInfo dictionary of the error will contain an
+ * NSURLSessionDownloadTaskResumeData key, whose value is the resume
+ * data.
+ */
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+{
+    
+    NSLog(@"o.0");
+}
+/*
+ - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+ {
+ NSLog(@"performFetchWithCompletionHandler");
+ }
+ */
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
+{
+    /*
+     NSLog(@"I'm running in the background!");
+     // Execute your background request here:
+     NSError *error = nil;
+     NSString *string = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.brightmediums.com"] encoding:NSUTF8StringEncoding error:&error];
+     NSLog(@"Error: %@, Response %@", error, string);
+     //Make sure to run one of the following methods:
+     completionHandler(UIBackgroundFetchResultNewData);
+     */
+    /*
+     * Other options are:
+     UIBackgroundFetchResultFailed
+     UIBackgroundFetchResultNoData
+     */
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"didFailToRegisterForRemoteNotificationsWithError %@",error);
 }
 
 #pragma mark - Notification Methods
@@ -194,5 +337,58 @@ static int const kGaDispatchPeriod = 30;
     
 }
 
+- (void)iniciarGeofaro
+{
+    NSLog(@"AppDelegate: iniciarGeofaro");
+    miGeofaro = [Geofaro sharedGeofaro];
+    [miGeofaro setDelegate:self];
+    [miGeofaro setNotificaciones:YES];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [miGeofaro setUd:[userDefaults valueForKey:@"TOKEN"]];
+    [miGeofaro setLaunchOptions:miLaunchOptions];
+    [miGeofaro setNotificacionMensajePromocion:@"Encontramos un Geofaro en QueRico"];
+    [miGeofaro setNotificacionTituloPromocion:@"Encontramos un Geofaro en QueRico"];
+    [miGeofaro setNotificacionBotonCancel:@"Ver"];
+    [miGeofaro setFlagOcultarBarraStatus:YES];
+    
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    if (height > 500) {
+        [miGeofaro setErrorImage:[UIImage imageNamed:@"Default-568h"]];
+    } else {
+        [miGeofaro setErrorImage:[UIImage imageNamed:@"Default"]];
+    }
+    [miGeofaro iniciar];
+}
+
+#pragma mark - GeofaroDelegate
+- (void)geofaro:(Geofaro *)geofaro iniciandoConFaros:(NSArray *)faros
+{
+    NSLog(@"AppDelegate: iniciandoConFaros %@",faros);
+}
+
+- (void)geofaro:(Geofaro *)geofaro faroEncontrado:(NSDictionary *)faroInfo
+{
+    NSLog(@"AppDelegate: faroEncontrado %@",faroInfo);
+}
+
+- (void)geofaro:(Geofaro *)geofaro faroEncontradoNuevo:(NSDictionary *)faroInfo
+{
+    NSLog(@"AppDelegate: faroEncontradoNuevo %@",faroInfo);
+}
+
+- (void)geofaro:(Geofaro *)geofaro faroEncontradoPromocionViewController:(UIViewController *)promocionViewController
+{
+    NSLog(@"AppDelegate: faroEncontradoPromocionViewController");
+    UIViewController *viewController = self.window.rootViewController.presentedViewController;
+    if (viewController) {
+        [viewController presentViewController:promocionViewController animated:YES completion:^{
+            //[[UIApplication sharedApplication] setStatusBarHidden:YES];
+        }];
+    }else{
+        [self.window.rootViewController presentViewController:promocionViewController animated:YES completion:^{
+            //[[UIApplication sharedApplication] setStatusBarHidden:YES];
+        }];
+    }
+}
 
 @end

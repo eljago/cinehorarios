@@ -47,6 +47,32 @@
 		3DDD5AEB18020ACC00720ABD /* MovieCinemasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C7EB56173E0EFF001CF782 /* MovieCinemasVC.m */; };
 		3DDD5AEF18020C8700720ABD /* Cinemas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DDD5AEE18020C8700720ABD /* Cinemas.plist */; };
 		3DFA54CC170B3512003E2208 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB7110170A516B00EC3E51 /* main.m */; };
+		6E239DE818983B08005EDE7E /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E239DE718983B07005EDE7E /* NSObject+Utilidades.m */; };
+		6E40BEE2189835CB00EB1F52 /* alerta.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEBA189835CB00EB1F52 /* alerta.png */; };
+		6E40BEE3189835CB00EB1F52 /* alerta@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEBB189835CB00EB1F52 /* alerta@2x.png */; };
+		6E40BEE4189835CB00EB1F52 /* btnCerrar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEBD189835CB00EB1F52 /* btnCerrar.png */; };
+		6E40BEE5189835CB00EB1F52 /* btnCerrar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEBE189835CB00EB1F52 /* btnCerrar@2x.png */; };
+		6E40BEE6189835CB00EB1F52 /* btnCerrarLargo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEBF189835CB00EB1F52 /* btnCerrarLargo.png */; };
+		6E40BEE7189835CB00EB1F52 /* btnCerrarLargo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEC0189835CB00EB1F52 /* btnCerrarLargo@2x.png */; };
+		6E40BEE8189835CB00EB1F52 /* btnReintentar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEC1189835CB00EB1F52 /* btnReintentar.png */; };
+		6E40BEE9189835CB00EB1F52 /* btnReintentar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEC2189835CB00EB1F52 /* btnReintentar@2x.png */; };
+		6E40BEEA189835CB00EB1F52 /* btnReintentariPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEC3189835CB00EB1F52 /* btnReintentariPad.png */; };
+		6E40BEEB189835CB00EB1F52 /* btnReintentariPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEC4189835CB00EB1F52 /* btnReintentariPad@2x.png */; };
+		6E40BEEC189835CB00EB1F52 /* cargando.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEC5189835CB00EB1F52 /* cargando.png */; };
+		6E40BEED189835CB00EB1F52 /* cargando@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEC6189835CB00EB1F52 /* cargando@2x.png */; };
+		6E40BEEE189835CB00EB1F52 /* cerrarIZQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEC7189835CB00EB1F52 /* cerrarIZQ.png */; };
+		6E40BEEF189835CB00EB1F52 /* cerrarIZQ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEC8189835CB00EB1F52 /* cerrarIZQ@2x.png */; };
+		6E40BEF0189835CB00EB1F52 /* ConfigGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEC9189835CB00EB1F52 /* ConfigGeofaro.plist */; };
+		6E40BEF1189835CB00EB1F52 /* CuponesGeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BECB189835CB00EB1F52 /* CuponesGeoViewController.xib */; };
+		6E40BEF2189835CB00EB1F52 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BECC189835CB00EB1F52 /* error.png */; };
+		6E40BEF3189835CB00EB1F52 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BECD189835CB00EB1F52 /* error@2x.png */; };
+		6E40BEF4189835CB00EB1F52 /* guardarDER.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BED3189835CB00EB1F52 /* guardarDER.png */; };
+		6E40BEF5189835CB00EB1F52 /* guardarDER@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BED4189835CB00EB1F52 /* guardarDER@2x.png */; };
+		6E40BEF6189835CB00EB1F52 /* PromocionGeoiPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BED8189835CB00EB1F52 /* PromocionGeoiPadViewController.xib */; };
+		6E40BEF7189835CB00EB1F52 /* PromocionGeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEDA189835CB00EB1F52 /* PromocionGeoViewController.xib */; };
+		6E40BEF8189835CB00EB1F52 /* RegionesGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEDE189835CB00EB1F52 /* RegionesGeofaro.plist */; };
+		6E40BEF9189835CB00EB1F52 /* ServiciosGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E40BEDF189835CB00EB1F52 /* ServiciosGeofaro.plist */; };
+		6E40BEFA189835CB00EB1F52 /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E40BEE1189835CB00EB1F52 /* libGeofaro.a */; };
 		6E4BAA7418849D6A00E37DAF /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4BAA7318849D6A00E37DAF /* UIImage+ResizeMagick.m */; };
 		6E4BAA7D1884A49700E37DAF /* check_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA751884A49600E37DAF /* check_black@2x.png */; };
 		6E4BAA7E1884A49700E37DAF /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA761884A49600E37DAF /* check@2x.png */; };
@@ -173,6 +199,48 @@
 		3DDB7113170A516B00EC3E51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DDB7114170A516B00EC3E51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3DDD5AEE18020C8700720ABD /* Cinemas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cinemas.plist; sourceTree = "<group>"; };
+		6E239DE618983B07005EDE7E /* NSObject+Utilidades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Utilidades.h"; sourceTree = "<group>"; };
+		6E239DE718983B07005EDE7E /* NSObject+Utilidades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utilidades.m"; sourceTree = "<group>"; };
+		6E40BEBA189835CB00EB1F52 /* alerta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alerta.png; sourceTree = "<group>"; };
+		6E40BEBB189835CB00EB1F52 /* alerta@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alerta@2x.png"; sourceTree = "<group>"; };
+		6E40BEBC189835CB00EB1F52 /* ArchivoManagerFaro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchivoManagerFaro.h; sourceTree = "<group>"; };
+		6E40BEBD189835CB00EB1F52 /* btnCerrar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnCerrar.png; sourceTree = "<group>"; };
+		6E40BEBE189835CB00EB1F52 /* btnCerrar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCerrar@2x.png"; sourceTree = "<group>"; };
+		6E40BEBF189835CB00EB1F52 /* btnCerrarLargo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnCerrarLargo.png; sourceTree = "<group>"; };
+		6E40BEC0189835CB00EB1F52 /* btnCerrarLargo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCerrarLargo@2x.png"; sourceTree = "<group>"; };
+		6E40BEC1189835CB00EB1F52 /* btnReintentar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnReintentar.png; sourceTree = "<group>"; };
+		6E40BEC2189835CB00EB1F52 /* btnReintentar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnReintentar@2x.png"; sourceTree = "<group>"; };
+		6E40BEC3189835CB00EB1F52 /* btnReintentariPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnReintentariPad.png; sourceTree = "<group>"; };
+		6E40BEC4189835CB00EB1F52 /* btnReintentariPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnReintentariPad@2x.png"; sourceTree = "<group>"; };
+		6E40BEC5189835CB00EB1F52 /* cargando.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cargando.png; sourceTree = "<group>"; };
+		6E40BEC6189835CB00EB1F52 /* cargando@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cargando@2x.png"; sourceTree = "<group>"; };
+		6E40BEC7189835CB00EB1F52 /* cerrarIZQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cerrarIZQ.png; sourceTree = "<group>"; };
+		6E40BEC8189835CB00EB1F52 /* cerrarIZQ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cerrarIZQ@2x.png"; sourceTree = "<group>"; };
+		6E40BEC9189835CB00EB1F52 /* ConfigGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigGeofaro.plist; sourceTree = "<group>"; };
+		6E40BECA189835CB00EB1F52 /* CuponesGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuponesGeoViewController.h; sourceTree = "<group>"; };
+		6E40BECB189835CB00EB1F52 /* CuponesGeoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CuponesGeoViewController.xib; sourceTree = "<group>"; };
+		6E40BECC189835CB00EB1F52 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
+		6E40BECD189835CB00EB1F52 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
+		6E40BECE189835CB00EB1F52 /* Faro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Faro.h; sourceTree = "<group>"; };
+		6E40BECF189835CB00EB1F52 /* FaroEnvioData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroEnvioData.h; sourceTree = "<group>"; };
+		6E40BED0189835CB00EB1F52 /* FaroFotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroFotoManager.h; sourceTree = "<group>"; };
+		6E40BED1189835CB00EB1F52 /* FarosActualizacionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarosActualizacionParser.h; sourceTree = "<group>"; };
+		6E40BED2189835CB00EB1F52 /* Geofaro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geofaro.h; sourceTree = "<group>"; };
+		6E40BED3189835CB00EB1F52 /* guardarDER.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guardarDER.png; sourceTree = "<group>"; };
+		6E40BED4189835CB00EB1F52 /* guardarDER@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guardarDER@2x.png"; sourceTree = "<group>"; };
+		6E40BED5189835CB00EB1F52 /* HBPro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPro.h; sourceTree = "<group>"; };
+		6E40BED6189835CB00EB1F52 /* NSObject+UtilidadesGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UtilidadesGeo.h"; sourceTree = "<group>"; };
+		6E40BED7189835CB00EB1F52 /* PromocionGeoiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromocionGeoiPadViewController.h; sourceTree = "<group>"; };
+		6E40BED8189835CB00EB1F52 /* PromocionGeoiPadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromocionGeoiPadViewController.xib; sourceTree = "<group>"; };
+		6E40BED9189835CB00EB1F52 /* PromocionGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromocionGeoViewController.h; sourceTree = "<group>"; };
+		6E40BEDA189835CB00EB1F52 /* PromocionGeoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromocionGeoViewController.xib; sourceTree = "<group>"; };
+		6E40BEDB189835CB00EB1F52 /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
+		6E40BEDC189835CB00EB1F52 /* RadarParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarParser.h; sourceTree = "<group>"; };
+		6E40BEDD189835CB00EB1F52 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		6E40BEDE189835CB00EB1F52 /* RegionesGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RegionesGeofaro.plist; sourceTree = "<group>"; };
+		6E40BEDF189835CB00EB1F52 /* ServiciosGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServiciosGeofaro.plist; sourceTree = "<group>"; };
+		6E40BEE0189835CB00EB1F52 /* UIDevice+HardwareGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HardwareGeo.h"; sourceTree = "<group>"; };
+		6E40BEE1189835CB00EB1F52 /* libGeofaro.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGeofaro.a; sourceTree = "<group>"; };
 		6E4BAA7218849D6A00E37DAF /* UIImage+ResizeMagick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeMagick.h"; sourceTree = "<group>"; };
 		6E4BAA7318849D6A00E37DAF /* UIImage+ResizeMagick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeMagick.m"; sourceTree = "<group>"; };
 		6E4BAA751884A49600E37DAF /* check_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_black@2x.png"; sourceTree = "<group>"; };
@@ -267,6 +335,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E40BEFA189835CB00EB1F52 /* libGeofaro.a in Frameworks */,
 				6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */,
 				6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */,
 				3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */,
@@ -480,6 +549,7 @@
 		3DDB710A170A516B00EC3E51 /* Cine Horarios */ = {
 			isa = PBXGroup;
 			children = (
+				6E40BEB7189835A000EB1F52 /* lib */,
 				162414A317BC946E00083708 /* Images.xcassets */,
 				3D111A4F170C97140043D2D2 /* Classes */,
 				3DDB710B170A516B00EC3E51 /* Supporting Files */,
@@ -501,6 +571,71 @@
 				16547FD618106D8C00B6F24C /* Localizable.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6E40BEB7189835A000EB1F52 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				6E239DE618983B07005EDE7E /* NSObject+Utilidades.h */,
+				6E239DE718983B07005EDE7E /* NSObject+Utilidades.m */,
+				6E40BEB8189835CB00EB1F52 /* include */,
+				6E40BEE1189835CB00EB1F52 /* libGeofaro.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		6E40BEB8189835CB00EB1F52 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				6E40BEB9189835CB00EB1F52 /* Geofaro */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		6E40BEB9189835CB00EB1F52 /* Geofaro */ = {
+			isa = PBXGroup;
+			children = (
+				6E40BEBA189835CB00EB1F52 /* alerta.png */,
+				6E40BEBB189835CB00EB1F52 /* alerta@2x.png */,
+				6E40BEBC189835CB00EB1F52 /* ArchivoManagerFaro.h */,
+				6E40BEBD189835CB00EB1F52 /* btnCerrar.png */,
+				6E40BEBE189835CB00EB1F52 /* btnCerrar@2x.png */,
+				6E40BEBF189835CB00EB1F52 /* btnCerrarLargo.png */,
+				6E40BEC0189835CB00EB1F52 /* btnCerrarLargo@2x.png */,
+				6E40BEC1189835CB00EB1F52 /* btnReintentar.png */,
+				6E40BEC2189835CB00EB1F52 /* btnReintentar@2x.png */,
+				6E40BEC3189835CB00EB1F52 /* btnReintentariPad.png */,
+				6E40BEC4189835CB00EB1F52 /* btnReintentariPad@2x.png */,
+				6E40BEC5189835CB00EB1F52 /* cargando.png */,
+				6E40BEC6189835CB00EB1F52 /* cargando@2x.png */,
+				6E40BEC7189835CB00EB1F52 /* cerrarIZQ.png */,
+				6E40BEC8189835CB00EB1F52 /* cerrarIZQ@2x.png */,
+				6E40BEC9189835CB00EB1F52 /* ConfigGeofaro.plist */,
+				6E40BECA189835CB00EB1F52 /* CuponesGeoViewController.h */,
+				6E40BECB189835CB00EB1F52 /* CuponesGeoViewController.xib */,
+				6E40BECC189835CB00EB1F52 /* error.png */,
+				6E40BECD189835CB00EB1F52 /* error@2x.png */,
+				6E40BECE189835CB00EB1F52 /* Faro.h */,
+				6E40BECF189835CB00EB1F52 /* FaroEnvioData.h */,
+				6E40BED0189835CB00EB1F52 /* FaroFotoManager.h */,
+				6E40BED1189835CB00EB1F52 /* FarosActualizacionParser.h */,
+				6E40BED2189835CB00EB1F52 /* Geofaro.h */,
+				6E40BED3189835CB00EB1F52 /* guardarDER.png */,
+				6E40BED4189835CB00EB1F52 /* guardarDER@2x.png */,
+				6E40BED5189835CB00EB1F52 /* HBPro.h */,
+				6E40BED6189835CB00EB1F52 /* NSObject+UtilidadesGeo.h */,
+				6E40BED7189835CB00EB1F52 /* PromocionGeoiPadViewController.h */,
+				6E40BED8189835CB00EB1F52 /* PromocionGeoiPadViewController.xib */,
+				6E40BED9189835CB00EB1F52 /* PromocionGeoViewController.h */,
+				6E40BEDA189835CB00EB1F52 /* PromocionGeoViewController.xib */,
+				6E40BEDB189835CB00EB1F52 /* Radar.h */,
+				6E40BEDC189835CB00EB1F52 /* RadarParser.h */,
+				6E40BEDD189835CB00EB1F52 /* Reachability.h */,
+				6E40BEDE189835CB00EB1F52 /* RegionesGeofaro.plist */,
+				6E40BEDF189835CB00EB1F52 /* ServiciosGeofaro.plist */,
+				6E40BEE0189835CB00EB1F52 /* UIDevice+HardwareGeo.h */,
+			);
+			path = Geofaro;
 			sourceTree = "<group>";
 		};
 		6E4BAA851884A4A400E37DAF /* DoAlertView */ = {
@@ -625,19 +760,43 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E40BEE5189835CB00EB1F52 /* btnCerrar@2x.png in Resources */,
 				6E4BAA801884A49700E37DAF /* close@2x.png in Resources */,
+				6E40BEF4189835CB00EB1F52 /* guardarDER.png in Resources */,
 				16547FD718106D8C00B6F24C /* Localizable.strings in Resources */,
+				6E40BEEF189835CB00EB1F52 /* cerrarIZQ@2x.png in Resources */,
+				6E40BEE6189835CB00EB1F52 /* btnCerrarLargo.png in Resources */,
+				6E40BEF8189835CB00EB1F52 /* RegionesGeofaro.plist in Resources */,
+				6E40BEF7189835CB00EB1F52 /* PromocionGeoViewController.xib in Resources */,
+				6E40BEE9189835CB00EB1F52 /* btnReintentar@2x.png in Resources */,
+				6E40BEEE189835CB00EB1F52 /* cerrarIZQ.png in Resources */,
+				6E40BEE2189835CB00EB1F52 /* alerta.png in Resources */,
+				6E40BEF9189835CB00EB1F52 /* ServiciosGeofaro.plist in Resources */,
+				6E40BEE4189835CB00EB1F52 /* btnCerrar.png in Resources */,
 				6E4BAA811884A49700E37DAF /* check_black.png in Resources */,
 				6E4BAA7F1884A49700E37DAF /* close_black@2x.png in Resources */,
+				6E40BEE8189835CB00EB1F52 /* btnReintentar.png in Resources */,
+				6E40BEE3189835CB00EB1F52 /* alerta@2x.png in Resources */,
 				6E4BAA831884A49700E37DAF /* close_black.png in Resources */,
 				6E4BAA821884A49700E37DAF /* check.png in Resources */,
 				6E4BAA7D1884A49700E37DAF /* check_black@2x.png in Resources */,
+				6E40BEF3189835CB00EB1F52 /* error@2x.png in Resources */,
+				6E40BEEC189835CB00EB1F52 /* cargando.png in Resources */,
+				6E40BEEA189835CB00EB1F52 /* btnReintentariPad.png in Resources */,
 				6E4BAA841884A49700E37DAF /* close.png in Resources */,
+				6E40BEE7189835CB00EB1F52 /* btnCerrarLargo@2x.png in Resources */,
 				162414A417BC946E00083708 /* Images.xcassets in Resources */,
+				6E40BEF6189835CB00EB1F52 /* PromocionGeoiPadViewController.xib in Resources */,
+				6E40BEED189835CB00EB1F52 /* cargando@2x.png in Resources */,
+				6E40BEF0189835CB00EB1F52 /* ConfigGeofaro.plist in Resources */,
 				16692A37180C7E2B00166885 /* Menu.plist in Resources */,
+				6E40BEF5189835CB00EB1F52 /* guardarDER@2x.png in Resources */,
+				6E40BEEB189835CB00EB1F52 /* btnReintentariPad@2x.png in Resources */,
 				3DDD5AEF18020C8700720ABD /* Cinemas.plist in Resources */,
+				6E40BEF2189835CB00EB1F52 /* error.png in Resources */,
 				16158EE817805E57002B6F73 /* Storyboard.storyboard in Resources */,
 				6E4BAA7E1884A49700E37DAF /* check@2x.png in Resources */,
+				6E40BEF1189835CB00EB1F52 /* CuponesGeoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +881,7 @@
 				6EA663E2188FD25F00B0FCBE /* Person.m in Sources */,
 				6E723B7118910472009DC5BE /* MovieCastCell.m in Sources */,
 				6E56CC0B188BBC0E000AB809 /* ArrayDataSource.m in Sources */,
+				6E239DE818983B08005EDE7E /* NSObject+Utilidades.m in Sources */,
 				3D26BDD11743EE3A00A2FCC5 /* CarteleraVC.m in Sources */,
 				3D6F663A17E54A7600BEE481 /* MyMultilineLabel.m in Sources */,
 				6E723B6B1891011D009DC5BE /* MovieImageCell.m in Sources */,
@@ -821,9 +981,12 @@
 				GCC_PREFIX_HEADER = "Cine Horarios/Cine Horarios-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Cine Horarios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios/lib",
+				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "681F75F2-80F0-40B4-8BCF-B3786A6D1A89";
+				PROVISIONING_PROFILE = "BC1B8C69-90A8-448C-9BFE-14B6AAB1B3E5";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -837,15 +1000,18 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cine Horarios/Cine Horarios-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Cine Horarios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios/lib",
+				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "681F75F2-80F0-40B4-8BCF-B3786A6D1A89";
+				PROVISIONING_PROFILE = "BC1B8C69-90A8-448C-9BFE-14B6AAB1B3E5";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

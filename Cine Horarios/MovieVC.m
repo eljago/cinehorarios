@@ -649,17 +649,26 @@
     self.labelDurationGenres = [[MyMultilineLabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     self.labelDurationGenres.textColor = [UIColor whiteColor];
     
+    UIView *gradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = gradientView.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor clearColor] CGColor], (id)[[UIColor colorWithWhite:0.0 alpha:0.5] CGColor], nil];
+    [gradientView.layer insertSublayer:gradient atIndex:0];
+    
+    
     NSDictionary *viewsDictionary = @{
                                       @"name": self.labelName,
                                       @"nameOriginal": self.labelNameOriginal,
                                       @"durationGenres": self.labelDurationGenres,
-                                      @"viewOverPortrait": self.viewOverPortrait
+                                      @"viewOverPortrait": self.viewOverPortrait,
+                                      @"gradientView": gradientView
                                       };
     for (UIView *view in [viewsDictionary allValues]) {
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
     [self.portraitImageView.superview addSubview:self.viewOverPortrait];
+    [self.portraitImageView.superview addSubview:gradientView];
     [self.viewOverPortrait addSubview:self.labelName];
     [self.viewOverPortrait addSubview:self.labelNameOriginal];
     [self.viewOverPortrait addSubview:self.labelDurationGenres];
@@ -668,7 +677,11 @@
                                                                                              options:0
                                                                                              metrics:nil
                                                                                                views:viewsDictionary]];
-    [self.portraitImageView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[viewOverPortrait]-(-1)-|"
+    [self.portraitImageView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[gradientView]|"
+                                                                                             options:0
+                                                                                             metrics:nil
+                                                                                               views:viewsDictionary]];
+    [self.portraitImageView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[gradientView]-(60)-[viewOverPortrait]-(-1)-|"
                                                                                              options:0
                                                                                              metrics:nil
                                                                                                views:viewsDictionary]];

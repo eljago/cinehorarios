@@ -51,9 +51,9 @@
 			<key>TintColor</key>
 			<dict>
 				<key>Blue</key>
-				<real>0.20392156862745101</real>
+				<real>0.203921568627451</real>
 				<key>Green</key>
-				<real>0.25098039215686269</real>
+				<real>0.2509803921568627</real>
 				<key>Red</key>
 				<real>0.8666666666666667</real>
 			</dict>
@@ -61,6 +61,16 @@
 			<true/>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>newsstand-content</string>
+		<string>fetch</string>
+		<string>remote-notification</string>
+		<string>bluetooth-peripheral</string>
+		<string>bluetooth-central</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
