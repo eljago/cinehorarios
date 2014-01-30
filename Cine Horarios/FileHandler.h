@@ -11,13 +11,12 @@
 @class TheatersVC;
 @class FuncionesVC;
 
-
 @interface FileHandler : NSObject
 
 + (NSDictionary *) getDictionaryInProjectNamed: (NSString *) plistName;
 
++ (void) cleanDirectoryAtPath: (NSString *) path;
 + (void) removeOldImages;
-+ (void) removeOldJsons;
 
 + (NSString *)getFullLocalPathForPath:(NSString *)path fileName:(NSString *)fileName;
 + (void)getMenuDictsAndSelectedIndex:(void (^)(NSArray *menuDicts, NSInteger selectedIndex))block withStoryboardID:(NSString *)identifier;

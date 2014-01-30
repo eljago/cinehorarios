@@ -9,8 +9,8 @@
 #import "MTLModelPersistable.h"
 #import "MTLModel+NSCoding.h"
 
-NSUInteger const kDurationThreeHours = 60*60*3;
-NSUInteger const kDurationOneWeek = 60*60*24*7;
+NSTimeInterval const kDurationThreeHours = 60*60*3;
+NSTimeInterval const kDurationOneWeek = 60*60*24*7;
 
 @implementation MTLModelPersistable
 

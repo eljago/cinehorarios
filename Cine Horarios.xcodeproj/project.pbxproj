@@ -977,6 +977,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cine Horarios/Cine Horarios-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Cine Horarios/Info.plist";
@@ -1002,6 +1003,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cine Horarios/Cine Horarios-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Cine Horarios/Info.plist";

@@ -8,8 +8,7 @@
 
 #import "FileHandler.h"
 
-NSTimeInterval const kMaxJsonsDurationTime = 60*60*24*7;
-//NSTimeInterval const kMaxJsonsDurationTime = 0;
+NSTimeInterval const kMaxDataDurationTime = 60*60*3;
 NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
 
 @implementation FileHandler
@@ -34,193 +33,48 @@ NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
     }
     NSArray *filelist = [filemgr contentsOfDirectoryAtPath:imagesDir error:NULL];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"es-CL"];
-    
     for (int i = 0; i < [filelist count]; i++) {
         NSString *filePath = [imagesDir stringByAppendingPathComponent:filelist[i]];
         NSDictionary *attributes = [filemgr attributesOfItemAtPath:filePath error:nil];
         NSDate *creationDate = [attributes objectForKey:NSFileCreationDate];
         
         if ([[NSDate date] timeIntervalSinceDate:creationDate] > kMaxImageDurationTime) {
-            if ([filemgr removeItemAtPath:filePath error: NULL] == YES) {
-                
-            }
-            else{
-                
-            }
+            [filemgr removeItemAtPath:filePath error: NULL];
         }
     }
 }
 
-//+ (void) cleanDirectoryAtPath: (NSString *) path {
-//    
-//    // Current Date
-//    NSDate *currentDate = [NSDate date];
-//    NSCalendar *calendar = [NSCalendar currentCalendar];
-//    NSFileManager *filemgr = [NSFileManager defaultManager];
-//    
-//    NSArray *fileList = [filemgr contentsOfDirectoryAtPath:path error:NULL];
-//    BOOL isDirectory;
-//    if (fileList.count == 0) {
-//        [filemgr removeItemAtPath:path error: NULL];
-//    }
-//    else if (fileList.count == 1 && [fileList[0] isEqualToString:@".DS_Store"]) {
-//        
-//        [filemgr removeItemAtPath:[itemPath stringByAppendingPathComponent:fileList2[0]] error: NULL];
-//        [filemgr removeItemAtPath:itemPath error: NULL];
-//    }
-//    else {
-//        for (NSString *item in fileList){
-//            
-//            NSString *itemPath = [path stringByAppendingPathComponent:item];
-//            BOOL fileExistsAtPath = [filemgr fileExistsAtPath:itemPath isDirectory:&isDirectory];
-//            if (fileExistsAtPath && isDirectory) {
-//                //It's a Directory.
-//                [self cleanDirectoryAtPath:itemPath];
-//            }
-//            else if (fileExistsAtPath && !isDirectory) {
-//                // billboard.json or comingsoon.json
-//                if ([item isEqualToString:@"comingsoon.json"] || [item isEqualToString:@"billboard.json"]) {
-//                    [self deleteFileAtPath:itemPath ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];
-//                }
-//            }
-//        }
-//    }
-//}
-
-+ (void) removeOldJsons {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"es-CL"];
-    
-    // Json path in cache dir
-    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
++ (void) cleanDirectoryAtPath: (NSString *) path {
     NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSString *jsonsDir = [cacheDir stringByAppendingPathComponent:@"jsons"];
-    if ([filemgr createDirectoryAtPath:jsonsDir withIntermediateDirectories:YES attributes:nil error:NULL]) {
-        // Failed to create Directory
-    }
-    
-    // Current Date
     NSDate *currentDate = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
-    // Functions
-    NSString *searchPath = [jsonsDir stringByAppendingPathComponent:@"theaters"];
-    NSArray *fileList = [filemgr contentsOfDirectoryAtPath:searchPath error:NULL];
     BOOL isDirectory;
-    for (NSString *item in fileList){
-        
-        NSString *itemPath = [searchPath stringByAppendingPathComponent:item];
-        BOOL fileExistsAtPath = [filemgr fileExistsAtPath:itemPath isDirectory:&isDirectory];
-        if (fileExistsAtPath && isDirectory) {
-            //It's a Directory.
-            NSArray *fileList2 = [filemgr contentsOfDirectoryAtPath:itemPath error:NULL];
-            if (fileList2.count >0) {
-                
-                NSString *theaterFunctionsJSONPath = [itemPath stringByAppendingPathComponent:@"functions.json"];
-                if ([filemgr fileExistsAtPath:theaterFunctionsJSONPath]) {
-                    [self deleteFileAtPath:theaterFunctionsJSONPath ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];
-                }
-            }
-        }
-//        if ([[item pathExtension] isEqualToString:@".json"]) {
-//            //This is Image File with .json Extension
-//        }
-    }
+    BOOL fileExistsAtPath = [filemgr fileExistsAtPath:path isDirectory:&isDirectory];
     
-    // Annotations
-    NSString *theaterAnnotationsPath = [searchPath stringByAppendingPathComponent:@"theater_annotations.json"];
-    if ([filemgr fileExistsAtPath:theaterAnnotationsPath]) {
-        [self deleteFileAtPath:theaterAnnotationsPath ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];
-    }
-    
-    // Functions
-    searchPath = [jsonsDir stringByAppendingPathComponent:@"shows"];
-    fileList = [filemgr contentsOfDirectoryAtPath:searchPath error:NULL];
-    for (NSString *item in fileList){
+    if (fileExistsAtPath && isDirectory) {
         
-        NSString *itemPath = [searchPath stringByAppendingPathComponent:item];
-        BOOL fileExistsAtPath = [filemgr fileExistsAtPath:itemPath isDirectory:&isDirectory];
-        if (fileExistsAtPath && isDirectory) {
-            
-            NSArray *fileList2 = [filemgr contentsOfDirectoryAtPath:itemPath error:NULL];
-            if (fileList2.count == 0) {
-                [filemgr removeItemAtPath:itemPath error: NULL];
-            }
-            else if (fileList2.count == 1 && [fileList2[0] isEqualToString:@".DS_Store"]) {
-                
-                [filemgr removeItemAtPath:[itemPath stringByAppendingPathComponent:fileList2[0]] error: NULL];
-                [filemgr removeItemAtPath:itemPath error: NULL];
-            }
-            else {
-                for (NSString *item2 in fileList2){
-                    
-                    BOOL isDirectory2;
-                    NSString *itemPath2 = [itemPath stringByAppendingPathComponent:item2];
-                    BOOL fileExistsAtPath2 = [filemgr fileExistsAtPath:itemPath2 isDirectory:&isDirectory2];
-                    if (fileExistsAtPath2 && isDirectory2) {
-                        
-                        NSArray *fileList3 = [filemgr contentsOfDirectoryAtPath:itemPath2 error:NULL];
-                        if (fileList3.count == 0) {
-                            [filemgr removeItemAtPath:itemPath2 error: NULL];
-                        }
-                        else if (fileList3.count == 1 && [fileList3[0] isEqualToString:@".DS_Store"]) {
-                            
-                            [filemgr removeItemAtPath:[itemPath2 stringByAppendingPathComponent:fileList3[0]] error: NULL];
-                            [filemgr removeItemAtPath:itemPath2 error: NULL];
-                        }
-                        else {
-                            for (NSString *item3 in fileList3) {
-                                
-                                BOOL isDirectory3;
-                                NSString *itemPath3 = [itemPath2 stringByAppendingPathComponent:item3];
-                                BOOL fileExistsAtPath3 = [filemgr fileExistsAtPath:itemPath3 isDirectory:&isDirectory3];
-                                if (fileExistsAtPath3 && isDirectory3) {
-                                    
-                                    NSArray *fileList4 = [filemgr contentsOfDirectoryAtPath:itemPath3 error:NULL];
-                                    if (fileList4.count == 0) {
-                                        [filemgr removeItemAtPath:itemPath3 error: NULL];
-                                    }
-                                    else if (fileList4.count == 1 && [fileList4[0] isEqualToString:@".DS_Store"]) {
-                                        
-                                        [filemgr removeItemAtPath:[itemPath3 stringByAppendingPathComponent:fileList4[0]] error: NULL];
-                                        [filemgr removeItemAtPath:itemPath3 error: NULL];
-                                    }
-                                    else {
-                                        for (NSString *item4 in fileList4) {
-                                            
-                                            [filemgr removeItemAtPath:item4 error: NULL];
-                                        }
-                                    }
-                                }
-                                else if (fileExistsAtPath3 && !isDirectory3) {
-                                    [self deleteFileAtPath:itemPath3 ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];
-                                }
-                            }
-                        }
-                    }
-                    else if (fileExistsAtPath2 && !isDirectory2) {
-                        
-                        if ([item2 isEqualToString:@"info.json"] || [item2 isEqualToString:@"theaters.json"]) {
-                            [self deleteFileAtPath:itemPath2 ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];
-                        }
-                    }
-                }
-            }
+        NSArray *fileList = [filemgr contentsOfDirectoryAtPath:path error:NULL];
+        if (fileList.count == 0) {
+            [filemgr removeItemAtPath:path error: NULL];
         }
-        else if (fileExistsAtPath && !isDirectory) {
-            // billboard.json or comingsoon.json
-            if ([item isEqualToString:@"comingsoon.json"] || [item isEqualToString:@"billboard.json"]) {
-                [self deleteFileAtPath:itemPath ifOlderThanTimeInterval:kMaxJsonsDurationTime currentDate:currentDate calendar:calendar];
+        else {
+            for (NSString *item in fileList){
+                
+                NSString *itemPath = [path stringByAppendingPathComponent:item];
+                BOOL isDirectory2;
+                BOOL fileExistsAtPath = [filemgr fileExistsAtPath:itemPath isDirectory:&isDirectory2];
+                if (fileExistsAtPath && isDirectory2) {
+                    [self cleanDirectoryAtPath:itemPath];
+                }
+                else if (fileExistsAtPath && !isDirectory2) {
+                    [self deleteFileAtPath:itemPath ifOlderThanTimeInterval:kMaxDataDurationTime currentDate:currentDate calendar:calendar];
+                }
             }
         }
     }
 }
+
 + (void) deleteFileAtPath:(NSString *)path ifOlderThanTimeInterval:(NSTimeInterval)timeInterval currentDate:(NSDate *)currentDate calendar:(NSCalendar *)calendar {
     NSFileManager *filemgr = [NSFileManager defaultManager];
     NSDateComponents *components = [calendar components:NSDayCalendarUnit|NSMonthCalendarUnit fromDate:currentDate];

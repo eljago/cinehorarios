@@ -58,7 +58,9 @@ static int const kGaDispatchPeriod = 30;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [FileHandler removeOldJsons];
+    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *dataDir = [cacheDir stringByAppendingPathComponent:@"data"];
+    [FileHandler cleanDirectoryAtPath:dataDir];
     [FileHandler removeOldImages];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
