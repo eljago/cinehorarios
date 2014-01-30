@@ -294,16 +294,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
         }
         
         if (self.annotations && self.annotations.count) {
-            [self setDistances];
-            [self.annotations sortUsingSelector:@selector(compareAnnotationsDistance:)];
-            [self.myMap addAnnotations:self.annotations];
-            
-            [self calculateRegion];
-            [self.myMap setRegion:self.region animated:YES];
-            [self.tableView reloadData];
-            
-            [self enableBarButtonItems];
-            self.buttonToggleTable.enabled = YES;
+            [self processAnnotationsGenerateRegionAndEnableButtons];
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }
         else {
@@ -317,17 +308,8 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     [AnnotationGroup getAnnotationsWithBlock:^(AnnotationGroup *annotationGroup, NSError *error) {
         if (!error) {
             [self createAnnotationsWithAnnotationGroup:annotationGroup];
-            if (self.annotations.count) {
-                [self setDistances];
-                [self.annotations sortUsingSelector:@selector(compareAnnotationsDistance:)];
-                [self.myMap addAnnotations:self.annotations];
-                
-                [self calculateRegion];
-                [self.myMap setRegion:self.region animated:YES];
-                [self.tableView reloadData];
-                
-                [self enableBarButtonItems];
-                self.buttonToggleTable.enabled = YES;
+            if (self.annotations && self.annotations.count) {
+                [self processAnnotationsGenerateRegionAndEnableButtons];
             }
         }
         else {
@@ -343,6 +325,19 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
         }
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];
+}
+
+- (void) processAnnotationsGenerateRegionAndEnableButtons {
+    [self setDistances];
+    [self.annotations sortUsingSelector:@selector(compareAnnotationsDistance:)];
+    [self.myMap addAnnotations:self.annotations];
+    
+    [self calculateRegion];
+    [self.myMap setRegion:self.region animated:YES];
+    [self.tableView reloadData];
+    
+    [self enableBarButtonItems];
+    self.buttonToggleTable.enabled = YES;
 }
 
 #pragma mark Other Shit
@@ -420,7 +415,6 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 }
 -(void)reload{
     [self getTheatersLocationsForceRemote:NO];
-
 }
 - (void) setDistances {
     for (AnnotationTheater *annotation in self.annotations) {

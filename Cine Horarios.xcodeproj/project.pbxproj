@@ -506,6 +506,7 @@
 		3DC9A748170CCA69008B9FF9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6E88F27F189AFEEE00927222 /* Cell Categories */,
 				3D6F663817E54A7600BEE481 /* MyMultilineLabel.h */,
 				3D6F663917E54A7600BEE481 /* MyMultilineLabel.m */,
 				6E56CC12188BC6DB000AB809 /* Cells */,
@@ -662,38 +663,45 @@
 				16692A3C180CAA9600166885 /* MenuCell.m */,
 				6E56CC0F188BBE7D000AB809 /* BasicCell.h */,
 				6E56CC10188BBE7D000AB809 /* BasicCell.m */,
-				6E56CC13188BC735000AB809 /* BasicCell+Theater.h */,
-				6E56CC14188BC735000AB809 /* BasicCell+Theater.m */,
 				6EA663B6188D28A600B0FCBE /* BillboardCell.h */,
 				6EA663B7188D28A600B0FCBE /* BillboardCell.m */,
-				6EA663BC188D297400B0FCBE /* BillboardCell+BasicMovie.h */,
-				6EA663BD188D297400B0FCBE /* BillboardCell+BasicMovie.m */,
 				6EA663BF188D3DA300B0FCBE /* ComingSoonCell2.h */,
 				6EA663C0188D3DA300B0FCBE /* ComingSoonCell2.m */,
-				6EA663C2188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.h */,
-				6EA663C3188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m */,
 				6EA663C5188DB07600B0FCBE /* FunctionCell2.h */,
 				6EA663C6188DB07600B0FCBE /* FunctionCell2.m */,
-				6EA663C8188DB0D300B0FCBE /* FunctionCell2+Function.h */,
-				6EA663C9188DB0D300B0FCBE /* FunctionCell2+Function.m */,
 				6E723B691891011D009DC5BE /* MovieImageCell.h */,
 				6E723B6A1891011D009DC5BE /* MovieImageCell.m */,
-				6E723B6C189101A9009DC5BE /* MovieImageCell+MovieImage.h */,
-				6E723B6D189101A9009DC5BE /* MovieImageCell+MovieImage.m */,
 				6E723B6F18910472009DC5BE /* MovieCastCell.h */,
 				6E723B7018910472009DC5BE /* MovieCastCell.m */,
-				6E723B7218910499009DC5BE /* MovieCastCell+Person.h */,
-				6E723B7318910499009DC5BE /* MovieCastCell+Person.m */,
 				6E723B7518910C5F009DC5BE /* CastActorCell.h */,
 				6E723B7618910C5F009DC5BE /* CastActorCell.m */,
-				6E723B7818910CC4009DC5BE /* CastActorCell+Person.h */,
-				6E723B7918910CC4009DC5BE /* CastActorCell+Person.m */,
 				6E723B7B18910F8D009DC5BE /* CastDirectorCell.h */,
 				6E723B7C18910F8D009DC5BE /* CastDirectorCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		6E88F27F189AFEEE00927222 /* Cell Categories */ = {
+			isa = PBXGroup;
+			children = (
+				6E56CC13188BC735000AB809 /* BasicCell+Theater.h */,
+				6E56CC14188BC735000AB809 /* BasicCell+Theater.m */,
+				6EA663BC188D297400B0FCBE /* BillboardCell+BasicMovie.h */,
+				6EA663BD188D297400B0FCBE /* BillboardCell+BasicMovie.m */,
+				6EA663C2188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.h */,
+				6EA663C3188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m */,
+				6EA663C8188DB0D300B0FCBE /* FunctionCell2+Function.h */,
+				6EA663C9188DB0D300B0FCBE /* FunctionCell2+Function.m */,
+				6E723B6C189101A9009DC5BE /* MovieImageCell+MovieImage.h */,
+				6E723B6D189101A9009DC5BE /* MovieImageCell+MovieImage.m */,
+				6E723B7218910499009DC5BE /* MovieCastCell+Person.h */,
+				6E723B7318910499009DC5BE /* MovieCastCell+Person.m */,
+				6E723B7818910CC4009DC5BE /* CastActorCell+Person.h */,
+				6E723B7918910CC4009DC5BE /* CastActorCell+Person.m */,
 				6E723B7E18910FAF009DC5BE /* CastDirectorCell+Person.h */,
 				6E723B7F18910FAF009DC5BE /* CastDirectorCell+Person.m */,
 			);
-			name = Cells;
+			name = "Cell Categories";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
