@@ -324,6 +324,7 @@
                                                 <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X6M-Zv-IKc">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="230" id="6Tv-Qz-wg1"/>
                                                         <constraint firstAttribute="width" constant="320" id="VqY-kP-NgK"/>
