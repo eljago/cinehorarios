@@ -234,7 +234,7 @@
         self.labelNameOriginal.text = [NSString stringWithFormat:@"\"%@\"",self.movie.nameOriginal];
     }
     if (self.movie.duration) {
-        self.labelDurationGenres.text = [NSString stringWithFormat:@"%d",self.movie.duration];
+        self.labelDurationGenres.text = [NSString stringWithFormat:@"%d min",self.movie.duration];
     }
     if (self.movie.duration && self.movie.genres) {
         self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingString:@" - "];

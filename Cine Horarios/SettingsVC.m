@@ -18,68 +18,69 @@
 
 @interface SettingsVC () <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UISwitch *switchRetina;
-@property (nonatomic, weak) IBOutlet UILabel *label;
-@property (nonatomic, weak) IBOutlet UILabel *labelTitle;
+@property (nonatomic, weak) IBOutlet UILabel *startCinesLabel;
+@property (nonatomic, weak) IBOutlet UISwitch *switchRetina;
 @property (nonatomic, weak) IBOutlet UIPickerView *pickerView;
+@property (nonatomic, weak) IBOutlet UIView *customPicker;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *customPickerBottomSpace;
+@property (nonatomic, weak) IBOutlet UIImageView *indicatorImageView;
 
 @property (nonatomic, strong) NSArray *startingVCs;
 @end
 
-@implementation SettingsVC {
-    UIFont *normalFont;
-    UIFont *titleFont;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@implementation SettingsVC
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.indicatorImageView.image = [self.indicatorImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
     self.title = @"Ajustes";
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"AJUSTES" forKey:kGAIScreenName] build]];
-
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL retinaImages = [defaults boolForKey:@"Retina Images"];
     NSString *startingVC = [defaults stringForKey:@"Starting VC"];
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
-    NSMutableArray *menu = [NSMutableArray arrayWithArray:[NSArray arrayWithContentsOfFile:filePath]];
-    [menu removeLastObject];
-    
     [FileHandler getMenuDictsAndSelectedIndex:^(NSArray *menuDicts, NSInteger selectedIndex) {
         self.startingVCs = menuDicts;
         [self.pickerView selectRow:selectedIndex inComponent:0 animated:NO];
+        self.startCinesLabel.text = self.startingVCs[selectedIndex][@"pickerName"];
     } withStoryboardID:startingVC];
     
     self.switchRetina.on = retinaImages;
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"AJUSTES" forKey:kGAIScreenName] build]];
     self.view.backgroundColor = [UIColor tableViewColor];
     
-    normalFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    titleFont = [UIFont getSizeForCHFont:CHFontStyleNormalBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(preferredContentSizeChanged:)
-                                                 name:UIContentSizeCategoryDidChangeNotification
-                                               object:nil];
-    
-    
-    self.label.text = @"Active esta opción para que las imágenes en pantalla completa sean de alta resolución.";
-    self.label.font = normalFont;
-    self.labelTitle.font = titleFont;
     
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;
+    
+    self.customPickerBottomSpace.constant = -self.customPicker.frame.size.height;
 }
+
+- (IBAction)togglePickerView:(id)sender
+{
+    if (self.customPickerBottomSpace.constant != 0) {
+        self.customPickerBottomSpace.constant = 0;
+    }
+    else {
+        self.customPickerBottomSpace.constant = -self.customPicker.frame.size.height;
+    }
+    [self.view setNeedsUpdateConstraints];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+-(IBAction)colorControl:(UIControl *)sender {
+    sender.backgroundColor = [UIColor lightGrayColor];
+}
+-(IBAction)decolorControl:(UIControl *)sender {
+    sender.backgroundColor = [UIColor whiteColor];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -93,29 +94,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:retinaImages forKey:@"Retina Images"];
     [defaults synchronize];
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    NSString *text;
-    switch (section) {
-        case 0:
-            text = @"Ventana de Inicio";
-            break;
-        case 1:
-            text = @"Imágenes";
-            break;
-            
-        default:
-            text = @"";
-            break;
-    }
-    NSInteger height = [UIView heightForHeaderViewWithText:text font:normalFont];
-    return [UIView headerViewForText:text font:normalFont height:height];
-}
-
-#pragma mark Row & Height Calculators
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [UIView heightForHeaderViewWithText:@"Javier" font:normalFont];
 }
 
 #pragma mark - PickerView
@@ -142,16 +120,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:self.startingVCs[row][@"storyboardID"] forKey:@"Starting VC"];
     [defaults synchronize];
-}
-
-#pragma mark - content Size Changed
-
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    normalFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    titleFont = [UIFont getSizeForCHFont:CHFontStyleNormalBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    self.label.font = normalFont;
-    self.labelTitle.font = titleFont;
-
+    
+    self.startCinesLabel.text = self.startingVCs[row][@"pickerName"];
 }
 
 #pragma mark - Interface Orientation

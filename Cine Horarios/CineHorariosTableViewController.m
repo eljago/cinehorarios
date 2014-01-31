@@ -57,12 +57,11 @@
 
 #pragma mark Alerts
 -(void) alertRetryWithCompleteBlock:(void (^)())completeBlock {
-    [self.alert doYesNo:@"¿Reintentar?"
-                    yes:^(DoAlertView *alertView) {
-                        completeBlock();
-                    } no:^(DoAlertView *alertView) {
-                        
-                    }];
+    [self.alert doYesNo:@"Problema de conexión" body:@"¿Reintentar?" yes:^(DoAlertView *alertView) {
+        completeBlock();
+    } no:^(DoAlertView *alertView) {
+        
+    }];
     self.alert = nil;
 }
 

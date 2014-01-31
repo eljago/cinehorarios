@@ -7,7 +7,7 @@
 		<array>
 			<dict>
 				<key>pickerName</key>
-				<string>Todos los Cines</string>
+				<string>Cines</string>
 				<key>image</key>
 				<string>IconCinemas</string>
 				<key>storyboardID</key>
@@ -17,7 +17,7 @@
 			</dict>
 			<dict>
 				<key>pickerName</key>
-				<string>Cines Favoritos</string>
+				<string>Favoritos</string>
 				<key>image</key>
 				<string>IconFavorites</string>
 				<key>storyboardID</key>
@@ -27,7 +27,7 @@
 			</dict>
 			<dict>
 				<key>pickerName</key>
-				<string>Mapa de Cines Cercanos</string>
+				<string>Mapa</string>
 				<key>image</key>
 				<string>IconCloseTheaters</string>
 				<key>storyboardID</key>
