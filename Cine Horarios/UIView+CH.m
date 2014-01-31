@@ -27,7 +27,7 @@
 +(CGFloat) heightForHeaderViewWithText:(NSString *)text font:(UIFont *)font {
     CGSize size = CGSizeMake(300.f, 1000.f);
     
-    UIFont *newFont = [UIFont fontWithName:@"DINCondensed-Bold" size:font.fontDescriptor.pointSize];
+    UIFont *newFont = [UIFont fontWithName:@"AvenirNextCondensed-Heavy" size:font.fontDescriptor.pointSize];
     
     CGRect nameLabelRect = [text boundingRectWithSize: size
                                                         options: NSStringDrawingUsesLineFragmentOrigin

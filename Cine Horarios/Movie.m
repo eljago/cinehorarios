@@ -9,6 +9,7 @@
 #import "Movie.h"
 #import "CineHorariosApiClient.h"
 #import "NSValueTransformer+MTLPredefinedTransformerAdditions.h"
+#import "MTLValueTransformer.h"
 #import "Person.h"
 #import "Video.h"
 
@@ -46,6 +47,9 @@ NSString *const kMovieArchivePath = @"/data/shows/";
         
         NSError *theError = nil;
         Movie *movie = [MTLJSONAdapter modelOfClass:self.class fromJSONDictionary:JSON error:&theError];
+        NSMutableArray *images = [movie.images mutableCopy];
+        [images addObject:movie.imageURL];
+        movie.images = [NSArray arrayWithArray:images];
         [movie persistToFile:[[self class] storagePathForMovieID:movieID]];
         
         if (block) {

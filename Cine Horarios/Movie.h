@@ -26,7 +26,7 @@
 @property (nonatomic, strong, readonly) NSString *rottenTomatoesURL;
 @property (nonatomic, assign, readonly) NSUInteger rottenTomatoesScore;
 @property (nonatomic, strong, readonly) NSString *debut;
-@property (nonatomic, strong, readonly) NSArray *images;
+@property (nonatomic, strong) NSArray *images;
 @property (nonatomic, strong, readonly) NSString *genres;
 @property (nonatomic, strong, readonly) NSArray *videos;
 @property (nonatomic, strong, readonly) NSArray *people;
