@@ -345,6 +345,7 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
     miGeofaro = [Geofaro sharedGeofaro];
     [miGeofaro setDelegate:self];
     [miGeofaro setNotificaciones:YES];
+    [miGeofaro setAlertaPower:NO];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [miGeofaro setUd:[userDefaults valueForKey:@"TOKEN"]];
     [miGeofaro setLaunchOptions:miLaunchOptions];

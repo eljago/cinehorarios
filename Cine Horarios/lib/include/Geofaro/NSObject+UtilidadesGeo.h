@@ -24,4 +24,8 @@
 - (BOOL)esiPhone5;
 - (BOOL)esiPhone4S;
 - (BOOL)esiPhone4;
+
+#pragma mark - iPad o iPhone
+- (BOOL)esiPad;
+- (BOOL)esiPhone;
 @end

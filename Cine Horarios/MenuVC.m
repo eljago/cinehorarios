@@ -161,6 +161,25 @@
     [self.slidingViewController resetTopViewAnimated:YES];
 }
 
+-(IBAction) goSocial:(UIButton *)sender {
+    if (sender.tag == 20) {
+        NSURL *facebookURL = [NSURL URLWithString:@"twitter://user?screen_name=CineHorarios"];
+        if ([[UIApplication sharedApplication] canOpenURL:facebookURL]) {
+            [[UIApplication sharedApplication] openURL:facebookURL];
+        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/CineHorarios"]];
+        }
+    }
+    else if(sender.tag == 21) {
+        NSURL *facebookURL = [NSURL URLWithString:@"fb://profile/469307943155757"];
+        if ([[UIApplication sharedApplication] canOpenURL:facebookURL]) {
+            [[UIApplication sharedApplication] openURL:facebookURL];
+        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.facebook.com/AppCineHorarios"]];
+        }
+    }
+}
+
 #pragma mark - Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {

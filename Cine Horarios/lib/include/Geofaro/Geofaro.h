@@ -14,9 +14,12 @@
 #import "PromocionGeoViewController.h"
 #import "PromocionGeoiPadViewController.h"
 
+#import "AlertaGeoView.h"
+
 @class Geofaro;
 @protocol GeofaroDelegate <NSObject>
 @required
+//- (void)geofaro:(Geofaro*)geofaro alertaView:(UIView*)alertaView bluetoohEstado:(CBCentralManagerState)estado;
 - (void)geofaro:(Geofaro*)geofaro faroEncontrado:(NSDictionary*)faroInfo;
 - (void)geofaro:(Geofaro*)geofaro faroEncontradoNuevo:(NSDictionary*)faroInfo;
 - (void)geofaro:(Geofaro*)geofaro faroEncontradoPromocionViewController:(UIViewController*)promocionViewController;
@@ -27,6 +30,8 @@
 @property (retain) id delegate;
 @property (nonatomic,strong) NSString *ud;
 @property (nonatomic) BOOL notificaciones;
+@property (nonatomic) BOOL alertaPower;
+
 @property (nonatomic,strong) NSString *notificacionBotonCancel;
 @property (nonatomic,strong) NSString *notificacionTituloPromocion;
 @property (nonatomic,strong) NSString *notificacionMensajePromocion;

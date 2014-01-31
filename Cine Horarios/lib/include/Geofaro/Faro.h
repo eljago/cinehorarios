@@ -16,8 +16,9 @@
 @class Faro;
 @protocol FaroDelegate <NSObject>
 @required
-- (void)faro:(Faro*)faro faroEncontradoNuevo:(NSDictionary*)faroInfo;
+//- (void)faro:(Faro*)faro alertaView:(UIView*)alertaView bluetoohEstado:(CBCentralManagerState)estado;
 - (void)faro:(Faro*)faro faroEncontrado:(NSDictionary*)faroInfo;
+- (void)faro:(Faro*)faro faroEncontradoNuevo:(NSDictionary*)faroInfo;
 @end
 
 @interface Faro : NSObject <FaroEnvioDataDelegate,FaroFotoManagerDelegate,CBCentralManagerDelegate,CBPeripheralDelegate>
