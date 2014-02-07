@@ -120,7 +120,6 @@
 		6EA663D9188FD18900B0FCBE /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663D8188FD18900B0FCBE /* Movie.m */; };
 		6EA663DF188FD21100B0FCBE /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663DE188FD21100B0FCBE /* Video.m */; };
 		6EA663E2188FD25F00B0FCBE /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663E1188FD25F00B0FCBE /* Person.m */; };
-		6EFDF16E189AE8C2000D3732 /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFDF16D189AE8C2000D3732 /* libGeofaro.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -335,7 +334,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EFDF16E189AE8C2000D3732 /* libGeofaro.a in Frameworks */,
 				6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */,
 				6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */,
 				3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */,

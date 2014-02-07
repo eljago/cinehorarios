@@ -26,6 +26,7 @@ NSString *const kMovieArchivePath = @"/data/shows/";
              @"metacriticURL": @"metacritic_url",
              @"metacriticScore": @"metacritic_score",
              @"imdbCode": @"imdb_code",
+             @"imdbScore": @"imdb_score",
              @"rottenTomatoesURL": @"rotten_tomatoes_url",
              @"rottenTomatoesScore": @"rotten_tomatoes_score",
              @"images": @"images.image_url"
