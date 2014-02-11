@@ -20,6 +20,7 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *startCinesLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *switchRetina;
+@property (nonatomic, weak) IBOutlet UIView *closeView;
 @property (nonatomic, weak) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, weak) IBOutlet UIView *customPicker;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *customPickerBottomSpace;
@@ -63,6 +64,9 @@
 
 - (IBAction)togglePickerView:(id)sender
 {
+    if (self.closeView.isHidden) {
+        self.closeView.hidden = NO;
+    }
     if (self.customPickerBottomSpace.constant != 0) {
         self.customPickerBottomSpace.constant = 0;
     }
@@ -72,6 +76,16 @@
     [self.view setNeedsUpdateConstraints];
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
+        if (self.closeView.alpha == 0.) {
+            self.closeView.alpha = 0.3;
+        }
+        else {
+            self.closeView.alpha = 0.0;
+        }
+    } completion:^(BOOL finished) {
+        if (self.closeView.alpha == 0.) {
+            self.closeView.hidden = YES;
+        }
     }];
 }
 -(IBAction)colorControl:(UIControl *)sender {

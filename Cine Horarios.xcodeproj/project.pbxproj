@@ -836,7 +836,7 @@
 					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "182E5A4E-370D-4A4F-87ED-BCD158B72039";
+				PROVISIONING_PROFILE = "42422876-FA74-4188-81C6-23B00418C513";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -863,7 +863,7 @@
 					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "182E5A4E-370D-4A4F-87ED-BCD158B72039";
+				PROVISIONING_PROFILE = "42422876-FA74-4188-81C6-23B00418C513";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
