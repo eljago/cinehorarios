@@ -228,15 +228,15 @@
         self.labelName.text = self.movie.name;
     }
     if (self.movie.year){
-        self.labelName.text = [self.labelName.text stringByAppendingFormat:@" (%d)",self.movie.year];
+        self.labelName.text = [self.labelName.text stringByAppendingFormat:@" (%ld)",[self.movie.year longValue]];
     }
     if (self.movie.nameOriginal && ![self.movie.nameOriginal isEqualToString:@""]){
         self.labelNameOriginal.text = [NSString stringWithFormat:@"\"%@\"",self.movie.nameOriginal];
     }
     if (self.movie.duration) {
-        self.labelDurationGenres.text = [NSString stringWithFormat:@"%d min",self.movie.duration];
+        self.labelDurationGenres.text = [NSString stringWithFormat:@"%ld min",[self.movie.duration longValue]];
     }
-    if (self.movie.duration && self.movie.genres) {
+    if (self.movie.duration && self.movie.genres && ![self.movie.genres isEqualToString:@""]) {
         self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingString:@" - "];
     }
     if (self.movie.genres) {
@@ -288,19 +288,19 @@
     }
     
     if (self.movie.imdbScore) {
-        self.labelScoreImdb.text = [NSString stringWithFormat:@"%.1f / 10",self.movie.imdbScore / 10.];
+        self.labelScoreImdb.text = [NSString stringWithFormat:@"%.1f / 10",[self.movie.imdbScore longValue] / 10.];
     }
     else {
         self.labelScoreImdb.text = @"?";
     }
     if (self.movie.metacriticScore) {
-        self.labelScoreMetacritic.text = [NSString stringWithFormat:@"%d",self.movie.metacriticScore];
+        self.labelScoreMetacritic.text = [NSString stringWithFormat:@"%ld",[self.movie.metacriticScore longValue]];
     }
     else {
         self.labelScoreMetacritic.text = @"?";
     }
     if (self.movie.rottenTomatoesScore) {
-        self.labelScoreRottenTomatoes.text = [NSString stringWithFormat:@"%d",self.movie.rottenTomatoesScore];
+        self.labelScoreRottenTomatoes.text = [NSString stringWithFormat:@"%ld",[self.movie.rottenTomatoesScore longValue]];
     }
     else {
         self.labelScoreRottenTomatoes.text = @"?";

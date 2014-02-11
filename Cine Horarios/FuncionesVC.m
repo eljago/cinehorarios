@@ -147,7 +147,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
                 alert.dRound = 2.0;
                 alert.bDestructive = NO;
                 
-                [alert doYesNo:@"Horarios no encontrados" body:[NSString stringWithFormat:@"¿Visitar página web de %@?",self.theater.name] yes:^(DoAlertView *alertView) {
+                [alert doYesNo:@"Horarios no disponibles" body:[NSString stringWithFormat:@"¿Visitar página web de %@?",self.theater.name] yes:^(DoAlertView *alertView) {
                     
                     WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
                     wvc.urlString = self.theater.webURL;

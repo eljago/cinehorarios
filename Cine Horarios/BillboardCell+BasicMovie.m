@@ -15,7 +15,7 @@
 -(void) configureForBasicMovie:(BasicMovie *)basicMovie {
     self.mainLabel.text = basicMovie.name;
     if (basicMovie.duration) {
-        self.durationLabel.text = [NSString stringWithFormat:@"%d minutos",basicMovie.duration];
+        self.durationLabel.text = [NSString stringWithFormat:@"%ld minutos",[basicMovie.duration longValue]];
     }
     else{
         self.durationLabel.text = @"";
@@ -32,7 +32,7 @@
 }
 
 + (CGFloat) heightForRowWithBasicMovie:(BasicMovie *)basicMovie headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont {
-    NSString *duration = [NSString stringWithFormat:@"%d", basicMovie.duration];
+    NSString *duration = [NSString stringWithFormat:@"%ld", [basicMovie.duration longValue]];
     
     CGSize size = CGSizeMake(187.f, 1000.f);
     

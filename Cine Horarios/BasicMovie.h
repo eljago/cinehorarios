@@ -14,7 +14,7 @@
 @property (nonatomic, assign, readonly) NSUInteger movieID;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSString *imageURL;
-@property (nonatomic, assign, readonly) NSUInteger duration;
+@property (nonatomic, strong, readonly) NSNumber *duration;
 @property (nonatomic, strong, readonly) NSString *portraitImageURL;
 @property (nonatomic, strong, readonly) NSString *debut;
 @property (nonatomic, strong, readonly) NSString *genres;

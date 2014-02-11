@@ -15,10 +15,10 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, height)];
     view.backgroundColor = [UIColor grayYoutubeControls];
 //    view.alpha = 0.85;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 2.f, 300.f, height)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, height)];
     label.textColor = [UIColor whiteColor];
     label.tag = 40;
-    label.font = [UIFont fontWithName:@"DINCondensed-Bold" size:font.fontDescriptor.pointSize];
+    label.font = [UIFont fontWithName:@"HelveticaNeue" size:font.fontDescriptor.pointSize];
     label.text = text;
     label.textAlignment = NSTextAlignmentLeft;
     [view addSubview: label];
