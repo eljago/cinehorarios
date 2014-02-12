@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		160907B718AABADF000F9FF7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160907B618AABADF000F9FF7 /* iAd.framework */; };
 		16158EE817805E57002B6F73 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16158EE717805E57002B6F73 /* Storyboard.storyboard */; };
 		162414A417BC946E00083708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 162414A317BC946E00083708 /* Images.xcassets */; };
 		1628571F185F607E00DBD491 /* UIView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 1628571E185F607E00DBD491 /* UIView+CH.m */; };
@@ -15,9 +14,7 @@
 		1639492617F9BA1700AB7DE7 /* CastVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1639492517F9BA1700AB7DE7 /* CastVC.m */; };
 		163BAB211763C34500A81BF7 /* WebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 163BAB201763C34400A81BF7 /* WebVC.m */; };
 		16547FD718106D8C00B6F24C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 16547FD618106D8C00B6F24C /* Localizable.strings */; };
-		16692A32180C7D8A00166885 /* InitialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16692A31180C7D8A00166885 /* InitialVC.m */; };
 		16692A37180C7E2B00166885 /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16692A36180C7E2B00166885 /* Menu.plist */; };
-		16692A3D180CAA9600166885 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16692A3C180CAA9600166885 /* MenuCell.m */; };
 		167B9A401804909D00862289 /* MovieFunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D881272175CD9E30034FDA9 /* MovieFunctionsVC.m */; };
 		16956FCF17D7E84100355AA7 /* UIFont+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 16956FCE17D7E84100355AA7 /* UIFont+CH.m */; };
 		16C8BC6B17D4F4EC00EF7390 /* FileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C8BC6A17D4F4EC00EF7390 /* FileHandler.m */; };
@@ -95,13 +92,18 @@
 		6EA663DF188FD21100B0FCBE /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663DE188FD21100B0FCBE /* Video.m */; };
 		6EA663E2188FD25F00B0FCBE /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663E1188FD25F00B0FCBE /* Person.m */; };
 		6EBF1E8518AB265B007B50A5 /* MenuCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF1E8418AB265B007B50A5 /* MenuCustomView.xib */; };
-		6EBF1E8818AB35CA007B50A5 /* MenuBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF1E8718AB35CA007B50A5 /* MenuBannerView.xib */; };
+		6EBF1E9818AB661C007B50A5 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9618AB661C007B50A5 /* libGoogleAdMobAds.a */; };
+		6EBF1E9918AB661C007B50A5 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF1E9718AB661C007B50A5 /* README.txt */; };
+		6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */; };
+		6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9C18AB664D007B50A5 /* AudioToolbox.framework */; };
+		6EBF1E9F18AB6653007B50A5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9E18AB6653007B50A5 /* AVFoundation.framework */; };
+		6EBF1EA118AB666A007B50A5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA018AB666A007B50A5 /* CoreTelephony.framework */; };
+		6EBF1EA318AB6673007B50A5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA218AB6673007B50A5 /* MessageUI.framework */; };
+		6EBF1EA518AB667A007B50A5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA418AB667A007B50A5 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		160907B618AABADF000F9FF7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		1611F38A17FCB710006C6D09 /* SwatchTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwatchTransition.h; sourceTree = "<group>"; };
-		1611F38B17FCB710006C6D09 /* SwatchTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwatchTransition.m; sourceTree = "<group>"; };
 		16158EE717805E57002B6F73 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		162414A317BC946E00083708 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1628571D185F607E00DBD491 /* UIView+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CH.h"; sourceTree = "<group>"; };
@@ -113,13 +115,7 @@
 		163BAB1F1763C34400A81BF7 /* WebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebVC.h; sourceTree = "<group>"; };
 		163BAB201763C34400A81BF7 /* WebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebVC.m; sourceTree = "<group>"; };
 		16547FD618106D8C00B6F24C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		16692A30180C7D8A00166885 /* InitialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialVC.h; sourceTree = "<group>"; };
-		16692A31180C7D8A00166885 /* InitialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialVC.m; sourceTree = "<group>"; };
-		16692A33180C7DFF00166885 /* MenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuVC.h; sourceTree = "<group>"; };
-		16692A34180C7DFF00166885 /* MenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuVC.m; sourceTree = "<group>"; };
 		16692A36180C7E2B00166885 /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
-		16692A3B180CAA9600166885 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
-		16692A3C180CAA9600166885 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
 		16956FCD17D7E84100355AA7 /* UIFont+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+CH.h"; sourceTree = "<group>"; };
 		16956FCE17D7E84100355AA7 /* UIFont+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+CH.m"; sourceTree = "<group>"; };
 		16C7EB55173E0EFF001CF782 /* MovieCinemasVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCinemasVC.h; sourceTree = "<group>"; };
@@ -231,8 +227,6 @@
 		6E723B8818913C4A009DC5BE /* AnnotationTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationTheater.m; sourceTree = "<group>"; };
 		6E8686F6188703E4003A91B0 /* DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoAlertView.h; sourceTree = "<group>"; };
 		6E8686F7188703E4003A91B0 /* DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoAlertView.m; sourceTree = "<group>"; };
-		6E9A47AF1860F351004BDE46 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
-		6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDynamicTransition.m; sourceTree = "<group>"; };
 		6EA663A4188C8C2200B0FCBE /* Cinema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cinema.h; sourceTree = "<group>"; };
 		6EA663A5188C8C2200B0FCBE /* Cinema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cinema.m; sourceTree = "<group>"; };
 		6EA663AA188D012200B0FCBE /* BasicMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMovie.h; sourceTree = "<group>"; };
@@ -262,7 +256,23 @@
 		6EA663E0188FD25F00B0FCBE /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		6EA663E1188FD25F00B0FCBE /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		6EBF1E8418AB265B007B50A5 /* MenuCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCustomView.xib; sourceTree = "<group>"; };
-		6EBF1E8718AB35CA007B50A5 /* MenuBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuBannerView.xib; sourceTree = "<group>"; };
+		6EBF1E8D18AB661C007B50A5 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
+		6EBF1E8E18AB661C007B50A5 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
+		6EBF1E8F18AB661C007B50A5 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
+		6EBF1E9018AB661C007B50A5 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		6EBF1E9118AB661C007B50A5 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		6EBF1E9218AB661C007B50A5 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		6EBF1E9318AB661C007B50A5 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		6EBF1E9418AB661C007B50A5 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		6EBF1E9518AB661C007B50A5 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		6EBF1E9618AB661C007B50A5 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
+		6EBF1E9718AB661C007B50A5 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		6EBF1E9C18AB664D007B50A5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6EBF1E9E18AB6653007B50A5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6EBF1EA018AB666A007B50A5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6EBF1EA218AB6673007B50A5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		6EBF1EA418AB667A007B50A5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -271,30 +281,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				160907B718AABADF000F9FF7 /* iAd.framework in Frameworks */,
+				3D29981717E5AA33001A371D /* SystemConfiguration.framework in Frameworks */,
+				6EBF1EA518AB667A007B50A5 /* StoreKit.framework in Frameworks */,
+				6EBF1EA318AB6673007B50A5 /* MessageUI.framework in Frameworks */,
+				6EBF1EA118AB666A007B50A5 /* CoreTelephony.framework in Frameworks */,
+				3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */,
+				6EBF1E9F18AB6653007B50A5 /* AVFoundation.framework in Frameworks */,
+				6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */,
+				6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */,
 				6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */,
 				6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */,
 				3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */,
-				3D29981717E5AA33001A371D /* SystemConfiguration.framework in Frameworks */,
 				3D29981517E5AA28001A371D /* UIKit.framework in Frameworks */,
 				3DDB7107170A516B00EC3E51 /* Foundation.framework in Frameworks */,
-				3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */,
 				2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */,
+				6EBF1E9818AB661C007B50A5 /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1611F38917FCB6FB006C6D09 /* Transitions */ = {
-			isa = PBXGroup;
-			children = (
-				1611F38A17FCB710006C6D09 /* SwatchTransition.h */,
-				1611F38B17FCB710006C6D09 /* SwatchTransition.m */,
-			);
-			name = Transitions;
-			sourceTree = "<group>";
-		};
 		16F008A1180DED1300A15060 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,8 +310,6 @@
 				6E4F88991896829000A9CC4F /* UIAlertView+NSCookbook.h */,
 				6E4F889A1896829000A9CC4F /* UIAlertView+NSCookbook.m */,
 				6E4BAA851884A4A400E37DAF /* DoAlertView */,
-				6E9A47AF1860F351004BDE46 /* MEDynamicTransition.h */,
-				6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */,
 				6E4BAA7218849D6A00E37DAF /* UIImage+ResizeMagick.h */,
 				6E4BAA7318849D6A00E37DAF /* UIImage+ResizeMagick.m */,
 			);
@@ -314,7 +319,6 @@
 		3D111A4F170C97140043D2D2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1611F38917FCB6FB006C6D09 /* Transitions */,
 				3DDB7113170A516B00EC3E51 /* AppDelegate.h */,
 				3DDB7114170A516B00EC3E51 /* AppDelegate.m */,
 				3D111A4C170C92250043D2D2 /* CineHorariosApiClient.h */,
@@ -328,7 +332,6 @@
 				16158EE717805E57002B6F73 /* Storyboard.storyboard */,
 				3D111A52170C977C0043D2D2 /* Controllers */,
 				3D309A2617A85D9600BB5D13 /* Categories */,
-				3D111A51170C97670043D2D2 /* ModelViewControllers */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -347,10 +350,7 @@
 		3D111A52170C977C0043D2D2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				16692A30180C7D8A00166885 /* InitialVC.h */,
-				16692A31180C7D8A00166885 /* InitialVC.m */,
-				16692A33180C7DFF00166885 /* MenuVC.h */,
-				16692A34180C7DFF00166885 /* MenuVC.m */,
+				3D111A51170C97670043D2D2 /* ModelViewControllers */,
 				3D521E1817443FDF009ED580 /* CinesVC.h */,
 				3D521E1917443FE0009ED580 /* CinesVC.m */,
 				3D086041173B08CB0047B90A /* FavoritesVC.h */,
@@ -447,7 +447,6 @@
 				3D6F663917E54A7600BEE481 /* MyMultilineLabel.m */,
 				6E56CC12188BC6DB000AB809 /* Cells */,
 				6EBF1E8418AB265B007B50A5 /* MenuCustomView.xib */,
-				6EBF1E8718AB35CA007B50A5 /* MenuBannerView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -473,6 +472,12 @@
 		3DDB7103170A516B00EC3E51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EBF1EA418AB667A007B50A5 /* StoreKit.framework */,
+				6EBF1EA218AB6673007B50A5 /* MessageUI.framework */,
+				6EBF1EA018AB666A007B50A5 /* CoreTelephony.framework */,
+				6EBF1E9E18AB6653007B50A5 /* AVFoundation.framework */,
+				6EBF1E9C18AB664D007B50A5 /* AudioToolbox.framework */,
+				6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */,
 				160907B618AABADF000F9FF7 /* iAd.framework */,
 				6E57396C182755A300ADB8D9 /* CoreLocation.framework */,
 				6E57396418273C9900ADB8D9 /* MapKit.framework */,
@@ -489,10 +494,11 @@
 		3DDB710A170A516B00EC3E51 /* Cine Horarios */ = {
 			isa = PBXGroup;
 			children = (
+				6EBF1E8C18AB65E2007B50A5 /* AdMob */,
 				162414A317BC946E00083708 /* Images.xcassets */,
 				3D111A4F170C97140043D2D2 /* Classes */,
-				3DDB710B170A516B00EC3E51 /* Supporting Files */,
 				16F008A1180DED1300A15060 /* Vendor */,
+				3DDB710B170A516B00EC3E51 /* Supporting Files */,
 			);
 			path = "Cine Horarios";
 			sourceTree = "<group>";
@@ -532,8 +538,6 @@
 		6E56CC12188BC6DB000AB809 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				16692A3B180CAA9600166885 /* MenuCell.h */,
-				16692A3C180CAA9600166885 /* MenuCell.m */,
 				6E56CC0F188BBE7D000AB809 /* BasicCell.h */,
 				6E56CC10188BBE7D000AB809 /* BasicCell.m */,
 				6EA663B6188D28A600B0FCBE /* BillboardCell.h */,
@@ -575,6 +579,24 @@
 				6E723B7F18910FAF009DC5BE /* CastDirectorCell+Person.m */,
 			);
 			name = "Cell Categories";
+			sourceTree = "<group>";
+		};
+		6EBF1E8C18AB65E2007B50A5 /* AdMob */ = {
+			isa = PBXGroup;
+			children = (
+				6EBF1E8D18AB661C007B50A5 /* GADAdMobExtras.h */,
+				6EBF1E8E18AB661C007B50A5 /* GADAdNetworkExtras.h */,
+				6EBF1E8F18AB661C007B50A5 /* GADAdSize.h */,
+				6EBF1E9018AB661C007B50A5 /* GADBannerView.h */,
+				6EBF1E9118AB661C007B50A5 /* GADBannerViewDelegate.h */,
+				6EBF1E9218AB661C007B50A5 /* GADInterstitial.h */,
+				6EBF1E9318AB661C007B50A5 /* GADInterstitialDelegate.h */,
+				6EBF1E9418AB661C007B50A5 /* GADRequest.h */,
+				6EBF1E9518AB661C007B50A5 /* GADRequestError.h */,
+				6EBF1E9618AB661C007B50A5 /* libGoogleAdMobAds.a */,
+				6EBF1E9718AB661C007B50A5 /* README.txt */,
+			);
+			name = AdMob;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -645,8 +667,8 @@
 				16547FD718106D8C00B6F24C /* Localizable.strings in Resources */,
 				6E4BAA811884A49700E37DAF /* check_black.png in Resources */,
 				6E4BAA7F1884A49700E37DAF /* close_black@2x.png in Resources */,
+				6EBF1E9918AB661C007B50A5 /* README.txt in Resources */,
 				6E4BAA831884A49700E37DAF /* close_black.png in Resources */,
-				6EBF1E8818AB35CA007B50A5 /* MenuBannerView.xib in Resources */,
 				6E4BAA821884A49700E37DAF /* check.png in Resources */,
 				6E4BAA7D1884A49700E37DAF /* check_black@2x.png in Resources */,
 				6E4BAA841884A49700E37DAF /* close.png in Resources */,
@@ -727,7 +749,6 @@
 				6E56CC11188BBE7D000AB809 /* BasicCell.m in Sources */,
 				6E723B621890BA4A009DC5BE /* BasicItem.m in Sources */,
 				1629F85417FF4EFA001428C1 /* SettingsVC.m in Sources */,
-				16692A3D180CAA9600166885 /* MenuCell.m in Sources */,
 				3D309A2917A85DBC00BB5D13 /* UIColor+CH.m in Sources */,
 				6E56CC08188BAD56000AB809 /* NSArray+FKBMap.m in Sources */,
 				6E4F889B1896829000A9CC4F /* RFRateMe.m in Sources */,
@@ -759,7 +780,6 @@
 				3D81339B177E3D95006A017C /* CineHorariosTableViewController.m in Sources */,
 				3D4A191917EFA4A200893A65 /* GlobalNavigationController.m in Sources */,
 				6EA663CA188DB0D300B0FCBE /* FunctionCell2+Function.m in Sources */,
-				16692A32180C7D8A00166885 /* InitialVC.m in Sources */,
 				6EA663C7188DB07600B0FCBE /* FunctionCell2.m in Sources */,
 				6EA663C4188D3DD700B0FCBE /* ComingSoonCell2+BasicMovie.m in Sources */,
 			);
@@ -842,6 +862,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios/lib",
+					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios",
 				);
 				PRODUCT_NAME = "Cine Horarios";
 				PROVISIONING_PROFILE = "42422876-FA74-4188-81C6-23B00418C513";
@@ -869,6 +890,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios/lib",
+					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios",
 				);
 				PRODUCT_NAME = "Cine Horarios";
 				PROVISIONING_PROFILE = "42422876-FA74-4188-81C6-23B00418C513";

@@ -6,9 +6,16 @@
 //  Copyright (c) 2013 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "GADBannerViewDelegate.h"
 
-@interface GlobalNavigationController : UINavigationController
+@class GADBannerView;
+@class GADRequest;
+
+@interface GlobalNavigationController : UINavigationController <GADBannerViewDelegate>
+
+@property(nonatomic, strong) GADBannerView *adBanner;
+
+- (GADRequest *)request;
 
 - (IBAction)revealMenu:(id)sender;
 

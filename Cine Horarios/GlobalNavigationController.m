@@ -7,9 +7,12 @@
 //
 
 #import "GlobalNavigationController.h"
-#import "MenuVC.h"
 #import "REMenu.h"
 #import "UIColor+CH.h"
+#import "GADBannerView.h"
+#import "GADRequest.h"
+
+#define kSampleAdUnitID @"ca-app-pub-8355329926077535/7444865605"
 
 @interface GlobalNavigationController ()
 @property (nonatomic, strong) REMenu *menu;
@@ -20,7 +23,21 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    self.canDisplayBannerAds = YES;
+    
+    // Initialize the banner at the bottom of the screen.
+    CGPoint origin = CGPointMake(0.0, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height);
+    
+    // Use predefined GADAdSize constants to define the GADBannerView.
+    self.adBanner = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:origin];
+    
+    // Note: Edit SampleConstants.h to provide a definition for kSampleAdUnitID before compiling.
+    self.adBanner.adUnitID = kSampleAdUnitID;
+    self.adBanner.delegate = self;
+    self.adBanner.rootViewController = self;
+    self.adBanner.alpha = 0.;
+    self.adBanner.hidden = YES;
+    [self.view addSubview:self.adBanner];
+    [self.adBanner loadRequest:[self request]];
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
     NSArray *menuArray = [NSArray arrayWithContentsOfFile:filePath];
@@ -56,7 +73,17 @@
     }
     self.menu = [[REMenu alloc] initWithItems:[NSArray arrayWithArray:menuItems]];
     self.menu.backgroundColor = [UIColor midnightBlue];
+    self.menu.separatorColor = [UIColor midnightBlue];
     self.menu.itemHeight = 50.f;
+    __weak GlobalNavigationController *weakSelf = self;
+    self.menu.closeCompletionHandler = ^{
+        __strong GlobalNavigationController *strongSelf = weakSelf;
+        [UIView animateWithDuration:0.3 animations:^{
+            strongSelf.adBanner.alpha = 0.;
+        } completion:^(BOOL finished) {
+            strongSelf.adBanner.hidden = YES;
+        }];
+    };
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *identifier = [defaults stringForKey:@"Starting VC"];
@@ -92,6 +119,12 @@
     if (self.menu.isOpen)
         return [self.menu close];
     
+    self.adBanner.hidden = NO;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.adBanner.alpha = 1.;
+    } completion:^(BOOL finished) {
+        [self.view bringSubviewToFront:self.adBanner];
+    }];
     [self.menu showFromNavigationController:self];
 }
 - (IBAction)goSocial:(UIButton *)sender {
@@ -121,15 +154,34 @@
     return [self.topViewController supportedInterfaceOrientations];
 }
 
-#pragma mark - iAd Delegate Methods
-
--(void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    UIView *customView = (UIView *)[[[NSBundle mainBundle] loadNibNamed:@"MenuBannerView" owner:self options:nil] lastObject];
-    REMenuItem *customViewItem = [[REMenuItem alloc] initWithCustomView:customView action:nil];
-    self.menu.items = [[@[customViewItem] mutableCopy] arrayByAddingObjectsFromArray:self.menu.items];
+- (void)dealloc {
+    self.adBanner.delegate = nil;
 }
--(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    
+
+#pragma mark GADRequest generation
+
+- (GADRequest *)request {
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[ @"a0184615f470d137bb602d55d2d32efb98e2d063" ];
+    return request;
+}
+
+#pragma mark GADBannerViewDelegate implementation
+
+// We've received an ad successfully.
+- (void)adViewDidReceiveAd:(GADBannerView *)adView {
+//    NSLog(@"Received ad successfully");
+    [UIView animateWithDuration:0.3 animations:^{
+        self.adBanner.alpha = 1.;
+    }];
+}
+
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error {
+//    NSLog(@"Failed to receive ad with error: %@", [error localizedFailureReason]);
+    [UIView animateWithDuration:0.3 animations:^{
+        self.adBanner.alpha = 0.;
+    } completion:^(BOOL finished) {
+    }];
 }
 
 @end
