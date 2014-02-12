@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ECSlidingViewController.h"
 
-@interface GlobalNavigationController : UINavigationController <ECSlidingViewControllerDelegate>
-
-@property (nonatomic, strong) UIPanGestureRecognizer *transitionPanGesture;
+@interface GlobalNavigationController : UINavigationController
 
 - (IBAction)revealMenu:(id)sender;
 

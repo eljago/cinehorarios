@@ -37,9 +37,6 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
-    nvc.transitionPanGesture.enabled = YES;
-    
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
     
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
@@ -89,9 +86,6 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
-    nvc.transitionPanGesture.enabled = NO;
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)

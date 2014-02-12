@@ -533,10 +533,7 @@
     }
 }
 - (void) pushPhotoBrowserWithIntermediateViewController:(UIViewController *)viewController index:(NSUInteger)index{
-    
-    GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
-    nvc.transitionPanGesture.enabled = NO;
-    
+        
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:(id<MWPhotoBrowserDelegate>)viewController];
     browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
     browser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)

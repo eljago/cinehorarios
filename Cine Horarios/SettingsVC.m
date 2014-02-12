@@ -43,11 +43,22 @@
     BOOL retinaImages = [defaults boolForKey:@"Retina Images"];
     NSString *startingVC = [defaults stringForKey:@"Starting VC"];
     
-    [FileHandler getMenuDictsAndSelectedIndex:^(NSArray *menuDicts, NSInteger selectedIndex) {
-        self.startingVCs = menuDicts;
-        [self.pickerView selectRow:selectedIndex inComponent:0 animated:NO];
-        self.startCinesLabel.text = self.startingVCs[selectedIndex][@"pickerName"];
-    } withStoryboardID:startingVC];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
+    self.startingVCs = [NSArray arrayWithContentsOfFile:filePath];
+    
+    if (!startingVC) {
+        startingVC = [self.startingVCs firstObject][@"storyboardID"];
+    }
+    
+    int index = 0;
+    for (NSDictionary *dict in self.startingVCs) {
+        
+        if ([dict[@"storyboardID"] isEqualToString:startingVC]) {
+            [self.pickerView selectRow:index inComponent:0 animated:NO];
+            self.startCinesLabel.text = dict[@"pickerName"];
+        }
+        index++;
+    }
     
     self.switchRetina.on = retinaImages;
     

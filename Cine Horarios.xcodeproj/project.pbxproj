@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160907B718AABADF000F9FF7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160907B618AABADF000F9FF7 /* iAd.framework */; };
 		16158EE817805E57002B6F73 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16158EE717805E57002B6F73 /* Storyboard.storyboard */; };
 		162414A417BC946E00083708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 162414A317BC946E00083708 /* Images.xcassets */; };
 		1628571F185F607E00DBD491 /* UIView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 1628571E185F607E00DBD491 /* UIView+CH.m */; };
@@ -15,7 +16,6 @@
 		163BAB211763C34500A81BF7 /* WebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 163BAB201763C34400A81BF7 /* WebVC.m */; };
 		16547FD718106D8C00B6F24C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 16547FD618106D8C00B6F24C /* Localizable.strings */; };
 		16692A32180C7D8A00166885 /* InitialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16692A31180C7D8A00166885 /* InitialVC.m */; };
-		16692A35180C7DFF00166885 /* MenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16692A34180C7DFF00166885 /* MenuVC.m */; };
 		16692A37180C7E2B00166885 /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16692A36180C7E2B00166885 /* Menu.plist */; };
 		16692A3D180CAA9600166885 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16692A3C180CAA9600166885 /* MenuCell.m */; };
 		167B9A401804909D00862289 /* MovieFunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D881272175CD9E30034FDA9 /* MovieFunctionsVC.m */; };
@@ -80,7 +80,6 @@
 		6E723B8618913BFF009DC5BE /* AnnotationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B8518913BFF009DC5BE /* AnnotationGroup.m */; };
 		6E723B8918913C4A009DC5BE /* AnnotationTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B8818913C4A009DC5BE /* AnnotationTheater.m */; };
 		6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8686F7188703E4003A91B0 /* DoAlertView.m */; };
-		6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9A47B01860F351004BDE46 /* MEDynamicTransition.m */; };
 		6EA663A6188C8C2200B0FCBE /* Cinema.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663A5188C8C2200B0FCBE /* Cinema.m */; };
 		6EA663AC188D012200B0FCBE /* BasicMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663AB188D012200B0FCBE /* BasicMovie.m */; };
 		6EA663B2188D19B400B0FCBE /* Billboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663B1188D19B400B0FCBE /* Billboard.m */; };
@@ -95,9 +94,12 @@
 		6EA663D9188FD18900B0FCBE /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663D8188FD18900B0FCBE /* Movie.m */; };
 		6EA663DF188FD21100B0FCBE /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663DE188FD21100B0FCBE /* Video.m */; };
 		6EA663E2188FD25F00B0FCBE /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663E1188FD25F00B0FCBE /* Person.m */; };
+		6EBF1E8518AB265B007B50A5 /* MenuCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF1E8418AB265B007B50A5 /* MenuCustomView.xib */; };
+		6EBF1E8818AB35CA007B50A5 /* MenuBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF1E8718AB35CA007B50A5 /* MenuBannerView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		160907B618AABADF000F9FF7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		1611F38A17FCB710006C6D09 /* SwatchTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwatchTransition.h; sourceTree = "<group>"; };
 		1611F38B17FCB710006C6D09 /* SwatchTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwatchTransition.m; sourceTree = "<group>"; };
 		16158EE717805E57002B6F73 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -259,6 +261,8 @@
 		6EA663DE188FD21100B0FCBE /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		6EA663E0188FD25F00B0FCBE /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		6EA663E1188FD25F00B0FCBE /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		6EBF1E8418AB265B007B50A5 /* MenuCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCustomView.xib; sourceTree = "<group>"; };
+		6EBF1E8718AB35CA007B50A5 /* MenuBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuBannerView.xib; sourceTree = "<group>"; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -267,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				160907B718AABADF000F9FF7 /* iAd.framework in Frameworks */,
 				6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */,
 				6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */,
 				3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */,
@@ -441,6 +446,8 @@
 				3D6F663817E54A7600BEE481 /* MyMultilineLabel.h */,
 				3D6F663917E54A7600BEE481 /* MyMultilineLabel.m */,
 				6E56CC12188BC6DB000AB809 /* Cells */,
+				6EBF1E8418AB265B007B50A5 /* MenuCustomView.xib */,
+				6EBF1E8718AB35CA007B50A5 /* MenuBannerView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -466,6 +473,7 @@
 		3DDB7103170A516B00EC3E51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				160907B618AABADF000F9FF7 /* iAd.framework */,
 				6E57396C182755A300ADB8D9 /* CoreLocation.framework */,
 				6E57396418273C9900ADB8D9 /* MapKit.framework */,
 				3D29981817E5AA46001A371D /* QuartzCore.framework */,
@@ -638,6 +646,7 @@
 				6E4BAA811884A49700E37DAF /* check_black.png in Resources */,
 				6E4BAA7F1884A49700E37DAF /* close_black@2x.png in Resources */,
 				6E4BAA831884A49700E37DAF /* close_black.png in Resources */,
+				6EBF1E8818AB35CA007B50A5 /* MenuBannerView.xib in Resources */,
 				6E4BAA821884A49700E37DAF /* check.png in Resources */,
 				6E4BAA7D1884A49700E37DAF /* check_black@2x.png in Resources */,
 				6E4BAA841884A49700E37DAF /* close.png in Resources */,
@@ -645,6 +654,7 @@
 				16692A37180C7E2B00166885 /* Menu.plist in Resources */,
 				3DDD5AEF18020C8700720ABD /* Cinemas.plist in Resources */,
 				16158EE817805E57002B6F73 /* Storyboard.storyboard in Resources */,
+				6EBF1E8518AB265B007B50A5 /* MenuCustomView.xib in Resources */,
 				6E4BAA7E1884A49700E37DAF /* check@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -714,11 +724,9 @@
 				6EA663B2188D19B400B0FCBE /* Billboard.m in Sources */,
 				6E723B8918913C4A009DC5BE /* AnnotationTheater.m in Sources */,
 				6EA663C1188D3DA300B0FCBE /* ComingSoonCell2.m in Sources */,
-				16692A35180C7DFF00166885 /* MenuVC.m in Sources */,
 				6E56CC11188BBE7D000AB809 /* BasicCell.m in Sources */,
 				6E723B621890BA4A009DC5BE /* BasicItem.m in Sources */,
 				1629F85417FF4EFA001428C1 /* SettingsVC.m in Sources */,
-				6E9A47B11860F351004BDE46 /* MEDynamicTransition.m in Sources */,
 				16692A3D180CAA9600166885 /* MenuCell.m in Sources */,
 				3D309A2917A85DBC00BB5D13 /* UIColor+CH.m in Sources */,
 				6E56CC08188BAD56000AB809 /* NSArray+FKBMap.m in Sources */,

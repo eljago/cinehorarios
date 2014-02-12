@@ -9,9 +9,10 @@
 #import "InitialVC.h"
 #import "GlobalNavigationController.h"
 #import "MenuVC.h"
+#import "REMenu.h"
 
 @interface InitialVC ()
-
+@property (nonatomic, strong) REMenu *menu;
 @end
 
 @implementation InitialVC
@@ -26,11 +27,27 @@
         identifier = @"CinesVC";
     }
     
-    GlobalNavigationController *navigationController = (GlobalNavigationController *)self.topViewController;
+    GlobalNavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"NavVC"];
     navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
     
-    MenuVC *menuVC = (MenuVC *)self.underLeftViewController;
-    menuVC.startingVCID = identifier;
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
+    NSArray *menuArray = [NSArray arrayWithContentsOfFile:filePath];
+    
+    NSMutableArray *menuItems = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *dict in menuArray) {
+        NSString *name = dict[@"name"];
+        UIImage *image = [[UIImage imageNamed:dict[@"image"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        NSString *storyboardID = dict[@"storyboardID"];
+        
+        REMenuItem *item = [[REMenuItem alloc] initWithTitle:name image:image highlightedImage:image action:^(REMenuItem *item) {
+            navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:storyboardID]];
+        }];
+        [menuItems addObject:item];
+    }
+    self.menu = [[REMenu alloc] initWithItems:[NSArray arrayWithArray:menuItems]];
+    [self.menu showFromNavigationController:self.navigationController];
     
     [navigationController.navigationBar setBackgroundImage:[UIImage new]
                        forBarPosition:UIBarPositionAny
@@ -48,7 +65,7 @@
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    return [self.topViewController supportedInterfaceOrientations];
+    return [self.navigationController.topViewController supportedInterfaceOrientations];
 }
 
 @end

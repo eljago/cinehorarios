@@ -80,52 +80,32 @@
     return DO_RGB(60, 60, 60);
 }
 
-+(UIColor *)menuColorForRow:(NSIndexPath *)indexPath {
-    switch (indexPath.section) {
++(UIColor *)menuColorForRow:(int)index {
+    switch (index) {
         case 0:
-            // Cines
-            switch (indexPath.row) {
-                case 0:
-                    // Todos
-                    return [UIColor greenSea];
-                    break;
-                case 1:
-                    // Favoritos
-                    return [UIColor navColor];
-                    break;
-                case 2:
-                    // Cercanos
-                    return [UIColor orange2];
-                    break;
-                default:
-                    return [UIColor whiteColor];
-                    break;
-            }
+            // Todos
+            return [UIColor greenSea];
+            break;
         case 1:
-            //Peliculas
-            switch (indexPath.row) {
-                case 0:
-                    // Cartelera
-                    return [UIColor hydrangea];
-                    break;
-                case 1:
-                    // Próximos Estrenos
-                    return [UIColor belizeHole];
-                    break;
-                default:
-                    return [UIColor whiteColor];
-                    break;
-            }
+            // Favoritos
+            return [UIColor navColor];
+            break;
         case 2:
-            switch (indexPath.row) {
-                case 0:
-                    // Ajustes
-                    return [UIColor brownColor];
-                    break;
-                default:
-                    return [UIColor whiteColor];
-                    break;
-            }
+            // Cercanos
+            return [UIColor orange2];
+            break;
+        case 3:
+            // Cartelera
+            return [UIColor hydrangea];
+            break;
+        case 4:
+            // Próximos Estrenos
+            return [UIColor belizeHole];
+            break;
+        case 5:
+            // Ajustes
+            return [UIColor brownColor];
+            break;
         default:
             return [UIColor whiteColor];
             break;

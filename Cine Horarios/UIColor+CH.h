@@ -29,5 +29,5 @@
 + (UIColor *)concrete;
 +(UIColor *)grayYoutubeControls;
 
-+(UIColor *)menuColorForRow:(NSIndexPath *)indexPath;
++(UIColor *)menuColorForRow:(int)index;
 @end

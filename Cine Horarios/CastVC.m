@@ -60,7 +60,6 @@
     [super viewWillAppear:animated];
     
     GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
-    nvc.transitionPanGesture.enabled = YES;
     
     [nvc.navigationBar setShadowImage:[UIImage new]];
 }
@@ -159,9 +158,6 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
-    nvc.transitionPanGesture.enabled = NO;
     
     NSUInteger row = 0;
     if (indexPath.section == 0) {
