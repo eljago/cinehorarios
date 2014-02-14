@@ -24,6 +24,7 @@
 #import "UIView+CH.h"
 #import "ArrayDataSource.h"
 #import "FunctionCell2+Function.h"
+#import "UIViewController+DoAlertView.h"
 
 NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
@@ -142,18 +143,11 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
                 [self.tableView reloadData];
             }
             else {
-                DoAlertView *alert = [[DoAlertView alloc] init];
-                alert.nAnimationType = DoTransitionStylePop;
-                alert.dRound = 2.0;
-                alert.bDestructive = NO;
                 
-                [alert doYesNo:@"Horarios no disponibles" body:[NSString stringWithFormat:@"¿Visitar página web de %@?",self.theater.name] yes:^(DoAlertView *alertView) {
-                    
+                [self alertWithTitle:@"Horarios no disponibles" body:[NSString stringWithFormat:@"¿Visitar página web de %@?",self.theater.name] completeBlock:^{
                     WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
                     wvc.urlString = self.theater.webURL;
                     [self.navigationController pushViewController:wvc animated:YES];
-                } no:^(DoAlertView *alertView) {
-                    
                 }];
             }
         }

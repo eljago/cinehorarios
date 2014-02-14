@@ -49,6 +49,9 @@
 + (UIColor *)midnightBlue {
     return DO_RGB(44, 62, 80);
 }
++ (UIColor *)midnightBlueLight {
+    return DO_RGBA(44, 62, 80, 0.7);
+}
 + (UIColor *)wetAsphalt {
     return DO_RGB(52, 73, 94);
 }

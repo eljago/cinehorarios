@@ -19,6 +19,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "ArrayDataSource.h"
+#import "UIViewController+DoAlertView.h"
 
 @interface TheatersVC ()
 

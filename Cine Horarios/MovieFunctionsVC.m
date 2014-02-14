@@ -17,6 +17,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "UIView+CH.h"
+#import "UIViewController+DoAlertView.h"
 
 @interface MovieFunctionsVC ()
 @property (nonatomic, strong) NSArray *theaterFuctions;

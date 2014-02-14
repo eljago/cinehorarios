@@ -14,6 +14,7 @@
 + (UIColor *)lighterGrayColor;
 + (UIColor *)darkerMidnightBlue;
 + (UIColor *)midnightBlue;
++ (UIColor *)midnightBlueLight;
 + (UIColor *)wetAsphalt;
 + (UIColor *)belizeHole;
 + (UIColor *)orange2;

@@ -40,9 +40,6 @@
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
     
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    
-    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
-    self.navigationItem.rightBarButtonItem = menuButtonItem;
 }
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];

@@ -34,6 +34,7 @@
 #import "MovieCastCell+Person.h"
 #import "Cast.h"
 #import "RFRateMe.h"
+#import "UIViewController+DoAlertView.h"
 
 @interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate>
 

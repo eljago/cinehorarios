@@ -17,6 +17,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "FuncionesVC.h"
+#import "UIViewController+DoAlertView.h"
 
 NSInteger const kMaxTheaterDistance = 26000;
 NSInteger const kRegionSize = 4000;
@@ -31,8 +32,6 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 @property BOOL userLocationUpdated;
 @property (nonatomic, assign) MKCoordinateRegion region;
 @property (nonatomic, strong) NSMutableArray *annotations;
-
-@property (nonatomic, strong) DoAlertView *alert;
 
 @property (nonatomic, strong) UIBarButtonItem *buttonCenterUser;
 @property (nonatomic, strong) UIBarButtonItem *buttonReload;
@@ -257,18 +256,6 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 }
 
 #pragma mark - CloseTheatersVC
-#pragma mark Alert
-
-- (DoAlertView *) alert {
-    if(_alert) return _alert;
-    
-    _alert = [[DoAlertView alloc] init];
-    _alert.nAnimationType = DoTransitionStylePop;
-    _alert.dRound = 2.0;
-    _alert.bDestructive = NO;
-    
-    return _alert;
-}
 
 - (void) createAnnotationsWithAnnotationGroup:(AnnotationGroup *)annotationGroup {
     NSMutableArray *mutaArray = [[NSMutableArray alloc] init];
@@ -314,14 +301,9 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
         }
         else {
             [self enableBarButtonItems];
-            
-            [self.alert doYesNo:@"¿Reintentar?"
-                            yes:^(DoAlertView *alertView) {
-                                [self getTheatersLocationsForceRemote:YES];
-                            } no:^(DoAlertView *alertView) {
-                                
-                            }];
-            self.alert = nil;
+            [self alertRetryWithCompleteBlock:^{
+                [self getTheatersLocationsForceRemote:YES];
+            }];
         }
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];

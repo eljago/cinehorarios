@@ -18,6 +18,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "UIView+CH.h"
+#import "UIViewController+DoAlertView.h"
 
 @interface MovieCinemasVC ()
 @property (nonatomic, strong) NSMutableArray *favoriteTheaters;

@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DoAlertView.h"
 
 @interface CineHorariosTableViewController : UITableViewController
-@property (nonatomic, strong) DoAlertView *alert;
 
--(void) alertRetryWithCompleteBlock:(void (^)())completeBlock;
 @end

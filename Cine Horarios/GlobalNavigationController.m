@@ -11,6 +11,8 @@
 #import "UIColor+CH.h"
 #import "GADBannerView.h"
 #import "GADRequest.h"
+#import "MWPhotoBrowser.h"
+#import "MovieImagesVC.h"
 
 #define kSampleAdUnitID @"ca-app-pub-8355329926077535/7444865605"
 
@@ -23,24 +25,16 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    // Initialize the banner at the bottom of the screen.
-    CGPoint origin = CGPointMake(0.0, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height);
-    
-    // Use predefined GADAdSize constants to define the GADBannerView.
-    self.adBanner = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:origin];
-    
-    // Note: Edit SampleConstants.h to provide a definition for kSampleAdUnitID before compiling.
-    self.adBanner.adUnitID = kSampleAdUnitID;
-    self.adBanner.delegate = self;
-    self.adBanner.rootViewController = self;
-    self.adBanner.alpha = 0.;
-    self.adBanner.hidden = YES;
-    [self.view addSubview:self.adBanner];
-    [self.adBanner loadRequest:[self request]];
+    [self setupBanner];
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
     NSArray *menuArray = [NSArray arrayWithContentsOfFile:filePath];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *identifier = [defaults stringForKey:@"Starting VC"];
+    if (!identifier) {
+        identifier = [menuArray firstObject][@"storyboardID"];
+    }
     
     NSMutableArray *menuItems = [[NSMutableArray alloc] init];
     
@@ -52,9 +46,12 @@
         
         UIView *customView = (UIView *)[[[NSBundle mainBundle] loadNibNamed:@"MenuCustomView" owner:self options:nil] lastObject];
         UILabel *label = (UILabel *)[customView viewWithTag:1];
+        label.textColor = [UIColor whiteColor];
         UIImageView *imgView = (UIImageView *)[customView viewWithTag:2];
         label.text = name;
-        label.highlightedTextColor = [UIColor menuColorForRow:index];
+        if ([identifier isEqualToString:storyboardID]) {
+            label.textColor = [UIColor menuColorForRow:index];
+        }
         imgView.image = image;
         imgView.tintColor = [UIColor menuColorForRow:index];
         REMenuItem *customViewItem = [[REMenuItem alloc] initWithCustomView:customView action:^(REMenuItem *item) {
@@ -72,9 +69,14 @@
         index++;
     }
     self.menu = [[REMenu alloc] initWithItems:[NSArray arrayWithArray:menuItems]];
-    self.menu.backgroundColor = [UIColor midnightBlue];
-    self.menu.separatorColor = [UIColor midnightBlue];
-    self.menu.itemHeight = 50.f;
+    self.menu.borderColor = [UIColor clearColor];
+    self.menu.highlightedBackgroundColor = [UIColor midnightBlue];
+    self.menu.highlightedTextColor = [UIColor yellowColor];
+    self.menu.liveBlurTintColor = [UIColor midnightBlueLight];
+    self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleLight;
+    self.menu.separatorHeight = 0.;
+    self.menu.itemHeight = 44.f;
+    self.menu.liveBlur = YES;
     __weak GlobalNavigationController *weakSelf = self;
     self.menu.closeCompletionHandler = ^{
         __strong GlobalNavigationController *strongSelf = weakSelf;
@@ -84,12 +86,6 @@
             strongSelf.adBanner.hidden = YES;
         }];
     };
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *identifier = [defaults stringForKey:@"Starting VC"];
-    if (!identifier) {
-        identifier = [menuArray firstObject][@"storyboardID"];
-    }
     
     self.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
     
@@ -103,8 +99,15 @@
     [self.navigationBar addGestureRecognizer:swipeGesture];
 }
 
+- (void)dealloc {
+    self.adBanner.delegate = nil;
+}
+
 - (void)swipeRecognized:(UISwipeGestureRecognizer *)rec
 {
+    if ([self.topViewController isKindOfClass:MWPhotoBrowser.class] || [self.topViewController isKindOfClass:MovieImagesVC.class]) {
+        return;
+    }
     [self revealMenu:nil];
 }
 
@@ -154,9 +157,6 @@
     return [self.topViewController supportedInterfaceOrientations];
 }
 
-- (void)dealloc {
-    self.adBanner.delegate = nil;
-}
 
 #pragma mark GADRequest generation
 
@@ -164,6 +164,26 @@
     GADRequest *request = [GADRequest request];
     request.testDevices = @[ @"a0184615f470d137bb602d55d2d32efb98e2d063" ];
     return request;
+}
+
+#pragma mark - Banner
+
+- (void) setupBanner {
+    
+    // Initialize the banner at the bottom of the screen.
+    CGPoint origin = CGPointMake(0.0, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height);
+    
+    // Use predefined GADAdSize constants to define the GADBannerView.
+    self.adBanner = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:origin];
+    
+    // Note: Edit SampleConstants.h to provide a definition for kSampleAdUnitID before compiling.
+    self.adBanner.adUnitID = kSampleAdUnitID;
+    self.adBanner.delegate = self;
+    self.adBanner.rootViewController = self;
+    self.adBanner.alpha = 0.;
+    self.adBanner.hidden = YES;
+    [self.view addSubview:self.adBanner];
+    [self.adBanner loadRequest:[self request]];
 }
 
 #pragma mark GADBannerViewDelegate implementation

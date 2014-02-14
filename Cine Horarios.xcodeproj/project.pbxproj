@@ -44,6 +44,7 @@
 		3DDD5AEB18020ACC00720ABD /* MovieCinemasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C7EB56173E0EFF001CF782 /* MovieCinemasVC.m */; };
 		3DDD5AEF18020C8700720ABD /* Cinemas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DDD5AEE18020C8700720ABD /* Cinemas.plist */; };
 		3DFA54CC170B3512003E2208 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB7110170A516B00EC3E51 /* main.m */; };
+		6E2DD19818AC141500FD6386 /* UIViewController+DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD19618AC141500FD6386 /* UIViewController+DoAlertView.m */; };
 		6E4BAA7418849D6A00E37DAF /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4BAA7318849D6A00E37DAF /* UIImage+ResizeMagick.m */; };
 		6E4BAA7D1884A49700E37DAF /* check_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA751884A49600E37DAF /* check_black@2x.png */; };
 		6E4BAA7E1884A49700E37DAF /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA761884A49600E37DAF /* check@2x.png */; };
@@ -171,6 +172,8 @@
 		3DDB7113170A516B00EC3E51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DDB7114170A516B00EC3E51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3DDD5AEE18020C8700720ABD /* Cinemas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cinemas.plist; sourceTree = "<group>"; };
+		6E2DD19618AC141500FD6386 /* UIViewController+DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DoAlertView.m"; sourceTree = "<group>"; };
+		6E2DD19718AC141500FD6386 /* UIViewController+DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DoAlertView.h"; sourceTree = "<group>"; };
 		6E4BAA7218849D6A00E37DAF /* UIImage+ResizeMagick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeMagick.h"; sourceTree = "<group>"; };
 		6E4BAA7318849D6A00E37DAF /* UIImage+ResizeMagick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeMagick.m"; sourceTree = "<group>"; };
 		6E4BAA751884A49600E37DAF /* check_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_black@2x.png"; sourceTree = "<group>"; };
@@ -388,6 +391,8 @@
 		3D309A2617A85D9600BB5D13 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				6E2DD19718AC141500FD6386 /* UIViewController+DoAlertView.h */,
+				6E2DD19618AC141500FD6386 /* UIViewController+DoAlertView.m */,
 				3D309A2717A85DBC00BB5D13 /* UIColor+CH.h */,
 				3D309A2817A85DBC00BB5D13 /* UIColor+CH.m */,
 				3D309A2A17A8674000BB5D13 /* UIImage+CH.h */,
@@ -750,6 +755,7 @@
 				6E723B621890BA4A009DC5BE /* BasicItem.m in Sources */,
 				1629F85417FF4EFA001428C1 /* SettingsVC.m in Sources */,
 				3D309A2917A85DBC00BB5D13 /* UIColor+CH.m in Sources */,
+				6E2DD19818AC141500FD6386 /* UIViewController+DoAlertView.m in Sources */,
 				6E56CC08188BAD56000AB809 /* NSArray+FKBMap.m in Sources */,
 				6E4F889B1896829000A9CC4F /* RFRateMe.m in Sources */,
 				6EA663B8188D28A600B0FCBE /* BillboardCell.m in Sources */,
