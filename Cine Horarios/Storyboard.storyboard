@@ -1319,7 +1319,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="dzc-WV-0Pr">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.57647058819999997" green="0.12941176469999999" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>

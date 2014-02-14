@@ -51,6 +51,8 @@
         label.text = name;
         if ([identifier isEqualToString:storyboardID]) {
             label.textColor = [UIColor menuColorForRow:index];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Regular" size:17.];
+            customView.backgroundColor = [UIColor midnightBlue];
         }
         imgView.image = image;
         imgView.tintColor = [UIColor menuColorForRow:index];
@@ -59,9 +61,13 @@
             for (REMenuItem *menuItem in self.menu.items) {
                 if ([item isEqual:menuItem]) {
                     ((UILabel *)[menuItem.customView viewWithTag:1]).textColor = [UIColor menuColorForRow:index];
+                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"HelveticaNeue-Regular" size:17.];
+                    menuItem.customView.backgroundColor = [UIColor midnightBlue];
                 }
                 else {
                     ((UILabel *)[menuItem.customView viewWithTag:1]).textColor = [UIColor whiteColor];
+                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.];
+                    menuItem.customView.backgroundColor = [UIColor clearColor];
                 }
             }
         }];
@@ -70,13 +76,13 @@
     }
     self.menu = [[REMenu alloc] initWithItems:[NSArray arrayWithArray:menuItems]];
     self.menu.borderColor = [UIColor clearColor];
+    self.menu.backgroundColor = [UIColor wetAsphalt];
     self.menu.highlightedBackgroundColor = [UIColor midnightBlue];
-    self.menu.highlightedTextColor = [UIColor yellowColor];
-    self.menu.liveBlurTintColor = [UIColor midnightBlueLight];
-    self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleLight;
+//    self.menu.liveBlurTintColor = [UIColor midnightBlueLight];
+//    self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleLight;
+//    self.menu.liveBlur = YES;
     self.menu.separatorHeight = 0.;
     self.menu.itemHeight = 44.f;
-    self.menu.liveBlur = YES;
     __weak GlobalNavigationController *weakSelf = self;
     self.menu.closeCompletionHandler = ^{
         __strong GlobalNavigationController *strongSelf = weakSelf;
