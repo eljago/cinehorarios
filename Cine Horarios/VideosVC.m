@@ -25,6 +25,8 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
+const int kLoadingCellTag = 1234;
+
 @interface VideosVC ()
 
 @property (nonatomic, strong) VideoGroup *videoGroup;
@@ -48,9 +50,19 @@
     
     self.currentPage = 1;
     
-    [self getVideosForceDownload:YES];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+    
+    [self getVideosLocally];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+    NSLog(@"memory warning");
+}
 
 #pragma mark - TheatersVC
 #pragma mark Properties
@@ -78,39 +90,40 @@
 
 #pragma mark Fetch Data
 
-- (void) getVideosForceDownload:(BOOL)forceDownload {
-    if (forceDownload) {
-        [self downloadCinema];
+- (void) getVideosLocally {
+    self.videoGroup = [VideoGroup loadVideoGroup];
+    if (self.videoGroup && self.videoGroup.videos.count > 0) {
+        
+        [self setUpsGalleryDataSource];
+        
+        [self.tableView reloadData];
+        if (self.refreshControl.refreshing) {
+            [self.refreshControl endRefreshing];
+        }
     }
     else {
-        self.videoGroup = [VideoGroup loadVideoGroup];
-        if (self.videoGroup && self.videoGroup.videos.count > 0) {
-            
-            [self setUpsGalleryDataSource];
-            
-            [self.tableView reloadData];
-            if (self.refreshControl.refreshing) {
-                [self.refreshControl endRefreshing];
-            }
-        }
-        else {
-            [self downloadCinema];
-        }
+        [self downloadVideosForPage:1];
     }
 }
 
--(void) downloadCinema {
-    self.tableView.scrollEnabled = NO;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+-(void) downloadVideosForPage:(NSUInteger)page {
+    if (page == 1) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }
     [VideoGroup getVideosWithBlock:^(VideoGroup *videoGroup, NSError *error) {
         if (!error) {
-            self.videoGroup = videoGroup;
+            if (self.videoGroup && page > 1) {
+                [self.videoGroup.videos addObjectsFromArray:videoGroup.videos];
+            }
+            else {
+                self.videoGroup = videoGroup;
+            }
             [self setUpsGalleryDataSource];
             [self.tableView reloadData];
         }
         else {
             [self alertRetryWithCompleteBlock:^{
-                [self getVideosForceDownload:YES];
+                [self downloadVideosForPage:page];
             }];
         }
         self.tableView.scrollEnabled = YES;
@@ -118,23 +131,34 @@
         if (self.refreshControl.refreshing) {
             [self.refreshControl endRefreshing];
         }
-    } page:self.currentPage];
+    } page:page];
 }
 
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
-    [self getVideosForceDownload:YES];
+    self.currentPage = 1;
+    [self downloadVideosForPage:self.currentPage];
 }
 
 #pragma mark - UITableView Data Source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.videoGroup.videos.count;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row < self.videoGroup.videos.count) {
+        return 140.;
+    }
+    else {
+        return 44.;
+    }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+        return self.videoGroup.videos.count + 1;
+}
+
+- (VideoCell *) videoCellForIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString *identifier = @"Cell";
-    VideoCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    VideoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
     
     Video *video = self.videoGroup.videos[indexPath.row];
     [cell configureForVideo:video];
@@ -143,6 +167,37 @@
     
     return cell;
 }
+
+- (UITableViewCell *) loadingCell {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicatorView.center = cell.center;
+    [cell addSubview:activityIndicatorView];
+    [activityIndicatorView startAnimating];
+    
+    cell.tag = kLoadingCellTag;
+    
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row < self.videoGroup.videos.count) {
+        return [self videoCellForIndexPath:indexPath];
+    }
+    else {
+        return [self loadingCell];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (cell.tag == kLoadingCellTag) {
+        self.currentPage++;
+        [self downloadVideosForPage:self.currentPage];
+    }
+}
+
+#pragma mark - Go To Video Gallery
 
 - (IBAction)goVideoGallery:(UIButton *)sender {
     

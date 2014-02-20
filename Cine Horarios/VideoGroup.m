@@ -31,7 +31,9 @@ NSString *const kVideoGroupArchivePath = @"/data/";
         
         NSError *error = nil;
         VideoGroup *videoGroup = [MTLJSONAdapter modelOfClass:self.class fromJSONDictionary:JSON error:&error];
-//        [videoGroup persistToFile:[[self class] storagePath]];
+        if (page == 1) {
+            [videoGroup persistToFile:[[self class] storagePath]];
+        }
         
         if (block) {
             block(videoGroup, nil);
