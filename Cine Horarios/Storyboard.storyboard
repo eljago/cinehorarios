@@ -1337,6 +1337,10 @@
                                             <rect key="frame" x="100" y="0.0" width="220" height="139"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KhK-vo-OU2">
+                                            <rect key="frame" x="110" y="10" width="200" height="120"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdB-ib-A4f">
                                             <rect key="frame" x="10" y="10" width="80" height="120"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1359,7 +1363,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="qzZ-iv-eSn" kind="push" identifier="VideosVCToVideoVC" id="rhe-LY-kmm"/>
+                                                <action selector="goVideoGallery:" destination="WBQ-aP-pUg" eventType="touchUpInside" id="xn0-ZV-fxg"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pompeii" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="laG-rk-JxX">
@@ -1396,6 +1400,7 @@
                                     <outlet property="nameLabel" destination="laG-rk-JxX" id="tO4-Rl-ksN"/>
                                     <outlet property="showCoverButton" destination="NdB-ib-A4f" id="X2g-0n-51o"/>
                                     <outlet property="videoCoverButton" destination="eRu-Rs-NPg" id="sXh-ly-mmR"/>
+                                    <outlet property="videoCoverImageView" destination="KhK-vo-OU2" id="mWd-Wd-Zf8"/>
                                     <outlet property="videoNameLabel" destination="iRX-D0-FGc" id="3Xd-ij-cw8"/>
                                 </connections>
                             </tableViewCell>
@@ -1641,7 +1646,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="1X0-Qc-tJs"/>
-        <segue reference="rhe-LY-kmm"/>
         <segue reference="ZrW-Ss-4wn"/>
         <segue reference="feD-TT-raZ"/>
     </inferredMetricsTieBreakers>

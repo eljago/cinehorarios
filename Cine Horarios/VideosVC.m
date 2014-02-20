@@ -18,11 +18,19 @@
 #import "VideoVC.h"
 #import "BasicMovie.h"
 
+#import "MHGalleryOverViewController.h"
+
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+
 @interface VideosVC ()
 
 @property (nonatomic, strong) VideoGroup *videoGroup;
 @property (nonatomic, assign) NSUInteger currentPage;
 @property (nonatomic, strong) UIFont *tableFont;
+@property( nonatomic,strong) NSArray *galleryDataSource;
 
 @end
 
@@ -32,6 +40,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"VIDEOS" forKey:kGAIScreenName] build]];
+    
+    self.title = @"Últimos Videos";
     
     self.currentPage = 1;
     
@@ -50,6 +63,19 @@
     return _tableFont;
 }
 
+- (void) setUpsGalleryDataSource {
+    
+    NSMutableArray *galleryDataSourceArray = [NSMutableArray array];
+    for (Video *video in self.videoGroup.videos) {
+        NSString *urlString = [NSString stringWithFormat:@"http://www.youtube.com/watch?v=%@",video.code];
+        MHGalleryItem *youtube = [[MHGalleryItem alloc]initWithURL:urlString
+                                                       galleryType:MHGalleryTypeVideo];
+        [galleryDataSourceArray addObject:youtube];
+        
+    }
+    self.galleryDataSource = [NSArray arrayWithArray:galleryDataSourceArray];
+}
+
 #pragma mark Fetch Data
 
 - (void) getVideosForceDownload:(BOOL)forceDownload {
@@ -59,6 +85,9 @@
     else {
         self.videoGroup = [VideoGroup loadVideoGroup];
         if (self.videoGroup && self.videoGroup.videos.count > 0) {
+            
+            [self setUpsGalleryDataSource];
+            
             [self.tableView reloadData];
             if (self.refreshControl.refreshing) {
                 [self.refreshControl endRefreshing];
@@ -76,6 +105,7 @@
     [VideoGroup getVideosWithBlock:^(VideoGroup *videoGroup, NSError *error) {
         if (!error) {
             self.videoGroup = videoGroup;
+            [self setUpsGalleryDataSource];
             [self.tableView reloadData];
         }
         else {
@@ -114,21 +144,32 @@
     return cell;
 }
 
+- (IBAction)goVideoGallery:(UIButton *)sender {
+    
+    VideoCell *cell = (VideoCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
+    [MHGallerySharedManager sharedManager].ivForPresentingAndDismissingMHGallery = cell.videoCoverImageView;
+    
+    [self presentMHGalleryWithItems:self.galleryDataSource forIndex:sender.tag finishCallback:^(UINavigationController *galleryNavMH, NSInteger pageIndex, UIImage *image) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [MHGallerySharedManager sharedManager].ivForPresentingAndDismissingMHGallery = cell.videoCoverImageView;
+            
+            [galleryNavMH dismissViewControllerAnimated:YES completion:nil];
+        });
+        
+    } customAnimationFromImage:NO];
+}
+
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender{
     Video *video = self.videoGroup.videos[sender.tag];
     BasicMovie *basicMovie = video.movie;
-    if ([[segue identifier] isEqualToString:@"VideosVCToMovieVC"]) {
-        MovieVC *movieVC = segue.destinationViewController;
-        movieVC.movieID = basicMovie.movieID;
-        movieVC.movieName = basicMovie.name;
-        movieVC.portraitImageURL = basicMovie.portraitImageURL;
-    }
-    else if ([[segue identifier] isEqualToString:@"VideosVCToVideoVC"]) {
-        VideoVC *videoVC = segue.destinationViewController;
-        videoVC.videos = @[video];
-    }
+    MovieVC *movieVC = segue.destinationViewController;
+    movieVC.movieID = basicMovie.movieID;
+    movieVC.movieName = basicMovie.name;
+    movieVC.portraitImageURL = basicMovie.portraitImageURL;
 }
 
 @end

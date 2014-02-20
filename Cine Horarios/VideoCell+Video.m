@@ -20,8 +20,7 @@
     
     NSString *strURL = [UIImageView imageURLForPath:video.movie.imageURL imageType:MovieImageTypeMovieImageCover];
     [self.showCoverButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:strURL]];
-    NSString *strURL2 = [UIImageView imageURLForPath:video.imageURL imageType:MovieImageTypeMovieVideo];
-    [self.videoCoverButton setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:strURL2]];
+    [self.videoCoverImageView setImageWithStringURL:video.imageURL movieImageType:MovieImageTypeMovieVideo];
 }
 
 @end

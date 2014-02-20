@@ -64,7 +64,6 @@
 		6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396418273C9900ADB8D9 /* MapKit.framework */; };
 		6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57396718273D3400ADB8D9 /* CloseTheatersVC.m */; };
 		6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396C182755A300ADB8D9 /* CoreLocation.framework */; };
-		6E65BA7518B3EA3A00B16F9A /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E65BA7318B3EA3A00B16F9A /* libGoogleAdMobAds.a */; };
 		6E65BA7618B3EA3A00B16F9A /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E65BA7418B3EA3A00B16F9A /* README.txt */; };
 		6E65BA7918B3EB7600B16F9A /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E65BA7818B3EB7600B16F9A /* VideoCell.m */; };
 		6E65BA7C18B3EC0D00B16F9A /* VideoCell+Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E65BA7B18B3EC0D00B16F9A /* VideoCell+Video.m */; };
@@ -105,6 +104,7 @@
 		6EBF1EA518AB667A007B50A5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA418AB667A007B50A5 /* StoreKit.framework */; };
 		6ECF2FD818B35B0D004621ED /* VideoGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECF2FD718B35B0D004621ED /* VideoGroup.m */; };
 		6ECF2FDB18B37151004621ED /* VideosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECF2FDA18B37151004621ED /* VideosVC.m */; };
+		8E07C1AE18B636000012F10C /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E07C1AD18B636000012F10C /* libGoogleAdMobAds.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,7 +215,6 @@
 		6E65BA7018B3EA3A00B16F9A /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
 		6E65BA7118B3EA3A00B16F9A /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
 		6E65BA7218B3EA3A00B16F9A /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		6E65BA7318B3EA3A00B16F9A /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		6E65BA7418B3EA3A00B16F9A /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		6E65BA7718B3EB7600B16F9A /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
 		6E65BA7818B3EB7600B16F9A /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
@@ -288,6 +287,7 @@
 		6ECF2FD718B35B0D004621ED /* VideoGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoGroup.m; sourceTree = "<group>"; };
 		6ECF2FD918B37151004621ED /* VideosVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideosVC.h; sourceTree = "<group>"; };
 		6ECF2FDA18B37151004621ED /* VideosVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideosVC.m; sourceTree = "<group>"; };
+		8E07C1AD18B636000012F10C /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -310,7 +310,7 @@
 				3D29981517E5AA28001A371D /* UIKit.framework in Frameworks */,
 				3DDB7107170A516B00EC3E51 /* Foundation.framework in Frameworks */,
 				2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */,
-				6E65BA7518B3EA3A00B16F9A /* libGoogleAdMobAds.a in Frameworks */,
+				8E07C1AE18B636000012F10C /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,10 +615,10 @@
 				6E65BA6D18B3EA3A00B16F9A /* GADBannerView.h */,
 				6E65BA6E18B3EA3A00B16F9A /* GADBannerViewDelegate.h */,
 				6E65BA6F18B3EA3A00B16F9A /* GADInterstitial.h */,
+				8E07C1AD18B636000012F10C /* libGoogleAdMobAds.a */,
 				6E65BA7018B3EA3A00B16F9A /* GADInterstitialDelegate.h */,
 				6E65BA7118B3EA3A00B16F9A /* GADRequest.h */,
 				6E65BA7218B3EA3A00B16F9A /* GADRequestError.h */,
-				6E65BA7318B3EA3A00B16F9A /* libGoogleAdMobAds.a */,
 				6E65BA7418B3EA3A00B16F9A /* README.txt */,
 			);
 			name = AdMob;
@@ -881,8 +881,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -892,9 +892,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios",
+					"/Users/Arthur/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "95819FB0-DE4B-4563-B83B-276FE665FD2A";
+				PROVISIONING_PROFILE = "3F232490-0D5D-4351-9DA4-94A1B4F87774";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -908,8 +909,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -919,9 +920,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios",
+					"/Users/Arthur/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "95819FB0-DE4B-4563-B83B-276FE665FD2A";
+				PROVISIONING_PROFILE = "3F232490-0D5D-4351-9DA4-94A1B4F87774";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -23,6 +23,8 @@ PODS:
     - Mantle/extobjc
   - Mantle/extobjc (1.3.1)
   - MBProgressHUD (0.8)
+  - MHVideoPhotoGallery (1.4):
+    - SDWebImage (~> 3.5.2)
   - MWPhotoBrowser (1.2.1):
     - DACircularProgress
     - MBProgressHUD
@@ -38,6 +40,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - GoogleAnalytics-iOS-SDK
   - Mantle
+  - MHVideoPhotoGallery (~> 1.3)
   - MWPhotoBrowser
   - REMenu (~> 1.8)
 
@@ -47,6 +50,7 @@ SPEC CHECKSUMS:
   GoogleAnalytics-iOS-SDK: 86393b99f7328ae8d8e975fcaa8632a39dafafe8
   Mantle: abc3b0c81bc66eb624cf9cebb8640e377d5a44ae
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
+  MHVideoPhotoGallery: d15648db241c385250b2f683a03e50ba9934e31a
   MWPhotoBrowser: cd204e6b02686f6fae5034932ad8382f9963f2fc
   PSTCollectionView: fb2ad2790c6efa306b2caf10315b2c1464d1f5c6
   REMenu: 40bb965c968b298c3f36d36067a15dd3f2c52473

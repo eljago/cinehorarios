@@ -66,6 +66,12 @@
 #define COCOAPODS_VERSION_MINOR_MBProgressHUD 8
 #define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
 
+// MHVideoPhotoGallery
+#define COCOAPODS_POD_AVAILABLE_MHVideoPhotoGallery
+#define COCOAPODS_VERSION_MAJOR_MHVideoPhotoGallery 1
+#define COCOAPODS_VERSION_MINOR_MHVideoPhotoGallery 4
+#define COCOAPODS_VERSION_PATCH_MHVideoPhotoGallery 0
+
 // MWPhotoBrowser
 #define COCOAPODS_POD_AVAILABLE_MWPhotoBrowser
 #define COCOAPODS_VERSION_MAJOR_MWPhotoBrowser 1
