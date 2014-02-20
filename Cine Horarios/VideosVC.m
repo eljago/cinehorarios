@@ -58,12 +58,6 @@ const int kLoadingCellTag = 1234;
     [self getVideosLocally];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-    NSLog(@"memory warning");
-}
-
 #pragma mark - TheatersVC
 #pragma mark Properties
 

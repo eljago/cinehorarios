@@ -184,6 +184,8 @@ static int const kGaDispatchPeriod = 30;
 //    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor navColor]];
     
+    [[UIToolbar appearance] setTintColor:[UIColor navColor]];
+    
     [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setTintAdjustmentMode:UIViewTintAdjustmentModeNormal];
