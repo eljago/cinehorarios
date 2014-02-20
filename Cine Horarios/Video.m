@@ -7,13 +7,20 @@
 //
 
 #import "Video.h"
+#import "BasicMovie.h"
+#import "NSValueTransformer+MTLPredefinedTransformerAdditions.h"
 
 @implementation Video
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"imageURL": @"image_url"
+             @"imageURL": @"image_url",
+             @"movie": @"show"
              };
+}
+
++ (NSValueTransformer *)movieJSONTransformer {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:BasicMovie.class];
 }
 
 @end

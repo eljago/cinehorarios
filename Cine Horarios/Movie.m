@@ -29,7 +29,8 @@ NSString *const kMovieArchivePath = @"/data/shows/";
              @"imdbScore": @"imdb_score",
              @"rottenTomatoesURL": @"rotten_tomatoes_url",
              @"rottenTomatoesScore": @"rotten_tomatoes_score",
-             @"images": @"images.image_url"
+             @"images": @"images.image_url",
+             @"hasFunctions": @"has_functions"
              };
 }
 

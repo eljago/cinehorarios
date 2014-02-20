@@ -30,6 +30,7 @@
 @property (nonatomic, strong, readonly) NSString *genres;
 @property (nonatomic, strong, readonly) NSArray *videos;
 @property (nonatomic, strong, readonly) NSArray *people;
+@property (nonatomic, assign, readonly) BOOL hasFunctions;
 
 + (void)getCinemaWithBlock:(void (^)(Movie *movie, NSError *error))block movieID:(NSUInteger )movieID;
 + (id)loadMovieWithMovieID:(NSUInteger)movieID;

@@ -107,6 +107,10 @@
             break;
         case 5:
             // Ajustes
+            return [UIColor navColor];
+            break;
+        case 6:
+            // Ajustes
             return [UIColor brownColor];
             break;
         default:

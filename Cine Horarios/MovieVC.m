@@ -18,7 +18,6 @@
 #import "MWPhoto.h"
 #import "MBProgressHUD.h"
 #import "MovieCinemasVC.h"
-#import "ComingSoonVC.h"
 #import "VideoVC.h"
 #import "GAI.h"
 #import "GAITracker.h"
@@ -295,13 +294,13 @@
         self.labelScoreImdb.text = @"?";
     }
     if (self.movie.metacriticScore) {
-        self.labelScoreMetacritic.text = [NSString stringWithFormat:@"%ld",[self.movie.metacriticScore longValue]];
+        self.labelScoreMetacritic.text = [NSString stringWithFormat:@"%ld / 100",[self.movie.metacriticScore longValue]];
     }
     else {
         self.labelScoreMetacritic.text = @"?";
     }
     if (self.movie.rottenTomatoesScore) {
-        self.labelScoreRottenTomatoes.text = [NSString stringWithFormat:@"%ld",[self.movie.rottenTomatoesScore longValue]];
+        self.labelScoreRottenTomatoes.text = [NSString stringWithFormat:@"%ld %%",[self.movie.rottenTomatoesScore longValue]];
     }
     else {
         self.labelScoreRottenTomatoes.text = @"?";
@@ -412,7 +411,7 @@
             }
         }
         else if (indexPath.row == 3) {
-            if ([self.navigationController.viewControllers[0] isMemberOfClass:[ComingSoonVC class]]) {
+            if (!self.movie.hasFunctions) {
                 return 0.;
             }
         }

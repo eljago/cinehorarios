@@ -55,7 +55,7 @@
         
         if ([dict[@"storyboardID"] isEqualToString:startingVC]) {
             [self.pickerView selectRow:index inComponent:0 animated:NO];
-            self.startCinesLabel.text = dict[@"pickerName"];
+            self.startCinesLabel.text = dict[@"name"];
         }
         index++;
     }
@@ -136,7 +136,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return self.startingVCs[row][@"pickerName"];
+    return self.startingVCs[row][@"name"];
 }
 
 #pragma mark Delegate
@@ -146,7 +146,7 @@
     [defaults setValue:self.startingVCs[row][@"storyboardID"] forKey:@"Starting VC"];
     [defaults synchronize];
     
-    self.startCinesLabel.text = self.startingVCs[row][@"pickerName"];
+    self.startCinesLabel.text = self.startingVCs[row][@"name"];
 }
 
 #pragma mark - Interface Orientation
