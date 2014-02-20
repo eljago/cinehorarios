@@ -40,7 +40,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - GoogleAnalytics-iOS-SDK
   - Mantle
-  - MHVideoPhotoGallery (~> 1.3)
+  - MHVideoPhotoGallery (~> 1.4)
   - MWPhotoBrowser
   - REMenu (~> 1.8)
 
