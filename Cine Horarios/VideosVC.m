@@ -149,16 +149,22 @@
     VideoCell *cell = (VideoCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
     [MHGallerySharedManager sharedManager].ivForPresentingAndDismissingMHGallery = cell.videoCoverImageView;
     
-    [self presentMHGalleryWithItems:self.galleryDataSource forIndex:sender.tag finishCallback:^(UINavigationController *galleryNavMH, NSInteger pageIndex, UIImage *image) {
+    [self presentMHGalleryWithItems:self.galleryDataSource
+                           forIndex:sender.tag
+                     finishCallback:^(UINavigationController *galleryNavMH, NSInteger pageIndex, UIImage *image) {
+        
+        NSIndexPath *newIndex = [NSIndexPath indexPathForRow:pageIndex inSection:0];
+        
+        [self.tableView scrollToRowAtIndexPath:newIndex atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [MHGallerySharedManager sharedManager].ivForPresentingAndDismissingMHGallery = cell.videoCoverImageView;
+            UIImageView *iv = [(VideoCell*)[self.tableView cellForRowAtIndexPath:newIndex] videoCoverImageView];
+            [MHGallerySharedManager sharedManager].ivForPresentingAndDismissingMHGallery = iv;
             
             [galleryNavMH dismissViewControllerAnimated:YES completion:nil];
         });
         
-    } customAnimationFromImage:NO];
+    } customAnimationFromImage:YES];
 }
 
 #pragma mark - Segue
