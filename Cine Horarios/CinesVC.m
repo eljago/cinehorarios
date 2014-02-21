@@ -8,13 +8,10 @@
 
 #import "CinesVC.h"
 #import "TheatersVC.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
 #import "BasicItem.h"
 #import "BasicItemImage.h"
 #import "MTLJSONAdapter.h"
+#import "GAI+CH.h"
 
 @interface CinesVC ()
 @property (nonatomic, strong) NSArray *cinemas;
@@ -30,8 +27,7 @@
 {
     [super viewDidLoad];
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"CINES" forKey:kGAIScreenName] build]];
+    [GAI trackPage:@"CINES"];
     
     [self loadCinemas];
 }

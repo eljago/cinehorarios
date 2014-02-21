@@ -7,9 +7,17 @@
 //
 #import "GAI.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import "Geofaro.h"
+
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate,GeofaroDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) id<GAITracker> tracker;
+
+
+@property (strong, nonatomic) Geofaro *miGeofaro;
+@property (strong, nonatomic) NSDictionary *miLaunchOptions;
+
 
 @end

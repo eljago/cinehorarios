@@ -101,10 +101,10 @@
     [self.navigationBar setShadowImage:[UIImage new]];
     
     UISwipeGestureRecognizer *swipeGestureDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRecognized:)];
-    swipeGestureDown.direction = UISwipeGestureRecognizerDirectionDown;
+    swipeGestureDown.direction = UISwipeGestureRecognizerDirectionRight;
     [self.navigationBar addGestureRecognizer:swipeGestureDown];
     UISwipeGestureRecognizer *swipeGestureUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRecognized:)];
-    swipeGestureUp.direction = UISwipeGestureRecognizerDirectionUp;
+    swipeGestureUp.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.navigationBar addGestureRecognizer:swipeGestureUp];
 }
 

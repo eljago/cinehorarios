@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PromocionGeoiPadViewController">
+            <connections>
+                <outlet property="activityView" destination="DLv-ub-Nn2" id="7qc-CY-eAc"/>
+                <outlet property="guardarButton" destination="64e-H9-JmJ" id="cAw-WH-v30"/>
+                <outlet property="progressView" destination="Twx-MC-kxf" id="ENo-m8-vLa"/>
+                <outlet property="promoImageView" destination="UIJ-o7-jfH" id="a9A-Z8-01u"/>
+                <outlet property="reintentarButton" destination="0ts-wQ-BZJ" id="J0d-b5-A3F"/>
+                <outlet property="salirButton" destination="RcG-HT-fFg" id="u8y-uO-r3q"/>
+                <outlet property="view" destination="2" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="UIJ-o7-jfH" userLabel="promoImageView">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1044"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DLv-ub-Nn2" userLabel="activityView">
+                    <rect key="frame" x="374" y="512" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Twx-MC-kxf" userLabel="progressView">
+                    <rect key="frame" x="0.0" y="767" width="768" height="2"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </progressView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcG-HT-fFg" userLabel="salirButton">
+                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="WAa-hM-zQI"/>
+                        <constraint firstAttribute="width" constant="64" id="uAh-L1-TIH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" image="cerrarIZQ.png">
+                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="64e-H9-JmJ" userLabel="guardarButton">
+                    <rect key="frame" x="704" y="0.0" width="64" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="bJT-XL-3h2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" image="guardarDER.png">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ts-wQ-BZJ" userLabel="reintentarButton">
+                    <rect key="frame" x="0.0" y="977" width="768" height="47"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" image="btnReintentariPad.png">
+                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="64e-H9-JmJ" secondAttribute="trailing" id="4jd-h4-Nqv"/>
+                <constraint firstAttribute="trailing" secondItem="0ts-wQ-BZJ" secondAttribute="trailing" id="67r-oD-cki"/>
+                <constraint firstAttribute="bottom" secondItem="0ts-wQ-BZJ" secondAttribute="bottom" id="92V-a4-1kW"/>
+                <constraint firstItem="UIJ-o7-jfH" firstAttribute="centerX" secondItem="DLv-ub-Nn2" secondAttribute="centerX" id="E09-VV-Dyt"/>
+                <constraint firstItem="RcG-HT-fFg" firstAttribute="baseline" secondItem="64e-H9-JmJ" secondAttribute="baseline" id="KCx-U4-UPZ"/>
+                <constraint firstItem="UIJ-o7-jfH" firstAttribute="top" secondItem="2" secondAttribute="top" id="Laz-aP-QYJ"/>
+                <constraint firstItem="Twx-MC-kxf" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Sw4-PD-u1c"/>
+                <constraint firstItem="0ts-wQ-BZJ" firstAttribute="leading" secondItem="RcG-HT-fFg" secondAttribute="leading" id="UjF-3e-oib"/>
+                <constraint firstItem="RcG-HT-fFg" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="VFf-gc-i3F"/>
+                <constraint firstAttribute="bottom" secondItem="UIJ-o7-jfH" secondAttribute="bottom" constant="-20" id="eBV-dx-R3B"/>
+                <constraint firstItem="DLv-ub-Nn2" firstAttribute="centerY" secondItem="UIJ-o7-jfH" secondAttribute="centerY" id="h3x-3O-LpI"/>
+                <constraint firstItem="64e-H9-JmJ" firstAttribute="trailing" secondItem="UIJ-o7-jfH" secondAttribute="trailing" id="iU8-5q-i8H"/>
+                <constraint firstItem="RcG-HT-fFg" firstAttribute="bottom" secondItem="64e-H9-JmJ" secondAttribute="bottom" id="nqW-Mr-whU"/>
+                <constraint firstItem="64e-H9-JmJ" firstAttribute="top" secondItem="RcG-HT-fFg" secondAttribute="top" id="ogT-yY-Nyb"/>
+                <constraint firstItem="0ts-wQ-BZJ" firstAttribute="top" secondItem="Twx-MC-kxf" secondAttribute="bottom" constant="208" id="rXT-EG-Cfn"/>
+                <constraint firstAttribute="trailing" secondItem="Twx-MC-kxf" secondAttribute="trailing" id="w7a-Vl-8Ga"/>
+                <constraint firstItem="UIJ-o7-jfH" firstAttribute="leading" secondItem="RcG-HT-fFg" secondAttribute="leading" id="yT7-Pa-LFg"/>
+                <constraint firstItem="64e-H9-JmJ" firstAttribute="top" secondItem="UIJ-o7-jfH" secondAttribute="top" id="zee-yR-dHs"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btnReintentariPad.png" width="768" height="47"/>
+        <image name="cerrarIZQ.png" width="33" height="32"/>
+        <image name="guardarDER.png" width="32" height="32"/>
+    </resources>
+</document>
