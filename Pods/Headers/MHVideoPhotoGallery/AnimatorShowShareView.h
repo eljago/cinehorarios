@@ -1,1 +1,0 @@
-../../MHVideoPhotoGallery/MHVideoPhotoGallery/MMHVideoPhotoGallery/Animators/AnimatorShowShareView.h

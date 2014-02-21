@@ -18,8 +18,6 @@
 #import "VideoVC.h"
 #import "BasicMovie.h"
 
-#import "MHGalleryOverViewController.h"
-
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
@@ -69,26 +67,11 @@ const int kLoadingCellTag = 1234;
     return _tableFont;
 }
 
-- (void) setUpsGalleryDataSource {
-    
-    NSMutableArray *galleryDataSourceArray = [NSMutableArray array];
-    for (Video *video in self.videoGroup.videos) {
-        NSString *urlString = [NSString stringWithFormat:@"http://www.youtube.com/watch?v=%@",video.code];
-        MHGalleryItem *youtube = [[MHGalleryItem alloc]initWithURL:urlString
-                                                       galleryType:MHGalleryTypeVideo];
-        [galleryDataSourceArray addObject:youtube];
-        
-    }
-    self.galleryDataSource = [NSArray arrayWithArray:galleryDataSourceArray];
-}
-
 #pragma mark Fetch Data
 
 - (void) getVideosLocally {
     self.videoGroup = [VideoGroup loadVideoGroup];
     if (self.videoGroup && self.videoGroup.videos.count > 0) {
-        
-        [self setUpsGalleryDataSource];
         
         [self.tableView reloadData];
         if (self.refreshControl.refreshing) {
@@ -112,7 +95,6 @@ const int kLoadingCellTag = 1234;
             else {
                 self.videoGroup = videoGroup;
             }
-            [self setUpsGalleryDataSource];
             [self.tableView reloadData];
         }
         else {
@@ -191,40 +173,21 @@ const int kLoadingCellTag = 1234;
     }
 }
 
-#pragma mark - Go To Video Gallery
-
-- (IBAction)goVideoGallery:(UIButton *)sender {
-    
-    VideoCell *cell = (VideoCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
-    [MHGallerySharedManager sharedManager].ivForPresentingAndDismissingMHGallery = cell.videoCoverImageView;
-    
-    [self presentMHGalleryWithItems:self.galleryDataSource
-                           forIndex:sender.tag
-                     finishCallback:^(UINavigationController *galleryNavMH, NSInteger pageIndex, UIImage *image) {
-        
-        NSIndexPath *newIndex = [NSIndexPath indexPathForRow:pageIndex inSection:0];
-        
-        [self.tableView scrollToRowAtIndexPath:newIndex atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIImageView *iv = [(VideoCell*)[self.tableView cellForRowAtIndexPath:newIndex] videoCoverImageView];
-            [MHGallerySharedManager sharedManager].ivForPresentingAndDismissingMHGallery = iv;
-            
-            [galleryNavMH dismissViewControllerAnimated:YES completion:nil];
-        });
-        
-    } customAnimationFromImage:YES];
-}
-
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender{
-    Video *video = self.videoGroup.videos[sender.tag];
-    BasicMovie *basicMovie = video.movie;
-    MovieVC *movieVC = segue.destinationViewController;
-    movieVC.movieID = basicMovie.movieID;
-    movieVC.movieName = basicMovie.name;
-    movieVC.portraitImageURL = basicMovie.portraitImageURL;
+    if ([[segue identifier] isEqualToString:@"VideosVCToMovieVC"]) {
+        Video *video = self.videoGroup.videos[sender.tag];
+        BasicMovie *basicMovie = video.movie;
+        MovieVC *movieVC = segue.destinationViewController;
+        movieVC.movieID = basicMovie.movieID;
+        movieVC.movieName = basicMovie.name;
+        movieVC.portraitImageURL = basicMovie.portraitImageURL;
+    }
+    else if ([[segue identifier] isEqualToString:@"VideosVCToVideoVC"]) {
+        VideoVC *videoVC = segue.destinationViewController;
+        videoVC.videos = @[self.videoGroup.videos[sender.tag]];
+    }
 }
 
 @end

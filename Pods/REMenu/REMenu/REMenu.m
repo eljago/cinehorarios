@@ -351,6 +351,10 @@
         
     };
     
+    if (self.closePreparationBlock) {
+        self.closePreparationBlock();
+    }
+    
     if (self.bounce) {
         [UIView animateWithDuration:self.bounceAnimationDuration animations:^{
             CGRect frame = self.menuView.frame;

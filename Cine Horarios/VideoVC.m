@@ -13,6 +13,8 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "VideosVC.h"
+#import "BasicMovie.h"
 
 @interface VideoVC () <UIWebViewDelegate>
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
@@ -36,37 +38,59 @@
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA VIDEOS" forKey:kGAIScreenName] build]];
     
-    
-    self.view.backgroundColor = [UIColor tableViewColor];
     self.title = @"Videos";
     
-    NSString *iFrameString = @"";
+    self.view.backgroundColor = [UIColor tableViewColor];
+    self.webView.backgroundColor = [UIColor tableViewColor];
     
-    for (Video *video in self.videos) {
-        iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"<div class=\"video\"><div class=\"title\">%@:</div><iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameborder=\"0\" allowfullscreen></iframe></div>", video.name, 320, 180, video.code]];
+    NSString *iFrameString = @"";
+    NSString *aditionalCSS;
+    if ([self.navigationController.viewControllers[0] isKindOfClass:VideosVC.class]) {
+        
+        for (Video *video in self.videos) {
+            iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
+                                                                  <div class=\"video\">\
+                                                                    <h3>%@</h3>\
+                                                                    <h4>%@</h4>\
+                                                                    <iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameborder=\"0\" allowfullscreen>\
+                                                                    </iframe>\
+                                                                  </div>", video.movie.name, video.name, 320, 180, video.code]];
+        }
+        aditionalCSS = [NSString stringWithFormat:@"\
+                        div.video {\
+                        height: %d;\
+                        }", (int)(self.webView.bounds.size.height-88)];
+    }
+    else {
+        for (Video *video in self.videos) {
+            iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
+                                                                  <div class=\"video\">\
+                                                                    <h3>%@</h3>\
+                                                                    <iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameborder=\"0\" allowfullscreen>\
+                                                                    </iframe>\
+                                                                  </div>", video.name, 320, 180, video.code]];
+        }
     }
     
     NSString *embedHTML = [NSString stringWithFormat:@"<html><head>\
                            <style type=\"text/css\">\
                            body {\
-                            background-color: rgb(241, 234, 227);\
+                           background-color: rgb(241, 234, 227);\
                             margin: 0px;\
                             padding: 0px;\
                            }\
-                           div.title {\
-                            font-family: \"Helvetica Neue\";\
-                            text-align: left;\
-                            color: black;\
-                            padding-left: 10px;\
-                            padding-top: 5px;\
-                            padding-bottom: 5px;\
+                           h1, h2, h3, h4 {\
+                           font-family: \"Helvetica Neue\";\
+                           margin-left: 5px;\
+                           margin-top: 5px;\
                            }\
                            div.video {\
-                            background-color: white;\
+                           background-color: rgb(241, 234, 227);\
                            }\
+                           %@\
                            </style>\
-                           </head><body>%@</body></html>", iFrameString];
-    
+                           </head><body>%@</body></html>", aditionalCSS, iFrameString];
+    NSLog(@"%@",embedHTML);
     [self.webView loadHTMLString:embedHTML baseURL:nil];
 }
 - (void)didReceiveMemoryWarning
