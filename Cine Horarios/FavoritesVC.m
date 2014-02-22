@@ -12,10 +12,7 @@
 #import "Theater.h"
 #import "BasicCell+Theater.h"
 #import "UIFont+CH.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 
 @interface FavoritesVC ()
 @property (nonatomic, strong) UIFont *tableFont;
@@ -29,8 +26,7 @@
 {
     [super viewDidLoad];
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"FAVORITOS" forKey:kGAIScreenName] build]];
+    [GAI trackPage:@"FAVORITOS"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)

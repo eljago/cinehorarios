@@ -11,5 +11,6 @@
 @interface GAI (CH)
 
 + (void) trackPage:(NSString *)pageName;
++ (void) sendEventWithCategory:(NSString *)category action:(NSString *)action label:(NSString *)label;
 
 @end

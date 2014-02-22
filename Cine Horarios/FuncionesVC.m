@@ -16,10 +16,7 @@
 #import "UIFont+CH.h"
 #import "MovieVC.h"
 #import "MBProgressHUD.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "WebVC.h"
 #import "UIView+CH.h"
 #import "ArrayDataSource.h"
@@ -49,12 +46,8 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     
     [self setupDataSource];
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"FUNCIONES" forKey:kGAIScreenName] build]];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Preferencias Usuario"
-                                                          action:@"Complejos Visitados"
-                                                           label:self.theaterName
-                                                           value:nil] build]];
+    [GAI trackPage:@"FUNCIONES"];
+    [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Complejos Visitados" label:self.theaterName];
     
     self.headFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];

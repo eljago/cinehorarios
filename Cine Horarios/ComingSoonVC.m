@@ -16,9 +16,7 @@
 #import "MovieVC.h"
 #import "FileHandler.h"
 #import "MBProgressHUD.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
+#import "GAI+CH.h"
 #import "GAIFields.h"
 #import "ArrayDataSource.h"
 #import "UIViewController+DoAlertView.h"
@@ -41,8 +39,7 @@
     
     [self setupDataSource];
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PROXIMAMENTE" forKey:kGAIScreenName] build]];
+    [GAI trackPage:@"PROXIMAMENTE"];
     
     self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];

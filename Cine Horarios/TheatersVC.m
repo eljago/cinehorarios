@@ -14,10 +14,7 @@
 #import "BasicCell.h"
 #import "BasicCell+Theater.h"
 #import "MBProgressHUD.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "ArrayDataSource.h"
 #import "UIViewController+DoAlertView.h"
 
@@ -39,12 +36,8 @@
     
     [self setupDataSource];
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"COMPLEJOS" forKey:kGAIScreenName] build]];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Preferencias Usuario"
-                                                          action:@"Cines Visitados"
-                                                           label:self.cinemaName
-                                                           value:nil] build]];
+    [GAI trackPage:@"COMPLEJOS"];
+    [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Cines Visitados" label:self.cinemaName];
     
     self.title = self.cinemaName;
     

@@ -15,9 +15,14 @@
 #import "MovieImagesVC.h"
 
 #define kSampleAdUnitID @"ca-app-pub-8355329926077535/7444865605"
+const CGFloat kButtonWidth = 50.f;
 
 @interface GlobalNavigationController ()
 @property (nonatomic, strong) REMenu *menu;
+@property (nonatomic, strong) UIButton *buttonFacebook;
+@property (nonatomic, strong) UIButton *buttonTwitter;
+@property (nonatomic, strong) NSLayoutConstraint *facebookLeftMarginConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *twitterRightMarginConstraint;
 @end
 
 @implementation GlobalNavigationController
@@ -84,6 +89,19 @@
     __weak GlobalNavigationController *weakSelf = self;
     self.menu.closePreparationBlock = ^{
         __strong GlobalNavigationController *strongSelf = weakSelf;
+        
+        [strongSelf.view layoutIfNeeded];
+        [UIView animateWithDuration:1.2
+                              delay:0.0
+             usingSpringWithDamping:0.6
+              initialSpringVelocity:-4.0
+                            options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+         {
+             strongSelf.facebookLeftMarginConstraint.constant = -kButtonWidth;
+             strongSelf.twitterRightMarginConstraint.constant = -kButtonWidth;
+             [strongSelf.view layoutIfNeeded];
+         } completion:nil];
         [UIView animateWithDuration:0.3 animations:^{
             strongSelf.adBanner.alpha = 0.;
         } completion:^(BOOL finished) {
@@ -104,6 +122,30 @@
     UISwipeGestureRecognizer *swipeGestureUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRecognized:)];
     swipeGestureUp.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.navigationBar addGestureRecognizer:swipeGestureUp];
+    
+    
+    self.buttonFacebook = [[UIButton alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height - kButtonWidth - 4., kButtonWidth, kButtonWidth)];
+    [self.buttonFacebook setImage:[UIImage imageNamed:@"ButtonFacebook"] forState:UIControlStateNormal];
+    [self.buttonFacebook addTarget:self action:@selector(goFacebook) forControlEvents:UIControlEventTouchUpInside];
+    self.buttonTwitter = [[UIButton alloc] initWithFrame:CGRectMake(10+kButtonWidth+10, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height - kButtonWidth - 4., kButtonWidth, kButtonWidth)];
+    [self.buttonTwitter setImage:[UIImage imageNamed:@"ButtonTwitter"] forState:UIControlStateNormal];
+    [self.buttonTwitter addTarget:self action:@selector(goTwitter) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.buttonFacebook.translatesAutoresizingMaskIntoConstraints = NO;
+    self.buttonTwitter.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.view addSubview:self.buttonFacebook];
+    [self.view addSubview:self.buttonTwitter];
+    
+    self.twitterRightMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonTwitter attribute:NSLayoutAttributeLeft
+                                                                     relatedBy:NSLayoutRelationEqual toItem:self.view
+                                                                     attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-kButtonWidth];
+    [self.view addConstraint:self.twitterRightMarginConstraint];
+    self.facebookLeftMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonFacebook attribute:NSLayoutAttributeLeft
+                                                                     relatedBy:NSLayoutRelationEqual toItem:self.view
+                                                                     attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-kButtonWidth];
+    [self.view addConstraint:self.facebookLeftMarginConstraint];
+
 }
 
 - (void)dealloc {
@@ -130,8 +172,25 @@
         return [self.menu close];
     }
     
+    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+         usingSpringWithDamping:0.6
+          initialSpringVelocity:4.0
+                        options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
+                     animations:^
+     {
+         self.facebookLeftMarginConstraint.constant = 10;
+         self.twitterRightMarginConstraint.constant = 10+kButtonWidth+10;
+         [self.view layoutIfNeeded];
+     } completion:^(BOOL finished) {
+         [self.view bringSubviewToFront:self.buttonFacebook];
+         [self.view bringSubviewToFront:self.buttonTwitter];
+     }];
+    
     self.adBanner.hidden = NO;
     [UIView animateWithDuration:0.3 animations:^{
+        
         self.adBanner.alpha = 1.;
     } completion:^(BOOL finished) {
         [self.view bringSubviewToFront:self.adBanner];

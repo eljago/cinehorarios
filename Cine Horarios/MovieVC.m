@@ -19,10 +19,7 @@
 #import "MBProgressHUD.h"
 #import "MovieCinemasVC.h"
 #import "VideoVC.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "UIView+CH.h"
 #import "GlobalNavigationController.h"
 #import "Person.h"
@@ -78,12 +75,8 @@
     
     [self setupDataSources];
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"INFO PELICULA" forKey:kGAIScreenName] build]];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Preferencias Usuario"
-                                                          action:@"Peliculas Visitadas"
-                                                           label:self.movieName
-                                                           value:nil] build]];
+    [GAI trackPage:@"INFO PELICULA"];
+    [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Peliculas Visitadas" label:self.movieName];
     
     // TopView it's the view over the tableview while it's downloading the data for the first time
     UIView *topView = [[UIView alloc] initWithFrame:self.view.bounds];
