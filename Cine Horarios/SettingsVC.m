@@ -9,10 +9,7 @@
 #import "SettingsVC.h"
 #import "UIColor+CH.h"
 #import "UIFont+CH.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "FileHandler.h"
 #import "UIView+CH.h"
 
@@ -34,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [GAI trackPage:@"AJUSTES"];
     
     self.indicatorImageView.image = [self.indicatorImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
@@ -62,8 +61,6 @@
     
     self.switchRetina.on = retinaImages;
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"AJUSTES" forKey:kGAIScreenName] build]];
     self.view.backgroundColor = [UIColor tableViewColor];
     
     

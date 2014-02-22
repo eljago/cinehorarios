@@ -10,10 +10,7 @@
 #import "FileHandler.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIColor+CH.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "UIImageView+CH.h"
 #import "GlobalNavigationController.h"
 
@@ -26,8 +23,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA IMAGENES" forKey:kGAIScreenName] build]];
+    
+    [GAI trackPage:@"PELICULA IMAGENES"];
 }
 - (void)didReceiveMemoryWarning
 {

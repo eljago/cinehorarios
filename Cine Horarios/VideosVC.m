@@ -18,10 +18,7 @@
 #import "VideoVC.h"
 #import "BasicMovie.h"
 
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 
 const int kLoadingCellTag = 1234;
 
@@ -41,8 +38,7 @@ const int kLoadingCellTag = 1234;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"VIDEOS" forKey:kGAIScreenName] build]];
+    [GAI trackPage:@"VIDEOS"];
     
     self.title = @"Últimos Videos";
     

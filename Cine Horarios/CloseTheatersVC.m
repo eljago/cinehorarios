@@ -12,10 +12,7 @@
 #import "AnnotationTheater.h"
 #import "MBProgressHUD.h"
 #import "UIColor+CH.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "FuncionesVC.h"
 #import "UIViewController+DoAlertView.h"
 
@@ -54,8 +51,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 {
     [super viewDidLoad];
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"MAPA" forKey:kGAIScreenName] build]];
+    [GAI trackPage:@"MAPA"];
     
     self.myMap.showsUserLocation = YES;
     

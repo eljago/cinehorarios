@@ -12,10 +12,7 @@
 #import "Theater.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "UIView+CH.h"
 #import "UIViewController+DoAlertView.h"
 
@@ -34,8 +31,7 @@
     
     self.title = self.movieName;
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA FUNCIONES" forKey:kGAIScreenName] build]];
+    [GAI trackPage:@"PELICULA FUNCIONES"];
     
     headerFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];

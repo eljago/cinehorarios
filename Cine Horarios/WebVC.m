@@ -7,10 +7,7 @@
 //
 
 #import "WebVC.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "FuncionesVC.h"
 
 @interface WebVC ()
@@ -32,9 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA WEB VIEW" forKey:kGAIScreenName] build]];
+
+    [GAI trackPage:@"PELICULA WEB VIEW"];
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"WebBackward"] style:UIBarButtonItemStylePlain target:self action:@selector(webBack:)];
     UIBarButtonItem *forwardButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"WebForward"] style:UIBarButtonItemStylePlain target:self action:@selector(webForward:)];

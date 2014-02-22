@@ -9,10 +9,7 @@
 #import "VideoVC.h"
 #import "Video.h"
 #import "UIColor+CH.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "VideosVC.h"
 #import "BasicMovie.h"
 
@@ -35,8 +32,7 @@
 {
     [super viewDidLoad];
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA VIDEOS" forKey:kGAIScreenName] build]];
+    [GAI trackPage:@"PELICULA VIDEOS"];
     
     self.title = @"Videos";
     

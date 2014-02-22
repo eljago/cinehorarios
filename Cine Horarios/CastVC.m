@@ -10,10 +10,7 @@
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "MWPhotoBrowser.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "GlobalNavigationController.h"
 #import "UIView+CH.h"
 #import "CastActorCell.h"
@@ -44,8 +41,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA REPARTO" forKey:kGAIScreenName] build]];
+    [GAI trackPage:@"PELICULA REPARTO"];
     
     self.fontName = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     self.fontRole = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];

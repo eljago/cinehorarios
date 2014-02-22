@@ -13,10 +13,7 @@
 #import "MBProgressHUD.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import "GAI+CH.h"
 #import "UIView+CH.h"
 #import "UIViewController+DoAlertView.h"
 
@@ -35,8 +32,7 @@
 {
     [super viewDidLoad];
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"PELICULA CINES" forKey:kGAIScreenName] build]];
+    [GAI trackPage:@"PELICULA CINES"];
     
     self.title = @"Buscar Horarios";
     
