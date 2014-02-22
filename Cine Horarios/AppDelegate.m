@@ -14,6 +14,8 @@
 #import "UIColor+CH.h"
 #import "UIFont+CH.h"
 
+#define COMPILE_GEOFARO true
+
 /** Google Analytics configuration constants **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
 static NSString *const kTrackingPreferenceKey = @"allowTracking";
@@ -204,6 +206,7 @@ static int const kGaDispatchPeriod = 30;
     
 }
 
+#if COMPILE_GEOFARO
 
 #pragma mark
 #pragma mark GEOPUSH
@@ -398,7 +401,7 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
         }];
     }
 }
-
+#endif
 
 
 @end
