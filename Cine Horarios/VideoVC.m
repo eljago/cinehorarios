@@ -79,11 +79,14 @@
                            }\
                            h3 {\
                            font-family: \"Helvetica Neue\";\
+                           font-weight: normal;\
+                           color: rgb(168, 56, 48);\
                            margin-top: 0;\
                            margin-bottom: 5px;\
                            }\
                            h4 {\
                            font-family: \"Helvetica Neue\";\
+                           font-weight: normal;\
                            margin-top: 0;\
                            margin-bottom: 10px;\
                            }\

@@ -8,7 +8,7 @@
 
 #import "UIImageView+CH.h"
 #import "CineHorariosApiClient.h"
-#import "UIImageView+AFNetworking.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UIImageView (CH)
 
@@ -84,37 +84,21 @@
     }
     else {
         NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
-        [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
         
-        __weak UIImageView *wself = self;
-        [self setImageWithURLRequest:request placeholderImage:nil
-                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                 
-                                 __strong UIImageView *sself = wself;
-                                 if (!sself.image) {
-                                     sself.image = image;
-                                 }
-                                 
-                                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                     
-                                     NSData *binaryImageData = UIImagePNGRepresentation(image);
-                                     [binaryImageData writeToFile:localImagePath atomically:YES];
-                                 });
-                             }
-                             failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                 
-                             }];
+        [self setImageWithURL:nsurl placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSData *binaryImageData = UIImagePNGRepresentation(image);
+                [binaryImageData writeToFile:localImagePath atomically:YES];
+            });
+        }];
     }
 }
 - (void) setImageWithStringURL:(NSString *)imageURL
                movieImageType:(MovieImageType) movieImageType {
     
     NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
-    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
     
-    [self setImageWithURLRequest:request placeholderImage:nil success:nil failure:nil];
+    [self setImageWithURL:nsurl];
 }
 
 @end
