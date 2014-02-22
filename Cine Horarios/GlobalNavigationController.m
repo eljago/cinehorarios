@@ -84,7 +84,7 @@
     self.menu.separatorHeight = 0.;
     self.menu.itemHeight = 44.f;
     __weak GlobalNavigationController *weakSelf = self;
-    self.menu.closeCompletionHandler = ^{
+    self.menu.closePreparationBlock = ^{
         __strong GlobalNavigationController *strongSelf = weakSelf;
         [UIView animateWithDuration:0.3 animations:^{
             strongSelf.adBanner.alpha = 0.;
@@ -128,8 +128,9 @@
 
 - (IBAction)revealMenu:(id)sender {
     
-    if (self.menu.isOpen)
+    if (self.menu.isOpen) {
         return [self.menu close];
+    }
     
     self.adBanner.hidden = NO;
     [UIView animateWithDuration:0.3 animations:^{

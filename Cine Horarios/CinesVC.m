@@ -12,9 +12,13 @@
 #import "BasicItemImage.h"
 #import "MTLJSONAdapter.h"
 #import "GAI+CH.h"
+#import "ArrayDataSource.h"
+#import "CinemaCell.h"
+#import "CinemaCell+Cinema.h"
 
 @interface CinesVC ()
 @property (nonatomic, strong) NSArray *cinemas;
+@property (nonatomic, strong) ArrayDataSource *dataSource;
 @end
 
 @implementation CinesVC {
@@ -30,29 +34,15 @@
     [GAI trackPage:@"CINES"];
     
     [self loadCinemas];
+    
+    [self setupDataSource];
 }
 
-#pragma mark - UITableViewController
-#pragma mark Data Source
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cinemas.count;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    BasicItemImage *cinema = self.cinemas[indexPath.row];
-    ((UILabel *)[cell viewWithTag:101]).text = cinema.name;
-    if ([cinema.imageURL isEqualToString:@""]) {
-        ((UIImageView *)[cell viewWithTag:100]).image = nil;
-    }
-    else {
-        ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageNamed:cinema.imageURL];
-    }
-    
-    return cell;
+-(void) setupDataSource {
+    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.cinemas cellIdentifier:@"Cell" configureCellBlock:^(CinemaCell *cell, BasicItemImage *cinema) {
+        [cell configureForCinema:cinema];
+    }];
+    self.tableView.dataSource = self.dataSource;
 }
 
 #pragma mark - CinesVC

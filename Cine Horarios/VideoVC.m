@@ -44,55 +44,75 @@
     self.webView.backgroundColor = [UIColor tableViewColor];
     
     NSString *iFrameString = @"";
-    NSString *aditionalCSS;
-    if ([self.navigationController.viewControllers[0] isKindOfClass:VideosVC.class]) {
+
+    if ([[self backViewController] isKindOfClass:VideosVC.class]) {
         
         for (Video *video in self.videos) {
             iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
                                                                   <div class=\"video\">\
                                                                     <h3>%@</h3>\
                                                                     <h4>%@</h4>\
-                                                                    <iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameborder=\"0\" allowfullscreen>\
+                                                                    <iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameBorder=\"0\" allowfullscreen>\
                                                                     </iframe>\
-                                                                  </div>", video.movie.name, video.name, 320, 180, video.code]];
+                                                                  </div>", video.movie.name, video.name, 280, 180, video.code]];
         }
-        aditionalCSS = [NSString stringWithFormat:@"\
-                        div.video {\
-                        height: %d;\
-                        }", (int)(self.webView.bounds.size.height-88)];
     }
     else {
         for (Video *video in self.videos) {
             iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
                                                                   <div class=\"video\">\
-                                                                    <h3>%@</h3>\
-                                                                    <iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameborder=\"0\" allowfullscreen>\
+                                                                    <h4>%@</h4>\
+                                                                    <iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameBorder=\"0\" allowfullscreen>\
                                                                     </iframe>\
-                                                                  </div>", video.name, 320, 180, video.code]];
+                                                                  </div>", video.name, 280, 180, video.code]];
         }
     }
     
-    NSString *embedHTML = [NSString stringWithFormat:@"<html><head>\
+    NSString *embedHTML = [NSString stringWithFormat:@"<!DOCTYPE html>\
+                           <html><head>\
+                           <title>Videos</title>\
                            <style type=\"text/css\">\
                            body {\
                            background-color: rgb(241, 234, 227);\
-                            margin: 0px;\
-                            padding: 0px;\
+                           margin: 0px;\
+                           padding: 0px;\
                            }\
-                           h1, h2, h3, h4 {\
+                           h3 {\
                            font-family: \"Helvetica Neue\";\
-                           margin-left: 5px;\
-                           margin-top: 5px;\
+                           margin-top: 0;\
+                           margin-bottom: 5px;\
+                           }\
+                           h4 {\
+                           font-family: \"Helvetica Neue\";\
+                           margin-top: 0;\
+                           margin-bottom: 10px;\
                            }\
                            div.video {\
-                           background-color: rgb(241, 234, 227);\
+                           background-color: white;\
+                           margin: 10px;\
+                           padding: 10px;\
+                           padding-bottom: 7px;\
+                           -moz-border-radius: 3px;\
+                           border-radius: 3px;\
+                           box-shadow: 0 0 10px #888888;\
                            }\
-                           %@\
+                           iframe { margin: 0; }\
                            </style>\
-                           </head><body>%@</body></html>", aditionalCSS, iFrameString];
-    NSLog(@"%@",embedHTML);
+                           </head><body>%@</body></html>", iFrameString];
+
     [self.webView loadHTMLString:embedHTML baseURL:nil];
 }
+
+- (UIViewController *)backViewController
+{
+    NSInteger numberOfViewControllers = self.navigationController.viewControllers.count;
+    
+    if (numberOfViewControllers < 2)
+        return nil;
+    else
+        return [self.navigationController.viewControllers objectAtIndex:numberOfViewControllers - 2];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -46,6 +46,8 @@
 		3DFA54CC170B3512003E2208 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB7110170A516B00EC3E51 /* main.m */; };
 		6E2DD19818AC141500FD6386 /* UIViewController+DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD19618AC141500FD6386 /* UIViewController+DoAlertView.m */; };
 		6E32857718B7FEA10021CF53 /* GAI+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E32857618B7FEA10021CF53 /* GAI+CH.m */; };
+		6E32857A18B801370021CF53 /* CinemaCell+Cinema.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E32857918B801370021CF53 /* CinemaCell+Cinema.m */; };
+		6E32857D18B803C50021CF53 /* CinemaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E32857C18B803C50021CF53 /* CinemaCell.m */; };
 		6E4BAA7418849D6A00E37DAF /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4BAA7318849D6A00E37DAF /* UIImage+ResizeMagick.m */; };
 		6E4BAA7D1884A49700E37DAF /* check_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA751884A49600E37DAF /* check_black@2x.png */; };
 		6E4BAA7E1884A49700E37DAF /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4BAA761884A49600E37DAF /* check@2x.png */; };
@@ -214,6 +216,10 @@
 		6E2DD19718AC141500FD6386 /* UIViewController+DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DoAlertView.h"; sourceTree = "<group>"; };
 		6E32857518B7FEA10021CF53 /* GAI+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GAI+CH.h"; sourceTree = "<group>"; };
 		6E32857618B7FEA10021CF53 /* GAI+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GAI+CH.m"; sourceTree = "<group>"; };
+		6E32857818B801370021CF53 /* CinemaCell+Cinema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CinemaCell+Cinema.h"; sourceTree = "<group>"; };
+		6E32857918B801370021CF53 /* CinemaCell+Cinema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CinemaCell+Cinema.m"; sourceTree = "<group>"; };
+		6E32857B18B803C50021CF53 /* CinemaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaCell.h; sourceTree = "<group>"; };
+		6E32857C18B803C50021CF53 /* CinemaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaCell.m; sourceTree = "<group>"; };
 		6E4BAA7218849D6A00E37DAF /* UIImage+ResizeMagick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeMagick.h"; sourceTree = "<group>"; };
 		6E4BAA7318849D6A00E37DAF /* UIImage+ResizeMagick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeMagick.m"; sourceTree = "<group>"; };
 		6E4BAA751884A49600E37DAF /* check_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_black@2x.png"; sourceTree = "<group>"; };
@@ -670,6 +676,8 @@
 				6E723B7C18910F8D009DC5BE /* CastDirectorCell.m */,
 				6E65BA7718B3EB7600B16F9A /* VideoCell.h */,
 				6E65BA7818B3EB7600B16F9A /* VideoCell.m */,
+				6E32857B18B803C50021CF53 /* CinemaCell.h */,
+				6E32857C18B803C50021CF53 /* CinemaCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -695,6 +703,8 @@
 				6E723B7F18910FAF009DC5BE /* CastDirectorCell+Person.m */,
 				6E65BA7A18B3EC0D00B16F9A /* VideoCell+Video.h */,
 				6E65BA7B18B3EC0D00B16F9A /* VideoCell+Video.m */,
+				6E32857818B801370021CF53 /* CinemaCell+Cinema.h */,
+				6E32857918B801370021CF53 /* CinemaCell+Cinema.m */,
 			);
 			name = "Cell Categories";
 			sourceTree = "<group>";
@@ -949,6 +959,7 @@
 				6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */,
 				3D309A2C17A8674000BB5D13 /* UIImage+CH.m in Sources */,
 				6E723B7718910C5F009DC5BE /* CastActorCell.m in Sources */,
+				6E32857D18B803C50021CF53 /* CinemaCell.m in Sources */,
 				6EA663CD188DB21D00B0FCBE /* Function.m in Sources */,
 				3DDB7115170A516B00EC3E51 /* AppDelegate.m in Sources */,
 				6ECF2FD818B35B0D004621ED /* VideoGroup.m in Sources */,
@@ -963,6 +974,7 @@
 				16F86ED817DE8F6D00F2722C /* MovieVC.m in Sources */,
 				167B9A401804909D00862289 /* MovieFunctionsVC.m in Sources */,
 				6E723B7D18910F8D009DC5BE /* CastDirectorCell.m in Sources */,
+				6E32857A18B801370021CF53 /* CinemaCell+Cinema.m in Sources */,
 				6EA663B2188D19B400B0FCBE /* Billboard.m in Sources */,
 				6E723B8918913C4A009DC5BE /* AnnotationTheater.m in Sources */,
 				6E65BA7918B3EB7600B16F9A /* VideoCell.m in Sources */,
