@@ -50,7 +50,7 @@
     
     //Show rate alert
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(kAppName, @"")
-                                                        message:[NSString stringWithFormat:@"Si te gusta %@, ¿Te importaría calificarla?. No te tomará más de un minuto. Gracias por tu apoyo!",kAppName]
+                                                        message:[NSString stringWithFormat:@"Si le gusta %@, ¿le importaría valorarlo?. No te llevará más de un minuto. ¡Gracias por su colaboración!",kAppName]
                                                        delegate:nil
                                               cancelButtonTitle:NSLocalizedString(@"No, thanks", @"")
                                               otherButtonTitles:NSLocalizedString(@"Rate it now", @""),NSLocalizedString(@"Remind me later",@""), nil];
