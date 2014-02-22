@@ -78,9 +78,7 @@
     self.menu.borderColor = [UIColor clearColor];
     self.menu.backgroundColor = [UIColor wetAsphalt];
     self.menu.highlightedBackgroundColor = [UIColor midnightBlue];
-//    self.menu.liveBlurTintColor = [UIColor midnightBlueLight];
-//    self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleLight;
-//    self.menu.liveBlur = YES;
+    
     self.menu.separatorHeight = 0.;
     self.menu.itemHeight = 44.f;
     __weak GlobalNavigationController *weakSelf = self;
@@ -140,23 +138,20 @@
     }];
     [self.menu showFromNavigationController:self];
 }
-- (IBAction)goSocial:(UIButton *)sender {
-    
-    if (sender.tag == 20) {
-        NSURL *facebookURL = [NSURL URLWithString:@"twitter://user?screen_name=CineHorarios"];
-        if ([[UIApplication sharedApplication] canOpenURL:facebookURL]) {
-            [[UIApplication sharedApplication] openURL:facebookURL];
-        } else {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/CineHorarios"]];
-        }
+- (void)goFacebook {
+    NSURL *facebookURL = [NSURL URLWithString:@"fb://profile/469307943155757"];
+    if ([[UIApplication sharedApplication] canOpenURL:facebookURL]) {
+        [[UIApplication sharedApplication] openURL:facebookURL];
+    } else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.facebook.com/AppCineHorarios"]];
     }
-    else if(sender.tag == 21) {
-        NSURL *facebookURL = [NSURL URLWithString:@"fb://profile/469307943155757"];
-        if ([[UIApplication sharedApplication] canOpenURL:facebookURL]) {
-            [[UIApplication sharedApplication] openURL:facebookURL];
-        } else {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.facebook.com/AppCineHorarios"]];
-        }
+}
+- (void) goTwitter {
+    NSURL *facebookURL = [NSURL URLWithString:@"twitter://user?screen_name=CineHorarios"];
+    if ([[UIApplication sharedApplication] canOpenURL:facebookURL]) {
+        [[UIApplication sharedApplication] openURL:facebookURL];
+    } else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/CineHorarios"]];
     }
 }
 
