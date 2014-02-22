@@ -34,15 +34,13 @@
     
     [GAI trackPage:@"PELICULA VIDEOS"];
     
-    self.title = @"Videos";
-    
     self.view.backgroundColor = [UIColor tableViewColor];
     self.webView.backgroundColor = [UIColor tableViewColor];
     
     NSString *iFrameString = @"";
 
     if ([[self backViewController] isKindOfClass:VideosVC.class]) {
-        
+        self.title = @"Video";
         for (Video *video in self.videos) {
             iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
                                                                   <div class=\"video\">\
@@ -54,6 +52,7 @@
         }
     }
     else {
+        self.title = @"Videos";
         for (Video *video in self.videos) {
             iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
                                                                   <div class=\"video\">\
