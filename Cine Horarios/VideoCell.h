@@ -14,6 +14,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *videoNameLabel;
 @property (nonatomic, weak) IBOutlet UIButton *showCoverButton;
 @property (nonatomic, weak) IBOutlet UIButton *videoCoverButton;
+@property (nonatomic, weak) IBOutlet UIImageView *showCoverImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *videoCoverImageView;
 
 @end

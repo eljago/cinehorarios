@@ -1342,13 +1342,13 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdB-ib-A4f">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xxt-w9-CKZ">
                                             <rect key="frame" x="10" y="10" width="80" height="120"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdB-ib-A4f">
+                                            <rect key="frame" x="10" y="10" width="80" height="120"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <connections>
                                                 <segue destination="rNi-KW-Ki3" kind="push" identifier="VideosVCToMovieVC" id="1X0-Qc-tJs"/>
                                             </connections>
@@ -1400,6 +1400,7 @@
                                 <connections>
                                     <outlet property="nameLabel" destination="laG-rk-JxX" id="tO4-Rl-ksN"/>
                                     <outlet property="showCoverButton" destination="NdB-ib-A4f" id="X2g-0n-51o"/>
+                                    <outlet property="showCoverImageView" destination="xxt-w9-CKZ" id="rZ3-0m-8aU"/>
                                     <outlet property="videoCoverButton" destination="eRu-Rs-NPg" id="sXh-ly-mmR"/>
                                     <outlet property="videoCoverImageView" destination="KhK-vo-OU2" id="mWd-Wd-Zf8"/>
                                     <outlet property="videoNameLabel" destination="iRX-D0-FGc" id="3Xd-ij-cw8"/>

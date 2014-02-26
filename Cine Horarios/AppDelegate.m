@@ -14,7 +14,7 @@
 #import "UIColor+CH.h"
 #import "UIFont+CH.h"
 
-#define COMPILE_GEOFARO true
+#define COMPILE_GEOFARO false
 
 /** Google Analytics configuration constants **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.

@@ -21,9 +21,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    self.showCoverButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
-    self.showCoverButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

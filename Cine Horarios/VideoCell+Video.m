@@ -10,7 +10,6 @@
 #import "Video.h"
 #import "UIImageView+CH.h"
 #import "BasicMovie.h"
-#import "UIButton+AFNetworking.h"
 
 @implementation VideoCell (Video)
 
@@ -18,8 +17,7 @@
     self.nameLabel.text = video.movie.name;
     self.videoNameLabel.text = video.name;
     
-    NSString *strURL = [UIImageView imageURLForPath:video.movie.imageURL imageType:MovieImageTypeMovieImageCover];
-    [self.showCoverButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:strURL]];
+    [self.showCoverImageView setImageWithStringURL:video.movie.imageURL movieImageType:MovieImageTypeMovieImageCover];
     [self.videoCoverImageView setImageWithStringURL:video.imageURL movieImageType:MovieImageTypeMovieVideo];
 }
 
