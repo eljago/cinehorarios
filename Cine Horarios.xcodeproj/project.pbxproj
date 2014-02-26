@@ -1102,7 +1102,7 @@
 					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios/Geofaro",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "29105F98-BE6D-4324-A88E-ACE22C82D9F9";
+				PROVISIONING_PROFILE = "EDCFD5EB-DC6E-49FF-BF48-1B8CA966EAEF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1131,7 +1131,7 @@
 					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios/Geofaro",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "29105F98-BE6D-4324-A88E-ACE22C82D9F9";
+				PROVISIONING_PROFILE = "EDCFD5EB-DC6E-49FF-BF48-1B8CA966EAEF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
