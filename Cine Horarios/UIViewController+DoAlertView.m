@@ -29,17 +29,21 @@
 #pragma mark Alerts
 
 -(void) alertWithTitle:(NSString *)title body:(NSString *)body completeBlock:(void (^)())completeBlock {
+    self.getDoAlertView.hidden = NO;
     [self.getDoAlertView doYesNo:title body:body yes:^(DoAlertView *alertView) {
+        self.getDoAlertView.hidden = YES;
         completeBlock();
     } no:^(DoAlertView *alertView) {
-        
+        self.getDoAlertView.hidden = YES;
     }];
 }
 -(void) alertRetryWithCompleteBlock:(void (^)())completeBlock {
+    self.getDoAlertView.hidden = NO;
     [self.getDoAlertView doYesNo:@"Problema de Conexión" body:@"¿Reintentar?" yes:^(DoAlertView *alertView) {
+        self.getDoAlertView.hidden = YES;
         completeBlock();
     } no:^(DoAlertView *alertView) {
-        
+        self.getDoAlertView.hidden = YES;
     }];
 }
 

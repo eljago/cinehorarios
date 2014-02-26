@@ -14,6 +14,7 @@
 #import "UIColor+CH.h"
 #import "GAI+CH.h"
 #import "FuncionesVC.h"
+#import "DoAlertView.h"
 #import "UIViewController+DoAlertView.h"
 
 NSInteger const kMaxTheaterDistance = 26000;
@@ -154,6 +155,19 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     
     return view;
 }
+-(void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error {
+
+    if (error.userInfo[@"NSLocalizedRecoverySuggestion"]) {
+        DoAlertView *alert = [[DoAlertView alloc] init];
+        alert.nAnimationType = DoTransitionStylePop;
+        alert.dRound = 2.0;
+        alert.bDestructive = NO;
+        [alert doYes:error.userInfo[@"NSLocalizedRecoverySuggestion"] yes:^(DoAlertView *alertView) {
+            
+        }];
+    }
+}
+
 //-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
 //    CLLocationCoordinate2D coordinate = view.annotation.coordinate;
 //    [self zoomMapAtCoordinate:coordinate];
