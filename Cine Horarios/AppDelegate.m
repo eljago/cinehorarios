@@ -13,8 +13,9 @@
 #import "FileHandler.h"
 #import "UIColor+CH.h"
 #import "UIFont+CH.h"
+#import "RageIAPHelper.h"
 
-#define COMPILE_GEOFARO true
+#define COMPILE_GEOFARO false
 
 /** Google Analytics configuration constants **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
@@ -30,6 +31,11 @@ static int const kGaDispatchPeriod = 30;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Initialize the RageIAPHelper singleton to register itself as the transaction observer as soon as posible.
+    // This way, it will know if a transaction didn't get to finish before the app closed.
+    [RageIAPHelper sharedInstance];
+    
+    // Geofaro notifications
     [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeNewsstandContentAvailability)];
     
     [self setup_analytics];

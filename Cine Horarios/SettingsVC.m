@@ -12,6 +12,9 @@
 #import "GAI+CH.h"
 #import "FileHandler.h"
 #import "UIView+CH.h"
+#import "RageIAPHelper.h"
+#import <StoreKit/StoreKit.h>
+#import "IAPConstants.h"
 
 @interface SettingsVC () <UIPickerViewDataSource, UIPickerViewDelegate>
 
@@ -23,10 +26,21 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *customPickerBottomSpace;
 @property (nonatomic, weak) IBOutlet UIImageView *indicatorImageView;
 
+@property (nonatomic, weak) IBOutlet UIButton *purchaseButton;
+@property (nonatomic, weak) IBOutlet UIButton *purchaseRefreshButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintPurchaseButtonWidth;
+@property (nonatomic, weak) IBOutlet UILabel *labelSuggestion;
+
 @property (nonatomic, strong) NSArray *startingVCs;
+// SKProducts
+@property (nonatomic, strong) NSArray *products;
+
+
 @end
 
-@implementation SettingsVC
+@implementation SettingsVC {
+    NSNumberFormatter * _priceFormatter;
+}
 
 - (void)viewDidLoad
 {
@@ -68,6 +82,16 @@
     self.navigationItem.rightBarButtonItem = menuButtonItem;
     
     self.customPickerBottomSpace.constant = -self.customPicker.frame.size.height;
+    
+    [self setupInAppPurchaseStuff];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (IBAction)togglePickerView:(id)sender
@@ -151,5 +175,109 @@
 -(NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
+
+#pragma mark - In-App Purchase
+
+#pragma mark Button Pressed
+-(IBAction)removeAddButtonPressed:(id)sender {
+    UIButton *buyButton = (UIButton *)sender;
+    SKProduct *product = _products[buyButton.tag];
+    
+    NSLog(@"Buying %@...", product.productIdentifier);
+    [[RageIAPHelper sharedInstance] buyProduct:product];
+}
+
+#pragma mark Other Methods
+
+-(void) setupInAppPurchaseStuff {
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.view addSubview:activityIndicator];
+    activityIndicator.center = self.purchaseButton.center;
+    [activityIndicator startAnimating];
+    
+    self.products = nil;
+    [[RageIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+        if (success) {
+            self.products = products;
+            SKProduct *product = [self.products firstObject];
+            [self.purchaseButton setTitle:[product localizedTitle] forState:UIControlStateNormal];
+            self.purchaseButton.enabled = YES;
+            [activityIndicator removeFromSuperview];
+            
+            if ([[RageIAPHelper sharedInstance] productPurchased:product.productIdentifier]) {
+                // User purchased the product
+                self.purchaseButton.backgroundColor = [UIColor nephritis];
+                [self.purchaseButton setTitle:@"Publicidad Eliminada" forState:UIControlStateNormal];
+                self.purchaseButton.userInteractionEnabled = NO;
+                
+                self.purchaseRefreshButton.hidden = YES;
+                self.purchaseRefreshButton.enabled = NO;
+            } else {
+                // User did not purchase the product
+                self.labelSuggestion.hidden = NO;
+                
+                self.purchaseButton.backgroundColor = [UIColor navColor];
+                [_priceFormatter setLocale:[product priceLocale]];
+                NSString *priceString = [_priceFormatter stringFromNumber:[product price]];
+                [self.purchaseButton setTitle:[NSString stringWithFormat:@"Eliminar (%@ USD)",priceString] forState:UIControlStateNormal];
+                self.purchaseButton.userInteractionEnabled = YES;
+                self.purchaseButton.tag = 0;
+                [self.purchaseButton addTarget:self action:@selector(removeAddButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                
+                self.purchaseRefreshButton.hidden = NO;
+                self.purchaseRefreshButton.backgroundColor = [UIColor emerald];
+                self.purchaseRefreshButton.enabled = YES;
+                [self.purchaseRefreshButton setImage:[self.purchaseRefreshButton.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+                self.purchaseRefreshButton.imageView.tintColor = [UIColor whiteColor];
+                [self.purchaseRefreshButton addTarget:self action:@selector(restoreTapped:) forControlEvents:UIControlEventTouchUpInside];
+                
+                
+                [self.view layoutIfNeeded];
+                self.purchaseRefreshButton.alpha = 0.;
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.constraintPurchaseButtonWidth.constant = 262.f;
+                    self.purchaseRefreshButton.alpha = 1.;
+                    [self.view layoutIfNeeded];
+                }];
+            }
+        }
+    }];
+    
+    // Price Formatter setup
+    _priceFormatter = [[NSNumberFormatter alloc] init];
+    [_priceFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [_priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+}
+
+- (void)productPurchased:(NSNotification *)notification {
+    
+    NSString * productIdentifier = notification.object;
+    [_products enumerateObjectsUsingBlock:^(SKProduct * product, NSUInteger idx, BOOL *stop) {
+        if ([product.productIdentifier isEqualToString:productIdentifier]) {
+            self.purchaseButton.backgroundColor = [UIColor nephritis];
+            [self.purchaseButton setTitle:@"Publicidad Eliminada" forState:UIControlStateNormal];
+            self.purchaseButton.userInteractionEnabled = NO;
+            
+            self.labelSuggestion.hidden = YES;
+
+            self.purchaseRefreshButton.enabled = NO;
+            
+            [self.view layoutIfNeeded];
+            self.purchaseRefreshButton.alpha = 1.;
+            [UIView animateWithDuration:0.3 animations:^{
+                self.constraintPurchaseButtonWidth.constant = 304.f;
+                self.purchaseRefreshButton.alpha = 0.;
+                [self.view layoutIfNeeded];
+            } completion:^(BOOL finished) {
+                self.purchaseRefreshButton.hidden = YES;
+            }];
+            *stop = YES;
+        }
+    }];
+}
+- (IBAction)restoreTapped:(id)sender {
+    [[RageIAPHelper sharedInstance] restoreCompletedTransactions];
+}
+
 
 @end

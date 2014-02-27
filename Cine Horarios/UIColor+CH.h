@@ -28,7 +28,9 @@
 + (UIColor *)wisteria;
 + (UIColor *)asbestos;
 + (UIColor *)concrete;
-+(UIColor *)grayYoutubeControls;
++ (UIColor *)grayYoutubeControls;
++ (UIColor *)emerald;
++ (UIColor *)nephritis;
 
 +(UIColor *)menuColorForRow:(int)index;
 @end

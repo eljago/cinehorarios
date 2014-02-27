@@ -13,6 +13,8 @@
 #import "GADRequest.h"
 #import "MWPhotoBrowser.h"
 #import "MovieImagesVC.h"
+#import <StoreKit/StoreKit.h>
+#import "IAPConstants.h"
 
 #define kSampleAdUnitID @"ca-app-pub-8355329926077535/7444865605"
 const CGFloat kButtonWidth = 50.f;
@@ -30,12 +32,15 @@ const CGFloat kButtonWidth = 50.f;
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupBanner];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if (![defaults boolForKey:RemoveAddsInAppIdentifier]) {
+        [self setupBanner];
+    }
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
     NSArray *menuArray = [NSArray arrayWithContentsOfFile:filePath];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *identifier = [defaults stringForKey:@"Starting VC"];
     if (!identifier) {
         identifier = [menuArray firstObject][@"storyboardID"];
@@ -102,11 +107,14 @@ const CGFloat kButtonWidth = 50.f;
              strongSelf.twitterRightMarginConstraint.constant = -kButtonWidth;
              [strongSelf.view layoutIfNeeded];
          } completion:nil];
-        [UIView animateWithDuration:0.3 animations:^{
-            strongSelf.adBanner.alpha = 0.;
-        } completion:^(BOOL finished) {
-            strongSelf.adBanner.hidden = YES;
-        }];
+        
+        if (strongSelf.adBanner) {
+            [UIView animateWithDuration:0.3 animations:^{
+                strongSelf.adBanner.alpha = 0.;
+            } completion:^(BOOL finished) {
+                strongSelf.adBanner.hidden = YES;
+            }];
+        }
     };
     
     self.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
@@ -146,6 +154,14 @@ const CGFloat kButtonWidth = 50.f;
                                                                      attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-kButtonWidth];
     [self.view addConstraint:self.facebookLeftMarginConstraint];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)dealloc {
@@ -188,13 +204,15 @@ const CGFloat kButtonWidth = 50.f;
          [self.view bringSubviewToFront:self.buttonTwitter];
      }];
     
-    self.adBanner.hidden = NO;
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        self.adBanner.alpha = 1.;
-    } completion:^(BOOL finished) {
-        [self.view bringSubviewToFront:self.adBanner];
-    }];
+    if (self.adBanner) {
+        self.adBanner.hidden = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.adBanner.alpha = 1.;
+        } completion:^(BOOL finished) {
+            [self.view bringSubviewToFront:self.adBanner];
+        }];
+    }
+
     [self.menu showFromNavigationController:self];
 }
 - (void)goFacebook {
@@ -266,6 +284,18 @@ const CGFloat kButtonWidth = 50.f;
         self.adBanner.alpha = 0.;
     } completion:^(BOOL finished) {
     }];
+}
+
+#pragma mark - Product Purchased
+
+
+- (void)productPurchased:(NSNotification *)notification {
+    
+    NSString * productIdentifier = notification.object;
+    if ([productIdentifier isEqualToString:RemoveAddsInAppIdentifier]) {
+        self.adBanner.hidden = YES;
+        self.adBanner = nil;
+    }
 }
 
 @end

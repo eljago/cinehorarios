@@ -83,6 +83,7 @@
 		6E723B83189112AD009DC5BE /* Cast.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B82189112AD009DC5BE /* Cast.m */; };
 		6E723B8618913BFF009DC5BE /* AnnotationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B8518913BFF009DC5BE /* AnnotationGroup.m */; };
 		6E723B8918913C4A009DC5BE /* AnnotationTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B8818913C4A009DC5BE /* AnnotationTheater.m */; };
+		6E7AF45818BF228A00B786FC /* IAPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AF45718BF228A00B786FC /* IAPConstants.m */; };
 		6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8686F7188703E4003A91B0 /* DoAlertView.m */; };
 		6EA663A6188C8C2200B0FCBE /* Cinema.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663A5188C8C2200B0FCBE /* Cinema.m */; };
 		6EA663AC188D012200B0FCBE /* BasicMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663AB188D012200B0FCBE /* BasicMovie.m */; };
@@ -105,6 +106,8 @@
 		6EBF1EA118AB666A007B50A5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA018AB666A007B50A5 /* CoreTelephony.framework */; };
 		6EBF1EA318AB6673007B50A5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA218AB6673007B50A5 /* MessageUI.framework */; };
 		6EBF1EA518AB667A007B50A5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA418AB667A007B50A5 /* StoreKit.framework */; };
+		6EC647EF18BEA043003FE432 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC647EE18BEA043003FE432 /* IAPHelper.m */; };
+		6EC647F218BEA1BE003FE432 /* RageIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC647F118BEA1BE003FE432 /* RageIAPHelper.m */; };
 		6ECF2FD818B35B0D004621ED /* VideoGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECF2FD718B35B0D004621ED /* VideoGroup.m */; };
 		6ECF2FDB18B37151004621ED /* VideosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECF2FDA18B37151004621ED /* VideosVC.m */; };
 		6EE7038818B7BB2800B5D6F2 /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7035718B7BB2800B5D6F2 /* libGeofaro.a */; };
@@ -288,6 +291,8 @@
 		6E723B8518913BFF009DC5BE /* AnnotationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationGroup.m; sourceTree = "<group>"; };
 		6E723B8718913C4A009DC5BE /* AnnotationTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationTheater.h; sourceTree = "<group>"; };
 		6E723B8818913C4A009DC5BE /* AnnotationTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationTheater.m; sourceTree = "<group>"; };
+		6E7AF45618BF20E000B786FC /* IAPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAPConstants.h; sourceTree = "<group>"; };
+		6E7AF45718BF228A00B786FC /* IAPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPConstants.m; sourceTree = "<group>"; };
 		6E8686F6188703E4003A91B0 /* DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoAlertView.h; sourceTree = "<group>"; };
 		6E8686F7188703E4003A91B0 /* DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoAlertView.m; sourceTree = "<group>"; };
 		6EA663A4188C8C2200B0FCBE /* Cinema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cinema.h; sourceTree = "<group>"; };
@@ -325,6 +330,10 @@
 		6EBF1EA018AB666A007B50A5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		6EBF1EA218AB6673007B50A5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6EBF1EA418AB667A007B50A5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		6EC647ED18BEA043003FE432 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		6EC647EE18BEA043003FE432 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		6EC647F018BEA1BE003FE432 /* RageIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RageIAPHelper.h; sourceTree = "<group>"; };
+		6EC647F118BEA1BE003FE432 /* RageIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RageIAPHelper.m; sourceTree = "<group>"; };
 		6ECF2FD618B35B0D004621ED /* VideoGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGroup.h; sourceTree = "<group>"; };
 		6ECF2FD718B35B0D004621ED /* VideoGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoGroup.m; sourceTree = "<group>"; };
 		6ECF2FD918B37151004621ED /* VideosVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideosVC.h; sourceTree = "<group>"; };
@@ -613,6 +622,7 @@
 		3DDB710A170A516B00EC3E51 /* Cine Horarios */ = {
 			isa = PBXGroup;
 			children = (
+				6E7AF45518BF20A500B786FC /* IAP */,
 				6EE7035618B7BAA500B5D6F2 /* Geofaro */,
 				6EBF1E8C18AB65E2007B50A5 /* AdMob */,
 				162414A317BC946E00083708 /* Images.xcassets */,
@@ -680,6 +690,19 @@
 				6E32857C18B803C50021CF53 /* CinemaCell.m */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		6E7AF45518BF20A500B786FC /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				6EC647ED18BEA043003FE432 /* IAPHelper.h */,
+				6EC647EE18BEA043003FE432 /* IAPHelper.m */,
+				6EC647F018BEA1BE003FE432 /* RageIAPHelper.h */,
+				6EC647F118BEA1BE003FE432 /* RageIAPHelper.m */,
+				6E7AF45618BF20E000B786FC /* IAPConstants.h */,
+				6E7AF45718BF228A00B786FC /* IAPConstants.m */,
+			);
+			name = IAP;
 			sourceTree = "<group>";
 		};
 		6E88F27F189AFEEE00927222 /* Cell Categories */ = {
@@ -963,9 +986,11 @@
 				6EA663CD188DB21D00B0FCBE /* Function.m in Sources */,
 				3DDB7115170A516B00EC3E51 /* AppDelegate.m in Sources */,
 				6ECF2FD818B35B0D004621ED /* VideoGroup.m in Sources */,
+				6EC647EF18BEA043003FE432 /* IAPHelper.m in Sources */,
 				3D00E5C0170DDB2400C7DAAE /* TheatersVC.m in Sources */,
 				6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */,
 				6E65BA7C18B3EC0D00B16F9A /* VideoCell+Video.m in Sources */,
+				6E7AF45818BF228A00B786FC /* IAPConstants.m in Sources */,
 				6EA663DF188FD21100B0FCBE /* Video.m in Sources */,
 				3D39B91517208DC70011DF39 /* ComingSoonVC.m in Sources */,
 				16956FCF17D7E84100355AA7 /* UIFont+CH.m in Sources */,
@@ -1002,6 +1027,7 @@
 				3D521E1A17443FE1009ED580 /* CinesVC.m in Sources */,
 				3D521E1F17445DD5009ED580 /* FuncionesVC.m in Sources */,
 				6E723B8618913BFF009DC5BE /* AnnotationGroup.m in Sources */,
+				6EC647F218BEA1BE003FE432 /* RageIAPHelper.m in Sources */,
 				6E723B651890BA8A009DC5BE /* BasicItemImage.m in Sources */,
 				6E4BAA7418849D6A00E37DAF /* UIImage+ResizeMagick.m in Sources */,
 				3D29986A17E5E29C001A371D /* MovieImagesVC.m in Sources */,
@@ -1102,7 +1128,7 @@
 					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios/Geofaro",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "EDCFD5EB-DC6E-49FF-BF48-1B8CA966EAEF";
+				PROVISIONING_PROFILE = "73FD4EBC-DD1D-4E51-8909-2E9A5907CE89";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1131,7 +1157,7 @@
 					"/Users/Ghar/Dropbox/xcode_projects/Cine\\ Horarios/Cine\\ Horarios/Geofaro",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "EDCFD5EB-DC6E-49FF-BF48-1B8CA966EAEF";
+				PROVISIONING_PROFILE = "73FD4EBC-DD1D-4E51-8909-2E9A5907CE89";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

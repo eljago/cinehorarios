@@ -82,6 +82,12 @@
 +(UIColor *)grayYoutubeControls {
     return DO_RGB(60, 60, 60);
 }
++(UIColor *)emerald {
+    return DO_RGB(46, 204, 113);
+}
++(UIColor *)nephritis {
+    return DO_RGB(39, 174, 96);
+}
 
 +(UIColor *)menuColorForRow:(int)index {
     switch (index) {

@@ -1173,7 +1173,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLN-nL-hu2">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLN-nL-hu2" userLabel="Resolucion Imagen">
                                 <rect key="frame" x="8" y="99" width="304" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1200,7 +1200,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3fi-Mb-kns" customClass="UIButton">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3fi-Mb-kns" userLabel="Ventana de Inicio" customClass="UIButton">
                                 <rect key="frame" x="8" y="8" width="304" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1238,6 +1238,44 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Publicidad:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRE-oY-0NB">
+                                <rect key="frame" x="20" y="221" width="111" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LvK-AS-GPa" userLabel="Purchase">
+                                <rect key="frame" x="8" y="248" width="304" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="PuQ-NA-vE0"/>
+                                    <constraint firstAttribute="width" constant="304" id="tbM-et-MsA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="removeAddButtonPressed:" destination="ER5-J4-dU2" eventType="touchUpInside" id="b2k-5K-MZa"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rJO-kL-VUT" userLabel="Purchase Refresh">
+                                <rect key="frame" x="312" y="248" width="42" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="WebReload">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Presione el botón verde si pagó por eliminar la publicidad desde otro dispositivo, o reinstaló la aplicación." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="284" translatesAutoresizingMaskIntoConstraints="NO" id="dF9-mf-KIn">
+                                <rect key="frame" x="18" y="289" width="284" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view hidden="YES" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ajO-AM-ANL" userLabel="close view">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1247,7 +1285,7 @@
                                     <outletCollection property="gestureRecognizers" destination="Hc8-N3-BkS" appends="YES" id="FfW-sc-nFi"/>
                                 </connections>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZO-wS-Fph">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZO-wS-Fph" userLabel="Picker View">
                                 <rect key="frame" x="0.0" y="354" width="320" height="214"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -1290,15 +1328,25 @@
                         <color key="backgroundColor" red="0.30619079339999999" green="0.44373094029999999" blue="0.75543478259999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="WKg-qG-1VI" firstAttribute="top" secondItem="LZO-wS-Fph" secondAttribute="bottom" id="6UM-68-HLl"/>
+                            <constraint firstItem="LvK-AS-GPa" firstAttribute="top" secondItem="rJO-kL-VUT" secondAttribute="top" id="9t8-od-VIL"/>
+                            <constraint firstItem="LvK-AS-GPa" firstAttribute="leading" secondItem="bg6-pT-971" secondAttribute="leading" constant="8" id="HxL-qZ-Vd3"/>
+                            <constraint firstItem="rJO-kL-VUT" firstAttribute="leading" secondItem="LvK-AS-GPa" secondAttribute="trailing" id="L5G-f8-msS"/>
+                            <constraint firstItem="LvK-AS-GPa" firstAttribute="height" secondItem="rJO-kL-VUT" secondAttribute="height" id="aKv-1i-x16"/>
                             <constraint firstItem="LZO-wS-Fph" firstAttribute="leading" secondItem="bg6-pT-971" secondAttribute="leading" id="rI6-HU-VQw"/>
+                            <constraint firstItem="LvK-AS-GPa" firstAttribute="top" secondItem="Dcp-VF-nhw" secondAttribute="bottom" constant="248" id="uUM-AK-Bi0"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="closeView" destination="ajO-AM-ANL" id="38c-gf-8iH"/>
+                        <outlet property="constraintPurchaseButtonWidth" destination="tbM-et-MsA" id="Fza-Tj-UrH"/>
                         <outlet property="customPicker" destination="LZO-wS-Fph" id="53S-7m-XB6"/>
                         <outlet property="customPickerBottomSpace" destination="6UM-68-HLl" id="1TE-EG-EsK"/>
                         <outlet property="indicatorImageView" destination="V0A-BT-o7a" id="pGp-f8-f5h"/>
+                        <outlet property="labelSuggestion" destination="dF9-mf-KIn" id="Agv-Sw-mVv"/>
                         <outlet property="pickerView" destination="5FH-j4-Ch6" id="ETz-2I-S2k"/>
+                        <outlet property="purchaseButton" destination="LvK-AS-GPa" id="c54-Xd-tvp"/>
+                        <outlet property="purchaseRefreshButton" destination="rJO-kL-VUT" id="Sep-FL-QXl"/>
                         <outlet property="startCinesLabel" destination="qjP-tu-bkY" id="md4-jd-apL"/>
                         <outlet property="switchRetina" destination="tJw-4J-2sf" id="yYR-iK-2M1"/>
                     </connections>
@@ -1639,6 +1687,7 @@
         <image name="VideoCoverGradient" width="200" height="120"/>
         <image name="VideoCoverShadow" width="220" height="140"/>
         <image name="WebForward" width="44" height="44"/>
+        <image name="WebReload" width="44" height="44"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
