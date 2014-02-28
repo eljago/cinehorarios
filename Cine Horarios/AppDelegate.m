@@ -15,7 +15,7 @@
 #import "UIFont+CH.h"
 #import "RageIAPHelper.h"
 
-#define COMPILE_GEOFARO false
+#define COMPILE_GEOFARO true
 
 /** Google Analytics configuration constants **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
@@ -26,11 +26,13 @@ static int const kGaDispatchPeriod = 30;
 @implementation AppDelegate
 
 @synthesize miGeofaro;
-@synthesize miLaunchOptions;
+@synthesize miLaunchOptions,miNotificationsOptions;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    miLaunchOptions = launchOptions;
+
     // Initialize the RageIAPHelper singleton to register itself as the transaction observer as soon as posible.
     // This way, it will know if a transaction didn't get to finish before the app closed.
     [RageIAPHelper sharedInstance];
@@ -42,7 +44,7 @@ static int const kGaDispatchPeriod = 30;
     [self setup_afnetworking];
     [self setup_icloud_favorites];
     [self setup_appearances];
-
+    
     return YES;
 }
 
@@ -55,7 +57,7 @@ static int const kGaDispatchPeriod = 30;
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     [[GAI sharedInstance] dispatch];
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -143,13 +145,13 @@ static int const kGaDispatchPeriod = 30;
 
 - (void)setup_icloud_favorites
 {
-//    NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
-//    if (ubiq) {
-//        NSLog(@"iCloud access at %@", ubiq);
-//        // TODO: Load document...
-//    } else {
-//        NSLog(@"No iCloud access");
-//    }
+    //    NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+    //    if (ubiq) {
+    //        NSLog(@"iCloud access at %@", ubiq);
+    //        // TODO: Load document...
+    //    } else {
+    //        NSLog(@"No iCloud access");
+    //    }
     // register to observe notifications from the store
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector (storeDidChange:)
@@ -177,7 +179,7 @@ static int const kGaDispatchPeriod = 30;
 
 - (void)setup_analytics
 {
-//    [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
+    //    [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
     [GAI sharedInstance].dispatchInterval = kGaDispatchPeriod;
     [GAI sharedInstance].dryRun = kGaDryRun;
     self.tracker = [[GAI sharedInstance] trackerWithTrackingId:kGaPropertyId];
@@ -195,7 +197,7 @@ static int const kGaDispatchPeriod = 30;
                                                             NSForegroundColorAttributeName: [UIColor whiteColor]
                                                             }];
     
-//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    //    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor navColor]];
     
     [[UIToolbar appearance] setTintColor:[UIColor navColor]];
@@ -225,7 +227,7 @@ static int const kGaDispatchPeriod = 30;
                        stringByReplacingOccurrencesOfString:@" "
                        withString:@""]
                       stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSLog(@"token %@",token);
+    NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken token %@",token);
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:token forKey:@"TOKEN"];
@@ -235,17 +237,6 @@ static int const kGaDispatchPeriod = 30;
         [self iniciarGeofaro];
     }
     
-    //DatosEnvio
-    /*
-     DatosEnvio *datosEnvio =[[DatosEnvio alloc] init];
-     [datosEnvio setDelegate:self];
-     
-     [datosEnvio setRespuestaXML:NO];
-     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token,@"udid", @"1",@"pl",nil];
-     
-     [datosEnvio enviarDatosRuta:@"http://catalogo.modasantiago.cl/register.php?" datos:params];
-     */
-    //NSData *envio = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://54.244.227.53:8000/hios/%@",token]]];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -257,46 +248,35 @@ static int const kGaDispatchPeriod = 30;
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    NSLog(@"didReceiveRemoteNotification %@ fetchCompletionHandler",userInfo);
-    
-    NSLog(@"es iOS7");
-    
-    NSDictionary *aps = [userInfo valueForKey:@"aps"];
-    NSLog(@"userInfo %@",aps);
-    NSLog(@"userInfo %i",[[aps valueForKey:@"content-available"] intValue]);
-    BOOL descargar = [[aps valueForKey:@"content-available"] intValue] != 0; // myBool is NO for 0, YES for anything else
-    NSLog(@"%i",descargar);
-    if (descargar)
-    {
-        NSLog(@"descargar");
+    NSLog(@"AppDelegate: didReceiveRemoteNotification %@ fetchCompletionHandler",userInfo);
+    if(self.esiOS7) {
+        NSDictionary *aps = [userInfo valueForKey:@"aps"];
+        NSLog(@"AppDelegate: userInfo %@",aps);
+        //NSLog(@"userInfo %i",[[aps valueForKey:@"content-available"] intValue]);
+        BOOL descargar = [[aps valueForKey:@"content-available"] intValue] != 0; // myBool is NO for 0, YES for anything else
+        //NSLog(@"%i",descargar);
+        if (descargar) {
+            NSLog(@"AppDelegate: descargar");
+        }else{
+            NSLog(@"AppDelegate: no descargar");
+        }
+        
+        if ([userInfo valueForKey:@"dict"]) {
+            miNotificationsOptions = [userInfo valueForKey:@"dict"];
+            [miGeofaro actualizarServicios:miNotificationsOptions];
+            /*
+             NSLog(@"miNotificationsOptions %@",miNotificationsOptions);
+             NSString *sn = [dict valueForKey:@"SN"];
+             NSString *so = [dict valueForKey:@"SO"];
+             NSLog(@"sn %@",sn);
+             NSLog(@"so %@",so);
+             */
+        }
     }else{
-        NSLog(@"no descargar");
+        NSLog(@"no es iOS7");
+        //iOS 6
+        //NSURLConnection
     }
-    
-    /*
-     NSURL *urlx = [NSURL URLWithString:@"http://www.geofaro.com"];
-     
-     NSURLRequest *reqt = [NSURLRequest requestWithURL:urlx];
-     
-     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration backgroundSessionConfiguration:@"download"] delegate:self delegateQueue:nil];
-     [urlSession downloadTaskWithURL:urlx];
-     */
-    /*[urlSession downloadTaskWithRequest:reqt completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-     
-     if (!error) {
-     
-     NSLog(@"LLEGO %@", response);
-     
-     }else{
-     
-     NSLog(@"Error!");
-     }
-     
-     }];
-     */
-    NSLog(@"HAREMOS OTRA COSA");
-    //[_miBLE iniciar:_miLaunchOptions];
-    
     
     completionHandler(UIBackgroundFetchResultNewData);
 }
@@ -358,13 +338,12 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
     NSLog(@"AppDelegate: iniciarGeofaro");
     miGeofaro = [Geofaro sharedGeofaro];
     [miGeofaro setDelegate:self];
-    [miGeofaro setNotificaciones:YES];
-    [miGeofaro setAlertaPower:NO];
+    [miGeofaro setFlagNotificaciones:YES];
+    [miGeofaro setFlagAlertaPower:NO];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [miGeofaro setUd:[userDefaults valueForKey:@"TOKEN"]];
     [miGeofaro setLaunchOptions:miLaunchOptions];
-    [miGeofaro setNotificacionMensajePromocion:@"Encontramos un Geofaro en QueRico"];
-    [miGeofaro setNotificacionTituloPromocion:@"Encontramos un Geofaro en QueRico"];
+    [miGeofaro actualizarServicios:miNotificationsOptions];
     [miGeofaro setNotificacionBotonCancel:@"Ver"];
     [miGeofaro setFlagOcultarBarraStatus:YES];
     
@@ -378,11 +357,6 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 }
 
 #pragma mark - GeofaroDelegate
-- (void)geofaro:(Geofaro *)geofaro iniciandoConFaros:(NSArray *)faros
-{
-    NSLog(@"AppDelegate: iniciandoConFaros %@",faros);
-}
-
 - (void)geofaro:(Geofaro *)geofaro faroEncontrado:(NSDictionary *)faroInfo
 {
     NSLog(@"AppDelegate: faroEncontrado %@",faroInfo);
@@ -407,6 +381,8 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
         }];
     }
 }
+
+
 #endif
 
 

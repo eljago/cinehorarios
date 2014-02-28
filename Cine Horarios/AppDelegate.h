@@ -9,7 +9,6 @@
 
 #import "Geofaro.h"
 
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate,GeofaroDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -18,6 +17,6 @@
 
 @property (strong, nonatomic) Geofaro *miGeofaro;
 @property (strong, nonatomic) NSDictionary *miLaunchOptions;
-
+@property (nonatomic,strong) NSDictionary *miNotificationsOptions;
 
 @end

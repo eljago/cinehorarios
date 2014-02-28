@@ -20,10 +20,9 @@
 - (void)faro:(Faro*)faro faroEncontradoNuevo:(NSDictionary*)faroInfo;
 @end
 
-@interface Faro : NSObject <FaroEnvioDataDelegate,FaroFotoManagerDelegate,CBCentralManagerDelegate,CBPeripheralDelegate>
+@interface Faro : NSObject <FaroEnvioDataDelegate,CBCentralManagerDelegate,CBPeripheralDelegate>
 
 @property (retain) id delegate;
-@property (nonatomic) float tiempo;
 
 + (Faro *)sharedFaro;
 - (void)iniciar;
@@ -32,5 +31,7 @@
 - (void)iniciarBLE;
 
 - (void)detener;
+
+- (void)actualizarServicios:(NSDictionary*)servs;
 - (void)encontreBluetoothUID:(NSString *)uid;
 @end

@@ -12,7 +12,6 @@
 
 @protocol FarosActualizacionDelegate <NSObject>
 @required
-- (void)farosActualizarParserProgreso:(FarosActualizacionParser*)radarParser porcentaje:(NSInteger)porcentaje;
 - (void)farosActualizarParserCompleto:(FarosActualizacionParser*)radarParser faros:(NSMutableArray*)faros;
 - (void)farosActualizarParserError:(FarosActualizacionParser*)radarParser error:(NSError*)error;
 @end

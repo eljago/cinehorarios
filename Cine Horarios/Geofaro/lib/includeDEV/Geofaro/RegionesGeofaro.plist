@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>ref</key>
+		<string>Mall Arauco Maipú</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.542119</string>
+		<key>lon</key>
+		<string>-70.621138</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Plaza Oeste</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.516352</string>
+		<key>lon</key>
+		<string>-70.714731</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall San Bernardo</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.612984</string>
+		<key>lon</key>
+		<string>-70.583383</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Terminal de Buses (Est. Central)</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.448407</string>
+		<key>lon</key>
+		<string>-70.670469</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Alameda (Nivel 4°)</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.4483</string>
+		<key>lon</key>
+		<string>-70.670426</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Plaza Vespucio</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.518589</string>
+		<key>lon</key>
+		<string>-70.600079</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Florida Center</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.518589</string>
+		<key>lon</key>
+		<string>-70.600079</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Plaza Tobalaba</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.568942</string>
+		<key>lon</key>
+		<string>-70.554737</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Subcentro Escuela Militar</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.41346</string>
+		<key>lon</key>
+		<string>-70.58287</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Apumanque</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.409162</string>
+		<key>lon</key>
+		<string>-70.567194</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Parque Arauco</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.402749</string>
+		<key>lon</key>
+		<string>-70.578579</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Costanera Center</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.417472</string>
+		<key>lon</key>
+		<string>-70.60819</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall del Centro</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.434942</string>
+		<key>lon</key>
+		<string>-70.651597</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Plaza Norte</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.471205</string>
+		<key>lon</key>
+		<string>-70.577171</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Curicó</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-34.989363</string>
+		<key>lon</key>
+		<string>-71.243981</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Marina Arauco</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-33.008394</string>
+		<key>lon</key>
+		<string>-71.548614</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Plaza Bio Bio</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-36.825123</string>
+		<key>lon</key>
+		<string>-73.056906</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Plaza Los Ríos</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-39.815261</string>
+		<key>lon</key>
+		<string>-73.241694</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Mall Portal Talcahuano</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-36.711538</string>
+		<key>lon</key>
+		<string>-73.114107</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Portales</string>
+		<key>identifier</key>
+		<string>SPKBEAA035</string>
+		<key>lat</key>
+		<string>-36.826102</string>
+		<key>lon</key>
+		<string>-73.049331</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+</array>
+</plist>

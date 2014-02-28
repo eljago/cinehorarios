@@ -16,6 +16,7 @@
 
 #import "AlertaGeoView.h"
 
+#import "DatosEnvioGeo.h"
 @class Geofaro;
 @protocol GeofaroDelegate <NSObject>
 @required
@@ -24,23 +25,22 @@
 - (void)geofaro:(Geofaro*)geofaro faroEncontradoPromocionViewController:(UIViewController*)promocionViewController;
 @end
 
-@interface Geofaro : NSObject <RadarDelegate,FaroDelegate>
+@interface Geofaro : NSObject <RadarDelegate,FaroDelegate,DatosEnvioGeoDelegate>
 
 @property (retain) id delegate;
 @property (nonatomic,strong) NSString *ud;
-@property (nonatomic) BOOL notificaciones;
-@property (nonatomic) BOOL alertaPower;
+@property (nonatomic) BOOL flagNotificaciones;
+@property (nonatomic) BOOL flagAlertaPower;
+@property (nonatomic) BOOL flagOcultarBarraStatus;
 
 @property (nonatomic,strong) NSString *notificacionBotonCancel;
-@property (nonatomic,strong) NSString *notificacionTituloPromocion;
-@property (nonatomic,strong) NSString *notificacionMensajePromocion;
 @property (nonatomic,strong) NSDictionary *launchOptions;
+@property (nonatomic,strong) NSDictionary *servOptions;
 
 @property (nonatomic,strong) PromocionGeoViewController *promocionViewController;
 @property (nonatomic,strong) PromocionGeoiPadViewController *promocioniPadViewController;
 
 @property (nonatomic,strong) UIImage *errorImage;
-@property (nonatomic) BOOL flagOcultarBarraStatus;
 
 + (Geofaro *)sharedGeofaro;
 - (void)iniciar;
@@ -48,6 +48,7 @@
 
 #pragma mark - Métodos Útiles
 - (NSArray *)promociones;
+- (void)actualizarServicios:(NSDictionary*)servicios;
 
 #pragma mark - CuponesGeoviewController
 - (UINavigationController *)cuponesGeoNavigationViewController;
