@@ -1144,9 +1144,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
+				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1159,7 +1159,7 @@
 					"\"$(PROJECT_DIR)/Cine Horarios/\"",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "2C18E79F-9D23-4AA9-AE4F-22689F089944";
+				PROVISIONING_PROFILE = "AF5309C2-7CCF-4DEF-9072-70D7E4952678";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1172,9 +1172,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
+				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1187,7 +1187,7 @@
 					"\"$(PROJECT_DIR)/Cine Horarios/\"",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "2C18E79F-9D23-4AA9-AE4F-22689F089944";
+				PROVISIONING_PROFILE = "AF5309C2-7CCF-4DEF-9072-70D7E4952678";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

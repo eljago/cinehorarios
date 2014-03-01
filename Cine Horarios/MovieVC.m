@@ -31,6 +31,7 @@
 #import "Cast.h"
 #import "RFRateMe.h"
 #import "UIViewController+DoAlertView.h"
+#import "NSObject+Utilidades.h"
 
 @interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate>
 
@@ -236,8 +237,14 @@
         self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingFormat:@"%@",self.movie.genres];
     }
     
-    if (self.movie.imageURL) {
-        [self.coverImageView setImageWithStringURL:self.movie.imageURL movieImageType:MovieImageTypeCover];
+    if (![self esiOS71]) {
+        if (self.movie.imageURL) {
+            [self.coverImageView setImageWithStringURL:self.movie.imageURL movieImageType:MovieImageTypeCover];
+        }
+    }
+    else {
+        [[self.coverImageView.superview viewWithTag:51] setHidden:YES];
+        [self.coverImageView setHidden:YES];
     }
     
     // SYNOPSIS
@@ -359,15 +366,14 @@
             return 0.;
         }
         else {
-            CGSize size = CGSizeMake(277.f, 1000.f);
+            CGSize size = CGSizeMake(277.f, FLT_MAX);
             
             NSMutableArray *directorsNames = [[NSMutableArray alloc] init];
             for (Person *director in self.cast.directors) {
                 [directorsNames addObject:director.name];
             }
-            
             CGRect nameLabelRect = [[directorsNames componentsJoinedByString:@", "] boundingRectWithSize: size
-                                                                                                 options: NSStringDrawingUsesLineFragmentOrigin
+                                                                                                 options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                                                               attributes: [NSDictionary dictionaryWithObject:self.normalFont forKey:NSFontAttributeName]
                                                                                                  context: nil];
             
@@ -378,25 +384,43 @@
     }
     else if (indexPath.section == 0) {
         if (indexPath.row == 1) {
-            CGFloat height;
+            
+            CGFloat totalHeight = 0;
+            
             if (self.movie.information) {
-                NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
-                NSTextContainer *container = [[NSTextContainer alloc] initWithSize:CGSizeMake(self.textViewSynopsis.frame.size.width, 1000)];
-                UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.coverImageView.frame.size.width+10, self.coverImageView.frame.size.height+10)];
-                container.exclusionPaths = @[exclusionPath];
                 
                 NSDictionary* attrs = @{NSFontAttributeName: self.normalFont};
+                CGSize textViewSizeMax = CGSizeMake(self.textViewSynopsis.frame.size.width - 7, FLT_MAX);
                 
-                NSTextStorage *txtStorage = [[NSTextStorage alloc] initWithString:self.movie.information attributes:attrs];
-                [txtStorage addLayoutManager:layoutManager];
-                [layoutManager addTextContainer:container];
-                
-                height = self.textViewSynopsis.frame.origin.y + [layoutManager boundingRectForGlyphRange:[layoutManager glyphRangeForTextContainer:container] inTextContainer:container].size.height+15.;
+                if (![self esiOS71]) {
+                    
+                    NSLayoutManager *layoutManager = [NSLayoutManager new];
+                    NSTextContainer *container = [[NSTextContainer alloc] initWithSize: textViewSizeMax];
+                    UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.coverImageView.frame.size.width+10, self.coverImageView.frame.size.height+10)];
+                    container.exclusionPaths = @[exclusionPath];
+                    
+                    NSTextStorage *txtStorage = [[NSTextStorage alloc] initWithString:self.movie.information attributes:attrs];
+                    [txtStorage addLayoutManager:layoutManager];
+                    [layoutManager addTextContainer:container];
+                    
+                    totalHeight = self.textViewSynopsis.frame.origin.y + [layoutManager boundingRectForGlyphRange:[layoutManager glyphRangeForTextContainer:container] inTextContainer:container].size.height+15.;
+                }
+                else {
+                    CGFloat adj = ceilf(self.textViewSynopsis.font.ascender - self.textViewSynopsis.font.capHeight);
+                    CGFloat insets = self.textViewSynopsis.textContainerInset.top + self.textViewSynopsis.textContainerInset.bottom;
+                    
+                    CGRect nameLabelRect = [self.movie.information boundingRectWithSize: textViewSizeMax
+                                                                                options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                                             attributes: [NSDictionary dictionaryWithObject:self.normalFont forKey:NSFontAttributeName]
+                                                                                context: nil];
+                    
+                    CGFloat textViewHeight = nameLabelRect.size.height + adj + insets;
+                    totalHeight = self.textViewSynopsis.frame.origin.y + textViewHeight + 10.f;
+                    
+                    return totalHeight;
+                }
             }
-            else {
-                height = 155.;
-            }
-            return MAX(height, 155.);
+            return MAX(totalHeight, 154.);
         }
         else if (indexPath.row == 2) {
             if (self.movie.videos.count == 0) {
@@ -627,8 +651,10 @@
 #pragma mark - Setup Views
 -(void) setupViews{
     
-    UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(-4.f, 0.f, self.coverImageView.frame.size.width+14.f, self.coverImageView.frame.size.height+10.f)];
-    self.textViewSynopsis.textContainer.exclusionPaths = @[exclusionPath];
+    if (![self esiOS71]) {
+        UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(-4.f, 0.f, self.coverImageView.frame.size.width+14.f, self.coverImageView.frame.size.height+10.f)];
+        self.textViewSynopsis.textContainer.exclusionPaths = @[exclusionPath];
+    }
     
     self.viewOverPortrait = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
     self.viewOverPortrait.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];

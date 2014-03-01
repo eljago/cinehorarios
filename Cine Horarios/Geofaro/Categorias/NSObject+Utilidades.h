@@ -17,6 +17,7 @@
 #pragma mark - iOS
 - (BOOL)esiOS6;
 - (BOOL)esiOS7;
+- (BOOL)esiOS71;
 
 #pragma mark - Modelos iPhone
 - (BOOL)esiPhone5S;

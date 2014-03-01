@@ -191,6 +191,15 @@
         return NO;
     }
 }
+- (BOOL)esiOS71
+{
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.1"))
+    {
+        return YES;
+    }else{
+        return NO;
+    }
+}
 
 #pragma mark - Modelos iPhone
 - (BOOL)esiPhone5S
