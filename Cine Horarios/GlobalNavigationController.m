@@ -25,6 +25,8 @@ const CGFloat kButtonWidth = 50.f;
 @property (nonatomic, strong) UIButton *buttonTwitter;
 @property (nonatomic, strong) NSLayoutConstraint *facebookLeftMarginConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *twitterRightMarginConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *facebookBottomMarginConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *twitterBottomMarginConstraint;
 @end
 
 @implementation GlobalNavigationController
@@ -145,15 +147,39 @@ const CGFloat kButtonWidth = 50.f;
     [self.view addSubview:self.buttonFacebook];
     [self.view addSubview:self.buttonTwitter];
     
-    self.twitterRightMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonTwitter attribute:NSLayoutAttributeLeft
-                                                                     relatedBy:NSLayoutRelationEqual toItem:self.view
-                                                                     attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-kButtonWidth];
+    self.twitterRightMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonTwitter
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.view
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                    multiplier:1.0
+                                                                      constant:-kButtonWidth];
     [self.view addConstraint:self.twitterRightMarginConstraint];
-    self.facebookLeftMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonFacebook attribute:NSLayoutAttributeLeft
-                                                                     relatedBy:NSLayoutRelationEqual toItem:self.view
-                                                                     attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-kButtonWidth];
+    self.facebookLeftMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonFacebook
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.view
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                    multiplier:1.0
+                                                                      constant:-kButtonWidth];
     [self.view addConstraint:self.facebookLeftMarginConstraint];
-
+    self.facebookBottomMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonFacebook
+                                                                       attribute:NSLayoutAttributeBottom
+                                                                       relatedBy:NSLayoutRelationEqual
+                                                                          toItem:self.view
+                                                                       attribute:NSLayoutAttributeBottom
+                                                                      multiplier:1.0
+                                                                        constant:0];
+    [self.view addConstraint:self.facebookBottomMarginConstraint];
+    self.twitterBottomMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonTwitter
+                                                                       attribute:NSLayoutAttributeBottom
+                                                                       relatedBy:NSLayoutRelationEqual
+                                                                          toItem:self.view
+                                                                       attribute:NSLayoutAttributeBottom
+                                                                      multiplier:1.0
+                                                                        constant:0];
+    [self.view addConstraint:self.twitterBottomMarginConstraint];
+    [self updateBottomMarinConstraintsConstant];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -295,6 +321,19 @@ const CGFloat kButtonWidth = 50.f;
     if ([productIdentifier isEqualToString:RemoveAddsInAppIdentifier]) {
         self.adBanner.hidden = YES;
         self.adBanner = nil;
+    }
+}
+
+#pragma mark - Update Bottom Margin Constraints Constant
+
+- (void) updateBottomMarinConstraintsConstant {
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:RemoveAddsInAppIdentifier]) {
+        self.facebookBottomMarginConstraint.constant = -4;
+        self.twitterBottomMarginConstraint.constant = -4;
+    } else {
+        self.facebookBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
+        self.twitterBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
     }
 }
 

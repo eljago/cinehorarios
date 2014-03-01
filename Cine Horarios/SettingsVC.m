@@ -15,6 +15,7 @@
 #import "RageIAPHelper.h"
 #import <StoreKit/StoreKit.h>
 #import "IAPConstants.h"
+#import "GlobalNavigationController.h"
 
 @interface SettingsVC () <UIPickerViewDataSource, UIPickerViewDelegate>
 
@@ -207,11 +208,12 @@
             if ([[RageIAPHelper sharedInstance] productPurchased:product.productIdentifier]) {
                 // User purchased the product
                 self.purchaseButton.backgroundColor = [UIColor nephritis];
-                [self.purchaseButton setTitle:@"Publicidad Eliminada" forState:UIControlStateNormal];
+                [self.purchaseButton setTitle:@"Banner Eliminado" forState:UIControlStateNormal];
                 self.purchaseButton.userInteractionEnabled = NO;
                 
                 self.purchaseRefreshButton.hidden = YES;
                 self.purchaseRefreshButton.enabled = NO;
+                [(GlobalNavigationController *)self.navigationController updateBottomMarinConstraintsConstant];
             } else {
                 // User did not purchase the product
                 self.labelSuggestion.hidden = NO;
@@ -255,12 +257,14 @@
     [_products enumerateObjectsUsingBlock:^(SKProduct * product, NSUInteger idx, BOOL *stop) {
         if ([product.productIdentifier isEqualToString:productIdentifier]) {
             self.purchaseButton.backgroundColor = [UIColor nephritis];
-            [self.purchaseButton setTitle:@"Publicidad Eliminada" forState:UIControlStateNormal];
+            [self.purchaseButton setTitle:@"Banner Eliminado" forState:UIControlStateNormal];
             self.purchaseButton.userInteractionEnabled = NO;
             
             self.labelSuggestion.hidden = YES;
 
             self.purchaseRefreshButton.enabled = NO;
+            
+            [(GlobalNavigationController *)self.navigationController updateBottomMarinConstraintsConstant];
             
             [self.view layoutIfNeeded];
             self.purchaseRefreshButton.alpha = 1.;
