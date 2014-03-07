@@ -13,7 +13,7 @@
 #import "FileHandler.h"
 #import "UIColor+CH.h"
 #import "UIFont+CH.h"
-#import "RageIAPHelper.h"
+//#import "RageIAPHelper.h"
 
 #define COMPILE_GEOFARO true
 
@@ -35,7 +35,7 @@ static int const kGaDispatchPeriod = 30;
 
     // Initialize the RageIAPHelper singleton to register itself as the transaction observer as soon as posible.
     // This way, it will know if a transaction didn't get to finish before the app closed.
-    [RageIAPHelper sharedInstance];
+//    [RageIAPHelper sharedInstance];
     
     // Geofaro notifications
     [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeNewsstandContentAvailability)];

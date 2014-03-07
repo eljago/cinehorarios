@@ -18,6 +18,6 @@
 - (GADRequest *)request;
 
 - (IBAction)revealMenu:(id)sender;
-- (void) updateBottomMarinConstraintsConstant;
+//- (void) updateBottomMarinConstraintsConstant;
 
 @end

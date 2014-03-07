@@ -109,6 +109,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
         [rightCalloutAV setImage:[[UIImage imageNamed:@"WebForward"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         rightCalloutAV.frame = CGRectMake(0, 0, 32, 32);
         view.rightCalloutAccessoryView = rightCalloutAV;
+        view.tintColor = [UIColor grayColor];
     }
     AnnotationTheater *annotationTheater = (AnnotationTheater *)annotation;
     switch (annotationTheater.cinemaID) {

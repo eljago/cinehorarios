@@ -116,7 +116,6 @@
 		6E723B83189112AD009DC5BE /* Cast.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B82189112AD009DC5BE /* Cast.m */; };
 		6E723B8618913BFF009DC5BE /* AnnotationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B8518913BFF009DC5BE /* AnnotationGroup.m */; };
 		6E723B8918913C4A009DC5BE /* AnnotationTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E723B8818913C4A009DC5BE /* AnnotationTheater.m */; };
-		6E7AF45818BF228A00B786FC /* IAPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AF45718BF228A00B786FC /* IAPConstants.m */; };
 		6E8686F8188703E4003A91B0 /* DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8686F7188703E4003A91B0 /* DoAlertView.m */; };
 		6EA663A6188C8C2200B0FCBE /* Cinema.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663A5188C8C2200B0FCBE /* Cinema.m */; };
 		6EA663AC188D012200B0FCBE /* BasicMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA663AB188D012200B0FCBE /* BasicMovie.m */; };
@@ -139,8 +138,6 @@
 		6EBF1EA118AB666A007B50A5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA018AB666A007B50A5 /* CoreTelephony.framework */; };
 		6EBF1EA318AB6673007B50A5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA218AB6673007B50A5 /* MessageUI.framework */; };
 		6EBF1EA518AB667A007B50A5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA418AB667A007B50A5 /* StoreKit.framework */; };
-		6EC647EF18BEA043003FE432 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC647EE18BEA043003FE432 /* IAPHelper.m */; };
-		6EC647F218BEA1BE003FE432 /* RageIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC647F118BEA1BE003FE432 /* RageIAPHelper.m */; };
 		6ECF2FD818B35B0D004621ED /* VideoGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECF2FD718B35B0D004621ED /* VideoGroup.m */; };
 		6ECF2FDB18B37151004621ED /* VideosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECF2FDA18B37151004621ED /* VideosVC.m */; };
 		6EE703A818B7BC7000B5D6F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A718B7BC7000B5D6F2 /* Security.framework */; };
@@ -1016,13 +1013,11 @@
 				6EA663CD188DB21D00B0FCBE /* Function.m in Sources */,
 				3DDB7115170A516B00EC3E51 /* AppDelegate.m in Sources */,
 				6ECF2FD818B35B0D004621ED /* VideoGroup.m in Sources */,
-				6EC647EF18BEA043003FE432 /* IAPHelper.m in Sources */,
 				3D00E5C0170DDB2400C7DAAE /* TheatersVC.m in Sources */,
 				6E607F2F18C10E7D000D85FF /* NSObject+Utilidades.m in Sources */,
 				6E57396818273D3400ADB8D9 /* CloseTheatersVC.m in Sources */,
 				6E65BA7C18B3EC0D00B16F9A /* VideoCell+Video.m in Sources */,
 				6E607F3218C10ED5000D85FF /* UIDevice+Hardware.m in Sources */,
-				6E7AF45818BF228A00B786FC /* IAPConstants.m in Sources */,
 				6EA663DF188FD21100B0FCBE /* Video.m in Sources */,
 				3D39B91517208DC70011DF39 /* ComingSoonVC.m in Sources */,
 				16956FCF17D7E84100355AA7 /* UIFont+CH.m in Sources */,
@@ -1059,7 +1054,6 @@
 				3D521E1A17443FE1009ED580 /* CinesVC.m in Sources */,
 				3D521E1F17445DD5009ED580 /* FuncionesVC.m in Sources */,
 				6E723B8618913BFF009DC5BE /* AnnotationGroup.m in Sources */,
-				6EC647F218BEA1BE003FE432 /* RageIAPHelper.m in Sources */,
 				6E723B651890BA8A009DC5BE /* BasicItemImage.m in Sources */,
 				6E4BAA7418849D6A00E37DAF /* UIImage+ResizeMagick.m in Sources */,
 				3D29986A17E5E29C001A371D /* MovieImagesVC.m in Sources */,

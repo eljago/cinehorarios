@@ -19,6 +19,9 @@
 + (UIColor *)alizarin{
     return DO_RGB(231, 76, 60);
 }
++ (UIColor *)amethyst{
+    return DO_RGB(155, 89, 182);
+}
 + (UIColor *)pomegranate{
     return DO_RGB(192, 57, 43);
 }
@@ -27,6 +30,9 @@
 }
 + (UIColor *)belizeHole{
     return DO_RGB(41, 128, 185);
+}
++ (UIColor *)peterRiver{
+    return DO_RGB(52, 152, 219);
 }
 + (UIColor *)orange{
     return DO_RGB(243, 156, 18);
@@ -97,7 +103,7 @@
             break;
         case 1:
             // Favoritos
-            return [UIColor navColor];
+            return [UIColor alizarin];
             break;
         case 2:
             // Cercanos
@@ -105,15 +111,15 @@
             break;
         case 3:
             // Cartelera
-            return [UIColor hydrangea];
+            return [UIColor amethyst];
             break;
         case 4:
             // Próximos Estrenos
-            return [UIColor belizeHole];
+            return [UIColor peterRiver];
             break;
         case 5:
             // Ajustes
-            return [UIColor navColor];
+            return [UIColor alizarin];
             break;
         case 6:
             // Ajustes

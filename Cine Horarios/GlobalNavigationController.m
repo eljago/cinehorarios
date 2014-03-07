@@ -13,8 +13,8 @@
 #import "GADRequest.h"
 #import "MWPhotoBrowser.h"
 #import "MovieImagesVC.h"
-#import <StoreKit/StoreKit.h>
-#import "IAPConstants.h"
+//#import <StoreKit/StoreKit.h>
+//#import "IAPConstants.h"
 
 #define kSampleAdUnitID @"ca-app-pub-8355329926077535/7444865605"
 const CGFloat kButtonWidth = 50.f;
@@ -36,9 +36,9 @@ const CGFloat kButtonWidth = 50.f;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if (![defaults boolForKey:RemoveAddsInAppIdentifier]) {
+//    if (![defaults boolForKey:RemoveAddsInAppIdentifier]) {
         [self setupBanner];
-    }
+//    }
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
     NSArray *menuArray = [NSArray arrayWithContentsOfFile:filePath];
@@ -48,76 +48,7 @@ const CGFloat kButtonWidth = 50.f;
         identifier = [menuArray firstObject][@"storyboardID"];
     }
     
-    NSMutableArray *menuItems = [[NSMutableArray alloc] init];
-    
-    int index = 0;
-    for (NSDictionary *dict in menuArray) {
-        NSString *name = dict[@"name"];
-        UIImage *image = [[UIImage imageNamed:dict[@"image"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        NSString *storyboardID = dict[@"storyboardID"];
-        
-        UIView *customView = (UIView *)[[[NSBundle mainBundle] loadNibNamed:@"MenuCustomView" owner:self options:nil] lastObject];
-        UILabel *label = (UILabel *)[customView viewWithTag:1];
-        label.textColor = [UIColor whiteColor];
-        UIImageView *imgView = (UIImageView *)[customView viewWithTag:2];
-        label.text = name;
-        if ([identifier isEqualToString:storyboardID]) {
-            label.textColor = [UIColor menuColorForRow:index];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Regular" size:17.];
-            customView.backgroundColor = [UIColor midnightBlue];
-        }
-        imgView.image = image;
-        imgView.tintColor = [UIColor menuColorForRow:index];
-        REMenuItem *customViewItem = [[REMenuItem alloc] initWithCustomView:customView action:^(REMenuItem *item) {
-            self.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:storyboardID]];
-            for (REMenuItem *menuItem in self.menu.items) {
-                if ([item isEqual:menuItem]) {
-                    ((UILabel *)[menuItem.customView viewWithTag:1]).textColor = [UIColor menuColorForRow:index];
-                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"HelveticaNeue-Regular" size:17.];
-                    menuItem.customView.backgroundColor = [UIColor midnightBlue];
-                }
-                else {
-                    ((UILabel *)[menuItem.customView viewWithTag:1]).textColor = [UIColor whiteColor];
-                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.];
-                    menuItem.customView.backgroundColor = [UIColor clearColor];
-                }
-            }
-        }];
-        [menuItems addObject:customViewItem];
-        index++;
-    }
-    self.menu = [[REMenu alloc] initWithItems:[NSArray arrayWithArray:menuItems]];
-    self.menu.borderColor = [UIColor clearColor];
-    self.menu.backgroundColor = [UIColor wetAsphalt];
-    self.menu.highlightedBackgroundColor = [UIColor midnightBlue];
-    
-    self.menu.separatorHeight = 0.;
-    self.menu.itemHeight = 44.f;
-    __weak GlobalNavigationController *weakSelf = self;
-    self.menu.closePreparationBlock = ^{
-        __strong GlobalNavigationController *strongSelf = weakSelf;
-        
-        [strongSelf.view layoutIfNeeded];
-        [UIView animateWithDuration:1.2
-                              delay:0.0
-             usingSpringWithDamping:0.6
-              initialSpringVelocity:-4.0
-                            options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
-                         animations:^
-         {
-             strongSelf.facebookLeftMarginConstraint.constant = -kButtonWidth;
-             strongSelf.twitterRightMarginConstraint.constant = -kButtonWidth;
-             [strongSelf.view layoutIfNeeded];
-         } completion:nil];
-        
-        if (strongSelf.adBanner) {
-            [UIView animateWithDuration:0.3 animations:^{
-                strongSelf.adBanner.alpha = 0.;
-            } completion:^(BOOL finished) {
-                strongSelf.adBanner.hidden = YES;
-            }];
-        }
-    };
+    [self setupMenuWithStartingVC:identifier menuArray:menuArray];
     
     self.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
     
@@ -133,62 +64,19 @@ const CGFloat kButtonWidth = 50.f;
     swipeGestureUp.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.navigationBar addGestureRecognizer:swipeGestureUp];
     
-    
-    self.buttonFacebook = [[UIButton alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height - kButtonWidth - 4., kButtonWidth, kButtonWidth)];
-    [self.buttonFacebook setImage:[UIImage imageNamed:@"ButtonFacebook"] forState:UIControlStateNormal];
-    [self.buttonFacebook addTarget:self action:@selector(goFacebook) forControlEvents:UIControlEventTouchUpInside];
-    self.buttonTwitter = [[UIButton alloc] initWithFrame:CGRectMake(10+kButtonWidth+10, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height - kButtonWidth - 4., kButtonWidth, kButtonWidth)];
-    [self.buttonTwitter setImage:[UIImage imageNamed:@"ButtonTwitter"] forState:UIControlStateNormal];
-    [self.buttonTwitter addTarget:self action:@selector(goTwitter) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.buttonFacebook.translatesAutoresizingMaskIntoConstraints = NO;
-    self.buttonTwitter.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    [self.view addSubview:self.buttonFacebook];
-    [self.view addSubview:self.buttonTwitter];
-    
-    self.twitterRightMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonTwitter
-                                                                     attribute:NSLayoutAttributeLeft
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:self.view
-                                                                     attribute:NSLayoutAttributeLeft
-                                                                    multiplier:1.0
-                                                                      constant:-kButtonWidth];
-    [self.view addConstraint:self.twitterRightMarginConstraint];
-    self.facebookLeftMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonFacebook
-                                                                     attribute:NSLayoutAttributeLeft
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:self.view
-                                                                     attribute:NSLayoutAttributeLeft
-                                                                    multiplier:1.0
-                                                                      constant:-kButtonWidth];
-    [self.view addConstraint:self.facebookLeftMarginConstraint];
-    self.facebookBottomMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonFacebook
-                                                                       attribute:NSLayoutAttributeBottom
-                                                                       relatedBy:NSLayoutRelationEqual
-                                                                          toItem:self.view
-                                                                       attribute:NSLayoutAttributeBottom
-                                                                      multiplier:1.0
-                                                                        constant:0];
-    [self.view addConstraint:self.facebookBottomMarginConstraint];
-    self.twitterBottomMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonTwitter
-                                                                       attribute:NSLayoutAttributeBottom
-                                                                       relatedBy:NSLayoutRelationEqual
-                                                                          toItem:self.view
-                                                                       attribute:NSLayoutAttributeBottom
-                                                                      multiplier:1.0
-                                                                        constant:0];
-    [self.view addConstraint:self.twitterBottomMarginConstraint];
-    [self updateBottomMarinConstraintsConstant];
+    [self setupSocialButtons];
+//    [self updateBottomMarinConstraintsConstant];
+    self.facebookBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
+    self.twitterBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
 
 - (void)dealloc {
     self.adBanner.delegate = nil;
@@ -213,6 +101,9 @@ const CGFloat kButtonWidth = 50.f;
     if (self.menu.isOpen) {
         return [self.menu close];
     }
+    
+    self.buttonTwitter.hidden = NO;
+    self.buttonFacebook.hidden = NO;
     
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.5
@@ -312,29 +203,158 @@ const CGFloat kButtonWidth = 50.f;
     }];
 }
 
-#pragma mark - Product Purchased
+//#pragma mark - Product Purchased
+//
+//
+//- (void)productPurchased:(NSNotification *)notification {
+//    
+//    NSString * productIdentifier = notification.object;
+//    if ([productIdentifier isEqualToString:RemoveAddsInAppIdentifier]) {
+//        self.adBanner.hidden = YES;
+//        self.adBanner = nil;
+//    }
+//}
 
+//#pragma mark - Update Bottom Margin Constraints Constant
+//
+//- (void) updateBottomMarinConstraintsConstant {
+//    
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:RemoveAddsInAppIdentifier]) {
+//        self.facebookBottomMarginConstraint.constant = -4;
+//        self.twitterBottomMarginConstraint.constant = -4;
+//    } else {
+//        self.facebookBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
+//        self.twitterBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
+//    }
+//}
 
-- (void)productPurchased:(NSNotification *)notification {
+#pragma mark - Setup Stuff
+
+- (void) setupMenuWithStartingVC: (NSString *)identifier menuArray:(NSArray *)menuArray {
+    NSMutableArray *menuItems = [[NSMutableArray alloc] init];
     
-    NSString * productIdentifier = notification.object;
-    if ([productIdentifier isEqualToString:RemoveAddsInAppIdentifier]) {
-        self.adBanner.hidden = YES;
-        self.adBanner = nil;
+    int index = 0;
+    for (NSDictionary *dict in menuArray) {
+        NSString *name = dict[@"name"];
+        UIImage *image = [[UIImage imageNamed:dict[@"image"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        NSString *storyboardID = dict[@"storyboardID"];
+        
+        UIView *customView = (UIView *)[[[NSBundle mainBundle] loadNibNamed:@"MenuCustomView" owner:self options:nil] lastObject];
+        UILabel *label = (UILabel *)[customView viewWithTag:1];
+        label.textColor = [UIColor whiteColor];
+        UIImageView *imgView = (UIImageView *)[customView viewWithTag:2];
+        label.text = name;
+        if ([identifier isEqualToString:storyboardID]) {
+            label.textColor = [UIColor menuColorForRow:index];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Regular" size:17.];
+            customView.backgroundColor = [UIColor midnightBlue];
+        }
+        imgView.image = image;
+        imgView.tintColor = [UIColor menuColorForRow:index];
+        REMenuItem *customViewItem = [[REMenuItem alloc] initWithCustomView:customView action:^(REMenuItem *item) {
+            self.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:storyboardID]];
+            for (REMenuItem *menuItem in self.menu.items) {
+                if ([item isEqual:menuItem]) {
+                    ((UILabel *)[menuItem.customView viewWithTag:1]).textColor = [UIColor menuColorForRow:index];
+                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"HelveticaNeue-Regular" size:17.];
+                    menuItem.customView.backgroundColor = [UIColor midnightBlue];
+                }
+                else {
+                    ((UILabel *)[menuItem.customView viewWithTag:1]).textColor = [UIColor whiteColor];
+                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.];
+                    menuItem.customView.backgroundColor = [UIColor clearColor];
+                }
+            }
+        }];
+        [menuItems addObject:customViewItem];
+        index++;
     }
+    self.menu = [[REMenu alloc] initWithItems:[NSArray arrayWithArray:menuItems]];
+    self.menu.borderColor = [UIColor clearColor];
+    self.menu.backgroundColor = [UIColor wetAsphalt];
+    self.menu.highlightedBackgroundColor = [UIColor midnightBlue];
+    
+    self.menu.separatorHeight = 0.;
+    self.menu.itemHeight = 44.f;
+    __weak GlobalNavigationController *weakSelf = self;
+    self.menu.closePreparationBlock = ^{
+        __strong GlobalNavigationController *strongSelf = weakSelf;
+        
+        [strongSelf.view layoutIfNeeded];
+        [UIView animateWithDuration:1.3
+                              delay:0.0
+             usingSpringWithDamping:0.6
+              initialSpringVelocity:-4.0
+                            options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+         {
+             strongSelf.facebookLeftMarginConstraint.constant = -kButtonWidth;
+             strongSelf.twitterRightMarginConstraint.constant = -kButtonWidth;
+             [strongSelf.view layoutIfNeeded];
+         } completion:nil];
+        
+        if (strongSelf.adBanner) {
+            [UIView animateWithDuration:0.3 animations:^{
+                strongSelf.adBanner.alpha = 0.;
+            } completion:^(BOOL finished) {
+                strongSelf.adBanner.hidden = YES;
+            }];
+        }
+    };
+    self.menu.closeCompletionHandler = ^{
+        __strong GlobalNavigationController *strongSelf = weakSelf;
+        strongSelf.buttonFacebook.hidden = YES;
+        strongSelf.buttonTwitter.hidden = YES;
+    };
 }
 
-#pragma mark - Update Bottom Margin Constraints Constant
-
-- (void) updateBottomMarinConstraintsConstant {
+-(void) setupSocialButtons {
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:RemoveAddsInAppIdentifier]) {
-        self.facebookBottomMarginConstraint.constant = -4;
-        self.twitterBottomMarginConstraint.constant = -4;
-    } else {
-        self.facebookBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
-        self.twitterBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
-    }
+    self.buttonFacebook = [[UIButton alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height - kButtonWidth - 4., kButtonWidth, kButtonWidth)];
+    [self.buttonFacebook setImage:[UIImage imageNamed:@"ButtonFacebook"] forState:UIControlStateNormal];
+    [self.buttonFacebook addTarget:self action:@selector(goFacebook) forControlEvents:UIControlEventTouchUpInside];
+    self.buttonTwitter = [[UIButton alloc] initWithFrame:CGRectMake(10+kButtonWidth+10, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height - kButtonWidth - 4., kButtonWidth, kButtonWidth)];
+    [self.buttonTwitter setImage:[UIImage imageNamed:@"ButtonTwitter"] forState:UIControlStateNormal];
+    [self.buttonTwitter addTarget:self action:@selector(goTwitter) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.buttonFacebook.translatesAutoresizingMaskIntoConstraints = NO;
+    self.buttonTwitter.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.view addSubview:self.buttonFacebook];
+    [self.view addSubview:self.buttonTwitter];
+    
+    self.twitterRightMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonTwitter
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.view
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                    multiplier:1.0
+                                                                      constant:-kButtonWidth];
+    [self.view addConstraint:self.twitterRightMarginConstraint];
+    self.facebookLeftMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonFacebook
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.view
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                    multiplier:1.0
+                                                                      constant:-kButtonWidth];
+    [self.view addConstraint:self.facebookLeftMarginConstraint];
+    self.facebookBottomMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonFacebook
+                                                                       attribute:NSLayoutAttributeBottom
+                                                                       relatedBy:NSLayoutRelationEqual
+                                                                          toItem:self.view
+                                                                       attribute:NSLayoutAttributeBottom
+                                                                      multiplier:1.0
+                                                                        constant:0];
+    [self.view addConstraint:self.facebookBottomMarginConstraint];
+    self.twitterBottomMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonTwitter
+                                                                      attribute:NSLayoutAttributeBottom
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:self.view
+                                                                      attribute:NSLayoutAttributeBottom
+                                                                     multiplier:1.0
+                                                                       constant:0];
+    [self.view addConstraint:self.twitterBottomMarginConstraint];
 }
 
 @end
