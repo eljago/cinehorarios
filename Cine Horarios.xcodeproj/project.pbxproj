@@ -97,9 +97,9 @@
 		6E607F2818C10CFD000D85FF /* PromocionGeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E607F0518C10CFD000D85FF /* PromocionGeoViewController.xib */; };
 		6E607F2918C10CFD000D85FF /* RegionesGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E607F0918C10CFD000D85FF /* RegionesGeofaro.plist */; };
 		6E607F2A18C10CFD000D85FF /* ServiciosGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E607F0A18C10CFD000D85FF /* ServiciosGeofaro.plist */; };
-		6E607F2B18C10CFD000D85FF /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E607F0C18C10CFD000D85FF /* libGeofaro.a */; };
 		6E607F2F18C10E7D000D85FF /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607F2E18C10E7D000D85FF /* NSObject+Utilidades.m */; };
 		6E607F3218C10ED5000D85FF /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607F3118C10ED5000D85FF /* UIDevice+Hardware.m */; };
+		6E61E6D418D19BCC00C3594F /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E61E6D318D19BCC00C3594F /* libGeofaro.a */; };
 		6E65BA7618B3EA3A00B16F9A /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E65BA7418B3EA3A00B16F9A /* README.txt */; };
 		6E65BA7918B3EB7600B16F9A /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E65BA7818B3EB7600B16F9A /* VideoCell.m */; };
 		6E65BA7C18B3EC0D00B16F9A /* VideoCell+Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E65BA7B18B3EC0D00B16F9A /* VideoCell+Video.m */; };
@@ -214,6 +214,7 @@
 		3DDB7113170A516B00EC3E51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DDB7114170A516B00EC3E51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3DDD5AEE18020C8700720ABD /* Cinemas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cinemas.plist; sourceTree = "<group>"; };
+		6E2B1ADD18C9725A00A30938 /* libGeofaro.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGeofaro.a; path = ../../../Desktop/libGeofaro.a; sourceTree = "<group>"; };
 		6E2DD19618AC141500FD6386 /* UIViewController+DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DoAlertView.m"; sourceTree = "<group>"; };
 		6E2DD19718AC141500FD6386 /* UIViewController+DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DoAlertView.h"; sourceTree = "<group>"; };
 		6E32857518B7FEA10021CF53 /* GAI+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GAI+CH.h"; sourceTree = "<group>"; };
@@ -298,11 +299,11 @@
 		6E607F0918C10CFD000D85FF /* RegionesGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RegionesGeofaro.plist; sourceTree = "<group>"; };
 		6E607F0A18C10CFD000D85FF /* ServiciosGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServiciosGeofaro.plist; sourceTree = "<group>"; };
 		6E607F0B18C10CFD000D85FF /* UIDevice+HardwareGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HardwareGeo.h"; sourceTree = "<group>"; };
-		6E607F0C18C10CFD000D85FF /* libGeofaro.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGeofaro.a; sourceTree = "<group>"; };
 		6E607F2D18C10E7D000D85FF /* NSObject+Utilidades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Utilidades.h"; sourceTree = "<group>"; };
 		6E607F2E18C10E7D000D85FF /* NSObject+Utilidades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utilidades.m"; sourceTree = "<group>"; };
 		6E607F3018C10ED5000D85FF /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		6E607F3118C10ED5000D85FF /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
+		6E61E6D318D19BCC00C3594F /* libGeofaro.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGeofaro.a; sourceTree = "<group>"; };
 		6E65BA6A18B3EA3A00B16F9A /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		6E65BA6B18B3EA3A00B16F9A /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		6E65BA6C18B3EA3A00B16F9A /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
@@ -401,6 +402,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E61E6D418D19BCC00C3594F /* libGeofaro.a in Frameworks */,
 				6EE703AA18B7BC7A00B5D6F2 /* CoreBluetooth.framework in Frameworks */,
 				6EE703A818B7BC7000B5D6F2 /* Security.framework in Frameworks */,
 				3D29981717E5AA33001A371D /* SystemConfiguration.framework in Frameworks */,
@@ -410,7 +412,6 @@
 				3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */,
 				6EBF1E9F18AB6653007B50A5 /* AVFoundation.framework in Frameworks */,
 				6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */,
-				6E607F2B18C10CFD000D85FF /* libGeofaro.a in Frameworks */,
 				6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */,
 				6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */,
 				6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */,
@@ -428,8 +429,8 @@
 		1414A7F318BF7C32003B5FF2 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				6E61E6D318D19BCC00C3594F /* libGeofaro.a */,
 				6E607EDA18C10CFD000D85FF /* include */,
-				6E607F0C18C10CFD000D85FF /* libGeofaro.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -612,6 +613,7 @@
 		3DDB7103170A516B00EC3E51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E2B1ADD18C9725A00A30938 /* libGeofaro.a */,
 				6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */,
 				6EE703A718B7BC7000B5D6F2 /* Security.framework */,
 				6EBF1EA418AB667A007B50A5 /* StoreKit.framework */,
@@ -1139,8 +1141,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1151,9 +1153,10 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/Cine Horarios/Geofaro/lib\"",
 					"\"$(PROJECT_DIR)/Cine Horarios/\"",
+					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "AF5309C2-7CCF-4DEF-9072-70D7E4952678";
+				PROVISIONING_PROFILE = "3F232490-0D5D-4351-9DA4-94A1B4F87774";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1167,8 +1170,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1179,9 +1182,10 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/Cine Horarios/Geofaro/lib\"",
 					"\"$(PROJECT_DIR)/Cine Horarios/\"",
+					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "AF5309C2-7CCF-4DEF-9072-70D7E4952678";
+				PROVISIONING_PROFILE = "3F232490-0D5D-4351-9DA4-94A1B4F87774";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
