@@ -49,7 +49,6 @@
 #pragma mark - Métodos Útiles
 - (NSArray *)promociones;
 - (void)actualizarServicios:(NSDictionary*)servicios;
-
 #pragma mark - CuponesGeoviewController
 - (UINavigationController *)cuponesGeoNavigationViewController;
 - (UIViewController *)cuponesGeoViewController;

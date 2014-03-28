@@ -13,6 +13,8 @@
 #import "FaroFotoManager.h"
 #import "FarosActualizacionParser.h"
 
+#import "Beacon.h"
+
 @class Faro;
 @protocol FaroDelegate <NSObject>
 @required
@@ -20,7 +22,7 @@
 - (void)faro:(Faro*)faro faroEncontradoNuevo:(NSDictionary*)faroInfo;
 @end
 
-@interface Faro : NSObject <FaroEnvioDataDelegate,CBCentralManagerDelegate,CBPeripheralDelegate>
+@interface Faro : NSObject <FaroEnvioDataDelegate,CBCentralManagerDelegate,CBPeripheralDelegate,BeaconDelegate>
 
 @property (retain) id delegate;
 

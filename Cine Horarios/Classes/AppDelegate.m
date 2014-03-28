@@ -367,20 +367,6 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
     NSLog(@"AppDelegate: faroEncontradoNuevo %@",faroInfo);
 }
 
-- (void)geofaro:(Geofaro *)geofaro faroEncontradoPromocionViewController:(UIViewController *)promocionViewController
-{
-    NSLog(@"AppDelegate: faroEncontradoPromocionViewController");
-    UIViewController *viewController = self.window.rootViewController.presentedViewController;
-    if (viewController) {
-        [viewController presentViewController:promocionViewController animated:YES completion:^{
-            //[[UIApplication sharedApplication] setStatusBarHidden:YES];
-        }];
-    }else{
-        [self.window.rootViewController presentViewController:promocionViewController animated:YES completion:^{
-            //[[UIApplication sharedApplication] setStatusBarHidden:YES];
-        }];
-    }
-}
 
 
 #endif

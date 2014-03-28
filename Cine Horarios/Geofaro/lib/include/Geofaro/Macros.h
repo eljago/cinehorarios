@@ -7,7 +7,7 @@
 //
 
 
-#define DebugStatus 0  // {1: YES, otro valor NO }
+#define DebugStatus 1  // {1: YES, otro valor NO }
 
 
 
