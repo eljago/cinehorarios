@@ -143,6 +143,7 @@
     movieVC.movieID = basicMovie.movieID;
     movieVC.movieName = basicMovie.name;
     movieVC.portraitImageURL = basicMovie.portraitImageURL;
+    movieVC.coverImageURL = basicMovie.imageURL;
 }
 
 @end

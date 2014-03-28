@@ -51,7 +51,7 @@
 // DACircularProgress
 #define COCOAPODS_POD_AVAILABLE_DACircularProgress
 #define COCOAPODS_VERSION_MAJOR_DACircularProgress 2
-#define COCOAPODS_VERSION_MINOR_DACircularProgress 1
+#define COCOAPODS_VERSION_MINOR_DACircularProgress 2
 #define COCOAPODS_VERSION_PATCH_DACircularProgress 0
 
 // GoogleAnalytics-iOS-SDK
@@ -69,8 +69,8 @@
 // MWPhotoBrowser
 #define COCOAPODS_POD_AVAILABLE_MWPhotoBrowser
 #define COCOAPODS_VERSION_MAJOR_MWPhotoBrowser 1
-#define COCOAPODS_VERSION_MINOR_MWPhotoBrowser 2
-#define COCOAPODS_VERSION_PATCH_MWPhotoBrowser 1
+#define COCOAPODS_VERSION_MINOR_MWPhotoBrowser 3
+#define COCOAPODS_VERSION_PATCH_MWPhotoBrowser 2
 
 // Mantle
 #define COCOAPODS_POD_AVAILABLE_Mantle
@@ -94,17 +94,17 @@
 #define COCOAPODS_POD_AVAILABLE_REMenu
 #define COCOAPODS_VERSION_MAJOR_REMenu 1
 #define COCOAPODS_VERSION_MINOR_REMenu 8
-#define COCOAPODS_VERSION_PATCH_REMenu 1
+#define COCOAPODS_VERSION_PATCH_REMenu 3
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage 5
-#define COCOAPODS_VERSION_PATCH_SDWebImage 2
+#define COCOAPODS_VERSION_PATCH_SDWebImage 4
 
 // SDWebImage/Core
 #define COCOAPODS_POD_AVAILABLE_SDWebImage_Core
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 5
-#define COCOAPODS_VERSION_PATCH_SDWebImage_Core 2
+#define COCOAPODS_VERSION_PATCH_SDWebImage_Core 4
 

@@ -17,39 +17,39 @@ PODS:
   - AFNetworking/Serialization (2.1.0)
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
-  - DACircularProgress (2.1.0)
+  - DACircularProgress (2.2.0)
   - GoogleAnalytics-iOS-SDK (3.0.3)
   - Mantle (1.3.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.3.1)
   - MBProgressHUD (0.8)
-  - MWPhotoBrowser (1.2.1):
+  - MWPhotoBrowser (1.3.2):
     - DACircularProgress
-    - MBProgressHUD
+    - MBProgressHUD (~> 0.8)
     - PSTCollectionView (~> 1.2)
-    - SDWebImage (~> 3.5)
+    - SDWebImage (~> 3.5.4)
   - PSTCollectionView (1.2.0)
-  - REMenu (1.8.1)
-  - SDWebImage (3.5.2):
+  - REMenu (1.8.3)
+  - SDWebImage (3.5.4):
     - SDWebImage/Core
-  - SDWebImage/Core (3.5.2)
+  - SDWebImage/Core (3.5.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - GoogleAnalytics-iOS-SDK
   - Mantle
-  - MWPhotoBrowser
-  - REMenu (~> 1.8)
+  - MWPhotoBrowser (~> 1.3.2)
+  - REMenu (~> 1.8.3)
 
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
-  DACircularProgress: 8c8f20c8dffdd647fbf570ddecbc2b1b59da5888
+  DACircularProgress: 659d6fd11b5fc099c13ba9350239d9dca324916a
   GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
   Mantle: abc3b0c81bc66eb624cf9cebb8640e377d5a44ae
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  MWPhotoBrowser: cd204e6b02686f6fae5034932ad8382f9963f2fc
+  MWPhotoBrowser: 0a0e86e2cfc4195d79386dce623da7bbfe3c50e1
   PSTCollectionView: fb2ad2790c6efa306b2caf10315b2c1464d1f5c6
-  REMenu: e8ba5e8592c07e35d6ba43180acb20090f0bc5c9
-  SDWebImage: fe7ce01ae4e0a884d168f59c9dd82d35baf8429e
+  REMenu: 527cca0af74cd247a7e29e6e46d92506492dd85b
+  SDWebImage: 1a62010700adbba823b621fc217906739dbf6aa5
 
 COCOAPODS: 0.29.0

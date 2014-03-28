@@ -17,8 +17,7 @@
                    withString:(NSString *)retinaString {
     
     NSMutableArray *imageArray = (NSMutableArray *)[imageURL componentsSeparatedByString:@"/"];
-    NSString *newImageURL;
-    newImageURL = [retinaString stringByAppendingString:[imageArray lastObject]];
+    NSString *newImageURL = [retinaString stringByAppendingString:[imageArray lastObject]];
     imageArray[imageArray.count-1] = newImageURL;
     
     return [imageArray componentsJoinedByString:@"/"];
@@ -31,19 +30,19 @@
             imagePath = [self prefixImageURL:imageURL withString:@"smaller_"];
             break;
         case MovieImageTypePortrait:
-            imagePath = [self prefixImageURL:imageURL withString:@""];
+            imagePath = imageURL;
             break;
         case MovieImageTypeMovieImageCover:
             imagePath = [self prefixImageURL:imageURL withString:@"smaller_"];
             break;
         case MovieImageTypeMovieImageFullScreenRetina:
-            imagePath = [self prefixImageURL:imageURL withString:@""];
+            imagePath = imageURL;
             break;
         case MovieImageTypeMovieImageFullScreenNoRetina:
             imagePath = [self prefixImageURL:imageURL withString:@"small_"];
             break;
         case MovieImageTypeCastFullScreenRetina:
-            imagePath = [self prefixImageURL:imageURL withString:@""];
+            imagePath = imageURL;
             break;
         case MovieImageTypeCastFullScreenNoRetina:
             imagePath = [self prefixImageURL:imageURL withString:@"small_"];
@@ -56,7 +55,12 @@
             return nil;
             break;
     }
-    return [kCineHorariosAPIBaseURLString stringByAppendingPathComponent:imagePath];
+    if ([imagePath hasPrefix:@"/"]) {
+        return [kCineHorariosAPIBaseURLString stringByAppendingPathComponent:imagePath];
+    }
+    else {
+        return imagePath;
+    }
 }
 - (NSURL *) nsurlWithImagePath:(NSString *)imageURL imageType:(MovieImageType)movieImageType {
     return [NSURL URLWithString:[UIImageView imageURLForPath:imageURL imageType:movieImageType]];

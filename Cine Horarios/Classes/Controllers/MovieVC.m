@@ -1,4 +1,4 @@
-//
+
 //  MovieVCViewController.m
 //  Cine Horarios
 //
@@ -33,22 +33,21 @@
 #import "UIViewController+DoAlertView.h"
 #import "NSObject+Utilidades.h"
 
+#import "MovieRowOneCell.h"
+#import "MovieRowOneCell+Movie.h"
+
 @interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate>
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintTextViewSynopsisHeight;
 @property (nonatomic, strong) Movie *movie;
+
+@property (nonatomic, weak) IBOutlet MovieRowOneCell *movieRowOneCell;
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionViewActors;
 
-@property (nonatomic, weak) IBOutlet UIImageView *portraitImageView;
-@property (nonatomic, strong) MyMultilineLabel *labelName;
-@property (nonatomic, strong) MyMultilineLabel *labelNameOriginal;
-@property (nonatomic, strong) MyMultilineLabel *labelDurationGenres;
-@property (nonatomic, strong) UIView *viewOverPortrait;
 @property (nonatomic, weak) IBOutlet UILabel *labelDirector;
 
-@property (nonatomic, weak) IBOutlet UIImageView *coverImageView;
-@property (nonatomic, weak) IBOutlet UITextView *textViewSynopsis;
 @property (nonatomic, weak) IBOutlet UILabel *labelScoreMetacritic;
 @property (nonatomic, weak) IBOutlet UILabel *labelScoreImdb;
 @property (nonatomic, weak) IBOutlet UILabel *labelScoreRottenTomatoes;
@@ -85,8 +84,6 @@
     topView.tag = 999;
     [self.view addSubview:topView];
     
-    [self setupViews];
-    
     // Defining and setting fonts
     [self setFontsWithPreferedContentSizeCategory: [[UIApplication sharedApplication] preferredContentSizeCategory]];
     
@@ -103,6 +100,8 @@
     [RFRateMe showRateAlert];
     
     [self getMovieForceRemote:NO];
+    
+    [self.movieRowOneCell configurePortraitWithURL:self.portraitImageURL coverWithURL:self.coverImageURL];
 }
 
 -(void) setupDataSources {
@@ -116,8 +115,6 @@
     }];
     self.collectionViewActors.dataSource = self.collectionViewCastDataSource;
 }
-
-#pragma mark - MovieVC
 
 #pragma mark Row & Height Calculators
 
@@ -212,55 +209,7 @@
 
 - (void) setupTableViews {
     
-    // PORTRAIT IMAGE
-    if (self.portraitImageURL) {
-        [self.portraitImageView setImageWithStringURL:self.portraitImageURL movieImageType:MovieImageTypePortrait placeholderImage:nil];
-    }
-    
-    // NAME AND YEAR
-    if (self.movie.name) {
-        self.labelName.text = self.movie.name;
-    }
-    if (self.movie.year){
-        self.labelName.text = [self.labelName.text stringByAppendingFormat:@" (%ld)",[self.movie.year longValue]];
-    }
-    if (self.movie.nameOriginal && ![self.movie.nameOriginal isEqualToString:@""]){
-        self.labelNameOriginal.text = [NSString stringWithFormat:@"\"%@\"",self.movie.nameOriginal];
-    }
-    if (self.movie.duration) {
-        self.labelDurationGenres.text = [NSString stringWithFormat:@"%ld min",[self.movie.duration longValue]];
-    }
-    if (self.movie.duration && self.movie.genres && ![self.movie.genres isEqualToString:@""]) {
-        self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingString:@" - "];
-    }
-    if (self.movie.genres) {
-        self.labelDurationGenres.text = [self.labelDurationGenres.text stringByAppendingFormat:@"%@",self.movie.genres];
-    }
-    
-    if (![self esiOS71]) {
-        if (self.movie.imageURL) {
-            [self.coverImageView setImageWithStringURL:self.movie.imageURL movieImageType:MovieImageTypeCover];
-        }
-    }
-    else {
-        [[self.coverImageView.superview viewWithTag:51] setHidden:YES];
-        [self.coverImageView setHidden:YES];
-    }
-    
-    // SYNOPSIS
-    if (self.movie.information) {
-        self.textViewSynopsis.hidden = NO;
-        NSDictionary* attrs = @{NSFontAttributeName: self.normalFont};
-        
-        NSAttributedString* attrString = [[NSAttributedString alloc] initWithString:self.movie.information
-                                                                         attributes:attrs];
-        
-        self.textViewSynopsis.attributedText = attrString;
-        self.textViewSynopsis.contentOffset = CGPointMake(0, -8);
-    }
-    else {
-        self.textViewSynopsis.hidden = YES;
-    }
+    [self.movieRowOneCell configureForMovie:self.movie];
     
     if (self.cast.directors.count != 0) {
         Person *director = [self.cast.directors firstObject];
@@ -334,31 +283,20 @@
 #pragma mark Delegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 4) {
-        if (indexPath.row == 0){
-            if (!self.movie.metacriticURL || [self.movie.metacriticURL isEqualToString:@""]) {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            CGSize size = [self.movieRowOneCell.textViewSynopsis sizeThatFits:CGSizeMake(self.movieRowOneCell.textViewSynopsis.frame.size.width, CGFLOAT_MAX)];
+            return self.movieRowOneCell.textViewSynopsis.frame.origin.y + size.height + 10;
+        }
+        else if (indexPath.row == 1) {
+            if (self.movie.videos.count == 0) {
                 return 0.;
             }
         }
-        else if(indexPath.row == 1){
-            if (!self.movie.imdbCode || [self.movie.imdbCode isEqualToString:@""]) {
+        else if (indexPath.row == 2) {
+            if (!self.movie.hasFunctions) {
                 return 0.;
             }
-        }
-        else if (indexPath.row == 2){
-            if (!self.movie.rottenTomatoesURL || [self.movie.rottenTomatoesURL isEqualToString:@""]) {
-                return 0.;
-            }
-        }
-    }
-    else if (indexPath.section == 3) {
-        if (self.movie.images.count == 0) {
-            return 0.;
-        }
-    }
-    else if (indexPath.section == 2) {
-        if (self.movie.people.count == 0) {
-            return 0.;
         }
     }
     else if (indexPath.section == 1) {
@@ -382,53 +320,29 @@
             return totalHeight;
         }
     }
-    else if (indexPath.section == 0) {
-        if (indexPath.row == 1) {
-            
-            CGFloat totalHeight = 0;
-            
-            if (self.movie.information) {
-                
-                NSDictionary* attrs = @{NSFontAttributeName: self.normalFont};
-                CGSize textViewSizeMax = CGSizeMake(self.textViewSynopsis.frame.size.width - 7, FLT_MAX);
-                
-                if (![self esiOS71]) {
-                    
-                    NSLayoutManager *layoutManager = [NSLayoutManager new];
-                    NSTextContainer *container = [[NSTextContainer alloc] initWithSize: textViewSizeMax];
-                    UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.coverImageView.frame.size.width+10, self.coverImageView.frame.size.height+10)];
-                    container.exclusionPaths = @[exclusionPath];
-                    
-                    NSTextStorage *txtStorage = [[NSTextStorage alloc] initWithString:self.movie.information attributes:attrs];
-                    [txtStorage addLayoutManager:layoutManager];
-                    [layoutManager addTextContainer:container];
-                    
-                    totalHeight = self.textViewSynopsis.frame.origin.y + [layoutManager boundingRectForGlyphRange:[layoutManager glyphRangeForTextContainer:container] inTextContainer:container].size.height+15.;
-                }
-                else {
-                    CGFloat adj = ceilf(self.textViewSynopsis.font.ascender - self.textViewSynopsis.font.capHeight);
-                    CGFloat insets = self.textViewSynopsis.textContainerInset.top + self.textViewSynopsis.textContainerInset.bottom;
-                    
-                    CGRect nameLabelRect = [self.movie.information boundingRectWithSize: textViewSizeMax
-                                                                                options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                                                             attributes: [NSDictionary dictionaryWithObject:self.normalFont forKey:NSFontAttributeName]
-                                                                                context: nil];
-                    
-                    CGFloat textViewHeight = nameLabelRect.size.height + adj + insets;
-                    totalHeight = self.textViewSynopsis.frame.origin.y + textViewHeight + 10.f;
-                    
-                    return totalHeight;
-                }
-            }
-            return MAX(totalHeight, 154.);
+    else if (indexPath.section == 2) {
+        if (self.movie.people.count == 0) {
+            return 0.;
         }
-        else if (indexPath.row == 2) {
-            if (self.movie.videos.count == 0) {
+    }
+    else if (indexPath.section == 3) {
+        if (self.movie.images.count == 0) {
+            return 0.;
+        }
+    }
+    else if (indexPath.section == 4) {
+        if (indexPath.row == 0){
+            if (!self.movie.metacriticURL || [self.movie.metacriticURL isEqualToString:@""]) {
                 return 0.;
             }
         }
-        else if (indexPath.row == 3) {
-            if (!self.movie.hasFunctions) {
+        else if(indexPath.row == 1){
+            if (!self.movie.imdbCode || [self.movie.imdbCode isEqualToString:@""]) {
+                return 0.;
+            }
+        }
+        else if (indexPath.row == 2){
+            if (!self.movie.rottenTomatoesURL || [self.movie.rottenTomatoesURL isEqualToString:@""]) {
                 return 0.;
             }
         }
@@ -477,7 +391,7 @@
     return [UIView headerViewForText:text font:self.bigBoldFont height:height];
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ((indexPath.section == 0 && indexPath.row == 2) || (indexPath.section == 4 && indexPath.row == 1)) {
+    if ((indexPath.section == 0 && indexPath.row == 1) || (indexPath.section == 4 && indexPath.row == 1)) {
         cell.backgroundColor = [UIColor lighterGrayColor];
     }
     else {
@@ -628,10 +542,11 @@
     self.smallerFont = [UIFont getSizeForCHFont:CHFontStyleSmaller forPreferedContentSize: preferredContentSizeCategory];
     self.normalFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize: preferredContentSizeCategory];
     self.bigBoldFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize: preferredContentSizeCategory];
-    self.labelName.font = self.bigBoldFont;
-    self.labelNameOriginal.font = self.normalFont;
-    self.labelDurationGenres.font = self.smallerFont;
-    self.textViewSynopsis.font = self.normalFont;
+    self.movieRowOneCell.labelName.font = self.bigBoldFont;
+    self.movieRowOneCell.labelNameOriginal.font = self.normalFont;
+    self.movieRowOneCell.labelDurationGenres.font = self.smallerFont;
+//    self.movieRowOneCell.textViewSynopsis.font = self.normalFont;
+//    self.movieRowOneCell.textViewSynopsis.font = [UIFont preferredFontForTextStyle:@"HelveticaNeue"];
     self.labelScoreImdb.font = self.normalFont;
     self.labelScoreMetacritic.font = self.normalFont;
     self.labelScoreRottenTomatoes.font = self.normalFont;
@@ -647,80 +562,5 @@
     [self.tableView reloadData];
     [self.collectionViewActors reloadData];
 }
-
-#pragma mark - Setup Views
--(void) setupViews{
-    
-    if (![self esiOS71]) {
-        UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(-4.f, 0.f, self.coverImageView.frame.size.width+14.f, self.coverImageView.frame.size.height+10.f)];
-        self.textViewSynopsis.textContainer.exclusionPaths = @[exclusionPath];
-    }
-    
-    self.viewOverPortrait = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
-    self.viewOverPortrait.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    self.labelName = [[MyMultilineLabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
-    self.labelName.textColor = [UIColor whiteColor];
-    self.labelNameOriginal = [[MyMultilineLabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
-    self.labelNameOriginal.textColor = [UIColor whiteColor];
-    self.labelDurationGenres = [[MyMultilineLabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
-    self.labelDurationGenres.textColor = [UIColor whiteColor];
-    
-    UIView *gradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = gradientView.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor clearColor] CGColor], (id)[[UIColor colorWithWhite:0.0 alpha:0.5] CGColor], nil];
-    [gradientView.layer insertSublayer:gradient atIndex:0];
-    
-    
-    NSDictionary *viewsDictionary = @{
-                                      @"name": self.labelName,
-                                      @"nameOriginal": self.labelNameOriginal,
-                                      @"durationGenres": self.labelDurationGenres,
-                                      @"viewOverPortrait": self.viewOverPortrait,
-                                      @"gradientView": gradientView
-                                      };
-    for (UIView *view in [viewsDictionary allValues]) {
-        view.translatesAutoresizingMaskIntoConstraints = NO;
-    }
-    
-    [self.portraitImageView.superview addSubview:self.viewOverPortrait];
-    [self.portraitImageView.superview addSubview:gradientView];
-    [self.viewOverPortrait addSubview:self.labelName];
-    [self.viewOverPortrait addSubview:self.labelNameOriginal];
-    [self.viewOverPortrait addSubview:self.labelDurationGenres];
-    
-    [self.portraitImageView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[viewOverPortrait]|"
-                                                                                             options:0
-                                                                                             metrics:nil
-                                                                                               views:viewsDictionary]];
-    [self.portraitImageView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[gradientView]|"
-                                                                                             options:0
-                                                                                             metrics:nil
-                                                                                               views:viewsDictionary]];
-    [self.portraitImageView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[gradientView]-(60)-[viewOverPortrait]-(-1)-|"
-                                                                                             options:0
-                                                                                             metrics:nil
-                                                                                               views:viewsDictionary]];
-    
-    
-    [self.viewOverPortrait addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-2-[name]-1-[nameOriginal]-1-[durationGenres]-3-|"
-                                                                                  options:NSLayoutFormatAlignAllLeft
-                                                                                  metrics:nil
-                                                                                    views:viewsDictionary]];
-    [self.viewOverPortrait addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[name]|"
-                                                                                  options:0
-                                                                                  metrics:nil
-                                                                                    views:viewsDictionary]];
-    [self.viewOverPortrait addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[nameOriginal]|"
-                                                                                  options:0
-                                                                                  metrics:nil
-                                                                                    views:viewsDictionary]];
-    [self.viewOverPortrait addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[durationGenres]|"
-                                                                                  options:0
-                                                                                  metrics:nil
-                                                                                    views:viewsDictionary]];
-    
-}
-
 
 @end

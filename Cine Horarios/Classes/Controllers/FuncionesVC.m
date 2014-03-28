@@ -224,6 +224,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     movieVC.movieID = function.movieID;
     movieVC.movieName = function.name;
     movieVC.portraitImageURL = function.portraitImageURL;
+    movieVC.coverImageURL = function.imageURL;
 }
 
 @end
