@@ -18,12 +18,10 @@
 
 @interface MovieFunctionsVC ()
 @property (nonatomic, strong) NSArray *theaterFuctions;
+@property (nonatomic, strong) UIFont *tableFont;
 @end
 
-@implementation MovieFunctionsVC {
-    UIFont *headerFont;
-    UIFont *tableFont;
-}
+@implementation MovieFunctionsVC
 
 - (void)viewDidLoad
 {
@@ -33,8 +31,7 @@
     
     [GAI trackPage:@"PELICULA FUNCIONES"];
     
-    headerFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
@@ -91,8 +88,7 @@
 }
 #pragma mark - Content Size Changed
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    headerFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     [self.tableView reloadData];
 }
 
@@ -113,11 +109,11 @@
         
         CGRect typesLabelRect = [function.functionTypes boundingRectWithSize: size
                                                              options: NSStringDrawingUsesLineFragmentOrigin
-                                                          attributes: [NSDictionary dictionaryWithObject:tableFont forKey:NSFontAttributeName]
+                                                          attributes: [NSDictionary dictionaryWithObject:self.tableFont forKey:NSFontAttributeName]
                                                              context: nil];
         CGRect showtimesLabelRect = [function.showtimes boundingRectWithSize: size
                                                                      options: NSStringDrawingUsesLineFragmentOrigin
-                                                                  attributes: [NSDictionary dictionaryWithObject:tableFont forKey:NSFontAttributeName]
+                                                                  attributes: [NSDictionary dictionaryWithObject:self.tableFont forKey:NSFontAttributeName]
                                                                      context: nil];
         CGFloat typesHeight = typesLabelRect.size.height;
         if (!function.functionTypes || [function.functionTypes isEqualToString:@""]) {
@@ -155,8 +151,8 @@
     UILabel *functionShowtimes = (UILabel *)[cell viewWithTag:2];
     functionTypes.text = function.functionTypes;
     functionShowtimes.text = function.showtimes;
-    functionTypes.font = tableFont;
-    functionShowtimes.font = tableFont;
+    functionTypes.font = self.tableFont;
+    functionShowtimes.font = self.tableFont;
     
     return cell;
 }
@@ -164,15 +160,15 @@
     
     Theater *theater = self.theaterFuctions[section];
     
-    return [UIView heightForHeaderViewWithText:theater.name font:headerFont];
+    return [UIView heightForHeaderViewWithText:theater.name];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     Theater *theater = self.theaterFuctions[section];
-    NSInteger height = [UIView heightForHeaderViewWithText:theater.name font:headerFont];
+    NSInteger height = [UIView heightForHeaderViewWithText:theater.name];
     
-    return [UIView headerViewForText:theater.name font:headerFont height:height];
+    return [UIView headerViewForText:theater.name height:height];
 }
 
 @end

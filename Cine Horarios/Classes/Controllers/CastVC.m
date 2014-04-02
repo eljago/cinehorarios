@@ -108,8 +108,8 @@
             text = @"";
         }
     }
-    NSInteger height = [UIView heightForHeaderViewWithText:text font:self.fontName];
-    return [UIView headerViewForText:text font:self.fontName height:height];
+    NSInteger height = [UIView heightForHeaderViewWithText:text];
+    return [UIView headerViewForText:text height:height];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -182,7 +182,7 @@
         return 0.01;
     }
     else {
-        return [UIView heightForHeaderViewWithText:@"Javier" font:self.fontName];
+        return [UIView heightForHeaderViewWithText:@"Javier"];
     }
 }
 

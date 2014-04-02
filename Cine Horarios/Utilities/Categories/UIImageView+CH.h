@@ -28,5 +28,8 @@ typedef enum {
               placeholderImage:(UIImage *)placeholderImage;
 - (void) setImageWithStringURL:(NSString *)imageURL
                 movieImageType:(MovieImageType) movieImageType;
+- (void) setImageWithStringURL:(NSString *)imageURL
+                movieImageType:(MovieImageType) movieImageType
+                   placeholder: (UIImage *)placeholder;
 
 @end

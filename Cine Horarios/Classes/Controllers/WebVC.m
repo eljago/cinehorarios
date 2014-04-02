@@ -42,10 +42,12 @@
     [self loadPage:nil];
 }
 
--(void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
+
 - (void) loadPage:(id)sender{
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
 }
@@ -80,6 +82,7 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
 }
+
 #pragma mark - Interface Orientation
 
 -(NSUInteger)supportedInterfaceOrientations{

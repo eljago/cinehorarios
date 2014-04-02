@@ -8,8 +8,8 @@
 
 #import "UIFont+CH.h"
 
-NSString *const kHelveticaNeue = @"HelveticaNeue-Light";
-NSString *const kHelveticaNeueBold = @"HelveticaNeue";
+NSString *const kHelveticaNeue = @"Avenir-Book";
+NSString *const kHelveticaNeueBold = @"Avenir-Medium";
 
 @implementation UIFont (CH)
 
@@ -19,69 +19,69 @@ NSString *const kHelveticaNeueBold = @"HelveticaNeue";
     
     switch (cHFontStyle) {
         case CHFontStyleSmaller:
-            fontSize = 15;
+            fontSize = 15.;
             fontName = kHelveticaNeue;
             break;
         case CHFontStyleSmall:
-            fontSize = 16;
+            fontSize = 16.;
             fontName = kHelveticaNeue;
             break;
         case CHFontStyleNormal:
-            fontSize = 17;
+            fontSize = 17.;
             fontName = kHelveticaNeue;
             break;
         case CHFontStyleBig:
-            fontSize = 18;
+            fontSize = 18.;
             fontName = kHelveticaNeue;
             break;
         case CHFontStyleBigger:
-            fontSize = 19;
+            fontSize = 19.;
             fontName = kHelveticaNeue;
             break;
         case CHFontStyleSmallerBold:
-            fontSize = 15;
+            fontSize = 15.;
             fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleSmallBold:
-            fontSize = 16;
+            fontSize = 16.;
             fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleNormalBold:
-            fontSize = 17;
+            fontSize = 17.;
             fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleBigBold:
-            fontSize = 18;
+            fontSize = 18.;
             fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleBiggerBold:
-            fontSize = 19;
+            fontSize = 19.;
             fontName = kHelveticaNeueBold;
             break;
         default:
-            fontSize = 17;
+            fontSize = 17.;
             break;
     }
     
     if ([preferedContentSize isEqualToString:UIContentSizeCategoryExtraSmall]) {
-        fontSize -= 3;
+        fontSize -= 3.;
     }
     else if ([preferedContentSize isEqualToString:UIContentSizeCategorySmall]) {
-        fontSize -= 2;
+        fontSize -= 2.;
     }
     else if ([preferedContentSize isEqualToString:UIContentSizeCategoryMedium]) {
-        fontSize -= 1;
+        fontSize -= 1.;
     }
     else if ([preferedContentSize isEqualToString:UIContentSizeCategoryExtraLarge]) {
-        fontSize += 1;
+        fontSize += 1.;
     }
     else if ([preferedContentSize isEqualToString:UIContentSizeCategoryExtraExtraLarge]) {
-        fontSize += 2;
+        fontSize += 2.;
     }
     else if ([preferedContentSize isEqualToString:UIContentSizeCategoryExtraExtraExtraLarge]) {
-        fontSize += 3;
+        fontSize += 3.;
     }
-    return [self fontWithName:fontName size:fontSize];
+    return [UIFont fontWithName:fontName size:fontSize];
 }
 
 @end

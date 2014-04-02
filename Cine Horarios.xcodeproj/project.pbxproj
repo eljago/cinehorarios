@@ -59,12 +59,8 @@
 		6EC005F918DC7949003DECC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC005F818DC7949003DECC8 /* AppDelegate.m */; };
 		6EC0060518DC7A19003DECC8 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC0060318DC7A19003DECC8 /* libGoogleAdMobAds.a */; };
 		6EC0060618DC7A19003DECC8 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0060418DC7A19003DECC8 /* README.txt */; };
-		6EC0060D18DC7A72003DECC8 /* IAPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0060818DC7A72003DECC8 /* IAPConstants.m */; };
-		6EC0060E18DC7A72003DECC8 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0060A18DC7A72003DECC8 /* IAPHelper.m */; };
-		6EC0060F18DC7A72003DECC8 /* RageIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0060C18DC7A72003DECC8 /* RageIAPHelper.m */; };
 		6EC0061518DC7AE1003DECC8 /* CineHorariosApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0061218DC7AE1003DECC8 /* CineHorariosApiClient.m */; };
 		6EC0061618DC7AE1003DECC8 /* FileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0061418DC7AE1003DECC8 /* FileHandler.m */; };
-		6EC0061918DC7B1C003DECC8 /* MyMultilineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0061818DC7B1C003DECC8 /* MyMultilineLabel.m */; };
 		6EC0062E18DC7B77003DECC8 /* BasicCell+Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0061B18DC7B77003DECC8 /* BasicCell+Theater.m */; };
 		6EC0062F18DC7B77003DECC8 /* BillboardCell+BasicMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0061D18DC7B77003DECC8 /* BillboardCell+BasicMovie.m */; };
 		6EC0063018DC7B77003DECC8 /* CastActorCell+Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0061F18DC7B77003DECC8 /* CastActorCell+Person.m */; };
@@ -148,8 +144,6 @@
 		6EC0073E18DC7EE1003DECC8 /* UIImageView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0073418DC7EE1003DECC8 /* UIImageView+CH.m */; };
 		6EC0073F18DC7EE1003DECC8 /* UIView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0073618DC7EE1003DECC8 /* UIView+CH.m */; };
 		6EC0074018DC7EE1003DECC8 /* UIViewController+DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */; };
-		6EC7BAF218E0F64B00BB8133 /* MovieRowOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7BAF118E0F64B00BB8133 /* MovieRowOneCell.m */; };
-		6EC7BAF518E0FADB00BB8133 /* MovieRowOneCell+Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7BAF418E0FADB00BB8133 /* MovieRowOneCell+Movie.m */; };
 		6EE703A818B7BC7000B5D6F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A718B7BC7000B5D6F2 /* Security.framework */; };
 		6EE703AA18B7BC7A00B5D6F2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
@@ -250,8 +244,6 @@
 		6EC0061218DC7AE1003DECC8 /* CineHorariosApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CineHorariosApiClient.m; path = DataFetch/CineHorariosApiClient.m; sourceTree = "<group>"; };
 		6EC0061318DC7AE1003DECC8 /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileHandler.h; path = DataFetch/FileHandler.h; sourceTree = "<group>"; };
 		6EC0061418DC7AE1003DECC8 /* FileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileHandler.m; path = DataFetch/FileHandler.m; sourceTree = "<group>"; };
-		6EC0061718DC7B1C003DECC8 /* MyMultilineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMultilineLabel.h; path = Classes/Views/MyMultilineLabel.h; sourceTree = "<group>"; };
-		6EC0061818DC7B1C003DECC8 /* MyMultilineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMultilineLabel.m; path = Classes/Views/MyMultilineLabel.m; sourceTree = "<group>"; };
 		6EC0061A18DC7B77003DECC8 /* BasicCell+Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BasicCell+Theater.h"; path = "Classes/Views/CellCategories/BasicCell+Theater.h"; sourceTree = "<group>"; };
 		6EC0061B18DC7B77003DECC8 /* BasicCell+Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BasicCell+Theater.m"; path = "Classes/Views/CellCategories/BasicCell+Theater.m"; sourceTree = "<group>"; };
 		6EC0061C18DC7B77003DECC8 /* BillboardCell+BasicMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BillboardCell+BasicMovie.h"; path = "Classes/Views/CellCategories/BillboardCell+BasicMovie.h"; sourceTree = "<group>"; };
@@ -402,10 +394,6 @@
 		6EC0073618DC7EE1003DECC8 /* UIView+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+CH.m"; path = "Utilities/Categories/UIView+CH.m"; sourceTree = "<group>"; };
 		6EC0073718DC7EE1003DECC8 /* UIViewController+DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+DoAlertView.h"; path = "Utilities/Categories/UIViewController+DoAlertView.h"; sourceTree = "<group>"; };
 		6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+DoAlertView.m"; path = "Utilities/Categories/UIViewController+DoAlertView.m"; sourceTree = "<group>"; };
-		6EC7BAF018E0F64B00BB8133 /* MovieRowOneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieRowOneCell.h; path = Classes/Views/Cells/MovieRowOneCell.h; sourceTree = "<group>"; };
-		6EC7BAF118E0F64B00BB8133 /* MovieRowOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieRowOneCell.m; path = Classes/Views/Cells/MovieRowOneCell.m; sourceTree = "<group>"; };
-		6EC7BAF318E0FADB00BB8133 /* MovieRowOneCell+Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MovieRowOneCell+Movie.h"; sourceTree = "<group>"; };
-		6EC7BAF418E0FADB00BB8133 /* MovieRowOneCell+Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MovieRowOneCell+Movie.m"; sourceTree = "<group>"; };
 		6EE703A718B7BC7000B5D6F2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -584,8 +572,6 @@
 				6EC0072318DC7E84003DECC8 /* Storyboard.storyboard */,
 				6EC0065618DC7BDE003DECC8 /* Nibs */,
 				6E88F27F189AFEEE00927222 /* CellCategories */,
-				6EC0061718DC7B1C003DECC8 /* MyMultilineLabel.h */,
-				6EC0061818DC7B1C003DECC8 /* MyMultilineLabel.m */,
 				6E56CC12188BC6DB000AB809 /* Cells */,
 			);
 			name = Views;
@@ -749,8 +735,6 @@
 		6E56CC12188BC6DB000AB809 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				6EC7BAF018E0F64B00BB8133 /* MovieRowOneCell.h */,
-				6EC7BAF118E0F64B00BB8133 /* MovieRowOneCell.m */,
 				6EC0063818DC7BC6003DECC8 /* BasicCell.h */,
 				6EC0063918DC7BC6003DECC8 /* BasicCell.m */,
 				6EC0063A18DC7BC6003DECC8 /* BillboardCell.h */,
@@ -822,8 +806,6 @@
 				6EC0062B18DC7B77003DECC8 /* MovieImageCell+MovieImage.m */,
 				6EC0062C18DC7B77003DECC8 /* VideoCell+Video.h */,
 				6EC0062D18DC7B77003DECC8 /* VideoCell+Video.m */,
-				6EC7BAF318E0FADB00BB8133 /* MovieRowOneCell+Movie.h */,
-				6EC7BAF418E0FADB00BB8133 /* MovieRowOneCell+Movie.m */,
 			);
 			name = CellCategories;
 			sourceTree = "<group>";
@@ -1061,7 +1043,6 @@
 				6E607F2F18C10E7D000D85FF /* NSObject+Utilidades.m in Sources */,
 				6EC0071B18DC7E3C003DECC8 /* Cinema.m in Sources */,
 				6EC0065018DC7BC6003DECC8 /* CinemaCell.m in Sources */,
-				6EC0060F18DC7A72003DECC8 /* RageIAPHelper.m in Sources */,
 				6EC005F918DC7949003DECC8 /* AppDelegate.m in Sources */,
 				6EC0073F18DC7EE1003DECC8 /* UIView+CH.m in Sources */,
 				6EC0071C18DC7E3C003DECC8 /* Function.m in Sources */,
@@ -1090,7 +1071,6 @@
 				6EC0063218DC7B77003DECC8 /* CinemaCell+Cinema.m in Sources */,
 				6EC0069518DC7CBB003DECC8 /* MovieVC.m in Sources */,
 				6EC0071E18DC7E3C003DECC8 /* MTLModelPersistable.m in Sources */,
-				6EC7BAF518E0FADB00BB8133 /* MovieRowOneCell+Movie.m in Sources */,
 				6EC0069918DC7CBB003DECC8 /* VideoVC.m in Sources */,
 				6EC0063618DC7B77003DECC8 /* MovieImageCell+MovieImage.m in Sources */,
 				6EC0073D18DC7EE1003DECC8 /* UIImage+CH.m in Sources */,
@@ -1100,18 +1080,14 @@
 				6EC0063018DC7B77003DECC8 /* CastActorCell+Person.m in Sources */,
 				6EC0068918DC7CBB003DECC8 /* CloseTheatersVC.m in Sources */,
 				6EC0069118DC7CBB003DECC8 /* MovieFunctionsVC.m in Sources */,
-				6EC7BAF218E0F64B00BB8133 /* MovieRowOneCell.m in Sources */,
 				6EC0065218DC7BC6003DECC8 /* FunctionCell2.m in Sources */,
 				6EC0073918DC7EE1003DECC8 /* GAI+CH.m in Sources */,
 				6EC0065418DC7BC6003DECC8 /* MovieImageCell.m in Sources */,
 				6EC0072118DC7E3C003DECC8 /* Video.m in Sources */,
-				6EC0060D18DC7A72003DECC8 /* IAPConstants.m in Sources */,
 				6EC006D818DC7D67003DECC8 /* main.m in Sources */,
 				6EC0071918DC7E3C003DECC8 /* Billboard.m in Sources */,
 				6EC0065318DC7BC6003DECC8 /* MovieCastCell.m in Sources */,
 				6EC0068518DC7CBB003DECC8 /* CarteleraVC.m in Sources */,
-				6EC0060E18DC7A72003DECC8 /* IAPHelper.m in Sources */,
-				6EC0061918DC7B1C003DECC8 /* MyMultilineLabel.m in Sources */,
 				6EC0068718DC7CBB003DECC8 /* CineHorariosTableViewController.m in Sources */,
 				6EC0068A18DC7CBB003DECC8 /* ComingSoonVC.m in Sources */,
 				6EC0071F18DC7E3C003DECC8 /* Person.m in Sources */,
@@ -1185,7 +1161,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1195,12 +1171,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Cine\\ Horarios/Geofaro/lib",
-					"$(SRCROOT)/Cine\\ Horarios/AdMob",
+					"$(PROJECT_DIR)/Cine\\ Horarios/AdMob",
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "0D90C85D-F5C2-4B2F-BFD8-B1663E84D316";
+				PROVISIONING_PROFILE = "C64F5D5B-C260-4735-9599-940E9944DA30";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1215,7 +1190,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1225,12 +1200,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Cine\\ Horarios/Geofaro/lib",
-					"$(SRCROOT)/Cine\\ Horarios/AdMob",
+					"$(PROJECT_DIR)/Cine\\ Horarios/AdMob",
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "0D90C85D-F5C2-4B2F-BFD8-B1663E84D316";
+				PROVISIONING_PROFILE = "C64F5D5B-C260-4735-9599-940E9944DA30";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_DACircularProgress 2
 #define COCOAPODS_VERSION_PATCH_DACircularProgress 0
 
+// GTScrollNavigationBar
+#define COCOAPODS_POD_AVAILABLE_GTScrollNavigationBar
+#define COCOAPODS_VERSION_MAJOR_GTScrollNavigationBar 0
+#define COCOAPODS_VERSION_MINOR_GTScrollNavigationBar 1
+#define COCOAPODS_VERSION_PATCH_GTScrollNavigationBar 1
+
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK 3

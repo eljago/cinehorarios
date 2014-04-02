@@ -22,7 +22,6 @@
 @property (nonatomic, strong) NSMutableArray *cinemas;
 @property (nonatomic, strong) NSMutableArray *theaters;
 
-@property (nonatomic, strong) UIFont *headerFont;
 @property (nonatomic, strong) UIFont *tableFont;
 @end
 
@@ -39,7 +38,6 @@
     // loads favorite theaters
     [self loadFavorites];
     
-    self.headerFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
@@ -174,28 +172,12 @@
     return self.movieName;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [self heightForHeaderView];
+    return [UIView heightForHeaderViewWithText:self.movieName];
 }
--(CGFloat) heightForHeaderView {
-    CGSize size = CGSizeMake(300.f, 1000.f);
-    
-    CGRect nameLabelRect = [self.movieName boundingRectWithSize: size
-                                                   options: NSStringDrawingUsesLineFragmentOrigin
-                                                attributes: [NSDictionary dictionaryWithObject:self.headerFont
-                                                                                        forKey:NSFontAttributeName]
-                                                   context: nil];
-    
-    CGFloat totalHeight = nameLabelRect.size.height * 1.2;
-    
-    if (totalHeight <= 25.f) {
-        totalHeight = 25.f;
-    }
-    
-    return totalHeight;
-}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.cinemas.count) {
-        UIView *view = [UIView headerViewForText:self.movieName font:self.headerFont height:[self heightForHeaderView]];
+        UIView *view = [UIView headerViewForText:self.movieName height:[UIView heightForHeaderViewWithText:self.movieName]];
         UILabel *label = (UILabel *)[view viewWithTag:40];
         label.numberOfLines = 0;
         return view;
@@ -208,7 +190,6 @@
 #pragma mark - content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    self.headerFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     
     [self.tableView reloadData];

@@ -10,7 +10,6 @@
 #import "Movie.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
-#import "MyMultilineLabel.h"
 #import "MovieImagesVC.h"
 #import "CastVC.h"
 #import "WebVC.h"
@@ -33,15 +32,15 @@
 #import "UIViewController+DoAlertView.h"
 #import "NSObject+Utilidades.h"
 
-#import "MovieRowOneCell.h"
-#import "MovieRowOneCell+Movie.h"
-
 @interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate>
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintTextViewSynopsisHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintMovieNameTrailing;
+@property (weak, nonatomic) IBOutlet UITextView *textViewSynopsis;
+@property (weak, nonatomic) IBOutlet UIView *viewOverLabelMovieName;
+@property (weak, nonatomic) IBOutlet UILabel *labelMovieName;
+@property (weak, nonatomic) IBOutlet UIImageView *portraitImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (nonatomic, strong) Movie *movie;
-
-@property (nonatomic, weak) IBOutlet MovieRowOneCell *movieRowOneCell;
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionViewActors;
@@ -75,6 +74,9 @@
     
     [self setupDataSources];
     
+    UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 90, 30)];
+    self.textViewSynopsis.textContainer.exclusionPaths = @[exclusionPath];
+    
     [GAI trackPage:@"INFO PELICULA"];
     [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Peliculas Visitadas" label:self.movieName];
     
@@ -99,9 +101,15 @@
     
     [RFRateMe showRateAlert];
     
-    [self getMovieForceRemote:NO];
+    if (self.portraitImageURL) {
+        [self.portraitImageView setImageWithStringURL:self.portraitImageURL movieImageType:MovieImageTypePortrait placeholderImage:nil];
+    }
+    if (self.coverImageURL) {
+        [self.coverImageView setImageWithStringURL:self.coverImageURL movieImageType:MovieImageTypeCover];
+    }
+//    self.constraintMovieNameTrailing.constant = -self.viewOverLabelMovieName.bounds.size.width;
     
-    [self.movieRowOneCell configurePortraitWithURL:self.portraitImageURL coverWithURL:self.coverImageURL];
+    [self getMovieForceRemote:NO];
 }
 
 -(void) setupDataSources {
@@ -132,7 +140,7 @@
         return 0.01f;
     }
     else {
-        return [UIView heightForHeaderViewWithText:@"Javier" font:self.normalFont];
+        return [UIView heightForHeaderViewWithText:@"Javier"];
     }
 }
 
@@ -209,7 +217,16 @@
 
 - (void) setupTableViews {
     
-    [self.movieRowOneCell configureForMovie:self.movie];
+    if (self.movie.information) {
+        self.textViewSynopsis.text = self.movie.information;
+    }
+    else {
+        self.textViewSynopsis.hidden = YES;
+    }
+    
+    if (self.movie.name) {
+        self.labelMovieName.text = self.movie.name;
+    }
     
     if (self.cast.directors.count != 0) {
         Person *director = [self.cast.directors firstObject];
@@ -263,13 +280,18 @@
         
         [frontView removeFromSuperview];
         self.tableView.scrollEnabled = YES;
+//        [self.viewOverLabelMovieName.superview layoutIfNeeded];
+//        [UIView animateWithDuration:0.3 animations:^{
+//            self.constraintMovieNameTrailing.constant = 0;
+//            [self.viewOverLabelMovieName.superview layoutIfNeeded];
+//        }];
     }];
 }
 
 #pragma mark - UITableViewController
 #pragma mark Data Source
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if ((!self.movie.rottenTomatoesURL || [self.movie.rottenTomatoesURL isEqualToString:@""]) &&
         (!self.movie.imdbCode || [self.movie.imdbCode isEqualToString:@""]) &&
         (!self.movie.metacriticURL || [self.movie.metacriticURL isEqualToString:@""])) {
@@ -285,8 +307,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            CGSize size = [self.movieRowOneCell.textViewSynopsis sizeThatFits:CGSizeMake(self.movieRowOneCell.textViewSynopsis.frame.size.width, CGFLOAT_MAX)];
-            return self.movieRowOneCell.textViewSynopsis.frame.origin.y + size.height + 10;
+            CGSize size = [self.textViewSynopsis sizeThatFits:CGSizeMake(self.textViewSynopsis.frame.size.width, CGFLOAT_MAX)];
+            return self.textViewSynopsis.frame.origin.y + size.height + 10;
         }
         else if (indexPath.row == 1) {
             if (self.movie.videos.count == 0) {
@@ -387,8 +409,8 @@
             text = @"";
             break;
     }
-    NSInteger height = [UIView heightForHeaderViewWithText:text font:self.normalFont];
-    return [UIView headerViewForText:text font:self.bigBoldFont height:height];
+    NSInteger height = [UIView heightForHeaderViewWithText:text];
+    return [UIView headerViewForText:text height:height];
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if ((indexPath.section == 0 && indexPath.row == 1) || (indexPath.section == 4 && indexPath.row == 1)) {
@@ -542,11 +564,8 @@
     self.smallerFont = [UIFont getSizeForCHFont:CHFontStyleSmaller forPreferedContentSize: preferredContentSizeCategory];
     self.normalFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize: preferredContentSizeCategory];
     self.bigBoldFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize: preferredContentSizeCategory];
-    self.movieRowOneCell.labelName.font = self.bigBoldFont;
-    self.movieRowOneCell.labelNameOriginal.font = self.normalFont;
-    self.movieRowOneCell.labelDurationGenres.font = self.smallerFont;
-//    self.movieRowOneCell.textViewSynopsis.font = self.normalFont;
-//    self.movieRowOneCell.textViewSynopsis.font = [UIFont preferredFontForTextStyle:@"HelveticaNeue"];
+    self.labelMovieName.font = self.bigBoldFont;
+    self.textViewSynopsis.font = self.normalFont;
     self.labelScoreImdb.font = self.normalFont;
     self.labelScoreMetacritic.font = self.normalFont;
     self.labelScoreRottenTomatoes.font = self.normalFont;

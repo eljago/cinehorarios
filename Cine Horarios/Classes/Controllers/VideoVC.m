@@ -117,17 +117,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)webViewDidStartLoad:(UIWebView *)webView{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-}
--(void)webViewDidFinishLoad:(UIWebView *)webView{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-}
-
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-}
-
 #pragma mark - Interface Orientation
     
 -(NSUInteger)supportedInterfaceOrientations{

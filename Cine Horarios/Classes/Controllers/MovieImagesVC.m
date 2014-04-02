@@ -64,7 +64,7 @@
     NSString *imagePath = self.imagesURL[indexPath.row];
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
     
-    [imageView setImageWithStringURL:imagePath movieImageType:MovieImageTypeMovieImageCover];
+    [imageView setImageWithStringURL:imagePath movieImageType:MovieImageTypeMovieImageCover placeholder:[UIImage imageNamed:@"MovieImagesCellBackground"]];
     
     return cell;
 }

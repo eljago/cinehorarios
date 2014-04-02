@@ -179,6 +179,7 @@ const int kLoadingCellTag = 1234;
         movieVC.movieID = basicMovie.movieID;
         movieVC.movieName = basicMovie.name;
         movieVC.portraitImageURL = basicMovie.portraitImageURL;
+        movieVC.coverImageURL = basicMovie.imageURL;
     }
     else if ([[segue identifier] isEqualToString:@"VideosVCToVideoVC"]) {
         VideoVC *videoVC = segue.destinationViewController;

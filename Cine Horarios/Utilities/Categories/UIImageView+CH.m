@@ -104,5 +104,13 @@
     
     [self setImageWithURL:nsurl];
 }
+- (void) setImageWithStringURL:(NSString *)imageURL
+                movieImageType:(MovieImageType) movieImageType
+                   placeholder: (UIImage *)placeholder {
+    
+    NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
+    
+    [self setImageWithURL:nsurl placeholderImage:placeholder];
+}
 
 @end
