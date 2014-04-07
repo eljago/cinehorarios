@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ProximaNova-Light.otf</string>
+		<string>ProximaNova-Regular.otf</string>
+		<string>ProximaNova-Bold.otf</string>
+		<string>ProximaNovaCond-Regular</string>
+		<string>ProximaNovaCond-SemiBold</string>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
@@ -59,9 +67,9 @@
 			<key>TintColor</key>
 			<dict>
 				<key>Blue</key>
-				<real>0.20392156862745101</real>
+				<real>0.203921568627451</real>
 				<key>Green</key>
-				<real>0.25098039215686269</real>
+				<real>0.2509803921568627</real>
 				<key>Red</key>
 				<real>0.8666666666666667</real>
 			</dict>

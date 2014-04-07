@@ -85,7 +85,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     FunctionCell2 *functionCell = (FunctionCell2 *)cell;
     functionCell.mainLabel.font = self.headFont;
-    functionCell.typesLabel.font = self.bodyFont;
+    functionCell.typesLabel.font = self.headFont;
     functionCell.showtimesLabel.font = self.bodyFont;
 }
 

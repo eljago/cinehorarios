@@ -20,18 +20,18 @@
 }
 
 + (CGFloat) heightForRowWithPerson:(Person *)person fontName:(UIFont *)fontName fontRole:(UIFont *)fontRole{
-    CGSize size = CGSizeMake(211.f, 1000.f);
+    CGSize size = CGSizeMake(209.f, FLT_MAX);
     
     CGRect nameLabelRect = [person.name boundingRectWithSize: size
                                                     options: NSStringDrawingUsesLineFragmentOrigin
-                                                 attributes: [NSDictionary dictionaryWithObject:fontName forKey:NSFontAttributeName]
+                                                  attributes: @{NSFontAttributeName: fontName}
                                                     context: nil];
     CGRect roleLabelRect = [person.character boundingRectWithSize: size
                                                          options: NSStringDrawingUsesLineFragmentOrigin
-                                                      attributes: [NSDictionary dictionaryWithObject:fontRole forKey:NSFontAttributeName]
+                                                      attributes: @{NSFontAttributeName: fontRole}
                                                          context: nil];
     
-    CGFloat totalHeight = 5.0f + nameLabelRect.size.height + 10.0f + roleLabelRect.size.height + 5.f;
+    CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f + roleLabelRect.size.height + 10.f;
     
     if (totalHeight <= 82.f) {
         totalHeight = 82.f;

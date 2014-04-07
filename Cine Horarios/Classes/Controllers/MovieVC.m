@@ -35,10 +35,13 @@
 @interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintMovieNameTrailing;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintMovieCoverImageViewTop;
+
 @property (weak, nonatomic) IBOutlet UITextView *textViewSynopsis;
 @property (weak, nonatomic) IBOutlet UIView *viewOverLabelMovieName;
 @property (weak, nonatomic) IBOutlet UILabel *labelMovieName;
 @property (weak, nonatomic) IBOutlet UIImageView *portraitImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewPortraitDropShadow;
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (nonatomic, strong) Movie *movie;
 
@@ -103,6 +106,13 @@
     
     if (self.portraitImageURL) {
         [self.portraitImageView setImageWithStringURL:self.portraitImageURL movieImageType:MovieImageTypePortrait placeholderImage:nil];
+    }
+    else {
+        self.constraintMovieCoverImageViewTop.constant = 10.;
+        self.viewOverLabelMovieName.backgroundColor = [UIColor clearColor];
+        self.labelMovieName.textColor = [UIColor blackColor];
+        self.portraitImageView.hidden = YES;
+        self.imageViewPortraitDropShadow.hidden = YES;
     }
     if (self.coverImageURL) {
         [self.coverImageView setImageWithStringURL:self.coverImageURL movieImageType:MovieImageTypeCover];
@@ -308,7 +318,11 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             CGSize size = [self.textViewSynopsis sizeThatFits:CGSizeMake(self.textViewSynopsis.frame.size.width, CGFLOAT_MAX)];
-            return self.textViewSynopsis.frame.origin.y + size.height + 10;
+            CGFloat origin = self.textViewSynopsis.frame.origin.y;
+            if (!self.portraitImageURL) {
+                origin = 94;
+            }
+            return origin + size.height + 10;
         }
         else if (indexPath.row == 1) {
             if (self.movie.videos.count == 0) {

@@ -48,6 +48,9 @@
 		6E18795218E5C7780093757A /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E18793218E5C7780093757A /* libGeofaro.a */; };
 		6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396418273C9900ADB8D9 /* MapKit.framework */; };
 		6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396C182755A300ADB8D9 /* CoreLocation.framework */; };
+		6E5D87A718ECD99C00955369 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E5D879718ECD99C00955369 /* ProximaNova-Bold.otf */; };
+		6E5D87AA18ECD99C00955369 /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E5D879A18ECD99C00955369 /* ProximaNova-Light.otf */; };
+		6E5D87AC18ECD99C00955369 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E5D879C18ECD99C00955369 /* ProximaNova-Regular.otf */; };
 		6E607F2F18C10E7D000D85FF /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607F2E18C10E7D000D85FF /* NSObject+Utilidades.m */; };
 		6E607F3218C10ED5000D85FF /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607F3118C10ED5000D85FF /* UIDevice+Hardware.m */; };
 		6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */; };
@@ -211,6 +214,9 @@
 		6E2B1ADD18C9725A00A30938 /* libGeofaro.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGeofaro.a; path = ../../../Desktop/libGeofaro.a; sourceTree = "<group>"; };
 		6E57396418273C9900ADB8D9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6E57396C182755A300ADB8D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6E5D879718ECD99C00955369 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
+		6E5D879A18ECD99C00955369 /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
+		6E5D879C18ECD99C00955369 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
 		6E607F2D18C10E7D000D85FF /* NSObject+Utilidades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Utilidades.h"; sourceTree = "<group>"; };
 		6E607F2E18C10E7D000D85FF /* NSObject+Utilidades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utilidades.m"; sourceTree = "<group>"; };
 		6E607F3018C10ED5000D85FF /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
@@ -639,6 +645,7 @@
 		3DDB710B170A516B00EC3E51 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				6E5D879518ECD96700955369 /* Fonts */,
 				6EC006CB18DC7D67003DECC8 /* Cine Horarios-Prefix.pch */,
 				6EC006CC18DC7D67003DECC8 /* Cine Horarios.entitlements */,
 				6EC006CD18DC7D67003DECC8 /* Cinemas.plist */,
@@ -757,6 +764,16 @@
 				6EC0064B18DC7BC6003DECC8 /* VideoCell.m */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		6E5D879518ECD96700955369 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6E5D879718ECD99C00955369 /* ProximaNova-Bold.otf */,
+				6E5D879A18ECD99C00955369 /* ProximaNova-Light.otf */,
+				6E5D879C18ECD99C00955369 /* ProximaNova-Regular.otf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		6E607F2C18C10E47000D85FF /* Categorias */ = {
@@ -931,6 +948,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E18794818E5C7780093757A /* developers.der in Resources */,
+				6E5D87AC18ECD99C00955369 /* ProximaNova-Regular.otf in Resources */,
 				6E18794518E5C7780093757A /* cerrarIZQ@2x.png in Resources */,
 				6E18793F18E5C7780093757A /* btnReintentar@2x.png in Resources */,
 				6E18794618E5C7780093757A /* ConfigGeofaro.plist in Resources */,
@@ -962,11 +980,13 @@
 				6EC006D318DC7D67003DECC8 /* Cine Horarios.entitlements in Resources */,
 				6E18795018E5C7780093757A /* RegionesGeofaro.plist in Resources */,
 				6E18794D18E5C7780093757A /* guardarDER@2x.png in Resources */,
+				6E5D87A718ECD99C00955369 /* ProximaNova-Bold.otf in Resources */,
 				6E18794118E5C7780093757A /* btnReintentariPad@2x.png in Resources */,
 				6E18793E18E5C7780093757A /* btnReintentar.png in Resources */,
 				6EC006EA18DC7DCE003DECC8 /* close.png in Resources */,
 				6EC006E518DC7DCE003DECC8 /* check_black@2x.png in Resources */,
 				6EC006D718DC7D67003DECC8 /* Localizable.strings in Resources */,
+				6E5D87AA18ECD99C00955369 /* ProximaNova-Light.otf in Resources */,
 				162414A417BC946E00083708 /* Images.xcassets in Resources */,
 				6E18793B18E5C7780093757A /* btnCerrar@2x.png in Resources */,
 				6E18793418E5C7780093757A /* alerta@2x.png in Resources */,

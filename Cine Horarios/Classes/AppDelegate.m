@@ -193,7 +193,7 @@ static int const kGaDispatchPeriod = 30;
     self.window.tintColor = [UIColor whiteColor];
     
     [[UINavigationBar appearance] setTitleTextAttributes: @{
-                                                            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:22.0f],
+                                                            NSFontAttributeName: [UIFont fontWithName:@"ProximaNova-Regular" size:19.0f],
                                                             NSForegroundColorAttributeName: [UIColor whiteColor]
                                                             }];
     

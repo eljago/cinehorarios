@@ -8,58 +8,56 @@
 
 #import "UIFont+CH.h"
 
-NSString *const kHelveticaNeue = @"Avenir-Book";
-NSString *const kHelveticaNeueBold = @"Avenir-Medium";
+//NSString *const kHelveticaNeue = @"Avenir-Book";
+NSString *const kHelveticaNeue = @"ProximaNova-Light";
+NSString *const kHelveticaNeueBold = @"ProximaNova-Regular";
 
 @implementation UIFont (CH)
 
 +(UIFont *)getSizeForCHFont:(CHFontStyle)cHFontStyle forPreferedContentSize:(NSString *)preferedContentSize {
-    CGFloat fontSize;
+    CGFloat fontSize = 19.;
     NSString *fontName;
     
     switch (cHFontStyle) {
         case CHFontStyleSmaller:
-            fontSize = 15.;
+            fontSize -= 2;
             fontName = kHelveticaNeue;
             break;
         case CHFontStyleSmall:
-            fontSize = 16.;
+            fontSize -= 1;
             fontName = kHelveticaNeue;
             break;
         case CHFontStyleNormal:
-            fontSize = 17.;
             fontName = kHelveticaNeue;
             break;
         case CHFontStyleBig:
-            fontSize = 18.;
+            fontSize += 1;
             fontName = kHelveticaNeue;
             break;
         case CHFontStyleBigger:
-            fontSize = 19.;
+            fontSize += 2;
             fontName = kHelveticaNeue;
             break;
         case CHFontStyleSmallerBold:
-            fontSize = 15.;
+            fontSize -= 2;
             fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleSmallBold:
-            fontSize = 16.;
+            fontSize -= 1;
             fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleNormalBold:
-            fontSize = 17.;
             fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleBigBold:
-            fontSize = 18.;
+            fontSize += 1;
             fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleBiggerBold:
-            fontSize = 19.;
+            fontSize += 2;
             fontName = kHelveticaNeueBold;
             break;
         default:
-            fontSize = 17.;
             break;
     }
     
