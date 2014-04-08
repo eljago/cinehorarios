@@ -19,7 +19,6 @@ PODS:
     - AFNetworking/NSURLConnection
   - DACircularProgress (2.2.0)
   - GoogleAnalytics-iOS-SDK (3.0.3)
-  - GTScrollNavigationBar (0.1.1)
   - Mantle (1.3.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.3.1)
@@ -38,7 +37,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - GoogleAnalytics-iOS-SDK
-  - GTScrollNavigationBar
   - Mantle
   - MWPhotoBrowser (~> 1.3.2)
   - REMenu (~> 1.8.3)
@@ -46,8 +44,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   DACircularProgress: 659d6fd11b5fc099c13ba9350239d9dca324916a
-  GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
-  GTScrollNavigationBar: 10fc5b2d04e8d49785a6a9d957c0582d495d1cfa
+  GoogleAnalytics-iOS-SDK: 80c804540a992c59d88397b3f9567417ba1001dc
   Mantle: abc3b0c81bc66eb624cf9cebb8640e377d5a44ae
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MWPhotoBrowser: 0a0e86e2cfc4195d79386dce623da7bbfe3c50e1
