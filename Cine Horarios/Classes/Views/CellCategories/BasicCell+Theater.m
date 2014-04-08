@@ -11,12 +11,32 @@
 
 @implementation BasicCell (Theater)
 
--(void) configureForTheater:(Theater *)theater {
+-(void) configureForTheater:(Theater *)theater{
     self.mainLabel.text = theater.name;
+}
+-(void) configureForTheater:(Theater *)theater cinemaID: (NSUInteger)cinemaID{
+    self.mainLabel.text = theater.name;
+    if (cinemaID == 5) {
+        if (theater.theaterID == 46) {
+            self.theaterImageView.image = [UIImage imageNamed:@"LogoArteAlameda"];
+        }
+        if (theater.theaterID == 47) {
+            self.theaterImageView.image = [UIImage imageNamed:@"LogoNormandie"];
+        }
+        if (theater.theaterID == 51) {
+            self.theaterImageView.image = [UIImage imageNamed:@"LogoElBiografo"];
+        }
+        if (theater.theaterID == 60) {
+            self.theaterImageView.image = [UIImage imageNamed:@"LogoMuseoMemoria"];
+        }
+        if (theater.theaterID == 59) {
+            self.theaterImageView.image = [UIImage imageNamed:@"LogoCineAntay"];
+        }
+    }
 }
 
 + (CGFloat) heightForRowWithTheater:(Theater *)theater tableFont:(UIFont *)font{
-    CGSize size = CGSizeMake(270.0, 1000.0);
+    CGSize size = CGSizeMake(267., CGFLOAT_MAX);
     
     CGRect nameLabelRect = [theater.name boundingRectWithSize: size
                                                       options: NSStringDrawingUsesLineFragmentOrigin

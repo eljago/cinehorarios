@@ -136,6 +136,12 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
                 case 51:
                     view.image = [UIImage imageNamed:@"AnnotationElBiografo"];
                     break;
+                case 59:
+                    view.image = [UIImage imageNamed:@"AnnotationCineAntay"];
+                    break;
+                case 60:
+                    view.image = [UIImage imageNamed:@"AnnotationMuseoMemoria"];
+                    break;
                     
                 default:
                     break;

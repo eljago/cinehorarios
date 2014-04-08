@@ -10,6 +10,7 @@
 
 @interface BasicCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UIImageView *theaterImageView;
 @property (nonatomic, weak) IBOutlet UILabel *mainLabel;
 
 @end

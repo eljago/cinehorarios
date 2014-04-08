@@ -12,7 +12,8 @@
 
 @interface BasicCell (Theater)
 
-- (void) configureForTheater:(Theater *)theater;
+-(void) configureForTheater:(Theater *)theater;
+-(void) configureForTheater:(Theater *)theater cinemaID: (NSUInteger)cinemaID;
 + (CGFloat) heightForRowWithTheater:(Theater *)theater tableFont:(UIFont *)font;
 
 @end

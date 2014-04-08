@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintMovieCoverImageViewTop;
 
 @property (weak, nonatomic) IBOutlet UITextView *textViewSynopsis;
+@property (weak, nonatomic) IBOutlet UITextView *textViewMovieDetails;
 @property (weak, nonatomic) IBOutlet UIView *viewOverLabelMovieName;
 @property (weak, nonatomic) IBOutlet UILabel *labelMovieName;
 @property (weak, nonatomic) IBOutlet UIImageView *portraitImageView;
@@ -325,11 +326,16 @@
             return origin + size.height + 10;
         }
         else if (indexPath.row == 1) {
-            if (self.movie.videos.count == 0) {
+            if (!self.movie.year && !self.movie.rating && self.movie.nameOriginal.length == 0 && !self.movie.duration && self.movie.debut.length == 0) {
                 return 0.;
             }
         }
         else if (indexPath.row == 2) {
+            if (self.movie.videos.count == 0) {
+                return 0.;
+            }
+        }
+        else if (indexPath.row == 3) {
             if (!self.movie.hasFunctions) {
                 return 0.;
             }
@@ -427,7 +433,7 @@
     return [UIView headerViewForText:text height:height];
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ((indexPath.section == 0 && indexPath.row == 1) || (indexPath.section == 4 && indexPath.row == 1)) {
+    if ((indexPath.section == 0 && indexPath.row == 1) || (indexPath.section == 0 && indexPath.row == 2) || (indexPath.section == 4 && indexPath.row == 1)) {
         cell.backgroundColor = [UIColor lighterGrayColor];
     }
     else {

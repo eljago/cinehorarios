@@ -54,9 +54,16 @@
 }
 
 -(void) setupDataSource {
-    self.dataSource = [[ArrayDataSource alloc] initWithItems:self.cinema.theaters cellIdentifier:@"Cell" configureCellBlock:^(BasicCell *cell, Theater *theater) {
-        [cell configureForTheater:theater];
-    }];
+    if (self.cinemaID == 5) {
+        self.dataSource = [[ArrayDataSource alloc] initWithItems:self.cinema.theaters cellIdentifier:@"Cell2" configureCellBlock:^(BasicCell *cell, Theater *theater) {
+            [cell configureForTheater:theater cinemaID:self.cinemaID];
+        }];
+    }
+    else {
+        self.dataSource = [[ArrayDataSource alloc] initWithItems:self.cinema.theaters cellIdentifier:@"Cell" configureCellBlock:^(BasicCell *cell, Theater *theater) {
+            [cell configureForTheater:theater];
+        }];
+    }
     self.tableView.dataSource = self.dataSource;
 }
 
@@ -69,8 +76,13 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    Theater *theater = self.cinema.theaters[indexPath.row];
-    return [BasicCell heightForRowWithTheater:theater tableFont:self.tableFont];
+    if (self.cinemaID == 5) {
+        return 80.;
+    }
+    else {
+        Theater *theater = self.cinema.theaters[indexPath.row];
+        return [BasicCell heightForRowWithTheater:theater tableFont:self.tableFont];
+    }
 }
 
 #pragma mark - TheatersVC
@@ -135,7 +147,7 @@
 #pragma mark - Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
 
     [self.tableView reloadData];
 }
