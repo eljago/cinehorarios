@@ -246,8 +246,7 @@ const CGFloat kButtonWidth = 50.f;
         label.text = name;
         if ([identifier isEqualToString:storyboardID]) {
             label.textColor = [UIColor menuColorForRow:index];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Regular" size:17.];
-            customView.backgroundColor = [UIColor midnightBlue];
+            label.font = [UIFont fontWithName:@"ProximaNova-Regular" size:17.];
         }
         imgView.image = image;
         imgView.tintColor = [UIColor menuColorForRow:index];
@@ -256,13 +255,11 @@ const CGFloat kButtonWidth = 50.f;
             for (REMenuItem *menuItem in self.menu.items) {
                 if ([item isEqual:menuItem]) {
                     ((UILabel *)[menuItem.customView viewWithTag:1]).textColor = [UIColor menuColorForRow:index];
-                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"HelveticaNeue-Regular" size:17.];
-                    menuItem.customView.backgroundColor = [UIColor midnightBlue];
+                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"ProximaNova-Regular" size:17.];
                 }
                 else {
                     ((UILabel *)[menuItem.customView viewWithTag:1]).textColor = [UIColor whiteColor];
-                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.];
-                    menuItem.customView.backgroundColor = [UIColor clearColor];
+                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"ProximaNova-Light" size:17.];
                 }
             }
         }];
@@ -270,9 +267,12 @@ const CGFloat kButtonWidth = 50.f;
         index++;
     }
     self.menu = [[REMenu alloc] initWithItems:[NSArray arrayWithArray:menuItems]];
-    self.menu.borderColor = [UIColor clearColor];
-    self.menu.backgroundColor = [UIColor wetAsphalt];
-    self.menu.highlightedBackgroundColor = [UIColor midnightBlue];
+//    self.menu.borderColor = [UIColor clearColor];
+//    self.menu.backgroundColor = [UIColor wetAsphalt];
+//    self.menu.highlightedBackgroundColor = [UIColor midnightBlue];
+    
+    self.menu.liveBlur = YES;
+    self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleDark;
     
     self.menu.separatorHeight = 0.;
     self.menu.itemHeight = 44.f;

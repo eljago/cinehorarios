@@ -29,7 +29,7 @@ PODS:
     - PSTCollectionView (~> 1.2)
     - SDWebImage (~> 3.5.4)
   - PSTCollectionView (1.2.0)
-  - REMenu (1.8.3)
+  - REMenu (1.8.5)
   - SDWebImage (3.5.4):
     - SDWebImage/Core
   - SDWebImage/Core (3.5.4)
@@ -39,7 +39,7 @@ DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK
   - Mantle
   - MWPhotoBrowser (~> 1.4)
-  - REMenu (~> 1.8.3)
+  - REMenu (~> 1.8.5)
 
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
@@ -49,7 +49,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MWPhotoBrowser: b85e89fcf0575062f32c472d389265dce1f068e1
   PSTCollectionView: fb2ad2790c6efa306b2caf10315b2c1464d1f5c6
-  REMenu: 527cca0af74cd247a7e29e6e46d92506492dd85b
+  REMenu: 282a6b5feee8cce5403d7f28e15ffbc0aee359ab
   SDWebImage: 1a62010700adbba823b621fc217906739dbf6aa5
 
 COCOAPODS: 0.29.0
