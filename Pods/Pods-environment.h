@@ -69,8 +69,8 @@
 // MWPhotoBrowser
 #define COCOAPODS_POD_AVAILABLE_MWPhotoBrowser
 #define COCOAPODS_VERSION_MAJOR_MWPhotoBrowser 1
-#define COCOAPODS_VERSION_MINOR_MWPhotoBrowser 3
-#define COCOAPODS_VERSION_PATCH_MWPhotoBrowser 2
+#define COCOAPODS_VERSION_MINOR_MWPhotoBrowser 4
+#define COCOAPODS_VERSION_PATCH_MWPhotoBrowser 0
 
 // Mantle
 #define COCOAPODS_POD_AVAILABLE_Mantle
