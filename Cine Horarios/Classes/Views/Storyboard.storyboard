@@ -234,10 +234,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="394"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDK-A1-LCe">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDK-A1-LCe">
                                                     <rect key="frame" x="8" y="242" width="304" height="147"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" red="0.23995634993062945" green="0.47227566409506438" blue="0.90743885869565222" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="304" id="drw-SL-oqU"/>
                                                     </constraints>
@@ -329,10 +330,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7N9-PI-uVZ">
-                                                    <rect key="frame" x="8" y="10" width="304" height="200"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7N9-PI-uVZ">
+                                                    <rect key="frame" x="8" y="3" width="304" height="217"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" red="0.2399563499" green="0.47227566409999999" blue="0.90743885869999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="304" id="QTz-6j-p0T"/>
                                                     </constraints>
@@ -341,9 +343,9 @@
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="7N9-PI-uVZ" secondAttribute="bottom" constant="13" id="c8h-ZR-AeK"/>
+                                                <constraint firstAttribute="bottom" secondItem="7N9-PI-uVZ" secondAttribute="bottom" constant="3" id="c8h-ZR-AeK"/>
                                                 <constraint firstItem="7N9-PI-uVZ" firstAttribute="leading" secondItem="oFL-Zm-kBU" secondAttribute="leading" constant="8" id="cCg-H5-iK5"/>
-                                                <constraint firstItem="7N9-PI-uVZ" firstAttribute="top" secondItem="oFL-Zm-kBU" secondAttribute="top" constant="10" id="plh-so-nlo"/>
+                                                <constraint firstItem="7N9-PI-uVZ" firstAttribute="top" secondItem="oFL-Zm-kBU" secondAttribute="top" constant="3" id="plh-so-nlo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

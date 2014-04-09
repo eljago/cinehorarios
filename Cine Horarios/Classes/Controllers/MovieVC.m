@@ -235,6 +235,61 @@
         self.textViewSynopsis.hidden = YES;
     }
     
+    if (self.movie.year || self.movie.rating || self.movie.nameOriginal.length > 0 || self.movie.duration || self.movie.debut.length > 0) {
+        self.textViewMovieDetails.text = @"";
+        BOOL placeLineBreak = NO;
+        NSMutableAttributedString *text = [NSMutableAttributedString new];
+        if (self.movie.nameOriginal.length > 0) {
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Nombre Original: "
+                                                                         attributes:@{NSFontAttributeName: self.bigBoldFont}]];
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:self.movie.nameOriginal
+                                                                         attributes:@{NSFontAttributeName: self.normalFont}]];
+            placeLineBreak = YES;
+        }
+        if (self.movie.duration) {
+            if (placeLineBreak)
+                [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
+                                                                             attributes:@{NSFontAttributeName: self.normalFont}]];
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Duración: "
+                                                                         attributes:@{NSFontAttributeName: self.bigBoldFont}]];
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d minutos", self.movie.duration.integerValue]
+                                                                         attributes:@{NSFontAttributeName: self.normalFont}]];
+            placeLineBreak = YES;
+        }
+        if (self.movie.year) {
+            if (placeLineBreak)
+                [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
+                                                                             attributes:@{NSFontAttributeName: self.normalFont}]];
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Año: "
+                                                                         attributes:@{NSFontAttributeName: self.bigBoldFont}]];
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d",self.movie.year.integerValue]
+                                                                         attributes:@{NSFontAttributeName: self.normalFont}]];
+            placeLineBreak = YES;
+        }
+        if (self.movie.rating) {
+            if (placeLineBreak)
+                [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: self.normalFont}]];
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Calificación: "
+                                                                         attributes:@{NSFontAttributeName: self.bigBoldFont}]];
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:self.movie.rating
+                                                                         attributes:@{NSFontAttributeName: self.normalFont}]];
+            placeLineBreak = YES;
+        }
+        if (self.movie.debut > 0) {
+            if (placeLineBreak)
+                [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
+                                                                             attributes:@{NSFontAttributeName: self.normalFont}]];
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Estreno: "
+                                                                         attributes:@{NSFontAttributeName: self.bigBoldFont}]];
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:self.movie.debut
+                                                                         attributes:@{NSFontAttributeName: self.normalFont}]];
+        }
+        self.textViewMovieDetails.attributedText = text;
+    }
+    else {
+        self.textViewMovieDetails.hidden = YES;
+    }
+    
     if (self.movie.name) {
         self.labelMovieName.text = self.movie.name;
     }
@@ -328,6 +383,10 @@
         else if (indexPath.row == 1) {
             if (!self.movie.year && !self.movie.rating && self.movie.nameOriginal.length == 0 && !self.movie.duration && self.movie.debut.length == 0) {
                 return 0.;
+            }
+            else {
+                CGFloat height = [self.textViewMovieDetails sizeThatFits:CGSizeMake(self.textViewMovieDetails.frame.size.width, CGFLOAT_MAX)].height;
+                return height + 10.;
             }
         }
         else if (indexPath.row == 2) {
@@ -433,7 +492,7 @@
     return [UIView headerViewForText:text height:height];
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ((indexPath.section == 0 && indexPath.row == 1) || (indexPath.section == 0 && indexPath.row == 2) || (indexPath.section == 4 && indexPath.row == 1)) {
+    if ((indexPath.section == 0 && indexPath.row == 1) || (indexPath.section == 0 && indexPath.row == 3) || (indexPath.section == 4 && indexPath.row == 1)) {
         cell.backgroundColor = [UIColor lighterGrayColor];
     }
     else {
@@ -586,6 +645,7 @@
     self.bigBoldFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize: preferredContentSizeCategory];
     self.labelMovieName.font = self.bigBoldFont;
     self.textViewSynopsis.font = self.normalFont;
+    self.textViewMovieDetails.font = self.normalFont;
     self.labelScoreImdb.font = self.normalFont;
     self.labelScoreMetacritic.font = self.normalFont;
     self.labelScoreRottenTomatoes.font = self.normalFont;
