@@ -41,11 +41,7 @@
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    // TopView it's the view over the tableview while it's downloading the data for the first time
-    UIView *topView = [[UIView alloc] initWithFrame:self.view.bounds];
-    topView.backgroundColor = [UIColor tableViewColor];
-    topView.tag = 999;
-    [self.view addSubview:topView];
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, self.view.bounds.size.width, 0, 0);
     
     [self downloadMovieFunctions];
 }
@@ -59,14 +55,8 @@
             [self.tableView reloadData];
             self.tableView.scrollEnabled = YES;
             
-            UIView *frontView = [self.view viewWithTag:999];
-            [UIView animateWithDuration:0.3 animations:^{
-                frontView.alpha = 0.0;
-            } completion:^(BOOL finished) {
-                
-                [frontView removeFromSuperview];
-                self.tableView.scrollEnabled = YES;
-            }];
+            self.tableView.separatorInset = UIEdgeInsetsMake(0, 15., 0, 0);
+            self.tableView.scrollEnabled = YES;
         }
         else {
             [self alertRetryWithCompleteBlock:^{
