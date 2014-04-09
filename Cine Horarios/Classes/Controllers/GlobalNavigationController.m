@@ -267,9 +267,6 @@ const CGFloat kButtonWidth = 50.f;
         index++;
     }
     self.menu = [[REMenu alloc] initWithItems:[NSArray arrayWithArray:menuItems]];
-//    self.menu.borderColor = [UIColor clearColor];
-//    self.menu.backgroundColor = [UIColor wetAsphalt];
-//    self.menu.highlightedBackgroundColor = [UIColor midnightBlue];
     
     self.menu.liveBlur = YES;
     self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleDark;
