@@ -267,9 +267,15 @@ const CGFloat kButtonWidth = 50.f;
         index++;
     }
     self.menu = [[REMenu alloc] initWithItems:[NSArray arrayWithArray:menuItems]];
-    
-    self.menu.liveBlur = YES;
-    self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleDark;
+    if (![self esiOS71]) {
+        self.menu.borderColor = [UIColor clearColor];
+        self.menu.backgroundColor = [UIColor wetAsphalt];
+        self.menu.highlightedBackgroundColor = [UIColor midnightBlue];
+    }
+    else {
+        self.menu.liveBlur = YES;
+        self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleDark;
+    }
     
     self.menu.separatorHeight = 0.;
     self.menu.itemHeight = 44.f;
