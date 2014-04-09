@@ -106,7 +106,6 @@
 		6EC006D318DC7D67003DECC8 /* Cine Horarios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006CC18DC7D67003DECC8 /* Cine Horarios.entitlements */; };
 		6EC006D418DC7D67003DECC8 /* Cinemas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006CD18DC7D67003DECC8 /* Cinemas.plist */; };
 		6EC006D518DC7D67003DECC8 /* icloud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006CE18DC7D67003DECC8 /* icloud.plist */; };
-		6EC006D618DC7D67003DECC8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006CF18DC7D67003DECC8 /* Info.plist */; };
 		6EC006D718DC7D67003DECC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006D018DC7D67003DECC8 /* Localizable.strings */; };
 		6EC006D818DC7D67003DECC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC006D118DC7D67003DECC8 /* main.m */; };
 		6EC006D918DC7D67003DECC8 /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006D218DC7D67003DECC8 /* Menu.plist */; };
@@ -997,7 +996,6 @@
 				6EC006D518DC7D67003DECC8 /* icloud.plist in Resources */,
 				6EC006D918DC7D67003DECC8 /* Menu.plist in Resources */,
 				6E18795118E5C7780093757A /* ServiciosGeofaro.plist in Resources */,
-				6EC006D618DC7D67003DECC8 /* Info.plist in Resources */,
 				6EC006E918DC7DCE003DECC8 /* close_black@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1195,7 +1193,7 @@
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "C64F5D5B-C260-4735-9599-940E9944DA30";
+				PROVISIONING_PROFILE = "F2FC7FBF-C77F-489C-9D1C-2F45E15AA7E9";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1224,7 +1222,7 @@
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "C64F5D5B-C260-4735-9599-940E9944DA30";
+				PROVISIONING_PROFILE = "F2FC7FBF-C77F-489C-9D1C-2F45E15AA7E9";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

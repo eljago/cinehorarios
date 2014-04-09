@@ -252,7 +252,7 @@
                                                                              attributes:@{NSFontAttributeName: self.normalFont}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Duración: "
                                                                          attributes:@{NSFontAttributeName: self.bigBoldFont}]];
-            [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d minutos", self.movie.duration.integerValue]
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%lu minutos", (long)self.movie.duration.integerValue]
                                                                          attributes:@{NSFontAttributeName: self.normalFont}]];
             placeLineBreak = YES;
         }
@@ -262,7 +262,7 @@
                                                                              attributes:@{NSFontAttributeName: self.normalFont}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Año: "
                                                                          attributes:@{NSFontAttributeName: self.bigBoldFont}]];
-            [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d",self.movie.year.integerValue]
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%lu",(long)self.movie.year.integerValue]
                                                                          attributes:@{NSFontAttributeName: self.normalFont}]];
             placeLineBreak = YES;
         }
@@ -607,7 +607,7 @@
         CastVC *castVC = [segue destinationViewController];
         [self setPropertyValuesToCastVC:castVC];
     }
-    else if ([[segue identifier] isEqualToString:@"MovieToWeb"]){
+    else if ([[segue identifier] isEqualToString:@"MovieToWeb1"] || [[segue identifier] isEqualToString:@"MovieToWeb2"] || [[segue identifier] isEqualToString:@"MovieToWeb3"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         WebVC *wvc = [segue destinationViewController];
         if (indexPath.row == 0) {

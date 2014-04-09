@@ -9,16 +9,16 @@
 #import "CinemaCell+Cinema.h"
 #import "BasicItemImage.h"
 
-@implementation UITableViewCell (Cinema)
+@implementation CinemaCell (Cinema)
 
 - (void) configureForCinema: (BasicItemImage *)cinema {
 
-    ((UILabel *)[self viewWithTag:101]).text = cinema.name;
-    if ([cinema.imageURL isEqualToString:@""]) {
-        ((UIImageView *)[self viewWithTag:100]).image = nil;
+    self.cinemaNameLabel.text = cinema.name;
+    if (cinema.imageURL.length == 0) {
+        self.cinemaImageView.image = nil;
     }
     else {
-        ((UIImageView *)[self viewWithTag:100]).image = [UIImage imageNamed:cinema.imageURL];
+        self.cinemaImageView.image = [UIImage imageNamed:cinema.imageURL];
     }
 }
 

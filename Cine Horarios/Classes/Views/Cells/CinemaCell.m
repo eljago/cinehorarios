@@ -7,6 +7,7 @@
 //
 
 #import "CinemaCell.h"
+#import "UIFont+CH.h"
 
 @implementation CinemaCell
 
@@ -17,6 +18,11 @@
         // Initialization code
     }
     return self;
+}
+
+-(void)awakeFromNib {
+    [super awakeFromNib];
+    self.cinemaNameLabel.font = [[UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:UIContentSizeCategoryExtraExtraExtraLarge] fontWithSize:26.];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

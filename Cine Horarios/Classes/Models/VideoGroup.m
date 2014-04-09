@@ -11,7 +11,7 @@
 #import "Video.h"
 #import "NSValueTransformer+MTLPredefinedTransformerAdditions.h"
 
-NSString *const kVideoGroupPath = @"/api/videos.json?page=%d";
+NSString *const kVideoGroupPath = @"/api/videos.json?page=%lu";
 NSString *const kVideoGroupArchivePath = @"/data/";
 
 @implementation VideoGroup
@@ -26,7 +26,7 @@ NSString *const kVideoGroupArchivePath = @"/data/";
 }
 
 + (void)getVideosWithBlock:(void (^)(VideoGroup *videoGroup, NSError *error))block page:(NSUInteger)page {
-    NSString *path = [NSString stringWithFormat:kVideoGroupPath, page];
+    NSString *path = [NSString stringWithFormat:kVideoGroupPath, (unsigned long)page];
     [[CineHorariosApiClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         
         NSError *error = nil;

@@ -11,7 +11,7 @@
 #import "Theater.h"
 #import "NSArray+FKBMap.h"
 
-NSString *const RemoteMovieTheaterFunctionsPath = @"/api/shows/%d/favorite_theaters.json";
+NSString *const RemoteMovieTheaterFunctionsPath = @"/api/shows/%lu/favorite_theaters.json";
 
 @implementation Function
 
@@ -25,11 +25,11 @@ NSString *const RemoteMovieTheaterFunctionsPath = @"/api/shows/%d/favorite_theat
 }
 
 + (void)getMovieTheatersFavoritesWithBlock:(void (^)(NSArray *theaterFunctions, NSError *error))block movieID:(NSUInteger )movieID theaters:(NSArray *)theaters {
-    NSString *path = [NSString stringWithFormat:RemoteMovieTheaterFunctionsPath,movieID];
-    NSString *theatersString = [NSString stringWithFormat:@"%d",((Theater *)[theaters firstObject]).theaterID];
+    NSString *path = [NSString stringWithFormat:RemoteMovieTheaterFunctionsPath,(unsigned long)movieID];
+    NSString *theatersString = [NSString stringWithFormat:@"%lu",(unsigned long)((Theater *)[theaters firstObject]).theaterID];
     for (int i=1; i<theaters.count;i++) {
         Theater *theater = theaters[i];
-        theatersString = [theatersString stringByAppendingFormat:@",%d",theater.theaterID];
+        theatersString = [theatersString stringByAppendingFormat:@",%lu",(unsigned long)theater.theaterID];
     }
     
     [[CineHorariosApiClient sharedClient] GET:path parameters:@{ @"favorites": theatersString } success:^(NSURLSessionDataTask * __unused task, id JSON) {

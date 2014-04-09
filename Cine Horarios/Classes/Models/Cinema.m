@@ -11,7 +11,7 @@
 #import "CineHorariosApiClient.h"
 #import "NSValueTransformer+MTLPredefinedTransformerAdditions.h"
 
-NSString *const kCinemaPath = @"/api/cinemas/%d.json";
+NSString *const kCinemaPath = @"/api/cinemas/%lu.json";
 NSString *const kCinemaArchivePath = @"/data/cinemas/";
 
 @implementation Cinema
@@ -28,7 +28,7 @@ NSString *const kCinemaArchivePath = @"/data/cinemas/";
 }
 
 + (void)getCinemaWithBlock:(void (^)(Cinema *cinema, NSError *error))block cinemaID:(NSUInteger )cinemaID {
-    NSString *path = [NSString stringWithFormat:kCinemaPath,cinemaID];
+    NSString *path = [NSString stringWithFormat:kCinemaPath,(unsigned long)cinemaID];
     [[CineHorariosApiClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         
         NSError *theError = nil;
@@ -52,7 +52,7 @@ NSString *const kCinemaArchivePath = @"/data/cinemas/";
 
 + (NSString *)storagePathForCinemaID:(NSUInteger)cinemaID
 {
-    return [[self storagePathForPath:kCinemaArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.data",cinemaID]];
+    return [[self storagePathForPath:kCinemaArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%lu.data",(unsigned long)cinemaID]];
 }
 
 @end

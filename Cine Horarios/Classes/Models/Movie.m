@@ -13,7 +13,7 @@
 #import "Person.h"
 #import "Video.h"
 
-NSString *const kMoviePath = @"/api/shows/%d.json";
+NSString *const kMoviePath = @"/api/shows/%lu.json";
 NSString *const kMovieArchivePath = @"/data/shows/";
 
 @implementation Movie
@@ -44,7 +44,7 @@ NSString *const kMovieArchivePath = @"/data/shows/";
 }
 
 + (void)getCinemaWithBlock:(void (^)(Movie *movie, NSError *error))block movieID:(NSUInteger )movieID {
-    NSString *path = [NSString stringWithFormat:kMoviePath,movieID];
+    NSString *path = [NSString stringWithFormat:kMoviePath,(unsigned long)movieID];
     [[CineHorariosApiClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         
         NSError *theError = nil;
@@ -71,7 +71,7 @@ NSString *const kMovieArchivePath = @"/data/shows/";
 
 + (NSString *)storagePathForMovieID:(NSUInteger)movieID
 {
-    return [[self storagePathForPath:kMovieArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.data",movieID]];
+    return [[self storagePathForPath:kMovieArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%lu.data",(unsigned long)movieID]];
 }
 
 @end

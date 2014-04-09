@@ -181,7 +181,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     
     NSDictionary *dict = [FileHandler getDictionaryInProjectNamed:@"icloud"];
     NSDictionary *favorites = [dict valueForKey:@"Favorites"];
-    NSString *theaterName = [favorites valueForKey:[NSString stringWithFormat:@"%d",self.theaterID]];
+    NSString *theaterName = [favorites valueForKey:[NSString stringWithFormat:@"%lu",(unsigned long)self.theaterID]];
     if (theaterName) {
         self.favoriteButtonItem.tintColor = [UIColor whiteColor];
         self.favorite = YES;

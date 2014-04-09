@@ -57,7 +57,7 @@ NSString *const kShowTheatersPath = @"/api/shows/%d/show_theaters.json";
 
 + (NSString *)storagePathForTheaterID:(NSUInteger)theaterID
 {
-    return [[self storagePathForPath:kTheaterArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.data",theaterID]];
+    return [[self storagePathForPath:kTheaterArchivePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%lu.data",(unsigned long)theaterID]];
 }
 
 

@@ -106,7 +106,7 @@ static int const kGaDispatchPeriod = 30;
     NSDictionary *userInfo = [notification userInfo];
     NSString *theaterName = [userInfo valueForKey:@"TheaterName"];
     NSUInteger theaterID = [[userInfo valueForKey:@"TheaterID"] integerValue];
-    NSString *key = [NSString stringWithFormat:@"%d",theaterID];
+    NSString *key = [NSString stringWithFormat:@"%lu",(unsigned long)theaterID];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
