@@ -15,7 +15,7 @@
 #import "UIFont+CH.h"
 //#import "RageIAPHelper.h"
 
-#define COMPILE_GEOFARO true
+#define COMPILE_GEOFARO false
 
 /** Google Analytics configuration constants **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
@@ -357,6 +357,11 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 }
 
 #pragma mark - GeofaroDelegate
+- (void)geofaro:(Geofaro*)geofaro areaEncontrada:(NSDictionary *)areaInfo
+{
+    
+}
+
 - (void)geofaro:(Geofaro *)geofaro faroEncontrado:(NSDictionary *)faroInfo
 {
     NSLog(@"AppDelegate: faroEncontrado %@",faroInfo);
@@ -365,6 +370,62 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 - (void)geofaro:(Geofaro *)geofaro faroEncontradoNuevo:(NSDictionary *)faroInfo
 {
     NSLog(@"AppDelegate: faroEncontradoNuevo %@",faroInfo);
+}
+
+- (void)geofaro:(Geofaro *)geofaro faroEncontradoPromocionViewController:(UIViewController *)promocionViewController
+
+{
+    
+    NSLog(@"AppDelegate: faroEncontradoPromocionViewController");
+    
+    UIViewController *viewController = self.window.rootViewController.presentedViewController;
+    
+    if (viewController) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            
+            [viewController presentViewController:promocionViewController animated:YES completion:^{
+                
+                //[[UIApplication sharedApplication] setStatusBarHidden:YES];
+                
+            }];
+            
+            
+            
+        });
+        
+        
+        
+    }else{
+        
+        
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            
+            [self.window.rootViewController presentViewController:promocionViewController animated:YES completion:^{
+                
+                //[[UIApplication sharedApplication] setStatusBarHidden:YES];
+                
+            }];
+            
+            
+            
+        });
+        
+        
+        
+        
+        
+        
+        
+    }
+    
 }
 
 

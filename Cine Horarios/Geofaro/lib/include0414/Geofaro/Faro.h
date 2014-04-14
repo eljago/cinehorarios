@@ -10,8 +10,8 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 
 #import "FaroEnvioData.h"
-#import "FaroEnvioDataGuardada.h"
-
+#import "FaroFotoManager.h"
+#import "FarosActualizacionParser.h"
 
 #import "Beacon.h"
 
@@ -22,7 +22,7 @@
 - (void)faro:(Faro*)faro faroEncontradoNuevo:(NSDictionary*)faroInfo;
 @end
 
-@interface Faro : NSObject <FaroEnvioDataDelegate,FaroEnvioDataGuardadaDelegate,CBCentralManagerDelegate,CBPeripheralDelegate,BeaconDelegate>
+@interface Faro : NSObject <FaroEnvioDataDelegate,CBCentralManagerDelegate,CBPeripheralDelegate,BeaconDelegate>
 
 @property (retain) id delegate;
 

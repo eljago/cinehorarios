@@ -9,27 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
-#import "Faro.h"
 @class Radar;
 @protocol RadarDelegate <NSObject>
 @required
-- (void)radar:(Radar*)radar faroEncontrado:(NSDictionary*)faroInfo;
-- (void)radar:(Radar*)radar faroEncontradoNuevo:(NSDictionary*)faroInfo;
+- (void)radar:(Radar*)radar areaEncontrada:(NSDictionary*)areaInfo;
 @end
 
-@interface Radar : NSObject <CLLocationManagerDelegate,FaroDelegate>
+@interface Radar : NSObject <CLLocationManagerDelegate>
 
 @property (retain) id delegate;
 
-@property (nonatomic,retain) Faro *faro;
-
-@property (nonatomic) float distanciaMinima;
-@property (nonatomic,strong) CLLocation *ubicacionActual;
-@property (nonatomic,strong) CLLocation *ubicacionFinal;
-
 + (Radar *)sharedRADAR;
 - (void)iniciar;
-- (void)iniciarRegiones:(NSMutableArray*)regiones;
-- (void)iniciarGPSUbicacion:(CLLocation*)ubicacion;
 - (void)detenerRadar;
 @end

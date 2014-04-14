@@ -109,7 +109,7 @@
         NSArray *keys = [favorites allKeys];
         NSArray *values = [favorites allValues];
         for (int i=0;i<[favorites count];i++){
-            NSDictionary *theaterDictionary = @{@"theaterID": [keys objectAtIndex:i],
+            NSDictionary *theaterDictionary = @{@"theaterID": [NSNumber numberWithInt:[[keys objectAtIndex:i] intValue]],
                                                 @"name": [values objectAtIndex:i]};
             Theater *theater = [[Theater alloc] initWithDictionary:theaterDictionary error:NULL];
             [self.favoriteTheaters insertObject:theater atIndex:i];
