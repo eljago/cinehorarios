@@ -33,6 +33,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 @property (nonatomic, strong) UIFont *headFont;
 @property (nonatomic, strong) UIFont *bodyFont;
+@property (nonatomic, strong) UIFont *showtimesFont;
 @property (nonatomic, assign) BOOL favorite;
 @end
 
@@ -51,6 +52,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     
     self.headFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.showtimesFont = [UIFont getFontWithName:@"HelveticaNeue-Light" forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
@@ -86,7 +88,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     FunctionCell2 *functionCell = (FunctionCell2 *)cell;
     functionCell.mainLabel.font = self.headFont;
     functionCell.typesLabel.font = self.headFont;
-    functionCell.showtimesLabel.font = self.bodyFont;
+    functionCell.showtimesLabel.font = self.showtimesFont;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -100,7 +102,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     Function *function = self.theater.functions[indexPath.row];
-    return [FunctionCell2 heightForRowWithFunction:function headFont:self.headFont bodyFont:self.bodyFont];
+    return [FunctionCell2 heightForRowWithFunction:function headFont:self.headFont bodyFont:self.bodyFont showtimesFont:self.showtimesFont];
 }
 
 #pragma mark - FuncionesVC
@@ -212,6 +214,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.showtimesFont = [UIFont getFontWithName:@"HelveticaHeue-Light" forPreferedContentSize: aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     [self.tableView reloadData];
 }
 

@@ -12,10 +12,10 @@
 #import "Function.h"
 #import "NSArray+FKBMap.h"
 
-NSString *const kTheaterPath = @"/api/theaters/%d.json";
+NSString *const kTheaterPath = @"/api/theaters/%lu.json";
 NSString *const kTheaterArchivePath = @"/data/theaters/";
 
-NSString *const kShowTheatersPath = @"/api/shows/%d/show_theaters.json";
+NSString *const kShowTheatersPath = @"/api/shows/%lu/show_theaters.json";
 
 @implementation Theater
 

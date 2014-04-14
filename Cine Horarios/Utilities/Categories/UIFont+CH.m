@@ -82,4 +82,28 @@ NSString *const kHelveticaNeueBold = @"ProximaNova-Regular";
     return [UIFont fontWithName:fontName size:fontSize];
 }
 
++(UIFont *)getFontWithName:(NSString *)fontName forPreferedContentSize:(NSString *)preferedContentSize {
+    CGFloat fontSize = 19.;
+    
+    if ([preferedContentSize isEqualToString:UIContentSizeCategoryExtraSmall]) {
+        fontSize -= 3.;
+    }
+    else if ([preferedContentSize isEqualToString:UIContentSizeCategorySmall]) {
+        fontSize -= 2.;
+    }
+    else if ([preferedContentSize isEqualToString:UIContentSizeCategoryMedium]) {
+        fontSize -= 1.;
+    }
+    else if ([preferedContentSize isEqualToString:UIContentSizeCategoryExtraLarge]) {
+        fontSize += 1.;
+    }
+    else if ([preferedContentSize isEqualToString:UIContentSizeCategoryExtraExtraLarge]) {
+        fontSize += 2.;
+    }
+    else if ([preferedContentSize isEqualToString:UIContentSizeCategoryExtraExtraExtraLarge]) {
+        fontSize += 3.;
+    }
+    return [UIFont fontWithName:fontName size:fontSize];
+}
+
 @end

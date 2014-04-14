@@ -13,6 +13,6 @@
 @interface FunctionCell2 (Function2)
 
 - (void) configureForFunction:(Function *) function;
-+ (CGFloat) heightForRowWithFunction:(Function *)function headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont;
++ (CGFloat) heightForRowWithFunction:(Function *)function headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont showtimesFont:(UIFont *)showtimesFont;
 
 @end

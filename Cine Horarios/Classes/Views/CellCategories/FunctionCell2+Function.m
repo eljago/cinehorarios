@@ -20,7 +20,7 @@
     [self.imageCover setImageWithStringURL:function.imageURL movieImageType:MovieImageTypeCover];
 }
 
-+ (CGFloat) heightForRowWithFunction:(Function *)function headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont {
++ (CGFloat) heightForRowWithFunction:(Function *)function headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont showtimesFont:(UIFont *)showtimesFont{
     
     CGSize size = CGSizeMake(187.f, 1000.f);
     
@@ -34,7 +34,7 @@
                                                          context: nil];
     CGRect showtimesLabelRect = [function.showtimes boundingRectWithSize: size
                                                                  options: NSStringDrawingUsesLineFragmentOrigin
-                                                              attributes: [NSDictionary dictionaryWithObject:bodyFont forKey:NSFontAttributeName]
+                                                              attributes: [NSDictionary dictionaryWithObject:showtimesFont forKey:NSFontAttributeName]
                                                                  context: nil];
     
     CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 15.0f + typesLabelRect.size.height + 5.0f + showtimesLabelRect.size.height + 10.0f;

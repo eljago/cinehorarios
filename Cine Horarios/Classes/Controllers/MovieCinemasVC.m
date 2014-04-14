@@ -126,7 +126,7 @@
     NSArray *cinemasLocal = [NSArray arrayWithContentsOfFile:filePath];
     self.cinemas = [NSMutableArray array];
     
-    NSDictionary *favoritesDictionary = @{@"itemID": @"100",
+    NSDictionary *favoritesDictionary = @{@"itemID": @100,
                                           @"name": @"Favoritos",
                                           @"imageURL": @"FavoriteHeart"};
     [self.cinemas addObject:[[BasicItemImage alloc] initWithDictionary:favoritesDictionary error:NULL]];

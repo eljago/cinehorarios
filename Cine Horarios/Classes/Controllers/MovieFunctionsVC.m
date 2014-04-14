@@ -19,6 +19,7 @@
 @interface MovieFunctionsVC ()
 @property (nonatomic, strong) NSArray *theaterFuctions;
 @property (nonatomic, strong) UIFont *tableFont;
+@property (nonatomic, strong) UIFont *showtimesFonts;
 @end
 
 @implementation MovieFunctionsVC
@@ -32,6 +33,7 @@
     [GAI trackPage:@"PELICULA FUNCIONES"];
     
     self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.showtimesFonts = [UIFont getFontWithName:@"HelveticaNeue-Light" forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
@@ -79,6 +81,7 @@
 #pragma mark - Content Size Changed
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.showtimesFonts = [UIFont getFontWithName:@"HelveticaNeue-Light" forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     [self.tableView reloadData];
 }
 
@@ -103,7 +106,7 @@
                                                              context: nil];
         CGRect showtimesLabelRect = [function.showtimes boundingRectWithSize: size
                                                                      options: NSStringDrawingUsesLineFragmentOrigin
-                                                                  attributes: [NSDictionary dictionaryWithObject:self.tableFont forKey:NSFontAttributeName]
+                                                                  attributes: [NSDictionary dictionaryWithObject:self.showtimesFonts forKey:NSFontAttributeName]
                                                                      context: nil];
         CGFloat typesHeight = typesLabelRect.size.height;
         if (!function.functionTypes || [function.functionTypes isEqualToString:@""]) {
@@ -142,7 +145,7 @@
     functionTypes.text = function.functionTypes;
     functionShowtimes.text = function.showtimes;
     functionTypes.font = self.tableFont;
-    functionShowtimes.font = self.tableFont;
+    functionShowtimes.font = self.showtimesFonts;
     
     return cell;
 }

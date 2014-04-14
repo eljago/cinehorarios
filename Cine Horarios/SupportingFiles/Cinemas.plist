@@ -8,7 +8,7 @@
 		<key>name</key>
 		<string>Cinemark</string>
 		<key>itemID</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>image_url</key>
@@ -16,7 +16,7 @@
 		<key>name</key>
 		<string>Cine Hoyts</string>
 		<key>itemID</key>
-		<string>2</string>
+		<integer>2</integer>
 	</dict>
 	<dict>
 		<key>image_url</key>
@@ -24,7 +24,7 @@
 		<key>name</key>
 		<string>Cineplanet</string>
 		<key>itemID</key>
-		<string>3</string>
+		<integer>3</integer>
 	</dict>
 	<dict>
 		<key>image_url</key>
@@ -32,7 +32,7 @@
 		<key>name</key>
 		<string>Cinemundo</string>
 		<key>itemID</key>
-		<string>4</string>
+		<integer>4</integer>
 	</dict>
 	<dict>
 		<key>image_url</key>
@@ -40,11 +40,11 @@
 		<key>name</key>
 		<string>Cine Pavilion</string>
 		<key>itemID</key>
-		<string>6</string>
+		<integer>6</integer>
 	</dict>
 	<dict>
 		<key>itemID</key>
-		<string>7</string>
+		<integer>7</integer>
 		<key>name</key>
 		<string>CineStar</string>
 		<key>image_url</key>
@@ -56,7 +56,7 @@
 		<key>name</key>
 		<string>Independientes</string>
 		<key>itemID</key>
-		<string>5</string>
+		<integer>5</integer>
 	</dict>
 </array>
 </plist>

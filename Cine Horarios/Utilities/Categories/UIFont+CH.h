@@ -24,5 +24,6 @@ typedef NS_ENUM(NSUInteger, CHFontStyle) {
 @interface UIFont (CH)
 
 +(UIFont *)getSizeForCHFont:(CHFontStyle)cHFontStyle forPreferedContentSize:(NSString *)preferedContentSize;
++(UIFont *)getFontWithName:(NSString *)fontName forPreferedContentSize:(NSString *)preferedContentSize;
 
 @end
