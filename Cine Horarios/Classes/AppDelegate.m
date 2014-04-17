@@ -15,7 +15,7 @@
 #import "UIFont+CH.h"
 //#import "RageIAPHelper.h"
 
-#define COMPILE_GEOFARO true
+#define COMPILE_GEOFARO false
 
 /** Google Analytics configuration constants **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
@@ -193,7 +193,7 @@ static int const kGaDispatchPeriod = 30;
     self.window.tintColor = [UIColor whiteColor];
     
     [[UINavigationBar appearance] setTitleTextAttributes: @{
-                                                            NSFontAttributeName: [UIFont fontWithName:@"ProximaNova-Regular" size:19.0f],
+                                                            NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:19.0f],
                                                             NSForegroundColorAttributeName: [UIColor whiteColor]
                                                             }];
     

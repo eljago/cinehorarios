@@ -246,7 +246,7 @@ const CGFloat kButtonWidth = 50.f;
         label.text = name;
         if ([identifier isEqualToString:storyboardID]) {
             label.textColor = [UIColor menuColorForRow:index];
-            label.font = [UIFont fontWithName:@"ProximaNova-Regular" size:17.];
+            label.font = [UIFont fontWithName:@"Helvetica" size:17.];
         }
         imgView.image = image;
         imgView.tintColor = [UIColor menuColorForRow:index];
@@ -255,11 +255,11 @@ const CGFloat kButtonWidth = 50.f;
             for (REMenuItem *menuItem in self.menu.items) {
                 if ([item isEqual:menuItem]) {
                     ((UILabel *)[menuItem.customView viewWithTag:1]).textColor = [UIColor menuColorForRow:index];
-                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"ProximaNova-Regular" size:17.];
+                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"Helvetica" size:17.];
                 }
                 else {
                     ((UILabel *)[menuItem.customView viewWithTag:1]).textColor = [UIColor whiteColor];
-                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"ProximaNova-Light" size:17.];
+                    ((UILabel *)[menuItem.customView viewWithTag:1]).font = [UIFont fontWithName:@"Helvetica-Light" size:17.];
                 }
             }
         }];

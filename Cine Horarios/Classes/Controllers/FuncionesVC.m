@@ -52,7 +52,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     
     self.headFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    self.showtimesFont = [UIFont getFontWithName:@"HelveticaNeue-Light" forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.showtimesFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
@@ -214,7 +214,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    self.showtimesFont = [UIFont getFontWithName:@"HelveticaHeue-Light" forPreferedContentSize: aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.showtimesFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [self.tableView reloadData];
 }
 

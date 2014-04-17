@@ -32,8 +32,8 @@
     
     [GAI trackPage:@"PELICULA FUNCIONES"];
     
-    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    self.showtimesFonts = [UIFont getFontWithName:@"HelveticaNeue-Light" forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormalBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.showtimesFonts = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
@@ -80,8 +80,8 @@
 }
 #pragma mark - Content Size Changed
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    self.showtimesFonts = [UIFont getFontWithName:@"HelveticaNeue-Light" forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormalBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    self.showtimesFonts = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [self.tableView reloadData];
 }
 

@@ -8,9 +8,8 @@
 
 #import "UIFont+CH.h"
 
-//NSString *const kHelveticaNeue = @"Avenir-Book";
-NSString *const kHelveticaNeue = @"ProximaNova-Light";
-NSString *const kHelveticaNeueBold = @"ProximaNova-Regular";
+NSString *const kHelveticaNeue = @"Helvetica-Light";
+NSString *const kHelveticaNeueBold = @"Helvetica";
 
 @implementation UIFont (CH)
 
