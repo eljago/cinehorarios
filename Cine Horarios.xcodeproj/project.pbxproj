@@ -1159,8 +1159,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1173,7 +1173,7 @@
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "F2FC7FBF-C77F-489C-9D1C-2F45E15AA7E9";
+				PROVISIONING_PROFILE = "962F03A6-7C72-41FA-A72B-0EB614DE9A68";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1188,8 +1188,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1202,7 +1202,7 @@
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "F2FC7FBF-C77F-489C-9D1C-2F45E15AA7E9";
+				PROVISIONING_PROFILE = "962F03A6-7C72-41FA-A72B-0EB614DE9A68";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -33,7 +33,7 @@ NSString *const kShowTheatersPath = @"/api/shows/%lu/show_theaters.json";
 }
 
 + (void)getTheaterWithBlock:(void (^)(Theater *theater, NSError *error))block theaterID:(NSUInteger)theaterID {
-    NSString *path = [NSString stringWithFormat:kTheaterPath,theaterID];
+    NSString *path = [NSString stringWithFormat:kTheaterPath,(unsigned long)theaterID];
     [[CineHorariosApiClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         
         NSError *theError = nil;

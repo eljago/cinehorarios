@@ -133,7 +133,7 @@
     NSArray *values = [favorites allValues];
     for (int i=0;i<[favorites count];i++){
         NSError *error = nil;
-        NSDictionary *dict = @{@"theaterID": [keys objectAtIndex:i], @"name": [values objectAtIndex:i]};
+        NSDictionary *dict = @{@"theaterID": [NSNumber numberWithInt:[[keys objectAtIndex:i] intValue]], @"name": [values objectAtIndex:i]};
         Theater *theater = [Theater modelWithDictionary:dict error:&error];
         [mutableTheaters insertObject:theater atIndex:i];
     }
