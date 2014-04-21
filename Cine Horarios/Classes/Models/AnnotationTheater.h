@@ -7,6 +7,7 @@
 //
 
 #import <MapKit/MapKit.h>
+@class Theater;
 
 @interface AnnotationTheater : NSObject <MKAnnotation>
 
@@ -17,6 +18,7 @@
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, assign, readwrite) double distance;
 
+- (id)initWithTheater:(Theater *)theater;
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSComparisonResult) compareAnnotationsDistance: (AnnotationTheater *)annotation;
 

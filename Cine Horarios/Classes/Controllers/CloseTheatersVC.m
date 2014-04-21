@@ -17,6 +17,8 @@
 #import "DoAlertView.h"
 #import "UIViewController+DoAlertView.h"
 
+#import "UIImage+CH.h"
+
 NSInteger const kMaxTheaterDistance = 26000;
 NSInteger const kRegionSize = 4000;
 NSInteger const kRegionZoomedSize = 1000;
@@ -112,52 +114,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
         view.tintColor = [UIColor grayColor];
     }
     AnnotationTheater *annotationTheater = (AnnotationTheater *)annotation;
-    switch (annotationTheater.cinemaID) {
-        case 1:
-            view.image = [UIImage imageNamed:@"AnnotationCinemark"];
-            break;
-        case 2:
-            view.image = [UIImage imageNamed:@"AnnotationCineHoyts"];
-            break;
-        case 3:
-            view.image = [UIImage imageNamed:@"AnnotationCineplanet"];
-            break;
-        case 4:
-            view.image = [UIImage imageNamed:@"AnnotationCinemundo"];
-            break;
-        case 5:
-            switch (annotationTheater.theaterID) {
-                case 47:
-                    view.image = [UIImage imageNamed:@"AnnotationNormandie"];
-                    break;
-                case 46:
-                    view.image = [UIImage imageNamed:@"AnnotationArteAlameda"];
-                    break;
-                case 51:
-                    view.image = [UIImage imageNamed:@"AnnotationElBiografo"];
-                    break;
-                case 59:
-                    view.image = [UIImage imageNamed:@"AnnotationCineAntay"];
-                    break;
-                case 60:
-                    view.image = [UIImage imageNamed:@"AnnotationMuseoMemoria"];
-                    break;
-                    
-                default:
-                    break;
-            }
-//            view.image = [UIImage imageNamed:@"AnnotationCinesIndependientes"];
-            break;
-        case 6:
-            view.image = [UIImage imageNamed:@"AnnotationCinePavilion"];
-            break;
-        case 7:
-            view.image = [UIImage imageNamed:@"AnnotationCineStar"];
-            break;
-            
-        default:
-            break;
-    }
+    view.image = [UIImage imageWithCinemaID:annotationTheater.cinemaID theaterID:annotationTheater.theaterID];
     view.canShowCallout = YES;
     
     return view;

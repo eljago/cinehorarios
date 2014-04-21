@@ -169,7 +169,6 @@
     Theater *theater = self.favoriteTheaters[indexPath.row];
     functionesVC.theaterID = theater.theaterID;
     functionesVC.theaterName = theater.name;
-    
 }
 
 @end

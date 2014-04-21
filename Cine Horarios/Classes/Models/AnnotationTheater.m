@@ -7,6 +7,7 @@
 //
 
 #import "AnnotationTheater.h"
+#import "Theater.h"
 
 @implementation AnnotationTheater
 
@@ -23,6 +24,21 @@
         }
         _title = dictionary[@"name"];
         _subtitle = dictionary[@"address"];
+    }
+    
+    return self;
+}
+
+- (id)initWithTheater:(Theater *)theater {
+    self = [super init];
+    if (self) {
+        _theaterID = theater.theaterID;
+        _cinemaID = theater.cinemaID;
+        if (theater.latitude.length > 0 && theater.longitude.length > 0) {
+            _coordinate = CLLocationCoordinate2DMake([theater.latitude doubleValue], [theater.longitude doubleValue]);
+        }
+        _title = theater.address;
+        _subtitle = theater.information;
     }
     
     return self;

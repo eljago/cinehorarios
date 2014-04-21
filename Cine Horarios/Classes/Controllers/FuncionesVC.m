@@ -23,6 +23,11 @@
 #import "FunctionCell2+Function.h"
 #import "UIViewController+DoAlertView.h"
 
+#import "DoAlertView.h"
+#import "AnnotationTheater.h"
+
+#import "UIImage+CH.h"
+
 NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 @interface FuncionesVC ()
@@ -228,6 +233,33 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     movieVC.movieName = function.name;
     movieVC.portraitImageURL = function.portraitImageURL;
     movieVC.coverImageURL = function.imageURL;
+}
+
+- (void)showTheaterInfo {
+    AnnotationTheater *annotationTheater = [[AnnotationTheater alloc] initWithTheater:self.theater];
+    UIImage *annotationImage = [UIImage imageWithCinemaID:self.theater.cinemaID theaterID:self.theater.theaterID];
+    
+    DoAlertView *alertView = [[DoAlertView alloc] init];
+    alertView.annotation = annotationTheater;
+    alertView.iImage = annotationImage;
+    alertView.nAnimationType = DoTransitionStylePop;
+    alertView.dRound = 2.0;
+    alertView.bDestructive = NO;
+    
+    alertView.nContentMode = DoContentMap;
+    alertView.dLocation = @{@"latitude" : self.theater.latitude, @"longitude" : self.theater.longitude, @"altitude" : @200};
+    [alertView doYesNo:@"Title"
+                body:@"Here’s a snippet of code that illustrates how the whole process works"
+                 yes:^(DoAlertView *alertView) {
+                     
+                     NSLog(@"Yeeeeeeeeeeeees!!!!");
+                     
+                 } no:^(DoAlertView *alertView) {
+                     
+                     NSLog(@"Noooooooooooooo!!!!");
+                     
+                 }];
+
 }
 
 @end

@@ -97,7 +97,7 @@ typedef void(^DoAlertViewHandler)(DoAlertView *alertView);
 @property (nonatomic, strong)   UIImage         *iImage;
 // for Map view
 @property (nonatomic, strong)   NSDictionary    *dLocation; // latitude, longitude
-
+@property (nonatomic, strong) id<MKAnnotation> annotation;
 
 // With Title, Alert body, Yes button, No button
 - (void)doYesNo:(NSString *)strTitle

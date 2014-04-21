@@ -303,8 +303,10 @@
 
             [vBody addSubview:vMap];
             dContentOffset = 180 + DO_LABEL_INSET.bottom;
-
-//            [vMap showAnnotations:@[pointRavens,pointSteelers,pointBengals, pointBrowns] animated:YES];
+            
+            if (self.annotation) {
+                [vMap addAnnotation:self.annotation];
+            }
         }
             break;
 
@@ -313,6 +315,22 @@
     }
     
     return dContentOffset;
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    static NSString *annotationViewReuseIdentifier = @"annotationViewReuseIdentifier";
+    
+    MKAnnotationView *annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:annotationViewReuseIdentifier];
+    
+    if (annotationView == nil)
+    {
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationViewReuseIdentifier];
+    }
+    
+    annotationView.image = self.iImage;
+    annotationView.annotation = annotation;
+    
+    return annotationView;
 }
 
 - (double)getTextHeight:(UILabel *)lbText

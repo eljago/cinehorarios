@@ -13,4 +13,5 @@
 
 @property (nonatomic, strong) NSString *theaterName;
 @property (nonatomic, assign) NSUInteger theaterID;
+@property (nonatomic, assign) NSUInteger cinemaID;
 @end

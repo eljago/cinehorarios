@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (CH)
+
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
++ (UIImage *)imageWithCinemaID:(NSUInteger )cinemaID theaterID:(NSUInteger)theaterID;
+
 @end
