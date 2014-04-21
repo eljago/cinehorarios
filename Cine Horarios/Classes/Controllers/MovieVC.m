@@ -422,7 +422,7 @@
         }
     }
     else if (indexPath.section == 2) {
-        if (self.movie.people.count == 0) {
+        if (self.cast.actors.count == 0) {
             return 0.;
         }
     }
