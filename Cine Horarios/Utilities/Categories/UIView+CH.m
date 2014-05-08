@@ -20,13 +20,10 @@
     label.textColor = [UIColor whiteColor];
     label.tag = 40;
     label.font = [UIFont getSizeForCHFont:CHFontStyleSmallerBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    label.text = [text uppercaseString];
+    label.text = text;
     label.textAlignment = NSTextAlignmentLeft;
     [view addSubview: label];
     label.center = view.center;
-    CGRect frame = label.frame;
-    frame.origin.y += 1;
-    label.frame = frame;
     return view;
 }
 + (CGFloat)heightForHeaderViewWithText:(NSString *)text {
@@ -34,7 +31,7 @@
     
     UIFont *font = [UIFont getSizeForCHFont:CHFontStyleSmallerBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     
-    CGRect nameLabelRect = [[text uppercaseString] boundingRectWithSize: size
+    CGRect nameLabelRect = [text boundingRectWithSize: size
                                                         options: NSStringDrawingUsesLineFragmentOrigin
                                                              attributes: @{NSFontAttributeName: font}
                                                         context: nil];
