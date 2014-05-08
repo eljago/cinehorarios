@@ -214,6 +214,9 @@
 		6E607F2E18C10E7D000D85FF /* NSObject+Utilidades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utilidades.m"; sourceTree = "<group>"; };
 		6E607F3018C10ED5000D85FF /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		6E607F3118C10ED5000D85FF /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
+		6EA7AAF3191B2E3200C6E0DC /* GADInAppPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInAppPurchase.h; path = AdMob/GADInAppPurchase.h; sourceTree = "<group>"; };
+		6EA7AAF4191B2E3200C6E0DC /* GADInAppPurchaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInAppPurchaseDelegate.h; path = AdMob/GADInAppPurchaseDelegate.h; sourceTree = "<group>"; };
+		6EA7AAF5191B2E3200C6E0DC /* GADModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADModules.h; path = AdMob/GADModules.h; sourceTree = "<group>"; };
 		6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		6EBF1E9C18AB664D007B50A5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6EBF1E9E18AB6653007B50A5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -812,6 +815,9 @@
 		6EBF1E8C18AB65E2007B50A5 /* AdMob */ = {
 			isa = PBXGroup;
 			children = (
+				6EA7AAF3191B2E3200C6E0DC /* GADInAppPurchase.h */,
+				6EA7AAF4191B2E3200C6E0DC /* GADInAppPurchaseDelegate.h */,
+				6EA7AAF5191B2E3200C6E0DC /* GADModules.h */,
 				6EC005FA18DC7A19003DECC8 /* GADAdMobExtras.h */,
 				6EC005FB18DC7A19003DECC8 /* GADAdNetworkExtras.h */,
 				6EC005FC18DC7A19003DECC8 /* GADAdSize.h */,
