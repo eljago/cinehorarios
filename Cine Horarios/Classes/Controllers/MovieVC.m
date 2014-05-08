@@ -398,6 +398,10 @@
             if (!self.movie.hasFunctions) {
                 return 0.;
             }
+            else {
+                UIBarButtonItem *showtimesButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconHorarios"] style:UIBarButtonItemStylePlain target:self action:@selector(goToShowtimes:)];
+                self.navigationItem.rightBarButtonItems = @[self.navigationItem.rightBarButtonItem, showtimesButtonItem];
+            }
         }
     }
     else if (indexPath.section == 1) {
@@ -598,6 +602,15 @@
             break;
         }
     }
+}
+
+#pragma mark - go showtimes
+
+- (void)goToShowtimes:(id) sender {
+    MovieCinemasVC *vc = (MovieCinemasVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"MovieCinemasVC"];
+    vc.movieID = self.movie.movieID;
+    vc.movieName = self.movie.name;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Segue
