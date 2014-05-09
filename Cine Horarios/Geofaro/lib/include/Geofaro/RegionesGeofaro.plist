@@ -4,241 +4,253 @@
 <array>
 	<dict>
 		<key>ref</key>
-		<string>Mall Arauco Maipú</string>
+		<string>Estación Central</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA550</string>
 		<key>lat</key>
-		<string>-33.542119</string>
+		<string>-33.452192</string>
 		<key>lon</key>
-		<string>-70.621138</string>
+		<string>-70.682633</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Plaza Oeste</string>
+		<string>Providencia</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA549</string>
 		<key>lat</key>
-		<string>-33.516352</string>
+		<string>-33.421825</string>
 		<key>lon</key>
-		<string>-70.714731</string>
+		<string>-70.609661</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall San Bernardo</string>
+		<string>Plaza Ñuñoa</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA548</string>
 		<key>lat</key>
-		<string>-33.612984</string>
+		<string>-33.455219</string>
 		<key>lon</key>
-		<string>-70.583383</string>
+		<string>-70.593632</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Terminal de Buses (Est. Central)</string>
+		<string>Plaza de Maipú</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA547</string>
 		<key>lat</key>
-		<string>-33.448407</string>
+		<string>-33.510374</string>
 		<key>lon</key>
-		<string>-70.670469</string>
+		<string>-70.757490</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Alameda (Nivel 4°)</string>
+		<string>Plaza Baquedano</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA546</string>
 		<key>lat</key>
-		<string>-33.4483</string>
+		<string>-33.437306</string>
 		<key>lon</key>
-		<string>-70.670426</string>
+		<string>-70.634925</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Plaza Vespucio</string>
+		<string>CinePlanet La Dehesa</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA545</string>
 		<key>lat</key>
-		<string>-33.518589</string>
+		<string>-33.357600</string>
 		<key>lon</key>
-		<string>-70.600079</string>
+		<string>-70.515495</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Florida Center</string>
+		<string>CinePlanet Florida Center</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA544</string>
 		<key>lat</key>
-		<string>-33.518589</string>
+		<string>-33.510679</string>
 		<key>lon</key>
-		<string>-70.600079</string>
+		<string>-70.608442</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Plaza Tobalaba</string>
+		<string>CinePlanet  Costanera</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA543</string>
 		<key>lat</key>
-		<string>-33.568942</string>
+		<string>-33.417132</string>
 		<key>lon</key>
-		<string>-70.554737</string>
+		<string>-70.607517</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Subcentro Escuela Militar</string>
+		<string>Cinemark Plaza Tobalaba</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA542</string>
 		<key>lat</key>
-		<string>-33.41346</string>
+		<string>-33.569094</string>
 		<key>lon</key>
-		<string>-70.58287</string>
+		<string>-70.556486</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Apumanque</string>
+		<string>Cinemark Alto Las Condes</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA541</string>
 		<key>lat</key>
-		<string>-33.409162</string>
+		<string>-33.390972</string>
 		<key>lon</key>
-		<string>-70.567194</string>
+		<string>-70.545989</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Parque Arauco</string>
+		<string>Cinemark Plaza Vespucio</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA540</string>
 		<key>lat</key>
-		<string>-33.402749</string>
+		<string>-33.518274</string>
 		<key>lon</key>
-		<string>-70.578579</string>
+		<string>-70.598278</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Costanera Center</string>
+		<string>Cinemark Plaza Norte</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA539</string>
 		<key>lat</key>
-		<string>-33.417472</string>
+		<string>-33.366388</string>
 		<key>lon</key>
-		<string>-70.60819</string>
+		<string>-70.678869</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall del Centro</string>
+		<string>Cinemark Plaza Oeste</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA538</string>
 		<key>lat</key>
-		<string>-33.434942</string>
+		<string>-33.517268</string>
 		<key>lon</key>
-		<string>-70.651597</string>
+		<string>-70.717373</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Plaza Norte</string>
+		<string>Cinemark Portal Ñuñoa</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA537</string>
 		<key>lat</key>
-		<string>-33.471205</string>
+		<string>-33.465028</string>
 		<key>lon</key>
-		<string>-70.577171</string>
+		<string>-70.597323</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Curicó</string>
+		<string>Hoyst Puente Alto</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA536</string>
 		<key>lat</key>
-		<string>-34.989363</string>
+		<string>-33.598909</string>
 		<key>lon</key>
-		<string>-71.243981</string>
+		<string>-70.576284</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Marina Arauco</string>
+		<string>Hoyst El Alba</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA535</string>
 		<key>lat</key>
-		<string>-33.008394</string>
+		<string>-33.401180</string>
 		<key>lon</key>
-		<string>-71.548614</string>
+		<string>-70.514898</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Plaza Bio Bio</string>
+		<string>Hoyst San Bernardo</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA534</string>
 		<key>lat</key>
-		<string>-36.825123</string>
+		<string>-33.595692</string>
 		<key>lon</key>
-		<string>-73.056906</string>
+		<string>-70.706534</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Plaza Los Ríos</string>
+		<string>Hoyst  Arauco Maipú</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA533</string>
 		<key>lat</key>
-		<string>-39.815261</string>
+		<string>-33.481350</string>
 		<key>lon</key>
-		<string>-73.241694</string>
+		<string>-70.751952</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Mall Portal Talcahuano</string>
+		<string>Hoyst Los Trapenses</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA532</string>
 		<key>lat</key>
-		<string>-36.711538</string>
+		<string>-33.343550</string>
 		<key>lon</key>
-		<string>-73.114107</string>
+		<string>-70.544635</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>
 	<dict>
 		<key>ref</key>
-		<string>Portales</string>
+		<string>Hoyst  Parque Arauco</string>
 		<key>identifier</key>
-		<string>SPKBEAA035</string>
+		<string>SPKBEAA531</string>
 		<key>lat</key>
-		<string>-36.826102</string>
+		<string>-33.402275</string>
 		<key>lon</key>
-		<string>-73.049331</string>
+		<string>-70.578586</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Hoyst La Reina</string>
+		<key>identifier</key>
+		<string>SPKBEAA530</string>
+		<key>lat</key>
+		<string>-33.447636</string>
+		<key>lon</key>
+		<string>-70.571364</string>
 		<key>radio</key>
 		<string>150</string>
 	</dict>

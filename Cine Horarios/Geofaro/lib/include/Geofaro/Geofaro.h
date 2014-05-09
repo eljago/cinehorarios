@@ -20,7 +20,9 @@
 @class Geofaro;
 @protocol GeofaroDelegate <NSObject>
 @required
-- (void)geofaro:(Geofaro*)geofaro areaEncontrada:(NSDictionary*)areaInfo;
+- (void)geofaro:(Geofaro*)geofaro areaIN:(CLRegion*)areaInfo;
+- (void)geofaro:(Geofaro*)geofaro areaOUT:(CLRegion*)areaInfo;
+
 - (void)geofaro:(Geofaro*)geofaro faroEncontrado:(NSDictionary*)faroInfo;
 - (void)geofaro:(Geofaro*)geofaro faroEncontradoNuevo:(NSDictionary*)faroInfo;
 - (void)geofaro:(Geofaro*)geofaro faroEncontradoPromocionViewController:(UIViewController*)promocionViewController;

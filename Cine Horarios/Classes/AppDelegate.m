@@ -357,7 +357,12 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 }
 
 #pragma mark - GeofaroDelegate
-- (void)geofaro:(Geofaro*)geofaro areaEncontrada:(NSDictionary *)areaInfo
+- (void)geofaro:(Geofaro*)geofaro areaIN:(CLRegion *)areaInfo
+{
+    
+}
+
+- (void)geofaro:(Geofaro*)geofaro areaOUT:(CLRegion *)areaInfo
 {
     
 }

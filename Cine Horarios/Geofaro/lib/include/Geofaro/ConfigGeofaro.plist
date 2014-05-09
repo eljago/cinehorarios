@@ -7,8 +7,8 @@
 	<key>AP</key>
 	<string>21</string>
 	<key>APNM</key>
-	<string>appCineHorario</string>
+	<string>appCineHorarios</string>
 	<key>REGIONES</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

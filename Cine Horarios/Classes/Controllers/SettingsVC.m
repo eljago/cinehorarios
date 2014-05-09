@@ -159,6 +159,7 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return self.startingVCs[row][@"name"];
+    
 }
 
 #pragma mark Delegate

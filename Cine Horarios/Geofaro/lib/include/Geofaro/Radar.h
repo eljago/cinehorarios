@@ -12,7 +12,8 @@
 @class Radar;
 @protocol RadarDelegate <NSObject>
 @required
-- (void)radar:(Radar*)radar areaEncontrada:(NSDictionary*)areaInfo;
+- (void)radar:(Radar*)radar areaIN:(CLRegion*)areaInfo;
+- (void)radar:(Radar*)radar areaOUT:(CLRegion*)areaInfo;
 @end
 
 @interface Radar : NSObject <CLLocationManagerDelegate>
