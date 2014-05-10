@@ -991,7 +991,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		A7D59476405649439AA3020D /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -1165,8 +1165,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1179,7 +1179,7 @@
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "46CA847B-CF9F-45D0-8232-C6584D6E6D81";
+				PROVISIONING_PROFILE = "50C19379-AE3C-44C3-B067-76AB3DC2D135";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1194,8 +1194,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1208,7 +1208,7 @@
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "46CA847B-CF9F-45D0-8232-C6584D6E6D81";
+				PROVISIONING_PROFILE = "50C19379-AE3C-44C3-B067-76AB3DC2D135";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
