@@ -174,7 +174,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
             cell.imageView.image = [UIImage imageNamed:@"LogoCineplanet"];
             break;
         case 4:
-            cell.imageView.image = [UIImage imageNamed:@"LogoCinemundo"];
+            cell.imageView.image = [UIImage imageNamed:@"LogoCineHoyts"];
             break;
         case 5:
             switch (annotation.theaterID) {

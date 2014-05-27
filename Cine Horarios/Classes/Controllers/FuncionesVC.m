@@ -97,7 +97,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
+
     NSInteger height = [UIView heightForHeaderViewWithText:self.theaterName];
     return [UIView headerViewForText:self.theaterName height:height];
 }

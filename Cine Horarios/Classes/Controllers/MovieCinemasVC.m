@@ -83,6 +83,7 @@
             i++;
         }
     }
+    // Create new arrays only with the mutablearrays that are not empty.
     int i = 0;
     NSMutableArray *newTheaters = [NSMutableArray array];
     NSMutableArray *newCinemas = [NSMutableArray array];

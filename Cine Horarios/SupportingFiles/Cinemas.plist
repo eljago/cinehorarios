@@ -14,9 +14,17 @@
 		<key>image_url</key>
 		<string>LogoCineHoyts</string>
 		<key>name</key>
-		<string>Cine Hoyts</string>
+		<string>Hoyts Santiago</string>
 		<key>itemID</key>
 		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>image_url</key>
+		<string>LogoCineHoyts</string>
+		<key>name</key>
+		<string>Hoyts Regiones</string>
+		<key>itemID</key>
+		<integer>4</integer>
 	</dict>
 	<dict>
 		<key>image_url</key>
@@ -25,14 +33,6 @@
 		<string>Cineplanet</string>
 		<key>itemID</key>
 		<integer>3</integer>
-	</dict>
-	<dict>
-		<key>image_url</key>
-		<string>LogoCinemundo</string>
-		<key>name</key>
-		<string>Cinemundo</string>
-		<key>itemID</key>
-		<integer>4</integer>
 	</dict>
 	<dict>
 		<key>image_url</key>
