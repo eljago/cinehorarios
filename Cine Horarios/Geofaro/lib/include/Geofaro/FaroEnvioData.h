@@ -17,25 +17,15 @@
 
 @protocol FaroEnvioDataDelegate <NSObject>
 @required
-/*
-- (void)faroEnvioDataIniciando:(FaroEnvioData*) faroEnvioData respuesta:(NSURLResponse*)respuesta;
-- (void)faroEnvioDataProgreso:(FaroEnvioData*) faroEnvioData porcentaje:(int)porcentaje;
-- (void)faroEnvioDataCompletado:(FaroEnvioData*) faroEnvioData resultados:(NSMutableDictionary*)resultados;
-- (void)faroEnvioDataError:(FaroEnvioData*) faroEnvioData error:(NSError*)error;
-- (void)faroEnvioDataParserCompletado:(FaroEnvioData*)faroEnvioData resultados:(NSMutableDictionary*)resultados;
-- (void)faroEnvioDataParserError:(FaroEnvioData*) faroEnvioData error:(NSError*)error;
-*/
 - (void)faroEnvioDataCompletado:(FaroEnvioData*)faroEnvioData resultados:(NSMutableDictionary*)resultados;
 - (void)faroEnvioDataError:(FaroEnvioData*)faroEnvioData error:(NSError*)error;
-
 @end
 
-@interface FaroEnvioData : NSObject <NSURLConnectionDelegate,NSURLConnectionDataDelegate,NSXMLParserDelegate>
+@interface FaroEnvioData : NSObject <NSXMLParserDelegate,NSURLSessionDataDelegate,NSURLSessionTaskDelegate>
 
 @property (retain) id delegate;
 + (FaroEnvioData *)sharedFaroEnvioData;
 
 - (void)iniciarEnviarDataParametros:(NSDictionary*)parametros;
-//- (void)enviarDataGuardada;
 - (void)faroEnvioIniciarRuta:(NSString*)ruta conParametros:(NSMutableDictionary*)parametros;
 @end

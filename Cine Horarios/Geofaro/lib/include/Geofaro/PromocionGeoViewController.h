@@ -21,6 +21,8 @@
 @property (nonatomic,copy) NSString *screenName;
 
 @property (nonatomic,weak) IBOutlet UIProgressView *progressView;
+@property (nonatomic,weak) IBOutlet UIImageView *cargandoImageView;
+
 @property (nonatomic,weak) IBOutlet UIActivityIndicatorView *activityView;
 
 #pragma mark - Bases

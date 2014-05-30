@@ -12,7 +12,7 @@
 - (void)faroEnvioDataGuardada:(FaroEnvioDataGuardada*)faroEnvioDataGuardada envioCompletado:(NSDictionary*)info;
 - (void)faroEnvioDataGuardada:(FaroEnvioDataGuardada*)faroEnvioDataGuardada envioError:(NSError*)error;
 @end
-@interface FaroEnvioDataGuardada : NSObject <NSURLConnectionDelegate,NSURLConnectionDataDelegate,NSXMLParserDelegate>
+@interface FaroEnvioDataGuardada : NSObject <NSXMLParserDelegate,NSURLSessionDataDelegate,NSURLSessionTaskDelegate>
 
 @property (retain) id delegate;
 

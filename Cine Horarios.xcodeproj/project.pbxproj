@@ -14,6 +14,17 @@
 		3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981817E5AA46001A371D /* QuartzCore.framework */; };
 		3DDB7107170A516B00EC3E51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7106170A516B00EC3E51 /* Foundation.framework */; };
 		3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7108170A516B00EC3E51 /* CoreGraphics.framework */; };
+		6E24BC1E1938FC5200F919F1 /* BeaconsGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC041938FC5200F919F1 /* BeaconsGeofaro.plist */; };
+		6E24BC1F1938FC5200F919F1 /* ConfigGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC051938FC5200F919F1 /* ConfigGeofaro.plist */; };
+		6E24BC201938FC5200F919F1 /* CuponesGeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC071938FC5200F919F1 /* CuponesGeoViewController.xib */; };
+		6E24BC211938FC5200F919F1 /* developers.der in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC091938FC5200F919F1 /* developers.der */; };
+		6E24BC221938FC5200F919F1 /* developers.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC0A1938FC5200F919F1 /* developers.p12 */; };
+		6E24BC231938FC5200F919F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC111938FC5200F919F1 /* Images.xcassets */; };
+		6E24BC241938FC5200F919F1 /* PromocionGeoiPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC151938FC5200F919F1 /* PromocionGeoiPadViewController.xib */; };
+		6E24BC251938FC5200F919F1 /* PromocionGeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC171938FC5200F919F1 /* PromocionGeoViewController.xib */; };
+		6E24BC261938FC5200F919F1 /* RegionesGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC1A1938FC5200F919F1 /* RegionesGeofaro.plist */; };
+		6E24BC271938FC5200F919F1 /* ServiciosGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC1B1938FC5200F919F1 /* ServiciosGeofaro.plist */; };
+		6E24BC281938FC5200F919F1 /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E24BC1D1938FC5200F919F1 /* libGeofaro.a */; };
 		6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396418273C9900ADB8D9 /* MapKit.framework */; };
 		6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396C182755A300ADB8D9 /* CoreLocation.framework */; };
 		6E607F2F18C10E7D000D85FF /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607F2E18C10E7D000D85FF /* NSObject+Utilidades.m */; };
@@ -113,38 +124,6 @@
 		6EC0074018DC7EE1003DECC8 /* UIViewController+DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */; };
 		6EE703A818B7BC7000B5D6F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A718B7BC7000B5D6F2 /* Security.framework */; };
 		6EE703AA18B7BC7A00B5D6F2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */; };
-		6EEDDABA191BE0FC00AB1EFC /* alerta.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA88191BE0FC00AB1EFC /* alerta.png */; };
-		6EEDDABB191BE0FC00AB1EFC /* alerta@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA89191BE0FC00AB1EFC /* alerta@2x.png */; };
-		6EEDDABC191BE0FC00AB1EFC /* alertaGeo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA8A191BE0FC00AB1EFC /* alertaGeo1.png */; };
-		6EEDDABD191BE0FC00AB1EFC /* alertaGeo1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA8B191BE0FC00AB1EFC /* alertaGeo1@2x.png */; };
-		6EEDDABE191BE0FC00AB1EFC /* alertaGeo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA8C191BE0FC00AB1EFC /* alertaGeo2.png */; };
-		6EEDDABF191BE0FC00AB1EFC /* alertaGeo2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA8D191BE0FC00AB1EFC /* alertaGeo2@2x.png */; };
-		6EEDDAC0191BE0FC00AB1EFC /* BeaconsGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA91191BE0FC00AB1EFC /* BeaconsGeofaro.plist */; };
-		6EEDDAC1191BE0FC00AB1EFC /* btnCerrar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA92191BE0FC00AB1EFC /* btnCerrar.png */; };
-		6EEDDAC2191BE0FC00AB1EFC /* btnCerrar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA93191BE0FC00AB1EFC /* btnCerrar@2x.png */; };
-		6EEDDAC3191BE0FC00AB1EFC /* btnCerrarLargo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA94191BE0FC00AB1EFC /* btnCerrarLargo.png */; };
-		6EEDDAC4191BE0FC00AB1EFC /* btnCerrarLargo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA95191BE0FC00AB1EFC /* btnCerrarLargo@2x.png */; };
-		6EEDDAC5191BE0FC00AB1EFC /* btnReintentar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA96191BE0FC00AB1EFC /* btnReintentar.png */; };
-		6EEDDAC6191BE0FC00AB1EFC /* btnReintentar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA97191BE0FC00AB1EFC /* btnReintentar@2x.png */; };
-		6EEDDAC7191BE0FC00AB1EFC /* btnReintentariPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA98191BE0FC00AB1EFC /* btnReintentariPad.png */; };
-		6EEDDAC8191BE0FC00AB1EFC /* btnReintentariPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA99191BE0FC00AB1EFC /* btnReintentariPad@2x.png */; };
-		6EEDDAC9191BE0FC00AB1EFC /* cargando.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA9A191BE0FC00AB1EFC /* cargando.png */; };
-		6EEDDACA191BE0FC00AB1EFC /* cargando@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA9B191BE0FC00AB1EFC /* cargando@2x.png */; };
-		6EEDDACB191BE0FC00AB1EFC /* cerrarIZQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA9C191BE0FC00AB1EFC /* cerrarIZQ.png */; };
-		6EEDDACC191BE0FC00AB1EFC /* cerrarIZQ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA9D191BE0FC00AB1EFC /* cerrarIZQ@2x.png */; };
-		6EEDDACD191BE0FC00AB1EFC /* ConfigGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDA9E191BE0FC00AB1EFC /* ConfigGeofaro.plist */; };
-		6EEDDACE191BE0FC00AB1EFC /* CuponesGeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAA0191BE0FC00AB1EFC /* CuponesGeoViewController.xib */; };
-		6EEDDACF191BE0FC00AB1EFC /* developers.der in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAA2191BE0FC00AB1EFC /* developers.der */; };
-		6EEDDAD0191BE0FC00AB1EFC /* developers.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAA3191BE0FC00AB1EFC /* developers.p12 */; };
-		6EEDDAD1191BE0FC00AB1EFC /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAA4191BE0FC00AB1EFC /* error.png */; };
-		6EEDDAD2191BE0FC00AB1EFC /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAA5191BE0FC00AB1EFC /* error@2x.png */; };
-		6EEDDAD3191BE0FC00AB1EFC /* guardarDER.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAAB191BE0FC00AB1EFC /* guardarDER.png */; };
-		6EEDDAD4191BE0FC00AB1EFC /* guardarDER@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAAC191BE0FC00AB1EFC /* guardarDER@2x.png */; };
-		6EEDDAD5191BE0FC00AB1EFC /* PromocionGeoiPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAB1191BE0FC00AB1EFC /* PromocionGeoiPadViewController.xib */; };
-		6EEDDAD6191BE0FC00AB1EFC /* PromocionGeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAB3191BE0FC00AB1EFC /* PromocionGeoViewController.xib */; };
-		6EEDDAD7191BE0FC00AB1EFC /* RegionesGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAB6191BE0FC00AB1EFC /* RegionesGeofaro.plist */; };
-		6EEDDAD8191BE0FC00AB1EFC /* ServiciosGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EEDDAB7191BE0FC00AB1EFC /* ServiciosGeofaro.plist */; };
-		6EEDDAD9191BE0FC00AB1EFC /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EEDDAB9191BE0FC00AB1EFC /* libGeofaro.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +136,35 @@
 		3DDB7100170A516B00EC3E51 /* Cine Horarios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cine Horarios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDB7106170A516B00EC3E51 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3DDB7108170A516B00EC3E51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6E24BC011938FC5200F919F1 /* AlertaGeoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertaGeoView.h; sourceTree = "<group>"; };
+		6E24BC021938FC5200F919F1 /* ArchivoManagerFaro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchivoManagerFaro.h; sourceTree = "<group>"; };
+		6E24BC031938FC5200F919F1 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
+		6E24BC041938FC5200F919F1 /* BeaconsGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BeaconsGeofaro.plist; sourceTree = "<group>"; };
+		6E24BC051938FC5200F919F1 /* ConfigGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigGeofaro.plist; sourceTree = "<group>"; };
+		6E24BC061938FC5200F919F1 /* CuponesGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuponesGeoViewController.h; sourceTree = "<group>"; };
+		6E24BC071938FC5200F919F1 /* CuponesGeoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CuponesGeoViewController.xib; sourceTree = "<group>"; };
+		6E24BC081938FC5200F919F1 /* DatosEnvioGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatosEnvioGeo.h; sourceTree = "<group>"; };
+		6E24BC091938FC5200F919F1 /* developers.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = developers.der; sourceTree = "<group>"; };
+		6E24BC0A1938FC5200F919F1 /* developers.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = developers.p12; sourceTree = "<group>"; };
+		6E24BC0B1938FC5200F919F1 /* Faro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Faro.h; sourceTree = "<group>"; };
+		6E24BC0C1938FC5200F919F1 /* FaroEnvioData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroEnvioData.h; sourceTree = "<group>"; };
+		6E24BC0D1938FC5200F919F1 /* FaroEnvioDataGuardada.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroEnvioDataGuardada.h; sourceTree = "<group>"; };
+		6E24BC0E1938FC5200F919F1 /* FaroFotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroFotoManager.h; sourceTree = "<group>"; };
+		6E24BC0F1938FC5200F919F1 /* Geofaro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geofaro.h; sourceTree = "<group>"; };
+		6E24BC101938FC5200F919F1 /* HBPro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPro.h; sourceTree = "<group>"; };
+		6E24BC111938FC5200F919F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6E24BC121938FC5200F919F1 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		6E24BC131938FC5200F919F1 /* NSObject+UtilidadesGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UtilidadesGeo.h"; sourceTree = "<group>"; };
+		6E24BC141938FC5200F919F1 /* PromocionGeoiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromocionGeoiPadViewController.h; sourceTree = "<group>"; };
+		6E24BC151938FC5200F919F1 /* PromocionGeoiPadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromocionGeoiPadViewController.xib; sourceTree = "<group>"; };
+		6E24BC161938FC5200F919F1 /* PromocionGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromocionGeoViewController.h; sourceTree = "<group>"; };
+		6E24BC171938FC5200F919F1 /* PromocionGeoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromocionGeoViewController.xib; sourceTree = "<group>"; };
+		6E24BC181938FC5200F919F1 /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
+		6E24BC191938FC5200F919F1 /* RadarParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarParser.h; sourceTree = "<group>"; };
+		6E24BC1A1938FC5200F919F1 /* RegionesGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RegionesGeofaro.plist; sourceTree = "<group>"; };
+		6E24BC1B1938FC5200F919F1 /* ServiciosGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServiciosGeofaro.plist; sourceTree = "<group>"; };
+		6E24BC1C1938FC5200F919F1 /* UIDevice+HardwareGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HardwareGeo.h"; sourceTree = "<group>"; };
+		6E24BC1D1938FC5200F919F1 /* libGeofaro.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGeofaro.a; sourceTree = "<group>"; };
 		6E2B1ADD18C9725A00A30938 /* libGeofaro.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGeofaro.a; path = ../../../Desktop/libGeofaro.a; sourceTree = "<group>"; };
 		6E57396418273C9900ADB8D9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6E57396C182755A300ADB8D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -348,56 +356,6 @@
 		6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+DoAlertView.m"; path = "Utilities/Categories/UIViewController+DoAlertView.m"; sourceTree = "<group>"; };
 		6EE703A718B7BC7000B5D6F2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		6EEDDA88191BE0FC00AB1EFC /* alerta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alerta.png; sourceTree = "<group>"; };
-		6EEDDA89191BE0FC00AB1EFC /* alerta@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alerta@2x.png"; sourceTree = "<group>"; };
-		6EEDDA8A191BE0FC00AB1EFC /* alertaGeo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alertaGeo1.png; sourceTree = "<group>"; };
-		6EEDDA8B191BE0FC00AB1EFC /* alertaGeo1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertaGeo1@2x.png"; sourceTree = "<group>"; };
-		6EEDDA8C191BE0FC00AB1EFC /* alertaGeo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alertaGeo2.png; sourceTree = "<group>"; };
-		6EEDDA8D191BE0FC00AB1EFC /* alertaGeo2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertaGeo2@2x.png"; sourceTree = "<group>"; };
-		6EEDDA8E191BE0FC00AB1EFC /* AlertaGeoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertaGeoView.h; sourceTree = "<group>"; };
-		6EEDDA8F191BE0FC00AB1EFC /* ArchivoManagerFaro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchivoManagerFaro.h; sourceTree = "<group>"; };
-		6EEDDA90191BE0FC00AB1EFC /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
-		6EEDDA91191BE0FC00AB1EFC /* BeaconsGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BeaconsGeofaro.plist; sourceTree = "<group>"; };
-		6EEDDA92191BE0FC00AB1EFC /* btnCerrar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnCerrar.png; sourceTree = "<group>"; };
-		6EEDDA93191BE0FC00AB1EFC /* btnCerrar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCerrar@2x.png"; sourceTree = "<group>"; };
-		6EEDDA94191BE0FC00AB1EFC /* btnCerrarLargo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnCerrarLargo.png; sourceTree = "<group>"; };
-		6EEDDA95191BE0FC00AB1EFC /* btnCerrarLargo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCerrarLargo@2x.png"; sourceTree = "<group>"; };
-		6EEDDA96191BE0FC00AB1EFC /* btnReintentar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnReintentar.png; sourceTree = "<group>"; };
-		6EEDDA97191BE0FC00AB1EFC /* btnReintentar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnReintentar@2x.png"; sourceTree = "<group>"; };
-		6EEDDA98191BE0FC00AB1EFC /* btnReintentariPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnReintentariPad.png; sourceTree = "<group>"; };
-		6EEDDA99191BE0FC00AB1EFC /* btnReintentariPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnReintentariPad@2x.png"; sourceTree = "<group>"; };
-		6EEDDA9A191BE0FC00AB1EFC /* cargando.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cargando.png; sourceTree = "<group>"; };
-		6EEDDA9B191BE0FC00AB1EFC /* cargando@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cargando@2x.png"; sourceTree = "<group>"; };
-		6EEDDA9C191BE0FC00AB1EFC /* cerrarIZQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cerrarIZQ.png; sourceTree = "<group>"; };
-		6EEDDA9D191BE0FC00AB1EFC /* cerrarIZQ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cerrarIZQ@2x.png"; sourceTree = "<group>"; };
-		6EEDDA9E191BE0FC00AB1EFC /* ConfigGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigGeofaro.plist; sourceTree = "<group>"; };
-		6EEDDA9F191BE0FC00AB1EFC /* CuponesGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuponesGeoViewController.h; sourceTree = "<group>"; };
-		6EEDDAA0191BE0FC00AB1EFC /* CuponesGeoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CuponesGeoViewController.xib; sourceTree = "<group>"; };
-		6EEDDAA1191BE0FC00AB1EFC /* DatosEnvioGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatosEnvioGeo.h; sourceTree = "<group>"; };
-		6EEDDAA2191BE0FC00AB1EFC /* developers.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = developers.der; sourceTree = "<group>"; };
-		6EEDDAA3191BE0FC00AB1EFC /* developers.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = developers.p12; sourceTree = "<group>"; };
-		6EEDDAA4191BE0FC00AB1EFC /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
-		6EEDDAA5191BE0FC00AB1EFC /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
-		6EEDDAA6191BE0FC00AB1EFC /* Faro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Faro.h; sourceTree = "<group>"; };
-		6EEDDAA7191BE0FC00AB1EFC /* FaroEnvioData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroEnvioData.h; sourceTree = "<group>"; };
-		6EEDDAA8191BE0FC00AB1EFC /* FaroEnvioDataGuardada.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroEnvioDataGuardada.h; sourceTree = "<group>"; };
-		6EEDDAA9191BE0FC00AB1EFC /* FaroFotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroFotoManager.h; sourceTree = "<group>"; };
-		6EEDDAAA191BE0FC00AB1EFC /* Geofaro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geofaro.h; sourceTree = "<group>"; };
-		6EEDDAAB191BE0FC00AB1EFC /* guardarDER.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guardarDER.png; sourceTree = "<group>"; };
-		6EEDDAAC191BE0FC00AB1EFC /* guardarDER@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guardarDER@2x.png"; sourceTree = "<group>"; };
-		6EEDDAAD191BE0FC00AB1EFC /* HBPro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPro.h; sourceTree = "<group>"; };
-		6EEDDAAE191BE0FC00AB1EFC /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		6EEDDAAF191BE0FC00AB1EFC /* NSObject+UtilidadesGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UtilidadesGeo.h"; sourceTree = "<group>"; };
-		6EEDDAB0191BE0FC00AB1EFC /* PromocionGeoiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromocionGeoiPadViewController.h; sourceTree = "<group>"; };
-		6EEDDAB1191BE0FC00AB1EFC /* PromocionGeoiPadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromocionGeoiPadViewController.xib; sourceTree = "<group>"; };
-		6EEDDAB2191BE0FC00AB1EFC /* PromocionGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromocionGeoViewController.h; sourceTree = "<group>"; };
-		6EEDDAB3191BE0FC00AB1EFC /* PromocionGeoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromocionGeoViewController.xib; sourceTree = "<group>"; };
-		6EEDDAB4191BE0FC00AB1EFC /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
-		6EEDDAB5191BE0FC00AB1EFC /* RadarParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarParser.h; sourceTree = "<group>"; };
-		6EEDDAB6191BE0FC00AB1EFC /* RegionesGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RegionesGeofaro.plist; sourceTree = "<group>"; };
-		6EEDDAB7191BE0FC00AB1EFC /* ServiciosGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServiciosGeofaro.plist; sourceTree = "<group>"; };
-		6EEDDAB8191BE0FC00AB1EFC /* UIDevice+HardwareGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HardwareGeo.h"; sourceTree = "<group>"; };
-		6EEDDAB9191BE0FC00AB1EFC /* libGeofaro.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGeofaro.a; sourceTree = "<group>"; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -415,7 +373,7 @@
 				3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */,
 				6EBF1E9F18AB6653007B50A5 /* AVFoundation.framework in Frameworks */,
 				6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */,
-				6EEDDAD9191BE0FC00AB1EFC /* libGeofaro.a in Frameworks */,
+				6E24BC281938FC5200F919F1 /* libGeofaro.a in Frameworks */,
 				6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */,
 				6EC0060518DC7A19003DECC8 /* libGoogleAdMobAds.a in Frameworks */,
 				6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */,
@@ -433,8 +391,8 @@
 		1414A7F318BF7C32003B5FF2 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				6EEDDA86191BE0FC00AB1EFC /* include */,
-				6EEDDAB9191BE0FC00AB1EFC /* libGeofaro.a */,
+				6E24BBFF1938FC5200F919F1 /* include */,
+				6E24BC1D1938FC5200F919F1 /* libGeofaro.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -653,6 +611,49 @@
 			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		6E24BBFF1938FC5200F919F1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				6E24BC001938FC5200F919F1 /* Geofaro */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		6E24BC001938FC5200F919F1 /* Geofaro */ = {
+			isa = PBXGroup;
+			children = (
+				6E24BC011938FC5200F919F1 /* AlertaGeoView.h */,
+				6E24BC021938FC5200F919F1 /* ArchivoManagerFaro.h */,
+				6E24BC031938FC5200F919F1 /* Beacon.h */,
+				6E24BC041938FC5200F919F1 /* BeaconsGeofaro.plist */,
+				6E24BC051938FC5200F919F1 /* ConfigGeofaro.plist */,
+				6E24BC061938FC5200F919F1 /* CuponesGeoViewController.h */,
+				6E24BC071938FC5200F919F1 /* CuponesGeoViewController.xib */,
+				6E24BC081938FC5200F919F1 /* DatosEnvioGeo.h */,
+				6E24BC091938FC5200F919F1 /* developers.der */,
+				6E24BC0A1938FC5200F919F1 /* developers.p12 */,
+				6E24BC0B1938FC5200F919F1 /* Faro.h */,
+				6E24BC0C1938FC5200F919F1 /* FaroEnvioData.h */,
+				6E24BC0D1938FC5200F919F1 /* FaroEnvioDataGuardada.h */,
+				6E24BC0E1938FC5200F919F1 /* FaroFotoManager.h */,
+				6E24BC0F1938FC5200F919F1 /* Geofaro.h */,
+				6E24BC101938FC5200F919F1 /* HBPro.h */,
+				6E24BC111938FC5200F919F1 /* Images.xcassets */,
+				6E24BC121938FC5200F919F1 /* Macros.h */,
+				6E24BC131938FC5200F919F1 /* NSObject+UtilidadesGeo.h */,
+				6E24BC141938FC5200F919F1 /* PromocionGeoiPadViewController.h */,
+				6E24BC151938FC5200F919F1 /* PromocionGeoiPadViewController.xib */,
+				6E24BC161938FC5200F919F1 /* PromocionGeoViewController.h */,
+				6E24BC171938FC5200F919F1 /* PromocionGeoViewController.xib */,
+				6E24BC181938FC5200F919F1 /* Radar.h */,
+				6E24BC191938FC5200F919F1 /* RadarParser.h */,
+				6E24BC1A1938FC5200F919F1 /* RegionesGeofaro.plist */,
+				6E24BC1B1938FC5200F919F1 /* ServiciosGeofaro.plist */,
+				6E24BC1C1938FC5200F919F1 /* UIDevice+HardwareGeo.h */,
+			);
+			path = Geofaro;
+			sourceTree = "<group>";
+		};
 		6E4BAA851884A4A400E37DAF /* DoAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,70 +808,6 @@
 			path = Geofaro;
 			sourceTree = "<group>";
 		};
-		6EEDDA86191BE0FC00AB1EFC /* include */ = {
-			isa = PBXGroup;
-			children = (
-				6EEDDA87191BE0FC00AB1EFC /* Geofaro */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		6EEDDA87191BE0FC00AB1EFC /* Geofaro */ = {
-			isa = PBXGroup;
-			children = (
-				6EEDDA88191BE0FC00AB1EFC /* alerta.png */,
-				6EEDDA89191BE0FC00AB1EFC /* alerta@2x.png */,
-				6EEDDA8A191BE0FC00AB1EFC /* alertaGeo1.png */,
-				6EEDDA8B191BE0FC00AB1EFC /* alertaGeo1@2x.png */,
-				6EEDDA8C191BE0FC00AB1EFC /* alertaGeo2.png */,
-				6EEDDA8D191BE0FC00AB1EFC /* alertaGeo2@2x.png */,
-				6EEDDA8E191BE0FC00AB1EFC /* AlertaGeoView.h */,
-				6EEDDA8F191BE0FC00AB1EFC /* ArchivoManagerFaro.h */,
-				6EEDDA90191BE0FC00AB1EFC /* Beacon.h */,
-				6EEDDA91191BE0FC00AB1EFC /* BeaconsGeofaro.plist */,
-				6EEDDA92191BE0FC00AB1EFC /* btnCerrar.png */,
-				6EEDDA93191BE0FC00AB1EFC /* btnCerrar@2x.png */,
-				6EEDDA94191BE0FC00AB1EFC /* btnCerrarLargo.png */,
-				6EEDDA95191BE0FC00AB1EFC /* btnCerrarLargo@2x.png */,
-				6EEDDA96191BE0FC00AB1EFC /* btnReintentar.png */,
-				6EEDDA97191BE0FC00AB1EFC /* btnReintentar@2x.png */,
-				6EEDDA98191BE0FC00AB1EFC /* btnReintentariPad.png */,
-				6EEDDA99191BE0FC00AB1EFC /* btnReintentariPad@2x.png */,
-				6EEDDA9A191BE0FC00AB1EFC /* cargando.png */,
-				6EEDDA9B191BE0FC00AB1EFC /* cargando@2x.png */,
-				6EEDDA9C191BE0FC00AB1EFC /* cerrarIZQ.png */,
-				6EEDDA9D191BE0FC00AB1EFC /* cerrarIZQ@2x.png */,
-				6EEDDA9E191BE0FC00AB1EFC /* ConfigGeofaro.plist */,
-				6EEDDA9F191BE0FC00AB1EFC /* CuponesGeoViewController.h */,
-				6EEDDAA0191BE0FC00AB1EFC /* CuponesGeoViewController.xib */,
-				6EEDDAA1191BE0FC00AB1EFC /* DatosEnvioGeo.h */,
-				6EEDDAA2191BE0FC00AB1EFC /* developers.der */,
-				6EEDDAA3191BE0FC00AB1EFC /* developers.p12 */,
-				6EEDDAA4191BE0FC00AB1EFC /* error.png */,
-				6EEDDAA5191BE0FC00AB1EFC /* error@2x.png */,
-				6EEDDAA6191BE0FC00AB1EFC /* Faro.h */,
-				6EEDDAA7191BE0FC00AB1EFC /* FaroEnvioData.h */,
-				6EEDDAA8191BE0FC00AB1EFC /* FaroEnvioDataGuardada.h */,
-				6EEDDAA9191BE0FC00AB1EFC /* FaroFotoManager.h */,
-				6EEDDAAA191BE0FC00AB1EFC /* Geofaro.h */,
-				6EEDDAAB191BE0FC00AB1EFC /* guardarDER.png */,
-				6EEDDAAC191BE0FC00AB1EFC /* guardarDER@2x.png */,
-				6EEDDAAD191BE0FC00AB1EFC /* HBPro.h */,
-				6EEDDAAE191BE0FC00AB1EFC /* Macros.h */,
-				6EEDDAAF191BE0FC00AB1EFC /* NSObject+UtilidadesGeo.h */,
-				6EEDDAB0191BE0FC00AB1EFC /* PromocionGeoiPadViewController.h */,
-				6EEDDAB1191BE0FC00AB1EFC /* PromocionGeoiPadViewController.xib */,
-				6EEDDAB2191BE0FC00AB1EFC /* PromocionGeoViewController.h */,
-				6EEDDAB3191BE0FC00AB1EFC /* PromocionGeoViewController.xib */,
-				6EEDDAB4191BE0FC00AB1EFC /* Radar.h */,
-				6EEDDAB5191BE0FC00AB1EFC /* RadarParser.h */,
-				6EEDDAB6191BE0FC00AB1EFC /* RegionesGeofaro.plist */,
-				6EEDDAB7191BE0FC00AB1EFC /* ServiciosGeofaro.plist */,
-				6EEDDAB8191BE0FC00AB1EFC /* UIDevice+HardwareGeo.h */,
-			);
-			path = Geofaro;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -935,53 +872,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EEDDAD0191BE0FC00AB1EFC /* developers.p12 in Resources */,
 				6EC006D418DC7D67003DECC8 /* Cinemas.plist in Resources */,
-				6EEDDAD3191BE0FC00AB1EFC /* guardarDER.png in Resources */,
+				6E24BC251938FC5200F919F1 /* PromocionGeoViewController.xib in Resources */,
+				6E24BC231938FC5200F919F1 /* Images.xcassets in Resources */,
 				6EC0060618DC7A19003DECC8 /* README.txt in Resources */,
-				6EEDDABC191BE0FC00AB1EFC /* alertaGeo1.png in Resources */,
-				6EEDDAD5191BE0FC00AB1EFC /* PromocionGeoiPadViewController.xib in Resources */,
+				6E24BC1F1938FC5200F919F1 /* ConfigGeofaro.plist in Resources */,
 				6EC0072418DC7E84003DECC8 /* Storyboard.storyboard in Resources */,
+				6E24BC241938FC5200F919F1 /* PromocionGeoiPadViewController.xib in Resources */,
 				6EC006E618DC7DCE003DECC8 /* check.png in Resources */,
-				6EEDDACD191BE0FC00AB1EFC /* ConfigGeofaro.plist in Resources */,
-				6EEDDAC9191BE0FC00AB1EFC /* cargando.png in Resources */,
-				6EEDDAD8191BE0FC00AB1EFC /* ServiciosGeofaro.plist in Resources */,
 				6EC006E418DC7DCE003DECC8 /* check_black.png in Resources */,
 				6EC006EB18DC7DCE003DECC8 /* close@2x.png in Resources */,
-				6EEDDAC7191BE0FC00AB1EFC /* btnReintentariPad.png in Resources */,
+				6E24BC271938FC5200F919F1 /* ServiciosGeofaro.plist in Resources */,
 				6EC006E818DC7DCE003DECC8 /* close_black.png in Resources */,
-				6EEDDABF191BE0FC00AB1EFC /* alertaGeo2@2x.png in Resources */,
-				6EEDDABB191BE0FC00AB1EFC /* alerta@2x.png in Resources */,
-				6EEDDAD4191BE0FC00AB1EFC /* guardarDER@2x.png in Resources */,
-				6EEDDACC191BE0FC00AB1EFC /* cerrarIZQ@2x.png in Resources */,
-				6EEDDAD7191BE0FC00AB1EFC /* RegionesGeofaro.plist in Resources */,
+				6E24BC211938FC5200F919F1 /* developers.der in Resources */,
+				6E24BC261938FC5200F919F1 /* RegionesGeofaro.plist in Resources */,
 				6EC006E718DC7DCE003DECC8 /* check@2x.png in Resources */,
-				6EEDDABA191BE0FC00AB1EFC /* alerta.png in Resources */,
-				6EEDDACE191BE0FC00AB1EFC /* CuponesGeoViewController.xib in Resources */,
-				6EEDDAC3191BE0FC00AB1EFC /* btnCerrarLargo.png in Resources */,
+				6E24BC1E1938FC5200F919F1 /* BeaconsGeofaro.plist in Resources */,
 				6EC0065818DC7BFD003DECC8 /* MenuCustomView.xib in Resources */,
+				6E24BC221938FC5200F919F1 /* developers.p12 in Resources */,
 				6EC006D318DC7D67003DECC8 /* Cine Horarios.entitlements in Resources */,
-				6EEDDAC2191BE0FC00AB1EFC /* btnCerrar@2x.png in Resources */,
 				6EC006EA18DC7DCE003DECC8 /* close.png in Resources */,
-				6EEDDAC5191BE0FC00AB1EFC /* btnReintentar.png in Resources */,
-				6EEDDAC8191BE0FC00AB1EFC /* btnReintentariPad@2x.png in Resources */,
-				6EEDDABD191BE0FC00AB1EFC /* alertaGeo1@2x.png in Resources */,
-				6EEDDAD1191BE0FC00AB1EFC /* error.png in Resources */,
-				6EEDDAD2191BE0FC00AB1EFC /* error@2x.png in Resources */,
 				6EC006E518DC7DCE003DECC8 /* check_black@2x.png in Resources */,
-				6EEDDACF191BE0FC00AB1EFC /* developers.der in Resources */,
 				6EC006D718DC7D67003DECC8 /* Localizable.strings in Resources */,
-				6EEDDACB191BE0FC00AB1EFC /* cerrarIZQ.png in Resources */,
 				162414A417BC946E00083708 /* Images.xcassets in Resources */,
+				6E24BC201938FC5200F919F1 /* CuponesGeoViewController.xib in Resources */,
 				6EC006D518DC7D67003DECC8 /* icloud.plist in Resources */,
-				6EEDDAC0191BE0FC00AB1EFC /* BeaconsGeofaro.plist in Resources */,
-				6EEDDAC1191BE0FC00AB1EFC /* btnCerrar.png in Resources */,
-				6EEDDAC6191BE0FC00AB1EFC /* btnReintentar@2x.png in Resources */,
-				6EEDDABE191BE0FC00AB1EFC /* alertaGeo2.png in Resources */,
-				6EEDDAD6191BE0FC00AB1EFC /* PromocionGeoViewController.xib in Resources */,
 				6EC006D918DC7D67003DECC8 /* Menu.plist in Resources */,
-				6EEDDACA191BE0FC00AB1EFC /* cargando@2x.png in Resources */,
-				6EEDDAC4191BE0FC00AB1EFC /* btnCerrarLargo@2x.png in Resources */,
 				6EC006E918DC7DCE003DECC8 /* close_black@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
