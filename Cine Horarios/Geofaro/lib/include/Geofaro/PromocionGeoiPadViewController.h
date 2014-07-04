@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FaroFotoManager.h"
+
+#import "BasesView.h"
+
 #define GAName @"Promocion"
 
 @interface PromocionGeoiPadViewController : UIViewController <FaroFotoManagerDelegate,UIAlertViewDelegate>
@@ -23,9 +26,12 @@
 @property (nonatomic,weak) IBOutlet UIActivityIndicatorView *activityView;
 
 #pragma mark - Bases
-@property (weak, nonatomic) IBOutlet UIButton *abrirBasesButton;
-@property (weak, nonatomic) IBOutlet UIView *basesView;
-@property (weak, nonatomic) IBOutlet UIButton *cerrarBasesButton;
-@property (weak, nonatomic) IBOutlet UITextView *basesTextView;
+@property (nonatomic,weak) IBOutlet UIButton *abrirBasesButton;
+@property (nonatomic,weak) IBOutlet BasesView *basesView;
+
+#pragma mark - Botones
+@property (nonatomic,weak) IBOutlet UIButton *salirButton;
+@property (nonatomic,weak) IBOutlet UIButton *guardarButton;
+@property (nonatomic,weak) IBOutlet UIButton *reintentarButton;
 
 @end

@@ -11,10 +11,8 @@
 
 @class RadarParser;
 
-//Definir protocolo
 @protocol RadarParserDelegate <NSObject>
 @required
-- (void) radarParserProgreso:(RadarParser*)radarParser porcentaje:(NSInteger)porcentaje;
 - (void) radarParserCompleto:(RadarParser*)radarParser datos:(NSMutableArray*)datos;
 - (void) radarParserError:(RadarParser*)radarParser error:(NSError*)error;
 @end

@@ -11,8 +11,6 @@
 
 #import "FaroEnvioData.h"
 #import "FaroEnvioDataGuardada.h"
-
-
 #import "Beacon.h"
 
 @class Faro;
@@ -36,4 +34,6 @@
 
 - (void)actualizarServicios:(NSDictionary*)servs;
 - (void)encontreBluetoothUID:(NSString *)uid;
+
++ (NSArray*)serviciosActuales;
 @end

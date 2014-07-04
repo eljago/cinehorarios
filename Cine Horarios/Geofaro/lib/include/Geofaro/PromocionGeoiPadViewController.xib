@@ -8,11 +8,8 @@
             <connections>
                 <outlet property="abrirBasesButton" destination="g3I-Ee-klj" id="EYr-NH-28V"/>
                 <outlet property="activityView" destination="DLv-ub-Nn2" id="7qc-CY-eAc"/>
-                <outlet property="basesTextView" destination="mKB-6x-Hd6" id="lg1-hJ-p4f"/>
-                <outlet property="basesView" destination="c4q-z0-Xal" id="MiQ-6u-WXe"/>
-                <outlet property="cerrarBasesButton" destination="X4W-W8-C8O" id="qp9-1L-gs2"/>
+                <outlet property="basesView" destination="c4q-z0-Xal" id="nUp-qG-YZV"/>
                 <outlet property="guardarButton" destination="64e-H9-JmJ" id="cAw-WH-v30"/>
-                <outlet property="progressView" destination="Twx-MC-kxf" id="ENo-m8-vLa"/>
                 <outlet property="promoImageView" destination="UIJ-o7-jfH" id="a9A-Z8-01u"/>
                 <outlet property="reintentarButton" destination="0ts-wQ-BZJ" id="J0d-b5-A3F"/>
                 <outlet property="salirButton" destination="RcG-HT-fFg" id="u8y-uO-r3q"/>
@@ -24,6 +21,10 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="textoCargando" translatesAutoresizingMaskIntoConstraints="NO" id="Go5-GK-xal" userLabel="cargandoImageView">
+                    <rect key="frame" x="331" y="600" width="105" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="UIJ-o7-jfH" userLabel="promoImageView">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="1044"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,14 +41,6 @@
                     <rect key="frame" x="366" y="504" width="37" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Twx-MC-kxf" userLabel="progressView">
-                    <rect key="frame" x="0.0" y="767" width="768" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </progressView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="textoCargando" translatesAutoresizingMaskIntoConstraints="NO" id="Go5-GK-xal" userLabel="cargandoImageView">
-                    <rect key="frame" x="331" y="499" width="105" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcG-HT-fFg" userLabel="salirButton">
                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -88,7 +81,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4q-z0-Xal" userLabel="basesView">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4q-z0-Xal" userLabel="basesView" customClass="BasesView">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -123,6 +116,11 @@
                             </state>
                         </button>
                     </subviews>
+                    <connections>
+                        <outlet property="basesTextView" destination="mKB-6x-Hd6" id="nm3-v8-9yL"/>
+                        <outlet property="cerrarButton" destination="X4W-W8-C8O" id="BWg-2F-h5O"/>
+                        <outlet property="negroView" destination="uec-Cp-Jr0" id="OQa-9J-nE4"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -133,7 +131,6 @@
                 <constraint firstItem="UIJ-o7-jfH" firstAttribute="centerX" secondItem="DLv-ub-Nn2" secondAttribute="centerX" id="E09-VV-Dyt"/>
                 <constraint firstItem="RcG-HT-fFg" firstAttribute="baseline" secondItem="64e-H9-JmJ" secondAttribute="baseline" id="KCx-U4-UPZ"/>
                 <constraint firstItem="UIJ-o7-jfH" firstAttribute="top" secondItem="2" secondAttribute="top" id="Laz-aP-QYJ"/>
-                <constraint firstItem="Twx-MC-kxf" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Sw4-PD-u1c"/>
                 <constraint firstItem="0ts-wQ-BZJ" firstAttribute="leading" secondItem="RcG-HT-fFg" secondAttribute="leading" id="UjF-3e-oib"/>
                 <constraint firstItem="RcG-HT-fFg" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="VFf-gc-i3F"/>
                 <constraint firstAttribute="bottom" secondItem="UIJ-o7-jfH" secondAttribute="bottom" constant="-20" id="eBV-dx-R3B"/>
@@ -141,8 +138,6 @@
                 <constraint firstItem="64e-H9-JmJ" firstAttribute="trailing" secondItem="UIJ-o7-jfH" secondAttribute="trailing" id="iU8-5q-i8H"/>
                 <constraint firstItem="RcG-HT-fFg" firstAttribute="bottom" secondItem="64e-H9-JmJ" secondAttribute="bottom" id="nqW-Mr-whU"/>
                 <constraint firstItem="64e-H9-JmJ" firstAttribute="top" secondItem="RcG-HT-fFg" secondAttribute="top" id="ogT-yY-Nyb"/>
-                <constraint firstItem="0ts-wQ-BZJ" firstAttribute="top" secondItem="Twx-MC-kxf" secondAttribute="bottom" constant="208" id="rXT-EG-Cfn"/>
-                <constraint firstAttribute="trailing" secondItem="Twx-MC-kxf" secondAttribute="trailing" id="w7a-Vl-8Ga"/>
                 <constraint firstItem="UIJ-o7-jfH" firstAttribute="leading" secondItem="RcG-HT-fFg" secondAttribute="leading" id="yT7-Pa-LFg"/>
                 <constraint firstItem="64e-H9-JmJ" firstAttribute="top" secondItem="UIJ-o7-jfH" secondAttribute="top" id="zee-yR-dHs"/>
             </constraints>

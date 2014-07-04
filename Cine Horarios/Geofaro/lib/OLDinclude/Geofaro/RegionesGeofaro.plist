@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>ref</key>
+		<string>Estación Central</string>
+		<key>identifier</key>
+		<string>SPKBEAA550</string>
+		<key>lat</key>
+		<string>-33.452192</string>
+		<key>lon</key>
+		<string>-70.682633</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Providencia</string>
+		<key>identifier</key>
+		<string>SPKBEAA549</string>
+		<key>lat</key>
+		<string>-33.421825</string>
+		<key>lon</key>
+		<string>-70.609661</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Plaza Ñuñoa</string>
+		<key>identifier</key>
+		<string>SPKBEAA548</string>
+		<key>lat</key>
+		<string>-33.455219</string>
+		<key>lon</key>
+		<string>-70.593632</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Plaza de Maipú</string>
+		<key>identifier</key>
+		<string>SPKBEAA547</string>
+		<key>lat</key>
+		<string>-33.510374</string>
+		<key>lon</key>
+		<string>-70.757490</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Plaza Baquedano</string>
+		<key>identifier</key>
+		<string>SPKBEAA546</string>
+		<key>lat</key>
+		<string>-33.437306</string>
+		<key>lon</key>
+		<string>-70.634925</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>CinePlanet La Dehesa</string>
+		<key>identifier</key>
+		<string>SPKBEAA545</string>
+		<key>lat</key>
+		<string>-33.357600</string>
+		<key>lon</key>
+		<string>-70.515495</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>CinePlanet Florida Center</string>
+		<key>identifier</key>
+		<string>SPKBEAA544</string>
+		<key>lat</key>
+		<string>-33.510679</string>
+		<key>lon</key>
+		<string>-70.608442</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>CinePlanet  Costanera</string>
+		<key>identifier</key>
+		<string>SPKBEAA543</string>
+		<key>lat</key>
+		<string>-33.417132</string>
+		<key>lon</key>
+		<string>-70.607517</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Cinemark Plaza Tobalaba</string>
+		<key>identifier</key>
+		<string>SPKBEAA542</string>
+		<key>lat</key>
+		<string>-33.569094</string>
+		<key>lon</key>
+		<string>-70.556486</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Cinemark Alto Las Condes</string>
+		<key>identifier</key>
+		<string>SPKBEAA541</string>
+		<key>lat</key>
+		<string>-33.390972</string>
+		<key>lon</key>
+		<string>-70.545989</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Cinemark Plaza Vespucio</string>
+		<key>identifier</key>
+		<string>SPKBEAA540</string>
+		<key>lat</key>
+		<string>-33.518274</string>
+		<key>lon</key>
+		<string>-70.598278</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Cinemark Plaza Norte</string>
+		<key>identifier</key>
+		<string>SPKBEAA539</string>
+		<key>lat</key>
+		<string>-33.366388</string>
+		<key>lon</key>
+		<string>-70.678869</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Cinemark Plaza Oeste</string>
+		<key>identifier</key>
+		<string>SPKBEAA538</string>
+		<key>lat</key>
+		<string>-33.517268</string>
+		<key>lon</key>
+		<string>-70.717373</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Cinemark Portal Ñuñoa</string>
+		<key>identifier</key>
+		<string>SPKBEAA537</string>
+		<key>lat</key>
+		<string>-33.465028</string>
+		<key>lon</key>
+		<string>-70.597323</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Hoyst Puente Alto</string>
+		<key>identifier</key>
+		<string>SPKBEAA536</string>
+		<key>lat</key>
+		<string>-33.598909</string>
+		<key>lon</key>
+		<string>-70.576284</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Hoyst El Alba</string>
+		<key>identifier</key>
+		<string>SPKBEAA535</string>
+		<key>lat</key>
+		<string>-33.401180</string>
+		<key>lon</key>
+		<string>-70.514898</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Hoyst San Bernardo</string>
+		<key>identifier</key>
+		<string>SPKBEAA534</string>
+		<key>lat</key>
+		<string>-33.595692</string>
+		<key>lon</key>
+		<string>-70.706534</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Hoyst  Arauco Maipú</string>
+		<key>identifier</key>
+		<string>SPKBEAA533</string>
+		<key>lat</key>
+		<string>-33.481350</string>
+		<key>lon</key>
+		<string>-70.751952</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Hoyst Los Trapenses</string>
+		<key>identifier</key>
+		<string>SPKBEAA532</string>
+		<key>lat</key>
+		<string>-33.343550</string>
+		<key>lon</key>
+		<string>-70.544635</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Hoyst  Parque Arauco</string>
+		<key>identifier</key>
+		<string>SPKBEAA531</string>
+		<key>lat</key>
+		<string>-33.402275</string>
+		<key>lon</key>
+		<string>-70.578586</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>ref</key>
+		<string>Hoyst La Reina</string>
+		<key>identifier</key>
+		<string>SPKBEAA530</string>
+		<key>lat</key>
+		<string>-33.447636</string>
+		<key>lon</key>
+		<string>-70.571364</string>
+		<key>radio</key>
+		<string>150</string>
+	</dict>
+</array>
+</plist>

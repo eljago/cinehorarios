@@ -5,6 +5,7 @@
 //  Created by Informática Spock on 30-07-12.
 //
 //
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @class ArchivoManagerFaro;
 @interface ArchivoManagerFaro : NSObject
@@ -44,6 +45,8 @@
 
 - (NSString*)servicioToNombre:(NSString *)servicio;
 - (NSString*)servicioToIdentificador:(NSString*)servicio;
+
+- (NSString *)uuidToServicio:(CBUUID*)uuid;
 
 #pragma mark - Obtener los faros
 

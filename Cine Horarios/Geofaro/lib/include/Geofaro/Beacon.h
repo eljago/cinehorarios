@@ -15,6 +15,8 @@
 
 @protocol BeaconDelegate <NSObject>
 - (void)beacon:(Beacon*)beacon beaconEncontrados:(NSArray*)beacons;
+- (void)beacon:(Beacon*)beacon faroEncontrado:(NSString*)faroID;
+
 @end
 
 @interface Beacon : NSObject <CLLocationManagerDelegate,CBPeripheralDelegate>
@@ -29,4 +31,5 @@
 
 + (Beacon *)sharedBeacon;
 - (void)iniciar;
+- (void)detener;
 @end

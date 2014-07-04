@@ -22,5 +22,5 @@
 
 + (Radar *)sharedRADAR;
 - (void)iniciar;
-- (void)detenerRadar;
+- (void)detener;
 @end

@@ -27,5 +27,5 @@
 + (FaroEnvioData *)sharedFaroEnvioData;
 
 - (void)iniciarEnviarDataParametros:(NSDictionary*)parametros;
-- (void)faroEnvioIniciarRuta:(NSString*)ruta conParametros:(NSMutableDictionary*)parametros;
+- (void)detener;
 @end

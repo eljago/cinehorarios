@@ -10,13 +10,11 @@
 
 #import "Radar.h"
 #import "Faro.h"
+#import "DatosEnvioGeo.h"
 
 #import "PromocionGeoViewController.h"
 #import "PromocionGeoiPadViewController.h"
 
-#import "AlertaGeoView.h"
-
-#import "DatosEnvioGeo.h"
 @class Geofaro;
 @protocol GeofaroDelegate <NSObject>
 @required
@@ -48,12 +46,11 @@
 + (Geofaro *)sharedGeofaro;
 - (void)iniciar;
 - (void)detener;
+- (void)actualizarServicios:(NSDictionary*)servicios;
 
 #pragma mark - Métodos Útiles
 - (NSArray *)promociones;
-- (void)actualizarServicios:(NSDictionary*)servicios;
 #pragma mark - CuponesGeoviewController
 - (UINavigationController *)cuponesGeoNavigationViewController;
 - (UIViewController *)cuponesGeoViewController;
-
 @end
