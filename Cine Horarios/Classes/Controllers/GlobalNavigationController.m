@@ -9,14 +9,9 @@
 #import "GlobalNavigationController.h"
 #import "REMenu.h"
 #import "UIColor+CH.h"
-#import "GADBannerView.h"
-#import "GADRequest.h"
 #import "MWPhotoBrowser.h"
 #import "MovieImagesVC.h"
-//#import <StoreKit/StoreKit.h>
-//#import "IAPConstants.h"
 
-#define kSampleAdUnitID @"ca-app-pub-8355329926077535/7444865605"
 const CGFloat kButtonWidth = 50.f;
 
 @interface GlobalNavigationController ()
@@ -35,10 +30,6 @@ const CGFloat kButtonWidth = 50.f;
     [super viewDidLoad];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-//    if (![defaults boolForKey:RemoveAddsInAppIdentifier]) {
-        [self setupBanner];
-//    }
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
     NSArray *menuArray = [NSArray arrayWithContentsOfFile:filePath];
@@ -65,21 +56,6 @@ const CGFloat kButtonWidth = 50.f;
     [self.navigationBar addGestureRecognizer:swipeGestureUp];
     
     [self setupSocialButtons];
-//    [self updateBottomMarinConstraintsConstant];
-    self.facebookBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
-    self.twitterBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
-}
-
-//- (void)viewWillAppear:(BOOL)animated {
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
-
-- (void)dealloc {
-    self.adBanner.delegate = nil;
 }
 
 - (void)swipeRecognized:(UISwipeGestureRecognizer *)rec
@@ -120,15 +96,6 @@ const CGFloat kButtonWidth = 50.f;
          [self.view bringSubviewToFront:self.buttonFacebook];
          [self.view bringSubviewToFront:self.buttonTwitter];
      }];
-    
-    if (self.adBanner) {
-        self.adBanner.hidden = NO;
-        [UIView animateWithDuration:0.3 animations:^{
-            self.adBanner.alpha = 1.;
-        } completion:^(BOOL finished) {
-            [self.view bringSubviewToFront:self.adBanner];
-        }];
-    }
 
     [self.menu showFromNavigationController:self];
 }
@@ -155,78 +122,6 @@ const CGFloat kButtonWidth = 50.f;
 {
     return [self.topViewController supportedInterfaceOrientations];
 }
-
-
-#pragma mark GADRequest generation
-
-- (GADRequest *)request {
-    GADRequest *request = [GADRequest request];
-    request.testDevices = @[ @"a0184615f470d137bb602d55d2d32efb98e2d063" ];
-    return request;
-}
-
-#pragma mark - Banner
-
-- (void) setupBanner {
-    
-    // Initialize the banner at the bottom of the screen.
-    CGPoint origin = CGPointMake(0.0, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height);
-    
-    // Use predefined GADAdSize constants to define the GADBannerView.
-    self.adBanner = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:origin];
-    
-    // Note: Edit SampleConstants.h to provide a definition for kSampleAdUnitID before compiling.
-    self.adBanner.adUnitID = kSampleAdUnitID;
-    self.adBanner.delegate = self;
-    self.adBanner.rootViewController = self;
-    self.adBanner.alpha = 0.;
-    self.adBanner.hidden = YES;
-    [self.view addSubview:self.adBanner];
-    [self.adBanner loadRequest:[self request]];
-}
-
-#pragma mark GADBannerViewDelegate implementation
-
-// We've received an ad successfully.
-- (void)adViewDidReceiveAd:(GADBannerView *)adView {
-//    NSLog(@"Received ad successfully");
-    [UIView animateWithDuration:0.3 animations:^{
-        self.adBanner.alpha = 1.;
-    }];
-}
-
-- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error {
-//    NSLog(@"Failed to receive ad with error: %@", [error localizedFailureReason]);
-    [UIView animateWithDuration:0.3 animations:^{
-        self.adBanner.alpha = 0.;
-    } completion:^(BOOL finished) {
-    }];
-}
-
-//#pragma mark - Product Purchased
-//
-//
-//- (void)productPurchased:(NSNotification *)notification {
-//    
-//    NSString * productIdentifier = notification.object;
-//    if ([productIdentifier isEqualToString:RemoveAddsInAppIdentifier]) {
-//        self.adBanner.hidden = YES;
-//        self.adBanner = nil;
-//    }
-//}
-
-//#pragma mark - Update Bottom Margin Constraints Constant
-//
-//- (void) updateBottomMarinConstraintsConstant {
-//    
-//    if ([[NSUserDefaults standardUserDefaults] boolForKey:RemoveAddsInAppIdentifier]) {
-//        self.facebookBottomMarginConstraint.constant = -4;
-//        self.twitterBottomMarginConstraint.constant = -4;
-//    } else {
-//        self.facebookBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
-//        self.twitterBottomMarginConstraint.constant = -CGSizeFromGADAdSize(kGADAdSizeBanner).height-4;
-//    }
-//}
 
 #pragma mark - Setup Stuff
 
@@ -295,14 +190,6 @@ const CGFloat kButtonWidth = 50.f;
              strongSelf.twitterRightMarginConstraint.constant = -kButtonWidth;
              [strongSelf.view layoutIfNeeded];
          } completion:nil];
-        
-        if (strongSelf.adBanner) {
-            [UIView animateWithDuration:0.3 animations:^{
-                strongSelf.adBanner.alpha = 0.;
-            } completion:^(BOOL finished) {
-                strongSelf.adBanner.hidden = YES;
-            }];
-        }
     };
     self.menu.closeCompletionHandler = ^{
         __strong GlobalNavigationController *strongSelf = weakSelf;
@@ -313,10 +200,10 @@ const CGFloat kButtonWidth = 50.f;
 
 -(void) setupSocialButtons {
     
-    self.buttonFacebook = [[UIButton alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height - kButtonWidth - 4., kButtonWidth, kButtonWidth)];
+    self.buttonFacebook = [[UIButton alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height - kButtonWidth - 4., kButtonWidth, kButtonWidth)];
     [self.buttonFacebook setImage:[UIImage imageNamed:@"ButtonFacebook"] forState:UIControlStateNormal];
     [self.buttonFacebook addTarget:self action:@selector(goFacebook) forControlEvents:UIControlEventTouchUpInside];
-    self.buttonTwitter = [[UIButton alloc] initWithFrame:CGRectMake(10+kButtonWidth+10, self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height - kButtonWidth - 4., kButtonWidth, kButtonWidth)];
+    self.buttonTwitter = [[UIButton alloc] initWithFrame:CGRectMake(10+kButtonWidth+10, self.view.frame.size.height - kButtonWidth - 4., kButtonWidth, kButtonWidth)];
     [self.buttonTwitter setImage:[UIImage imageNamed:@"ButtonTwitter"] forState:UIControlStateNormal];
     [self.buttonTwitter addTarget:self action:@selector(goTwitter) forControlEvents:UIControlEventTouchUpInside];
     
@@ -348,7 +235,7 @@ const CGFloat kButtonWidth = 50.f;
                                                                           toItem:self.view
                                                                        attribute:NSLayoutAttributeBottom
                                                                       multiplier:1.0
-                                                                        constant:0];
+                                                                        constant:-5];
     [self.view addConstraint:self.facebookBottomMarginConstraint];
     self.twitterBottomMarginConstraint = [NSLayoutConstraint constraintWithItem:self.buttonTwitter
                                                                       attribute:NSLayoutAttributeBottom
@@ -356,7 +243,7 @@ const CGFloat kButtonWidth = 50.f;
                                                                          toItem:self.view
                                                                       attribute:NSLayoutAttributeBottom
                                                                      multiplier:1.0
-                                                                       constant:0];
+                                                                       constant:-5];
     [self.view addConstraint:self.twitterBottomMarginConstraint];
 }
 

@@ -32,6 +32,8 @@
 #import "UIViewController+DoAlertView.h"
 #import "NSObject+Utilidades.h"
 
+#import "Reachability.h"
+
 @interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintMovieNameTrailing;
@@ -527,7 +529,29 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     MovieImageType movieImageType;
     if ([defaults boolForKey:@"Retina Images"]) {
-        movieImageType = MovieImageTypeMovieImageFullScreenRetina;
+        
+        Reachability *reachability = [Reachability reachabilityForInternetConnection];
+        [reachability startNotifier];
+        
+        NetworkStatus status = [reachability currentReachabilityStatus];
+        
+        [reachability stopNotifier];
+        
+        if(status == NotReachable)
+        {
+            // No internet
+            movieImageType = MovieImageTypeMovieImageFullScreenNoRetina;
+        }
+        else if (status == ReachableViaWiFi)
+        {
+            // WiFi
+            movieImageType = MovieImageTypeMovieImageFullScreenRetina;
+        }
+        else if (status == ReachableViaWWAN)
+        {
+            // 3G
+            movieImageType = MovieImageTypeMovieImageFullScreenNoRetina;
+        }
     }
     else {
         movieImageType = MovieImageTypeMovieImageFullScreenNoRetina;
@@ -654,8 +678,8 @@
 
 -(void) setFontsWithPreferedContentSizeCategory:(NSString *)preferredContentSizeCategory {
     self.smallerFont = [UIFont getSizeForCHFont:CHFontStyleSmaller forPreferedContentSize: preferredContentSizeCategory];
-    self.normalFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize: preferredContentSizeCategory];
-    self.bigBoldFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize: preferredContentSizeCategory];
+    self.normalFont = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize: preferredContentSizeCategory];
+    self.bigBoldFont = [UIFont getSizeForCHFont:CHFontStyleNormalBold forPreferedContentSize: preferredContentSizeCategory];
     self.labelMovieName.font = self.bigBoldFont;
     self.textViewSynopsis.font = self.normalFont;
     self.textViewMovieDetails.font = self.normalFont;

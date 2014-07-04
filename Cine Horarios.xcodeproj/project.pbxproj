@@ -36,8 +36,6 @@
 		6EBF1EA318AB6673007B50A5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA218AB6673007B50A5 /* MessageUI.framework */; };
 		6EBF1EA518AB667A007B50A5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA418AB667A007B50A5 /* StoreKit.framework */; };
 		6EC005F918DC7949003DECC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC005F818DC7949003DECC8 /* AppDelegate.m */; };
-		6EC0060518DC7A19003DECC8 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC0060318DC7A19003DECC8 /* libGoogleAdMobAds.a */; };
-		6EC0060618DC7A19003DECC8 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0060418DC7A19003DECC8 /* README.txt */; };
 		6EC0061518DC7AE1003DECC8 /* CineHorariosApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0061218DC7AE1003DECC8 /* CineHorariosApiClient.m */; };
 		6EC0061618DC7AE1003DECC8 /* FileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0061418DC7AE1003DECC8 /* FileHandler.m */; };
 		6EC0062E18DC7B77003DECC8 /* BasicCell+Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0061B18DC7B77003DECC8 /* BasicCell+Theater.m */; };
@@ -124,6 +122,7 @@
 		6EC0074018DC7EE1003DECC8 /* UIViewController+DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */; };
 		6EE703A818B7BC7000B5D6F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A718B7BC7000B5D6F2 /* Security.framework */; };
 		6EE703AA18B7BC7A00B5D6F2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */; };
+		6EEA10F11966774100957463 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEA10F01966774100957463 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,9 +171,6 @@
 		6E607F2E18C10E7D000D85FF /* NSObject+Utilidades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utilidades.m"; sourceTree = "<group>"; };
 		6E607F3018C10ED5000D85FF /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		6E607F3118C10ED5000D85FF /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
-		6EA7AAF3191B2E3200C6E0DC /* GADInAppPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInAppPurchase.h; path = AdMob/GADInAppPurchase.h; sourceTree = "<group>"; };
-		6EA7AAF4191B2E3200C6E0DC /* GADInAppPurchaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInAppPurchaseDelegate.h; path = AdMob/GADInAppPurchaseDelegate.h; sourceTree = "<group>"; };
-		6EA7AAF5191B2E3200C6E0DC /* GADModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADModules.h; path = AdMob/GADModules.h; sourceTree = "<group>"; };
 		6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		6EBF1E9C18AB664D007B50A5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6EBF1E9E18AB6653007B50A5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -183,23 +179,6 @@
 		6EBF1EA418AB667A007B50A5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6EC005F718DC7949003DECC8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		6EC005F818DC7949003DECC8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
-		6EC005FA18DC7A19003DECC8 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdMobExtras.h; path = AdMob/GADAdMobExtras.h; sourceTree = "<group>"; };
-		6EC005FB18DC7A19003DECC8 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdNetworkExtras.h; path = AdMob/GADAdNetworkExtras.h; sourceTree = "<group>"; };
-		6EC005FC18DC7A19003DECC8 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdSize.h; path = AdMob/GADAdSize.h; sourceTree = "<group>"; };
-		6EC005FD18DC7A19003DECC8 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADBannerView.h; path = AdMob/GADBannerView.h; sourceTree = "<group>"; };
-		6EC005FE18DC7A19003DECC8 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADBannerViewDelegate.h; path = AdMob/GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		6EC005FF18DC7A19003DECC8 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInterstitial.h; path = AdMob/GADInterstitial.h; sourceTree = "<group>"; };
-		6EC0060018DC7A19003DECC8 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInterstitialDelegate.h; path = AdMob/GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		6EC0060118DC7A19003DECC8 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADRequest.h; path = AdMob/GADRequest.h; sourceTree = "<group>"; };
-		6EC0060218DC7A19003DECC8 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADRequestError.h; path = AdMob/GADRequestError.h; sourceTree = "<group>"; };
-		6EC0060318DC7A19003DECC8 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAdMobAds.a; path = AdMob/libGoogleAdMobAds.a; sourceTree = "<group>"; };
-		6EC0060418DC7A19003DECC8 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.txt; path = AdMob/README.txt; sourceTree = "<group>"; };
-		6EC0060718DC7A72003DECC8 /* IAPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAPConstants.h; path = IAP/IAPConstants.h; sourceTree = "<group>"; };
-		6EC0060818DC7A72003DECC8 /* IAPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAPConstants.m; path = IAP/IAPConstants.m; sourceTree = "<group>"; };
-		6EC0060918DC7A72003DECC8 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAPHelper.h; path = IAP/IAPHelper.h; sourceTree = "<group>"; };
-		6EC0060A18DC7A72003DECC8 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAPHelper.m; path = IAP/IAPHelper.m; sourceTree = "<group>"; };
-		6EC0060B18DC7A72003DECC8 /* RageIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RageIAPHelper.h; path = IAP/RageIAPHelper.h; sourceTree = "<group>"; };
-		6EC0060C18DC7A72003DECC8 /* RageIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RageIAPHelper.m; path = IAP/RageIAPHelper.m; sourceTree = "<group>"; };
 		6EC0061118DC7AE1003DECC8 /* CineHorariosApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CineHorariosApiClient.h; path = DataFetch/CineHorariosApiClient.h; sourceTree = "<group>"; };
 		6EC0061218DC7AE1003DECC8 /* CineHorariosApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CineHorariosApiClient.m; path = DataFetch/CineHorariosApiClient.m; sourceTree = "<group>"; };
 		6EC0061318DC7AE1003DECC8 /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileHandler.h; path = DataFetch/FileHandler.h; sourceTree = "<group>"; };
@@ -356,6 +335,8 @@
 		6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+DoAlertView.m"; path = "Utilities/Categories/UIViewController+DoAlertView.m"; sourceTree = "<group>"; };
 		6EE703A718B7BC7000B5D6F2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		6EEA10EF1966774100957463 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		6EEA10F01966774100957463 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -375,7 +356,6 @@
 				6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */,
 				6E24BC281938FC5200F919F1 /* libGeofaro.a in Frameworks */,
 				6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */,
-				6EC0060518DC7A19003DECC8 /* libGoogleAdMobAds.a in Frameworks */,
 				6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */,
 				6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */,
 				3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */,
@@ -585,9 +565,7 @@
 			children = (
 				6EC0072518DC7E9F003DECC8 /* Utilities */,
 				6EC0061018DC7A9A003DECC8 /* DataFetch */,
-				6E7AF45518BF20A500B786FC /* IAP */,
 				6EE7035618B7BAA500B5D6F2 /* Geofaro */,
-				6EBF1E8C18AB65E2007B50A5 /* AdMob */,
 				162414A317BC946E00083708 /* Images.xcassets */,
 				3D111A4F170C97140043D2D2 /* Classes */,
 				16F008A1180DED1300A15060 /* Vendor */,
@@ -709,19 +687,6 @@
 			path = Categorias;
 			sourceTree = "<group>";
 		};
-		6E7AF45518BF20A500B786FC /* IAP */ = {
-			isa = PBXGroup;
-			children = (
-				6EC0060718DC7A72003DECC8 /* IAPConstants.h */,
-				6EC0060818DC7A72003DECC8 /* IAPConstants.m */,
-				6EC0060918DC7A72003DECC8 /* IAPHelper.h */,
-				6EC0060A18DC7A72003DECC8 /* IAPHelper.m */,
-				6EC0060B18DC7A72003DECC8 /* RageIAPHelper.h */,
-				6EC0060C18DC7A72003DECC8 /* RageIAPHelper.m */,
-			);
-			name = IAP;
-			sourceTree = "<group>";
-		};
 		6E88F27F189AFEEE00927222 /* CellCategories */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,27 +714,6 @@
 			name = CellCategories;
 			sourceTree = "<group>";
 		};
-		6EBF1E8C18AB65E2007B50A5 /* AdMob */ = {
-			isa = PBXGroup;
-			children = (
-				6EA7AAF3191B2E3200C6E0DC /* GADInAppPurchase.h */,
-				6EA7AAF4191B2E3200C6E0DC /* GADInAppPurchaseDelegate.h */,
-				6EA7AAF5191B2E3200C6E0DC /* GADModules.h */,
-				6EC005FA18DC7A19003DECC8 /* GADAdMobExtras.h */,
-				6EC005FB18DC7A19003DECC8 /* GADAdNetworkExtras.h */,
-				6EC005FC18DC7A19003DECC8 /* GADAdSize.h */,
-				6EC005FD18DC7A19003DECC8 /* GADBannerView.h */,
-				6EC005FE18DC7A19003DECC8 /* GADBannerViewDelegate.h */,
-				6EC005FF18DC7A19003DECC8 /* GADInterstitial.h */,
-				6EC0060018DC7A19003DECC8 /* GADInterstitialDelegate.h */,
-				6EC0060118DC7A19003DECC8 /* GADRequest.h */,
-				6EC0060218DC7A19003DECC8 /* GADRequestError.h */,
-				6EC0060318DC7A19003DECC8 /* libGoogleAdMobAds.a */,
-				6EC0060418DC7A19003DECC8 /* README.txt */,
-			);
-			name = AdMob;
-			sourceTree = "<group>";
-		};
 		6EC0061018DC7A9A003DECC8 /* DataFetch */ = {
 			isa = PBXGroup;
 			children = (
@@ -794,6 +738,8 @@
 			children = (
 				6EC0072618DC7ED6003DECC8 /* ArrayDataSource.h */,
 				6EC0072718DC7ED6003DECC8 /* ArrayDataSource.m */,
+				6EEA10EF1966774100957463 /* Reachability.h */,
+				6EEA10F01966774100957463 /* Reachability.m */,
 				3D309A2617A85D9600BB5D13 /* Categories */,
 			);
 			name = Utilities;
@@ -875,7 +821,6 @@
 				6EC006D418DC7D67003DECC8 /* Cinemas.plist in Resources */,
 				6E24BC251938FC5200F919F1 /* PromocionGeoViewController.xib in Resources */,
 				6E24BC231938FC5200F919F1 /* Images.xcassets in Resources */,
-				6EC0060618DC7A19003DECC8 /* README.txt in Resources */,
 				6E24BC1F1938FC5200F919F1 /* ConfigGeofaro.plist in Resources */,
 				6EC0072418DC7E84003DECC8 /* Storyboard.storyboard in Resources */,
 				6E24BC241938FC5200F919F1 /* PromocionGeoiPadViewController.xib in Resources */,
@@ -944,6 +889,7 @@
 				6EC0068F18DC7CBB003DECC8 /* MovieCinemasVC.m in Sources */,
 				6EC0069618DC7CBB003DECC8 /* SettingsVC.m in Sources */,
 				6EC0069818DC7CBB003DECC8 /* VideosVC.m in Sources */,
+				6EEA10F11966774100957463 /* Reachability.m in Sources */,
 				6EC0065518DC7BC6003DECC8 /* VideoCell.m in Sources */,
 				6EC0073C18DC7EE1003DECC8 /* UIFont+CH.m in Sources */,
 				6EC0074018DC7EE1003DECC8 /* UIViewController+DoAlertView.m in Sources */,
@@ -1082,7 +1028,7 @@
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios.entitlements";
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1095,7 +1041,7 @@
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "46CA847B-CF9F-45D0-8232-C6584D6E6D81";
+				PROVISIONING_PROFILE = "50C19379-AE3C-44C3-B067-76AB3DC2D135";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1111,7 +1057,7 @@
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios.entitlements";
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Arturo Espinoza Carrasco (22ZGXZT3CM)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1124,7 +1070,7 @@
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "46CA847B-CF9F-45D0-8232-C6584D6E6D81";
+				PROVISIONING_PROFILE = "50C19379-AE3C-44C3-B067-76AB3DC2D135";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

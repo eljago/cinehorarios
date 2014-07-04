@@ -6,18 +6,9 @@
 //  Copyright (c) 2013 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import "GADBannerViewDelegate.h"
 
-@class GADBannerView;
-@class GADRequest;
-
-@interface GlobalNavigationController : UINavigationController <GADBannerViewDelegate>
-
-@property(nonatomic, strong) GADBannerView *adBanner;
-
-- (GADRequest *)request;
+@interface GlobalNavigationController : UINavigationController
 
 - (IBAction)revealMenu:(id)sender;
-//- (void) updateBottomMarinConstraintsConstant;
 
 @end
