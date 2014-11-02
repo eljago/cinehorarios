@@ -16,6 +16,7 @@
 #import "UIFont+CH.h"
 #import "MovieVC.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
 #import "GAI+CH.h"
 #import "WebVC.h"
 #import "UIView+CH.h"
@@ -134,7 +135,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 -(void) downloadTheater {
     self.tableView.scrollEnabled = NO;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [Theater getTheaterWithBlock:^(Theater *theater, NSError *error) {
         if (!error) {
             self.theater = theater;

@@ -11,6 +11,7 @@
 #import "BasicItemImage.h"
 #import "MovieFunctionsVC.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "GAI+CH.h"
@@ -50,7 +51,7 @@
 
 -(void) downloadShowTheaters{
     self.tableView.scrollEnabled = NO;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [Theater getMovieTheatersWithBlock:^(NSArray *theaters, NSError *error) {
         if (!error) {
             [self loadCinemas];

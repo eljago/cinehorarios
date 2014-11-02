@@ -8,6 +8,7 @@
 
 #import "MovieFunctionsVC.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
 #import "Function.h"
 #import "Theater.h"
 #import "UIFont+CH.h"
@@ -49,7 +50,7 @@
 }
 -(void) downloadMovieFunctions{
     self.tableView.scrollEnabled = NO;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     
     [Function getMovieTheatersFavoritesWithBlock:^(NSArray *theaterFunctions, NSError *error) {
         if (!error) {

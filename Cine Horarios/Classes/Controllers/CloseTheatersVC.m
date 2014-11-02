@@ -11,6 +11,7 @@
 #import "AnnotationGroup.h"
 #import "AnnotationTheater.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
 #import "UIColor+CH.h"
 #import "GAI+CH.h"
 #import "FuncionesVC.h"
@@ -256,7 +257,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
         
         if (self.annotations && self.annotations.count) {
             [self processAnnotationsGenerateRegionAndEnableButtons];
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
         }
         else {
             [self downloadTheatersLocations];
@@ -265,7 +266,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 }
 - (void) downloadTheatersLocations {
     [self disableBarButtonItems];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [AnnotationGroup getAnnotationsWithBlock:^(AnnotationGroup *annotationGroup, NSError *error) {
         if (!error) {
             [self createAnnotationsWithAnnotationGroup:annotationGroup];

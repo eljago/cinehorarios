@@ -14,6 +14,7 @@
 		3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981817E5AA46001A371D /* QuartzCore.framework */; };
 		3DDB7107170A516B00EC3E51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7106170A516B00EC3E51 /* Foundation.framework */; };
 		3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7108170A516B00EC3E51 /* CoreGraphics.framework */; };
+		6E176F091A05DEAE00775DC7 /* MBProgressHUD+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E176F081A05DEAE00775DC7 /* MBProgressHUD+CH.m */; };
 		6E24BC1E1938FC5200F919F1 /* BeaconsGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC041938FC5200F919F1 /* BeaconsGeofaro.plist */; };
 		6E24BC1F1938FC5200F919F1 /* ConfigGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC051938FC5200F919F1 /* ConfigGeofaro.plist */; };
 		6E24BC201938FC5200F919F1 /* CuponesGeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E24BC071938FC5200F919F1 /* CuponesGeoViewController.xib */; };
@@ -136,6 +137,8 @@
 		3DDB7106170A516B00EC3E51 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3DDB7108170A516B00EC3E51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4D13F22F381E11E6ED02878B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6E176F071A05DEAE00775DC7 /* MBProgressHUD+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MBProgressHUD+CH.h"; path = "Utilities/Categories/MBProgressHUD+CH.h"; sourceTree = "<group>"; };
+		6E176F081A05DEAE00775DC7 /* MBProgressHUD+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MBProgressHUD+CH.m"; path = "Utilities/Categories/MBProgressHUD+CH.m"; sourceTree = "<group>"; };
 		6E24BC011938FC5200F919F1 /* AlertaGeoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertaGeoView.h; sourceTree = "<group>"; };
 		6E24BC021938FC5200F919F1 /* ArchivoManagerFaro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchivoManagerFaro.h; sourceTree = "<group>"; };
 		6E24BC031938FC5200F919F1 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
@@ -466,6 +469,8 @@
 				6EC0073618DC7EE1003DECC8 /* UIView+CH.m */,
 				6EC0073718DC7EE1003DECC8 /* UIViewController+DoAlertView.h */,
 				6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */,
+				6E176F071A05DEAE00775DC7 /* MBProgressHUD+CH.h */,
+				6E176F081A05DEAE00775DC7 /* MBProgressHUD+CH.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -941,6 +946,7 @@
 				6EC0068818DC7CBB003DECC8 /* CinesVC.m in Sources */,
 				6EC0071518DC7E3C003DECC8 /* AnnotationTheater.m in Sources */,
 				6EC0068D18DC7CBB003DECC8 /* GlobalNavigationController.m in Sources */,
+				6E176F091A05DEAE00775DC7 /* MBProgressHUD+CH.m in Sources */,
 				6EC0065118DC7BC6003DECC8 /* ComingSoonCell2.m in Sources */,
 				6EC0073E18DC7EE1003DECC8 /* UIImageView+CH.m in Sources */,
 				6EC0063518DC7B77003DECC8 /* MovieCastCell+Person.m in Sources */,

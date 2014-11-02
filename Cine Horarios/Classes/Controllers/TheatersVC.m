@@ -17,6 +17,7 @@
 #import "GAI+CH.h"
 #import "ArrayDataSource.h"
 #import "UIViewController+DoAlertView.h"
+#import "MBProgressHUD+CH.h"
 
 @interface TheatersVC ()
 
@@ -119,7 +120,9 @@
 
 -(void) downloadCinema {
     self.tableView.scrollEnabled = NO;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
+    
     [Cinema getCinemaWithBlock:^(Cinema *cinema, NSError *error) {
         if (!error) {
             self.cinema = cinema;

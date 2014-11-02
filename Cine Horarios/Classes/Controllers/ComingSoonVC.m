@@ -16,6 +16,7 @@
 #import "MovieVC.h"
 #import "FileHandler.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
 #import "GAI+CH.h"
 #import "GAIFields.h"
 #import "ArrayDataSource.h"
@@ -102,7 +103,7 @@
 }
 -(void) downloadComingSoon {
     self.tableView.scrollEnabled = NO;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [Billboard getComingSoonWithBlock:^(Billboard *billboard, NSError *error) {
         if (!error) {
             self.billboard = billboard;

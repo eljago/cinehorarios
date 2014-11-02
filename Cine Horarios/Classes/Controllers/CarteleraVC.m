@@ -14,6 +14,7 @@
 #import "UIFont+CH.h"
 #import "MovieVC.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
 #import "GAI+CH.h"
 #import "ArrayDataSource.h"
 #import "UIViewController+DoAlertView.h"
@@ -74,7 +75,7 @@
 }
 -(void) downloadBillboard {
     self.tableView.scrollEnabled = NO;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [Billboard getBillboardWithBlock:^(Billboard *billboard, NSError *error) {
         if (!error) {
             self.billboard = billboard;

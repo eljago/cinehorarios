@@ -11,6 +11,7 @@
 #import "Video.h"
 #import "UIFont+CH.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
 #import "UIViewController+DoAlertView.h"
 #import "VideoCell.h"
 #import "VideoCell+Video.h"
@@ -81,7 +82,7 @@ const int kLoadingCellTag = 1234;
 
 -(void) downloadVideosForPage:(NSUInteger)page {
     if (page == 1) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     }
     [VideoGroup getVideosWithBlock:^(VideoGroup *videoGroup, NSError *error) {
         if (!error) {

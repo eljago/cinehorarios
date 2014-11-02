@@ -37,6 +37,7 @@ PODS:
   - SDWebImage (3.7.1):
     - SDWebImage/Core
   - SDWebImage/Core (3.7.1)
+  - SpinKit (1.2.0)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
 
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - Mantle
   - MWPhotoBrowser (~> 1.4)
   - REMenu
+  - SpinKit
   - UIActivityIndicator-for-SDWebImage
 
 SPEC CHECKSUMS:
@@ -60,6 +62,7 @@ SPEC CHECKSUMS:
   PSTCollectionView: d9f466e4554cc83260ca9bde7beb27f308e8fd76
   REMenu: e3988747d83f9e8f49f244bd3f1fb8b0900e8741
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SpinKit: 11fa465172473ce3d59a80bf0449020b850e5229
   UIActivityIndicator-for-SDWebImage: 8bd92c15280fbe54816448c6b14674145eee05c7
 
 COCOAPODS: 0.34.4

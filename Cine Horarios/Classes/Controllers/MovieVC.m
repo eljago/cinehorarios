@@ -16,6 +16,7 @@
 #import "UIImageView+CH.h"
 #import "MWPhoto.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
 #import "MovieCinemasVC.h"
 #import "VideoVC.h"
 #import "GAI+CH.h"
@@ -184,7 +185,7 @@
     }
 }
 - (void) downloadMovie {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [Movie getCinemaWithBlock:^(Movie *movie, NSError *error) {
         if (!error) {
             self.movie = movie;
