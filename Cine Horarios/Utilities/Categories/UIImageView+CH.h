@@ -31,5 +31,5 @@ typedef enum {
 - (void) setImageWithStringURL:(NSString *)imageURL
                 movieImageType:(MovieImageType) movieImageType
                    placeholder: (UIImage *)placeholder;
-
++ (MovieImageType) getFullscreenMovieImageType;
 @end

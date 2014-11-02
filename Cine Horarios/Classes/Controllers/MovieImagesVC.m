@@ -103,6 +103,10 @@
     return nil;
 }
 
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index {
+    return [self.imagesURL objectAtIndex:index];
+}
+
 #pragma mark - Supported Interface Orientations
 
 -(NSUInteger)supportedInterfaceOrientations{

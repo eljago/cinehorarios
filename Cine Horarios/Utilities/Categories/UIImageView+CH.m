@@ -10,6 +10,7 @@
 #import "CineHorariosApiClient.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
+#import "Reachability.h"
 
 @implementation UIImageView (CH)
 
@@ -112,6 +113,43 @@
     NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
     
     [self setImageWithURL:nsurl placeholderImage:placeholder usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+}
+
++ (MovieImageType) getFullscreenMovieImageType {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    MovieImageType movieImageType;
+    if ([defaults boolForKey:@"Retina Images"]) {
+        
+        Reachability *reachability = [Reachability reachabilityForInternetConnection];
+        [reachability startNotifier];
+        
+        NetworkStatus status = [reachability currentReachabilityStatus];
+        
+        [reachability stopNotifier];
+        
+        if(status == NotReachable)
+        {
+            // No internet
+            movieImageType = MovieImageTypeMovieImageFullScreenNoRetina;
+        }
+        else if (status == ReachableViaWiFi)
+        {
+            // WiFi
+            movieImageType = MovieImageTypeMovieImageFullScreenRetina;
+        }
+        else if (status == ReachableViaWWAN)
+        {
+            // 3G
+            movieImageType = MovieImageTypeMovieImageFullScreenNoRetina;
+        }
+        else {
+            movieImageType = MovieImageTypeMovieImageFullScreenNoRetina;
+        }
+    }
+    else {
+        movieImageType = MovieImageTypeMovieImageFullScreenNoRetina;
+    }
+    return movieImageType;
 }
 
 @end

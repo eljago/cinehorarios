@@ -32,9 +32,7 @@
 #import "UIViewController+DoAlertView.h"
 #import "NSObject+Utilidades.h"
 
-#import "Reachability.h"
-
-@interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate>
+@interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate, MWPhotoBrowserDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintMovieNameTrailing;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintMovieCoverImageViewTop;
@@ -67,6 +65,9 @@
 @property (nonatomic, strong) UIFont *smallerFont;
 @property (nonatomic, strong) UIFont *normalFont;
 @property (nonatomic, strong) UIFont *bigBoldFont;
+
+@property (nonatomic, strong) NSArray *photos;
+@property (nonatomic, strong) NSArray *thumbPhotos;
 @end
 
 @implementation MovieVC
@@ -79,6 +80,8 @@
 	// Do any additional setup after loading the view.
     
     [self setupDataSources];
+    
+    self.photos = nil;
     
     UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 90, 30)];
     self.textViewSynopsis.textContainer.exclusionPaths = @[exclusionPath];
@@ -511,72 +514,49 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([collectionView isEqual:self.collectionView]) {
-        MovieImagesVC *viewController = [self instantiateMovieImagesVC];
-        [self pushPhotoBrowserWithIntermediateViewController:viewController index:indexPath.row];
+        [self prepareToPushPhotoBrowserWithGrid];
+        [self.navigationController pushViewController:[self getPhotoBrowserWithIndex:indexPath.row] animated:YES];
     }
     else {
         NSUInteger row = self.cast.directors.count + indexPath.row;
         CastVC *viewController = [self instantiateCastVC];
-        [self pushPhotoBrowserWithIntermediateViewController:viewController index:row];
+        MWPhotoBrowser *browser = [self getPhotoBrowserWithIntermediateViewController:viewController index:row];
+        
+        // Present
+        NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+        [viewControllers addObjectsFromArray:@[viewController, browser]];
+        [self.navigationController setViewControllers:[NSArray arrayWithArray:viewControllers] animated:YES];
     }
 }
 
 #pragma mark - Photo Browser View Controller Push Methods
 
-- (MovieImagesVC *) instantiateMovieImagesVC {
-    MovieImagesVC *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MovieImagesVC"];
-    viewController.imagesURL = self.movie.images;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    MovieImageType movieImageType;
-    if ([defaults boolForKey:@"Retina Images"]) {
-        
-        Reachability *reachability = [Reachability reachabilityForInternetConnection];
-        [reachability startNotifier];
-        
-        NetworkStatus status = [reachability currentReachabilityStatus];
-        
-        [reachability stopNotifier];
-        
-        if(status == NotReachable)
-        {
-            // No internet
-            movieImageType = MovieImageTypeMovieImageFullScreenNoRetina;
-        }
-        else if (status == ReachableViaWiFi)
-        {
-            // WiFi
-            movieImageType = MovieImageTypeMovieImageFullScreenRetina;
-        }
-        else if (status == ReachableViaWWAN)
-        {
-            // 3G
-            movieImageType = MovieImageTypeMovieImageFullScreenNoRetina;
-        }
-    }
-    else {
-        movieImageType = MovieImageTypeMovieImageFullScreenNoRetina;
-    }
-    viewController.photos = [NSMutableArray array];
+- (void) prepareToPushPhotoBrowserWithGrid {
+    MovieImageType movieImageType = [UIImageView getFullscreenMovieImageType];
+    
+    self.photos = nil;
+    NSMutableArray *mutArray = [NSMutableArray new];
     for (NSString *imagePath in self.movie.images) {
-        [viewController.photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:imagePath imageType:movieImageType]]]];
+        [mutArray addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:imagePath imageType:movieImageType]]]];
     }
-    return viewController;
+    self.photos = mutArray;
+    
+    self.thumbPhotos = nil;
+    mutArray = [NSMutableArray new];
+    for (NSString *imagePath in self.movie.images) {
+        [mutArray addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:imagePath imageType:MovieImageTypeCover]]]];
+    }
+    self.thumbPhotos = mutArray;
 }
+
 - (CastVC *) instantiateCastVC {
-    CastVC *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CastVC"];
-    [self setPropertyValuesToCastVC:viewController];
-    return viewController;
+    CastVC *castVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CastVC"];
+    [self setPropertyValuesToCastVC:castVC];
+    return castVC;
 }
 - (void) setPropertyValuesToCastVC:(CastVC *)castVC {
     castVC.cast = self.cast;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    MovieImageType movieImageType;
-    if ([defaults boolForKey:@"Retina Images"]) {
-        movieImageType = MovieImageTypeCastFullScreenRetina;
-    }
-    else {
-        movieImageType = MovieImageTypeCastFullScreenNoRetina;
-    }
+    MovieImageType movieImageType = [UIImageView getFullscreenMovieImageType];
     castVC.photos = [NSMutableArray array];
     for (Person *director in self.cast.directors) {
         MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:director.imageURL imageType:movieImageType]]];
@@ -592,37 +572,68 @@
         [castVC.photos addObject:photo];
     }
 }
-- (void) pushPhotoBrowserWithIntermediateViewController:(UIViewController *)viewController index:(NSUInteger)index{
+
+- (MWPhotoBrowser *) getPhotoBrowserWithIntermediateViewController:(UIViewController *)viewController index:(NSUInteger)index{
         
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:(id<MWPhotoBrowserDelegate>)viewController];
     browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
     browser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)
     browser.zoomPhotosToFill = NO; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
     [browser setCurrentPhotoIndex:index]; // Example: allows second image to be presented first
-    // Present
-    NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-    [viewControllers addObjectsFromArray:@[viewController, browser]];
-    [self.navigationController setViewControllers:[NSArray arrayWithArray:viewControllers] animated:YES];
+    return browser;
 }
+
+- (MWPhotoBrowser *) getPhotoBrowserWithIndex:(NSUInteger) index {
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
+    browser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)
+    browser.zoomPhotosToFill = NO; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+    browser.enableGrid = YES;
+    [browser setCurrentPhotoIndex:index];
+    return browser;
+}
+
+#pragma mark PhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.photos.count;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < self.photos.count) {
+        return [self.photos objectAtIndex:index];
+    }
+    return nil;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index {
+    return [self.thumbPhotos objectAtIndex:index];
+}
+
 #pragma mark - Push Photo VCs
 
 -(IBAction)pushPhotoCollection:(id)sender {
-    MovieImagesVC *viewController = [self instantiateMovieImagesVC];
-    [self.navigationController pushViewController:viewController animated:YES];
+    MWPhotoBrowser *browser = [self getPhotoBrowserWithIndex:0];
+    [self prepareToPushPhotoBrowserWithGrid];
+    browser.startOnGrid = YES;
+    [self.navigationController pushViewController:browser animated:YES];
 }
 -(IBAction)pushCastVC:(id)sender {
     CastVC *viewController = [self instantiateCastVC];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 -(IBAction)pushMovieCover:(id)sender {
-    MovieImagesVC *viewController = [self instantiateMovieImagesVC];
-    [self pushPhotoBrowserWithIntermediateViewController:viewController index:self.movie.images.count-1];
+    [self prepareToPushPhotoBrowserWithGrid];
+    MWPhotoBrowser *browser = [self getPhotoBrowserWithIndex:self.movie.images.count-1];
+    [self.navigationController pushViewController:browser animated:YES];
 }
 -(IBAction)pushPortraitImage:(id)sender {
-    MovieImagesVC *viewController = [self instantiateMovieImagesVC];
+    MWPhotoBrowser *browser;
+    [self prepareToPushPhotoBrowserWithGrid];
     for (int i=0; i<self.movie.images.count; i++) {
         if ([self.movie.images[i] isEqualToString:self.portraitImageURL]) {
-            [self pushPhotoBrowserWithIntermediateViewController:viewController index:i];
+            browser = [self getPhotoBrowserWithIndex:i];
+            [self.navigationController pushViewController:browser animated:YES];
             break;
         }
     }
