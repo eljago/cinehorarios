@@ -10,6 +10,8 @@
 	<string>Cine Horarios</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>A02D45DB60E041101CA332739FA7B09C0A430E10</key>
+		<string>ssh://107.170.169.97:1525/home/perforce/repos/CineHorarios.git</string>
 		<key>C67AAA27-0551-4E63-B677-084C613A7C0D</key>
 		<string>https://github.com/eljago/CineHorarios3.git</string>
 	</dict>
@@ -17,15 +19,17 @@
 	<string>Cine Horarios.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C67AAA27-0551-4E63-B677-084C613A7C0D</key>
+		<key>A02D45DB60E041101CA332739FA7B09C0A430E10</key>
 		<string>..</string>
+		<key>C67AAA27-0551-4E63-B677-084C613A7C0D</key>
+		<string>../../Cine Horarios</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/eljago/CineHorarios3.git</string>
+	<string>ssh://107.170.169.97:1525/home/perforce/repos/CineHorarios.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C67AAA27-0551-4E63-B677-084C613A7C0D</string>
+	<string>A02D45DB60E041101CA332739FA7B09C0A430E10</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>C67AAA27-0551-4E63-B677-084C613A7C0D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Cine Horarios</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A02D45DB60E041101CA332739FA7B09C0A430E10</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Cine%20Horarios</string>
 		</dict>
 	</array>
 </dict>

@@ -1,56 +1,65 @@
 PODS:
-  - AFNetworking (2.2.3):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.2.3):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.3):
-    - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.3)
-  - AFNetworking/Security (2.2.3)
-  - AFNetworking/Serialization (2.2.3)
-  - AFNetworking/UIKit (2.2.3):
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DACircularProgress (2.2.0)
-  - GoogleAnalytics-iOS-SDK (3.0.6)
-  - Mantle (1.4.1):
+  - ECSlidingViewController (2.0.3)
+  - GoogleAnalytics-iOS-SDK (3.0.9)
+  - Mantle (1.5.1):
     - Mantle/extobjc
-  - Mantle/extobjc (1.4.1)
-  - MBProgressHUD (0.8)
-  - MWPhotoBrowser (1.4.0):
+  - Mantle/extobjc (1.5.1)
+  - MBProgressHUD (0.9)
+  - MWPhotoBrowser (1.4.1):
     - DACircularProgress
     - MBProgressHUD (~> 0.8)
     - PSTCollectionView (~> 1.2)
-    - SDWebImage (~> 3.5.4)
-  - PSTCollectionView (1.2.0)
-  - REMenu (1.8.5)
-  - SDWebImage (3.5.4):
+    - SDWebImage (~> 3.7)
+  - PSTCollectionView (1.2.3)
+  - REMenu (1.10)
+  - SDWebImage (3.7.1):
     - SDWebImage/Core
-  - SDWebImage/Core (3.5.4)
+  - SDWebImage/Core (3.7.1)
+  - UIActivityIndicator-for-SDWebImage (1.2):
+    - SDWebImage (~> 3.7)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.2.1)
+  - AFNetworking (~> 2.4)
+  - ECSlidingViewController (~> 2.0)
   - GoogleAnalytics-iOS-SDK
   - Mantle
   - MWPhotoBrowser (~> 1.4)
-  - REMenu (~> 1.8.5)
+  - REMenu
+  - UIActivityIndicator-for-SDWebImage
 
 SPEC CHECKSUMS:
-  AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
-  DACircularProgress: 659d6fd11b5fc099c13ba9350239d9dca324916a
-  GoogleAnalytics-iOS-SDK: 16dfcc0c4491148bf372edc85a8470cc405ffb72
-  Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
-  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  MWPhotoBrowser: b85e89fcf0575062f32c472d389265dce1f068e1
-  PSTCollectionView: fb2ad2790c6efa306b2caf10315b2c1464d1f5c6
-  REMenu: 282a6b5feee8cce5403d7f28e15ffbc0aee359ab
-  SDWebImage: 1a62010700adbba823b621fc217906739dbf6aa5
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
+  ECSlidingViewController: e79fe856bfb1a99a39c995377a1943e50f7647eb
+  GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
+  Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+  MWPhotoBrowser: be05b3b7521e961382a4ba5579685bf5a00b93d8
+  PSTCollectionView: d9f466e4554cc83260ca9bde7beb27f308e8fd76
+  REMenu: e3988747d83f9e8f49f244bd3f1fb8b0900e8741
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  UIActivityIndicator-for-SDWebImage: 8bd92c15280fbe54816448c6b14674145eee05c7
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.34.4

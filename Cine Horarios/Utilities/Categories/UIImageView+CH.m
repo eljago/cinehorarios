@@ -9,6 +9,7 @@
 #import "UIImageView+CH.h"
 #import "CineHorariosApiClient.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
 
 @implementation UIImageView (CH)
 
@@ -89,12 +90,12 @@
     else {
         NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
         
-        [self setImageWithURL:nsurl placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        [self setImageWithURL:nsurl placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSData *binaryImageData = UIImagePNGRepresentation(image);
                 [binaryImageData writeToFile:localImagePath atomically:YES];
             });
-        }];
+        } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     }
 }
 - (void) setImageWithStringURL:(NSString *)imageURL
@@ -102,7 +103,7 @@
     
     NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
     
-    [self setImageWithURL:nsurl];
+    [self setImageWithURL:nsurl usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 }
 - (void) setImageWithStringURL:(NSString *)imageURL
                 movieImageType:(MovieImageType) movieImageType
@@ -110,7 +111,7 @@
     
     NSURL *nsurl = [self nsurlWithImagePath:imageURL imageType:movieImageType];
     
-    [self setImageWithURL:nsurl placeholderImage:placeholder];
+    [self setImageWithURL:nsurl placeholderImage:placeholder usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 }
 
 @end

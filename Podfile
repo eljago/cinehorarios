@@ -1,7 +1,10 @@
+source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
-pod 'AFNetworking', "~> 2.2.1"
+pod 'AFNetworking', "~> 2.4"
 pod 'GoogleAnalytics-iOS-SDK'
 pod 'MWPhotoBrowser', '~> 1.4'
-pod 'REMenu', '~> 1.8.5'
+pod 'REMenu'
+pod 'ECSlidingViewController', '~> 2.0'
 pod 'Mantle'
+pod 'UIActivityIndicator-for-SDWebImage'
