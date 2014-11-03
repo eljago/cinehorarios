@@ -51,7 +51,7 @@
                                                                       </iframe>\
                                                                       </div>", video.movie.name, video.name, video.code, 280, 180]];
             }
-            else if ([video.videoType isEqualToString:@"youtube"])  {
+            else  {
                 iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
                                                                       <div class=\"video\">\
                                                                       <h3>%@</h3>\
@@ -73,7 +73,7 @@
                                                                       </iframe>\
                                                                       </div>", video.name, video.code, 280, 180]];
             }
-            else if ([video.videoType isEqualToString:@"youtube"]) {
+            else {
                 iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
                                                                       <div class=\"video\">\
                                                                       <h4>%@</h4>\
