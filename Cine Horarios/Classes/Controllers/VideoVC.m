@@ -42,24 +42,45 @@
     if ([[self backViewController] isKindOfClass:VideosVC.class]) {
         self.title = @"Video";
         for (Video *video in self.videos) {
-            iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
-                                                                  <div class=\"video\">\
-                                                                    <h3>%@</h3>\
-                                                                    <h4>%@</h4>\
-                                                                    <iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameBorder=\"0\" allowfullscreen>\
-                                                                    </iframe>\
-                                                                  </div>", video.movie.name, video.name, 280, 180, video.code]];
+            if ([video.videoType isEqualToString:@"vimeo"]) {
+                iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
+                                                                      <div class=\"video\">\
+                                                                      <h3>%@</h3>\
+                                                                      <h4>%@</h4>\
+                                                                      <iframe src=\"http://player.vimeo.com/video/%@\" width=\"%d\" height=\"%d\" frameborder=\"0\" allowfullscreen>\
+                                                                      </iframe>\
+                                                                      </div>", video.movie.name, video.name, video.code, 280, 180]];
+            }
+            else if ([video.videoType isEqualToString:@"youtube"])  {
+                iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
+                                                                      <div class=\"video\">\
+                                                                      <h3>%@</h3>\
+                                                                      <h4>%@</h4>\
+                                                                      <iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameBorder=\"0\" allowfullscreen>\
+                                                                      </iframe>\
+                                                                      </div>", video.movie.name, video.name, 280, 180, video.code]];
+            }
         }
     }
     else {
         self.title = @"Videos";
         for (Video *video in self.videos) {
-            iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
-                                                                  <div class=\"video\">\
-                                                                    <h4>%@</h4>\
-                                                                    <iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameBorder=\"0\" allowfullscreen>\
-                                                                    </iframe>\
-                                                                  </div>", video.name, 280, 180, video.code]];
+            if ([video.videoType isEqualToString:@"vimeo"]) {
+                iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
+                                                                      <div class=\"video\">\
+                                                                      <h4>%@</h4>\
+                                                                      <iframe src=\"http://player.vimeo.com/video/%@\" width=\"%d\" height=\"%d\" frameborder=\"0\" allowfullscreen>\
+                                                                      </iframe>\
+                                                                      </div>", video.name, video.code, 280, 180]];
+            }
+            else if ([video.videoType isEqualToString:@"youtube"]) {
+                iFrameString = [iFrameString stringByAppendingString:[NSString stringWithFormat:@"\
+                                                                      <div class=\"video\">\
+                                                                      <h4>%@</h4>\
+                                                                      <iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameBorder=\"0\" allowfullscreen>\
+                                                                      </iframe>\
+                                                                      </div>", video.name, 280, 180, video.code]];
+            }
         }
     }
     

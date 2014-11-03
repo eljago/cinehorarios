@@ -71,7 +71,6 @@
 		6EC0068D18DC7CBB003DECC8 /* GlobalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0066A18DC7CBB003DECC8 /* GlobalNavigationController.m */; };
 		6EC0068F18DC7CBB003DECC8 /* MovieCinemasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0066E18DC7CBB003DECC8 /* MovieCinemasVC.m */; };
 		6EC0069118DC7CBB003DECC8 /* MovieFunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0067218DC7CBB003DECC8 /* MovieFunctionsVC.m */; };
-		6EC0069218DC7CBB003DECC8 /* MovieImagesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0067418DC7CBB003DECC8 /* MovieImagesVC.m */; };
 		6EC0069518DC7CBB003DECC8 /* MovieVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0067A18DC7CBB003DECC8 /* MovieVC.m */; };
 		6EC0069618DC7CBB003DECC8 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0067C18DC7CBB003DECC8 /* SettingsVC.m */; };
 		6EC0069718DC7CBB003DECC8 /* TheatersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0067E18DC7CBB003DECC8 /* TheatersVC.m */; };
@@ -250,8 +249,6 @@
 		6EC0066E18DC7CBB003DECC8 /* MovieCinemasVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieCinemasVC.m; path = Classes/Controllers/MovieCinemasVC.m; sourceTree = "<group>"; };
 		6EC0067118DC7CBB003DECC8 /* MovieFunctionsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieFunctionsVC.h; path = Classes/Controllers/MovieFunctionsVC.h; sourceTree = "<group>"; };
 		6EC0067218DC7CBB003DECC8 /* MovieFunctionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieFunctionsVC.m; path = Classes/Controllers/MovieFunctionsVC.m; sourceTree = "<group>"; };
-		6EC0067318DC7CBB003DECC8 /* MovieImagesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieImagesVC.h; path = Classes/Controllers/MovieImagesVC.h; sourceTree = "<group>"; };
-		6EC0067418DC7CBB003DECC8 /* MovieImagesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieImagesVC.m; path = Classes/Controllers/MovieImagesVC.m; sourceTree = "<group>"; };
 		6EC0067918DC7CBB003DECC8 /* MovieVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieVC.h; path = Classes/Controllers/MovieVC.h; sourceTree = "<group>"; };
 		6EC0067A18DC7CBB003DECC8 /* MovieVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieVC.m; path = Classes/Controllers/MovieVC.m; sourceTree = "<group>"; };
 		6EC0067B18DC7CBB003DECC8 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsVC.h; path = Classes/Controllers/SettingsVC.h; sourceTree = "<group>"; };
@@ -432,8 +429,6 @@
 				6EC0066E18DC7CBB003DECC8 /* MovieCinemasVC.m */,
 				6EC0067118DC7CBB003DECC8 /* MovieFunctionsVC.h */,
 				6EC0067218DC7CBB003DECC8 /* MovieFunctionsVC.m */,
-				6EC0067318DC7CBB003DECC8 /* MovieImagesVC.h */,
-				6EC0067418DC7CBB003DECC8 /* MovieImagesVC.m */,
 				6EC0067918DC7CBB003DECC8 /* MovieVC.h */,
 				6EC0067A18DC7CBB003DECC8 /* MovieVC.m */,
 				6EC0067B18DC7CBB003DECC8 /* SettingsVC.h */,
@@ -935,7 +930,6 @@
 				6E607F3218C10ED5000D85FF /* UIDevice+Hardware.m in Sources */,
 				6EC0072218DC7E3C003DECC8 /* VideoGroup.m in Sources */,
 				6EC0073A18DC7EE1003DECC8 /* NSArray+FKBMap.m in Sources */,
-				6EC0069218DC7CBB003DECC8 /* MovieImagesVC.m in Sources */,
 				6EC0064D18DC7BC6003DECC8 /* BillboardCell.m in Sources */,
 				6EC0062E18DC7B77003DECC8 /* BasicCell+Theater.m in Sources */,
 				6EC0071D18DC7E3C003DECC8 /* Movie.m in Sources */,
@@ -1057,7 +1051,7 @@
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "46CA847B-CF9F-45D0-8232-C6584D6E6D81";
+				PROVISIONING_PROFILE = "A9F3A490-9143-494C-BFC0-BFCF9BBAB0B0";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1086,7 +1080,7 @@
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
 				);
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "46CA847B-CF9F-45D0-8232-C6584D6E6D81";
+				PROVISIONING_PROFILE = "A9F3A490-9143-494C-BFC0-BFCF9BBAB0B0";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

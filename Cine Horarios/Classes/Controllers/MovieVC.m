@@ -10,7 +10,6 @@
 #import "Movie.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
-#import "MovieImagesVC.h"
 #import "CastVC.h"
 #import "WebVC.h"
 #import "UIImageView+CH.h"

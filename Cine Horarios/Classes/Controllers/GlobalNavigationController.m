@@ -10,7 +10,6 @@
 #import "REMenu.h"
 #import "UIColor+CH.h"
 #import "MWPhotoBrowser.h"
-#import "MovieImagesVC.h"
 
 const CGFloat kButtonWidth = 50.f;
 
@@ -60,7 +59,7 @@ const CGFloat kButtonWidth = 50.f;
 
 - (void)swipeRecognized:(UISwipeGestureRecognizer *)rec
 {
-    if ([self.topViewController isKindOfClass:MWPhotoBrowser.class] || [self.topViewController isKindOfClass:MovieImagesVC.class]) {
+    if ([self.topViewController isKindOfClass:MWPhotoBrowser.class]) {
         return;
     }
     [self revealMenu:nil];

@@ -15,6 +15,7 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"imageURL": @"image_url",
+             @"videoType": @"video_type",
              @"movie": @"show"
              };
 }

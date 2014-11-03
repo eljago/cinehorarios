@@ -96,6 +96,7 @@
 }
 
 +(UIColor *)menuColorForRow:(int)index {
+    return [UIColor whiteColor];
     switch (index) {
         case 0:
             // Todos

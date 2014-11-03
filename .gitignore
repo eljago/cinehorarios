@@ -15,3 +15,5 @@ dsa_priv.pem
 *.pbxuser
 *.xcodeproj/project.xcworkspace/
 xcuserdata
+
+.dropbox.attr

@@ -16,6 +16,7 @@
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSString *code;
 @property (nonatomic, strong, readonly) NSString *imageURL;
+@property (nonatomic, strong, readonly) NSString *videoType;
 @property (nonatomic, strong, readonly) BasicMovie *movie;
 
 @end
