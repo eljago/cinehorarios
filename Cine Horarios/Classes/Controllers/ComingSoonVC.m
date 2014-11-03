@@ -71,7 +71,6 @@
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     ComingSoonCell2 *comingSoonCell = (ComingSoonCell2 *)cell;
     comingSoonCell.mainLabel.font = self.headFont;
-    comingSoonCell.debutTitleLabel.font = self.bodyFont;
     comingSoonCell.debutLabel.font = self.bodyFont;
 }
 

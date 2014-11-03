@@ -1472,13 +1472,8 @@
                                             <color key="textColor" red="0.72941176470000002" green="0.24313725489999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estreno:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="187" translatesAutoresizingMaskIntoConstraints="NO" id="skf-LS-8e4">
-                                            <rect key="frame" x="100" y="46" width="187" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="187" translatesAutoresizingMaskIntoConstraints="NO" id="Cj2-tf-zPm">
-                                            <rect key="frame" x="100" y="72" width="187" height="21"/>
+                                            <rect key="frame" x="100" y="46" width="187" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1488,20 +1483,16 @@
                                         <constraint firstItem="02w-fM-Hs0" firstAttribute="centerY" secondItem="7C7-La-Jdo" secondAttribute="centerY" id="6fA-Rd-91j"/>
                                         <constraint firstItem="UVQ-Ef-8ow" firstAttribute="leading" secondItem="02w-fM-Hs0" secondAttribute="trailing" constant="10" id="Bcd-01-SqJ"/>
                                         <constraint firstItem="7C7-La-Jdo" firstAttribute="top" secondItem="PLD-gl-bnJ" secondAttribute="top" id="Gbb-KZ-XpW"/>
-                                        <constraint firstItem="skf-LS-8e4" firstAttribute="width" secondItem="UVQ-Ef-8ow" secondAttribute="width" id="Jfp-CV-fbz"/>
                                         <constraint firstAttribute="trailing" secondItem="UVQ-Ef-8ow" secondAttribute="trailing" id="aGK-F6-epP"/>
-                                        <constraint firstItem="Cj2-tf-zPm" firstAttribute="top" secondItem="skf-LS-8e4" secondAttribute="bottom" constant="5" id="arw-Q5-VFC"/>
-                                        <constraint firstItem="skf-LS-8e4" firstAttribute="leading" secondItem="UVQ-Ef-8ow" secondAttribute="leading" id="d4E-dT-ksQ"/>
+                                        <constraint firstItem="Cj2-tf-zPm" firstAttribute="top" secondItem="UVQ-Ef-8ow" secondAttribute="bottom" constant="15" id="fvZ-s5-5ne"/>
                                         <constraint firstItem="02w-fM-Hs0" firstAttribute="centerX" secondItem="7C7-La-Jdo" secondAttribute="centerX" id="j0z-mG-e0m"/>
                                         <constraint firstItem="Cj2-tf-zPm" firstAttribute="width" secondItem="UVQ-Ef-8ow" secondAttribute="width" id="nzq-C4-APZ"/>
-                                        <constraint firstItem="skf-LS-8e4" firstAttribute="top" secondItem="UVQ-Ef-8ow" secondAttribute="bottom" constant="15" id="oGy-FJ-UA8"/>
                                         <constraint firstItem="02w-fM-Hs0" firstAttribute="top" secondItem="UVQ-Ef-8ow" secondAttribute="top" id="see-WH-v4m"/>
                                         <constraint firstItem="Cj2-tf-zPm" firstAttribute="leading" secondItem="UVQ-Ef-8ow" secondAttribute="leading" id="y7u-Yk-80x"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="debutLabel" destination="Cj2-tf-zPm" id="Dll-Ir-d1s"/>
-                                    <outlet property="debutTitleLabel" destination="skf-LS-8e4" id="f4f-w3-fbf"/>
                                     <outlet property="imageCover" destination="02w-fM-Hs0" id="d7i-Sr-ufN"/>
                                     <outlet property="mainLabel" destination="UVQ-Ef-8ow" id="P2d-H8-zaT"/>
                                     <segue destination="rNi-KW-Ki3" kind="push" id="6Kn-B9-ZqN"/>

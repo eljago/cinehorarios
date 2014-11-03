@@ -11,7 +11,6 @@
 @interface ComingSoonCell2 : BasicCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageCover;
-@property (nonatomic, weak) IBOutlet UILabel *debutTitleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *debutLabel;
 
 @end
