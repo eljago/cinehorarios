@@ -14,6 +14,7 @@
 #import "UIColor+CH.h"
 #import "UIFont+CH.h"
 //#import "RageIAPHelper.h"
+#import "Harpy.h"
 
 #define COMPILE_GEOFARO true
 
@@ -44,6 +45,7 @@ static int const kGaDispatchPeriod = 30;
     [self setup_afnetworking];
     [self setup_icloud_favorites];
     [self setup_appearances];
+    [self setupHarpy];
     
     return YES;
 }
@@ -75,6 +77,9 @@ static int const kGaDispatchPeriod = 30;
     [FileHandler cleanDirectoryAtPath:dataDir];
     [FileHandler removeOldImages];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    // Check if new app version is available
+    [self checkHarpy];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -215,6 +220,44 @@ static int const kGaDispatchPeriod = 30;
     
     
 }
+
+- (void) setupHarpy {
+    // Set the App ID for your app
+    [[Harpy sharedInstance] setAppID:@"469612283"];
+    
+    // Set the UIViewController that will present an instance of UIAlertController
+    [[Harpy sharedInstance] setPresentingViewController:_window.rootViewController];
+    
+    // (Optional) Set the App Name for your app
+    [[Harpy sharedInstance] setAppName:@"Cine Horarios"];
+    
+    /* (Optional) Set the Alert Type for your app
+     By default, Harpy is configured to use HarpyAlertTypeOption */
+    [[Harpy sharedInstance] setAlertType:HarpyAlertTypeOption];
+    
+    /* (Optional) If your application is not availabe in the U.S. App Store, you must specify the two-letter
+     country code for the region in which your applicaiton is available. */
+//    [[Harpy sharedInstance] setCountryCode:@"es_CL"];
+    
+    /* (Optional) Overides system language to predefined language.
+     Please use the HarpyLanguage constants defined inHarpy.h. */
+    [[Harpy sharedInstance] setForceLanguageLocalization:HarpyLanguageSpanish];
+    
+    // Perform check for new version of your app
+    [[Harpy sharedInstance] checkVersion];
+}
+
+- (void) checkHarpy {
+    /*
+     Perform weekly check for new version of your app
+     Useful if you user returns to your app from background after extended period of time
+     Place in applicationDidBecomeActive:
+     
+     Also, performs version check on first launch.
+     */
+    [[Harpy sharedInstance] checkVersionWeekly];
+}
+
 
 #if COMPILE_GEOFARO
 
