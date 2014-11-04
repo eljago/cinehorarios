@@ -96,7 +96,6 @@
 }
 
 +(UIColor *)menuColorForRow:(int)index {
-    return [UIColor whiteColor];
     switch (index) {
         case 0:
             // Todos
@@ -112,7 +111,7 @@
             break;
         case 3:
             // Cartelera
-            return [UIColor amethyst];
+            return [UIColor whiteColor];
             break;
         case 4:
             // Próximos Estrenos
