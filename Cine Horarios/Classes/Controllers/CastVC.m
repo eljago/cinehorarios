@@ -18,6 +18,7 @@
 #import "CastDirectorCell.h"
 #import "CastDirectorCell+Person.h"
 #import "Person.h"
+#import "WebVC.h"
 
 @interface CastVC ()
 
@@ -223,6 +224,25 @@
     self.fontName = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     self.fontRole = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     [self.tableView reloadData];
+}
+
+
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([[segue identifier] isEqualToString:@"CastVCToWebVC"]) {
+        WebVC *wvc = [segue destinationViewController];
+        UIButton *buttonImdb = (UIButton *)sender;
+        UITableViewCell *cell = (UITableViewCell *)buttonImdb.superview.superview;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell: cell];
+        Person *person;
+        if (indexPath.section == 0) {
+            person = (Person *)self.cast.directors[indexPath.row];
+        }
+        else {
+            person = (Person *)self.cast.actors[indexPath.row];
+        }
+        wvc.urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
+    }
 }
 
 @end

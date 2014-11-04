@@ -16,5 +16,6 @@
 @property (nonatomic, assign, readonly) BOOL director;
 @property (nonatomic, strong, readonly) NSString *character;
 @property (nonatomic, strong, readonly) NSString *imageURL;
+@property (nonatomic, strong, readonly) NSString *imdbCode;
 
 @end

@@ -17,6 +17,12 @@
     self.nameLabel.text = person.name;
     self.nameLabel.font = font;
     [self.imageCover setImageWithStringURL:person.imageURL movieImageType:MovieImageTypeMovieImageCover];
+    if (!person.imdbCode) {
+        [self.buttonImdb setHidden:YES];
+    }
+    else {
+        [self.buttonImdb setHidden:NO];
+    }
 }
 
 @end

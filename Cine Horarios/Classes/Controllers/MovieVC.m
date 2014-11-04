@@ -677,6 +677,14 @@
         VideoVC *videoVC = segue.destinationViewController;
         videoVC.videos = self.movie.videos;
     }
+    else if([[segue identifier] isEqualToString:@"MovieToWebImdb"]) {
+        WebVC *wvc = [segue destinationViewController];
+        UIButton *buttonImdb = (UIButton *)sender;
+        MovieCastCell *castCell = (MovieCastCell *)buttonImdb.superview.superview;
+        NSIndexPath *indexPath = [self.collectionViewActors indexPathForCell: castCell];
+        Person *person = (Person *)self.cast.actors[indexPath.row];
+        wvc.urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
+    }
 }
 
 #pragma mark - Interface Orientation

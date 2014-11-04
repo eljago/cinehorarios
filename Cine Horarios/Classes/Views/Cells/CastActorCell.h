@@ -13,5 +13,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *characterLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *imageCover;
+@property (nonatomic, weak) IBOutlet UIButton *buttonImdb;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *buttonTrailingConstraint;
 
 @end
