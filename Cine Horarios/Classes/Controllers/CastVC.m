@@ -226,22 +226,34 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - GoImdb
 
-#pragma mark - Segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([[segue identifier] isEqualToString:@"CastVCToWebVC"]) {
-        WebVC *wvc = [segue destinationViewController];
-        UIButton *buttonImdb = (UIButton *)sender;
-        UITableViewCell *cell = (UITableViewCell *)buttonImdb.superview.superview;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell: cell];
-        Person *person;
-        if (indexPath.section == 0) {
-            person = (Person *)self.cast.directors[indexPath.row];
-        }
-        else {
-            person = (Person *)self.cast.actors[indexPath.row];
-        }
-        wvc.urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
+-(IBAction)goImdb:(id)sender {
+    UIButton *buttonImdb = (UIButton *)sender;
+    UITableViewCell *cell = (UITableViewCell *)buttonImdb.superview.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell: cell];
+    Person *person;
+    if (indexPath.section == 0) {
+        person = (Person *)self.cast.directors[indexPath.row];
+    }
+    else {
+        person = (Person *)self.cast.actors[indexPath.row];
+    }
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"AppIMDB"]) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"imdb:///name/%@/",person.imdbCode]];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"Safari"]) {
+        NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
+    else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"InApp"]) {
+        NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
+        WebVC *webVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+        webVC.urlString = urlString;
+        [self.navigationController pushViewController:webVC animated:YES];
     }
 }
 

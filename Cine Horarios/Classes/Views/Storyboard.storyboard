@@ -471,7 +471,7 @@
                                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <segue destination="fiU-Lv-GKa" kind="push" identifier="MovieToWebImdb" id="ZNX-Qc-GPZ"/>
+                                                                            <action selector="goImdb:" destination="rNi-KW-Ki3" eventType="touchUpInside" id="7mZ-Q2-ogM"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -633,9 +633,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="fiU-Lv-GKa" kind="push" identifier="MovieToWeb1" id="Hfj-Ob-89f"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="UUp-HU-Xp1" detailTextLabel="drq-Cx-mkc" imageView="v5G-aD-C0T" rowHeight="50" style="IBUITableViewCellStyleValue1" id="Qqm-08-rY1">
                                         <rect key="frame" x="0.0" y="999" width="320" height="50"/>
@@ -664,9 +661,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="fiU-Lv-GKa" kind="push" identifier="MovieToWeb2" id="D9e-Da-QHS"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" tag="3" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yO4-T8-GFj" detailTextLabel="mRU-Q8-whv" imageView="CpC-m3-wkq" rowHeight="50" style="IBUITableViewCellStyleValue1" id="G5i-K3-Nm2">
                                         <rect key="frame" x="0.0" y="1049" width="320" height="50"/>
@@ -695,9 +689,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="fiU-Lv-GKa" kind="push" identifier="MovieToWeb3" id="ZrW-Ss-4wn"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -794,7 +785,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="fiU-Lv-GKa" kind="push" identifier="CastVCToWebVC" id="ZCp-on-lRd"/>
+                                                <action selector="goImdb:" destination="x8r-f8-pYO" eventType="touchUpInside" id="9cV-JV-OpA"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arturo Espinoza Carrasco de la Fuente" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="164" translatesAutoresizingMaskIntoConstraints="NO" id="oJe-AA-1XF">
@@ -864,7 +855,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="fiU-Lv-GKa" kind="push" identifier="CastVCToWebVC" id="Rfl-UQ-vdt"/>
+                                                <action selector="goImdb:" destination="x8r-f8-pYO" eventType="touchUpInside" id="aPk-Ip-oUN"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -1191,17 +1182,9 @@
                         <viewControllerLayoutGuide type="bottom" id="WKg-qG-1VI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bg6-pT-971">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ajO-AM-ANL" userLabel="close view">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Hc8-N3-BkS" appends="YES" id="FfW-sc-nFi"/>
-                                </connections>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLN-nL-hu2" userLabel="Resolucion Imagen">
                                 <rect key="frame" x="8" y="99" width="304" height="109"/>
                                 <subviews>
@@ -1258,8 +1241,63 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6s-JF-KWl" userLabel="Paginas Web Terceros">
+                                <rect key="frame" x="8" y="265" width="304" height="188"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Abrir Imdb en:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="292" translatesAutoresizingMaskIntoConstraints="NO" id="531-N3-sTe">
+                                        <rect key="frame" x="8" y="104" width="292" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="jLJ-5o-WCR">
+                                        <rect key="frame" x="32" y="141" width="240" height="29"/>
+                                        <segments>
+                                            <segment title="Safari"/>
+                                            <segment title="En App"/>
+                                            <segment title="App IMDB"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.1718567143459645" green="0.33302732595008144" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="segmentedControlSelected:" destination="ER5-J4-dU2" eventType="valueChanged" id="NS6-qG-3ZT"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Abrir Metacritic y Rotten Tomatoes en:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="292" translatesAutoresizingMaskIntoConstraints="NO" id="Eq2-TU-ZLJ">
+                                        <rect key="frame" x="8" y="8" width="292" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="PBT-fX-fQr">
+                                        <rect key="frame" x="32" y="60" width="240" height="29"/>
+                                        <segments>
+                                            <segment title="Safari"/>
+                                            <segment title="En App"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.1718567143459645" green="0.33302732595008144" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="segmentedControlSelected:" destination="ER5-J4-dU2" eventType="valueChanged" id="fmd-WT-1nE"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Páginas web de terceros:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oxp-ey-Dm0">
+                                <rect key="frame" x="20" y="236" width="195" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajO-AM-ANL" userLabel="close view">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Hc8-N3-BkS" appends="YES" id="FfW-sc-nFi"/>
+                                </connections>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZO-wS-Fph" userLabel="Picker View">
-                                <rect key="frame" x="0.0" y="354" width="320" height="214"/>
+                                <rect key="frame" x="0.0" y="586" width="320" height="214"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5FH-j4-Ch6">
                                         <rect key="frame" x="0.0" y="20" width="320" height="162"/>
@@ -1295,13 +1333,21 @@
                         </subviews>
                         <color key="backgroundColor" red="0.30619079339999999" green="0.44373094029999999" blue="0.75543478259999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="ajO-AM-ANL" secondAttribute="centerX" id="03F-Wu-uTB"/>
                             <constraint firstItem="WKg-qG-1VI" firstAttribute="top" secondItem="LZO-wS-Fph" secondAttribute="bottom" id="6UM-68-HLl"/>
+                            <constraint firstItem="ajO-AM-ANL" firstAttribute="height" secondItem="bg6-pT-971" secondAttribute="height" id="EDr-W6-9GE"/>
+                            <constraint firstAttribute="centerY" secondItem="ajO-AM-ANL" secondAttribute="centerY" id="R5Y-89-OzX"/>
+                            <constraint firstItem="ajO-AM-ANL" firstAttribute="width" secondItem="bg6-pT-971" secondAttribute="width" id="Zfm-dw-adg"/>
                             <constraint firstItem="LZO-wS-Fph" firstAttribute="leading" secondItem="bg6-pT-971" secondAttribute="leading" id="rI6-HU-VQw"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="800"/>
                     <connections>
                         <outlet property="closeView" destination="ajO-AM-ANL" id="38c-gf-8iH"/>
+                        <outlet property="controlIMDB" destination="jLJ-5o-WCR" id="mSE-Jz-mhy"/>
+                        <outlet property="controlMetacriticRotten" destination="PBT-fX-fQr" id="193-ZP-KCD"/>
                         <outlet property="customPicker" destination="LZO-wS-Fph" id="53S-7m-XB6"/>
                         <outlet property="customPickerBottomSpace" destination="6UM-68-HLl" id="1TE-EG-EsK"/>
                         <outlet property="indicatorImageView" destination="V0A-BT-o7a" id="pGp-f8-f5h"/>
@@ -1317,7 +1363,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-166" y="1959"/>
+            <point key="canvasLocation" x="-166" y="1865"/>
         </scene>
         <!--VideosVC-->
         <scene sceneID="upu-4p-SHO">
@@ -1632,7 +1678,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="1X0-Qc-tJs"/>
         <segue reference="tUd-AI-Hcd"/>
-        <segue reference="Rfl-UQ-vdt"/>
         <segue reference="pkN-tB-4p3"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -509,6 +509,56 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 4) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *urlString;
+        switch (indexPath.row) {
+            case 0:
+                urlString = self.movie.metacriticURL;
+                if ([[userDefaults stringForKey:@"CHOpenLinksMetacriticRottenTomatoes"] isEqualToString:@"Safari"]) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+                }
+                else if ([[userDefaults stringForKey:@"CHOpenLinksMetacriticRottenTomatoes"] isEqualToString:@"InApp"]) {
+                    WebVC *webVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+                    webVC.urlString = urlString;
+                    [self.navigationController pushViewController:webVC animated:YES];
+                }
+                break;
+            case 1:
+                if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"AppIMDB"]) {
+                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"imdb:///title/%@/",self.movie.imdbCode]];
+                    [[UIApplication sharedApplication] openURL:url];
+                }
+                else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"Safari"]) {
+                    NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/title/%@/",self.movie.imdbCode];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+                }
+                else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"InApp"]) {
+                    NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/title/%@/",self.movie.imdbCode];
+                    WebVC *webVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+                    webVC.urlString = urlString;
+                    [self.navigationController pushViewController:webVC animated:YES];
+                }
+                break;
+            case 2:
+                urlString = self.movie.rottenTomatoesURL;
+                if ([[userDefaults stringForKey:@"CHOpenLinksMetacriticRottenTomatoes"] isEqualToString:@"Safari"]) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+                }
+                else if ([[userDefaults stringForKey:@"CHOpenLinksMetacriticRottenTomatoes"] isEqualToString:@"InApp"]) {
+                    WebVC *webVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+                    webVC.urlString = urlString;
+                    [self.navigationController pushViewController:webVC animated:YES];
+                }
+                break;
+                
+            default:
+                return;
+                break;
+        }
+    }
+}
 
 #pragma mark - UICollectionViewDelegate
 
@@ -655,19 +705,6 @@
         CastVC *castVC = [segue destinationViewController];
         [self setPropertyValuesToCastVC:castVC];
     }
-    else if ([[segue identifier] isEqualToString:@"MovieToWeb1"] || [[segue identifier] isEqualToString:@"MovieToWeb2"] || [[segue identifier] isEqualToString:@"MovieToWeb3"]){
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        WebVC *wvc = [segue destinationViewController];
-        if (indexPath.row == 0) {
-            wvc.urlString = self.movie.metacriticURL;
-        }
-        else if (indexPath.row == 1) {
-            wvc.urlString = [NSString stringWithFormat:@"http://m.imdb.com/title/%@/",self.movie.imdbCode];
-        }
-        else if (indexPath.row == 2) {
-            wvc.urlString = self.movie.rottenTomatoesURL;
-        }
-    }
     else if ([[segue identifier] isEqualToString:@"MovieToShowtimes"]){
         MovieCinemasVC *vc = (MovieCinemasVC *)[segue destinationViewController];
         vc.movieID = self.movie.movieID;
@@ -677,13 +714,28 @@
         VideoVC *videoVC = segue.destinationViewController;
         videoVC.videos = self.movie.videos;
     }
-    else if([[segue identifier] isEqualToString:@"MovieToWebImdb"]) {
-        WebVC *wvc = [segue destinationViewController];
-        UIButton *buttonImdb = (UIButton *)sender;
-        MovieCastCell *castCell = (MovieCastCell *)buttonImdb.superview.superview;
-        NSIndexPath *indexPath = [self.collectionViewActors indexPathForCell: castCell];
-        Person *person = (Person *)self.cast.actors[indexPath.row];
-        wvc.urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
+}
+
+-(IBAction)goImdb:(id)sender {
+    UIButton *buttonImdb = (UIButton *)sender;
+    MovieCastCell *castCell = (MovieCastCell *)buttonImdb.superview.superview;
+    NSIndexPath *indexPath = [self.collectionViewActors indexPathForCell: castCell];
+    Person *person = (Person *)self.cast.actors[indexPath.row];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"AppIMDB"]) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"imdb:///name/%@/",person.imdbCode]];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"Safari"]) {
+        NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
+    else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"InApp"]) {
+        NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
+        WebVC *webVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+        webVC.urlString = urlString;
+        [self.navigationController pushViewController:webVC animated:YES];
     }
 }
 
