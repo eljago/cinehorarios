@@ -526,14 +526,24 @@
                 }
                 break;
             case 1:
+                // OPEN IN IMDB APP
                 if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"AppIMDB"]) {
                     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"imdb:///title/%@/",self.movie.imdbCode]];
-                    [[UIApplication sharedApplication] openURL:url];
+                    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                        [[UIApplication sharedApplication] openURL:url];
+                    }
+                    else {
+                        NSURL *iTunesURL = [NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=342792525&mt=8"];
+                        [[UIApplication sharedApplication] openURL:iTunesURL];
+                    }
                 }
+                // OPEN IN SAFARI
                 else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"Safari"]) {
                     NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/title/%@/",self.movie.imdbCode];
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+                    NSURL *url = [NSURL URLWithString:urlString];
+                    [[UIApplication sharedApplication] openURL:url];
                 }
+                // OPEN IN APP
                 else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"InApp"]) {
                     NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/title/%@/",self.movie.imdbCode];
                     WebVC *webVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
@@ -723,14 +733,23 @@
     Person *person = (Person *)self.cast.actors[indexPath.row];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    // OPEN IN IMDB APP
     if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"AppIMDB"]) {
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"imdb:///name/%@/",person.imdbCode]];
-        [[UIApplication sharedApplication] openURL:url];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+        else {
+            NSURL *iTunesURL = [NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=342792525&mt=8"];
+            [[UIApplication sharedApplication] openURL:iTunesURL];
+        }
     }
+    // OPEN IN SAFARI
     else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"Safari"]) {
         NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
     }
+    // OPEN IN APP
     else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"InApp"]) {
         NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
         WebVC *webVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
