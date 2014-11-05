@@ -1182,32 +1182,9 @@
                         <viewControllerLayoutGuide type="bottom" id="WKg-qG-1VI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bg6-pT-971">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="650"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLN-nL-hu2" userLabel="Resolucion Imagen">
-                                <rect key="frame" x="8" y="99" width="304" height="109"/>
-                                <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tJw-4J-2sf">
-                                        <rect key="frame" x="246" y="6" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="toggleSwitchRetina:" destination="ER5-J4-dU2" eventType="touchUpInside" id="k9g-WM-ds1"/>
-                                        </connections>
-                                    </switch>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Doble Resolución" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3P7-fY-id8">
-                                        <rect key="frame" x="11" y="11" width="183" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Solo afecta a las imágenes desplegadas en pantalla completa y si está conectado a una red Wi-Fi." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="284" translatesAutoresizingMaskIntoConstraints="NO" id="Xyd-5f-Prs">
-                                        <rect key="frame" x="11" y="45" width="284" height="56"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3fi-Mb-kns" userLabel="Ventana de Inicio" customClass="UIButton">
                                 <rect key="frame" x="8" y="8" width="304" height="42"/>
                                 <subviews>
@@ -1236,22 +1213,45 @@
                                     <action selector="togglePickerView:" destination="ER5-J4-dU2" eventType="touchUpInside" id="O0q-4i-7vh"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLN-nL-hu2" userLabel="Resolucion Imagen">
+                                <rect key="frame" x="8" y="85" width="304" height="109"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tJw-4J-2sf">
+                                        <rect key="frame" x="246" y="6" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="toggleSwitchRetina:" destination="ER5-J4-dU2" eventType="touchUpInside" id="k9g-WM-ds1"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Doble Resolución" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3P7-fY-id8">
+                                        <rect key="frame" x="11" y="11" width="183" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Solo afecta a las imágenes desplegadas en pantalla completa y si está conectado a una red Wi-Fi." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="284" translatesAutoresizingMaskIntoConstraints="NO" id="Xyd-5f-Prs">
+                                        <rect key="frame" x="11" y="45" width="284" height="56"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Imágenes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CJW-0z-f2R">
-                                <rect key="frame" x="20" y="70" width="80" height="21"/>
+                                <rect key="frame" x="20" y="56" width="80" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6s-JF-KWl" userLabel="Paginas Web Terceros">
-                                <rect key="frame" x="8" y="265" width="304" height="188"/>
+                                <rect key="frame" x="8" y="233" width="304" height="159"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Abrir Imdb en:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="292" translatesAutoresizingMaskIntoConstraints="NO" id="531-N3-sTe">
-                                        <rect key="frame" x="8" y="104" width="292" height="23"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Abrir Imdb en:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="285" translatesAutoresizingMaskIntoConstraints="NO" id="531-N3-sTe">
+                                        <rect key="frame" x="10" y="86" width="285" height="23"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="jLJ-5o-WCR">
-                                        <rect key="frame" x="32" y="141" width="240" height="29"/>
+                                        <rect key="frame" x="32" y="114" width="240" height="29"/>
                                         <segments>
                                             <segment title="Safari"/>
                                             <segment title="En App"/>
@@ -1262,14 +1262,14 @@
                                             <action selector="segmentedControlSelected:" destination="ER5-J4-dU2" eventType="valueChanged" id="NS6-qG-3ZT"/>
                                         </connections>
                                     </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Abrir Metacritic y Rotten Tomatoes en:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="292" translatesAutoresizingMaskIntoConstraints="NO" id="Eq2-TU-ZLJ">
-                                        <rect key="frame" x="8" y="8" width="292" height="46"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Abrir Metacritic y Rotten Tomatoes en:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="285" translatesAutoresizingMaskIntoConstraints="NO" id="Eq2-TU-ZLJ">
+                                        <rect key="frame" x="10" y="6" width="285" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="PBT-fX-fQr">
-                                        <rect key="frame" x="32" y="60" width="240" height="29"/>
+                                        <rect key="frame" x="32" y="51" width="240" height="29"/>
                                         <segments>
                                             <segment title="Safari"/>
                                             <segment title="En App"/>
@@ -1283,13 +1283,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Páginas web de terceros:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oxp-ey-Dm0">
-                                <rect key="frame" x="20" y="236" width="195" height="21"/>
+                                <rect key="frame" x="20" y="204" width="195" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajO-AM-ANL" userLabel="close view">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="650"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -1297,7 +1297,7 @@
                                 </connections>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZO-wS-Fph" userLabel="Picker View">
-                                <rect key="frame" x="0.0" y="586" width="320" height="214"/>
+                                <rect key="frame" x="0.0" y="436" width="320" height="214"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5FH-j4-Ch6">
                                         <rect key="frame" x="0.0" y="20" width="320" height="162"/>
@@ -1343,7 +1343,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="800"/>
+                    <size key="freeformSize" width="320" height="650"/>
                     <connections>
                         <outlet property="closeView" destination="ajO-AM-ANL" id="38c-gf-8iH"/>
                         <outlet property="controlIMDB" destination="jLJ-5o-WCR" id="mSE-Jz-mhy"/>
