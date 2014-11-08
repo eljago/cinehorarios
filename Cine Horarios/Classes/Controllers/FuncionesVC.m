@@ -27,11 +27,14 @@
 
 #import "FunctionsPageVC.h"
 
+#import "UIScrollView+EmptyDataSet.h"
+
 NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
-@interface FuncionesVC ()
+@interface FuncionesVC () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) Theater *theater;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
+@property (nonatomic, assign) BOOL shouldShowEmptyDataSet;
 @end
 
 @implementation FuncionesVC
@@ -56,6 +59,9 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
         [cell configureForFunction:function];
     }];
     self.tableView.dataSource = self.dataSource;
+    
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
 }
 
 #pragma mark - UITableViewDelegate
@@ -114,18 +120,18 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
             self.theater = theater;
             if (self.theater && self.theater.functions.count > 0) {
                 self.dataSource.items = self.theater.functions;
-                [self.tableView reloadData];
             }
             else {
-                
-                [self alertWithTitle:@"Horarios no disponibles" body:[NSString stringWithFormat:@"¿Visitar página web de %@?",self.theater.name] completeBlock:^{
-                    WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
-                    wvc.urlString = self.theater.webURL;
-                    [self.navigationController pushViewController:wvc animated:YES];
-                }];
+                self.shouldShowEmptyDataSet = YES;
+//                [self alertWithTitle:@"Horarios no disponibles" body:[NSString stringWithFormat:@"¿Visitar página web de %@?",self.theater.name] completeBlock:^{
+//                    WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+//                    wvc.urlString = self.theater.webURL;
+//                    [self.navigationController pushViewController:wvc animated:YES];
+//                }];
             }
         }
         else {
+            self.shouldShowEmptyDataSet = YES;
             [self alertRetryWithCompleteBlock:^{
                 [self getTheaterForceDownload:YES];
             }];
@@ -135,6 +141,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
         if (self.refreshControl.refreshing) {
             [self.refreshControl endRefreshing];
         }
+        [self.tableView reloadData];
     } theaterID:self.functionsPageVC.theaterID date:date];
 }
 
@@ -192,4 +199,64 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     return [[NSDate date] dateByAddingTimeInterval:60*60*24*days];
 }
 
+
+#pragma mark - Empty Data Set DataSource
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    NSString *text = @"Please Allow Photo Access";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    NSString *text = @"This allows you to share photos from your library and save photos to your camera roll.";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17.0]};
+    
+    return [[NSAttributedString alloc] initWithString:@"Continue" attributes:attributes];
+}
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    return [UIImage imageNamed:@"LogoImdb"];
+}
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    return [UIColor whiteColor];
+}
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    
+    return self.shouldShowEmptyDataSet;
+}
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
+    
+    return YES;
+}
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView {
+    
+    return NO;
+}
+- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
+    NSLog(@"Data Set Tapped");
+}
+- (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView {
+    NSLog(@"Data Set Button Tapped");
+}
+
 @end
+

@@ -54,6 +54,7 @@ NSInteger const kNumberOfViewControllers = 7;
     funcionesVC.functionsPageVC = self;
     funcionesVC.pageIndex = 0;
     [self setViewControllers:@[funcionesVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
