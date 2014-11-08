@@ -218,6 +218,10 @@ static int const kGaDispatchPeriod = 30;
                                                         }
                                              forState:UIControlStateSelected];
     
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
     
 }
 

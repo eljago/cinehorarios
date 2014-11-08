@@ -13,6 +13,7 @@
 #import "BasicCell+Theater.h"
 #import "UIFont+CH.h"
 #import "GAI+CH.h"
+#import "FunctionsPageVC.h"
 
 @interface FavoritesVC ()
 @property (nonatomic, strong) UIFont *tableFont;
@@ -164,11 +165,14 @@
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    FuncionesVC *functionesVC = segue.destinationViewController;
+//    FuncionesVC *functionesVC = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.favoriteTheaters[indexPath.row];
-    functionesVC.theaterID = theater.theaterID;
-    functionesVC.theaterName = theater.name;
+    FunctionsPageVC *functionsPageVC = [segue destinationViewController];
+    functionsPageVC.theaterID = theater.theaterID;
+    functionsPageVC.theaterName = theater.name;
+//    functionesVC.theaterID = theater.theaterID;
+//    functionesVC.theaterName = theater.name;
 }
 
 @end

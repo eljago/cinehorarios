@@ -20,6 +20,8 @@
 
 #import "UIImage+CH.h"
 
+#import "FunctionsPageVC.h"
+
 NSInteger const kMaxTheaterDistance = 26000;
 NSInteger const kRegionSize = 4000;
 NSInteger const kRegionZoomedSize = 1000;
@@ -152,12 +154,15 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 //    [self zoomMapAtCoordinate:coordinate];
 //}
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    FuncionesVC *functionesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FuncionesVC"];
+//    FuncionesVC *functionesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FuncionesVC"];
     AnnotationTheater *annotation = view.annotation;
-    functionesVC.theaterName = annotation.title;
-    functionesVC.theaterID = annotation.theaterID;
+//    functionesVC.theaterName = annotation.title;
+//    functionesVC.theaterID = annotation.theaterID;
+    FunctionsPageVC *functionsPageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionsPageVC"];
+    functionsPageVC.theaterID = annotation.theaterID;
+    functionsPageVC.theaterName = annotation.title;
     
-    [self.navigationController pushViewController:functionesVC animated:YES];
+    [self.navigationController pushViewController:functionsPageVC animated:YES];
 }
 
 #pragma mark - UITableView
@@ -237,11 +242,14 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    FuncionesVC *functionesVC = segue.destinationViewController;
+//    FuncionesVC *functionesVC = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     AnnotationTheater *annotation = self.annotations[indexPath.row];
-    functionesVC.theaterName = annotation.title;
-    functionesVC.theaterID = annotation.theaterID;
+//    functionesVC.theaterName = annotation.title;
+//    functionesVC.theaterID = annotation.theaterID;
+    FunctionsPageVC *functionsPageVC = [segue destinationViewController];
+    functionsPageVC.theaterID = annotation.theaterID;
+    functionsPageVC.theaterName = annotation.title;
 }
 
 #pragma mark - CloseTheatersVC

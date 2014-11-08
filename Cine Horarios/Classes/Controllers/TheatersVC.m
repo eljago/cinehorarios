@@ -18,6 +18,7 @@
 #import "ArrayDataSource.h"
 #import "UIViewController+DoAlertView.h"
 #import "MBProgressHUD+CH.h"
+#import "FunctionsPageVC.h"
 
 @interface TheatersVC ()
 
@@ -158,11 +159,14 @@
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    FuncionesVC *functionesVC = segue.destinationViewController;
+//    FuncionesVC *functionesVC = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.cinema.theaters[indexPath.row];
-    functionesVC.theaterName = theater.name;
-    functionesVC.theaterID = theater.theaterID;
+    FunctionsPageVC *functionsPageVC = [segue destinationViewController];
+    functionsPageVC.theaterID = theater.theaterID;
+    functionsPageVC.theaterName = theater.name;
+//    functionesVC.theaterName = theater.name;
+//    functionesVC.theaterID = theater.theaterID;
 }
 
 
