@@ -15,6 +15,7 @@
 #import "UIFont+CH.h"
 //#import "RageIAPHelper.h"
 #import "Harpy.h"
+#import <Crashlytics/Crashlytics.h>
 
 #define COMPILE_GEOFARO true
 
@@ -32,6 +33,8 @@ static int const kGaDispatchPeriod = 30;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Crashlytics startWithAPIKey:@"3a7f665fa908b2b3200d0c3d1e3faef88c20af23"];
+    
     miLaunchOptions = launchOptions;
 
     // Initialize the RageIAPHelper singleton to register itself as the transaction observer as soon as posible.

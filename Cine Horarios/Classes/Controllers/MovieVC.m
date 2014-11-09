@@ -750,7 +750,8 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
     }
     // OPEN IN APP
-    else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"InApp"]) {
+//    else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"InApp"]) {
+    else {
         NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
         WebVC *webVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
         webVC.urlString = urlString;

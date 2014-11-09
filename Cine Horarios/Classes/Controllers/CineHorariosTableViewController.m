@@ -22,9 +22,9 @@
 //    self.tableView.backgroundColor = [UIColor midnightBlue];
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;
-    
-    // A little trick for removing the cell separators
-    self.tableView.tableFooterView = [UIView new];
+}
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

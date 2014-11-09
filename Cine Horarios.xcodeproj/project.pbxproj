@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		162414A417BC946E00083708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 162414A317BC946E00083708 /* Images.xcassets */; };
+		25077C1E1A0F430600F3E5E9 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25077C1D1A0F430600F3E5E9 /* Crashlytics.framework */; };
 		2558E9521A0748A300908CAE /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 2558E90F1A0748A300908CAE /* NSObject+Utilidades.m */; };
 		2558E9531A0748A300908CAE /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 2558E9111A0748A300908CAE /* UIDevice+Hardware.m */; };
 		2558E9541A0748A300908CAE /* BeaconsGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2558E9191A0748A300908CAE /* BeaconsGeofaro.plist */; };
@@ -128,6 +129,7 @@
 /* Begin PBXFileReference section */
 		160907B618AABADF000F9FF7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		162414A317BC946E00083708 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		25077C1D1A0F430600F3E5E9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		2558E90E1A0748A300908CAE /* NSObject+Utilidades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Utilidades.h"; sourceTree = "<group>"; };
 		2558E90F1A0748A300908CAE /* NSObject+Utilidades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utilidades.m"; sourceTree = "<group>"; };
 		2558E9101A0748A300908CAE /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */,
 				6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */,
 				2558E95E1A0748A300908CAE /* libGeofaro.a in Frameworks */,
+				25077C1E1A0F430600F3E5E9 /* Crashlytics.framework in Frameworks */,
 				6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */,
 				6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */,
 				3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */,
@@ -608,6 +611,7 @@
 		3DDB7103170A516B00EC3E51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25077C1D1A0F430600F3E5E9 /* Crashlytics.framework */,
 				25710C961A0DB4330066864C /* StoreKit.framework */,
 				6E2B1ADD18C9725A00A30938 /* libGeofaro.a */,
 				6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */,
@@ -782,6 +786,7 @@
 				3DDB70FD170A516B00EC3E51 /* Frameworks */,
 				3DDB70FE170A516B00EC3E51 /* Resources */,
 				A7D59476405649439AA3020D /* Copy Pods Resources */,
+				25077C1C1A0F429B00F3E5E9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -868,6 +873,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		25077C1C1A0F429B00F3E5E9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 3a7f665fa908b2b3200d0c3d1e3faef88c20af23 a8086a3fe04caa79af5d238152a95e6cfd4f7897e7e55f13e91fda659d3af8d4";
+		};
 		A7D59476405649439AA3020D /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -1049,6 +1067,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios-Prefix.pch";
@@ -1077,6 +1099,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios-Prefix.pch";
