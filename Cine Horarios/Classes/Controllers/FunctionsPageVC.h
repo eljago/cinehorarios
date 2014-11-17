@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class FunctionsContainerVC;
+
 @interface FunctionsPageVC : UIPageViewController
 
 @property (nonatomic, strong) UIFont *headFont;
@@ -17,5 +19,7 @@
 @property (nonatomic, strong) NSString *theaterName;
 @property (nonatomic, assign) NSUInteger theaterID;
 @property (nonatomic, assign) NSUInteger cinemaID;
+
+@property (nonatomic, strong) FunctionsContainerVC *functionsContainerVC;
 
 @end

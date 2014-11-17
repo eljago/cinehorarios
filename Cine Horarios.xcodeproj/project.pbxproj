@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		162414A417BC946E00083708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 162414A317BC946E00083708 /* Images.xcassets */; };
+		2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2503D0BD1A1054B200E1876B /* NSDate+CH.m */; };
 		25077C1E1A0F430600F3E5E9 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25077C1D1A0F430600F3E5E9 /* Crashlytics.framework */; };
 		2558E9521A0748A300908CAE /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 2558E90F1A0748A300908CAE /* NSObject+Utilidades.m */; };
 		2558E9531A0748A300908CAE /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 2558E9111A0748A300908CAE /* UIDevice+Hardware.m */; };
@@ -24,6 +25,7 @@
 		2558E95E1A0748A300908CAE /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2558E9321A0748A300908CAE /* libGeofaro.a */; };
 		25710C951A0DB3230066864C /* FunctionsPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25710C941A0DB3230066864C /* FunctionsPageVC.m */; };
 		25710C971A0DB4330066864C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25710C961A0DB4330066864C /* StoreKit.framework */; };
+		257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */; };
 		2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6762D0B3F59498CA72154F7 /* libPods.a */; };
 		3D29981517E5AA28001A371D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981417E5AA28001A371D /* UIKit.framework */; };
 		3D29981717E5AA33001A371D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981617E5AA33001A371D /* SystemConfiguration.framework */; };
@@ -129,6 +131,8 @@
 /* Begin PBXFileReference section */
 		160907B618AABADF000F9FF7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		162414A317BC946E00083708 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2503D0BC1A1054B200E1876B /* NSDate+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+CH.h"; path = "Utilities/Categories/NSDate+CH.h"; sourceTree = "<group>"; };
+		2503D0BD1A1054B200E1876B /* NSDate+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+CH.m"; path = "Utilities/Categories/NSDate+CH.m"; sourceTree = "<group>"; };
 		25077C1D1A0F430600F3E5E9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		2558E90E1A0748A300908CAE /* NSObject+Utilidades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Utilidades.h"; sourceTree = "<group>"; };
 		2558E90F1A0748A300908CAE /* NSObject+Utilidades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utilidades.m"; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 		25710C931A0DB3230066864C /* FunctionsPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsPageVC.h; path = Classes/Controllers/FunctionsPageVC.h; sourceTree = "<group>"; };
 		25710C941A0DB3230066864C /* FunctionsPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsPageVC.m; path = Classes/Controllers/FunctionsPageVC.m; sourceTree = "<group>"; };
 		25710C961A0DB4330066864C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		257BEE691A107B5400BD3920 /* FunctionsContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsContainerVC.h; path = Classes/Controllers/FunctionsContainerVC.h; sourceTree = "<group>"; };
+		257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsContainerVC.m; path = Classes/Controllers/FunctionsContainerVC.m; sourceTree = "<group>"; };
 		25F41A661A09F661009C4805 /* Cine Horarios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cine Horarios.entitlements"; sourceTree = "<group>"; };
 		385B73052F46F87FCCF22877 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3D29981417E5AA28001A371D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -513,6 +519,8 @@
 				6EC0068418DC7CBB003DECC8 /* WebVC.m */,
 				25710C931A0DB3230066864C /* FunctionsPageVC.h */,
 				25710C941A0DB3230066864C /* FunctionsPageVC.m */,
+				257BEE691A107B5400BD3920 /* FunctionsContainerVC.h */,
+				257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -582,7 +590,6 @@
 		3DC9A748170CCA69008B9FF9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6EC0072318DC7E84003DECC8 /* Storyboard.storyboard */,
 				6EC0065618DC7BDE003DECC8 /* Nibs */,
 				6E88F27F189AFEEE00927222 /* CellCategories */,
 				6E56CC12188BC6DB000AB809 /* Cells */,
@@ -641,6 +648,7 @@
 				6EC0072518DC7E9F003DECC8 /* Utilities */,
 				6EC0061018DC7A9A003DECC8 /* DataFetch */,
 				162414A317BC946E00083708 /* Images.xcassets */,
+				6EC0072318DC7E84003DECC8 /* Storyboard.storyboard */,
 				3D111A4F170C97140043D2D2 /* Classes */,
 				16F008A1180DED1300A15060 /* Vendor */,
 				3DDB710B170A516B00EC3E51 /* SupportingFiles */,
@@ -739,6 +747,8 @@
 				6EC0062B18DC7B77003DECC8 /* MovieImageCell+MovieImage.m */,
 				6EC0062C18DC7B77003DECC8 /* VideoCell+Video.h */,
 				6EC0062D18DC7B77003DECC8 /* VideoCell+Video.m */,
+				2503D0BC1A1054B200E1876B /* NSDate+CH.h */,
+				2503D0BD1A1054B200E1876B /* NSDate+CH.m */,
 			);
 			name = CellCategories;
 			sourceTree = "<group>";
@@ -931,6 +941,7 @@
 				6EC0073C18DC7EE1003DECC8 /* UIFont+CH.m in Sources */,
 				6EC0074018DC7EE1003DECC8 /* UIViewController+DoAlertView.m in Sources */,
 				6EC0071418DC7E3C003DECC8 /* AnnotationGroup.m in Sources */,
+				257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */,
 				6EC006F518DC7DDD003DECC8 /* UIImage+ResizeMagick.m in Sources */,
 				6EC0068618DC7CBB003DECC8 /* CastVC.m in Sources */,
 				6EC0068B18DC7CBB003DECC8 /* FavoritesVC.m in Sources */,
@@ -958,6 +969,7 @@
 				6EC0064D18DC7BC6003DECC8 /* BillboardCell.m in Sources */,
 				6EC0062E18DC7B77003DECC8 /* BasicCell+Theater.m in Sources */,
 				6EC0071D18DC7E3C003DECC8 /* Movie.m in Sources */,
+				2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */,
 				6EC0063418DC7B77003DECC8 /* FunctionCell2+Function.m in Sources */,
 				6EC0071618DC7E3C003DECC8 /* BasicItem.m in Sources */,
 				6EC0063718DC7B77003DECC8 /* VideoCell+Video.m in Sources */,

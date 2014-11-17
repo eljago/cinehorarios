@@ -22,7 +22,6 @@ PODS:
     - AFNetworking/NSURLSession
   - DACircularProgress (2.2.0)
   - DZNEmptyDataSet (1.4.1)
-  - ECSlidingViewController (2.0.3)
   - GoogleAnalytics-iOS-SDK (3.10)
   - Harpy (3.0.0)
   - Mantle (1.5.1):
@@ -46,7 +45,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.4)
   - DZNEmptyDataSet
-  - ECSlidingViewController (~> 2.0)
   - GoogleAnalytics-iOS-SDK
   - Harpy
   - Mantle
@@ -59,7 +57,6 @@ SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
   DZNEmptyDataSet: 381e880cb3bb2d33885cb0325218443df265bc98
-  ECSlidingViewController: e79fe856bfb1a99a39c995377a1943e50f7647eb
   GoogleAnalytics-iOS-SDK: e5872d2acc120613d954320e206c7e3bc8357d7c
   Harpy: 509d9fd886d5709d2fdbe9af2fc388e61e9aab79
   Mantle: d7c5ac734579ec751c58fecbf56189853056c58c

@@ -8,22 +8,20 @@
 
 #import "FunctionsPageVC.h"
 #import "FuncionesVC.h"
-#import "GAI+CH.h"
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
-#import "FileHandler.h"
+#import "NSDate+CH.h"
 
 NSInteger const kNumberOfViewControllers = 7;
 
 @interface FunctionsPageVC () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
-@property (nonatomic, strong) UIBarButtonItem *favoriteButtonItem;
-@property (nonatomic, strong) UIBarButtonItem *menuButtonItem;
-
-@property (nonatomic, assign) BOOL favorite;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControlWeek;
 
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, assign) NSInteger nextIndex;
+
+@property (nonatomic, strong) NSDate *currentDate;
 
 @end
 
@@ -32,16 +30,10 @@ NSInteger const kNumberOfViewControllers = 7;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [GAI trackPage:@"FUNCIONES"];
-    [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Complejos Visitados" label:self.theaterName];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
-    
-    [self createButtonItems];
-    [self setupFavorites];
     
     self.headFont = [UIFont getSizeForCHFont:CHFontStyleSmallBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
@@ -55,12 +47,13 @@ NSInteger const kNumberOfViewControllers = 7;
     funcionesVC.pageIndex = 0;
     [self setViewControllers:@[funcionesVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    self.currentDate = [NSDate date];
+    for (NSInteger i = 0;i<self.segmentedControlWeek.numberOfSegments;i++) {
+        NSDate *date = [self.currentDate dateByAddingTimeInterval:60*60*24*i];
+        NSString *title = [date getShortDateString];
+        [self.segmentedControlWeek setTitle:title forSegmentAtIndex:i];
+    }
     
-    [self setupFavorites];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,51 +70,6 @@ NSInteger const kNumberOfViewControllers = 7;
     // Pass the selected object to the new view controller.
 }
 */
-
-#pragma mark Create View
-
--(void) createButtonItems {
-    UIButton *favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    favoriteButton.frame = CGRectMake(0, 0, 40, 40);
-    [favoriteButton addTarget:self action:@selector(setFavoriteTheater:) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *image = [UIImage imageNamed:@"FavoriteHeart"];
-    
-    self.favoriteButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(setFavoriteTheater:)];
-    self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
-    
-    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
-    
-    self.navigationItem.rightBarButtonItems = @[menuButtonItem, self.favoriteButtonItem];
-}
-- (void) setupFavorites{
-    
-    NSDictionary *dict = [FileHandler getDictionaryInProjectNamed:@"icloud"];
-    NSDictionary *favorites = [dict valueForKey:@"Favorites"];
-    NSString *theaterName = [favorites valueForKey:[NSString stringWithFormat:@"%lu",(unsigned long)self.theaterID]];
-    if (theaterName) {
-        self.favoriteButtonItem.tintColor = [UIColor whiteColor];
-        self.favorite = YES;
-    }
-    else{
-        self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
-        self.favorite = NO;
-    }
-}
-
-- (IBAction) setFavoriteTheater:(id)sender{
-    self.favorite = !self.favorite;
-    if (self.favorite) {
-        self.favoriteButtonItem.tintColor = [UIColor whiteColor];
-    }
-    else{
-        self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
-    }
-    // Notify the previouse view to save the changes locally
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Toggle Favorite"
-                                                        object:self
-                                                      userInfo:@{@"TheaterName": self.theaterName,
-                                                                 @"TheaterID": [NSNumber numberWithInteger:self.theaterID]}];
-}
 
 #pragma mark - Content Size Changed
 

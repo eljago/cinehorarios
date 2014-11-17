@@ -29,6 +29,8 @@
 
 #import "UIScrollView+EmptyDataSet.h"
 
+#import "FunctionsContainerVC.h"
+
 NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 @interface FuncionesVC () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -76,11 +78,11 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
-    NSInteger height = [UIView heightForHeaderViewWithText:self.functionsPageVC.theaterName];
-    return [UIView headerViewForText:self.functionsPageVC.theaterName height:height];
+    NSInteger height = [UIView heightForHeaderViewWithText:self.functionsPageVC.functionsContainerVC.theaterName];
+    return [UIView headerViewForText:self.functionsPageVC.functionsContainerVC.theaterName height:height];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [UIView heightForHeaderViewWithText:self.functionsPageVC.theaterName];
+    return [UIView heightForHeaderViewWithText:self.functionsPageVC.functionsContainerVC.theaterName];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -97,7 +99,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     }
     else {
         NSDate *date = [self datePlusDays:self.pageIndex];
-        self.theater = [Theater loadTheaterithTheaterID:self.functionsPageVC.theaterID date:date];
+        self.theater = [Theater loadTheaterithTheaterID:self.functionsPageVC.functionsContainerVC.theaterID date:date];
         if (self.theater.functions.count > 0) {
             self.dataSource.items = self.theater.functions;
             [self.tableView reloadData];
@@ -142,7 +144,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
             [self.refreshControl endRefreshing];
         }
         [self.tableView reloadData];
-    } theaterID:self.functionsPageVC.theaterID date:date];
+    } theaterID:self.functionsPageVC.functionsContainerVC.theaterID date:date];
 }
 
 -(void)refreshData {
