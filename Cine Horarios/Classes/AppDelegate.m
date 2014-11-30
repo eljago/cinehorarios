@@ -13,13 +13,12 @@
 #import "FileHandler.h"
 #import "UIColor+CH.h"
 #import "UIFont+CH.h"
-//#import "RageIAPHelper.h"
 #import "Harpy.h"
 #import <Crashlytics/Crashlytics.h>
 
 #define COMPILE_GEOFARO true
 
-/** Google Analytics configuration constants **/
+/** GOOGLE ANALYTIC CONSTANTS **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
 static NSString *const kTrackingPreferenceKey = @"allowTracking";
 static BOOL const kGaDryRun = NO;
@@ -27,22 +26,25 @@ static int const kGaDispatchPeriod = 30;
 
 @implementation AppDelegate
 
-@synthesize miGeofaro;
+
 @synthesize miLaunchOptions,miNotificationsOptions;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // CRASHLYTICS
     [Crashlytics startWithAPIKey:@"3a7f665fa908b2b3200d0c3d1e3faef88c20af23"];
-    
-    miLaunchOptions = launchOptions;
 
-    // Initialize the RageIAPHelper singleton to register itself as the transaction observer as soon as posible.
-    // This way, it will know if a transaction didn't get to finish before the app closed.
-//    [RageIAPHelper sharedInstance];
+#if COMPILE_GEOFARO
+    miLaunchOptions = launchOptions;
     
-    // Geofaro notifications
-    [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeNewsstandContentAvailability)];
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+        [application registerForRemoteNotifications];
+    }else{
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeNewsstandContentAvailability)];
+    }
+#endif
     
     [self setup_analytics];
     [self setup_afnetworking];
@@ -65,6 +67,16 @@ static int const kGaDispatchPeriod = 30;
     [[GAI sharedInstance] dispatch];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    UIApplication* app = [UIApplication sharedApplication];
+    
+    UIBackgroundTaskIdentifier __block bgTask = [app beginBackgroundTaskWithExpirationHandler: ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [app endBackgroundTask:bgTask];
+            bgTask = UIBackgroundTaskInvalid;
+        });
+    }];
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -274,6 +286,7 @@ static int const kGaDispatchPeriod = 30;
 #pragma mark - Push
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+    NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken");
     NSString *token= [[[[deviceToken description]
                         stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]]
                        stringByReplacingOccurrencesOfString:@" "
@@ -286,20 +299,79 @@ static int const kGaDispatchPeriod = 30;
     
     if (token !=nil)
     {
-        [self iniciarGeofaro];
+        //[self iniciarGeofaro];
+        
+        
+        //21 ch 18 qr
+        GFKManagerOptions *opciones = [GFKManagerOptions nuevaConfiguracionParaAppID:@"21" conClienteId:@"cine" appUsaToken:YES token:token appUsaRegiones:YES appName:@"appCineHorarios"];
+        
+        
+        
+        GFKManager *manager = [GFKManager GeoFaroManager];
+        // PASO 5 -> Setear las opciones del paso 3 al GFKManager creado en el paso 4
+        [manager setDelegate:self];
+        [manager setOpciones:opciones];
+        
+        /***********************************************************/
+        // PASO 6 -> Iniciar GeoFaro
+        NSError *geoError;
+        BOOL ok = [manager iniciarGeoFaroReporteError:&geoError];
+        
+        if (ok) {
+            NSLog(@"Geofaro ha iniciado Error:%@",geoError);
+            
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(reachabilityChanged:)
+                                                         name:kReachabilityChangedNotification
+                                                       object:nil];
+            
+            Reachability * reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+            
+            reach.reachableBlock = ^(Reachability * reachability)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Si");
+                    [manager intentarConexionConEstado:YES];
+                    
+                });
+            };
+            
+            reach.unreachableBlock = ^(Reachability * reachability)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"NO");
+                    [manager intentarConexionConEstado:NO];
+                });
+            };
+            
+            [reach startNotifier];
+            
+            
+            
+        }else{
+            NSLog(@"Geofaro NO ha iniciado Error:%@",geoError);
+        }
+        
+        
     }
+    
+        
     
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSLog(@"didReceiveRemoteNotification %@",userInfo);
-    int numero = application.applicationIconBadgeNumber++;
+    long numero = application.applicationIconBadgeNumber++;
     [application setApplicationIconBadgeNumber:numero];
+    
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
+    
+    /*
     NSLog(@"AppDelegate: didReceiveRemoteNotification %@ fetchCompletionHandler",userInfo);
     if(self.esiOS7) {
         NSDictionary *aps = [userInfo valueForKey:@"aps"];
@@ -323,19 +395,21 @@ static int const kGaDispatchPeriod = 30;
              NSLog(@"sn %@",sn);
              NSLog(@"so %@",so);
              */
+    /*
         }
     }else{
         NSLog(@"no es iOS7");
         //iOS 6
         //NSURLConnection
     }
-    
+    */
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
+
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {
-    NSLog(@">.<");
+   // NSLog(@">.<");
 }
 
 /* Sent periodically to notify the delegate of download progress. */
@@ -343,7 +417,7 @@ static int const kGaDispatchPeriod = 30;
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
     
-    NSLog(@"^_^");
+    //NSLog(@"^_^");
 }
 
 /* Sent when a download has been resumed. If a download failed with an
@@ -354,7 +428,7 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
 {
     
-    NSLog(@"o.0");
+    //NSLog(@"o.0");
 }
 /*
  - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
@@ -385,108 +459,28 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
     NSLog(@"didFailToRegisterForRemoteNotificationsWithError %@",error);
 }
 
-- (void)iniciarGeofaro
-{
-    NSLog(@"AppDelegate: iniciarGeofaro");
-    miGeofaro = [Geofaro sharedGeofaro];
-    [miGeofaro setDelegate:self];
-    [miGeofaro setFlagNotificaciones:YES];
-    [miGeofaro setFlagAlertaPower:NO];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [miGeofaro setUd:[userDefaults valueForKey:@"TOKEN"]];
-    [miGeofaro setLaunchOptions:miLaunchOptions];
-    [miGeofaro actualizarServicios:miNotificationsOptions];
-    [miGeofaro setNotificacionBotonCancel:@"Ver"];
-    [miGeofaro setFlagOcultarBarraStatus:YES];
-    
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    if (height > 500) {
-        [miGeofaro setErrorImage:[UIImage imageNamed:@"Default-568h"]];
-    } else {
-        [miGeofaro setErrorImage:[UIImage imageNamed:@"Default"]];
-    }
-    [miGeofaro iniciar];
-}
-
 #pragma mark - GeofaroDelegate
-- (void)geofaro:(Geofaro*)geofaro areaIN:(CLRegion *)areaInfo
-{
-    
-}
 
-- (void)geofaro:(Geofaro*)geofaro areaOUT:(CLRegion *)areaInfo
-{
-    
-}
 
-- (void)geofaro:(Geofaro *)geofaro faroEncontrado:(NSDictionary *)faroInfo
-{
-    NSLog(@"AppDelegate: faroEncontrado %@",faroInfo);
-}
 
-- (void)geofaro:(Geofaro *)geofaro faroEncontradoNuevo:(NSDictionary *)faroInfo
-{
-    NSLog(@"AppDelegate: faroEncontradoNuevo %@",faroInfo);
-}
-
-- (void)geofaro:(Geofaro *)geofaro faroEncontradoPromocionViewController:(UIViewController *)promocionViewController
-
-{
-    
-    NSLog(@"AppDelegate: faroEncontradoPromocionViewController");
-    
+-(void)mostrarPromocionViewControllerConAnuncio:(PromocionViewController*)pvc{
     UIViewController *viewController = self.window.rootViewController.presentedViewController;
-    
     if (viewController) {
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            
-            
-            [viewController presentViewController:promocionViewController animated:YES completion:^{
-                
-                //[[UIApplication sharedApplication] setStatusBarHidden:YES];
-                
+            [viewController presentViewController:pvc animated:YES completion:^{
             }];
-            
-            
-            
         });
-        
-        
-        
     }else{
-        
-        
-        
-        
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            
-            
-            [self.window.rootViewController presentViewController:promocionViewController animated:YES completion:^{
-                
-                //[[UIApplication sharedApplication] setStatusBarHidden:YES];
-                
+            [self.window.rootViewController presentViewController:pvc animated:YES completion:^{
             }];
-            
-            
-            
         });
-        
-        
-        
-        
-        
-        
-        
     }
-    
 }
 
-
-
+-(void)reachabilityChanged:(NSNotification*)note{
+    // Revisar el estado de conexión
+}
 #endif
 
 

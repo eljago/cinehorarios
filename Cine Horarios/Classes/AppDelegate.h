@@ -7,16 +7,22 @@
 //
 #import "GAI.h"
 
-#import "Geofaro.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,GeofaroDelegate>
+#import <GeoFaroKit/GFKManager.h>
+#import <GeoFaroKit/PromocionViewController.h>
+#import <GeoFaroKit/GFKInterface.h>
+#import "Reachability.h"
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GeoFaroKitProtocol>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) id<GAITracker> tracker;
 
 
-@property (strong, nonatomic) Geofaro *miGeofaro;
+
 @property (strong, nonatomic) NSDictionary *miLaunchOptions;
 @property (nonatomic,strong) NSDictionary *miNotificationsOptions;
+
+-(void)reachabilityChanged:(NSNotification*)note;
 
 @end

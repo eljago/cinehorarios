@@ -1,0 +1,6 @@
+framework module GeoFaroKit {
+  umbrella header "GeoFaroKit.h"
+
+  export *
+  module * { export * }
+}

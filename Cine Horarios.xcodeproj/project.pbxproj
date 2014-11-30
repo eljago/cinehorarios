@@ -9,23 +9,20 @@
 /* Begin PBXBuildFile section */
 		162414A417BC946E00083708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 162414A317BC946E00083708 /* Images.xcassets */; };
 		2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2503D0BD1A1054B200E1876B /* NSDate+CH.m */; };
-		25077C1E1A0F430600F3E5E9 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25077C1D1A0F430600F3E5E9 /* Crashlytics.framework */; };
-		2558E9521A0748A300908CAE /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 2558E90F1A0748A300908CAE /* NSObject+Utilidades.m */; };
-		2558E9531A0748A300908CAE /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 2558E9111A0748A300908CAE /* UIDevice+Hardware.m */; };
-		2558E9541A0748A300908CAE /* BeaconsGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2558E9191A0748A300908CAE /* BeaconsGeofaro.plist */; };
-		2558E9551A0748A300908CAE /* ConfigGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2558E91A1A0748A300908CAE /* ConfigGeofaro.plist */; };
-		2558E9561A0748A300908CAE /* CuponesGeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2558E91C1A0748A300908CAE /* CuponesGeoViewController.xib */; };
-		2558E9571A0748A300908CAE /* developers.der in Resources */ = {isa = PBXBuildFile; fileRef = 2558E91E1A0748A300908CAE /* developers.der */; };
-		2558E9581A0748A300908CAE /* developers.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 2558E91F1A0748A300908CAE /* developers.p12 */; };
-		2558E9591A0748A300908CAE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2558E9261A0748A300908CAE /* Images.xcassets */; };
-		2558E95A1A0748A300908CAE /* PromocionGeoiPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2558E92A1A0748A300908CAE /* PromocionGeoiPadViewController.xib */; };
-		2558E95B1A0748A300908CAE /* PromocionGeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2558E92C1A0748A300908CAE /* PromocionGeoViewController.xib */; };
-		2558E95C1A0748A300908CAE /* RegionesGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2558E92F1A0748A300908CAE /* RegionesGeofaro.plist */; };
-		2558E95D1A0748A300908CAE /* ServiciosGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2558E9301A0748A300908CAE /* ServiciosGeofaro.plist */; };
-		2558E95E1A0748A300908CAE /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2558E9321A0748A300908CAE /* libGeofaro.a */; };
 		25710C951A0DB3230066864C /* FunctionsPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25710C941A0DB3230066864C /* FunctionsPageVC.m */; };
 		25710C971A0DB4330066864C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25710C961A0DB4330066864C /* StoreKit.framework */; };
 		257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */; };
+		25C66F7A1A2AD70300366BE8 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F791A2AD70300366BE8 /* UIDevice+Hardware.m */; };
+		25C66F7F1A2AD70C00366BE8 /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7C1A2AD70C00366BE8 /* NSObject+Utilidades.m */; };
+		25C66F801A2AD70C00366BE8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7E1A2AD70C00366BE8 /* Reachability.m */; };
+		25C66F861A2AD71C00366BE8 /* developers.der in Resources */ = {isa = PBXBuildFile; fileRef = 25C66F811A2AD71C00366BE8 /* developers.der */; };
+		25C66F871A2AD71C00366BE8 /* developers.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 25C66F821A2AD71C00366BE8 /* developers.p12 */; };
+		25C66F881A2AD71C00366BE8 /* GeoFaroKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */; };
+		25C66F891A2AD71C00366BE8 /* RegionesGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25C66F841A2AD71C00366BE8 /* RegionesGeofaro.plist */; };
+		25C66F8A1A2AD71C00366BE8 /* ServiciosGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25C66F851A2AD71C00366BE8 /* ServiciosGeofaro.plist */; };
+		25C66F921A2ADCC100366BE8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F911A2ADCC100366BE8 /* Crashlytics.framework */; };
+		25C66F931A2ADE1800366BE8 /* GeoFaroKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */; };
+		25C66F941A2ADE1800366BE8 /* GeoFaroKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6762D0B3F59498CA72154F7 /* libPods.a */; };
 		3D29981517E5AA28001A371D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981417E5AA28001A371D /* UIKit.framework */; };
 		3D29981717E5AA33001A371D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981617E5AA33001A371D /* SystemConfiguration.framework */; };
@@ -33,6 +30,8 @@
 		3DDB7107170A516B00EC3E51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7106170A516B00EC3E51 /* Foundation.framework */; };
 		3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7108170A516B00EC3E51 /* CoreGraphics.framework */; };
 		6E176F091A05DEAE00775DC7 /* MBProgressHUD+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E176F081A05DEAE00775DC7 /* MBProgressHUD+CH.m */; };
+		6E2B61901A28CAC00071DE50 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2B618F1A28CAC00071DE50 /* CoreData.framework */; };
+		6E2B61951A28D7E10071DE50 /* GeoFaroKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2B61931A28D7D40071DE50 /* GeoFaroKit.framework */; };
 		6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396418273C9900ADB8D9 /* MapKit.framework */; };
 		6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396C182755A300ADB8D9 /* CoreLocation.framework */; };
 		6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */; };
@@ -125,54 +124,44 @@
 		6EC0074018DC7EE1003DECC8 /* UIViewController+DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */; };
 		6EE703A818B7BC7000B5D6F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A718B7BC7000B5D6F2 /* Security.framework */; };
 		6EE703AA18B7BC7A00B5D6F2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */; };
-		6EEA10F11966774100957463 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEA10F01966774100957463 /* Reachability.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6E2B61881A28C7E40071DE50 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				25C66F941A2ADE1800366BE8 /* GeoFaroKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		160907B618AABADF000F9FF7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		162414A317BC946E00083708 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2503D0BC1A1054B200E1876B /* NSDate+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+CH.h"; path = "Utilities/Categories/NSDate+CH.h"; sourceTree = "<group>"; };
 		2503D0BD1A1054B200E1876B /* NSDate+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+CH.m"; path = "Utilities/Categories/NSDate+CH.m"; sourceTree = "<group>"; };
-		25077C1D1A0F430600F3E5E9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		2558E90E1A0748A300908CAE /* NSObject+Utilidades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Utilidades.h"; sourceTree = "<group>"; };
-		2558E90F1A0748A300908CAE /* NSObject+Utilidades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utilidades.m"; sourceTree = "<group>"; };
-		2558E9101A0748A300908CAE /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
-		2558E9111A0748A300908CAE /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
-		2558E9151A0748A300908CAE /* AlertaGeoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertaGeoView.h; sourceTree = "<group>"; };
-		2558E9161A0748A300908CAE /* ArchivoManagerFaro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchivoManagerFaro.h; sourceTree = "<group>"; };
-		2558E9171A0748A300908CAE /* BasesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasesView.h; sourceTree = "<group>"; };
-		2558E9181A0748A300908CAE /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
-		2558E9191A0748A300908CAE /* BeaconsGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BeaconsGeofaro.plist; sourceTree = "<group>"; };
-		2558E91A1A0748A300908CAE /* ConfigGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigGeofaro.plist; sourceTree = "<group>"; };
-		2558E91B1A0748A300908CAE /* CuponesGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuponesGeoViewController.h; sourceTree = "<group>"; };
-		2558E91C1A0748A300908CAE /* CuponesGeoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CuponesGeoViewController.xib; sourceTree = "<group>"; };
-		2558E91D1A0748A300908CAE /* DatosEnvioGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatosEnvioGeo.h; sourceTree = "<group>"; };
-		2558E91E1A0748A300908CAE /* developers.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = developers.der; sourceTree = "<group>"; };
-		2558E91F1A0748A300908CAE /* developers.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = developers.p12; sourceTree = "<group>"; };
-		2558E9201A0748A300908CAE /* Faro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Faro.h; sourceTree = "<group>"; };
-		2558E9211A0748A300908CAE /* FaroEnvioData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroEnvioData.h; sourceTree = "<group>"; };
-		2558E9221A0748A300908CAE /* FaroEnvioDataGuardada.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroEnvioDataGuardada.h; sourceTree = "<group>"; };
-		2558E9231A0748A300908CAE /* FaroFotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaroFotoManager.h; sourceTree = "<group>"; };
-		2558E9241A0748A300908CAE /* Geofaro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geofaro.h; sourceTree = "<group>"; };
-		2558E9251A0748A300908CAE /* HBPro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPro.h; sourceTree = "<group>"; };
-		2558E9261A0748A300908CAE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		2558E9271A0748A300908CAE /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		2558E9281A0748A300908CAE /* NSObject+UtilidadesGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UtilidadesGeo.h"; sourceTree = "<group>"; };
-		2558E9291A0748A300908CAE /* PromocionGeoiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromocionGeoiPadViewController.h; sourceTree = "<group>"; };
-		2558E92A1A0748A300908CAE /* PromocionGeoiPadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromocionGeoiPadViewController.xib; sourceTree = "<group>"; };
-		2558E92B1A0748A300908CAE /* PromocionGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromocionGeoViewController.h; sourceTree = "<group>"; };
-		2558E92C1A0748A300908CAE /* PromocionGeoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromocionGeoViewController.xib; sourceTree = "<group>"; };
-		2558E92D1A0748A300908CAE /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
-		2558E92E1A0748A300908CAE /* RadarParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarParser.h; sourceTree = "<group>"; };
-		2558E92F1A0748A300908CAE /* RegionesGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RegionesGeofaro.plist; sourceTree = "<group>"; };
-		2558E9301A0748A300908CAE /* ServiciosGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServiciosGeofaro.plist; sourceTree = "<group>"; };
-		2558E9311A0748A300908CAE /* UIDevice+HardwareGeo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HardwareGeo.h"; sourceTree = "<group>"; };
-		2558E9321A0748A300908CAE /* libGeofaro.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGeofaro.a; sourceTree = "<group>"; };
 		25710C931A0DB3230066864C /* FunctionsPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsPageVC.h; path = Classes/Controllers/FunctionsPageVC.h; sourceTree = "<group>"; };
 		25710C941A0DB3230066864C /* FunctionsPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsPageVC.m; path = Classes/Controllers/FunctionsPageVC.m; sourceTree = "<group>"; };
 		25710C961A0DB4330066864C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		257BEE691A107B5400BD3920 /* FunctionsContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsContainerVC.h; path = Classes/Controllers/FunctionsContainerVC.h; sourceTree = "<group>"; };
 		257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsContainerVC.m; path = Classes/Controllers/FunctionsContainerVC.m; sourceTree = "<group>"; };
+		25C66F781A2AD70300366BE8 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+Hardware.h"; path = "Utilities/UIDevice+Hardware.h"; sourceTree = "<group>"; };
+		25C66F791A2AD70300366BE8 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+Hardware.m"; path = "Utilities/UIDevice+Hardware.m"; sourceTree = "<group>"; };
+		25C66F7B1A2AD70C00366BE8 /* NSObject+Utilidades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Utilidades.h"; path = "Utilities/NSObject+Utilidades.h"; sourceTree = "<group>"; };
+		25C66F7C1A2AD70C00366BE8 /* NSObject+Utilidades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Utilidades.m"; path = "Utilities/NSObject+Utilidades.m"; sourceTree = "<group>"; };
+		25C66F7D1A2AD70C00366BE8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Utilities/Reachability.h; sourceTree = "<group>"; };
+		25C66F7E1A2AD70C00366BE8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Utilities/Reachability.m; sourceTree = "<group>"; };
+		25C66F811A2AD71C00366BE8 /* developers.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = developers.der; path = Geofarok/developers.der; sourceTree = "<group>"; };
+		25C66F821A2AD71C00366BE8 /* developers.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; name = developers.p12; path = Geofarok/developers.p12; sourceTree = "<group>"; };
+		25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GeoFaroKit.framework; path = Geofarok/GeoFaroKit.framework; sourceTree = "<group>"; };
+		25C66F841A2AD71C00366BE8 /* RegionesGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RegionesGeofaro.plist; path = Geofarok/RegionesGeofaro.plist; sourceTree = "<group>"; };
+		25C66F851A2AD71C00366BE8 /* ServiciosGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ServiciosGeofaro.plist; path = Geofarok/ServiciosGeofaro.plist; sourceTree = "<group>"; };
+		25C66F911A2ADCC100366BE8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		25F41A661A09F661009C4805 /* Cine Horarios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cine Horarios.entitlements"; sourceTree = "<group>"; };
 		385B73052F46F87FCCF22877 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3D29981417E5AA28001A371D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -184,7 +173,8 @@
 		4D13F22F381E11E6ED02878B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6E176F071A05DEAE00775DC7 /* MBProgressHUD+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MBProgressHUD+CH.h"; path = "Utilities/Categories/MBProgressHUD+CH.h"; sourceTree = "<group>"; };
 		6E176F081A05DEAE00775DC7 /* MBProgressHUD+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MBProgressHUD+CH.m"; path = "Utilities/Categories/MBProgressHUD+CH.m"; sourceTree = "<group>"; };
-		6E2B1ADD18C9725A00A30938 /* libGeofaro.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGeofaro.a; path = ../../../Desktop/libGeofaro.a; sourceTree = "<group>"; };
+		6E2B618F1A28CAC00071DE50 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6E2B61931A28D7D40071DE50 /* GeoFaroKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GeoFaroKit.framework; path = "/Users/arturitoespinoza/Dropbox/xcode_projects/Cine Horarios/Cine Horarios/GeoFaroKit.framework"; sourceTree = "<absolute>"; };
 		6E57396418273C9900ADB8D9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6E57396C182755A300ADB8D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -347,8 +337,6 @@
 		6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+DoAlertView.m"; path = "Utilities/Categories/UIViewController+DoAlertView.m"; sourceTree = "<group>"; };
 		6EE703A718B7BC7000B5D6F2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		6EEA10EF1966774100957463 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		6EEA10F01966774100957463 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -357,17 +345,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E2B61901A28CAC00071DE50 /* CoreData.framework in Frameworks */,
 				6EE703AA18B7BC7A00B5D6F2 /* CoreBluetooth.framework in Frameworks */,
 				6EE703A818B7BC7000B5D6F2 /* Security.framework in Frameworks */,
 				3D29981717E5AA33001A371D /* SystemConfiguration.framework in Frameworks */,
 				6EBF1EA318AB6673007B50A5 /* MessageUI.framework in Frameworks */,
 				6EBF1EA118AB666A007B50A5 /* CoreTelephony.framework in Frameworks */,
+				25C66F931A2ADE1800366BE8 /* GeoFaroKit.framework in Frameworks */,
+				25C66F921A2ADCC100366BE8 /* Crashlytics.framework in Frameworks */,
+				25C66F881A2AD71C00366BE8 /* GeoFaroKit.framework in Frameworks */,
+				6E2B61951A28D7E10071DE50 /* GeoFaroKit.framework in Frameworks */,
 				3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */,
 				6EBF1E9F18AB6653007B50A5 /* AVFoundation.framework in Frameworks */,
 				6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */,
 				6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */,
-				2558E95E1A0748A300908CAE /* libGeofaro.a in Frameworks */,
-				25077C1E1A0F430600F3E5E9 /* Crashlytics.framework in Frameworks */,
 				6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */,
 				6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */,
 				3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */,
@@ -393,79 +384,6 @@
 				6E4BAA851884A4A400E37DAF /* DoAlertView */,
 			);
 			name = Vendor;
-			sourceTree = "<group>";
-		};
-		2558E90C1A0748A300908CAE /* Geofaro */ = {
-			isa = PBXGroup;
-			children = (
-				2558E90D1A0748A300908CAE /* Categorias */,
-				2558E9121A0748A300908CAE /* lib */,
-			);
-			path = Geofaro;
-			sourceTree = "<group>";
-		};
-		2558E90D1A0748A300908CAE /* Categorias */ = {
-			isa = PBXGroup;
-			children = (
-				2558E90E1A0748A300908CAE /* NSObject+Utilidades.h */,
-				2558E90F1A0748A300908CAE /* NSObject+Utilidades.m */,
-				2558E9101A0748A300908CAE /* UIDevice+Hardware.h */,
-				2558E9111A0748A300908CAE /* UIDevice+Hardware.m */,
-			);
-			path = Categorias;
-			sourceTree = "<group>";
-		};
-		2558E9121A0748A300908CAE /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				2558E9131A0748A300908CAE /* include */,
-				2558E9321A0748A300908CAE /* libGeofaro.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		2558E9131A0748A300908CAE /* include */ = {
-			isa = PBXGroup;
-			children = (
-				2558E9141A0748A300908CAE /* Geofaro */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		2558E9141A0748A300908CAE /* Geofaro */ = {
-			isa = PBXGroup;
-			children = (
-				2558E9151A0748A300908CAE /* AlertaGeoView.h */,
-				2558E9161A0748A300908CAE /* ArchivoManagerFaro.h */,
-				2558E9171A0748A300908CAE /* BasesView.h */,
-				2558E9181A0748A300908CAE /* Beacon.h */,
-				2558E9191A0748A300908CAE /* BeaconsGeofaro.plist */,
-				2558E91A1A0748A300908CAE /* ConfigGeofaro.plist */,
-				2558E91B1A0748A300908CAE /* CuponesGeoViewController.h */,
-				2558E91C1A0748A300908CAE /* CuponesGeoViewController.xib */,
-				2558E91D1A0748A300908CAE /* DatosEnvioGeo.h */,
-				2558E91E1A0748A300908CAE /* developers.der */,
-				2558E91F1A0748A300908CAE /* developers.p12 */,
-				2558E9201A0748A300908CAE /* Faro.h */,
-				2558E9211A0748A300908CAE /* FaroEnvioData.h */,
-				2558E9221A0748A300908CAE /* FaroEnvioDataGuardada.h */,
-				2558E9231A0748A300908CAE /* FaroFotoManager.h */,
-				2558E9241A0748A300908CAE /* Geofaro.h */,
-				2558E9251A0748A300908CAE /* HBPro.h */,
-				2558E9261A0748A300908CAE /* Images.xcassets */,
-				2558E9271A0748A300908CAE /* Macros.h */,
-				2558E9281A0748A300908CAE /* NSObject+UtilidadesGeo.h */,
-				2558E9291A0748A300908CAE /* PromocionGeoiPadViewController.h */,
-				2558E92A1A0748A300908CAE /* PromocionGeoiPadViewController.xib */,
-				2558E92B1A0748A300908CAE /* PromocionGeoViewController.h */,
-				2558E92C1A0748A300908CAE /* PromocionGeoViewController.xib */,
-				2558E92D1A0748A300908CAE /* Radar.h */,
-				2558E92E1A0748A300908CAE /* RadarParser.h */,
-				2558E92F1A0748A300908CAE /* RegionesGeofaro.plist */,
-				2558E9301A0748A300908CAE /* ServiciosGeofaro.plist */,
-				2558E9311A0748A300908CAE /* UIDevice+HardwareGeo.h */,
-			);
-			path = Geofaro;
 			sourceTree = "<group>";
 		};
 		3D111A4F170C97140043D2D2 /* Classes */ = {
@@ -618,9 +536,9 @@
 		3DDB7103170A516B00EC3E51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				25077C1D1A0F430600F3E5E9 /* Crashlytics.framework */,
+				25C66F911A2ADCC100366BE8 /* Crashlytics.framework */,
+				6E2B618F1A28CAC00071DE50 /* CoreData.framework */,
 				25710C961A0DB4330066864C /* StoreKit.framework */,
-				6E2B1ADD18C9725A00A30938 /* libGeofaro.a */,
 				6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */,
 				6EE703A718B7BC7000B5D6F2 /* Security.framework */,
 				6EBF1EA218AB6673007B50A5 /* MessageUI.framework */,
@@ -644,7 +562,7 @@
 		3DDB710A170A516B00EC3E51 /* Cine Horarios */ = {
 			isa = PBXGroup;
 			children = (
-				2558E90C1A0748A300908CAE /* Geofaro */,
+				6E2B61781A28C4710071DE50 /* Geofarok */,
 				6EC0072518DC7E9F003DECC8 /* Utilities */,
 				6EC0061018DC7A9A003DECC8 /* DataFetch */,
 				162414A317BC946E00083708 /* Images.xcassets */,
@@ -678,6 +596,18 @@
 				4D13F22F381E11E6ED02878B /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		6E2B61781A28C4710071DE50 /* Geofarok */ = {
+			isa = PBXGroup;
+			children = (
+				25C66F811A2AD71C00366BE8 /* developers.der */,
+				25C66F821A2AD71C00366BE8 /* developers.p12 */,
+				25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */,
+				25C66F841A2AD71C00366BE8 /* RegionesGeofaro.plist */,
+				25C66F851A2AD71C00366BE8 /* ServiciosGeofaro.plist */,
+			);
+			name = Geofarok;
 			sourceTree = "<group>";
 		};
 		6E4BAA851884A4A400E37DAF /* DoAlertView */ = {
@@ -775,10 +705,14 @@
 		6EC0072518DC7E9F003DECC8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				25C66F781A2AD70300366BE8 /* UIDevice+Hardware.h */,
+				25C66F791A2AD70300366BE8 /* UIDevice+Hardware.m */,
+				25C66F7B1A2AD70C00366BE8 /* NSObject+Utilidades.h */,
+				25C66F7C1A2AD70C00366BE8 /* NSObject+Utilidades.m */,
+				25C66F7D1A2AD70C00366BE8 /* Reachability.h */,
+				25C66F7E1A2AD70C00366BE8 /* Reachability.m */,
 				6EC0072618DC7ED6003DECC8 /* ArrayDataSource.h */,
 				6EC0072718DC7ED6003DECC8 /* ArrayDataSource.m */,
-				6EEA10EF1966774100957463 /* Reachability.h */,
-				6EEA10F01966774100957463 /* Reachability.m */,
 				3D309A2617A85D9600BB5D13 /* Categories */,
 			);
 			name = Utilities;
@@ -797,6 +731,7 @@
 				3DDB70FE170A516B00EC3E51 /* Resources */,
 				A7D59476405649439AA3020D /* Copy Pods Resources */,
 				25077C1C1A0F429B00F3E5E9 /* ShellScript */,
+				6E2B61881A28C7E40071DE50 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -852,31 +787,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2558E9571A0748A300908CAE /* developers.der in Resources */,
+				25C66F861A2AD71C00366BE8 /* developers.der in Resources */,
+				25C66F891A2AD71C00366BE8 /* RegionesGeofaro.plist in Resources */,
 				6EC006D418DC7D67003DECC8 /* Cinemas.plist in Resources */,
 				6EC0072418DC7E84003DECC8 /* Storyboard.storyboard in Resources */,
 				6EC006E618DC7DCE003DECC8 /* check.png in Resources */,
-				2558E9541A0748A300908CAE /* BeaconsGeofaro.plist in Resources */,
-				2558E9551A0748A300908CAE /* ConfigGeofaro.plist in Resources */,
 				6EC006E418DC7DCE003DECC8 /* check_black.png in Resources */,
 				6EC006EB18DC7DCE003DECC8 /* close@2x.png in Resources */,
 				6EC006E818DC7DCE003DECC8 /* close_black.png in Resources */,
 				6EC006E718DC7DCE003DECC8 /* check@2x.png in Resources */,
 				6EC0065818DC7BFD003DECC8 /* MenuCustomView.xib in Resources */,
 				6EC006EA18DC7DCE003DECC8 /* close.png in Resources */,
-				2558E95A1A0748A300908CAE /* PromocionGeoiPadViewController.xib in Resources */,
 				6EC006E518DC7DCE003DECC8 /* check_black@2x.png in Resources */,
-				2558E95B1A0748A300908CAE /* PromocionGeoViewController.xib in Resources */,
-				2558E9581A0748A300908CAE /* developers.p12 in Resources */,
-				2558E9591A0748A300908CAE /* Images.xcassets in Resources */,
+				25C66F871A2AD71C00366BE8 /* developers.p12 in Resources */,
 				6EC006D718DC7D67003DECC8 /* Localizable.strings in Resources */,
+				25C66F8A1A2AD71C00366BE8 /* ServiciosGeofaro.plist in Resources */,
 				162414A417BC946E00083708 /* Images.xcassets in Resources */,
-				2558E95D1A0748A300908CAE /* ServiciosGeofaro.plist in Resources */,
 				6EC006D518DC7D67003DECC8 /* icloud.plist in Resources */,
-				2558E9561A0748A300908CAE /* CuponesGeoViewController.xib in Resources */,
 				6EC006D918DC7D67003DECC8 /* Menu.plist in Resources */,
 				6EC006E918DC7DCE003DECC8 /* close_black@2x.png in Resources */,
-				2558E95C1A0748A300908CAE /* RegionesGeofaro.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,10 +862,9 @@
 			files = (
 				6EC0072018DC7E3C003DECC8 /* Theater.m in Sources */,
 				6EC0068F18DC7CBB003DECC8 /* MovieCinemasVC.m in Sources */,
+				25C66F801A2AD70C00366BE8 /* Reachability.m in Sources */,
 				6EC0069618DC7CBB003DECC8 /* SettingsVC.m in Sources */,
-				2558E9521A0748A300908CAE /* NSObject+Utilidades.m in Sources */,
 				6EC0069818DC7CBB003DECC8 /* VideosVC.m in Sources */,
-				6EEA10F11966774100957463 /* Reachability.m in Sources */,
 				6EC0065518DC7BC6003DECC8 /* VideoCell.m in Sources */,
 				6EC0073C18DC7EE1003DECC8 /* UIFont+CH.m in Sources */,
 				6EC0074018DC7EE1003DECC8 /* UIViewController+DoAlertView.m in Sources */,
@@ -973,7 +901,6 @@
 				6EC0063418DC7B77003DECC8 /* FunctionCell2+Function.m in Sources */,
 				6EC0071618DC7E3C003DECC8 /* BasicItem.m in Sources */,
 				6EC0063718DC7B77003DECC8 /* VideoCell+Video.m in Sources */,
-				2558E9531A0748A300908CAE /* UIDevice+Hardware.m in Sources */,
 				6EC0072818DC7ED6003DECC8 /* ArrayDataSource.m in Sources */,
 				6EC0068818DC7CBB003DECC8 /* CinesVC.m in Sources */,
 				6EC0071518DC7E3C003DECC8 /* AnnotationTheater.m in Sources */,
@@ -982,11 +909,13 @@
 				6EC0065118DC7BC6003DECC8 /* ComingSoonCell2.m in Sources */,
 				6EC0073E18DC7EE1003DECC8 /* UIImageView+CH.m in Sources */,
 				6EC0063518DC7B77003DECC8 /* MovieCastCell+Person.m in Sources */,
+				25C66F7F1A2AD70C00366BE8 /* NSObject+Utilidades.m in Sources */,
 				25710C951A0DB3230066864C /* FunctionsPageVC.m in Sources */,
 				6EC0063218DC7B77003DECC8 /* CinemaCell+Cinema.m in Sources */,
 				6EC0069518DC7CBB003DECC8 /* MovieVC.m in Sources */,
 				6EC0071E18DC7E3C003DECC8 /* MTLModelPersistable.m in Sources */,
 				6EC0069918DC7CBB003DECC8 /* VideoVC.m in Sources */,
+				25C66F7A1A2AD70300366BE8 /* UIDevice+Hardware.m in Sources */,
 				6EC0063618DC7B77003DECC8 /* MovieImageCell+MovieImage.m in Sources */,
 				6EC0073D18DC7EE1003DECC8 /* UIImage+CH.m in Sources */,
 				6EC0064C18DC7BC6003DECC8 /* BasicCell.m in Sources */,
@@ -1076,24 +1005,25 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Cine\\ Horarios/Geofarok",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Cine",
+					Horarios/Geofarok,
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Cine Horarios/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "00b6b87b-d21e-4755-bf08-d1a796d739b2";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1108,24 +1038,25 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Cine\\ Horarios/Geofarok",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Cine",
+					Horarios/Geofarok,
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Cine Horarios/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Cine\\ Horarios/Geofaro/lib",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "00b6b87b-d21e-4755-bf08-d1a796d739b2";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -36,7 +36,6 @@
 	<string>Necesario para ver los cines cercanos</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>bluetooth-central</string>
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
