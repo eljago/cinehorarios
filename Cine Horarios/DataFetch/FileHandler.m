@@ -77,13 +77,13 @@ NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
 
 + (void) deleteFileAtPath:(NSString *)path ifOlderThanTimeInterval:(NSTimeInterval)timeInterval currentDate:(NSDate *)currentDate calendar:(NSCalendar *)calendar {
     NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSDateComponents *components = [calendar components:NSDayCalendarUnit|NSMonthCalendarUnit fromDate:currentDate];
+    NSDateComponents *components = [calendar components:NSCalendarUnitDay|NSCalendarUnitMonth fromDate:currentDate];
     NSInteger dayNow = [components day];
     NSInteger monthNow = [components month];
     
     NSDictionary *attributes = [filemgr attributesOfItemAtPath:path error:nil];
     NSDate *creationDate = [attributes objectForKey:NSFileCreationDate];
-    NSDateComponents *components2 = [calendar components:NSDayCalendarUnit|NSMonthCalendarUnit fromDate:creationDate];
+    NSDateComponents *components2 = [calendar components:NSCalendarUnitDay|NSCalendarUnitMonth fromDate:creationDate];
     NSInteger dayFileCreated = [components2 day];
     NSInteger monthFileCreated = [components2 month];
     

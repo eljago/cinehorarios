@@ -13,7 +13,7 @@
 -(NSString *) getShortDateString {
     NSDateFormatter *formatter = [NSDateFormatter new];
     [formatter setLocale:[NSLocale currentLocale]];
-    [formatter setDateFormat:@"%a %e"];
+    [formatter setDateFormat:@"EEEE dd"];
     return [formatter stringFromDate:self];
 }
 

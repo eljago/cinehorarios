@@ -109,7 +109,7 @@
     NSLocale *currentLocale = [NSLocale currentLocale];
     //NSLog(@"currentLocale: %@", [currentLocale localeIdentifier]);
     //Calendario
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     [gregorian setLocale:currentLocale];
     [gregorian setLocale:currentLocale];
     [gregorian setTimeZone:sourceTimeZone];

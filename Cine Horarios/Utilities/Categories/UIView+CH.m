@@ -45,4 +45,20 @@
     return totalHeight;
 }
 
++ (UIView *)headerViewForText:(NSString *)text textAlignment:(NSTextAlignment)textAlignment height:(CGFloat)height {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, height)];
+    view.backgroundColor = [UIColor darkGrayColor];
+    //    view.alpha = 0.85;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, height)];
+    label.textColor = [UIColor whiteColor];
+    label.tag = 40;
+    label.font = [UIFont getSizeForCHFont:CHFontStyleSmallerBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    label.text = text;
+    label.textAlignment = textAlignment;
+    
+    [view addSubview: label];
+    label.center = view.center;
+    return view;
+}
+
 @end

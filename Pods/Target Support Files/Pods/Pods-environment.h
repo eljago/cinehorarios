@@ -66,6 +66,12 @@
 #define COCOAPODS_VERSION_MINOR_GoogleAnalytics_iOS_SDK 10
 #define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK 0
 
+// GoogleAnalytics-iOS-SDK/Core
+#define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK_Core
+#define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK_Core 3
+#define COCOAPODS_VERSION_MINOR_GoogleAnalytics_iOS_SDK_Core 10
+#define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK_Core 0
+
 // Harpy
 #define COCOAPODS_POD_AVAILABLE_Harpy
 #define COCOAPODS_VERSION_MAJOR_Harpy 3
@@ -95,6 +101,12 @@
 #define COCOAPODS_VERSION_MAJOR_Mantle_extobjc 1
 #define COCOAPODS_VERSION_MINOR_Mantle_extobjc 5
 #define COCOAPODS_VERSION_PATCH_Mantle_extobjc 1
+
+// OpenInChrome
+#define COCOAPODS_POD_AVAILABLE_OpenInChrome
+#define COCOAPODS_VERSION_MAJOR_OpenInChrome 0
+#define COCOAPODS_VERSION_MINOR_OpenInChrome 0
+#define COCOAPODS_VERSION_PATCH_OpenInChrome 1
 
 // PSTCollectionView
 #define COCOAPODS_POD_AVAILABLE_PSTCollectionView

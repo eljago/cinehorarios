@@ -386,6 +386,89 @@
 			name = Vendor;
 			sourceTree = "<group>";
 		};
+		25D9270A1A2E6ACC007B255D /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				6EC0065918DC7CBB003DECC8 /* CarteleraVC.h */,
+				6EC0065B18DC7CBB003DECC8 /* CastVC.h */,
+				6EC0065D18DC7CBB003DECC8 /* CineHorariosTableViewController.h */,
+				6EC0065F18DC7CBB003DECC8 /* CinesVC.h */,
+				6EC0066118DC7CBB003DECC8 /* CloseTheatersVC.h */,
+				6EC0066318DC7CBB003DECC8 /* ComingSoonVC.h */,
+				6EC0066718DC7CBB003DECC8 /* FuncionesVC.h */,
+				6EC0066518DC7CBB003DECC8 /* FavoritesVC.h */,
+				6EC0066918DC7CBB003DECC8 /* GlobalNavigationController.h */,
+				6EC0066D18DC7CBB003DECC8 /* MovieCinemasVC.h */,
+				6EC0067118DC7CBB003DECC8 /* MovieFunctionsVC.h */,
+				6EC0067918DC7CBB003DECC8 /* MovieVC.h */,
+				6EC0067B18DC7CBB003DECC8 /* SettingsVC.h */,
+				6EC0067D18DC7CBB003DECC8 /* TheatersVC.h */,
+				6EC0067F18DC7CBB003DECC8 /* VideosVC.h */,
+				6EC0068118DC7CBB003DECC8 /* VideoVC.h */,
+				6EC0068318DC7CBB003DECC8 /* WebVC.h */,
+				25710C931A0DB3230066864C /* FunctionsPageVC.h */,
+				257BEE691A107B5400BD3920 /* FunctionsContainerVC.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		25D9270B1A2E6B00007B255D /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				6EC006F618DC7E3C003DECC8 /* AnnotationGroup.h */,
+				6EC006F818DC7E3C003DECC8 /* AnnotationTheater.h */,
+				6EC006FA18DC7E3C003DECC8 /* BasicItem.h */,
+				6EC006FC18DC7E3C003DECC8 /* BasicItemImage.h */,
+				6EC006FE18DC7E3C003DECC8 /* BasicMovie.h */,
+				6EC0070018DC7E3C003DECC8 /* Billboard.h */,
+				6EC0070218DC7E3C003DECC8 /* Cast.h */,
+				6EC0070418DC7E3C003DECC8 /* Cinema.h */,
+				6EC0070618DC7E3C003DECC8 /* Function.h */,
+				6EC0070818DC7E3C003DECC8 /* Movie.h */,
+				6EC0070A18DC7E3C003DECC8 /* MTLModelPersistable.h */,
+				6EC0070C18DC7E3C003DECC8 /* Person.h */,
+				6EC0070E18DC7E3C003DECC8 /* Theater.h */,
+				6EC0071018DC7E3C003DECC8 /* Video.h */,
+				6EC0071218DC7E3C003DECC8 /* VideoGroup.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		25D9270C1A2E6B16007B255D /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				6EC0063818DC7BC6003DECC8 /* BasicCell.h */,
+				6EC0063A18DC7BC6003DECC8 /* BillboardCell.h */,
+				6EC0063C18DC7BC6003DECC8 /* CastActorCell.h */,
+				6EC0063E18DC7BC6003DECC8 /* CastDirectorCell.h */,
+				6EC0064018DC7BC6003DECC8 /* CinemaCell.h */,
+				6EC0064218DC7BC6003DECC8 /* ComingSoonCell2.h */,
+				6EC0064418DC7BC6003DECC8 /* FunctionCell2.h */,
+				6EC0064618DC7BC6003DECC8 /* MovieCastCell.h */,
+				6EC0064818DC7BC6003DECC8 /* MovieImageCell.h */,
+				6EC0064A18DC7BC6003DECC8 /* VideoCell.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		25D9270D1A2E6B23007B255D /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				6EC0061A18DC7B77003DECC8 /* BasicCell+Theater.h */,
+				6EC0061C18DC7B77003DECC8 /* BillboardCell+BasicMovie.h */,
+				6EC0061E18DC7B77003DECC8 /* CastActorCell+Person.h */,
+				6EC0062018DC7B77003DECC8 /* CastDirectorCell+Person.h */,
+				6EC0062218DC7B77003DECC8 /* CinemaCell+Cinema.h */,
+				6EC0062418DC7B77003DECC8 /* ComingSoonCell2+BasicMovie.h */,
+				6EC0062618DC7B77003DECC8 /* FunctionCell2+Function.h */,
+				6EC0062818DC7B77003DECC8 /* MovieCastCell+Person.h */,
+				6EC0062A18DC7B77003DECC8 /* MovieImageCell+MovieImage.h */,
+				6EC0062C18DC7B77003DECC8 /* VideoCell+Video.h */,
+				2503D0BC1A1054B200E1876B /* NSDate+CH.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
 		3D111A4F170C97140043D2D2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,44 +484,26 @@
 		3D111A52170C977C0043D2D2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6EC0065918DC7CBB003DECC8 /* CarteleraVC.h */,
+				25D9270A1A2E6ACC007B255D /* Headers */,
 				6EC0065A18DC7CBB003DECC8 /* CarteleraVC.m */,
-				6EC0065B18DC7CBB003DECC8 /* CastVC.h */,
 				6EC0065C18DC7CBB003DECC8 /* CastVC.m */,
-				6EC0065D18DC7CBB003DECC8 /* CineHorariosTableViewController.h */,
 				6EC0065E18DC7CBB003DECC8 /* CineHorariosTableViewController.m */,
-				6EC0065F18DC7CBB003DECC8 /* CinesVC.h */,
 				6EC0066018DC7CBB003DECC8 /* CinesVC.m */,
-				6EC0066118DC7CBB003DECC8 /* CloseTheatersVC.h */,
 				6EC0066218DC7CBB003DECC8 /* CloseTheatersVC.m */,
-				6EC0066318DC7CBB003DECC8 /* ComingSoonVC.h */,
 				6EC0066418DC7CBB003DECC8 /* ComingSoonVC.m */,
-				6EC0066718DC7CBB003DECC8 /* FuncionesVC.h */,
-				6EC0066818DC7CBB003DECC8 /* FuncionesVC.m */,
-				6EC0066518DC7CBB003DECC8 /* FavoritesVC.h */,
 				6EC0066618DC7CBB003DECC8 /* FavoritesVC.m */,
-				6EC0066918DC7CBB003DECC8 /* GlobalNavigationController.h */,
-				6EC0066A18DC7CBB003DECC8 /* GlobalNavigationController.m */,
-				6EC0066D18DC7CBB003DECC8 /* MovieCinemasVC.h */,
-				6EC0066E18DC7CBB003DECC8 /* MovieCinemasVC.m */,
-				6EC0067118DC7CBB003DECC8 /* MovieFunctionsVC.h */,
-				6EC0067218DC7CBB003DECC8 /* MovieFunctionsVC.m */,
-				6EC0067918DC7CBB003DECC8 /* MovieVC.h */,
-				6EC0067A18DC7CBB003DECC8 /* MovieVC.m */,
-				6EC0067B18DC7CBB003DECC8 /* SettingsVC.h */,
-				6EC0067C18DC7CBB003DECC8 /* SettingsVC.m */,
-				6EC0067D18DC7CBB003DECC8 /* TheatersVC.h */,
-				6EC0067E18DC7CBB003DECC8 /* TheatersVC.m */,
-				6EC0067F18DC7CBB003DECC8 /* VideosVC.h */,
-				6EC0068018DC7CBB003DECC8 /* VideosVC.m */,
-				6EC0068118DC7CBB003DECC8 /* VideoVC.h */,
-				6EC0068218DC7CBB003DECC8 /* VideoVC.m */,
-				6EC0068318DC7CBB003DECC8 /* WebVC.h */,
-				6EC0068418DC7CBB003DECC8 /* WebVC.m */,
-				25710C931A0DB3230066864C /* FunctionsPageVC.h */,
-				25710C941A0DB3230066864C /* FunctionsPageVC.m */,
-				257BEE691A107B5400BD3920 /* FunctionsContainerVC.h */,
+				6EC0066818DC7CBB003DECC8 /* FuncionesVC.m */,
 				257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */,
+				25710C941A0DB3230066864C /* FunctionsPageVC.m */,
+				6EC0066A18DC7CBB003DECC8 /* GlobalNavigationController.m */,
+				6EC0066E18DC7CBB003DECC8 /* MovieCinemasVC.m */,
+				6EC0067218DC7CBB003DECC8 /* MovieFunctionsVC.m */,
+				6EC0067A18DC7CBB003DECC8 /* MovieVC.m */,
+				6EC0067C18DC7CBB003DECC8 /* SettingsVC.m */,
+				6EC0067E18DC7CBB003DECC8 /* TheatersVC.m */,
+				6EC0068018DC7CBB003DECC8 /* VideosVC.m */,
+				6EC0068218DC7CBB003DECC8 /* VideoVC.m */,
+				6EC0068418DC7CBB003DECC8 /* WebVC.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -471,35 +536,21 @@
 		3DC9A744170CC432008B9FF9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6EC006F618DC7E3C003DECC8 /* AnnotationGroup.h */,
+				25D9270B1A2E6B00007B255D /* Headers */,
 				6EC006F718DC7E3C003DECC8 /* AnnotationGroup.m */,
-				6EC006F818DC7E3C003DECC8 /* AnnotationTheater.h */,
 				6EC006F918DC7E3C003DECC8 /* AnnotationTheater.m */,
-				6EC006FA18DC7E3C003DECC8 /* BasicItem.h */,
 				6EC006FB18DC7E3C003DECC8 /* BasicItem.m */,
-				6EC006FC18DC7E3C003DECC8 /* BasicItemImage.h */,
 				6EC006FD18DC7E3C003DECC8 /* BasicItemImage.m */,
-				6EC006FE18DC7E3C003DECC8 /* BasicMovie.h */,
 				6EC006FF18DC7E3C003DECC8 /* BasicMovie.m */,
-				6EC0070018DC7E3C003DECC8 /* Billboard.h */,
 				6EC0070118DC7E3C003DECC8 /* Billboard.m */,
-				6EC0070218DC7E3C003DECC8 /* Cast.h */,
 				6EC0070318DC7E3C003DECC8 /* Cast.m */,
-				6EC0070418DC7E3C003DECC8 /* Cinema.h */,
 				6EC0070518DC7E3C003DECC8 /* Cinema.m */,
-				6EC0070618DC7E3C003DECC8 /* Function.h */,
 				6EC0070718DC7E3C003DECC8 /* Function.m */,
-				6EC0070818DC7E3C003DECC8 /* Movie.h */,
 				6EC0070918DC7E3C003DECC8 /* Movie.m */,
-				6EC0070A18DC7E3C003DECC8 /* MTLModelPersistable.h */,
 				6EC0070B18DC7E3C003DECC8 /* MTLModelPersistable.m */,
-				6EC0070C18DC7E3C003DECC8 /* Person.h */,
 				6EC0070D18DC7E3C003DECC8 /* Person.m */,
-				6EC0070E18DC7E3C003DECC8 /* Theater.h */,
 				6EC0070F18DC7E3C003DECC8 /* Theater.m */,
-				6EC0071018DC7E3C003DECC8 /* Video.h */,
 				6EC0071118DC7E3C003DECC8 /* Video.m */,
-				6EC0071218DC7E3C003DECC8 /* VideoGroup.h */,
 				6EC0071318DC7E3C003DECC8 /* VideoGroup.m */,
 			);
 			name = Models;
@@ -630,25 +681,16 @@
 		6E56CC12188BC6DB000AB809 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				6EC0063818DC7BC6003DECC8 /* BasicCell.h */,
+				25D9270C1A2E6B16007B255D /* Headers */,
 				6EC0063918DC7BC6003DECC8 /* BasicCell.m */,
-				6EC0063A18DC7BC6003DECC8 /* BillboardCell.h */,
 				6EC0063B18DC7BC6003DECC8 /* BillboardCell.m */,
-				6EC0063C18DC7BC6003DECC8 /* CastActorCell.h */,
 				6EC0063D18DC7BC6003DECC8 /* CastActorCell.m */,
-				6EC0063E18DC7BC6003DECC8 /* CastDirectorCell.h */,
 				6EC0063F18DC7BC6003DECC8 /* CastDirectorCell.m */,
-				6EC0064018DC7BC6003DECC8 /* CinemaCell.h */,
 				6EC0064118DC7BC6003DECC8 /* CinemaCell.m */,
-				6EC0064218DC7BC6003DECC8 /* ComingSoonCell2.h */,
 				6EC0064318DC7BC6003DECC8 /* ComingSoonCell2.m */,
-				6EC0064418DC7BC6003DECC8 /* FunctionCell2.h */,
 				6EC0064518DC7BC6003DECC8 /* FunctionCell2.m */,
-				6EC0064618DC7BC6003DECC8 /* MovieCastCell.h */,
 				6EC0064718DC7BC6003DECC8 /* MovieCastCell.m */,
-				6EC0064818DC7BC6003DECC8 /* MovieImageCell.h */,
 				6EC0064918DC7BC6003DECC8 /* MovieImageCell.m */,
-				6EC0064A18DC7BC6003DECC8 /* VideoCell.h */,
 				6EC0064B18DC7BC6003DECC8 /* VideoCell.m */,
 			);
 			name = Cells;
@@ -657,27 +699,17 @@
 		6E88F27F189AFEEE00927222 /* CellCategories */ = {
 			isa = PBXGroup;
 			children = (
-				6EC0061A18DC7B77003DECC8 /* BasicCell+Theater.h */,
+				25D9270D1A2E6B23007B255D /* Headers */,
 				6EC0061B18DC7B77003DECC8 /* BasicCell+Theater.m */,
-				6EC0061C18DC7B77003DECC8 /* BillboardCell+BasicMovie.h */,
 				6EC0061D18DC7B77003DECC8 /* BillboardCell+BasicMovie.m */,
-				6EC0061E18DC7B77003DECC8 /* CastActorCell+Person.h */,
 				6EC0061F18DC7B77003DECC8 /* CastActorCell+Person.m */,
-				6EC0062018DC7B77003DECC8 /* CastDirectorCell+Person.h */,
 				6EC0062118DC7B77003DECC8 /* CastDirectorCell+Person.m */,
-				6EC0062218DC7B77003DECC8 /* CinemaCell+Cinema.h */,
 				6EC0062318DC7B77003DECC8 /* CinemaCell+Cinema.m */,
-				6EC0062418DC7B77003DECC8 /* ComingSoonCell2+BasicMovie.h */,
 				6EC0062518DC7B77003DECC8 /* ComingSoonCell2+BasicMovie.m */,
-				6EC0062618DC7B77003DECC8 /* FunctionCell2+Function.h */,
 				6EC0062718DC7B77003DECC8 /* FunctionCell2+Function.m */,
-				6EC0062818DC7B77003DECC8 /* MovieCastCell+Person.h */,
 				6EC0062918DC7B77003DECC8 /* MovieCastCell+Person.m */,
-				6EC0062A18DC7B77003DECC8 /* MovieImageCell+MovieImage.h */,
 				6EC0062B18DC7B77003DECC8 /* MovieImageCell+MovieImage.m */,
-				6EC0062C18DC7B77003DECC8 /* VideoCell+Video.h */,
 				6EC0062D18DC7B77003DECC8 /* VideoCell+Video.m */,
-				2503D0BC1A1054B200E1876B /* NSDate+CH.h */,
 				2503D0BD1A1054B200E1876B /* NSDate+CH.m */,
 			);
 			name = CellCategories;
@@ -1012,14 +1044,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofarok",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Cine",
-					Horarios/Geofarok,
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Cine Horarios/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "Cine Horarios";
@@ -1045,14 +1075,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofarok",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Cine",
-					Horarios/Geofarok,
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Cine Horarios/SupportingFiles/Cine Horarios-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Cine Horarios/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "Cine Horarios";

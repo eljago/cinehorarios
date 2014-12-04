@@ -18,6 +18,8 @@
 @property (nonatomic, strong) UIBarButtonItem *menuButtonItem;
 
 @property (nonatomic, weak) IBOutlet UIView *functionsContainerVC;
+@property (nonatomic, weak) IBOutlet UIView *navBarExtensionView;
+@property (nonatomic, weak) IBOutlet UILabel *theaterNameLabel;
 
 @property (nonatomic, assign) BOOL favorite;
 
@@ -29,14 +31,19 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    self.theaterNameLabel.text = self.theaterName;
+    
     [GAI trackPage:@"FUNCIONES"];
     [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Complejos Visitados" label:self.theaterName];
     
     [self createButtonItems];
     [self setupFavorites];
     
-    
-    self.view.backgroundColor = [UIColor navColor];
+    self.pageControl.tintColor = [UIColor lightGrayColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+    self.pageControl.backgroundColor = [UIColor clearColor];
+    self.navBarExtensionView.backgroundColor = [UIColor navColor];
+    self.view.backgroundColor = [UIColor tableViewColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -95,6 +102,10 @@
 {
     FunctionsPageVC *functionsPageVC = (FunctionsPageVC *)[segue destinationViewController];
     functionsPageVC.functionsContainerVC = self;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

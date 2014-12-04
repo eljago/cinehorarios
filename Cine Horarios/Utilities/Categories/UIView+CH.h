@@ -12,4 +12,5 @@
 
 + (UIView *)headerViewForText:(NSString *)text height:(CGFloat)height;
 + (CGFloat)heightForHeaderViewWithText:(NSString *)text;
++ (UIView *)headerViewForText:(NSString *)text textAlignment:(NSTextAlignment)textAlignment height:(CGFloat)height;
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="nQH-be-KhU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="nQH-be-KhU">
     <dependencies>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -122,7 +122,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="mainLabel" destination="y3N-O3-wrx" id="orW-Nr-9Qp"/>
-                                    <segue destination="9PI-6M-tb1" kind="push" id="D0B-og-LAk"/>
+                                    <segue destination="4ZA-90-LQn" kind="push" id="jfv-qe-upQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -193,7 +193,7 @@
                                 <connections>
                                     <outlet property="mainLabel" destination="lBo-Mm-ddJ" id="OMB-da-Fwz"/>
                                     <outlet property="theaterImageView" destination="6bj-xm-dgx" id="JJ1-G6-N59"/>
-                                    <segue destination="9PI-6M-tb1" kind="push" id="7FM-5e-PlJ"/>
+                                    <segue destination="4ZA-90-LQn" kind="push" id="LPp-Iw-IRP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1114,7 +1114,7 @@
         <!--Functions ContainerVC-->
         <scene sceneID="xr2-rQ-rTt">
             <objects>
-                <viewController id="4ZA-90-LQn" customClass="FunctionsContainerVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FunctionsContainerVC" id="4ZA-90-LQn" customClass="FunctionsContainerVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zOf-QH-RhQ"/>
                         <viewControllerLayoutGuide type="bottom" id="3oN-aC-qRR"/>
@@ -1123,36 +1123,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="ldQ-yi-jDb">
-                                <rect key="frame" x="141" y="14" width="39" height="37"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </pageControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEh-9J-1Wj" userLabel="NavExtensionView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="22"/>
+                                <subviews>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="7" translatesAutoresizingMaskIntoConstraints="NO" id="ldQ-yi-jDb">
+                                        <rect key="frame" x="207" y="-9" width="103" height="37"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="103" id="ONt-GL-4uV"/>
+                                        </constraints>
+                                        <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </pageControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mag-Rr-hyt">
+                                        <rect key="frame" x="8" y="-2" width="189" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.6588235294" green="0.21960784310000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="ldQ-yi-jDb" secondAttribute="centerY" constant="1.5" id="4G9-0P-2f9"/>
+                                    <constraint firstAttribute="trailing" secondItem="ldQ-yi-jDb" secondAttribute="trailing" constant="10" id="B8n-zT-e0z"/>
+                                    <constraint firstItem="ldQ-yi-jDb" firstAttribute="leading" secondItem="Mag-Rr-hyt" secondAttribute="trailing" constant="10" id="B95-RB-H8d"/>
+                                    <constraint firstAttribute="height" constant="22" id="SSl-ya-y5h"/>
+                                    <constraint firstItem="Mag-Rr-hyt" firstAttribute="leading" secondItem="MEh-9J-1Wj" secondAttribute="leading" constant="8" id="c1G-JJ-DzW"/>
+                                    <constraint firstAttribute="centerY" secondItem="Mag-Rr-hyt" secondAttribute="centerY" constant="2.5" id="fZC-rV-ETS"/>
+                                </constraints>
+                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-9Q-8IN">
-                                <rect key="frame" x="0.0" y="68" width="320" height="500"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="546"/>
                                 <connections>
                                     <segue destination="9PI-6M-tb1" kind="embed" id="sCt-SN-2Mm"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" red="0.6588235294117647" green="0.2196078431372549" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xlo-9Q-8IN" firstAttribute="top" secondItem="zOf-QH-RhQ" secondAttribute="bottom" constant="48" id="MtI-AV-BkT"/>
-                            <constraint firstItem="3oN-aC-qRR" firstAttribute="top" secondItem="xlo-9Q-8IN" secondAttribute="bottom" id="clk-gf-Rpj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xlo-9Q-8IN" secondAttribute="trailing" constant="-16" id="fdb-Bv-g3t"/>
-                            <constraint firstItem="xlo-9Q-8IN" firstAttribute="leading" secondItem="hjf-ch-aKh" secondAttribute="leadingMargin" constant="-16" id="ghM-Wv-HvF"/>
+                            <constraint firstItem="MEh-9J-1Wj" firstAttribute="top" secondItem="hjf-ch-aKh" secondAttribute="topMargin" id="8fR-7Q-Jbn"/>
+                            <constraint firstAttribute="trailing" secondItem="xlo-9Q-8IN" secondAttribute="trailing" id="Hnz-bj-rJP"/>
+                            <constraint firstItem="xlo-9Q-8IN" firstAttribute="top" secondItem="MEh-9J-1Wj" secondAttribute="bottom" id="RFr-nB-uw1"/>
+                            <constraint firstItem="xlo-9Q-8IN" firstAttribute="leading" secondItem="hjf-ch-aKh" secondAttribute="leading" id="bca-DD-MXd"/>
+                            <constraint firstAttribute="trailing" secondItem="MEh-9J-1Wj" secondAttribute="trailing" id="jrH-Qe-1zb"/>
+                            <constraint firstItem="3oN-aC-qRR" firstAttribute="top" secondItem="xlo-9Q-8IN" secondAttribute="bottom" id="lf6-gi-0Zy"/>
+                            <constraint firstItem="MEh-9J-1Wj" firstAttribute="leading" secondItem="hjf-ch-aKh" secondAttribute="leading" id="vPS-eA-Xsh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lM6-cm-bgv"/>
                     <connections>
                         <outlet property="functionsContainerVC" destination="xlo-9Q-8IN" id="dfh-Z6-Ebg"/>
+                        <outlet property="navBarExtensionView" destination="MEh-9J-1Wj" id="ukx-dI-MJG"/>
+                        <outlet property="pageControl" destination="ldQ-yi-jDb" id="f6B-6o-zy5"/>
+                        <outlet property="theaterNameLabel" destination="Mag-Rr-hyt" id="lzH-bE-zAF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="46D-Pc-EbN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-449" y="640"/>
+            <point key="canvasLocation" x="-445" y="641"/>
         </scene>
         <!--Functions PageVC-->
         <scene sceneID="zOo-0x-ooX">
@@ -1654,7 +1682,7 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <segue destination="9PI-6M-tb1" kind="push" id="XZ0-eN-Wxz"/>
+                                            <segue destination="4ZA-90-LQn" kind="push" id="D9o-3Z-sK3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1731,9 +1759,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="sCt-SN-2Mm"/>
-        <segue reference="NT1-KO-izX"/>
+        <segue reference="LVS-fQ-Ab8"/>
         <segue reference="DOR-G3-Ld5"/>
+        <segue reference="NT1-KO-izX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

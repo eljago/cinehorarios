@@ -22,4 +22,6 @@
 
 @property (nonatomic, strong) FunctionsContainerVC *functionsContainerVC;
 
+@property (nonatomic, strong) NSMutableArray *failedDownloads;
+
 @end

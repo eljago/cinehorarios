@@ -42,7 +42,10 @@ static int const kGaDispatchPeriod = 30;
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
         [application registerForRemoteNotifications];
     }else{
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
         [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeNewsstandContentAvailability)];
+#pragma GCC diagnostic pop
     }
 #endif
     
@@ -110,8 +113,8 @@ static int const kGaDispatchPeriod = 30;
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
-    NSString *error = nil;
-    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:dict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+    NSError *error = nil;
+    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:dict format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
     
     if(plistData)
     {
@@ -119,7 +122,7 @@ static int const kGaDispatchPeriod = 30;
     }
     else
     {
-        NSLog(@"Error in saveData: %@", error);
+        NSLog(@"Error in saveData: %@", [error description]);
     }
 }
 
@@ -388,14 +391,12 @@ static int const kGaDispatchPeriod = 30;
         if ([userInfo valueForKey:@"dict"]) {
             miNotificationsOptions = [userInfo valueForKey:@"dict"];
             [miGeofaro actualizarServicios:miNotificationsOptions];
-            /*
-             NSLog(@"miNotificationsOptions %@",miNotificationsOptions);
+
+            NSLog(@"miNotificationsOptions %@",miNotificationsOptions);
              NSString *sn = [dict valueForKey:@"SN"];
              NSString *so = [dict valueForKey:@"SO"];
              NSLog(@"sn %@",sn);
              NSLog(@"so %@",so);
-             */
-    /*
         }
     }else{
         NSLog(@"no es iOS7");

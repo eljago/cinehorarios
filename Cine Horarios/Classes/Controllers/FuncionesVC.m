@@ -18,7 +18,6 @@
 #import "UIView+CH.h"
 #import "ArrayDataSource.h"
 #import "FunctionCell2+Function.h"
-#import "UIViewController+DoAlertView.h"
 
 #import "DoAlertView.h"
 #import "AnnotationTheater.h"
@@ -31,12 +30,20 @@
 
 #import "FunctionsContainerVC.h"
 
+#import "OpenInChromeController.h"
+
+#import "UIColor+CH.h"
+
 NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
-@interface FuncionesVC () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+NSString *const kFunctionsDownloaded = @"DOWNLOADED";
+NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
+
+@interface FuncionesVC () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate>
 @property (nonatomic, strong) Theater *theater;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
 @property (nonatomic, assign) BOOL shouldShowEmptyDataSet;
+@property (nonatomic, strong) OpenInChromeController *openInChromeController;
 @end
 
 @implementation FuncionesVC
@@ -46,6 +53,8 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.OpenInChromeController = [[OpenInChromeController alloc] init];
     
     [self setupDataSource];
     
@@ -79,7 +88,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
     NSInteger height = [UIView heightForHeaderViewWithText:self.functionsPageVC.functionsContainerVC.theaterName];
-    return [UIView headerViewForText:self.functionsPageVC.functionsContainerVC.theaterName height:height];
+    return [UIView headerViewForText:[self.dateString capitalizedString] textAlignment:NSTextAlignmentCenter height:height];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return [UIView heightForHeaderViewWithText:self.functionsPageVC.functionsContainerVC.theaterName];
@@ -98,17 +107,25 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
         [self downloadTheater];
     }
     else {
-        NSDate *date = [self datePlusDays:self.pageIndex];
-        self.theater = [Theater loadTheaterithTheaterID:self.functionsPageVC.functionsContainerVC.theaterID date:date];
-        if (self.theater.functions.count > 0) {
-            self.dataSource.items = self.theater.functions;
+        if ([[self.functionsPageVC.failedDownloads objectAtIndex:self.pageIndex] isEqualToString:kFunctionsFailedDownload]) {
+            self.shouldShowEmptyDataSet = YES;
             [self.tableView reloadData];
-            if (self.refreshControl.refreshing) {
-                [self.refreshControl endRefreshing];
-            }
+            self.tableView.scrollEnabled = YES;
         }
         else {
-            [self downloadTheater];
+            [self.functionsPageVC.failedDownloads replaceObjectAtIndex:self.pageIndex withObject:kFunctionsDownloaded];
+            NSDate *date = [self datePlusDays:self.pageIndex];
+            self.theater = [Theater loadTheaterithTheaterID:self.functionsPageVC.functionsContainerVC.theaterID date:date];
+            if (self.theater.functions.count > 0) {
+                self.dataSource.items = self.theater.functions;
+                [self.tableView reloadData];
+                if (self.refreshControl.refreshing) {
+                    [self.refreshControl endRefreshing];
+                }
+            }
+            else {
+                [self downloadTheater];
+            }
         }
     }
 }
@@ -121,22 +138,17 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
         if (!error) {
             self.theater = theater;
             if (self.theater && self.theater.functions.count > 0) {
+                [self.functionsPageVC.failedDownloads replaceObjectAtIndex:self.pageIndex withObject:kFunctionsDownloaded];
                 self.dataSource.items = self.theater.functions;
             }
             else {
+                [self.functionsPageVC.failedDownloads replaceObjectAtIndex:self.pageIndex withObject:kFunctionsFailedDownload];
                 self.shouldShowEmptyDataSet = YES;
-//                [self alertWithTitle:@"Horarios no disponibles" body:[NSString stringWithFormat:@"¿Visitar página web de %@?",self.theater.name] completeBlock:^{
-//                    WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
-//                    wvc.urlString = self.theater.webURL;
-//                    [self.navigationController pushViewController:wvc animated:YES];
-//                }];
             }
         }
         else {
+            [self.functionsPageVC.failedDownloads replaceObjectAtIndex:self.pageIndex withObject:kFunctionsFailedDownload];
             self.shouldShowEmptyDataSet = YES;
-            [self alertRetryWithCompleteBlock:^{
-                [self getTheaterForceDownload:YES];
-            }];
         }
         self.tableView.scrollEnabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -165,35 +177,6 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
     movieVC.coverImageURL = function.imageURL;
 }
 
-- (void)showTheaterInfo {
-    AnnotationTheater *annotationTheater = [[AnnotationTheater alloc] initWithTheater:self.theater];
-    UIImage *annotationImage = [UIImage imageWithCinemaID:self.theater.cinemaID theaterID:self.theater.theaterID];
-    
-    DoAlertView *alertView = [[DoAlertView alloc] init];
-    alertView.annotation = annotationTheater;
-    alertView.iImage = annotationImage;
-    alertView.nAnimationType = DoTransitionStylePop;
-    alertView.dRound = 2.0;
-    alertView.bDestructive = NO;
-    
-    alertView.nContentMode = DoContentMap;
-    alertView.dLocation = @{@"latitude" : self.theater.latitude, @"longitude" : self.theater.longitude, @"altitude" : @200};
-    [alertView doYesNo:@"Title"
-                body:@"Here’s a snippet of code that illustrates how the whole process works"
-                 yes:^(DoAlertView *alertView) {
-                     
-                     NSLog(@"Yeeeeeeeeeeeees!!!!");
-                     
-                 } no:^(DoAlertView *alertView) {
-                     
-                     NSLog(@"Noooooooooooooo!!!!");
-                     
-                 }];
-
-}
-
-
-
 #pragma mark - Get Functions Date
 
 
@@ -206,7 +189,7 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     
-    NSString *text = @"Please Allow Photo Access";
+    NSString *text = @"Aún no tenemos disponibles los horarios de este día";
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
                                  NSForegroundColorAttributeName: [UIColor darkGrayColor]};
@@ -215,31 +198,31 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 }
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
     
-    NSString *text = @"This allows you to share photos from your library and save photos to your camera roll.";
+    NSString *text = @"¿Quiere visitar la página web de este cine?";
     
     NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
     paragraph.alignment = NSTextAlignmentCenter;
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0],
-                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSForegroundColorAttributeName: [UIColor grayColor],
                                  NSParagraphStyleAttributeName: paragraph};
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
     
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17.0]};
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:20.0],
+                                 NSForegroundColorAttributeName: [UIColor grayColor]};
     
-    return [[NSAttributedString alloc] initWithString:@"Continue" attributes:attributes];
+    return [[NSAttributedString alloc] initWithString:@"Visitar" attributes:attributes];
 }
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    
-    return [UIImage imageNamed:@"LogoImdb"];
+    return [UIImage imageNamed:@"Ghost"];
 }
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
     
-    return [UIColor whiteColor];
+    return [UIColor tableViewColor];
 }
 - (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
     
@@ -251,13 +234,51 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 }
 - (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView {
     
-    return NO;
+    return YES;
 }
 - (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
-    NSLog(@"Data Set Tapped");
+
 }
 - (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView {
-    NSLog(@"Data Set Button Tapped");
+    NSString *actionSheetTitle = @"Abrir enlace en:";
+    NSString *cancelTitle = @"Cancelar";
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:actionSheetTitle
+                                  delegate:self
+                                  cancelButtonTitle:cancelTitle
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"App", @"Safari", nil];
+    
+    if ([self.openInChromeController isChromeInstalled]) {
+        [actionSheet addButtonWithTitle:@"Chrome"];
+    }
+    
+    [actionSheet showInView:self.view];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+    switch (buttonIndex) {
+        case 0:
+            wvc.urlString = self.theater.webURL;
+            [self.navigationController pushViewController:wvc animated:YES];
+            break;
+        case 1:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.theater.webURL]];
+            break;
+        case 3:
+            if ([self.openInChromeController isChromeInstalled]) {
+                [self.openInChromeController openInChrome:[NSURL URLWithString:self.theater.webURL]
+                                          withCallbackURL:nil
+                                             createNewTab:YES];
+            }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

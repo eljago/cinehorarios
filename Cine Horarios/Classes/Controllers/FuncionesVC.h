@@ -13,5 +13,6 @@
 
 @property (nonatomic, strong) FunctionsPageVC *functionsPageVC;
 @property (nonatomic, assign) NSInteger pageIndex;
+@property (nonatomic, strong) NSString *dateString;
 
 @end

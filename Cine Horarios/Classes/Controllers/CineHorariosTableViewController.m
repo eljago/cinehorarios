@@ -18,8 +18,8 @@
 {
     [super viewDidLoad];
         
-    self.tableView.backgroundColor = [UIColor whiteColor];
-//    self.tableView.backgroundColor = [UIColor midnightBlue];
+//    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = [UIColor tableViewColor];
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;
 }

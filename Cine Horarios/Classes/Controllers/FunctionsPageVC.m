@@ -11,12 +11,11 @@
 #import "UIFont+CH.h"
 #import "UIColor+CH.h"
 #import "NSDate+CH.h"
+#import "FunctionsContainerVC.h"
 
 NSInteger const kNumberOfViewControllers = 7;
 
 @interface FunctionsPageVC () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
-
-@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControlWeek;
 
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, assign) NSInteger nextIndex;
@@ -29,6 +28,8 @@ NSInteger const kNumberOfViewControllers = 7;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.failedDownloads = [@[@"NOT DOWNLOADED", @"NOT DOWNLOADED", @"NOT DOWNLOADED", @"NOT DOWNLOADED", @"NOT DOWNLOADED", @"NOT DOWNLOADED", @"NOT DOWNLOADED"] mutableCopy];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
@@ -48,12 +49,7 @@ NSInteger const kNumberOfViewControllers = 7;
     [self setViewControllers:@[funcionesVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
     self.currentDate = [NSDate date];
-    for (NSInteger i = 0;i<self.segmentedControlWeek.numberOfSegments;i++) {
-        NSDate *date = [self.currentDate dateByAddingTimeInterval:60*60*24*i];
-        NSString *title = [date getShortDateString];
-        [self.segmentedControlWeek setTitle:title forSegmentAtIndex:i];
-    }
-    
+    funcionesVC.dateString = [self.currentDate getShortDateString];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,6 +123,7 @@ willTransitionToViewControllers:(NSArray *)pendingViewControllers {
     
     if(completed){
         self.currentIndex = self.nextIndex;
+        self.functionsContainerVC.pageControl.currentPage = self.currentIndex;
     }
     
     self.nextIndex = 0;
@@ -142,6 +139,7 @@ willTransitionToViewControllers:(NSArray *)pendingViewControllers {
     FuncionesVC *funcionesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FuncionesVC"];
     funcionesVC.functionsPageVC = self;
     funcionesVC.pageIndex = index;
+    funcionesVC.dateString = [[self.currentDate dateByAddingTimeInterval:60*60*24*index] getShortDateString];
     
     return funcionesVC;
 }

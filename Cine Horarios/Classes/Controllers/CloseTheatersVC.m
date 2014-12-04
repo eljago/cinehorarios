@@ -158,7 +158,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     AnnotationTheater *annotation = view.annotation;
 //    functionesVC.theaterName = annotation.title;
 //    functionesVC.theaterID = annotation.theaterID;
-    FunctionsPageVC *functionsPageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionsPageVC"];
+    FunctionsPageVC *functionsPageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionsContainerVC"];
     functionsPageVC.theaterID = annotation.theaterID;
     functionsPageVC.theaterName = annotation.title;
     
