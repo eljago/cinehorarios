@@ -19,11 +19,15 @@
 #import "CastDirectorCell+Person.h"
 #import "Person.h"
 #import "WebVC.h"
+#import "OpenInChromeController.h"
 
-@interface CastVC ()
+@interface CastVC () <UIActionSheetDelegate>
 
 @property (nonatomic, strong) UIFont *fontName;
 @property (nonatomic, strong) UIFont *fontRole;
+
+@property (nonatomic, strong) NSString *imdbCodeSelected;
+@property (nonatomic, strong) OpenInChromeController *openInChromeController;
 @end
 
 @implementation CastVC
@@ -51,6 +55,7 @@
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     
+    self.openInChromeController = [[OpenInChromeController alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -240,28 +245,51 @@
         person = (Person *)self.cast.actors[indexPath.row];
     }
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"AppIMDB"]) {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"imdb:///name/%@/",person.imdbCode]];
-        if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [[UIApplication sharedApplication] openURL:url];
-        }
-        else {
-            NSURL *iTunesURL = [NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=342792525&mt=8"];
-            [[UIApplication sharedApplication] openURL:iTunesURL];
+    NSString *actionSheetTitle = @"Abrir enlace en:";
+    NSString *cancelTitle = @"Cancelar";
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:actionSheetTitle
+                                  delegate:self
+                                  cancelButtonTitle:cancelTitle
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"App", @"Safari", nil];
+    
+    if ([self.openInChromeController isChromeInstalled]) {
+        [actionSheet addButtonWithTitle:@"Chrome"];
+    }
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"imdb:///name/%@/",person.imdbCode]];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [actionSheet addButtonWithTitle:@"App Imdb"];
+    }
+    
+    self.imdbCodeSelected = person.imdbCode;
+    [actionSheet showInView:self.view];
+}
+#pragma mark - UIActionSheetDelegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",self.imdbCodeSelected];
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    
+    if ([buttonTitle isEqualToString:@"App"]) {
+        WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+        wvc.urlString = urlString;
+        [self.navigationController pushViewController:wvc animated:YES];
+    }
+    else if ([buttonTitle isEqualToString:@"Safari"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
+    else if ([buttonTitle isEqualToString:@"Chrome"]) {
+        if ([self.openInChromeController isChromeInstalled]) {
+            [self.openInChromeController openInChrome:[NSURL URLWithString:urlString]
+                                      withCallbackURL:nil
+                                         createNewTab:YES];
         }
     }
-    else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"Safari"]) {
-        NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
-        NSURL *url = [NSURL URLWithString:urlString];
+    else if ([buttonTitle isEqualToString:@"App Imdb"]) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"imdb:///name/%@/",self.imdbCodeSelected]];
         [[UIApplication sharedApplication] openURL:url];
-    }
-//    else if ([[userDefaults stringForKey:@"CHOpenLinksIMDB"] isEqualToString:@"InApp"]) {
-    else {
-        NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
-        WebVC *webVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
-        webVC.urlString = urlString;
-        [self.navigationController pushViewController:webVC animated:YES];
     }
 }
 

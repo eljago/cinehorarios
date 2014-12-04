@@ -1326,53 +1326,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6s-JF-KWl" userLabel="Paginas Web Terceros">
-                                <rect key="frame" x="8" y="233" width="304" height="159"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Abrir Imdb en:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="285" translatesAutoresizingMaskIntoConstraints="NO" id="531-N3-sTe">
-                                        <rect key="frame" x="10" y="86" width="285" height="23"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="jLJ-5o-WCR">
-                                        <rect key="frame" x="32" y="114" width="240" height="29"/>
-                                        <segments>
-                                            <segment title="Safari"/>
-                                            <segment title="En App"/>
-                                            <segment title="App IMDB"/>
-                                        </segments>
-                                        <color key="tintColor" red="0.1718567143459645" green="0.33302732595008144" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="segmentedControlSelected:" destination="ER5-J4-dU2" eventType="valueChanged" id="NS6-qG-3ZT"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Abrir Metacritic y Rotten Tomatoes en:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="285" translatesAutoresizingMaskIntoConstraints="NO" id="Eq2-TU-ZLJ">
-                                        <rect key="frame" x="10" y="6" width="285" height="46"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="PBT-fX-fQr">
-                                        <rect key="frame" x="32" y="51" width="240" height="29"/>
-                                        <segments>
-                                            <segment title="Safari"/>
-                                            <segment title="En App"/>
-                                        </segments>
-                                        <color key="tintColor" red="0.1718567143459645" green="0.33302732595008144" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="segmentedControlSelected:" destination="ER5-J4-dU2" eventType="valueChanged" id="fmd-WT-1nE"/>
-                                        </connections>
-                                    </segmentedControl>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Páginas web de terceros:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oxp-ey-Dm0">
-                                <rect key="frame" x="20" y="204" width="195" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajO-AM-ANL" userLabel="close view">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1429,8 +1382,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="closeView" destination="ajO-AM-ANL" id="38c-gf-8iH"/>
-                        <outlet property="controlIMDB" destination="jLJ-5o-WCR" id="mSE-Jz-mhy"/>
-                        <outlet property="controlMetacriticRotten" destination="PBT-fX-fQr" id="193-ZP-KCD"/>
                         <outlet property="customPicker" destination="LZO-wS-Fph" id="53S-7m-XB6"/>
                         <outlet property="customPickerBottomSpace" destination="6UM-68-HLl" id="1TE-EG-EsK"/>
                         <outlet property="indicatorImageView" destination="V0A-BT-o7a" id="pGp-f8-f5h"/>

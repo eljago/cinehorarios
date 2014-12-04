@@ -54,7 +54,7 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
 {
     [super viewDidLoad];
     
-    self.OpenInChromeController = [[OpenInChromeController alloc] init];
+    self.openInChromeController = [[OpenInChromeController alloc] init];
     
     [self setupDataSource];
     
@@ -259,25 +259,23 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
 #pragma mark - UIActionSheetDelegate
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
-    switch (buttonIndex) {
-        case 0:
-            wvc.urlString = self.theater.webURL;
-            [self.navigationController pushViewController:wvc animated:YES];
-            break;
-        case 1:
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.theater.webURL]];
-            break;
-        case 3:
-            if ([self.openInChromeController isChromeInstalled]) {
-                [self.openInChromeController openInChrome:[NSURL URLWithString:self.theater.webURL]
-                                          withCallbackURL:nil
-                                             createNewTab:YES];
-            }
-            break;
-            
-        default:
-            break;
+    
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    
+    if ([buttonTitle isEqualToString:@"App"]) {
+        WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+        wvc.urlString = self.theater.webURL;
+        [self.navigationController pushViewController:wvc animated:YES];
+    }
+    else if ([buttonTitle isEqualToString:@"Safari"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.theater.webURL]];
+    }
+    else if ([buttonTitle isEqualToString:@"Chrome"]) {
+        if ([self.openInChromeController isChromeInstalled]) {
+            [self.openInChromeController openInChrome:[NSURL URLWithString:self.theater.webURL]
+                                      withCallbackURL:nil
+                                         createNewTab:YES];
+        }
     }
 }
 
