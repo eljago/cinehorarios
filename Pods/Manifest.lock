@@ -1,11 +1,11 @@
 PODS:
   - AFNetworking (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
+    - AFNetworking/NSURLConnection (= 2.4.1)
+    - AFNetworking/NSURLSession (= 2.4.1)
+    - AFNetworking/Reachability (= 2.4.1)
+    - AFNetworking/Security (= 2.4.1)
+    - AFNetworking/Serialization (= 2.4.1)
+    - AFNetworking/UIKit (= 2.4.1)
   - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -23,11 +23,11 @@ PODS:
   - DACircularProgress (2.2.0)
   - DZNEmptyDataSet (1.4.1)
   - GoogleAnalytics-iOS-SDK (3.10):
-    - GoogleAnalytics-iOS-SDK/Core
+    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
   - Harpy (3.0.0)
   - Mantle (1.5.1):
-    - Mantle/extobjc
+    - Mantle/extobjc (= 1.5.1)
   - Mantle/extobjc (1.5.1)
   - MBProgressHUD (0.9)
   - MWPhotoBrowser (1.4.1):
@@ -39,7 +39,7 @@ PODS:
   - PSTCollectionView (1.2.3)
   - REMenu (1.10)
   - SDWebImage (3.7.1):
-    - SDWebImage/Core
+    - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
   - SpinKit (1.2.0)
   - UIActivityIndicator-for-SDWebImage (1.2):
@@ -73,4 +73,4 @@ SPEC CHECKSUMS:
   SpinKit: 11fa465172473ce3d59a80bf0449020b850e5229
   UIActivityIndicator-for-SDWebImage: 8bd92c15280fbe54816448c6b14674145eee05c7
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0
