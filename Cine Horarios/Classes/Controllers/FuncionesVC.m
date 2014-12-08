@@ -87,11 +87,11 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
-    NSInteger height = [UIView heightForHeaderViewWithText:self.functionsPageVC.functionsContainerVC.theaterName];
+    NSInteger height = [UIView heightForHeaderViewWithText:self.functionsPageVC.functionsContainerVC.theater.name];
     return [UIView headerViewForText:[self.dateString capitalizedString] textAlignment:NSTextAlignmentCenter height:height];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [UIView heightForHeaderViewWithText:self.functionsPageVC.functionsContainerVC.theaterName];
+    return [UIView heightForHeaderViewWithText:self.functionsPageVC.functionsContainerVC.theater.name];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -115,7 +115,9 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
         else {
             [self.functionsPageVC.failedDownloads replaceObjectAtIndex:self.pageIndex withObject:kFunctionsDownloaded];
             NSDate *date = [self datePlusDays:self.pageIndex];
-            self.theater = [Theater loadTheaterithTheaterID:self.functionsPageVC.functionsContainerVC.theaterID date:date];
+            self.theater = [Theater loadTheaterWithTheaterID:self.functionsPageVC.functionsContainerVC.theater.theaterID date:date];
+            NSLog(@"%@",self.theater.name);
+            NSLog(@"%@",self.theater.webURL);
             if (self.theater.functions.count > 0) {
                 self.dataSource.items = self.theater.functions;
                 [self.tableView reloadData];
@@ -156,7 +158,7 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
             [self.refreshControl endRefreshing];
         }
         [self.tableView reloadData];
-    } theaterID:self.functionsPageVC.functionsContainerVC.theaterID date:date];
+    } theaterID:self.functionsPageVC.functionsContainerVC.theater.theaterID date:date];
 }
 
 -(void)refreshData {
@@ -264,15 +266,15 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
     
     if ([buttonTitle isEqualToString:@"App"]) {
         WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
-        wvc.urlString = self.theater.webURL;
+        wvc.urlString = self.functionsPageVC.functionsContainerVC.theater.webURL;
         [self.navigationController pushViewController:wvc animated:YES];
     }
     else if ([buttonTitle isEqualToString:@"Safari"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.theater.webURL]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.functionsPageVC.functionsContainerVC.theater.webURL]];
     }
     else if ([buttonTitle isEqualToString:@"Chrome"]) {
         if ([self.openInChromeController isChromeInstalled]) {
-            [self.openInChromeController openInChrome:[NSURL URLWithString:self.theater.webURL]
+            [self.openInChromeController openInChrome:[NSURL URLWithString:self.functionsPageVC.functionsContainerVC.theater.webURL]
                                       withCallbackURL:nil
                                          createNewTab:YES];
         }

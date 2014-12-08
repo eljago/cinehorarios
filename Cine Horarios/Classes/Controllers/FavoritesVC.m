@@ -134,7 +134,12 @@
     NSArray *values = [favorites allValues];
     for (int i=0;i<[favorites count];i++){
         NSError *error = nil;
-        NSDictionary *dict = @{@"theaterID": [NSNumber numberWithInt:[[keys objectAtIndex:i] intValue]], @"name": [values objectAtIndex:i]};
+        NSInteger theaterID = [NSNumber numberWithInt:[[keys objectAtIndex:i] intValue]];
+        NSString *theaterName = [values objectAtIndex:i];
+        NSString *theaterWebURL = [values objectat]
+        NSDictionary *dict = @{@"theaterID": theaterID,
+                               @"name": theaterName,
+                               @"webURL": theaterWebURL};
         Theater *theater = [Theater modelWithDictionary:dict error:&error];
         [mutableTheaters insertObject:theater atIndex:i];
     }
@@ -176,8 +181,7 @@
     FunctionsContainerVC *functionsContainerVC = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.favoriteTheaters[indexPath.row];
-    functionsContainerVC.theaterID = theater.theaterID;
-    functionsContainerVC.theaterName = theater.name;
+    functionsContainerVC.theater = theater;
 }
 
 @end

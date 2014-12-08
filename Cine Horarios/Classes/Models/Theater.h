@@ -23,7 +23,7 @@
 @property (nonatomic, strong, readonly) NSArray *functions;
 
 + (void)getTheaterWithBlock:(void (^)(Theater *theater, NSError *error))block theaterID:(NSUInteger )theaterID date:(NSDate *)date;
-+ (id)loadTheaterithTheaterID:(NSUInteger)theaterID date:(NSDate *)date;
++ (id)loadTheaterWithTheaterID:(NSUInteger)theaterID date:(NSDate *)date;
 + (void)getMovieTheatersWithBlock:(void (^)(NSArray *theaters, NSError *error))block movieID:(NSUInteger )movieID;
 
 @end

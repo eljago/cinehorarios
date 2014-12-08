@@ -163,8 +163,7 @@
     FunctionsContainerVC *functionsContainerVC = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.cinema.theaters[indexPath.row];
-    functionsContainerVC.theaterID = theater.theaterID;
-    functionsContainerVC.theaterName = theater.name;
+    functionsContainerVC.theater = theater;
 }
 
 @end

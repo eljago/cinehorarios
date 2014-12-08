@@ -11,6 +11,7 @@
 #import "FileHandler.h"
 #import "GAI+CH.h"
 #import "FunctionsPageVC.h"
+#import "Theater.h"
 
 @interface FunctionsContainerVC ()
 
@@ -31,10 +32,10 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    self.theaterNameLabel.text = self.theaterName;
+    self.theaterNameLabel.text = self.theater.name;
     
     [GAI trackPage:@"FUNCIONES"];
-    [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Complejos Visitados" label:self.theaterName];
+    [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Complejos Visitados" label:self.theater.name];
     
     [self createButtonItems];
     [self setupFavorites];
@@ -71,7 +72,7 @@
     
     NSDictionary *dict = [FileHandler getDictionaryInProjectNamed:@"icloud"];
     NSDictionary *favorites = [dict valueForKey:@"Favorites"];
-    NSString *theaterName = [favorites valueForKey:[NSString stringWithFormat:@"%lu",(unsigned long)self.theaterID]];
+    NSString *theaterName = [favorites valueForKey:[NSString stringWithFormat:@"%lu",(unsigned long)self.theater.theaterID]];
     if (theaterName) {
         self.favoriteButtonItem.tintColor = [UIColor whiteColor];
         self.favorite = YES;
@@ -93,8 +94,8 @@
     // Notify the previouse view to save the changes locally
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Toggle Favorite"
                                                         object:self
-                                                      userInfo:@{@"TheaterName": self.theaterName,
-                                                                 @"TheaterID": [NSNumber numberWithInteger:self.theaterID]}];
+                                                      userInfo:@{@"TheaterName": self.theater.name,
+                                                                 @"TheaterID": [NSNumber numberWithInteger:self.theater.theaterID]}];
 }
 
 

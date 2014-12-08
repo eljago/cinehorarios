@@ -18,6 +18,8 @@
 
 #define COMPILE_GEOFARO true
 
+static NSString * const kResetedFavorites = @"ResetedFavorites";
+
 /** GOOGLE ANALYTIC CONSTANTS **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
 static NSString *const kTrackingPreferenceKey = @"allowTracking";
@@ -54,6 +56,28 @@ static int const kGaDispatchPeriod = 30;
     [self setup_icloud_favorites];
     [self setup_appearances];
     [self setupHarpy];
+    
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ( ![userDefaults boolForKey:kResetedFavorites] )
+    {
+        [[NSUbiquitousKeyValueStore defaultStore] setDictionary:nil forKey:@"Favorites"];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsPath = [paths objectAtIndex:0];
+        NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
+        NSFileManager *filemgr = [NSFileManager defaultManager];
+        NSError *error;
+        if ([filemgr removeItemAtPath:plistPath error:&error]) {
+            
+        }
+        else {
+            NSLog(@"%@",error);
+        }
+        
+        // Adding version number to NSUserDefaults for first version:
+        [userDefaults setBool:YES forKey:kResetedFavorites];
+    }
     
     return YES;
 }
@@ -150,8 +174,8 @@ static int const kGaDispatchPeriod = 30;
     }
     [dict setValue:favorites forKey:@"Favorites"];
     
-    NSString *error = nil;
-    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:dict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+    NSError *error = nil;
+    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:dict format:NSPropertyListXMLFormat_v1_0 options:nil error:&error];
     
     if(plistData)
     {

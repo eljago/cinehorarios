@@ -203,7 +203,6 @@
     if ([[segue identifier] isEqualToString:@"MovieShowtimesToMovieFunctions"]) {
         NSInteger row = [self.tableView indexPathForCell:sender].row;
         MovieFunctionsVC *vc = (MovieFunctionsVC *)segue.destinationViewController;
-        vc.theaters = self.theaters[row];
         vc.movieID = self.movieID;
         vc.movieName = self.movieName;
     }

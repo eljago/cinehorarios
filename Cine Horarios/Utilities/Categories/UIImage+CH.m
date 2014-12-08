@@ -35,7 +35,7 @@
             return [UIImage imageNamed:@"AnnotationCineplanet"];
             break;
         case 4:
-            return [UIImage imageNamed:@"AnnotationCinemundo"];
+            return [UIImage imageNamed:@"AnnotationCineHoyts"];
             break;
         case 5:
             switch (theaterID) {
@@ -65,6 +65,55 @@
             break;
         case 7:
             return [UIImage imageNamed:@"AnnotationCineStar"];
+            break;
+            
+        default:
+            break;
+    }
+    return nil;
+}
+
++ (UIImage *)cinemaImageWithCinemaID:(NSUInteger )cinemaID theaterID:(NSUInteger)theaterID {
+    switch (cinemaID) {
+        case 1:
+            return [UIImage imageNamed:@"LogoCinemark"];
+            break;
+        case 2:
+            return [UIImage imageNamed:@"LogoCineHoyts"];
+            break;
+        case 3:
+            return [UIImage imageNamed:@"LogoCineplanet"];
+            break;
+        case 4:
+            return [UIImage imageNamed:@"LogoCineHoyts"];
+            break;
+        case 5:
+            switch (theaterID) {
+                case 46:
+                    return [UIImage imageNamed:@"LogoArteAlameda"];
+                    break;
+                case 47:
+                    return [UIImage imageNamed:@"LogoNormandie"];
+                    break;
+                case 51:
+                    return [UIImage imageNamed:@"LogoElBiografo"];
+                    break;
+                case 59:
+                    return [UIImage imageNamed:@"LogoCineAntay"];
+                    break;
+                case 60:
+                    return [UIImage imageNamed:@"LogoMuseoMemoria"];
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+        case 6:
+            return [UIImage imageNamed:@"LogoCinePavilion"];
+            break;
+        case 7:
+            return [UIImage imageNamed:@"LogoCineStar"];
             break;
             
         default:

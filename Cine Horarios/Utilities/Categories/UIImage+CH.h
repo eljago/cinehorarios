@@ -12,5 +12,6 @@
 
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
 + (UIImage *)imageWithCinemaID:(NSUInteger )cinemaID theaterID:(NSUInteger)theaterID;
++ (UIImage *)cinemaImageWithCinemaID:(NSUInteger )cinemaID theaterID:(NSUInteger)theaterID;
 
 @end

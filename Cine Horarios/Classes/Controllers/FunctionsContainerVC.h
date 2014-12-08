@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Theater;
 @interface FunctionsContainerVC : UIViewController
 
-@property (nonatomic, strong) NSString *theaterName;
-@property (nonatomic, assign) NSUInteger theaterID;
 @property (nonatomic, assign) NSUInteger cinemaID;
+@property (nonatomic, strong) Theater *theater;
 @property (nonatomic, weak) IBOutlet UIPageControl *pageControl;
 
 @end

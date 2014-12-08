@@ -16,7 +16,7 @@
 #import "MWPhoto.h"
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+CH.h"
-#import "MovieCinemasVC.h"
+#import "MovieFunctionsVC.h"
 #import "VideoVC.h"
 #import "GAI+CH.h"
 #import "UIView+CH.h"
@@ -710,7 +710,7 @@
 #pragma mark - go showtimes
 
 - (void)goToShowtimes:(id) sender {
-    MovieCinemasVC *vc = (MovieCinemasVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"MovieCinemasVC"];
+    MovieFunctionsVC *vc = (MovieFunctionsVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"MovieFunctionsVC"];
     vc.movieID = self.movie.movieID;
     vc.movieName = self.movie.name;
     [self.navigationController pushViewController:vc animated:YES];
@@ -723,14 +723,14 @@
         CastVC *castVC = [segue destinationViewController];
         [self setPropertyValuesToCastVC:castVC];
     }
-    else if ([[segue identifier] isEqualToString:@"MovieToShowtimes"]){
-        MovieCinemasVC *vc = (MovieCinemasVC *)[segue destinationViewController];
-        vc.movieID = self.movie.movieID;
-        vc.movieName = self.movie.name;
-    }
     else if ([[segue identifier] isEqualToString:@"MovieToVideos"]) {
         VideoVC *videoVC = segue.destinationViewController;
         videoVC.videos = self.movie.videos;
+    }
+    else if ([[segue identifier] isEqualToString:@"MovieToMovieFunctions"]) {
+        MovieFunctionsVC *vc = (MovieFunctionsVC *)segue.destinationViewController;
+        vc.movieID = self.movieID;
+        vc.movieName = self.movieName;
     }
 }
 

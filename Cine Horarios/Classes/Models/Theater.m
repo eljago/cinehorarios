@@ -51,7 +51,7 @@ NSString *const kShowTheatersPath = @"/api/shows/%lu/show_theaters.json";
     }];
 }
 
-+ (id)loadTheaterithTheaterID:(NSUInteger)theaterID date:(NSDate *) date
++ (id)loadTheaterWithTheaterID:(NSUInteger)theaterID date:(NSDate *) date
 {
     return [self loadIfOlderThanThreeHoursFromPath:[self storagePathForTheaterID:theaterID date: date]];
 }

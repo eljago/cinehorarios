@@ -8,6 +8,7 @@
 
 #import "BasicCell+Theater.h"
 #import "Theater.h"
+#import "UIImage+CH.h"
 
 @implementation BasicCell (Theater)
 
@@ -16,23 +17,7 @@
 }
 -(void) configureForTheater:(Theater *)theater cinemaID: (NSUInteger)cinemaID{
     self.mainLabel.text = theater.name;
-    if (cinemaID == 5) {
-        if (theater.theaterID == 46) {
-            self.theaterImageView.image = [UIImage imageNamed:@"LogoArteAlameda"];
-        }
-        if (theater.theaterID == 47) {
-            self.theaterImageView.image = [UIImage imageNamed:@"LogoNormandie"];
-        }
-        if (theater.theaterID == 51) {
-            self.theaterImageView.image = [UIImage imageNamed:@"LogoElBiografo"];
-        }
-        if (theater.theaterID == 60) {
-            self.theaterImageView.image = [UIImage imageNamed:@"LogoMuseoMemoria"];
-        }
-        if (theater.theaterID == 59) {
-            self.theaterImageView.image = [UIImage imageNamed:@"LogoCineAntay"];
-        }
-    }
+    self.theaterImageView.image = [UIImage cinemaImageWithCinemaID:cinemaID theaterID:theater.theaterID];
 }
 
 + (CGFloat) heightForRowWithTheater:(Theater *)theater tableFont:(UIFont *)font{

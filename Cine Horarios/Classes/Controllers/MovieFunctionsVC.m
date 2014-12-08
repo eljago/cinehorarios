@@ -15,10 +15,14 @@
 #import "UIColor+CH.h"
 #import "GAI+CH.h"
 #import "UIView+CH.h"
-#import "UIViewController+DoAlertView.h"
+#import "BasicItemImage.h"
+#import "UIImage+CH.h"
+#import "ImageViewTableHeader.h"
 
 @interface MovieFunctionsVC ()
+@property (nonatomic, strong) NSMutableArray *favoriteTheaters;
 @property (nonatomic, strong) NSArray *theaterFuctions;
+@property (nonatomic, strong) NSMutableArray *cinemas;
 @property (nonatomic, strong) UIFont *tableFont;
 @property (nonatomic, strong) UIFont *showtimesFonts;
 @end
@@ -46,7 +50,13 @@
     
     self.tableView.separatorInset = UIEdgeInsetsMake(0, self.view.bounds.size.width, 0, 0);
     
-    [self downloadMovieFunctions];
+    [self loadCinemas];
+    // loads favorite theaters
+    [self loadFavorites];
+    
+    if (self.favoriteTheaters.count > 0) {
+        [self downloadMovieFunctions];
+    }
 }
 -(void) downloadMovieFunctions{
     self.tableView.scrollEnabled = NO;
@@ -55,16 +65,17 @@
     [Function getMovieTheatersFavoritesWithBlock:^(NSArray *theaterFunctions, NSError *error) {
         if (!error) {
             self.theaterFuctions = theaterFunctions;
-            [self.tableView reloadData];
-            self.tableView.scrollEnabled = YES;
             
             self.tableView.separatorInset = UIEdgeInsetsMake(0, 15., 0, 0);
-            self.tableView.scrollEnabled = YES;
+
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"cinemaID" ascending:YES];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            self.theaterFuctions = [self.theaterFuctions sortedArrayUsingDescriptors:sortDescriptors];
+            
+            [self.tableView reloadData];
         }
         else {
-            [self alertRetryWithCompleteBlock:^{
-                [self downloadMovieFunctions];
-            }];
+            
         }
         self.tableView.scrollEnabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -72,7 +83,7 @@
             [self.refreshControl endRefreshing];
         }
         
-    } movieID:self.movieID theaters:self.theaters];
+    } movieID:self.movieID theaters:self.favoriteTheaters];
 }
 
 -(void)refreshData {
@@ -113,7 +124,7 @@
         if (!function.functionTypes || [function.functionTypes isEqualToString:@""]) {
             typesHeight = 0.;
         }
-        CGFloat totalHeight = 10.0f + typesHeight + 5.0f + showtimesLabelRect.size.height + 10.0f;
+        CGFloat totalHeight = 10.0f + typesHeight + 10.0f + showtimesLabelRect.size.height + 10.0f;
         
         return totalHeight;
     }
@@ -143,7 +154,7 @@
     
     UILabel *functionTypes = (UILabel *)[cell viewWithTag:1];
     UILabel *functionShowtimes = (UILabel *)[cell viewWithTag:2];
-    functionTypes.text = function.functionTypes;
+    functionTypes.text = [function.functionTypes stringByAppendingString:@":"];
     functionShowtimes.text = function.showtimes;
     functionTypes.font = self.tableFont;
     functionShowtimes.font = self.showtimesFonts;
@@ -151,18 +162,52 @@
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
-    Theater *theater = self.theaterFuctions[section];
-    
-    return [UIView heightForHeaderViewWithText:theater.name];
+    return 50.0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     Theater *theater = self.theaterFuctions[section];
-    NSInteger height = [UIView heightForHeaderViewWithText:theater.name];
+    BasicItemImage *cinema = self.cinemas[section];
+    ImageViewTableHeader *headerView = [[[NSBundle mainBundle] loadNibNamed:@"ImageViewTableHeader" owner:self options:nil] lastObject];
+    headerView.imageView.image = [UIImage imageWithCinemaID:cinema.itemID theaterID:theater.theaterID];
+    headerView.textLabel.text = theater.name;
+    return headerView;
+}
+
+
+- (void) loadFavorites {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+    {
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+        NSDictionary *favorites = [dict valueForKey:@"Favorites"];
+        self.favoriteTheaters = [[NSMutableArray alloc] initWithCapacity:[favorites count]];
+        NSArray *keys = [favorites allKeys];
+        NSArray *values = [favorites allValues];
+        for (int i=0;i<[favorites count];i++){
+            NSDictionary *theaterDictionary = @{@"theaterID": [NSNumber numberWithInt:[[keys objectAtIndex:i] intValue]],
+                                                @"name": [values objectAtIndex:i]};
+            Theater *theater = [[Theater alloc] initWithDictionary:theaterDictionary error:NULL];
+            [self.favoriteTheaters insertObject:theater atIndex:i];
+        }
+    }
+    else {
+        self.favoriteTheaters = [NSMutableArray array];
+    }
+}
+- (void) loadCinemas {
     
-    return [UIView headerViewForText:theater.name height:height];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Cinemas" ofType:@"plist"];
+    NSArray *cinemasLocal = [NSArray arrayWithContentsOfFile:filePath];
+    self.cinemas = [NSMutableArray array];
+    
+    for (NSDictionary *dict in cinemasLocal) {
+        BasicItemImage *cinema = [MTLJSONAdapter modelOfClass:BasicItem.class fromJSONDictionary:dict error:NULL];
+        [self.cinemas addObject:cinema];
+    }
 }
 
 @end

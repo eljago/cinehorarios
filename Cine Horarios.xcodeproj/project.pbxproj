@@ -23,6 +23,8 @@
 		25C66F921A2ADCC100366BE8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F911A2ADCC100366BE8 /* Crashlytics.framework */; };
 		25C66F931A2ADE1800366BE8 /* GeoFaroKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */; };
 		25C66F941A2ADE1800366BE8 /* GeoFaroKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		25FDAFCC1A32D00B00CDD34E /* ImageViewTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */; };
+		25FDAFCF1A32D40600CDD34E /* ImageViewTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FDAFCE1A32D40600CDD34E /* ImageViewTableHeader.m */; };
 		2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6762D0B3F59498CA72154F7 /* libPods.a */; };
 		3D29981517E5AA28001A371D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981417E5AA28001A371D /* UIKit.framework */; };
 		3D29981717E5AA33001A371D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981617E5AA33001A371D /* SystemConfiguration.framework */; };
@@ -163,6 +165,9 @@
 		25C66F851A2AD71C00366BE8 /* ServiciosGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ServiciosGeofaro.plist; path = Geofarok/ServiciosGeofaro.plist; sourceTree = "<group>"; };
 		25C66F911A2ADCC100366BE8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		25F41A661A09F661009C4805 /* Cine Horarios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cine Horarios.entitlements"; sourceTree = "<group>"; };
+		25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewTableHeader.xib; sourceTree = "<group>"; };
+		25FDAFCD1A32D40600CDD34E /* ImageViewTableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageViewTableHeader.h; path = Classes/Views/Nibs/ImageViewTableHeader.h; sourceTree = "<group>"; };
+		25FDAFCE1A32D40600CDD34E /* ImageViewTableHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageViewTableHeader.m; path = Classes/Views/Nibs/ImageViewTableHeader.m; sourceTree = "<group>"; };
 		385B73052F46F87FCCF22877 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3D29981417E5AA28001A371D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D29981617E5AA33001A371D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -730,6 +735,9 @@
 			isa = PBXGroup;
 			children = (
 				6EC0065718DC7BFD003DECC8 /* MenuCustomView.xib */,
+				25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */,
+				25FDAFCD1A32D40600CDD34E /* ImageViewTableHeader.h */,
+				25FDAFCE1A32D40600CDD34E /* ImageViewTableHeader.m */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -823,6 +831,7 @@
 				25C66F891A2AD71C00366BE8 /* RegionesGeofaro.plist in Resources */,
 				6EC006D418DC7D67003DECC8 /* Cinemas.plist in Resources */,
 				6EC0072418DC7E84003DECC8 /* Storyboard.storyboard in Resources */,
+				25FDAFCC1A32D00B00CDD34E /* ImageViewTableHeader.xib in Resources */,
 				6EC006E618DC7DCE003DECC8 /* check.png in Resources */,
 				6EC006E418DC7DCE003DECC8 /* check_black.png in Resources */,
 				6EC006EB18DC7DCE003DECC8 /* close@2x.png in Resources */,
@@ -910,6 +919,7 @@
 				6EC0061618DC7AE1003DECC8 /* FileHandler.m in Sources */,
 				6EC0062F18DC7B77003DECC8 /* BillboardCell+BasicMovie.m in Sources */,
 				6EC0064F18DC7BC6003DECC8 /* CastDirectorCell.m in Sources */,
+				25FDAFCF1A32D40600CDD34E /* ImageViewTableHeader.m in Sources */,
 				6EC0068C18DC7CBB003DECC8 /* FuncionesVC.m in Sources */,
 				6EC006F418DC7DDD003DECC8 /* UIAlertView+NSCookbook.m in Sources */,
 				6EC006F318DC7DDD003DECC8 /* RFRateMe.m in Sources */,

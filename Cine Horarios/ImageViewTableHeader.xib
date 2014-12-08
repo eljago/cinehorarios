@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ImageViewTableHeader">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZBu-Q0-Vvf">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="ZBu-Q0-Vvf" secondAttribute="height" multiplier="1:1" id="FAU-sV-FtG"/>
+                        <constraint firstAttribute="width" constant="40" id="Fck-Re-bh8"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="FAU-sV-FtG"/>
+                            <exclude reference="Fck-Re-bh8"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="FAU-sV-FtG"/>
+                            <include reference="Fck-Re-bh8"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTa-x7-9sc">
+                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="ZBu-Q0-Vvf" secondAttribute="centerY" id="XvF-zH-vHX"/>
+                <constraint firstItem="LTa-x7-9sc" firstAttribute="leading" secondItem="ZBu-Q0-Vvf" secondAttribute="trailing" constant="16" id="a7h-g1-tbH"/>
+                <constraint firstAttribute="trailing" secondItem="LTa-x7-9sc" secondAttribute="trailing" constant="8" id="lYd-j4-DE8"/>
+                <constraint firstAttribute="centerY" secondItem="LTa-x7-9sc" secondAttribute="centerY" constant="0.5" id="o4W-6M-9VF"/>
+                <constraint firstItem="ZBu-Q0-Vvf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="vv2-SM-Iii"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="ZBu-Q0-Vvf"/>
+                    <exclude reference="LTa-x7-9sc"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="XvF-zH-vHX"/>
+                    <exclude reference="vv2-SM-Iii"/>
+                    <exclude reference="a7h-g1-tbH"/>
+                    <exclude reference="lYd-j4-DE8"/>
+                    <exclude reference="o4W-6M-9VF"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=compact">
+                <mask key="subviews">
+                    <include reference="ZBu-Q0-Vvf"/>
+                    <include reference="LTa-x7-9sc"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="XvF-zH-vHX"/>
+                    <include reference="vv2-SM-Iii"/>
+                    <include reference="a7h-g1-tbH"/>
+                    <include reference="lYd-j4-DE8"/>
+                    <include reference="o4W-6M-9VF"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="imageView" destination="ZBu-Q0-Vvf" id="Q4d-IZ-fPC"/>
+                <outlet property="textLabel" destination="LTa-x7-9sc" id="2DC-Je-3K1"/>
+            </connections>
+            <point key="canvasLocation" x="878" y="518"/>
+        </view>
+    </objects>
+</document>
