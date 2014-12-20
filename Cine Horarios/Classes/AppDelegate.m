@@ -15,10 +15,16 @@
 #import "UIFont+CH.h"
 #import "Harpy.h"
 #import <Crashlytics/Crashlytics.h>
+#import "NSArray+FKBMap.h"
+#import "FavoritesManager.h"
+#import "Theater.h"
 
-#define COMPILE_GEOFARO true
+#define COMPILE_GEOFARO false
 
 static NSString * const kResetedFavorites = @"ResetedFavorites";
+static NSString * const kFavorites = @"Favorites";
+static NSString * const kNewFavorites = @"NewFavorites";
+static NSString * const kFavoriteIds = @"FavoriteIds";
 
 /** GOOGLE ANALYTIC CONSTANTS **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
@@ -36,6 +42,7 @@ static int const kGaDispatchPeriod = 30;
 {
     // CRASHLYTICS
     [Crashlytics startWithAPIKey:@"3a7f665fa908b2b3200d0c3d1e3faef88c20af23"];
+    
 
 #if COMPILE_GEOFARO
     miLaunchOptions = launchOptions;
@@ -56,28 +63,6 @@ static int const kGaDispatchPeriod = 30;
     [self setup_icloud_favorites];
     [self setup_appearances];
     [self setupHarpy];
-    
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if ( ![userDefaults boolForKey:kResetedFavorites] )
-    {
-        [[NSUbiquitousKeyValueStore defaultStore] setDictionary:nil forKey:@"Favorites"];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsPath = [paths objectAtIndex:0];
-        NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
-        NSFileManager *filemgr = [NSFileManager defaultManager];
-        NSError *error;
-        if ([filemgr removeItemAtPath:plistPath error:&error]) {
-            
-        }
-        else {
-            NSLog(@"%@",error);
-        }
-        
-        // Adding version number to NSUserDefaults for first version:
-        [userDefaults setBool:YES forKey:kResetedFavorites];
-    }
     
     return YES;
 }
@@ -132,62 +117,47 @@ static int const kGaDispatchPeriod = 30;
 #pragma mark - Notification Methods
 
 -(void) storeDidChange:(NSNotification *)notification{
-    
-    NSDictionary *dict = [[NSUbiquitousKeyValueStore defaultStore] dictionaryRepresentation];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
-    NSError *error = nil;
-    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:dict format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
-    
-    if(plistData)
-    {
-        [plistData writeToFile:plistPath atomically:YES];
+    NSDictionary * userInfo = [notification userInfo];
+    NSInteger reason = [[userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey] integerValue];
+    // 4 reasons:
+    switch (reason) {
+        case NSUbiquitousKeyValueStoreServerChange:
+            // Updated values
+            break;
+        case NSUbiquitousKeyValueStoreInitialSyncChange:
+            // First launch
+            break;
+        case NSUbiquitousKeyValueStoreQuotaViolationChange:
+            // No free space
+            break;
+        case NSUbiquitousKeyValueStoreAccountChange:
+            // iCloud accound changed
+            break;
+        default:
+            break;
     }
-    else
+    NSArray * keys = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangedKeysKey];
+    for (NSString * key in keys)
     {
-        NSLog(@"Error in saveData: %@", [error description]);
+        if ([key isEqualToString:kNewFavorites]) {
+            NSDictionary *dict = [[NSUbiquitousKeyValueStore defaultStore] dictionaryRepresentation];
+            NSArray *theatersIdsICLOUD = [dict objectForKey:kNewFavorites];
+            NSArray *theatersIdsLOCAL = [[FavoritesManager sharedManager] theatersIds];
+            if (![theatersIdsICLOUD isEqualToArray:theatersIdsLOCAL]) {
+                [FavoritesManager prepareForDownloadBySavingToUserDefaultsFavoriteTheatersIds:theatersIdsICLOUD];
+                [FavoritesManager setShouldDownloadFavorites:YES];
+            }
+        }
     }
 }
 
-- (void)didAddNewFavorite:(NSNotification *)notification
+- (void)updateFavorites:(NSNotification *)notification
 {
-    NSDictionary *userInfo = [notification userInfo];
-    NSString *theaterName = [userInfo valueForKey:@"TheaterName"];
-    NSUInteger theaterID = [[userInfo valueForKey:@"TheaterID"] integerValue];
-    NSString *key = [NSString stringWithFormat:@"%lu",(unsigned long)theaterID];
+    NSDictionary *userInfo = notification.userInfo;
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
-    NSMutableDictionary *favorites = [NSMutableDictionary dictionaryWithDictionary:[dict objectForKey:@"Favorites"]];
-    if ([favorites valueForKey:key]) {
-        [favorites removeObjectForKey:key];
-    }
-    else{
-        [favorites setValue:theaterName forKey:key];
-    }
-    if (!dict) {
-        dict = [[NSMutableDictionary alloc] init];
-    }
-    [dict setValue:favorites forKey:@"Favorites"];
-    
-    NSError *error = nil;
-    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:dict format:NSPropertyListXMLFormat_v1_0 options:nil error:&error];
-    
-    if(plistData)
-    {
-        [plistData writeToFile:plistPath atomically:YES];
-    }
-    else
-    {
-        NSLog(@"Error in saveData: %@", error);
-    }
-    
+    NSArray *theatersIds = [userInfo valueForKey:@"TheaterIds"];
     // Update data on the iCloud
-    [[NSUbiquitousKeyValueStore defaultStore] setDictionary:favorites forKey:@"Favorites"];
+    [[NSUbiquitousKeyValueStore defaultStore] setArray:theatersIds  forKey:kNewFavorites];
 }
 
 #pragma mark - Setup Methods
@@ -203,7 +173,7 @@ static int const kGaDispatchPeriod = 30;
     //    }
     // register to observe notifications from the store
     [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector (storeDidChange:)
+                                             selector: @selector(storeDidChange:)
                                                  name: NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                object: [NSUbiquitousKeyValueStore defaultStore]];
     
@@ -213,9 +183,43 @@ static int const kGaDispatchPeriod = 30;
     
     // Observer to catch the local changes
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didAddNewFavorite:)
-                                                 name:@"Toggle Favorite"
+                                             selector:@selector(updateFavorites:)
+                                                 name:@"Update Favorites"
                                                object:nil];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ( ![userDefaults boolForKey:kResetedFavorites] )
+    {
+        [[NSUbiquitousKeyValueStore defaultStore] setDictionary:@{} forKey:kFavorites];
+        [[NSUbiquitousKeyValueStore defaultStore] synchronize];
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsPath = [paths firstObject];
+        NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        if ([fileManager fileExistsAtPath:plistPath]) {
+            // SAVE TO USER DEFAULTS ARRAY OF THEATERS IDS READ FROM THE OLD FILE ICLOUD.PLIST
+            NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+            NSDictionary *favorites = [dict valueForKey:kFavorites];
+            NSArray *keys = [favorites allKeys];
+            keys = [keys fkbMap:^id(id inputItem) {
+                return [NSNumber numberWithInteger:[inputItem integerValue]];
+            }];
+            [FavoritesManager prepareForDownloadBySavingToUserDefaultsFavoriteTheatersIds:keys];
+            
+            // REMOVE ICLOUD.PLIST FILE
+            [fileManager removeItemAtPath:plistPath error:nil];
+        }
+        
+        if ([[[FavoritesManager sharedManager] theatersIds] count]) {
+            // set in userdefaults that the favorite theaters should be downloaded
+            [FavoritesManager setShouldDownloadFavorites:YES];
+        }
+        // SET IN USERDEFAULTS THAT THE FAVORITES HAVE BEEN RESETED
+        [userDefaults setBool:YES forKey:kResetedFavorites];
+    }
 }
 
 - (void)setup_afnetworking

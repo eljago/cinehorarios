@@ -22,6 +22,10 @@
     self.tableView.backgroundColor = [UIColor tableViewColor];
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;
+    
+    
+    // This will remove extra separators from tableview
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -32,9 +36,9 @@
         cell.backgroundColor = [UIColor lighterGrayColor];
     }
 }
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01f;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//    return 0.01f;
+//}
 
 #pragma mark - Interface Orientation
 

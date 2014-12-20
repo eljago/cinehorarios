@@ -8,5 +8,5 @@
 #import "CineHorariosTableViewController.h"
 
 @interface FavoritesVC : CineHorariosTableViewController
-@property (nonatomic, strong) NSMutableArray *favoriteTheaters;
+
 @end

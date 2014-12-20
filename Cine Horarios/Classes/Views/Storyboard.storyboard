@@ -1118,7 +1118,7 @@
                         <viewControllerLayoutGuide type="bottom" id="3oN-aC-qRR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hjf-ch-aKh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEh-9J-1Wj" userLabel="NavExtensionView">
@@ -1152,7 +1152,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-9Q-8IN">
-                                <rect key="frame" x="0.0" y="22" width="320" height="546"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="482"/>
                                 <connections>
                                     <segue destination="9PI-6M-tb1" kind="embed" id="sCt-SN-2Mm"/>
                                 </connections>
@@ -1710,7 +1710,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="NT1-KO-izX"/>
         <segue reference="JSE-a5-e9o"/>
-        <segue reference="jfv-qe-upQ"/>
+        <segue reference="D9o-3Z-sK3"/>
         <segue reference="DOR-G3-Ld5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

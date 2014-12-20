@@ -24,6 +24,8 @@
         }
         _title = dictionary[@"name"];
         _subtitle = dictionary[@"address"];
+        _information = dictionary[@"information"];
+        _webURL = dictionary[@"web_url"];
     }
     
     return self;
@@ -38,7 +40,9 @@
             _coordinate = CLLocationCoordinate2DMake([theater.latitude doubleValue], [theater.longitude doubleValue]);
         }
         _title = theater.address;
-        _subtitle = theater.information;
+        _subtitle = theater.address;
+        _information = theater.information;
+        _webURL = theater.webURL;
     }
     
     return self;

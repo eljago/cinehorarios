@@ -14,11 +14,25 @@
 #import "UIFont+CH.h"
 #import "GAI+CH.h"
 #import "FunctionsContainerVC.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
+#import "FavoritesManager.h"
+#import "UIColor+CH.h"
+#import "UIScrollView+EmptyDataSet.h"
+#import "ImageViewTableHeader.h"
+#import "UIImage+CH.h"
 
-@interface FavoritesVC ()
+static const NSString *kTheatersArray = @"TheatersArray";
+static const NSString *kCinemaDict = @"CinemaDict";
+
+@interface FavoritesVC () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) UIFont *tableFont;
 @property (nonatomic, strong) UIBarButtonItem *buttonEdit;
+@property (nonatomic, assign) BOOL shouldShowEmptyDataSet;
+@property (nonatomic, strong) NSMutableArray *favoriteTheatersSections;
+@property (nonatomic, strong) NSArray *cinemasArray;
 @end
+
 @implementation FavoritesVC
 
 #pragma mark - UIViewController
@@ -35,34 +49,35 @@
                                                object:nil];
     self.buttonEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
     self.navigationItem.leftBarButtonItem = self.buttonEdit;
+    
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Cinemas" ofType:@"plist"];
+    self.cinemasArray = [NSArray arrayWithContentsOfFile:filePath];
 }
 
 // Reload data after coming back from Theater view in case there was an edit
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self loadFavorites];
-    
-    if (self.favoriteTheaters.count == 0) {
-        self.buttonEdit.enabled = NO;
-    }
-    else {
-        self.buttonEdit.enabled = YES;
-    }
-    [self.tableView reloadData];
+    [self getFavoritesForceDownload:NO];
 }
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.favoriteTheatersSections.count;
+}
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.favoriteTheaters.count;
+    return [self.favoriteTheatersSections[section][kTheatersArray] count];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     static NSString *identifier = @"Cell";
     BasicCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    Theater *theater = self.favoriteTheaters[indexPath.row];
+    Theater *theater = self.favoriteTheatersSections[indexPath.section][kTheatersArray][indexPath.row];
     cell.mainLabel.text = theater.name;
 
     return cell;
@@ -76,24 +91,47 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Theater *theater = self.favoriteTheaters[indexPath.row];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Toggle Favorite"
-                                                            object:self
-                                                          userInfo:@{@"TheaterName": theater.name,
-                                                                     @"TheaterID": [NSNumber numberWithInteger:theater.theaterID]}];
-        [self.favoriteTheaters removeObjectAtIndex:indexPath.row];
+        
+        Theater *theater = self.favoriteTheatersSections[indexPath.section][kTheatersArray][indexPath.row];
+        [self.favoriteTheatersSections[indexPath.section][kTheatersArray] removeObjectAtIndex:indexPath.row];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        if ([self.favoriteTheaters count] == 0) {
+        
+        FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
+        [favoritesManager removeTheaterWithTheaterID:theater.theaterID];
+        
+        if ([self.favoriteTheatersSections[indexPath.section][kTheatersArray] count] == 0) {
+            [self.favoriteTheatersSections removeObjectAtIndex:indexPath.section];
+        }
+        
+        if (favoritesManager.favoriteTheaters.count == 0) {
             tableView.editing = NO;
             self.buttonEdit.enabled = NO;
+            self.shouldShowEmptyDataSet = YES;
         }
         else {
             self.buttonEdit.enabled = YES;
         }
+        [self.tableView reloadData];
     }
 }
 
 #pragma mark - UITableViewDelegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 50.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    NSDictionary *cinemaDict = self.favoriteTheatersSections[section][kCinemaDict];
+    Theater *theater = [self.favoriteTheatersSections[section][kTheatersArray] firstObject];
+    ImageViewTableHeader *headerView = [[[NSBundle mainBundle] loadNibNamed:@"ImageViewTableHeader" owner:self options:nil] lastObject];
+    NSInteger cinemaID = [cinemaDict[@"itemID"] integerValue];
+    headerView.imageView.image = [UIImage imageWithCinemaID:cinemaID theaterID:theater.theaterID];
+    headerView.textLabel.text = self.favoriteTheatersSections[section][kCinemaDict][@"name"];
+    return headerView;
+}
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
@@ -102,7 +140,8 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [BasicCell heightForRowWithTheater:self.favoriteTheaters[indexPath.row] tableFont:self.tableFont];
+    FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
+    return [BasicCell heightForRowWithTheater:favoritesManager.favoriteTheaters[indexPath.row] tableFont:self.tableFont];
 }
 
 #pragma mark - FavoritesVC
@@ -118,32 +157,62 @@
 
 #pragma mark Fetch Data
 
-- (void) loadFavorites{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
-    {
-        plistPath = [[NSBundle mainBundle] pathForResource:@"icloud" ofType:@"plist"];
+- (void) getFavoritesForceDownload:(BOOL)forceDownload {
+    if (forceDownload) {
+        [self downloadFavorites];
     }
+    else {
+        if ([FavoritesManager getShouldDownloadFavorites]) {
+            [self downloadFavorites];
+        }
+        else {
+            [self gotDataSoReload];
+        }
+    }
+}
+
+- (void) downloadFavorites {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
+    FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
+    [favoritesManager downloadFavoriteTheatersWithBlock:^(NSError *error) {
+        if (!error) {
+            [self gotDataSoReload];
+        }
+        else {
+            NSLog(@"%@",error.localizedDescription);
+        }
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    }];
+}
+
+- (void) gotDataSoReload {
+    FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
+    if (favoritesManager.favoriteTheaters.count == 0) {
+        self.buttonEdit.enabled = NO;
+        self.shouldShowEmptyDataSet = YES;
+    }
+    else {
+        self.buttonEdit.enabled = YES;
+        [self createFavoriteTheatersSectionsArray];
+    }
+    [self.tableView reloadData];
+}
+
+- (void) createFavoriteTheatersSectionsArray {
+    FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
+    NSMutableArray *favSections = [NSMutableArray new];
     
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    NSDictionary *favorites = [dict valueForKey:@"Favorites"];
-    NSMutableArray *mutableTheaters = [[NSMutableArray alloc] initWithCapacity:[favorites count]];
-    NSArray *keys = [favorites allKeys];
-    NSArray *values = [favorites allValues];
-    for (int i=0;i<[favorites count];i++){
-        NSError *error = nil;
-        NSInteger theaterID = [NSNumber numberWithInt:[[keys objectAtIndex:i] intValue]];
-        NSString *theaterName = [values objectAtIndex:i];
-        NSString *theaterWebURL = [values objectat]
-        NSDictionary *dict = @{@"theaterID": theaterID,
-                               @"name": theaterName,
-                               @"webURL": theaterWebURL};
-        Theater *theater = [Theater modelWithDictionary:dict error:&error];
-        [mutableTheaters insertObject:theater atIndex:i];
+    for (NSDictionary *cinemaDict in self.cinemasArray) {
+        NSInteger cinemaID = [cinemaDict[@"itemID"] integerValue];
+        NSMutableArray *theatersFiltered = [[favoritesManager getTheatersWithCinemaID:cinemaID] mutableCopy];
+        if (theatersFiltered.count > 0) {
+            [favSections addObject:@{
+                                     kCinemaDict: cinemaDict,
+                                     kTheatersArray: theatersFiltered
+                                     }];
+        }
     }
-    self.favoriteTheaters = mutableTheaters;
+    self.favoriteTheatersSections = favSections;
 }
 
 #pragma mark IBActions
@@ -170,18 +239,53 @@
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    FuncionesVC *functionesVC = segue.destinationViewController;
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        Theater *theater = self.favoriteTheaters[indexPath.row];
-//        FunctionsPageVC *functionsPageVC = [segue destinationViewController];
-//        functionsPageVC.theaterID = theater.theaterID;
-//        functionsPageVC.theaterName = theater.name;
-//    functionesVC.theaterID = theater.theaterID;
-//    functionesVC.theaterName = theater.name;
     FunctionsContainerVC *functionsContainerVC = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    Theater *theater = self.favoriteTheaters[indexPath.row];
+    Theater *theater = self.favoriteTheatersSections[indexPath.section][kTheatersArray][indexPath.row];
     functionsContainerVC.theater = theater;
+}
+
+
+
+#pragma mark - Empty Data Set DataSource
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    NSString *text = @"No tiene complejos Favoritos";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    NSString *text = @"Para agregar un complejo a favoritos, toque el corazón en la ventana de horarios.";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:16.0],
+                                 NSForegroundColorAttributeName: [UIColor grayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"FavoritesHint"];
+}
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    return [UIColor tableViewColor];
+}
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    
+    return self.shouldShowEmptyDataSet;
+}
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
+    
+    return YES;
 }
 
 @end

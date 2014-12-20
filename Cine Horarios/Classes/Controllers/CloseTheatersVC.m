@@ -22,6 +22,9 @@
 
 #import "FunctionsPageVC.h"
 
+#import "Theater.h"
+#import "FunctionsContainerVC.h"
+
 NSInteger const kMaxTheaterDistance = 26000;
 NSInteger const kRegionSize = 4000;
 NSInteger const kRegionZoomedSize = 1000;
@@ -154,15 +157,27 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 //    [self zoomMapAtCoordinate:coordinate];
 //}
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-//    FuncionesVC *functionesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FuncionesVC"];
+
     AnnotationTheater *annotation = view.annotation;
-//    functionesVC.theaterName = annotation.title;
-//    functionesVC.theaterID = annotation.theaterID;
-    FunctionsPageVC *functionsPageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionsContainerVC"];
-    functionsPageVC.theaterID = annotation.theaterID;
-    functionsPageVC.theaterName = annotation.title;
+    FunctionsContainerVC *functionsContainerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionsContainerVC"];
     
-    [self.navigationController pushViewController:functionsPageVC animated:YES];
+    NSDictionary *theaterDict = @{
+                                  @"id": [NSNumber numberWithInteger:annotation.theaterID],
+                                  @"cinema_id": [NSNumber numberWithInteger:annotation.cinemaID],
+                                  @"name": annotation.title,
+                                  @"address": annotation.subtitle,
+                                  @"latitude": [NSString stringWithFormat:@"%f",annotation.coordinate.latitude],
+                                  @"longitude": [NSString stringWithFormat:@"%f",annotation.coordinate.longitude],
+                                  @"web_url": annotation.webURL,
+                                  @"information": annotation.information
+                                  };
+    Theater *newTheater = [MTLJSONAdapter modelOfClass:Theater.class
+                                    fromJSONDictionary:theaterDict
+                                                 error:nil];
+    
+    functionsContainerVC.theater = newTheater;
+    
+    [self.navigationController pushViewController:functionsContainerVC animated:YES];
 }
 
 #pragma mark - UITableView
@@ -242,14 +257,26 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    FuncionesVC *functionesVC = segue.destinationViewController;
+    
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     AnnotationTheater *annotation = self.annotations[indexPath.row];
-//    functionesVC.theaterName = annotation.title;
-//    functionesVC.theaterID = annotation.theaterID;
-    FunctionsPageVC *functionsPageVC = [segue destinationViewController];
-    functionsPageVC.theaterID = annotation.theaterID;
-    functionsPageVC.theaterName = annotation.title;
+    
+    NSDictionary *theaterDict = @{
+                                  @"id": [NSNumber numberWithInteger:annotation.theaterID],
+                                  @"cinema_id": [NSNumber numberWithInteger:annotation.cinemaID],
+                                  @"name": annotation.title,
+                                  @"address": annotation.subtitle,
+                                  @"latitude": [NSString stringWithFormat:@"%f",annotation.coordinate.latitude],
+                                  @"longitude": [NSString stringWithFormat:@"%f",annotation.coordinate.longitude],
+                                  @"web_url": annotation.webURL,
+                                  @"information": annotation.information
+                                  };
+    Theater *newTheater = [MTLJSONAdapter modelOfClass:Theater.class
+                                    fromJSONDictionary:theaterDict
+                                                 error:nil];
+    
+    FunctionsContainerVC *functionsContainerVC = [segue destinationViewController];
+    functionsContainerVC.theater = newTheater;
 }
 
 #pragma mark - CloseTheatersVC

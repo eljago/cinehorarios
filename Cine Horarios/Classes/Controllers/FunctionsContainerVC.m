@@ -12,6 +12,8 @@
 #import "GAI+CH.h"
 #import "FunctionsPageVC.h"
 #import "Theater.h"
+#import "FuncionesVC.h"
+#import "FavoritesManager.h"
 
 @interface FunctionsContainerVC ()
 
@@ -22,12 +24,15 @@
 @property (nonatomic, weak) IBOutlet UIView *navBarExtensionView;
 @property (nonatomic, weak) IBOutlet UILabel *theaterNameLabel;
 
+@property (nonatomic, strong) FunctionsPageVC *pageViewController;
+
 @property (nonatomic, assign) BOOL favorite;
 
 @end
 
-@implementation FunctionsContainerVC
-
+@implementation FunctionsContainerVC {
+    BOOL viewAppeared;
+}
 
 -(void)viewDidLoad {
     [super viewDidLoad];
@@ -38,19 +43,27 @@
     [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Complejos Visitados" label:self.theater.name];
     
     [self createButtonItems];
-    [self setupFavorites];
     
     self.pageControl.tintColor = [UIColor lightGrayColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     self.pageControl.backgroundColor = [UIColor clearColor];
     self.navBarExtensionView.backgroundColor = [UIColor navColor];
     self.view.backgroundColor = [UIColor tableViewColor];
+    
+    [self setupFavorites];
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    self.favoriteButtonItem.enabled = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self setupFavorites];
+    if (!viewAppeared) [self setupFavorites];
+    viewAppeared = YES;
 }
 
 #pragma mark Create View
@@ -63,17 +76,15 @@
     
     self.favoriteButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(setFavoriteTheater:)];
     self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
+    self.favoriteButtonItem.enabled = NO;
     
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     
     self.navigationItem.rightBarButtonItems = @[menuButtonItem, self.favoriteButtonItem];
 }
+
 - (void) setupFavorites{
-    
-    NSDictionary *dict = [FileHandler getDictionaryInProjectNamed:@"icloud"];
-    NSDictionary *favorites = [dict valueForKey:@"Favorites"];
-    NSString *theaterName = [favorites valueForKey:[NSString stringWithFormat:@"%lu",(unsigned long)self.theater.theaterID]];
-    if (theaterName) {
+    if ([[FavoritesManager sharedManager] theaterWithTheaterID:self.theater.theaterID]) {
         self.favoriteButtonItem.tintColor = [UIColor whiteColor];
         self.favorite = YES;
     }
@@ -81,32 +92,39 @@
         self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
         self.favorite = NO;
     }
+    self.favoriteButtonItem.enabled = YES;
 }
 
 - (IBAction) setFavoriteTheater:(id)sender{
-    self.favorite = !self.favorite;
-    if (self.favorite) {
-        self.favoriteButtonItem.tintColor = [UIColor whiteColor];
+    FuncionesVC *funcionesVC = [self.pageViewController getCurrentFuncionesVC];
+    Theater *theater = funcionesVC.theater;
+    if (theater) {
+        self.favoriteButtonItem.enabled = NO;
+        [[FavoritesManager sharedManager] toggleTheater:theater withCompletionBlock:^{
+            self.favorite = !self.favorite;
+            if (self.favorite) {
+                self.favoriteButtonItem.tintColor = [UIColor whiteColor];
+            }
+            else{
+                self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
+            }
+            self.favoriteButtonItem.enabled = YES;
+        }];
     }
-    else{
-        self.favoriteButtonItem.tintColor = [UIColor navUnselectedColor];
-    }
-    // Notify the previouse view to save the changes locally
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Toggle Favorite"
-                                                        object:self
-                                                      userInfo:@{@"TheaterName": self.theater.name,
-                                                                 @"TheaterID": [NSNumber numberWithInteger:self.theater.theaterID]}];
 }
 
-
+#pragma mark - Prepare for Segue
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    FunctionsPageVC *functionsPageVC = (FunctionsPageVC *)[segue destinationViewController];
-    functionsPageVC.functionsContainerVC = self;
+    self.pageViewController = (FunctionsPageVC *)[segue destinationViewController];
+    self.pageViewController.functionsContainerVC = self;
 }
+
+#pragma mark - Supported Interface Orientation
 
 -(NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
+
 
 @end

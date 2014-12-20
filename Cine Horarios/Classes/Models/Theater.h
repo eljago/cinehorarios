@@ -25,5 +25,18 @@
 + (void)getTheaterWithBlock:(void (^)(Theater *theater, NSError *error))block theaterID:(NSUInteger )theaterID date:(NSDate *)date;
 + (id)loadTheaterWithTheaterID:(NSUInteger)theaterID date:(NSDate *)date;
 + (void)getMovieTheatersWithBlock:(void (^)(NSArray *theaters, NSError *error))block movieID:(NSUInteger )movieID;
++ (void)getFavoriteTheatersWithBlock:(void (^)(NSArray *theaters, NSError *error))block;
++ (NSArray *) getFavoriteTheatersFromDocuments;
++ (void) saveFavoriteTheatersToDocuments:(NSArray *)favoriteTheaters;
++ (void) setShouldDownloadFavoriteTheaters:(BOOL)shouldDownload;
++ (BOOL) getShouldDownloadFavoriteTheaters;
++ (NSArray *) getFavoriteTheatersIdsArray;
++ (void) saveFavoriteTheatersIdsArray: (NSArray *)favoriteTheatersIdsArray;
++ (void) addOrRemoveTheaterFromFavoriteTheaterIds:(Theater *)theater;
++ (Theater *) getTheaterFromFavoritesInDocumentsWithTheaterID:(NSUInteger)theaterID;
++ (Theater *) getTheaterFromArray:(NSArray *)theatersArray withTheaterID:(NSUInteger)theaterID;
++ (void) removeFromFavoritesInDocumentsTheaterWithTheaterID:(NSUInteger)theaterID;
+- (void) addToFavoriteTheatersInDocuments;
+- (void) addOrRemoveFromFavoritesWithCompletionBlock:(void (^)())completionBlock;
 
 @end

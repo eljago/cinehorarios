@@ -13,6 +13,7 @@
 @property (nonatomic, assign, readonly) NSUInteger storageDuration;
 
 - (void)persistToFile:(NSString *)filePath;
++ (id) loadFromPath:(NSString *)path;
 + (id)loadIfOlderThanThreeHoursFromPath:(NSString *)path;
 + (id)loadIfOlderThanOneWeekFromPath:(NSString *)path;
 + (NSString *)storagePathForPath:(NSString *)path;

@@ -40,7 +40,7 @@ NSString *const kFunctionsDownloaded = @"DOWNLOADED";
 NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
 
 @interface FuncionesVC () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate>
-@property (nonatomic, strong) Theater *theater;
+
 @property (nonatomic, strong) ArrayDataSource *dataSource;
 @property (nonatomic, assign) BOOL shouldShowEmptyDataSet;
 @property (nonatomic, strong) OpenInChromeController *openInChromeController;
@@ -58,6 +58,9 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
     
     [self setupDataSource];
     
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
@@ -70,9 +73,6 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
         [cell configureForFunction:function];
     }];
     self.tableView.dataSource = self.dataSource;
-    
-    self.tableView.emptyDataSetSource = self;
-    self.tableView.emptyDataSetDelegate = self;
 }
 
 #pragma mark - UITableViewDelegate
@@ -107,27 +107,47 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
         [self downloadTheater];
     }
     else {
-        if ([[self.functionsPageVC.failedDownloads objectAtIndex:self.pageIndex] isEqualToString:kFunctionsFailedDownload]) {
-            self.shouldShowEmptyDataSet = YES;
-            [self.tableView reloadData];
-            self.tableView.scrollEnabled = YES;
-        }
-        else {
-            [self.functionsPageVC.failedDownloads replaceObjectAtIndex:self.pageIndex withObject:kFunctionsDownloaded];
-            NSDate *date = [self datePlusDays:self.pageIndex];
-            self.theater = [Theater loadTheaterWithTheaterID:self.functionsPageVC.functionsContainerVC.theater.theaterID date:date];
-            NSLog(@"%@",self.theater.name);
-            NSLog(@"%@",self.theater.webURL);
-            if (self.theater.functions.count > 0) {
-                self.dataSource.items = self.theater.functions;
-                [self.tableView reloadData];
-                if (self.refreshControl.refreshing) {
-                    [self.refreshControl endRefreshing];
+        CHDownloadStatus downloadStatus = [self.functionsPageVC getDownloadStatusForIndex:self.pageIndex];
+        NSDate *date = [self datePlusDays:self.pageIndex];
+        switch (downloadStatus) {
+                
+            case CHDownloadStatusNotDownloaded:
+                self.theater = [Theater loadTheaterWithTheaterID:self.functionsPageVC.functionsContainerVC.theater.theaterID date:date];
+                if (self.theater.functions.count > 0) {
+                    self.dataSource.items = self.theater.functions;
+                    [self.tableView reloadData];
+                    if (self.refreshControl.refreshing) {
+                        [self.refreshControl endRefreshing];
+                    }
                 }
-            }
-            else {
-                [self downloadTheater];
-            }
+                else {
+                    [self downloadTheater];
+                }
+                break;
+                
+            case CHDownloadStatusFailedDownload:
+                self.shouldShowEmptyDataSet = YES;
+                [self.tableView reloadData];
+                self.tableView.scrollEnabled = YES;
+                break;
+                
+            case CHDownloadStatusDownloadSuccessful:
+                self.theater = [Theater loadTheaterWithTheaterID:self.functionsPageVC.functionsContainerVC.theater.theaterID date:date];
+                if (self.theater.functions.count > 0) {
+                    self.dataSource.items = self.theater.functions;
+                    if (self.refreshControl.refreshing) {
+                        [self.refreshControl endRefreshing];
+                    }
+                }
+                else {
+                    self.shouldShowEmptyDataSet = YES;
+                    self.tableView.scrollEnabled = YES;
+                }
+                [self.tableView reloadData];
+                break;
+                
+            default:
+                break;
         }
     }
 }
@@ -140,16 +160,16 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
         if (!error) {
             self.theater = theater;
             if (self.theater && self.theater.functions.count > 0) {
-                [self.functionsPageVC.failedDownloads replaceObjectAtIndex:self.pageIndex withObject:kFunctionsDownloaded];
+                [self.functionsPageVC setDownloadStatus:CHDownloadStatusDownloadSuccessful atIndex:self.pageIndex];
                 self.dataSource.items = self.theater.functions;
             }
             else {
-                [self.functionsPageVC.failedDownloads replaceObjectAtIndex:self.pageIndex withObject:kFunctionsFailedDownload];
+                [self.functionsPageVC setDownloadStatus:CHDownloadStatusDownloadSuccessful atIndex:self.pageIndex];
                 self.shouldShowEmptyDataSet = YES;
             }
         }
         else {
-            [self.functionsPageVC.failedDownloads replaceObjectAtIndex:self.pageIndex withObject:kFunctionsFailedDownload];
+            [self.functionsPageVC setDownloadStatus:CHDownloadStatusFailedDownload atIndex:self.pageIndex];
             self.shouldShowEmptyDataSet = YES;
         }
         self.tableView.scrollEnabled = YES;
@@ -206,7 +226,7 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
     paragraph.alignment = NSTextAlignmentCenter;
     
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0],
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:16.0],
                                  NSForegroundColorAttributeName: [UIColor grayColor],
                                  NSParagraphStyleAttributeName: paragraph};
     

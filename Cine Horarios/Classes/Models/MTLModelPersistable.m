@@ -23,6 +23,18 @@ NSTimeInterval const kDurationOneWeek = 60*60*24*7;
     [data writeToFile:filePath atomically:YES];
 }
 
++ (id) loadFromPath:(NSString *)path {
+    id item = nil;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        item = [[[self class] alloc] initWithCoder:unarchiver];
+        [unarchiver finishDecoding];
+    }
+    return item;
+}
+
 + (id)loadIfOlderThanThreeHoursFromPath:(NSString *)path
 {
     id item = nil;

@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class FunctionsContainerVC;
+typedef NS_ENUM(NSUInteger, CHDownloadStatus) {
+    CHDownloadStatusNotDownloaded,
+    CHDownloadStatusFailedDownload,
+    CHDownloadStatusDownloadSuccessful
+};
+
+@class FunctionsContainerVC, FuncionesVC;
 
 @interface FunctionsPageVC : UIPageViewController
 
@@ -22,6 +28,8 @@
 
 @property (nonatomic, strong) FunctionsContainerVC *functionsContainerVC;
 
-@property (nonatomic, strong) NSMutableArray *failedDownloads;
+- (CHDownloadStatus) getDownloadStatusForIndex:(NSInteger)index;
+- (void) setDownloadStatus:(CHDownloadStatus)downloadStatus atIndex:(NSInteger)index;
+- (FuncionesVC *) getCurrentFuncionesVC;
 
 @end

@@ -22,14 +22,19 @@ NSInteger const kNumberOfViewControllers = 7;
 
 @property (nonatomic, strong) NSDate *currentDate;
 
+@property (nonatomic, strong) NSMutableArray *failedDownloads;
+
 @end
 
 @implementation FunctionsPageVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.failedDownloads = [@[@"NOT DOWNLOADED", @"NOT DOWNLOADED", @"NOT DOWNLOADED", @"NOT DOWNLOADED", @"NOT DOWNLOADED", @"NOT DOWNLOADED", @"NOT DOWNLOADED"] mutableCopy];
+    [NSNumber numberWithBool:NO];
+    self.failedDownloads = [NSMutableArray arrayWithCapacity:kNumberOfViewControllers];
+    for (int i = 0; i<kNumberOfViewControllers; i++) {
+        [self.failedDownloads insertObject:[NSNumber numberWithInteger:CHDownloadStatusNotDownloaded] atIndex:i];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
@@ -55,6 +60,13 @@ NSInteger const kNumberOfViewControllers = 7;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (CHDownloadStatus) getDownloadStatusForIndex:(NSInteger)index {
+    return [[self.failedDownloads objectAtIndex:index] integerValue];
+}
+- (void) setDownloadStatus:(CHDownloadStatus)downloadStatus atIndex:(NSInteger)index {
+    [self.failedDownloads insertObject:[NSNumber numberWithInteger:downloadStatus] atIndex:index];
 }
 
 /*
@@ -142,6 +154,10 @@ willTransitionToViewControllers:(NSArray *)pendingViewControllers {
     funcionesVC.dateString = [[self.currentDate dateByAddingTimeInterval:60*60*24*index] getShortDateString];
     
     return funcionesVC;
+}
+
+- (FuncionesVC *) getCurrentFuncionesVC {
+    return (FuncionesVC *)[self.viewControllers objectAtIndex:self.currentIndex];
 }
 
 

@@ -15,7 +15,7 @@ NSTimeInterval const kMaxImageDurationTime = 60*60*24*7;
 
 + (NSDictionary *) getDictionaryInProjectNamed: (NSString *) plistName{
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *documentsPath = [paths firstObject];
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:[plistName stringByAppendingString:@".plist"]];
     if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
     {

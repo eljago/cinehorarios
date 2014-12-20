@@ -17,6 +17,8 @@
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, assign, readwrite) double distance;
+@property (nonatomic, strong, readonly) NSString *webURL;
+@property (nonatomic, strong, readonly) NSString *information;
 
 - (id)initWithTheater:(Theater *)theater;
 - (id)initWithDictionary:(NSDictionary *)dictionary;

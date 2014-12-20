@@ -7,12 +7,13 @@
 //
 #import "CineHorariosTableViewController.h"
 
-@class BasicItem, FunctionsPageVC;
+@class BasicItem, FunctionsPageVC, Theater;
 
 @interface FuncionesVC : CineHorariosTableViewController
 
 @property (nonatomic, strong) FunctionsPageVC *functionsPageVC;
 @property (nonatomic, assign) NSInteger pageIndex;
 @property (nonatomic, strong) NSString *dateString;
+@property (nonatomic, strong) Theater *theater;
 
 @end

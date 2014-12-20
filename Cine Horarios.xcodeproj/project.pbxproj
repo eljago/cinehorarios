@@ -10,8 +10,8 @@
 		162414A417BC946E00083708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 162414A317BC946E00083708 /* Images.xcassets */; };
 		2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2503D0BD1A1054B200E1876B /* NSDate+CH.m */; };
 		25710C951A0DB3230066864C /* FunctionsPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25710C941A0DB3230066864C /* FunctionsPageVC.m */; };
-		25710C971A0DB4330066864C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25710C961A0DB4330066864C /* StoreKit.framework */; };
 		257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */; };
+		259550421A3DD4380052A8FB /* FavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 259550411A3DD4380052A8FB /* FavoritesManager.m */; };
 		25C66F7A1A2AD70300366BE8 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F791A2AD70300366BE8 /* UIDevice+Hardware.m */; };
 		25C66F7F1A2AD70C00366BE8 /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7C1A2AD70C00366BE8 /* NSObject+Utilidades.m */; };
 		25C66F801A2AD70C00366BE8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7E1A2AD70C00366BE8 /* Reachability.m */; };
@@ -23,6 +23,7 @@
 		25C66F921A2ADCC100366BE8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F911A2ADCC100366BE8 /* Crashlytics.framework */; };
 		25C66F931A2ADE1800366BE8 /* GeoFaroKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */; };
 		25C66F941A2ADE1800366BE8 /* GeoFaroKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		25F033771A37032900748D5E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F033761A37032900748D5E /* StoreKit.framework */; };
 		25FDAFCC1A32D00B00CDD34E /* ImageViewTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */; };
 		25FDAFCF1A32D40600CDD34E /* ImageViewTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FDAFCE1A32D40600CDD34E /* ImageViewTableHeader.m */; };
 		2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6762D0B3F59498CA72154F7 /* libPods.a */; };
@@ -33,7 +34,6 @@
 		3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7108170A516B00EC3E51 /* CoreGraphics.framework */; };
 		6E176F091A05DEAE00775DC7 /* MBProgressHUD+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E176F081A05DEAE00775DC7 /* MBProgressHUD+CH.m */; };
 		6E2B61901A28CAC00071DE50 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2B618F1A28CAC00071DE50 /* CoreData.framework */; };
-		6E2B61951A28D7E10071DE50 /* GeoFaroKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2B61931A28D7D40071DE50 /* GeoFaroKit.framework */; };
 		6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396418273C9900ADB8D9 /* MapKit.framework */; };
 		6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E57396C182755A300ADB8D9 /* CoreLocation.framework */; };
 		6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */; };
@@ -149,9 +149,10 @@
 		2503D0BD1A1054B200E1876B /* NSDate+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+CH.m"; path = "Utilities/Categories/NSDate+CH.m"; sourceTree = "<group>"; };
 		25710C931A0DB3230066864C /* FunctionsPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsPageVC.h; path = Classes/Controllers/FunctionsPageVC.h; sourceTree = "<group>"; };
 		25710C941A0DB3230066864C /* FunctionsPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsPageVC.m; path = Classes/Controllers/FunctionsPageVC.m; sourceTree = "<group>"; };
-		25710C961A0DB4330066864C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		257BEE691A107B5400BD3920 /* FunctionsContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsContainerVC.h; path = Classes/Controllers/FunctionsContainerVC.h; sourceTree = "<group>"; };
 		257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsContainerVC.m; path = Classes/Controllers/FunctionsContainerVC.m; sourceTree = "<group>"; };
+		259550401A3DD4380052A8FB /* FavoritesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesManager.h; path = Classes/Models/FavoritesManager.h; sourceTree = "<group>"; };
+		259550411A3DD4380052A8FB /* FavoritesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesManager.m; path = Classes/Models/FavoritesManager.m; sourceTree = "<group>"; };
 		25C66F781A2AD70300366BE8 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+Hardware.h"; path = "Utilities/UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		25C66F791A2AD70300366BE8 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+Hardware.m"; path = "Utilities/UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		25C66F7B1A2AD70C00366BE8 /* NSObject+Utilidades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Utilidades.h"; path = "Utilities/NSObject+Utilidades.h"; sourceTree = "<group>"; };
@@ -164,6 +165,7 @@
 		25C66F841A2AD71C00366BE8 /* RegionesGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RegionesGeofaro.plist; path = Geofarok/RegionesGeofaro.plist; sourceTree = "<group>"; };
 		25C66F851A2AD71C00366BE8 /* ServiciosGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ServiciosGeofaro.plist; path = Geofarok/ServiciosGeofaro.plist; sourceTree = "<group>"; };
 		25C66F911A2ADCC100366BE8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		25F033761A37032900748D5E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		25F41A661A09F661009C4805 /* Cine Horarios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cine Horarios.entitlements"; sourceTree = "<group>"; };
 		25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewTableHeader.xib; sourceTree = "<group>"; };
 		25FDAFCD1A32D40600CDD34E /* ImageViewTableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageViewTableHeader.h; path = Classes/Views/Nibs/ImageViewTableHeader.h; sourceTree = "<group>"; };
@@ -179,7 +181,6 @@
 		6E176F071A05DEAE00775DC7 /* MBProgressHUD+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MBProgressHUD+CH.h"; path = "Utilities/Categories/MBProgressHUD+CH.h"; sourceTree = "<group>"; };
 		6E176F081A05DEAE00775DC7 /* MBProgressHUD+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MBProgressHUD+CH.m"; path = "Utilities/Categories/MBProgressHUD+CH.m"; sourceTree = "<group>"; };
 		6E2B618F1A28CAC00071DE50 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		6E2B61931A28D7D40071DE50 /* GeoFaroKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GeoFaroKit.framework; path = "/Users/arturitoespinoza/Dropbox/xcode_projects/Cine Horarios/Cine Horarios/GeoFaroKit.framework"; sourceTree = "<absolute>"; };
 		6E57396418273C9900ADB8D9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6E57396C182755A300ADB8D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -350,6 +351,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25F033771A37032900748D5E /* StoreKit.framework in Frameworks */,
 				6E2B61901A28CAC00071DE50 /* CoreData.framework in Frameworks */,
 				6EE703AA18B7BC7A00B5D6F2 /* CoreBluetooth.framework in Frameworks */,
 				6EE703A818B7BC7000B5D6F2 /* Security.framework in Frameworks */,
@@ -359,7 +361,6 @@
 				25C66F931A2ADE1800366BE8 /* GeoFaroKit.framework in Frameworks */,
 				25C66F921A2ADCC100366BE8 /* Crashlytics.framework in Frameworks */,
 				25C66F881A2AD71C00366BE8 /* GeoFaroKit.framework in Frameworks */,
-				6E2B61951A28D7E10071DE50 /* GeoFaroKit.framework in Frameworks */,
 				3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */,
 				6EBF1E9F18AB6653007B50A5 /* AVFoundation.framework in Frameworks */,
 				6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */,
@@ -368,7 +369,6 @@
 				6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */,
 				3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */,
 				3D29981517E5AA28001A371D /* UIKit.framework in Frameworks */,
-				25710C971A0DB4330066864C /* StoreKit.framework in Frameworks */,
 				3DDB7107170A516B00EC3E51 /* Foundation.framework in Frameworks */,
 				2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */,
 			);
@@ -557,6 +557,8 @@
 				6EC0070F18DC7E3C003DECC8 /* Theater.m */,
 				6EC0071118DC7E3C003DECC8 /* Video.m */,
 				6EC0071318DC7E3C003DECC8 /* VideoGroup.m */,
+				259550401A3DD4380052A8FB /* FavoritesManager.h */,
+				259550411A3DD4380052A8FB /* FavoritesManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -592,9 +594,9 @@
 		3DDB7103170A516B00EC3E51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25F033761A37032900748D5E /* StoreKit.framework */,
 				25C66F911A2ADCC100366BE8 /* Crashlytics.framework */,
 				6E2B618F1A28CAC00071DE50 /* CoreData.framework */,
-				25710C961A0DB4330066864C /* StoreKit.framework */,
 				6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */,
 				6EE703A718B7BC7000B5D6F2 /* Security.framework */,
 				6EBF1EA218AB6673007B50A5 /* MessageUI.framework */,
@@ -936,6 +938,7 @@
 				6EC0071718DC7E3C003DECC8 /* BasicItemImage.m in Sources */,
 				6EC0072218DC7E3C003DECC8 /* VideoGroup.m in Sources */,
 				6EC0073A18DC7EE1003DECC8 /* NSArray+FKBMap.m in Sources */,
+				259550421A3DD4380052A8FB /* FavoritesManager.m in Sources */,
 				6EC0064D18DC7BC6003DECC8 /* BillboardCell.m in Sources */,
 				6EC0062E18DC7B77003DECC8 /* BasicCell+Theater.m in Sources */,
 				6EC0071D18DC7E3C003DECC8 /* Movie.m in Sources */,
@@ -1047,8 +1050,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1063,7 +1066,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "00b6b87b-d21e-4755-bf08-d1a796d739b2";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1078,8 +1081,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cine Horarios/Cine Horarios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arturo Espinoza (U78BH4D3VC)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1094,7 +1097,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "Cine Horarios";
-				PROVISIONING_PROFILE = "00b6b87b-d21e-4755-bf08-d1a796d739b2";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
