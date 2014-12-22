@@ -19,12 +19,9 @@
 #import "FavoritesManager.h"
 #import "Theater.h"
 
-#define COMPILE_GEOFARO false
+#import "Constants.h"
 
-static NSString * const kResetedFavorites = @"ResetedFavorites";
-static NSString * const kFavorites = @"Favorites";
-static NSString * const kNewFavorites = @"NewFavorites";
-static NSString * const kFavoriteIds = @"FavoriteIds";
+#define COMPILE_GEOFARO false
 
 /** GOOGLE ANALYTIC CONSTANTS **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
@@ -139,9 +136,9 @@ static int const kGaDispatchPeriod = 30;
     NSArray * keys = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangedKeysKey];
     for (NSString * key in keys)
     {
-        if ([key isEqualToString:kNewFavorites]) {
+        if ([key isEqualToString:CH_ICLOUD_NEW_FAVORITES]) {
             NSDictionary *dict = [[NSUbiquitousKeyValueStore defaultStore] dictionaryRepresentation];
-            NSArray *theatersIdsICLOUD = [dict objectForKey:kNewFavorites];
+            NSArray *theatersIdsICLOUD = [dict objectForKey:CH_ICLOUD_NEW_FAVORITES];
             NSArray *theatersIdsLOCAL = [[FavoritesManager sharedManager] theatersIds];
             if (![theatersIdsICLOUD isEqualToArray:theatersIdsLOCAL]) {
                 [FavoritesManager prepareForDownloadBySavingToUserDefaultsFavoriteTheatersIds:theatersIdsICLOUD];
@@ -157,7 +154,7 @@ static int const kGaDispatchPeriod = 30;
     
     NSArray *theatersIds = [userInfo valueForKey:@"TheaterIds"];
     // Update data on the iCloud
-    [[NSUbiquitousKeyValueStore defaultStore] setArray:theatersIds  forKey:kNewFavorites];
+    [[NSUbiquitousKeyValueStore defaultStore] setArray:theatersIds  forKey:CH_ICLOUD_NEW_FAVORITES];
 }
 
 #pragma mark - Setup Methods
@@ -188,9 +185,9 @@ static int const kGaDispatchPeriod = 30;
                                                object:nil];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if ( ![userDefaults boolForKey:kResetedFavorites] )
+    if ( ![userDefaults boolForKey:CH_ICLOUD_RESETED_FAVORITES] )
     {
-        [[NSUbiquitousKeyValueStore defaultStore] setDictionary:@{} forKey:kFavorites];
+        [[NSUbiquitousKeyValueStore defaultStore] setDictionary:@{} forKey:CH_ICLOUD_FAVORITES];
         [[NSUbiquitousKeyValueStore defaultStore] synchronize];
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -202,7 +199,7 @@ static int const kGaDispatchPeriod = 30;
         if ([fileManager fileExistsAtPath:plistPath]) {
             // SAVE TO USER DEFAULTS ARRAY OF THEATERS IDS READ FROM THE OLD FILE ICLOUD.PLIST
             NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-            NSDictionary *favorites = [dict valueForKey:kFavorites];
+            NSDictionary *favorites = [dict valueForKey:CH_ICLOUD_FAVORITES];
             NSArray *keys = [favorites allKeys];
             keys = [keys fkbMap:^id(id inputItem) {
                 return [NSNumber numberWithInteger:[inputItem integerValue]];
@@ -218,7 +215,7 @@ static int const kGaDispatchPeriod = 30;
             [FavoritesManager setShouldDownloadFavorites:YES];
         }
         // SET IN USERDEFAULTS THAT THE FAVORITES HAVE BEEN RESETED
-        [userDefaults setBool:YES forKey:kResetedFavorites];
+        [userDefaults setBool:YES forKey:CH_ICLOUD_RESETED_FAVORITES];
     }
 }
 

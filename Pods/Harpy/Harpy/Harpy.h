@@ -23,6 +23,7 @@ FOUNDATION_EXPORT NSString * const HarpyLanguageKorean;
 FOUNDATION_EXPORT NSString * const HarpyLanguagePortuguese;
 FOUNDATION_EXPORT NSString * const HarpyLanguageRussian;
 FOUNDATION_EXPORT NSString * const HarpyLanguageSlovenian;
+FOUNDATION_EXPORT NSString * const HarpyLanguageSwedish;
 FOUNDATION_EXPORT NSString * const HarpyLanguageSpanish;
 
 @protocol HarpyDelegate <NSObject>
@@ -100,6 +101,11 @@ typedef NS_ENUM(NSUInteger, HarpyAlertType)
  @b OPTIONAL: Overides system language to predefined language. Please use the @c HarpyLanguage constants defined in @c Harpy.h.
  */
 @property (copy, nonatomic) NSString *forceLanguageLocalization;
+
+/**
+ @b OPTIONAL: The tintColor for the alertController
+ */
+@property (strong, nonatomic) UIColor *alertControllerTintColor;
 
 /**
  Harpy's Singleton method

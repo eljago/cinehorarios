@@ -84,7 +84,7 @@ NSInteger const kNumberOfViewControllers = 7;
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
     self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    self.showtimesFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    self.showtimesFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     FuncionesVC *funcionesVC = (FuncionesVC *)[self.viewControllers objectAtIndex:self.currentIndex];
     [funcionesVC.tableView reloadData];
 }

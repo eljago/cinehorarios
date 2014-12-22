@@ -5,9 +5,9 @@
 //  Created by Arturo Espinoza Carrasco on 04-04-13.
 //  Copyright (c) 2013 Arturo Espinoza Carrasco. All rights reserved.
 //
-#import "CineHorariosTableViewController.h"
+#import "CHViewTableController.h"
 
-@interface TheatersVC : CineHorariosTableViewController
+@interface TheatersVC : CHViewTableController
 @property (nonatomic, strong) NSString *cinemaName;
 @property (nonatomic, assign) NSUInteger cinemaID;
 @end

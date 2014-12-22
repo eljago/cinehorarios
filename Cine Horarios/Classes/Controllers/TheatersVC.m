@@ -9,21 +9,18 @@
 #import "TheatersVC.h"
 #import "Cinema.h"
 #import "Theater.h"
-#import "FuncionesVC.h"
-#import "UIFont+CH.h"
 #import "BasicCell.h"
 #import "BasicCell+Theater.h"
 #import "MBProgressHUD.h"
 #import "GAI+CH.h"
 #import "ArrayDataSource.h"
-#import "UIViewController+DoAlertView.h"
 #import "MBProgressHUD+CH.h"
-#import "FunctionsPageVC.h"
 #import "FunctionsContainerVC.h"
+
+#import "CHViewTableController_Protected.h"
 
 @interface TheatersVC ()
 
-@property (nonatomic, strong) UIFont *tableFont;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
 
 @property (nonatomic, strong) Cinema *cinema;
@@ -43,15 +40,6 @@
     [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Cines Visitados" label:self.cinemaName];
     
     self.title = self.cinemaName;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(preferredContentSizeChanged:)
-                                                 name:UIContentSizeCategoryDidChangeNotification
-                                               object:nil];
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
     
     [self getTheatersForceDownload:NO];
 }
@@ -75,7 +63,7 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     BasicCell *basicCell = (BasicCell *)cell;
-    basicCell.mainLabel.font = self.tableFont;
+    basicCell.mainLabel.font = self.fontBody;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -84,19 +72,8 @@
     }
     else {
         Theater *theater = self.cinema.theaters[indexPath.row];
-        return [BasicCell heightForRowWithTheater:theater tableFont:self.tableFont];
+        return [BasicCell heightForRowWithTheater:theater tableFont:self.fontBody];
     }
-}
-
-#pragma mark - TheatersVC
-#pragma mark Properties
-
-- (UIFont *) tableFont {
-    if(_tableFont) return _tableFont;
-    
-    _tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    
-    return _tableFont;
 }
 
 #pragma mark Fetch Data
@@ -110,9 +87,6 @@
         if (self.cinema && self.cinema.theaters.count > 0) {
             self.dataSource.items = self.cinema.theaters;
             [self.tableView reloadData];
-            if (self.refreshControl.refreshing) {
-                [self.refreshControl endRefreshing];
-            }
         }
         else {
             [self downloadCinema];
@@ -127,34 +101,28 @@
     
     [Cinema getCinemaWithBlock:^(Cinema *cinema, NSError *error) {
         if (!error) {
-            self.cinema = cinema;
-            self.dataSource.items = cinema.theaters;
-            [self.tableView reloadData];
+            if (cinema.theaters.count == 0) {
+                [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
+                
+            }
+            else {
+                self.cinema = cinema;
+                self.dataSource.items = cinema.theaters;
+                [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];
+            }
         }
         else {
-            [self alertRetryWithCompleteBlock:^{
-                [self getTheatersForceDownload:YES];
-            }];
+            [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
         }
+        [self.tableView reloadData];
         self.tableView.scrollEnabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (self.refreshControl.refreshing) {
-            [self.refreshControl endRefreshing];
-        }
     } cinemaID:self.cinemaID];
 }
 
--(void)refreshData {
-    [self.refreshControl beginRefreshing];
+- (void) refreshData {
+    [super refreshData];
     [self getTheatersForceDownload:YES];
-}
-
-#pragma mark - Content Size Changed
-
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-
-    [self.tableView reloadData];
 }
 
 #pragma mark - Segue

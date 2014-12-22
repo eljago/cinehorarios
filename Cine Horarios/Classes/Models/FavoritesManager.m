@@ -11,12 +11,12 @@
 #import "NSArray+FKBMap.h"
 #import "CineHorariosApiClient.h"
 
+#import "Constants.h"
 
 static NSString * const kFavoriteTheatersPath = @"/api/theaters";
 static NSString * const kTheatersDataPathComponent = @"favoriteTheaters.data";
 
 static NSString * const kShouldDownloadFavoriteTheaters = @"ShouldDownloadFavoriteTheaters";
-static NSString * const kFavoriteIds = @"FavoriteIds";
 
 @implementation FavoritesManager
 
@@ -97,11 +97,11 @@ static NSString * const kFavoriteIds = @"FavoriteIds";
 
 + (void) prepareForDownloadBySavingToUserDefaultsFavoriteTheatersIds:(NSArray *)theatersIds {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:theatersIds forKey:kFavoriteIds];
+    [userDefaults setValue:theatersIds forKey:CH_ICLOUD_FAVORITES_IDS];
 }
 + (NSArray *) getFavoriteTheatersIdsFromUserDefaults {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults valueForKey:kFavoriteIds];
+    return [userDefaults valueForKey:CH_ICLOUD_FAVORITES_IDS];
 }
 
 #pragma mark - Instance Methods

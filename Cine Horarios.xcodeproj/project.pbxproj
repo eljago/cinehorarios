@@ -12,6 +12,7 @@
 		25710C951A0DB3230066864C /* FunctionsPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25710C941A0DB3230066864C /* FunctionsPageVC.m */; };
 		257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */; };
 		259550421A3DD4380052A8FB /* FavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 259550411A3DD4380052A8FB /* FavoritesManager.m */; };
+		25C498AA1A47A96700EFE197 /* CHViewTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C498A91A47A96700EFE197 /* CHViewTableController.m */; };
 		25C66F7A1A2AD70300366BE8 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F791A2AD70300366BE8 /* UIDevice+Hardware.m */; };
 		25C66F7F1A2AD70C00366BE8 /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7C1A2AD70C00366BE8 /* NSObject+Utilidades.m */; };
 		25C66F801A2AD70C00366BE8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7E1A2AD70C00366BE8 /* Reachability.m */; };
@@ -153,6 +154,10 @@
 		257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsContainerVC.m; path = Classes/Controllers/FunctionsContainerVC.m; sourceTree = "<group>"; };
 		259550401A3DD4380052A8FB /* FavoritesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesManager.h; path = Classes/Models/FavoritesManager.h; sourceTree = "<group>"; };
 		259550411A3DD4380052A8FB /* FavoritesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesManager.m; path = Classes/Models/FavoritesManager.m; sourceTree = "<group>"; };
+		25C498A81A47A96700EFE197 /* CHViewTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHViewTableController.h; path = Classes/Controllers/CHViewTableController.h; sourceTree = "<group>"; };
+		25C498A91A47A96700EFE197 /* CHViewTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHViewTableController.m; path = Classes/Controllers/CHViewTableController.m; sourceTree = "<group>"; };
+		25C498AB1A47FF7A00EFE197 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		25C498AC1A480D1800EFE197 /* CHViewTableController_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHViewTableController_Protected.h; path = Classes/Controllers/CHViewTableController_Protected.h; sourceTree = "<group>"; };
 		25C66F781A2AD70300366BE8 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+Hardware.h"; path = "Utilities/UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		25C66F791A2AD70300366BE8 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+Hardware.m"; path = "Utilities/UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		25C66F7B1A2AD70C00366BE8 /* NSObject+Utilidades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Utilidades.h"; path = "Utilities/NSObject+Utilidades.h"; sourceTree = "<group>"; };
@@ -477,6 +482,7 @@
 		3D111A4F170C97140043D2D2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				25C498AB1A47FF7A00EFE197 /* Constants.h */,
 				6EC005F718DC7949003DECC8 /* AppDelegate.h */,
 				6EC005F818DC7949003DECC8 /* AppDelegate.m */,
 				3DC9A748170CCA69008B9FF9 /* Views */,
@@ -509,6 +515,9 @@
 				6EC0068018DC7CBB003DECC8 /* VideosVC.m */,
 				6EC0068218DC7CBB003DECC8 /* VideoVC.m */,
 				6EC0068418DC7CBB003DECC8 /* WebVC.m */,
+				25C498A81A47A96700EFE197 /* CHViewTableController.h */,
+				25C498A91A47A96700EFE197 /* CHViewTableController.m */,
+				25C498AC1A480D1800EFE197 /* CHViewTableController_Protected.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -913,6 +922,7 @@
 				6EC0074018DC7EE1003DECC8 /* UIViewController+DoAlertView.m in Sources */,
 				6EC0071418DC7E3C003DECC8 /* AnnotationGroup.m in Sources */,
 				257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */,
+				25C498AA1A47A96700EFE197 /* CHViewTableController.m in Sources */,
 				6EC006F518DC7DDD003DECC8 /* UIImage+ResizeMagick.m in Sources */,
 				6EC0068618DC7CBB003DECC8 /* CastVC.m in Sources */,
 				6EC0068B18DC7CBB003DECC8 /* FavoritesVC.m in Sources */,
