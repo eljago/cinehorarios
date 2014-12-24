@@ -7,17 +7,19 @@
 //
 
 #import "TheatersVC.h"
+#import "CHViewTableController_Protected.h"
+#import "FunctionsContainerVC.h"
+#import "ArrayDataSource.h"
+#import "GAI+CH.h"
+
 #import "Cinema.h"
 #import "Theater.h"
 #import "BasicCell.h"
 #import "BasicCell+Theater.h"
-#import "MBProgressHUD.h"
-#import "GAI+CH.h"
-#import "ArrayDataSource.h"
-#import "MBProgressHUD+CH.h"
-#import "FunctionsContainerVC.h"
 
-#import "CHViewTableController_Protected.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
+
 
 @interface TheatersVC ()
 
@@ -95,27 +97,25 @@
 }
 
 -(void) downloadCinema {
-    self.tableView.scrollEnabled = NO;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     
     [Cinema getCinemaWithBlock:^(Cinema *cinema, NSError *error) {
         if (!error) {
-            if (cinema.theaters.count == 0) {
-                [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
-                
-            }
-            else {
+            if (cinema.theaters.count > 0) {
                 self.cinema = cinema;
                 self.dataSource.items = cinema.theaters;
                 [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];
+                
+            }
+            else {
+                [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
             }
         }
         else {
             [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
         }
         [self.tableView reloadData];
-        self.tableView.scrollEnabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     } cinemaID:self.cinemaID];
 }

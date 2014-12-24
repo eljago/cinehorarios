@@ -5,8 +5,8 @@
 //  Created by Arturo Espinoza Carrasco on 08-05-13.
 //  Copyright (c) 2013 Arturo Espinoza Carrasco. All rights reserved.
 //
-#import "CineHorariosTableViewController.h"
+#import "CHViewTableController.h"
 
-@interface FavoritesVC : CineHorariosTableViewController
+@interface FavoritesVC : CHViewTableController
 
 @end

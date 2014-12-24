@@ -8,22 +8,21 @@
 
 #import "CinesVC.h"
 #import "TheatersVC.h"
-#import "BasicItem.h"
 #import "BasicItemImage.h"
-#import "MTLJSONAdapter.h"
 #import "GAI+CH.h"
 #import "ArrayDataSource.h"
 #import "CinemaCell.h"
 #import "CinemaCell+Cinema.h"
+#import "FavoritesManager.h"
+#import "CHViewTableController_Protected.h"
 
 @interface CinesVC ()
 @property (nonatomic, strong) NSArray *cinemas;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *topLayoutConstraint;
 @end
 
-@implementation CinesVC {
-    float _cellHeight;
-}
+@implementation CinesVC
 
 #pragma mark - UIViewController
 
@@ -33,9 +32,16 @@
     
     [GAI trackPage:@"CINES"];
     
-    [self loadCinemas];
+    _cinemas = [FavoritesManager sharedManager].cinemasArray;
     
     [self setupDataSource];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    
+    NSLog(@"Low Memory warning");
 }
 
 -(void) setupDataSource {
@@ -43,22 +49,6 @@
         [cell configureForCinema:cinema];
     }];
     self.tableView.dataSource = self.dataSource;
-}
-
-#pragma mark - CinesVC
-#pragma mark Fetch Data
-
-- (void) loadCinemas {
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Cinemas" ofType:@"plist"];
-    NSArray *cinemasLocal = [NSArray arrayWithContentsOfFile:filePath];
-    
-    NSMutableArray *mutableCinemas = [NSMutableArray array];
-    for (NSDictionary *dict in cinemasLocal) {
-        BasicItemImage *cinema = [MTLJSONAdapter modelOfClass:BasicItem.class fromJSONDictionary:dict error:NULL];
-        [mutableCinemas addObject:cinema];
-    }
-    self.cinemas = [NSArray arrayWithArray:mutableCinemas];
 }
 
 #pragma mark - Segue

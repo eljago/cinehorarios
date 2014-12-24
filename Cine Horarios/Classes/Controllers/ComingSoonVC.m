@@ -7,27 +7,24 @@
 //
 
 #import "ComingSoonVC.h"
+#import "CHViewTableController_Protected.h"
+#import "MovieVC.h"
+#import "GAI+CH.h"
+#import "GAIFields.h"
+#import "ArrayDataSource.h"
+
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
+
 #import "BasicMovie.h"
 #import "Billboard.h"
 #import "ComingSoonCell2.h"
 #import "ComingSoonCell2+BasicMovie.h"
-#import "UIColor+CH.h"
-#import "UIFont+CH.h"
-#import "MovieVC.h"
 #import "FileHandler.h"
-#import "MBProgressHUD.h"
-#import "MBProgressHUD+CH.h"
-#import "GAI+CH.h"
-#import "GAIFields.h"
-#import "ArrayDataSource.h"
-#import "UIViewController+DoAlertView.h"
 
 @interface ComingSoonVC ()
 @property (nonatomic, strong) Billboard *billboard;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
-
-@property (nonatomic, strong) UIFont *headFont;
-@property (nonatomic, strong) UIFont *bodyFont;
 @end
 
 @implementation ComingSoonVC
@@ -41,18 +38,6 @@
     [self setupDataSource];
     
     [GAI trackPage:@"PROXIMAMENTE"];
-    
-    self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(preferredContentSizeChanged:)
-                                                 name:UIContentSizeCategoryDidChangeNotification
-                                               object:nil];
-    
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
         
     [self getComingSoonForceDownload:NO];
     
@@ -70,15 +55,13 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     ComingSoonCell2 *comingSoonCell = (ComingSoonCell2 *)cell;
-    comingSoonCell.mainLabel.font = self.headFont;
-    comingSoonCell.debutLabel.font = self.bodyFont;
+    comingSoonCell.mainLabel.font = self.fontHeadline;
+    comingSoonCell.debutLabel.font = self.fontBody;
 }
-
-#pragma mark Delegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     BasicMovie *basicMovie = self.billboard.movies[indexPath.row];
-    return [ComingSoonCell2 heightForRowWithBasicMovie:basicMovie headFont:self.headFont bodyFont:self.bodyFont];
+    return [ComingSoonCell2 heightForRowWithBasicMovie:basicMovie headFont:self.fontHeadline bodyFont:self.fontBody];
 }
 
 #pragma mark - ComingSoonVC
@@ -101,37 +84,24 @@
     }
 }
 -(void) downloadComingSoon {
-    self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [Billboard getComingSoonWithBlock:^(Billboard *billboard, NSError *error) {
         if (!error) {
-            self.billboard = billboard;
-            self.dataSource.items = self.billboard.movies;
-            [self.tableView reloadData];
+            if (billboard && billboard.movies.count > 0) {
+                self.billboard = billboard;
+                self.dataSource.items = self.billboard.movies;
+                [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];
+            }
+            else {
+                [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
+            }
         }
         else {
-            [self alertRetryWithCompleteBlock:^{
-                [self getComingSoonForceDownload:YES];
-            }];
+            [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
         }
-        self.tableView.scrollEnabled = YES;
+        [self.tableView reloadData];
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (self.refreshControl.refreshing) {
-            [self.refreshControl endRefreshing];
-        }
     }];
-}
-
--(void)refreshData {
-    [self.refreshControl beginRefreshing];
-    [self getComingSoonForceDownload:YES];
-}
-
-#pragma mark - Content Size Changed
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    [self.tableView reloadData];
 }
 
 #pragma mark - Segue

@@ -10,7 +10,7 @@
 #import "Theater.h"
 #import "NSArray+FKBMap.h"
 #import "CineHorariosApiClient.h"
-
+#import "BasicItemImage.h"
 #import "Constants.h"
 
 static NSString * const kFavoriteTheatersPath = @"/api/theaters";
@@ -33,10 +33,10 @@ static NSString * const kShouldDownloadFavoriteTheaters = @"ShouldDownloadFavori
 - (id)init {
     if (self = [super init]) {
         [self loadFavoritesTheaters];
+        [self loadCinemas];
     }
     return self;
 }
-
 
 - (NSArray *) getDictionaryRepresentationArray {
     NSMutableArray *dictionaryRepresentationArray = [NSMutableArray new];
@@ -117,6 +117,18 @@ static NSString * const kShouldDownloadFavoriteTheaters = @"ShouldDownloadFavori
         _favoriteTheaters = [NSKeyedUnarchiver unarchiveObjectWithFile:favoritesPath];
     }
     return _favoriteTheaters;
+}
+
+- (void) loadCinemas {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Cinemas" ofType:@"plist"];
+    NSArray *cinemasLocal = [NSArray arrayWithContentsOfFile:filePath];
+    
+    NSMutableArray *mutableCinemas = [NSMutableArray array];
+    for (NSDictionary *dict in cinemasLocal) {
+        BasicItemImage *cinema = [MTLJSONAdapter modelOfClass:BasicItemImage.class fromJSONDictionary:dict error:NULL];
+        [mutableCinemas addObject:cinema];
+    }
+    _cinemasArray = [NSArray arrayWithArray:mutableCinemas];
 }
 
 #pragma mark Public

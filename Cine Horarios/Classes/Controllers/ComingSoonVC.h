@@ -5,9 +5,9 @@
 //  Created by Arturo Espinoza Carrasco on 18-04-13.
 //  Copyright (c) 2013 Arturo Espinoza Carrasco. All rights reserved.
 //
-#import "CineHorariosTableViewController.h"
+#import "CHViewTableController.h"
 
-@interface ComingSoonVC : CineHorariosTableViewController
+@interface ComingSoonVC : CHViewTableController
 
 @property (nonatomic, strong) NSString *portraitImageURL;
 

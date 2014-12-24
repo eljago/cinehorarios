@@ -12,7 +12,8 @@
 
 @interface FavoritesManager : NSObject
 
-@property (nonatomic, strong) NSMutableArray *favoriteTheaters;
+@property (nonatomic, strong, readonly) NSMutableArray *favoriteTheaters;
+@property (nonatomic, strong, readonly) NSArray *cinemasArray;
 
 + (instancetype) sharedManager;
 

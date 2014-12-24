@@ -399,6 +399,8 @@
 		25D9270A1A2E6ACC007B255D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				25C498AC1A480D1800EFE197 /* CHViewTableController_Protected.h */,
+				25C498A81A47A96700EFE197 /* CHViewTableController.h */,
 				6EC0065918DC7CBB003DECC8 /* CarteleraVC.h */,
 				6EC0065B18DC7CBB003DECC8 /* CastVC.h */,
 				6EC0065D18DC7CBB003DECC8 /* CineHorariosTableViewController.h */,
@@ -515,9 +517,7 @@
 				6EC0068018DC7CBB003DECC8 /* VideosVC.m */,
 				6EC0068218DC7CBB003DECC8 /* VideoVC.m */,
 				6EC0068418DC7CBB003DECC8 /* WebVC.m */,
-				25C498A81A47A96700EFE197 /* CHViewTableController.h */,
 				25C498A91A47A96700EFE197 /* CHViewTableController.m */,
-				25C498AC1A480D1800EFE197 /* CHViewTableController_Protected.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

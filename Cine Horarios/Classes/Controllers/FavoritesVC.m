@@ -14,23 +14,20 @@
 #import "UIFont+CH.h"
 #import "GAI+CH.h"
 #import "FunctionsContainerVC.h"
-#import "MBProgressHUD.h"
-#import "MBProgressHUD+CH.h"
 #import "FavoritesManager.h"
-#import "UIColor+CH.h"
-#import "UIScrollView+EmptyDataSet.h"
 #import "ImageViewTableHeader.h"
 #import "UIImage+CH.h"
+#import "CHViewTableController_Protected.h"
+#import "BasicItemImage.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
 
 static const NSString *kTheatersArray = @"TheatersArray";
-static const NSString *kCinemaDict = @"CinemaDict";
+static const NSString *kCinema = @"CinemasArray";
 
-@interface FavoritesVC () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
-@property (nonatomic, strong) UIFont *tableFont;
+@interface FavoritesVC ()
 @property (nonatomic, strong) UIBarButtonItem *buttonEdit;
-@property (nonatomic, assign) BOOL shouldShowEmptyDataSet;
 @property (nonatomic, strong) NSMutableArray *favoriteTheatersSections;
-@property (nonatomic, strong) NSArray *cinemasArray;
 @end
 
 @implementation FavoritesVC
@@ -43,18 +40,8 @@ static const NSString *kCinemaDict = @"CinemaDict";
     
     [GAI trackPage:@"FAVORITOS"];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(preferredContentSizeChanged:)
-                                                 name:UIContentSizeCategoryDidChangeNotification
-                                               object:nil];
     self.buttonEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
     self.navigationItem.leftBarButtonItem = self.buttonEdit;
-    
-    self.tableView.emptyDataSetSource = self;
-    self.tableView.emptyDataSetDelegate = self;
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Cinemas" ofType:@"plist"];
-    self.cinemasArray = [NSArray arrayWithContentsOfFile:filePath];
 }
 
 // Reload data after coming back from Theater view in case there was an edit
@@ -107,7 +94,7 @@ static const NSString *kCinemaDict = @"CinemaDict";
         if (favoritesManager.favoriteTheaters.count == 0) {
             tableView.editing = NO;
             self.buttonEdit.enabled = NO;
-            self.shouldShowEmptyDataSet = YES;
+            [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
         }
         else {
             self.buttonEdit.enabled = YES;
@@ -124,35 +111,23 @@ static const NSString *kCinemaDict = @"CinemaDict";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    NSDictionary *cinemaDict = self.favoriteTheatersSections[section][kCinemaDict];
+    BasicItemImage *cinema = self.favoriteTheatersSections[section][kCinema];
     Theater *theater = [self.favoriteTheatersSections[section][kTheatersArray] firstObject];
     ImageViewTableHeader *headerView = [[[NSBundle mainBundle] loadNibNamed:@"ImageViewTableHeader" owner:self options:nil] lastObject];
-    NSInteger cinemaID = [cinemaDict[@"itemID"] integerValue];
-    headerView.imageView.image = [UIImage imageWithCinemaID:cinemaID theaterID:theater.theaterID];
-    headerView.textLabel.text = self.favoriteTheatersSections[section][kCinemaDict][@"name"];
+    headerView.imageView.image = [UIImage imageWithCinemaID:cinema.itemID theaterID:theater.theaterID];
+    headerView.textLabel.text = cinema.name;
     return headerView;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     BasicCell *basicCell = (BasicCell *)cell;
-    basicCell.mainLabel.font = self.tableFont;
+    basicCell.mainLabel.font = self.fontBody;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
-    return [BasicCell heightForRowWithTheater:favoritesManager.favoriteTheaters[indexPath.row] tableFont:self.tableFont];
-}
-
-#pragma mark - FavoritesVC
-#pragma mark Properties
-
-- (UIFont *) tableFont {
-    if(_tableFont) return _tableFont;
-    
-    _tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    
-    return _tableFont;
+    return [BasicCell heightForRowWithTheater:favoritesManager.favoriteTheaters[indexPath.row] tableFont:self.fontBody];
 }
 
 #pragma mark Fetch Data
@@ -189,11 +164,12 @@ static const NSString *kCinemaDict = @"CinemaDict";
     FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
     if (favoritesManager.favoriteTheaters.count == 0) {
         self.buttonEdit.enabled = NO;
-        self.shouldShowEmptyDataSet = YES;
+        [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
     }
     else {
         self.buttonEdit.enabled = YES;
         [self createFavoriteTheatersSectionsArray];
+        [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];
     }
     [self.tableView reloadData];
 }
@@ -202,12 +178,11 @@ static const NSString *kCinemaDict = @"CinemaDict";
     FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
     NSMutableArray *favSections = [NSMutableArray new];
     
-    for (NSDictionary *cinemaDict in self.cinemasArray) {
-        NSInteger cinemaID = [cinemaDict[@"itemID"] integerValue];
-        NSMutableArray *theatersFiltered = [[favoritesManager getTheatersWithCinemaID:cinemaID] mutableCopy];
+    for (BasicItemImage *cinema in favoritesManager.cinemasArray) {
+        NSMutableArray *theatersFiltered = [[favoritesManager getTheatersWithCinemaID:cinema.itemID] mutableCopy];
         if (theatersFiltered.count > 0) {
             [favSections addObject:@{
-                                     kCinemaDict: cinemaDict,
+                                     kCinema: cinema,
                                      kTheatersArray: theatersFiltered
                                      }];
         }
@@ -226,14 +201,6 @@ static const NSString *kCinemaDict = @"CinemaDict";
         [self.tableView setEditing:YES animated:YES];
         self.buttonEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(enterEditingMode:)];
     }
-}
-
-#pragma mark - Content Size Changed
-
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleBigger forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    
-    [self.tableView reloadData];
 }
 
 #pragma mark - Segue
@@ -271,21 +238,6 @@ static const NSString *kCinemaDict = @"CinemaDict";
                                  NSParagraphStyleAttributeName: paragraph};
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"FavoritesHint"];
-}
-- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-    
-    return [UIColor tableViewColor];
-}
-- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
-    
-    return self.shouldShowEmptyDataSet;
-}
-- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
-    
-    return YES;
 }
 
 @end

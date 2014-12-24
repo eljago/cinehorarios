@@ -7,24 +7,22 @@
 //
 
 #import "CarteleraVC.h"
+#import "CHViewTableController_Protected.h"
+#import "ArrayDataSource.h"
+#import "GAI+CH.h"
+
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
+
 #import "BasicMovie.h"
+#import "MovieVC.h"
 #import "Billboard.h"
 #import "BillboardCell.h"
 #import "BillboardCell+BasicMovie.h"
-#import "UIFont+CH.h"
-#import "MovieVC.h"
-#import "MBProgressHUD.h"
-#import "MBProgressHUD+CH.h"
-#import "GAI+CH.h"
-#import "ArrayDataSource.h"
-#import "UIViewController+DoAlertView.h"
 
 @interface CarteleraVC ()
 @property (nonatomic, strong) Billboard *billboard;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
-
-@property (nonatomic, strong) UIFont *headFont;
-@property (nonatomic, strong) UIFont *bodyFont;
 @end
 
 @implementation CarteleraVC
@@ -36,18 +34,6 @@
     [self setupDataSource];
     
     [GAI trackPage:@"CARTELERA"];
-    
-    self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(preferredContentSizeChanged:)
-                                                 name:UIContentSizeCategoryDidChangeNotification
-                                               object:nil];
-    
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
         
     [self getBillboardForceDownload:NO];
 }
@@ -58,6 +44,23 @@
     }];
     self.tableView.dataSource = self.dataSource;
 }
+
+#pragma mark - UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    BillboardCell *billboardCell = (BillboardCell *)cell;
+    billboardCell.mainLabel.font = self.fontHeadline;
+    billboardCell.genresLabel.font = self.fontBody;
+    billboardCell.durationLabel.font = self.fontBody;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BasicMovie *basicMovie = self.billboard.movies[indexPath.row];
+    return [BillboardCell heightForRowWithBasicMovie:basicMovie headFont:self.fontBody bodyFont:self.fontBody];
+}
+
+#pragma mark - CarteleraVC
+#pragma mark - Fetch Data
 - (void) getBillboardForceDownload:(BOOL)forceDownload {
     if (forceDownload) {
         [self downloadBillboard];
@@ -74,50 +77,23 @@
     }
 }
 -(void) downloadBillboard {
-    self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [Billboard getBillboardWithBlock:^(Billboard *billboard, NSError *error) {
         if (!error) {
-            self.billboard = billboard;
-            self.dataSource.items = self.billboard.movies;
-            [self.tableView reloadData];
+            if (billboard && billboard.movies.count > 0) {
+                self.billboard = billboard;
+                self.dataSource.items = self.billboard.movies;
+            }
+            else {
+                [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
+            }
         }
         else {
-            [self alertRetryWithCompleteBlock:^{
-                [self getBillboardForceDownload:YES];
-            }];
+            [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
         }
-        self.tableView.scrollEnabled = YES;
+        [self.tableView reloadData];
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (self.refreshControl.refreshing) {
-            [self.refreshControl endRefreshing];
-        }
     }];
-}
-
--(void)refreshData {
-    [self.refreshControl beginRefreshing];
-    [self getBillboardForceDownload:YES];
-}
-
-#pragma mark - UITableViewDelegate
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
-    BillboardCell *billboardCell = (BillboardCell *)cell;
-    billboardCell.mainLabel.font = self.headFont;
-    billboardCell.genresLabel.font = self.bodyFont;
-    billboardCell.durationLabel.font = self.bodyFont;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BasicMovie *basicMovie = self.billboard.movies[indexPath.row];
-    return [BillboardCell heightForRowWithBasicMovie:basicMovie headFont:self.headFont bodyFont:self.bodyFont];
-}
-
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    self.headFont = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    self.bodyFont = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    [self.tableView reloadData];
 }
 
 #pragma mark - Segue
