@@ -17,15 +17,15 @@
 #import "BasicCell.h"
 #import "BasicCell+Theater.h"
 
+#import "UIColor+CH.h"
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+CH.h"
-
 
 @interface TheatersVC ()
 
 @property (nonatomic, strong) ArrayDataSource *dataSource;
-
 @property (nonatomic, strong) Cinema *cinema;
+
 @end
 
 @implementation TheatersVC
@@ -43,7 +43,7 @@
     
     self.title = self.cinemaName;
     
-    [self getTheatersForceDownload:NO];
+    [self getDataForceDownload:NO];
 }
 
 -(void) setupDataSource {
@@ -80,7 +80,7 @@
 
 #pragma mark Fetch Data
 
-- (void) getTheatersForceDownload:(BOOL)forceDownload {
+- (void) getDataForceDownload:(BOOL)forceDownload {
     if (forceDownload) {
         [self downloadCinema];
     }
@@ -89,6 +89,7 @@
         if (self.cinema && self.cinema.theaters.count > 0) {
             self.dataSource.items = self.cinema.theaters;
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         }
         else {
             [self downloadCinema];
@@ -106,7 +107,6 @@
                 self.cinema = cinema;
                 self.dataSource.items = cinema.theaters;
                 [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];
-                
             }
             else {
                 [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
@@ -116,13 +116,9 @@
             [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
         }
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     } cinemaID:self.cinemaID];
-}
-
-- (void) refreshData {
-    [super refreshData];
-    [self getTheatersForceDownload:YES];
 }
 
 #pragma mark - Segue

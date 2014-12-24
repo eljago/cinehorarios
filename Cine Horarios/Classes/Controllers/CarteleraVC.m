@@ -35,7 +35,7 @@
     
     [GAI trackPage:@"CARTELERA"];
         
-    [self getBillboardForceDownload:NO];
+    [self getDataForceDownload:NO];
 }
 
 -(void) setupDataSource {
@@ -61,7 +61,7 @@
 
 #pragma mark - CarteleraVC
 #pragma mark - Fetch Data
-- (void) getBillboardForceDownload:(BOOL)forceDownload {
+- (void) getDataForceDownload:(BOOL)forceDownload {
     if (forceDownload) {
         [self downloadBillboard];
     }
@@ -70,6 +70,7 @@
         if (self.billboard && self.billboard.movies.count > 0) {
             self.dataSource.items = self.billboard.movies;
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         }
         else {
             [self downloadBillboard];
@@ -92,6 +93,7 @@
             [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
         }
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];
 }

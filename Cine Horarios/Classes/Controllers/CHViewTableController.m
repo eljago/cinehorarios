@@ -20,6 +20,7 @@
     UIFont *fontHeadline;
     UIFont *fontFootnote;
     UITableView *tableView;
+    UIRefreshControl *refreshControl;
 }
 
 @property (nonatomic, assign, readwrite) CHDownloadStat downloadStatus;
@@ -34,6 +35,7 @@
 @synthesize fontBody = _fontBody;
 @synthesize fontHeadline = _fontHeadline;
 @synthesize fontFootnote = _fontFootnote;
+@synthesize refreshControl = _refreshControl;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,6 +61,11 @@
     // Just call this line to enable the scrolling navbar
     [self followScrollView:self.tableView usingTopConstraint:self.topLayoutConstraint withDelay:65];
     [self setShouldScrollWhenContentFits:YES];
+    
+    _refreshControl = [[UIRefreshControl alloc] init];
+    _refreshControl.tintColor = [UIColor blackColor];
+    [_refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:_refreshControl];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,7 +130,12 @@
 
 #pragma mark - Downloads
 
-- (void) refreshData{};
+- (void) getDataForceDownload:(BOOL)forceDownload {
+    
+}
+- (void) refreshData {
+    [self getDataForceDownload:YES];
+}
 
 - (void) downloadEndedWithDownloadStatus:(CHDownloadStat)newDownloadStatus {
     _downloadStatus = newDownloadStatus;

@@ -39,7 +39,7 @@
     
     [GAI trackPage:@"PROXIMAMENTE"];
         
-    [self getComingSoonForceDownload:NO];
+    [self getDataForceDownload:NO];
     
 }
 
@@ -68,7 +68,7 @@
 #pragma mark Fetch Data
 
 
-- (void) getComingSoonForceDownload:(BOOL)forceDownload {
+- (void) getDataForceDownload:(BOOL)forceDownload {
     if (forceDownload) {
         [self downloadComingSoon];
     }
@@ -77,6 +77,7 @@
         if (self.billboard && self.billboard.movies.count > 0) {
             self.dataSource.items = self.billboard.movies;
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         }
         else {
             [self downloadComingSoon];
@@ -100,6 +101,7 @@
             [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
         }
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];
 }
