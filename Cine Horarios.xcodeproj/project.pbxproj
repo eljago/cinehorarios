@@ -12,7 +12,6 @@
 		25710C951A0DB3230066864C /* FunctionsPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25710C941A0DB3230066864C /* FunctionsPageVC.m */; };
 		257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */; };
 		259550421A3DD4380052A8FB /* FavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 259550411A3DD4380052A8FB /* FavoritesManager.m */; };
-		25A00C751A4A629F00EABA2B /* RefreshControlPoints.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25A00C741A4A629F00EABA2B /* RefreshControlPoints.plist */; };
 		25C498AA1A47A96700EFE197 /* CHViewTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C498A91A47A96700EFE197 /* CHViewTableController.m */; };
 		25C66F7A1A2AD70300366BE8 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F791A2AD70300366BE8 /* UIDevice+Hardware.m */; };
 		25C66F7F1A2AD70C00366BE8 /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7C1A2AD70C00366BE8 /* NSObject+Utilidades.m */; };
@@ -155,7 +154,6 @@
 		257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsContainerVC.m; path = Classes/Controllers/FunctionsContainerVC.m; sourceTree = "<group>"; };
 		259550401A3DD4380052A8FB /* FavoritesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesManager.h; path = Classes/Models/FavoritesManager.h; sourceTree = "<group>"; };
 		259550411A3DD4380052A8FB /* FavoritesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesManager.m; path = Classes/Models/FavoritesManager.m; sourceTree = "<group>"; };
-		25A00C741A4A629F00EABA2B /* RefreshControlPoints.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RefreshControlPoints.plist; path = Classes/Views/RefreshControlPoints.plist; sourceTree = "<group>"; };
 		25C498A81A47A96700EFE197 /* CHViewTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHViewTableController.h; path = Classes/Controllers/CHViewTableController.h; sourceTree = "<group>"; };
 		25C498A91A47A96700EFE197 /* CHViewTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHViewTableController.m; path = Classes/Controllers/CHViewTableController.m; sourceTree = "<group>"; };
 		25C498AB1A47FF7A00EFE197 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -580,7 +578,6 @@
 				6EC0065618DC7BDE003DECC8 /* Nibs */,
 				6E88F27F189AFEEE00927222 /* CellCategories */,
 				6E56CC12188BC6DB000AB809 /* Cells */,
-				25A00C741A4A629F00EABA2B /* RefreshControlPoints.plist */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -858,7 +855,6 @@
 				6EC006D718DC7D67003DECC8 /* Localizable.strings in Resources */,
 				25C66F8A1A2AD71C00366BE8 /* ServiciosGeofaro.plist in Resources */,
 				162414A417BC946E00083708 /* Images.xcassets in Resources */,
-				25A00C751A4A629F00EABA2B /* RefreshControlPoints.plist in Resources */,
 				6EC006D518DC7D67003DECC8 /* icloud.plist in Resources */,
 				6EC006D918DC7D67003DECC8 /* Menu.plist in Resources */,
 				6EC006E918DC7DCE003DECC8 /* close_black@2x.png in Resources */,
