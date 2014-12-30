@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import "CineHorariosTableViewController.h"
+#import "CHViewTableController.h"
 
-@interface VideosVC : CineHorariosTableViewController
+@interface VideosVC : CHViewTableController
 
 @end

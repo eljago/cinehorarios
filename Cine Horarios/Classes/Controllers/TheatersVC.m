@@ -103,7 +103,7 @@
     
     [Cinema getCinemaWithBlock:^(Cinema *cinema, NSError *error) {
         if (!error) {
-            if (cinema.theaters.count > 0) {
+            if (cinema && cinema.theaters.count > 0) {
                 self.cinema = cinema;
                 self.dataSource.items = cinema.theaters;
                 [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];

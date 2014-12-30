@@ -106,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4jw-si-IU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="793" y="-994"/>
+            <point key="canvasLocation" x="819" y="-994"/>
         </scene>
         <!--Favoritos-->
         <scene sceneID="v4y-vp-wj6">
@@ -1479,100 +1479,120 @@
             <point key="canvasLocation" x="-901" y="-994"/>
         </scene>
         <!--Videos-->
-        <scene sceneID="upu-4p-SHO">
+        <scene sceneID="YSE-wt-Nmo">
             <objects>
-                <tableViewController storyboardIdentifier="VideosVC" title="Videos" id="WBQ-aP-pUg" customClass="VideosVC" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="142" sectionHeaderHeight="22" sectionFooterHeight="22" id="qtK-dV-eiJ">
+                <viewController storyboardIdentifier="VideosVC" title="Videos" id="q7q-gj-1I2" customClass="VideosVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="w3s-xy-Kqw"/>
+                        <viewControllerLayoutGuide type="bottom" id="DbF-LQ-e1R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4GL-em-eOv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="140" id="Ify-Zt-ba4" customClass="VideoCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="140"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ify-Zt-ba4" id="Xls-Xf-LtJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="51" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MovieCoverShadow" translatesAutoresizingMaskIntoConstraints="NO" id="Uj1-tW-8MD">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="140"/>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="VideoCoverShadow" translatesAutoresizingMaskIntoConstraints="NO" id="E5B-kB-ShN">
-                                            <rect key="frame" x="100" y="0.0" width="220" height="139"/>
-                                        </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KhK-vo-OU2">
-                                            <rect key="frame" x="110" y="10" width="200" height="120"/>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xxt-w9-CKZ">
-                                            <rect key="frame" x="10" y="10" width="80" height="120"/>
-                                        </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdB-ib-A4f">
-                                            <rect key="frame" x="10" y="10" width="80" height="120"/>
-                                            <connections>
-                                                <segue destination="rNi-KW-Ki3" kind="push" identifier="VideosVCToMovieVC" id="1X0-Qc-tJs"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRu-Rs-NPg">
-                                            <rect key="frame" x="110" y="10" width="200" height="120"/>
+                        <subviews>
+                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="142" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="X7R-q6-FPv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="140" id="9IC-LV-pPJ" customClass="VideoCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9IC-LV-pPJ" id="SXn-uj-Kum">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="51" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MovieCoverShadow" translatesAutoresizingMaskIntoConstraints="NO" id="qog-Fm-IQG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="140"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="VideoCoverShadow" translatesAutoresizingMaskIntoConstraints="NO" id="wR9-v0-YZp">
+                                                    <rect key="frame" x="100" y="0.0" width="220" height="139"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LJc-b0-M5f">
+                                                    <rect key="frame" x="110" y="10" width="200" height="120"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpU-cQ-rMu">
+                                                    <rect key="frame" x="10" y="10" width="80" height="120"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z49-PJ-57q">
+                                                    <rect key="frame" x="10" y="10" width="80" height="120"/>
+                                                    <connections>
+                                                        <segue destination="rNi-KW-Ki3" kind="push" identifier="VideosVCToMovieVC" id="8A5-0g-abl"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Usr-e1-HqZ">
+                                                    <rect key="frame" x="110" y="10" width="200" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="200" id="C4U-SV-bYG"/>
+                                                        <constraint firstAttribute="height" constant="120" id="zd5-C1-Wwk"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" image="VideoCoverGradient">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="qzZ-iv-eSn" kind="push" identifier="VideosVCToVideoVC" id="t87-J4-gFw"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pompeii" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="NiV-GD-wdo">
+                                                    <rect key="frame" x="121" y="13" width="180" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="180" id="LzH-oc-6EE"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pompeii" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="2EE-bI-vpI">
+                                                    <rect key="frame" x="121" y="109" width="180" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="180" id="hSQ-kU-o6U"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="200" id="ozo-Z2-8st"/>
-                                                <constraint firstAttribute="height" constant="120" id="p1R-lR-tW5"/>
+                                                <constraint firstItem="2EE-bI-vpI" firstAttribute="centerX" secondItem="Usr-e1-HqZ" secondAttribute="centerX" constant="1" id="0pI-6P-YPv"/>
+                                                <constraint firstItem="2EE-bI-vpI" firstAttribute="bottom" secondItem="Usr-e1-HqZ" secondAttribute="bottom" constant="-5" id="1NJ-RO-YeV"/>
+                                                <constraint firstItem="Usr-e1-HqZ" firstAttribute="top" secondItem="NiV-GD-wdo" secondAttribute="top" constant="-3" id="jCb-A4-Hi3"/>
+                                                <constraint firstItem="Usr-e1-HqZ" firstAttribute="centerX" secondItem="NiV-GD-wdo" secondAttribute="centerX" constant="-1" id="ki6-lR-p6h"/>
+                                                <constraint firstItem="Usr-e1-HqZ" firstAttribute="leading" secondItem="SXn-uj-Kum" secondAttribute="leading" constant="110" id="mHP-yQ-dbF"/>
+                                                <constraint firstItem="Usr-e1-HqZ" firstAttribute="top" secondItem="SXn-uj-Kum" secondAttribute="top" constant="10" id="tOB-4d-3Tw"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <state key="normal" image="VideoCoverGradient">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="qzZ-iv-eSn" kind="push" identifier="VideosVCToVideoVC" id="DOR-G3-Ld5"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pompeii" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="laG-rk-JxX">
-                                            <rect key="frame" x="121" y="13" width="180" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="180" id="q6j-1d-auS"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pompeii" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="iRX-D0-FGc">
-                                            <rect key="frame" x="121" y="109" width="180" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="180" id="Zye-bE-azk"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="iRX-D0-FGc" firstAttribute="centerX" secondItem="eRu-Rs-NPg" secondAttribute="centerX" constant="1" id="7tk-zq-kJw"/>
-                                        <constraint firstItem="eRu-Rs-NPg" firstAttribute="centerX" secondItem="laG-rk-JxX" secondAttribute="centerX" constant="-1" id="7zx-2q-679"/>
-                                        <constraint firstItem="eRu-Rs-NPg" firstAttribute="top" secondItem="laG-rk-JxX" secondAttribute="top" constant="-3" id="JOa-JZ-ylN"/>
-                                        <constraint firstItem="iRX-D0-FGc" firstAttribute="bottom" secondItem="eRu-Rs-NPg" secondAttribute="bottom" constant="-5" id="MVi-DN-Aqn"/>
-                                        <constraint firstItem="eRu-Rs-NPg" firstAttribute="leading" secondItem="Xls-Xf-LtJ" secondAttribute="leading" constant="110" id="S7N-3Q-Aft"/>
-                                        <constraint firstItem="eRu-Rs-NPg" firstAttribute="top" secondItem="Xls-Xf-LtJ" secondAttribute="top" constant="10" id="lk0-iY-f0h"/>
-                                    </constraints>
-                                </tableViewCellContentView>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="NiV-GD-wdo" id="v2r-S9-nV1"/>
+                                            <outlet property="showCoverButton" destination="Z49-PJ-57q" id="Nnf-nX-1TA"/>
+                                            <outlet property="showCoverImageView" destination="cpU-cQ-rMu" id="hsL-vd-YgF"/>
+                                            <outlet property="videoCoverButton" destination="Usr-e1-HqZ" id="qr2-46-n7n"/>
+                                            <outlet property="videoCoverImageView" destination="LJc-b0-M5f" id="iOy-AT-X4r"/>
+                                            <outlet property="videoNameLabel" destination="2EE-bI-vpI" id="tSF-W0-9yD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <outlet property="nameLabel" destination="laG-rk-JxX" id="tO4-Rl-ksN"/>
-                                    <outlet property="showCoverButton" destination="NdB-ib-A4f" id="X2g-0n-51o"/>
-                                    <outlet property="showCoverImageView" destination="xxt-w9-CKZ" id="rZ3-0m-8aU"/>
-                                    <outlet property="videoCoverButton" destination="eRu-Rs-NPg" id="sXh-ly-mmR"/>
-                                    <outlet property="videoCoverImageView" destination="KhK-vo-OU2" id="mWd-Wd-Zf8"/>
-                                    <outlet property="videoNameLabel" destination="iRX-D0-FGc" id="3Xd-ij-cw8"/>
+                                    <outlet property="dataSource" destination="q7q-gj-1I2" id="TeK-fw-pbI"/>
+                                    <outlet property="delegate" destination="q7q-gj-1I2" id="sne-Bx-c52"/>
                                 </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="WBQ-aP-pUg" id="1hA-H7-xfk"/>
-                            <outlet property="delegate" destination="WBQ-aP-pUg" id="NUQ-uq-0sU"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0iQ-9O-3ts" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="X7R-q6-FPv" secondAttribute="trailing" id="1py-NP-IA8"/>
+                            <constraint firstItem="X7R-q6-FPv" firstAttribute="top" secondItem="4GL-em-eOv" secondAttribute="top" id="LpZ-YC-ar8"/>
+                            <constraint firstItem="DbF-LQ-e1R" firstAttribute="top" secondItem="X7R-q6-FPv" secondAttribute="bottom" id="QB8-Mh-CKr"/>
+                            <constraint firstItem="X7R-q6-FPv" firstAttribute="leading" secondItem="4GL-em-eOv" secondAttribute="leading" id="e6S-Pn-cI7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="X7R-q6-FPv" id="opO-Hv-KDB"/>
+                        <outlet property="topLayoutConstraint" destination="LpZ-YC-ar8" id="4sv-Fz-sl9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iDi-Np-Dok" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1575" y="-994"/>
         </scene>
@@ -1779,7 +1799,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QG1-gZ-JdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="374" y="-994"/>
+            <point key="canvasLocation" x="419" y="-994"/>
         </scene>
     </scenes>
     <resources>
@@ -1808,10 +1828,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cJ6-mU-v1Q"/>
+        <segue reference="sy6-da-bz4"/>
         <segue reference="JSE-a5-e9o"/>
+        <segue reference="t87-J4-gFw"/>
         <segue reference="D9o-3Z-sK3"/>
-        <segue reference="DOR-G3-Ld5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

@@ -8,11 +8,10 @@
 
 #import "RFRateMe.h"
 #import "UIAlertView+NSCookbook.h"
-#import "DoAlertView.h"
 
-#define kNumberOfDaysUntilShowAgain 7
-#define kAppStoreAddress @"https://itunes.apple.com/cl/app/cine-horarios/id469612283"
-#define kAppName @"Cine Horarios"
+#define kNumberOfDaysUntilShowAgain 3
+#define kAppStoreAddress @"https://itunes.apple.com/us/app/jobsy/id687059035"
+#define kAppName @"MyApp"
 
 @implementation RFRateMe
 
@@ -38,8 +37,8 @@
         NSDate *startDate = [f dateFromString:start];
         NSDate *endDate = [f dateFromString:end];
         
-        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
+        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
                                                             fromDate:startDate
                                                               toDate:endDate
                                                              options:0];
@@ -50,9 +49,9 @@
     
     //Show rate alert
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(kAppName, @"")
-                                                        message:[NSString stringWithFormat:@"Si le gusta %@, ¿le importaría valorarlo?. No te llevará más de un minuto. ¡Gracias por su colaboración!",kAppName]
+                                                        message:[NSString stringWithFormat:@"If you enjoy %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!",kAppName]
                                                        delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"No, thanks", @"")
+                                              cancelButtonTitle:NSLocalizedString(@"Never ask me again", @"")
                                               otherButtonTitles:NSLocalizedString(@"Rate it now", @""),NSLocalizedString(@"Remind me later",@""), nil];
     
     [alertView showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -86,6 +85,24 @@
                 break;
         }
     }];
+}
+
++(void)showRateAlertAfterTimesOpened:(int)times {
+    //Thanks @kylnew for feedback and idea!
+    
+    BOOL rateCompleted = [[NSUserDefaults standardUserDefaults] boolForKey:@"RateCompleted"];
+    if (rateCompleted) return;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int timesOpened = [defaults integerForKey:@"timesOpened"];
+    [defaults setInteger:timesOpened+1 forKey:@"timesOpened"];
+    [defaults synchronize];
+    NSLog(@"App has been opened %d times", [defaults integerForKey:@"timesOpened"]);
+    if([defaults integerForKey:@"timesOpened"] >= times){
+        [RFRateMe showRateAlert];
+    }
+
+
 }
 
 @end

@@ -19,7 +19,6 @@
 #import "ArrayDataSource.h"
 #import "FunctionCell2+Function.h"
 
-#import "DoAlertView.h"
 #import "AnnotationTheater.h"
 
 #import "UIImage+CH.h"

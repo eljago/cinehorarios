@@ -16,7 +16,6 @@
 #import "UIColor+CH.h"
 #import "GAI+CH.h"
 #import "UIView+CH.h"
-#import "UIViewController+DoAlertView.h"
 
 @interface MovieCinemasVC ()
 @property (nonatomic, strong) NSMutableArray *favoriteTheaters;
@@ -59,9 +58,6 @@
             [self.tableView reloadData];
         }
         else {
-            [self alertRetryWithCompleteBlock:^{
-                [self downloadShowTheaters];
-            }];
         }
         self.tableView.scrollEnabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];

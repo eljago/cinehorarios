@@ -9,6 +9,4 @@
 
 @interface ComingSoonVC : CHViewTableController
 
-@property (nonatomic, strong) NSString *portraitImageURL;
-
 @end

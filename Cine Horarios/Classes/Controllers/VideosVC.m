@@ -7,17 +7,19 @@
 //
 
 #import "VideosVC.h"
+#import "CHViewTableController_Protected.h"
 #import "VideoGroup.h"
 #import "Video.h"
-#import "UIFont+CH.h"
-#import "MBProgressHUD.h"
-#import "MBProgressHUD+CH.h"
-#import "UIViewController+DoAlertView.h"
-#import "VideoCell.h"
-#import "VideoCell+Video.h"
+
 #import "MovieVC.h"
 #import "VideoVC.h"
 #import "BasicMovie.h"
+
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
+
+#import "VideoCell.h"
+#import "VideoCell+Video.h"
 
 #import "GAI+CH.h"
 
@@ -41,42 +43,26 @@ const int kLoadingCellTag = 1234;
     
     [GAI trackPage:@"VIDEOS"];
     
-    self.title = @"Últimos Videos";
-    
     self.currentPage = 1;
     
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
-    
-    [self getVideosLocally];
-}
-
-#pragma mark - TheatersVC
-#pragma mark Properties
-
-- (UIFont *) tableFont {
-    if(_tableFont) return _tableFont;
-    
-    _tableFont = [UIFont getSizeForCHFont:CHFontStyleBig forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    
-    return _tableFont;
+    [self getDataForceDownload:NO];
 }
 
 #pragma mark Fetch Data
 
-- (void) getVideosLocally {
-    self.videoGroup = [VideoGroup loadVideoGroup];
-    if (self.videoGroup && self.videoGroup.videos.count > 0) {
-        
-        [self.tableView reloadData];
-        if (self.refreshControl.refreshing) {
-            [self.refreshControl endRefreshing];
-        }
+- (void) getDataForceDownload:(BOOL)forceDownload {
+    if (forceDownload) {
+        [self downloadVideosForPage:1];
     }
     else {
-        [self downloadVideosForPage:1];
+        self.videoGroup = [VideoGroup loadVideoGroup];
+        if (self.videoGroup && self.videoGroup.videos.count > 0) {
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        }
+        else {
+            [self downloadVideosForPage:1];
+        }
     }
 }
 
@@ -86,31 +72,31 @@ const int kLoadingCellTag = 1234;
     }
     [VideoGroup getVideosWithBlock:^(VideoGroup *videoGroup, NSError *error) {
         if (!error) {
-            if (self.videoGroup && page > 1) {
-                [self.videoGroup.videos addObjectsFromArray:videoGroup.videos];
+            if (videoGroup && videoGroup.videos.count > 0) {
+                if (page > 1) {
+                    [self.videoGroup.videos addObjectsFromArray:videoGroup.videos];
+                }
+                else {
+                    self.videoGroup = videoGroup;
+                }
+                [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];
             }
             else {
-                self.videoGroup = videoGroup;
+                [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
             }
-            [self.tableView reloadData];
         }
         else {
-            [self alertRetryWithCompleteBlock:^{
-                [self downloadVideosForPage:page];
-            }];
+            [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
         }
-        self.tableView.scrollEnabled = YES;
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (self.refreshControl.refreshing) {
-            [self.refreshControl endRefreshing];
-        }
     } page:page];
 }
 
 -(void)refreshData {
-    [self.refreshControl beginRefreshing];
+    [super refreshData];
     self.currentPage = 1;
-    [self downloadVideosForPage:self.currentPage];
 }
 
 #pragma mark - UITableView Data Source

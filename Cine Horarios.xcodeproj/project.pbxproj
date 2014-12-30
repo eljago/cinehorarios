@@ -88,18 +88,6 @@
 		6EC006D718DC7D67003DECC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006D018DC7D67003DECC8 /* Localizable.strings */; };
 		6EC006D818DC7D67003DECC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC006D118DC7D67003DECC8 /* main.m */; };
 		6EC006D918DC7D67003DECC8 /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006D218DC7D67003DECC8 /* Menu.plist */; };
-		6EC006E418DC7DCE003DECC8 /* check_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006DA18DC7DCE003DECC8 /* check_black.png */; };
-		6EC006E518DC7DCE003DECC8 /* check_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006DB18DC7DCE003DECC8 /* check_black@2x.png */; };
-		6EC006E618DC7DCE003DECC8 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006DC18DC7DCE003DECC8 /* check.png */; };
-		6EC006E718DC7DCE003DECC8 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006DD18DC7DCE003DECC8 /* check@2x.png */; };
-		6EC006E818DC7DCE003DECC8 /* close_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006DE18DC7DCE003DECC8 /* close_black.png */; };
-		6EC006E918DC7DCE003DECC8 /* close_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006DF18DC7DCE003DECC8 /* close_black@2x.png */; };
-		6EC006EA18DC7DCE003DECC8 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006E018DC7DCE003DECC8 /* close.png */; };
-		6EC006EB18DC7DCE003DECC8 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC006E118DC7DCE003DECC8 /* close@2x.png */; };
-		6EC006EC18DC7DCE003DECC8 /* DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC006E318DC7DCE003DECC8 /* DoAlertView.m */; };
-		6EC006F318DC7DDD003DECC8 /* RFRateMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC006EE18DC7DDD003DECC8 /* RFRateMe.m */; };
-		6EC006F418DC7DDD003DECC8 /* UIAlertView+NSCookbook.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC006F018DC7DDD003DECC8 /* UIAlertView+NSCookbook.m */; };
-		6EC006F518DC7DDD003DECC8 /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC006F218DC7DDD003DECC8 /* UIImage+ResizeMagick.m */; };
 		6EC0071418DC7E3C003DECC8 /* AnnotationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC006F718DC7E3C003DECC8 /* AnnotationGroup.m */; };
 		6EC0071518DC7E3C003DECC8 /* AnnotationTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC006F918DC7E3C003DECC8 /* AnnotationTheater.m */; };
 		6EC0071618DC7E3C003DECC8 /* BasicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC006FB18DC7E3C003DECC8 /* BasicItem.m */; };
@@ -124,7 +112,6 @@
 		6EC0073D18DC7EE1003DECC8 /* UIImage+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0073218DC7EE1003DECC8 /* UIImage+CH.m */; };
 		6EC0073E18DC7EE1003DECC8 /* UIImageView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0073418DC7EE1003DECC8 /* UIImageView+CH.m */; };
 		6EC0073F18DC7EE1003DECC8 /* UIView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0073618DC7EE1003DECC8 /* UIView+CH.m */; };
-		6EC0074018DC7EE1003DECC8 /* UIViewController+DoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */; };
 		6EE703A818B7BC7000B5D6F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A718B7BC7000B5D6F2 /* Security.framework */; };
 		6EE703AA18B7BC7A00B5D6F2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
@@ -281,22 +268,6 @@
 		6EC006D018DC7D67003DECC8 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = SupportingFiles/Localizable.strings; sourceTree = "<group>"; };
 		6EC006D118DC7D67003DECC8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SupportingFiles/main.m; sourceTree = "<group>"; };
 		6EC006D218DC7D67003DECC8 /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Menu.plist; path = SupportingFiles/Menu.plist; sourceTree = "<group>"; };
-		6EC006DA18DC7DCE003DECC8 /* check_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check_black.png; path = Vendor/DoAlertView/check_black.png; sourceTree = "<group>"; };
-		6EC006DB18DC7DCE003DECC8 /* check_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "check_black@2x.png"; path = "Vendor/DoAlertView/check_black@2x.png"; sourceTree = "<group>"; };
-		6EC006DC18DC7DCE003DECC8 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = Vendor/DoAlertView/check.png; sourceTree = "<group>"; };
-		6EC006DD18DC7DCE003DECC8 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "check@2x.png"; path = "Vendor/DoAlertView/check@2x.png"; sourceTree = "<group>"; };
-		6EC006DE18DC7DCE003DECC8 /* close_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close_black.png; path = Vendor/DoAlertView/close_black.png; sourceTree = "<group>"; };
-		6EC006DF18DC7DCE003DECC8 /* close_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close_black@2x.png"; path = "Vendor/DoAlertView/close_black@2x.png"; sourceTree = "<group>"; };
-		6EC006E018DC7DCE003DECC8 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close.png; path = Vendor/DoAlertView/close.png; sourceTree = "<group>"; };
-		6EC006E118DC7DCE003DECC8 /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close@2x.png"; path = "Vendor/DoAlertView/close@2x.png"; sourceTree = "<group>"; };
-		6EC006E218DC7DCE003DECC8 /* DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoAlertView.h; path = Vendor/DoAlertView/DoAlertView.h; sourceTree = "<group>"; };
-		6EC006E318DC7DCE003DECC8 /* DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoAlertView.m; path = Vendor/DoAlertView/DoAlertView.m; sourceTree = "<group>"; };
-		6EC006ED18DC7DDD003DECC8 /* RFRateMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFRateMe.h; path = Vendor/RFRateMe.h; sourceTree = "<group>"; };
-		6EC006EE18DC7DDD003DECC8 /* RFRateMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFRateMe.m; path = Vendor/RFRateMe.m; sourceTree = "<group>"; };
-		6EC006EF18DC7DDD003DECC8 /* UIAlertView+NSCookbook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+NSCookbook.h"; path = "Vendor/UIAlertView+NSCookbook.h"; sourceTree = "<group>"; };
-		6EC006F018DC7DDD003DECC8 /* UIAlertView+NSCookbook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+NSCookbook.m"; path = "Vendor/UIAlertView+NSCookbook.m"; sourceTree = "<group>"; };
-		6EC006F118DC7DDD003DECC8 /* UIImage+ResizeMagick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ResizeMagick.h"; path = "Vendor/UIImage+ResizeMagick.h"; sourceTree = "<group>"; };
-		6EC006F218DC7DDD003DECC8 /* UIImage+ResizeMagick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ResizeMagick.m"; path = "Vendor/UIImage+ResizeMagick.m"; sourceTree = "<group>"; };
 		6EC006F618DC7E3C003DECC8 /* AnnotationGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnnotationGroup.h; path = Classes/Models/AnnotationGroup.h; sourceTree = "<group>"; };
 		6EC006F718DC7E3C003DECC8 /* AnnotationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnnotationGroup.m; path = Classes/Models/AnnotationGroup.m; sourceTree = "<group>"; };
 		6EC006F818DC7E3C003DECC8 /* AnnotationTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnnotationTheater.h; path = Classes/Models/AnnotationTheater.h; sourceTree = "<group>"; };
@@ -344,8 +315,6 @@
 		6EC0073418DC7EE1003DECC8 /* UIImageView+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+CH.m"; path = "Utilities/Categories/UIImageView+CH.m"; sourceTree = "<group>"; };
 		6EC0073518DC7EE1003DECC8 /* UIView+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CH.h"; path = "Utilities/Categories/UIView+CH.h"; sourceTree = "<group>"; };
 		6EC0073618DC7EE1003DECC8 /* UIView+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+CH.m"; path = "Utilities/Categories/UIView+CH.m"; sourceTree = "<group>"; };
-		6EC0073718DC7EE1003DECC8 /* UIViewController+DoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+DoAlertView.h"; path = "Utilities/Categories/UIViewController+DoAlertView.h"; sourceTree = "<group>"; };
-		6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+DoAlertView.m"; path = "Utilities/Categories/UIViewController+DoAlertView.m"; sourceTree = "<group>"; };
 		6EE703A718B7BC7000B5D6F2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6EE703A918B7BC7A00B5D6F2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D6762D0B3F59498CA72154F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -385,13 +354,6 @@
 		16F008A1180DED1300A15060 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				6EC006ED18DC7DDD003DECC8 /* RFRateMe.h */,
-				6EC006EE18DC7DDD003DECC8 /* RFRateMe.m */,
-				6EC006EF18DC7DDD003DECC8 /* UIAlertView+NSCookbook.h */,
-				6EC006F018DC7DDD003DECC8 /* UIAlertView+NSCookbook.m */,
-				6EC006F118DC7DDD003DECC8 /* UIImage+ResizeMagick.h */,
-				6EC006F218DC7DDD003DECC8 /* UIImage+ResizeMagick.m */,
-				6E4BAA851884A4A400E37DAF /* DoAlertView */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -539,8 +501,6 @@
 				6EC0073418DC7EE1003DECC8 /* UIImageView+CH.m */,
 				6EC0073518DC7EE1003DECC8 /* UIView+CH.h */,
 				6EC0073618DC7EE1003DECC8 /* UIView+CH.m */,
-				6EC0073718DC7EE1003DECC8 /* UIViewController+DoAlertView.h */,
-				6EC0073818DC7EE1003DECC8 /* UIViewController+DoAlertView.m */,
 				6E176F071A05DEAE00775DC7 /* MBProgressHUD+CH.h */,
 				6E176F081A05DEAE00775DC7 /* MBProgressHUD+CH.m */,
 			);
@@ -675,23 +635,6 @@
 				25C66F851A2AD71C00366BE8 /* ServiciosGeofaro.plist */,
 			);
 			name = Geofarok;
-			sourceTree = "<group>";
-		};
-		6E4BAA851884A4A400E37DAF /* DoAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				6EC006DA18DC7DCE003DECC8 /* check_black.png */,
-				6EC006DB18DC7DCE003DECC8 /* check_black@2x.png */,
-				6EC006DC18DC7DCE003DECC8 /* check.png */,
-				6EC006DD18DC7DCE003DECC8 /* check@2x.png */,
-				6EC006DE18DC7DCE003DECC8 /* close_black.png */,
-				6EC006DF18DC7DCE003DECC8 /* close_black@2x.png */,
-				6EC006E018DC7DCE003DECC8 /* close.png */,
-				6EC006E118DC7DCE003DECC8 /* close@2x.png */,
-				6EC006E218DC7DCE003DECC8 /* DoAlertView.h */,
-				6EC006E318DC7DCE003DECC8 /* DoAlertView.m */,
-			);
-			name = DoAlertView;
 			sourceTree = "<group>";
 		};
 		6E56CC12188BC6DB000AB809 /* Cells */ = {
@@ -843,21 +786,13 @@
 				6EC006D418DC7D67003DECC8 /* Cinemas.plist in Resources */,
 				6EC0072418DC7E84003DECC8 /* Storyboard.storyboard in Resources */,
 				25FDAFCC1A32D00B00CDD34E /* ImageViewTableHeader.xib in Resources */,
-				6EC006E618DC7DCE003DECC8 /* check.png in Resources */,
-				6EC006E418DC7DCE003DECC8 /* check_black.png in Resources */,
-				6EC006EB18DC7DCE003DECC8 /* close@2x.png in Resources */,
-				6EC006E818DC7DCE003DECC8 /* close_black.png in Resources */,
-				6EC006E718DC7DCE003DECC8 /* check@2x.png in Resources */,
 				6EC0065818DC7BFD003DECC8 /* MenuCustomView.xib in Resources */,
-				6EC006EA18DC7DCE003DECC8 /* close.png in Resources */,
-				6EC006E518DC7DCE003DECC8 /* check_black@2x.png in Resources */,
 				25C66F871A2AD71C00366BE8 /* developers.p12 in Resources */,
 				6EC006D718DC7D67003DECC8 /* Localizable.strings in Resources */,
 				25C66F8A1A2AD71C00366BE8 /* ServiciosGeofaro.plist in Resources */,
 				162414A417BC946E00083708 /* Images.xcassets in Resources */,
 				6EC006D518DC7D67003DECC8 /* icloud.plist in Resources */,
 				6EC006D918DC7D67003DECC8 /* Menu.plist in Resources */,
-				6EC006E918DC7DCE003DECC8 /* close_black@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,11 +854,9 @@
 				6EC0069818DC7CBB003DECC8 /* VideosVC.m in Sources */,
 				6EC0065518DC7BC6003DECC8 /* VideoCell.m in Sources */,
 				6EC0073C18DC7EE1003DECC8 /* UIFont+CH.m in Sources */,
-				6EC0074018DC7EE1003DECC8 /* UIViewController+DoAlertView.m in Sources */,
 				6EC0071418DC7E3C003DECC8 /* AnnotationGroup.m in Sources */,
 				257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */,
 				25C498AA1A47A96700EFE197 /* CHViewTableController.m in Sources */,
-				6EC006F518DC7DDD003DECC8 /* UIImage+ResizeMagick.m in Sources */,
 				6EC0068618DC7CBB003DECC8 /* CastVC.m in Sources */,
 				6EC0068B18DC7CBB003DECC8 /* FavoritesVC.m in Sources */,
 				6EC0061518DC7AE1003DECC8 /* CineHorariosApiClient.m in Sources */,
@@ -933,8 +866,6 @@
 				6EC0064F18DC7BC6003DECC8 /* CastDirectorCell.m in Sources */,
 				25FDAFCF1A32D40600CDD34E /* ImageViewTableHeader.m in Sources */,
 				6EC0068C18DC7CBB003DECC8 /* FuncionesVC.m in Sources */,
-				6EC006F418DC7DDD003DECC8 /* UIAlertView+NSCookbook.m in Sources */,
-				6EC006F318DC7DDD003DECC8 /* RFRateMe.m in Sources */,
 				6EC0073B18DC7EE1003DECC8 /* UIColor+CH.m in Sources */,
 				6EC0071B18DC7E3C003DECC8 /* Cinema.m in Sources */,
 				6EC0065018DC7BC6003DECC8 /* CinemaCell.m in Sources */,
@@ -942,7 +873,6 @@
 				6EC0073F18DC7EE1003DECC8 /* UIView+CH.m in Sources */,
 				6EC0071C18DC7E3C003DECC8 /* Function.m in Sources */,
 				6EC0071818DC7E3C003DECC8 /* BasicMovie.m in Sources */,
-				6EC006EC18DC7DCE003DECC8 /* DoAlertView.m in Sources */,
 				6EC0069A18DC7CBB003DECC8 /* WebVC.m in Sources */,
 				6EC0071A18DC7E3C003DECC8 /* Cast.m in Sources */,
 				6EC0071718DC7E3C003DECC8 /* BasicItemImage.m in Sources */,

@@ -30,6 +30,9 @@
 {
     [super viewDidLoad];
     
+    [self.refreshControl removeFromSuperview];
+    self.refreshControl = nil;
+    
     [GAI trackPage:@"CINES"];
     
     _cinemas = [FavoritesManager sharedManager].cinemasArray;

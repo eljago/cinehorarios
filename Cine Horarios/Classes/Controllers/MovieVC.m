@@ -29,7 +29,6 @@
 #import "MovieCastCell+Person.h"
 #import "Cast.h"
 #import "RFRateMe.h"
-#import "UIViewController+DoAlertView.h"
 #import "NSObject+Utilidades.h"
 #import "OpenInChromeController.h"
 
@@ -203,9 +202,7 @@
             [self.tableView reloadData];
         }
         else {
-            [self alertRetryWithCompleteBlock:^{
-                [self getMovieForceRemote:YES];
-            }];
+            
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (self.refreshControl.refreshing) {

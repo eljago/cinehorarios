@@ -20,7 +20,6 @@
 #import "Billboard.h"
 #import "ComingSoonCell2.h"
 #import "ComingSoonCell2+BasicMovie.h"
-#import "FileHandler.h"
 
 @interface ComingSoonVC ()
 @property (nonatomic, strong) Billboard *billboard;

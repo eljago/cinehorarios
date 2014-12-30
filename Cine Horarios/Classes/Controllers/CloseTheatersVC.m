@@ -15,8 +15,6 @@
 #import "UIColor+CH.h"
 #import "GAI+CH.h"
 #import "FuncionesVC.h"
-#import "DoAlertView.h"
-#import "UIViewController+DoAlertView.h"
 
 #import "UIImage+CH.h"
 
@@ -24,6 +22,8 @@
 
 #import "Theater.h"
 #import "FunctionsContainerVC.h"
+
+#import "SIAlertView.h"
 
 NSInteger const kMaxTheaterDistance = 26000;
 NSInteger const kRegionSize = 4000;
@@ -64,15 +64,16 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
     
     // ** Don't forget to add NSLocationWhenInUseUsageDescription in MyApp-Info.plist and give it a string
     
-    self.locationManager = [[CLLocationManager alloc] init];
-//    self.locationManager.delegate = self;
-    
-    // TODO: Add NSLocationWhenInUseUsageDescription in MyApp-Info.plist and give it a string
-    
-    // Check for iOS 8
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
+//    self.locationManager = [[CLLocationManager alloc] init];
+////    self.locationManager.delegate = self;
+//    
+//    // TODO: Add NSLocationWhenInUseUsageDescription in MyApp-Info.plist and give it a string
+//    
+//    // Check for iOS 8
+//    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+//        [self.locationManager requestWhenInUseAuthorization];
+//    }
+////    [self.locationManager startUpdatingLocation];
     
     [GAI trackPage:@"MAPA"];
     
@@ -142,13 +143,30 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 -(void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error {
 
     if (error.userInfo[@"NSLocalizedRecoverySuggestion"]) {
-        DoAlertView *alert = [[DoAlertView alloc] init];
-        alert.nAnimationType = DoTransitionStylePop;
-        alert.dRound = 2.0;
-        alert.bDestructive = NO;
-        [alert doYes:error.userInfo[@"NSLocalizedRecoverySuggestion"] yes:^(DoAlertView *alertView) {
-            
-        }];
+//        DoAlertView *alert = [[DoAlertView alloc] init];
+//        alert.nAnimationType = DoTransitionStylePop;
+//        alert.dRound = 2.0;
+//        alert.bDestructive = NO;
+//        [alert doYesNo:nil body:error.userInfo[@"NSLocalizedRecoverySuggestion"]  yes:^(DoAlertView *alertView) {
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+//        } no:^(DoAlertView *alertView) {
+//            
+//        }];
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"SIAlertView" andMessage:error.userInfo[@"NSLocalizedRecoverySuggestion"]];
+        
+        [alertView addButtonWithTitle:@"Cancelar"
+                                 type:SIAlertViewButtonTypeCancel
+                              handler:^(SIAlertView *alert) {
+                                  
+                              }];
+        [alertView addButtonWithTitle:@"Activar"
+                                 type:SIAlertViewButtonTypeDestructive
+                              handler:^(SIAlertView *alert) {
+                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                              }];
+        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+        
+        [alertView show];
     }
 }
 
@@ -325,9 +343,6 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
         }
         else {
             [self enableBarButtonItems];
-            [self alertRetryWithCompleteBlock:^{
-                [self getTheatersLocationsForceRemote:YES];
-            }];
         }
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];
