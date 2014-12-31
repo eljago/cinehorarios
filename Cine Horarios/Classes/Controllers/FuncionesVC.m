@@ -38,11 +38,13 @@ NSString *const kHeaderString = @"No se han encontrado los horarios.";
 NSString *const kFunctionsDownloaded = @"DOWNLOADED";
 NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
 
-@interface FuncionesVC () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate>
+@interface FuncionesVC () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) ArrayDataSource *dataSource;
 @property (nonatomic, assign) BOOL shouldShowEmptyDataSet;
 @property (nonatomic, strong) OpenInChromeController *openInChromeController;
+@property (nonatomic, strong) UIGestureRecognizer *tableViewGestureRecognizer;
+@property (nonatomic, strong) UIGestureRecognizer *pageScrollViewGestureRecognizer;
 @end
 
 @implementation FuncionesVC
@@ -65,6 +67,20 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
     self.refreshControl = refreshControl;
     
     [self getTheaterForceDownload:NO];
+    
+    UIScrollView *scrollView = (UIScrollView *)self.tableView;
+    scrollView.directionalLockEnabled = YES;
+    
+    for (UIView *v in self.functionsPageVC.view.subviews) {
+        if ([v isKindOfClass:[UIScrollView class]]) {
+            UIScrollView *pageScrollView = (UIScrollView *)v;
+            pageScrollView.directionalLockEnabled = YES;
+            for (UIGestureRecognizer *gr in pageScrollView.gestureRecognizers) {
+                NSLog(@"%@",gr.class);
+            }
+            
+        }
+    }
 }
 
 -(void) setupDataSource {

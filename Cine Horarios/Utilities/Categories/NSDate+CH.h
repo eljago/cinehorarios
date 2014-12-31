@@ -10,6 +10,7 @@
 
 @interface NSDate (CH)
 
--(NSString *) getShortDateString;
+- (NSString *) getShortDateString;
+- (NSDate *) datePlusDays:(NSInteger)days;
 
 @end

@@ -10,11 +10,15 @@
 
 @implementation NSDate (CH)
 
--(NSString *) getShortDateString {
+- (NSString *) getShortDateString {
     NSDateFormatter *formatter = [NSDateFormatter new];
     [formatter setLocale:[NSLocale currentLocale]];
     [formatter setDateFormat:@"EEEE dd"];
     return [formatter stringFromDate:self];
+}
+
+- (NSDate *) datePlusDays:(NSInteger)days {
+    return [[NSDate date] dateByAddingTimeInterval:60*60*24*days];
 }
 
 @end

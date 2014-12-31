@@ -25,6 +25,9 @@
 		25C66F931A2ADE1800366BE8 /* GeoFaroKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */; };
 		25C66F941A2ADE1800366BE8 /* GeoFaroKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F831A2AD71C00366BE8 /* GeoFaroKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		25F033771A37032900748D5E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F033761A37032900748D5E /* StoreKit.framework */; };
+		25F1A0121A53B40200EF7E89 /* FunctionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1A0111A53B40200EF7E89 /* FunctionsViewController.m */; };
+		25F1A0151A53B99900EF7E89 /* FunctionsCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1A0141A53B99900EF7E89 /* FunctionsCollectionCell.m */; };
+		25F1A0181A53CC9300EF7E89 /* NSDate+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1A0171A53CC9300EF7E89 /* NSDate+CH.m */; };
 		25FDAFCC1A32D00B00CDD34E /* ImageViewTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */; };
 		25FDAFCF1A32D40600CDD34E /* ImageViewTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FDAFCE1A32D40600CDD34E /* ImageViewTableHeader.m */; };
 		2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6762D0B3F59498CA72154F7 /* libPods.a */; };
@@ -158,6 +161,12 @@
 		25C66F851A2AD71C00366BE8 /* ServiciosGeofaro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ServiciosGeofaro.plist; path = Geofarok/ServiciosGeofaro.plist; sourceTree = "<group>"; };
 		25C66F911A2ADCC100366BE8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		25F033761A37032900748D5E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		25F1A0101A53B40200EF7E89 /* FunctionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsViewController.h; path = Classes/Controllers/FunctionsViewController.h; sourceTree = "<group>"; };
+		25F1A0111A53B40200EF7E89 /* FunctionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsViewController.m; path = Classes/Controllers/FunctionsViewController.m; sourceTree = "<group>"; };
+		25F1A0131A53B99900EF7E89 /* FunctionsCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsCollectionCell.h; path = Classes/Views/Cells/FunctionsCollectionCell.h; sourceTree = "<group>"; };
+		25F1A0141A53B99900EF7E89 /* FunctionsCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsCollectionCell.m; path = Classes/Views/Cells/FunctionsCollectionCell.m; sourceTree = "<group>"; };
+		25F1A0161A53CC9300EF7E89 /* NSDate+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+CH.h"; path = "Utilities/Categories/NSDate+CH.h"; sourceTree = "<group>"; };
+		25F1A0171A53CC9300EF7E89 /* NSDate+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+CH.m"; path = "Utilities/Categories/NSDate+CH.m"; sourceTree = "<group>"; };
 		25F41A661A09F661009C4805 /* Cine Horarios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cine Horarios.entitlements"; sourceTree = "<group>"; };
 		25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewTableHeader.xib; sourceTree = "<group>"; };
 		25FDAFCD1A32D40600CDD34E /* ImageViewTableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageViewTableHeader.h; path = Classes/Views/Nibs/ImageViewTableHeader.h; sourceTree = "<group>"; };
@@ -480,6 +489,8 @@
 				6EC0068218DC7CBB003DECC8 /* VideoVC.m */,
 				6EC0068418DC7CBB003DECC8 /* WebVC.m */,
 				25C498A91A47A96700EFE197 /* CHViewTableController.m */,
+				25F1A0101A53B40200EF7E89 /* FunctionsViewController.h */,
+				25F1A0111A53B40200EF7E89 /* FunctionsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -487,6 +498,8 @@
 		3D309A2617A85D9600BB5D13 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				25F1A0161A53CC9300EF7E89 /* NSDate+CH.h */,
+				25F1A0171A53CC9300EF7E89 /* NSDate+CH.m */,
 				6EC0072918DC7EE1003DECC8 /* GAI+CH.h */,
 				6EC0072A18DC7EE1003DECC8 /* GAI+CH.m */,
 				6EC0072B18DC7EE1003DECC8 /* NSArray+FKBMap.h */,
@@ -651,6 +664,8 @@
 				6EC0064718DC7BC6003DECC8 /* MovieCastCell.m */,
 				6EC0064918DC7BC6003DECC8 /* MovieImageCell.m */,
 				6EC0064B18DC7BC6003DECC8 /* VideoCell.m */,
+				25F1A0131A53B99900EF7E89 /* FunctionsCollectionCell.h */,
+				25F1A0141A53B99900EF7E89 /* FunctionsCollectionCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -883,6 +898,7 @@
 				6EC0062E18DC7B77003DECC8 /* BasicCell+Theater.m in Sources */,
 				6EC0071D18DC7E3C003DECC8 /* Movie.m in Sources */,
 				2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */,
+				25F1A0121A53B40200EF7E89 /* FunctionsViewController.m in Sources */,
 				6EC0063418DC7B77003DECC8 /* FunctionCell2+Function.m in Sources */,
 				6EC0071618DC7E3C003DECC8 /* BasicItem.m in Sources */,
 				6EC0063718DC7B77003DECC8 /* VideoCell+Video.m in Sources */,
@@ -919,6 +935,8 @@
 				6EC0068518DC7CBB003DECC8 /* CarteleraVC.m in Sources */,
 				6EC0068718DC7CBB003DECC8 /* CineHorariosTableViewController.m in Sources */,
 				6EC0068A18DC7CBB003DECC8 /* ComingSoonVC.m in Sources */,
+				25F1A0181A53CC9300EF7E89 /* NSDate+CH.m in Sources */,
+				25F1A0151A53B99900EF7E89 /* FunctionsCollectionCell.m in Sources */,
 				6EC0071F18DC7E3C003DECC8 /* Person.m in Sources */,
 				6EC0064E18DC7BC6003DECC8 /* CastActorCell.m in Sources */,
 			);
