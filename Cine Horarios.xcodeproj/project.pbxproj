@@ -28,6 +28,8 @@
 		25F1A0121A53B40200EF7E89 /* FunctionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1A0111A53B40200EF7E89 /* FunctionsViewController.m */; };
 		25F1A0151A53B99900EF7E89 /* FunctionsCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1A0141A53B99900EF7E89 /* FunctionsCollectionCell.m */; };
 		25F1A0181A53CC9300EF7E89 /* NSDate+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1A0171A53CC9300EF7E89 /* NSDate+CH.m */; };
+		25F1A0211A53F8CB00EF7E89 /* FunctionsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1A0201A53F8CB00EF7E89 /* FunctionsCollectionView.m */; };
+		25F1A0241A53F94200EF7E89 /* FunctionsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1A0231A53F94200EF7E89 /* FunctionsTableView.m */; };
 		25FDAFCC1A32D00B00CDD34E /* ImageViewTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */; };
 		25FDAFCF1A32D40600CDD34E /* ImageViewTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FDAFCE1A32D40600CDD34E /* ImageViewTableHeader.m */; };
 		2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6762D0B3F59498CA72154F7 /* libPods.a */; };
@@ -167,6 +169,10 @@
 		25F1A0141A53B99900EF7E89 /* FunctionsCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsCollectionCell.m; path = Classes/Views/Cells/FunctionsCollectionCell.m; sourceTree = "<group>"; };
 		25F1A0161A53CC9300EF7E89 /* NSDate+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+CH.h"; path = "Utilities/Categories/NSDate+CH.h"; sourceTree = "<group>"; };
 		25F1A0171A53CC9300EF7E89 /* NSDate+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+CH.m"; path = "Utilities/Categories/NSDate+CH.m"; sourceTree = "<group>"; };
+		25F1A01F1A53F8CB00EF7E89 /* FunctionsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsCollectionView.h; path = Classes/Views/FunctionsCollectionView.h; sourceTree = "<group>"; };
+		25F1A0201A53F8CB00EF7E89 /* FunctionsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsCollectionView.m; path = Classes/Views/FunctionsCollectionView.m; sourceTree = "<group>"; };
+		25F1A0221A53F94200EF7E89 /* FunctionsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsTableView.h; path = Classes/Views/FunctionsTableView.h; sourceTree = "<group>"; };
+		25F1A0231A53F94200EF7E89 /* FunctionsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsTableView.m; path = Classes/Views/FunctionsTableView.m; sourceTree = "<group>"; };
 		25F41A661A09F661009C4805 /* Cine Horarios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cine Horarios.entitlements"; sourceTree = "<group>"; };
 		25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewTableHeader.xib; sourceTree = "<group>"; };
 		25FDAFCD1A32D40600CDD34E /* ImageViewTableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageViewTableHeader.h; path = Classes/Views/Nibs/ImageViewTableHeader.h; sourceTree = "<group>"; };
@@ -551,6 +557,10 @@
 				6EC0065618DC7BDE003DECC8 /* Nibs */,
 				6E88F27F189AFEEE00927222 /* CellCategories */,
 				6E56CC12188BC6DB000AB809 /* Cells */,
+				25F1A01F1A53F8CB00EF7E89 /* FunctionsCollectionView.h */,
+				25F1A0201A53F8CB00EF7E89 /* FunctionsCollectionView.m */,
+				25F1A0221A53F94200EF7E89 /* FunctionsTableView.h */,
+				25F1A0231A53F94200EF7E89 /* FunctionsTableView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -911,6 +921,7 @@
 				6EC0073E18DC7EE1003DECC8 /* UIImageView+CH.m in Sources */,
 				6EC0063518DC7B77003DECC8 /* MovieCastCell+Person.m in Sources */,
 				25C66F7F1A2AD70C00366BE8 /* NSObject+Utilidades.m in Sources */,
+				25F1A0241A53F94200EF7E89 /* FunctionsTableView.m in Sources */,
 				25710C951A0DB3230066864C /* FunctionsPageVC.m in Sources */,
 				6EC0063218DC7B77003DECC8 /* CinemaCell+Cinema.m in Sources */,
 				6EC0069518DC7CBB003DECC8 /* MovieVC.m in Sources */,
@@ -926,6 +937,7 @@
 				6EC0068918DC7CBB003DECC8 /* CloseTheatersVC.m in Sources */,
 				6EC0069118DC7CBB003DECC8 /* MovieFunctionsVC.m in Sources */,
 				6EC0065218DC7BC6003DECC8 /* FunctionCell2.m in Sources */,
+				25F1A0211A53F8CB00EF7E89 /* FunctionsCollectionView.m in Sources */,
 				6EC0073918DC7EE1003DECC8 /* GAI+CH.m in Sources */,
 				6EC0065418DC7BC6003DECC8 /* MovieImageCell.m in Sources */,
 				6EC0072118DC7E3C003DECC8 /* Video.m in Sources */,

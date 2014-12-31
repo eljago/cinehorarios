@@ -16,6 +16,8 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+CH.h"
 
+#import "FunctionsTableView.h"
+
 @interface FunctionsCollectionCell ()
 @property (nonatomic, strong) ArrayDataSource *dataSource;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
