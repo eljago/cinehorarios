@@ -11,6 +11,5 @@ pod 'SpinKit'
 pod 'Harpy'
 pod 'DZNEmptyDataSet'
 pod 'OpenInChrome'
-pod 'AMScrollingNavbar'
 pod 'SIAlertView'
 pod 'RFRateMe', "~> 1.0.0"

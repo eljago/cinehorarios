@@ -50,13 +50,13 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     BillboardCell *billboardCell = (BillboardCell *)cell;
-    billboardCell.mainLabel.font = self.fontHeadline;
-    billboardCell.genresLabel.font = self.fontBody;
-    billboardCell.durationLabel.font = self.fontBody;
+    billboardCell.mainLabel.font = self.fontBigBold;
+    billboardCell.genresLabel.font = self.fontNormal;
+    billboardCell.durationLabel.font = self.fontNormal;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     BasicMovie *basicMovie = self.billboard.movies[indexPath.row];
-    return [BillboardCell heightForRowWithBasicMovie:basicMovie headFont:self.fontBody bodyFont:self.fontBody];
+    return [BillboardCell heightForRowWithBasicMovie:basicMovie headFont:self.fontNormal bodyFont:self.fontNormal];
 }
 
 #pragma mark - CarteleraVC

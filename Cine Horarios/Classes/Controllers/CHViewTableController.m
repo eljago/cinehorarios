@@ -12,7 +12,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIFont+CH.h"
 #import "UIScrollView+EmptyDataSet.h"
-#import "UIViewController+ScrollingNavbar.h"
+#import "UIFont+CH.h"
 
 @interface CHViewTableController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate> {
     @protected
@@ -32,9 +32,9 @@
 
 @implementation CHViewTableController
 @synthesize tableView = _tableView;
-@synthesize fontBody = _fontBody;
-@synthesize fontHeadline = _fontHeadline;
-@synthesize fontFootnote = _fontFootnote;
+@synthesize fontNormal = _fontNormal;
+@synthesize fontBigBold = _fontBigBold;
+@synthesize fontSmall = _fontSmall;
 @synthesize refreshControl = _refreshControl;
 
 - (void)viewDidLoad {
@@ -58,10 +58,6 @@
     // This will remove extra separators from tableview
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    // Just call this line to enable the scrolling navbar
-    [self followScrollView:self.tableView usingTopConstraint:self.topLayoutConstraint withDelay:65];
-    [self setShouldScrollWhenContentFits:YES];
-    
     _refreshControl = [[UIRefreshControl alloc] init];
     _refreshControl.tintColor = [UIColor blackColor];
     [_refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
@@ -74,36 +70,26 @@
     
     NSLog(@"Low Memory warning");
 }
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self showNavBarAnimated:NO];
-}
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self showNavBarAnimated:NO];
-}
 
 -(NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - Attributes
-- (UIFont *) fontBody {
-    if(_fontBody) return _fontBody;
-    _fontBody = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    return _fontBody;
+- (UIFont *) fontNormal {
+    if(_fontNormal) return _fontNormal;
+    _fontNormal = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize: [[UIApplication sharedApplication] preferredContentSizeCategory]];
+    return _fontNormal;
 }
-- (UIFont *) fontHeadline {
-    if(_fontHeadline) return _fontHeadline;
-    _fontHeadline = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    return _fontHeadline;
+- (UIFont *) fontBigBold {
+    if(_fontBigBold) return _fontBigBold;
+    _fontBigBold = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize: [[UIApplication sharedApplication] preferredContentSizeCategory]];
+    return _fontBigBold;
 }
-- (UIFont *) fontFootnote {
-    if(_fontFootnote) return _fontFootnote;
-    _fontFootnote = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    return _fontFootnote;
+- (UIFont *) fontSmall {
+    if(_fontSmall) return _fontSmall;
+    _fontSmall = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize: [[UIApplication sharedApplication] preferredContentSizeCategory]];
+    return _fontSmall;
 }
 
 #pragma mark - UITableViewController
@@ -121,9 +107,9 @@
 #pragma mark - Prefered Content Size Changed
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    _fontBody = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    _fontHeadline = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-    _fontFootnote = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    _fontNormal = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    _fontBigBold = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    _fontSmall = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     
     [self.tableView setNeedsLayout];
 }
@@ -176,7 +162,7 @@
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
     paragraph.alignment = NSTextAlignmentCenter;
     
-    NSDictionary *attributes = @{NSFontAttributeName: self.fontHeadline,
+    NSDictionary *attributes = @{NSFontAttributeName: self.fontBigBold,
                                  NSForegroundColorAttributeName: [UIColor grayColor],
                                  NSParagraphStyleAttributeName: paragraph};
     
@@ -186,7 +172,7 @@
 }
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
     
-    NSDictionary *attributes = @{NSFontAttributeName: self.fontBody,
+    NSDictionary *attributes = @{NSFontAttributeName: self.fontNormal,
                                  NSForegroundColorAttributeName: [UIColor grayColor]};
     
     return [[NSAttributedString alloc] initWithString:@"Reintentar" attributes:attributes];

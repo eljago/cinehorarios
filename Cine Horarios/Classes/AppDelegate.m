@@ -21,6 +21,8 @@
 
 #import "Constants.h"
 
+#import "iOSHierarchyViewer.h"
+
 #define COMPILE_GEOFARO false
 
 /** GOOGLE ANALYTIC CONSTANTS **/

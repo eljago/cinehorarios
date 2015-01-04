@@ -18,7 +18,9 @@
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, assign) NSInteger *theaterID;
 @property (nonatomic, weak) id<CollectionCellDelegate> delegate;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 - (void) getDataForceDownload:(BOOL)forceDownload;
 - (void) prepareCell;
+
 @end

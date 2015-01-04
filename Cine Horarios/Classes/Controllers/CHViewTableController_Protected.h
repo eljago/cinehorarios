@@ -9,9 +9,9 @@
 #import "CHViewTableController.h"
 
 @interface CHViewTableController ()
-@property (nonatomic, strong, readonly) UIFont *fontBody;
-@property (nonatomic, strong, readonly) UIFont *fontHeadline;
-@property (nonatomic, strong, readonly) UIFont *fontFootnote;
+@property (nonatomic, strong, readonly) UIFont *fontNormal;
+@property (nonatomic, strong, readonly) UIFont *fontBigBold;
+@property (nonatomic, strong, readonly) UIFont *fontSmall;
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 

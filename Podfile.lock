@@ -20,7 +20,6 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMScrollingNavbar (1.2)
   - DACircularProgress (2.2.0)
   - DZNEmptyDataSet (1.5)
   - GoogleAnalytics-iOS-SDK (3.10):
@@ -50,7 +49,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
-  - AMScrollingNavbar
   - DZNEmptyDataSet
   - GoogleAnalytics-iOS-SDK
   - Harpy
@@ -65,7 +63,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  AMScrollingNavbar: 9aa2d5805047bcfc084a0437304cd4cf2f24faf8
   DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
   DZNEmptyDataSet: 15b1425ebba29e5a04d2fac9623a7384e3eaf775
   GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502

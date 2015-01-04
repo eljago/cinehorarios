@@ -10,6 +10,4 @@
 
 @interface FunctionsTableView : UITableView
 
-@property (nonatomic, weak) UIPanGestureRecognizer *panGestureRecognizer;
-
 @end

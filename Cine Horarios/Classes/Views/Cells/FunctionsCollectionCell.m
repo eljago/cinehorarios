@@ -15,19 +15,23 @@
 
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+CH.h"
+#import "UIColor+CH.h"
 
 #import "FunctionsTableView.h"
+
 
 @interface FunctionsCollectionCell ()
 @property (nonatomic, strong) ArrayDataSource *dataSource;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, assign) CGFloat contentWidth;
 @end
 
 @implementation FunctionsCollectionCell
 
 -(void) awakeFromNib{
     [super awakeFromNib];
+    
+    self.backgroundColor = [UIColor tableViewColor];
     
     _refreshControl = [[UIRefreshControl alloc] init];
     _refreshControl.tintColor = [UIColor blackColor];
@@ -60,6 +64,7 @@
             [self.functions removeAllObjects];
             [self.functions addObjectsFromArray:theater.functions];
             self.dataSource.items = self.functions;
+            self.tableView.hidden = NO;
             [self.tableView reloadData];
             [self.refreshControl endRefreshing];
         }
@@ -77,6 +82,7 @@
             [self.functions addObjectsFromArray:theater.functions];
             if (self.functions.count > 0) {
                 self.dataSource.items = self.functions;
+                self.tableView.hidden = NO;
             }
             else {
             }
@@ -84,10 +90,10 @@
         else {
             NSLog(@"%@",error.localizedDescription);
         }
+        [self.tableView reloadData];
         self.tableView.scrollEnabled = YES;
         [self.refreshControl endRefreshing];
         [MBProgressHUD hideAllHUDsForView:self animated:YES];
-        [self.tableView reloadData];
     } theaterID:self.theaterID date:self.date];
 }
 

@@ -9,6 +9,7 @@
 #import "TheatersVC.h"
 #import "CHViewTableController_Protected.h"
 #import "FunctionsViewController.h"
+#import "FunctionsVC.h"
 #import "ArrayDataSource.h"
 #import "GAI+CH.h"
 
@@ -65,7 +66,7 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     BasicCell *basicCell = (BasicCell *)cell;
-    basicCell.mainLabel.font = self.fontBody;
+    basicCell.mainLabel.font = self.fontNormal;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -74,7 +75,7 @@
     }
     else {
         Theater *theater = self.cinema.theaters[indexPath.row];
-        return [BasicCell heightForRowWithTheater:theater tableFont:self.fontBody];
+        return [BasicCell heightForRowWithTheater:theater tableFont:self.fontNormal];
     }
 }
 
@@ -124,10 +125,14 @@
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    FunctionsViewController *functionsViewController = [segue destinationViewController];
+//    FunctionsViewController *functionsViewController = [segue destinationViewController];
+//    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//    Theater *theater = self.cinema.theaters[indexPath.row];
+//    functionsViewController.theater = theater;
+    FunctionsVC *functionsVC = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.cinema.theaters[indexPath.row];
-    functionsViewController.theater = theater;
+    functionsVC.theater = theater;
 }
 
 @end

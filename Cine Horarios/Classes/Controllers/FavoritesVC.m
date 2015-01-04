@@ -13,7 +13,7 @@
 #import "BasicCell+Theater.h"
 #import "UIFont+CH.h"
 #import "GAI+CH.h"
-#import "FunctionsContainerVC.h"
+#import "FunctionsViewController.h"
 #import "FavoritesManager.h"
 #import "ImageViewTableHeader.h"
 #import "UIImage+CH.h"
@@ -122,12 +122,12 @@ static const NSString *kCinema = @"CinemasArray";
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     BasicCell *basicCell = (BasicCell *)cell;
-    basicCell.mainLabel.font = self.fontBody;
+    basicCell.mainLabel.font = self.fontNormal;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
-    return [BasicCell heightForRowWithTheater:favoritesManager.favoriteTheaters[indexPath.row] tableFont:self.fontBody];
+    return [BasicCell heightForRowWithTheater:favoritesManager.favoriteTheaters[indexPath.row] tableFont:self.fontNormal];
 }
 
 #pragma mark Fetch Data
@@ -206,10 +206,10 @@ static const NSString *kCinema = @"CinemasArray";
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    FunctionsContainerVC *functionsContainerVC = [segue destinationViewController];
+    FunctionsViewController *functionsViewController = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.favoriteTheatersSections[indexPath.section][kTheatersArray][indexPath.row];
-    functionsContainerVC.theater = theater;
+    functionsViewController.theater = theater;
 }
 
 

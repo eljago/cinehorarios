@@ -20,9 +20,9 @@
     [self.imageCover setImageWithStringURL:function.imageURL movieImageType:MovieImageTypeCover];
 }
 
-+ (CGFloat) heightForRowWithFunction:(Function *)function headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont showtimesFont:(UIFont *)showtimesFont{
++ (CGFloat) heightForRowWithFunction:(Function *)function headFont:(UIFont *)headFont bodyFont:(UIFont *)bodyFont showtimesFont:(UIFont *)showtimesFont {
     
-    CGSize size = CGSizeMake(187.f, 1000.f);
+    CGSize size = CGSizeMake(187, CGFLOAT_MAX);
     
     CGRect nameLabelRect = [function.name boundingRectWithSize: size
                                                        options: NSStringDrawingUsesLineFragmentOrigin

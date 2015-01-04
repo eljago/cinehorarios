@@ -54,13 +54,13 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     ComingSoonCell2 *comingSoonCell = (ComingSoonCell2 *)cell;
-    comingSoonCell.mainLabel.font = self.fontHeadline;
-    comingSoonCell.debutLabel.font = self.fontBody;
+    comingSoonCell.mainLabel.font = self.fontBigBold;
+    comingSoonCell.debutLabel.font = self.fontNormal;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     BasicMovie *basicMovie = self.billboard.movies[indexPath.row];
-    return [ComingSoonCell2 heightForRowWithBasicMovie:basicMovie headFont:self.fontHeadline bodyFont:self.fontBody];
+    return [ComingSoonCell2 heightForRowWithBasicMovie:basicMovie headFont:self.fontBigBold bodyFont:self.fontNormal];
 }
 
 #pragma mark - ComingSoonVC

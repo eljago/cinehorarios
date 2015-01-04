@@ -21,7 +21,7 @@
 #import "FunctionsPageVC.h"
 
 #import "Theater.h"
-#import "FunctionsContainerVC.h"
+#import "FunctionsViewController.h"
 
 #import "SIAlertView.h"
 
@@ -177,7 +177,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
 
     AnnotationTheater *annotation = view.annotation;
-    FunctionsContainerVC *functionsContainerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionsContainerVC"];
+    FunctionsViewController *functionsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionsViewController"];
     
     NSDictionary *theaterDict = @{
                                   @"id": [NSNumber numberWithInteger:annotation.theaterID],
@@ -193,9 +193,9 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
                                     fromJSONDictionary:theaterDict
                                                  error:nil];
     
-    functionsContainerVC.theater = newTheater;
+    functionsViewController.theater = newTheater;
     
-    [self.navigationController pushViewController:functionsContainerVC animated:YES];
+    [self.navigationController pushViewController:functionsViewController animated:YES];
 }
 
 #pragma mark - UITableView
@@ -293,8 +293,8 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
                                     fromJSONDictionary:theaterDict
                                                  error:nil];
     
-    FunctionsContainerVC *functionsContainerVC = [segue destinationViewController];
-    functionsContainerVC.theater = newTheater;
+    FunctionsViewController *functionsViewController = [segue destinationViewController];
+    functionsViewController.theater = newTheater;
 }
 
 #pragma mark - CloseTheatersVC
