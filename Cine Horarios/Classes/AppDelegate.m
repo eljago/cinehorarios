@@ -16,7 +16,12 @@
 #import "Constants.h"
 #import "iOSHierarchyViewer.h"
 
-#define COMPILE_GEOFARO false
+#include <stdio.h>
+#include <dlfcn.h>
+#import <mach-o/dyld.h>
+
+
+#define COMPILE_GEOFARO true
 
 /** GOOGLE ANALYTIC CONSTANTS **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
@@ -307,6 +312,17 @@ static int const kGaDispatchPeriod = 30;
 #pragma mark GEOPUSH
 #pragma mark - Application PUSH
 #pragma mark - Push
+
+char* MakeStringCopy (const char* string)
+{
+    if (string == NULL)
+        return NULL;
+    
+    char* res = (char*)malloc(strlen(string) + 1);
+    strcpy(res, string);
+    return res;
+}
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken");
@@ -322,8 +338,94 @@ static int const kGaDispatchPeriod = 30;
     
     if (token !=nil)
     {
+        
+        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+            NSLog(@"iOS 8");
+            NSURL *frameworkURL = [[[NSBundle mainBundle]
+                                    privateFrameworksURL]
+                                   URLByAppendingPathComponent:@"GeoFaroKit.framework"];
+            NSBundle *frameworkBundle = [NSBundle
+                                         bundleWithURL:frameworkURL];
+            void* gfk_handle =
+            dlopen(MakeStringCopy([frameworkBundle.executableURL.path
+                                   UTF8String]), RTLD_NOW);
+            if (gfk_handle != NULL) {
+                NSLog(@"Handler Ok");
+            }else{
+                NSLog(@"%s",dlerror());
+            }
+            NSString *pseudoToken = [NSString stringWithFormat:@"%@",[[[UIDevice currentDevice]identifierForVendor]UUIDString]];
+            
+            GFKManagerOptions *opciones =
+            [NSClassFromString(@"GFKManagerOptions")nuevaConfiguracionParaAppID:@"21" conClienteId:@"Cine" appUsaToken:YES token:token appUsaRegiones:YES appName:@"appCineHorarios"];
+            
+            GFKManager *manager =
+            [[NSClassFromString(@"GFKManager") alloc] init];
+            [manager setOpciones:opciones];
+            [manager setDelegate:self];
+            NSLog(@"%@",manager);
+            NSError *geoError;
+            BOOL ok = [manager iniciarGeoFaroReporteError:&geoError];
+            if (ok) {
+                NSLog(@"Geofaro ha iniciado Error:%@",geoError);
+            }else{
+                NSLog(@"Geofaro NO ha iniciado Error:%@",geoError);
+                
+            }
+            
+            [[NSNotificationCenter defaultCenter]
+             addObserver:self
+             selector:@selector(reachabilityChanged:)
+             name:kReachabilityChangedNotification object:nil];
+            Reachability * reach = [Reachability
+                                    reachabilityWithHostname:@"www.geofaro.com"];
+            reach.reachableBlock = ^(Reachability *
+                                     reachability){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Si");
+                    [manager intentarConexionConEstado:YES];
+                });
+            };
+            reach.unreachableBlock = ^(Reachability *
+                                       reachability){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"NO");
+                    [manager intentarConexionConEstado:NO];
+                });
+            };
+            [reach startNotifier];
+        }else{
+            if (SYSTEM_VERSION_EQUAL_TO(@"7.0"))
+            {
+                NSLog(@"Intentar Librería iOS 7");
+                // ACA IRA CÓDIGO PARA LIBRERIA DE SER IMPLEMENTADA
+                
+                
+                _miGeofaro = [Geofaro sharedGeofaro];
+                [_miGeofaro setDelegate:self];
+                [_miGeofaro setFlagNotificaciones:YES];
+                [_miGeofaro
+                 setNotificacionBotonCancel:@"OK"];
+                [_miGeofaro setUd:token];
+                [_miGeofaro setErrorImage:[UIImage
+                                           imageNamed:@"imagenerror.png"]];
+                [_miGeofaro setFlagOcultarBarraStatus:YES];
+                [_miGeofaro setFlagAlertaPower:NO];
+                [_miGeofaro setLaunchOptions:miLaunchOptions];
+                [_miGeofaro iniciar];
+                
+                
+            }else{
+                NSLog(@"No Cargar Geofaro");
+            }
+        }
+        
+        
+        
+        
         //[self iniciarGeofaro];
         
+        /*
         
         //21 ch 18 qr
         GFKManagerOptions *opciones = [GFKManagerOptions nuevaConfiguracionParaAppID:@"21" conClienteId:@"cine" appUsaToken:YES token:token appUsaRegiones:YES appName:@"appCineHorarios"];
@@ -337,6 +439,7 @@ static int const kGaDispatchPeriod = 30;
         
         /***********************************************************/
         // PASO 6 -> Iniciar GeoFaro
+        /*
         NSError *geoError;
         BOOL ok = [manager iniciarGeoFaroReporteError:&geoError];
         
@@ -370,12 +473,12 @@ static int const kGaDispatchPeriod = 30;
             
             [reach startNotifier];
             
+            */
             
-            
-        }else{
+        /*}else{
             NSLog(@"Geofaro NO ha iniciado Error:%@",geoError);
         }
-        
+        */
         
     }
     
@@ -484,24 +587,65 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 
 
 
--(void)mostrarPromocionViewControllerConAnuncio:(PromocionViewController*)pvc{
-    UIViewController *viewController = self.window.rootViewController.presentedViewController;
-    if (viewController) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [viewController presentViewController:pvc animated:YES completion:^{
-            }];
-        });
-    }else{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.window.rootViewController presentViewController:pvc animated:YES completion:^{
-            }];
-        });
-    }
-}
-
 -(void)reachabilityChanged:(NSNotification*)note{
     // Revisar el estado de conexión
 }
+
+- (void)geofaro:(Geofaro *)geofaro areaIN:(CLRegion *)areaInfo
+{
+    
+}
+
+- (void)geofaro:(Geofaro *)geofaro areaOUT:(CLRegion *)areaInfo
+{
+    
+}
+
+- (void)geofaro:(Geofaro *)geofaro faroEncontrado:(NSDictionary *)faroInfo
+{
+    
+}
+
+- (void)geofaro:(Geofaro *)geofaro faroEncontradoNuevo:(NSDictionary *)faroInfo
+{
+    
+}
+
+- (void)geofaro:(Geofaro *)geofaro faroEncontradoPromocionViewController:(UIViewController *)promocionViewController
+{
+    UIViewController *viewController = self.window.rootViewController.presentedViewController;
+    if (viewController) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController presentViewController:promocionViewController
+                                         animated:YES completion:^{
+                                         }]; });
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.window.rootViewController
+             presentViewController:promocionViewController animated:YES completion:^{
+             }]; });
+    }
+}
+
+
+
+-(void)mostrarPromocionViewControllerConAnuncio:
+(PromocionViewController*)pvc{
+    UIViewController *viewController =
+    self.window.rootViewController.presentedViewController;
+    if (viewController) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController presentViewController:pvc
+                                         animated:YES completion:^{
+                                         }]; });
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.window.rootViewController
+             presentViewController:pvc animated:YES completion:^{
+             }]; });
+    }
+}
+
 #endif
 
 
