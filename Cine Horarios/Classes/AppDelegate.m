@@ -7,20 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "CinesVC.h"
-#import "AFNetworkActivityIndicatorManager.h"
-#import "GAI.h"
 #import "FileHandler.h"
 #import "UIColor+CH.h"
-#import "UIFont+CH.h"
 #import "Harpy.h"
 #import <Crashlytics/Crashlytics.h>
 #import "NSArray+FKBMap.h"
 #import "FavoritesManager.h"
-#import "Theater.h"
-
 #import "Constants.h"
-
 #import "iOSHierarchyViewer.h"
 
 #define COMPILE_GEOFARO false
@@ -106,6 +99,8 @@ static int const kGaDispatchPeriod = 30;
     
     // Check if new app version is available
     [self checkHarpy];
+    
+    [iOSHierarchyViewer start];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -225,8 +220,6 @@ static int const kGaDispatchPeriod = 30;
 {
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:30 * 1024 * 1024 diskPath:nil];
     [NSURLCache setSharedURLCache:URLCache];
-    
-    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 }
 
 - (void)setup_analytics

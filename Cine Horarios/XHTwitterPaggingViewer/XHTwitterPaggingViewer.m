@@ -69,7 +69,8 @@
 
     [self.paggingScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.bounds) * self.viewControllers.count, 0)];
     
-    self.paggingNavbar.titles = [self.viewControllers valueForKey:@"title"];
+//    self.paggingNavbar.titles = [self.viewControllers valueForKey:@"title"];
+    self.paggingNavbar.title = self.title;
     [self.paggingNavbar reloadData];
     
     [self setupScrollToTop];

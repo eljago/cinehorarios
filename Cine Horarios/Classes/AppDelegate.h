@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Arturo Espinoza Carrasco. All rights reserved.
 //
 #import "GAI.h"
-
-
 #import <GeoFaroKit/GFKManager.h>
 #import <GeoFaroKit/PromocionViewController.h>
 #import <GeoFaroKit/GFKInterface.h>

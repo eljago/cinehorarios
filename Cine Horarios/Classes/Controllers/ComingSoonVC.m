@@ -10,7 +10,6 @@
 #import "CHViewTableController_Protected.h"
 #import "MovieVC.h"
 #import "GAI+CH.h"
-#import "GAIFields.h"
 #import "ArrayDataSource.h"
 
 #import "MBProgressHUD.h"
@@ -37,6 +36,8 @@
     [self setupDataSource];
     
     [GAI trackPage:@"PROXIMAMENTE"];
+    
+    [self addMenuButton];
         
     [self getDataForceDownload:NO];
     

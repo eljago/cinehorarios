@@ -13,10 +13,14 @@
 @implementation UIView (CH)
 
 + (UIView *)headerViewForText:(NSString *)text height:(CGFloat)height {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, height)];
+    CGFloat theHeight = height;
+    if (height <= 0) {
+        theHeight = [self heightForHeaderViewWithText:text];
+    }
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, theHeight)];
     view.backgroundColor = [UIColor darkGrayColor];
 //    view.alpha = 0.85;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, height)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0.f, 300.f, theHeight)];
     label.textColor = [UIColor whiteColor];
     label.tag = 40;
     label.font = [UIFont getSizeForCHFont:CHFontStyleSmallerBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];

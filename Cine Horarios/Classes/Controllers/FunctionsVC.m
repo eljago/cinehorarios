@@ -10,6 +10,8 @@
 #import "FunctionDayVC.h"
 #import "Theater.h"
 #import "FunctionDayVC.h"
+#import "GAI+CH.h"
+#import "NSDate+CH.h"
 
 const NSInteger numberOfVCs = 7;
 
@@ -23,26 +25,32 @@ const NSInteger numberOfVCs = 7;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [GAI trackPage:@"FUNCIONES"];
+    [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Complejos Visitados" label:self.theater.name];
+    
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.navigationItem.rightBarButtonItem = menuButtonItem;
+    
+    self.title = self.theater.name;
+    
     NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:numberOfVCs];
     for (int i=0; i<numberOfVCs; i++) {
+        NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*24*(i+1)];
         FunctionDayVC *functionDayVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionDayVC"];
-        functionDayVC.title = [NSString stringWithFormat:@"controller %d",i];
+        functionDayVC.theaterName = self.theater.name;
         functionDayVC.theaterID = self.theater.theaterID;
-        functionDayVC.date = [[NSDate date] dateByAddingTimeInterval:60*60*24*(i+1)];
+        functionDayVC.title = [date getShortDateString];
+        functionDayVC.date = date;
         [viewControllers addObject:functionDayVC];
     }
     self.viewControllers = viewControllers;
     
     __weak __typeof(self)weakSelf = self;
     self.didChangedPageCompleted = ^(NSInteger cuurentPage, NSString *title) {
-        
         __strong __typeof(weakSelf)strongSelf = weakSelf;
-        
         FunctionDayVC *functionDayVC = strongSelf.viewControllers[cuurentPage];
-        
         [functionDayVC getDataForceDownload:NO];
     };
-    
     
     [self reloadData];
 }

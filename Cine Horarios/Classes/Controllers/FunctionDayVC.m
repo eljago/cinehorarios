@@ -15,6 +15,10 @@
 #import "UIColor+CH.h"
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+CH.h"
+#import "UIView+CH.h"
+#import "MovieVC.h"
+#import "Function.h"
+#import "NSDate+CH.h"
 
 @interface FunctionDayVC () <UITableViewDelegate>
 
@@ -39,7 +43,13 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    MovieVC *movieVC = segue.destinationViewController;
+    Function *function = self.functions[indexPath.row];
+    movieVC.movieID = function.movieID;
+    movieVC.movieName = function.name;
+    movieVC.portraitImageURL = function.portraitImageURL;
+    movieVC.coverImageURL = function.imageURL;
 }
 
 -(void) setupDataSource {
@@ -96,6 +106,10 @@
 }
 
 #pragma mark - UITableViewDelegate
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [UIView headerViewForText:self.theaterName height:-1];
+}
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];

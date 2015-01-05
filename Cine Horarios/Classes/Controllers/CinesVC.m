@@ -19,7 +19,6 @@
 @interface CinesVC ()
 @property (nonatomic, strong) NSArray *cinemas;
 @property (nonatomic, strong) ArrayDataSource *dataSource;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *topLayoutConstraint;
 @end
 
 @implementation CinesVC
@@ -36,6 +35,8 @@
     [GAI trackPage:@"CINES"];
     
     _cinemas = [FavoritesManager sharedManager].cinemasArray;
+    
+    [self addMenuButton];
     
     [self setupDataSource];
 }

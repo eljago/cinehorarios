@@ -8,12 +8,11 @@
 
 #import "FavoritesVC.h"
 #import "FuncionesVC.h"
-#import "BasicCell.h"
 #import "Theater.h"
+#import "BasicCell.h"
 #import "BasicCell+Theater.h"
-#import "UIFont+CH.h"
 #import "GAI+CH.h"
-#import "FunctionsViewController.h"
+#import "FunctionsVC.h"
 #import "FavoritesManager.h"
 #import "ImageViewTableHeader.h"
 #import "UIImage+CH.h"
@@ -39,6 +38,8 @@ static const NSString *kCinema = @"CinemasArray";
     [super viewDidLoad];
     
     [GAI trackPage:@"FAVORITOS"];
+    
+    [self addMenuButton];
     
     self.buttonEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
     self.navigationItem.leftBarButtonItem = self.buttonEdit;
@@ -206,10 +207,10 @@ static const NSString *kCinema = @"CinemasArray";
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    FunctionsViewController *functionsViewController = [segue destinationViewController];
+    FunctionsVC *functionsVC = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.favoriteTheatersSections[indexPath.section][kTheatersArray][indexPath.row];
-    functionsViewController.theater = theater;
+    functionsVC.theater = theater;
 }
 
 
