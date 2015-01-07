@@ -60,6 +60,12 @@
     _refreshControl.tintColor = [UIColor blackColor];
     [_refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:_refreshControl];
+    
+    NSString *className = NSStringFromClass([self class]);
+    if ([className isEqualToString:@"TheatersVC"] || [className isEqualToString:@"CloseTheatersVC"] || [className isEqualToString:@"TheatersVC"]) {
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+        [[self navigationItem] setBackBarButtonItem:backButton];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

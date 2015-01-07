@@ -103,7 +103,7 @@ NSString *const kFunctionsFailedDownload = @"FAILED DOWNLOAD";
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
     NSInteger height = [UIView heightForHeaderViewWithText:self.functionsPageVC.functionsContainerVC.theater.name];
-    return [UIView headerViewForText:[self.dateString capitalizedString] textAlignment:NSTextAlignmentCenter height:height];
+    return [UIView headerViewForText:[self.dateString capitalizedString] height:height textAlignment:NSTextAlignmentCenter];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return [UIView heightForHeaderViewWithText:self.functionsPageVC.functionsContainerVC.theater.name];

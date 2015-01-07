@@ -7,12 +7,13 @@
 //
 
 #import "CHViewTableController.h"
-
+@class Theater;
 @interface FunctionDayVC : CHViewTableController
 
 @property (nonatomic, strong) NSString *theaterName;
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, assign) NSInteger theaterID;
+@property (nonatomic, strong) Theater *theater;
 
 - (void) getDataForceDownload:(BOOL)forceDownload;
 

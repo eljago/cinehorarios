@@ -62,6 +62,7 @@
     [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) {
         CGRect contentViewFrame = viewController.view.bounds;
         contentViewFrame.origin.x = idx * CGRectGetWidth(self.view.bounds);
+        contentViewFrame.size.height = contentViewFrame.size.height - 22.f;
         viewController.view.frame = contentViewFrame;
         [self.paggingScrollView addSubview:viewController.view];
         [self addChildViewController:viewController];
@@ -69,8 +70,7 @@
 
     [self.paggingScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.bounds) * self.viewControllers.count, 0)];
     
-//    self.paggingNavbar.titles = [self.viewControllers valueForKey:@"title"];
-    self.paggingNavbar.title = self.title;
+    self.paggingNavbar.titles = [self.viewControllers valueForKey:@"title"];
     [self.paggingNavbar reloadData];
     
     [self setupScrollToTop];

@@ -12,8 +12,6 @@ typedef void(^XHDidChangedPageBlock)(NSInteger currentPage, NSString *title);
 
 @interface XHTwitterPaggingViewer : UIViewController
 
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *topLayoutConstraint;
-
 /**
  *  改变页码的回调
  */

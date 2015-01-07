@@ -1163,8 +1163,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofarok",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Cine",
-					Horarios,
+					"$(PROJECT_DIR)/Cine\\ Horarios",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1174,8 +1173,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Cine",
-					Horarios,
+					"$(PROJECT_DIR)/Cine\\ Horarios",
 				);
 				PRODUCT_NAME = "Cine Horarios";
 				PROVISIONING_PROFILE = "";
@@ -1200,8 +1198,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Cine\\ Horarios/Geofarok",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Cine",
-					Horarios,
+					"$(PROJECT_DIR)/Cine\\ Horarios",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1211,8 +1208,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Cine",
-					Horarios,
+					"$(PROJECT_DIR)/Cine\\ Horarios",
 				);
 				PRODUCT_NAME = "Cine Horarios";
 				PROVISIONING_PROFILE = "";

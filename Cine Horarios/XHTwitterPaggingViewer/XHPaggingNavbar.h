@@ -13,8 +13,8 @@
 /**
  *  显示在导航条上的title集合
  */
+@property (nonatomic, assign) NSInteger *numberOfPages;
 @property (nonatomic, strong) NSArray *titles;
-@property (nonatomic, strong) NSString *title;
 
 /**
  *  当前页码
