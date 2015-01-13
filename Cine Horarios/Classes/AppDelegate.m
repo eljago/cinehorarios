@@ -21,7 +21,7 @@
 #import <mach-o/dyld.h>
 
 
-#define COMPILE_GEOFARO true
+#define COMPILE_GEOFARO false
 
 /** GOOGLE ANALYTIC CONSTANTS **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.
@@ -341,14 +341,10 @@ char* MakeStringCopy (const char* string)
         
         if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
             NSLog(@"iOS 8");
-            NSURL *frameworkURL = [[[NSBundle mainBundle]
-                                    privateFrameworksURL]
-                                   URLByAppendingPathComponent:@"GeoFaroKit.framework"];
-            NSBundle *frameworkBundle = [NSBundle
-                                         bundleWithURL:frameworkURL];
+            NSURL *frameworkURL = [[[NSBundle mainBundle] privateFrameworksURL] URLByAppendingPathComponent:@"GeoFaroKit.framework"];
+            NSBundle *frameworkBundle = [NSBundle bundleWithURL:frameworkURL];
             void* gfk_handle =
-            dlopen(MakeStringCopy([frameworkBundle.executableURL.path
-                                   UTF8String]), RTLD_NOW);
+            dlopen(MakeStringCopy([frameworkBundle.executableURL.path UTF8String]), RTLD_NOW);
             if (gfk_handle != NULL) {
                 NSLog(@"Handler Ok");
             }else{
@@ -356,8 +352,7 @@ char* MakeStringCopy (const char* string)
             }
             NSString *pseudoToken = [NSString stringWithFormat:@"%@",[[[UIDevice currentDevice]identifierForVendor]UUIDString]];
             
-            GFKManagerOptions *opciones =
-            [NSClassFromString(@"GFKManagerOptions")nuevaConfiguracionParaAppID:@"21" conClienteId:@"Cine" appUsaToken:YES token:token appUsaRegiones:YES appName:@"appCineHorarios"];
+            GFKManagerOptions *opciones = [NSClassFromString(@"GFKManagerOptions")nuevaConfiguracionParaAppID:@"21" conClienteId:@"Cine" appUsaToken:YES token:token appUsaRegiones:YES appName:@"appCineHorarios"];
             
             GFKManager *manager =
             [[NSClassFromString(@"GFKManager") alloc] init];
@@ -377,17 +372,14 @@ char* MakeStringCopy (const char* string)
              addObserver:self
              selector:@selector(reachabilityChanged:)
              name:kReachabilityChangedNotification object:nil];
-            Reachability * reach = [Reachability
-                                    reachabilityWithHostname:@"www.geofaro.com"];
-            reach.reachableBlock = ^(Reachability *
-                                     reachability){
+            Reachability * reach = [Reachability reachabilityWithHostname:@"www.geofaro.com"];
+            reach.reachableBlock = ^(Reachability *reachability){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSLog(@"Si");
                     [manager intentarConexionConEstado:YES];
                 });
             };
-            reach.unreachableBlock = ^(Reachability *
-                                       reachability){
+            reach.unreachableBlock = ^(Reachability *reachability){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSLog(@"NO");
                     [manager intentarConexionConEstado:NO];
@@ -407,8 +399,7 @@ char* MakeStringCopy (const char* string)
                 [_miGeofaro
                  setNotificacionBotonCancel:@"OK"];
                 [_miGeofaro setUd:token];
-                [_miGeofaro setErrorImage:[UIImage
-                                           imageNamed:@"imagenerror.png"]];
+                [_miGeofaro setErrorImage:[UIImage imageNamed:@"imagenerror.png"]];
                 [_miGeofaro setFlagOcultarBarraStatus:YES];
                 [_miGeofaro setFlagAlertaPower:NO];
                 [_miGeofaro setLaunchOptions:miLaunchOptions];

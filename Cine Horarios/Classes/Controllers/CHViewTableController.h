@@ -17,6 +17,4 @@ typedef NS_ENUM(NSUInteger, CHDownloadStat) {
 
 @interface CHViewTableController : UIViewController <UITableViewDelegate>
 
-- (void) addMenuButton;
-
 @end

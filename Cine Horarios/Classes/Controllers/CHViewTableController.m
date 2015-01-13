@@ -11,8 +11,7 @@
 #import "UIColor+CH.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIFont+CH.h"
-#import "UIScrollView+EmptyDataSet.h"
-#import "UIFont+CH.h"
+#import "UIViewController+ScrollingNavbar.h"
 
 @interface CHViewTableController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate> {
     @protected
@@ -21,12 +20,11 @@
     UIFont *fontFootnote;
     UITableView *tableView;
     UIRefreshControl *refreshControl;
+    NSLayoutConstraint *topLayoutConstraint;
 }
 
 @property (nonatomic, assign, readwrite) CHDownloadStat downloadStatus;
 @property (nonatomic, assign, readwrite) BOOL shouldShowEmptyDataSet;
-
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *topLayoutConstraint;
 
 @end
 
@@ -36,6 +34,7 @@
 @synthesize fontBigBold = _fontBigBold;
 @synthesize fontSmall = _fontSmall;
 @synthesize refreshControl = _refreshControl;
+@synthesize topLayoutConstraint = _topLayoutConstraint;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,11 +60,12 @@
     [_refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:_refreshControl];
     
-    NSString *className = NSStringFromClass([self class]);
-    if ([className isEqualToString:@"TheatersVC"] || [className isEqualToString:@"CloseTheatersVC"] || [className isEqualToString:@"TheatersVC"]) {
-        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
-        [[self navigationItem] setBackBarButtonItem:backButton];
-    }
+    
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.navigationItem.rightBarButtonItem = menuButtonItem;
+    
+    // Just call this line to enable the scrolling navbar
+    [self followScrollView:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,14 +74,18 @@
     
     NSLog(@"Low Memory warning");
 }
-
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self showNavBarAnimated:NO];
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self showNavBarAnimated:NO];
+}
 -(NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
-}
-
-- (void) addMenuButton {
-    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
-    self.navigationItem.rightBarButtonItem = menuButtonItem;
 }
 
 #pragma mark - Attributes

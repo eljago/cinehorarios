@@ -36,8 +36,6 @@
     [self setupDataSource];
     
     [GAI trackPage:@"PROXIMAMENTE"];
-    
-    [self addMenuButton];
         
     [self getDataForceDownload:NO];
     

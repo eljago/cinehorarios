@@ -17,6 +17,8 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *topLayoutConstraint;
+
 - (void) refreshData;
 - (void) downloadEndedWithDownloadStatus: (CHDownloadStat) downloadStatus;
 @end

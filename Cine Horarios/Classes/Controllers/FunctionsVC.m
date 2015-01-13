@@ -14,6 +14,7 @@
 #import "NSDate+CH.h"
 #import "UIColor+CH.h"
 #import "FavoritesManager.h"
+#import "UIViewController+ScrollingNavbar.h"
 
 const NSInteger numberOfVCs = 7;
 
@@ -44,21 +45,21 @@ const NSInteger numberOfVCs = 7;
     
     NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:numberOfVCs];
     for (int i=0; i<numberOfVCs; i++) {
-        NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*24*(i+1)];
-        FunctionDayVC *functionDayVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionDayVC"];
-        functionDayVC.theaterName = self.theater.name;
-        functionDayVC.theaterID = self.theater.theaterID;
-        functionDayVC.title = [[date getShortDateString] capitalizedString];
-        functionDayVC.date = date;
-        [viewControllers addObject:functionDayVC];
+//        NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*24*(i+1)];
+//        FunctionDayVC *functionDayVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionDayVC"];
+//        functionDayVC.theaterName = self.theater.name;
+//        functionDayVC.theaterID = self.theater.theaterID;
+//        functionDayVC.title = [[date getShortDateString] capitalizedString];
+//        functionDayVC.date = date;
+//        [viewControllers addObject:functionDayVC];
     }
     self.viewControllers = viewControllers;
     
     __weak __typeof(self)weakSelf = self;
     self.didChangedPageCompleted = ^(NSInteger cuurentPage, NSString *title) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
-        FunctionDayVC *functionDayVC = strongSelf.viewControllers[cuurentPage];
-        [functionDayVC getDataForceDownload:NO];
+//        FunctionDayVC *functionDayVC = strongSelf.viewControllers[cuurentPage];
+//        [functionDayVC getDataForceDownload:NO];
     };
     
     [self reloadData];

@@ -43,8 +43,6 @@ const int kLoadingCellTag = 1234;
     
     [GAI trackPage:@"VIDEOS"];
     
-    [self addMenuButton];
-    
     self.currentPage = 1;
     
     [self getDataForceDownload:NO];

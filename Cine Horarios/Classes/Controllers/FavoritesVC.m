@@ -12,7 +12,7 @@
 #import "BasicCell.h"
 #import "BasicCell+Theater.h"
 #import "GAI+CH.h"
-#import "FunctionsVC.h"
+#import "FunctionDayVC.h"
 #import "FavoritesManager.h"
 #import "ImageViewTableHeader.h"
 #import "UIImage+CH.h"
@@ -29,7 +29,9 @@ static const NSString *kCinema = @"CinemasArray";
 @property (nonatomic, strong) NSMutableArray *favoriteTheatersSections;
 @end
 
-@implementation FavoritesVC
+@implementation FavoritesVC {
+    BOOL viewAppeared;
+}
 
 #pragma mark - UIViewController
 
@@ -39,17 +41,18 @@ static const NSString *kCinema = @"CinemasArray";
     
     [GAI trackPage:@"FAVORITOS"];
     
-    [self addMenuButton];
-    
     self.buttonEdit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditingMode:)];
     self.navigationItem.leftBarButtonItem = self.buttonEdit;
+    
+    [self getFavoritesForceDownload:NO];
 }
 
 // Reload data after coming back from Theater view in case there was an edit
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self getFavoritesForceDownload:NO];
+    if (viewAppeared) [self gotDataSoReload];
+    viewAppeared = YES;
 }
 
 #pragma mark - UITableViewDataSource
@@ -127,8 +130,7 @@ static const NSString *kCinema = @"CinemasArray";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
-    return [BasicCell heightForRowWithTheater:favoritesManager.favoriteTheaters[indexPath.row] tableFont:self.fontNormal];
+    return [BasicCell heightForRowWithTheater:self.favoriteTheatersSections[indexPath.section][kTheatersArray][indexPath.row] tableFont:self.fontNormal];
 }
 
 #pragma mark Fetch Data
@@ -207,7 +209,7 @@ static const NSString *kCinema = @"CinemasArray";
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    FunctionsVC *functionsVC = [segue destinationViewController];
+    FunctionDayVC *functionsVC = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.favoriteTheatersSections[indexPath.section][kTheatersArray][indexPath.row];
     functionsVC.theater = theater;

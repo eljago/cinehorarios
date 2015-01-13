@@ -36,8 +36,6 @@
     
     _cinemas = [FavoritesManager sharedManager].cinemasArray;
     
-    [self addMenuButton];
-    
     [self setupDataSource];
 }
 

@@ -34,8 +34,6 @@
     [self setupDataSource];
     
     [GAI trackPage:@"CARTELERA"];
-    
-    [self addMenuButton];
         
     [self getDataForceDownload:NO];
 }

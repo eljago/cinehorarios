@@ -8,7 +8,7 @@
 
 #import "TheatersVC.h"
 #import "CHViewTableController_Protected.h"
-#import "FunctionsVC.h"
+#import "FunctionDayVC.h"
 #import "ArrayDataSource.h"
 #import "GAI+CH.h"
 
@@ -37,8 +37,6 @@
     [super viewDidLoad];
     
     [self setupDataSource];
-    
-    [self addMenuButton];
     
     [GAI trackPage:@"COMPLEJOS"];
     [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Cines Visitados" label:self.cinemaName];
@@ -126,7 +124,7 @@
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    FunctionsVC *functionsVC = [segue destinationViewController];
+    FunctionDayVC *functionsVC = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.cinema.theaters[indexPath.row];
     functionsVC.theater = theater;

@@ -14,7 +14,7 @@
 #import "MBProgressHUD+CH.h"
 #import "UIColor+CH.h"
 #import "GAI+CH.h"
-#import "FuncionesVC.h"
+#import "FunctionDayVC.h"
 
 #import "UIImage+CH.h"
 
@@ -177,7 +177,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
 
     AnnotationTheater *annotation = view.annotation;
-    FunctionsVC *functionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionsVC"];
+    FunctionDayVC *functionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionDayVC"];
     
     NSDictionary *theaterDict = @{
                                   @"id": [NSNumber numberWithInteger:annotation.theaterID],
@@ -293,7 +293,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
                                     fromJSONDictionary:theaterDict
                                                  error:nil];
     
-    FunctionsVC *functionsVC = [segue destinationViewController];
+    FunctionDayVC *functionsVC = [segue destinationViewController];
     functionsVC.theater = newTheater;
 }
 
