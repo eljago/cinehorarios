@@ -11,5 +11,8 @@
 @interface FunctionDayVC : CHViewTableController
 
 @property (nonatomic, strong) Theater *theater;
+@property (nonatomic, strong) NSDate *date;
+
+- (void) getDataForceDownload:(BOOL)forceDownload;
 
 @end

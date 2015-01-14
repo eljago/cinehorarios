@@ -10,12 +10,9 @@
 		162414A417BC946E00083708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 162414A317BC946E00083708 /* Images.xcassets */; };
 		25037A661A5544770087D124 /* FunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A651A5544770087D124 /* FunctionsVC.m */; };
 		25037A691A5545200087D124 /* FunctionDayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A681A5545200087D124 /* FunctionDayVC.m */; };
-		25037A6F1A55D3E60087D124 /* XHPaggingNavbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A6C1A55D3E60087D124 /* XHPaggingNavbar.m */; };
 		25037A701A55D3E60087D124 /* XHTwitterPaggingViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer.m */; };
 		25037A731A562ACB0087D124 /* FunctionsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A721A562ACB0087D124 /* FunctionsScrollView.m */; };
 		2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2503D0BD1A1054B200E1876B /* NSDate+CH.m */; };
-		2567B9FB1A5DF8F900194605 /* TouchOutsideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2567B9FA1A5DF8F900194605 /* TouchOutsideView.m */; };
-		256C90A21A5CC69400931D84 /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 256C90A11A5CC69400931D84 /* DOPDropDownMenu.m */; };
 		25710C951A0DB3230066864C /* FunctionsPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25710C941A0DB3230066864C /* FunctionsPageVC.m */; };
 		257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */; };
 		259550421A3DD4380052A8FB /* FavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 259550411A3DD4380052A8FB /* FavoritesManager.m */; };
@@ -160,18 +157,12 @@
 		25037A651A5544770087D124 /* FunctionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsVC.m; path = Classes/Controllers/FunctionsVC.m; sourceTree = "<group>"; };
 		25037A671A5545200087D124 /* FunctionDayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionDayVC.h; path = Classes/Controllers/FunctionDayVC.h; sourceTree = "<group>"; };
 		25037A681A5545200087D124 /* FunctionDayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionDayVC.m; path = Classes/Controllers/FunctionDayVC.m; sourceTree = "<group>"; };
-		25037A6B1A55D3E60087D124 /* XHPaggingNavbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHPaggingNavbar.h; sourceTree = "<group>"; };
-		25037A6C1A55D3E60087D124 /* XHPaggingNavbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHPaggingNavbar.m; sourceTree = "<group>"; };
 		25037A6D1A55D3E60087D124 /* XHTwitterPaggingViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTwitterPaggingViewer.h; sourceTree = "<group>"; };
 		25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTwitterPaggingViewer.m; sourceTree = "<group>"; };
 		25037A711A562ACB0087D124 /* FunctionsScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsScrollView.h; path = Classes/Views/FunctionsScrollView.h; sourceTree = "<group>"; };
 		25037A721A562ACB0087D124 /* FunctionsScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsScrollView.m; path = Classes/Views/FunctionsScrollView.m; sourceTree = "<group>"; };
 		2503D0BC1A1054B200E1876B /* NSDate+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+CH.h"; path = "Utilities/Categories/NSDate+CH.h"; sourceTree = "<group>"; };
 		2503D0BD1A1054B200E1876B /* NSDate+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+CH.m"; path = "Utilities/Categories/NSDate+CH.m"; sourceTree = "<group>"; };
-		2567B9F91A5DF8F900194605 /* TouchOutsideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchOutsideView.h; path = Classes/Views/TouchOutsideView.h; sourceTree = "<group>"; };
-		2567B9FA1A5DF8F900194605 /* TouchOutsideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchOutsideView.m; path = Classes/Views/TouchOutsideView.m; sourceTree = "<group>"; };
-		256C90A01A5CC69400931D84 /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPDropDownMenu.h; sourceTree = "<group>"; };
-		256C90A11A5CC69400931D84 /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPDropDownMenu.m; sourceTree = "<group>"; };
 		25710C931A0DB3230066864C /* FunctionsPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsPageVC.h; path = Classes/Controllers/FunctionsPageVC.h; sourceTree = "<group>"; };
 		25710C941A0DB3230066864C /* FunctionsPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsPageVC.m; path = Classes/Controllers/FunctionsPageVC.m; sourceTree = "<group>"; };
 		257BEE691A107B5400BD3920 /* FunctionsContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsContainerVC.h; path = Classes/Controllers/FunctionsContainerVC.h; sourceTree = "<group>"; };
@@ -431,7 +422,6 @@
 		16F008A1180DED1300A15060 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				256C909F1A5CC69400931D84 /* DOPDropDownMenu */,
 				25037A6A1A55D3E60087D124 /* XHTwitterPaggingViewer */,
 			);
 			name = Vendor;
@@ -440,21 +430,10 @@
 		25037A6A1A55D3E60087D124 /* XHTwitterPaggingViewer */ = {
 			isa = PBXGroup;
 			children = (
-				25037A6B1A55D3E60087D124 /* XHPaggingNavbar.h */,
-				25037A6C1A55D3E60087D124 /* XHPaggingNavbar.m */,
 				25037A6D1A55D3E60087D124 /* XHTwitterPaggingViewer.h */,
 				25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer.m */,
 			);
 			path = XHTwitterPaggingViewer;
-			sourceTree = "<group>";
-		};
-		256C909F1A5CC69400931D84 /* DOPDropDownMenu */ = {
-			isa = PBXGroup;
-			children = (
-				256C90A01A5CC69400931D84 /* DOPDropDownMenu.h */,
-				256C90A11A5CC69400931D84 /* DOPDropDownMenu.m */,
-			);
-			path = DOPDropDownMenu;
 			sourceTree = "<group>";
 		};
 		25D9270A1A2E6ACC007B255D /* Headers */ = {
@@ -647,8 +626,6 @@
 				25F1A0231A53F94200EF7E89 /* FunctionsTableView.m */,
 				25037A711A562ACB0087D124 /* FunctionsScrollView.h */,
 				25037A721A562ACB0087D124 /* FunctionsScrollView.m */,
-				2567B9F91A5DF8F900194605 /* TouchOutsideView.h */,
-				2567B9FA1A5DF8F900194605 /* TouchOutsideView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1052,7 +1029,6 @@
 				6EC0069A18DC7CBB003DECC8 /* WebVC.m in Sources */,
 				6EC0071A18DC7E3C003DECC8 /* Cast.m in Sources */,
 				6EC0071718DC7E3C003DECC8 /* BasicItemImage.m in Sources */,
-				256C90A21A5CC69400931D84 /* DOPDropDownMenu.m in Sources */,
 				6EC0072218DC7E3C003DECC8 /* VideoGroup.m in Sources */,
 				6EC0073A18DC7EE1003DECC8 /* NSArray+FKBMap.m in Sources */,
 				25037A701A55D3E60087D124 /* XHTwitterPaggingViewer.m in Sources */,
@@ -1063,9 +1039,7 @@
 				6EC0071D18DC7E3C003DECC8 /* Movie.m in Sources */,
 				2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */,
 				6EC0063418DC7B77003DECC8 /* FunctionCell2+Function.m in Sources */,
-				2567B9FB1A5DF8F900194605 /* TouchOutsideView.m in Sources */,
 				6EC0071618DC7E3C003DECC8 /* BasicItem.m in Sources */,
-				25037A6F1A55D3E60087D124 /* XHPaggingNavbar.m in Sources */,
 				6EC0063718DC7B77003DECC8 /* VideoCell+Video.m in Sources */,
 				6EC0072818DC7ED6003DECC8 /* ArrayDataSource.m in Sources */,
 				6EC0068818DC7CBB003DECC8 /* CinesVC.m in Sources */,

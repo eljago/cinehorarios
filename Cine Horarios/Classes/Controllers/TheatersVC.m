@@ -8,7 +8,7 @@
 
 #import "TheatersVC.h"
 #import "CHViewTableController_Protected.h"
-#import "FunctionDayVC.h"
+#import "FunctionsVC.h"
 #import "ArrayDataSource.h"
 #import "GAI+CH.h"
 
@@ -124,7 +124,7 @@
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    FunctionDayVC *functionsVC = [segue destinationViewController];
+    FunctionsVC *functionsVC = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.cinema.theaters[indexPath.row];
     functionsVC.theater = theater;

@@ -14,4 +14,3 @@ pod 'OpenInChrome'
 pod 'SIAlertView'
 pod 'RFRateMe', "~> 1.0.0"
 pod 'iOS-Hierarchy-Viewer'
-pod 'AMScrollingNavbar'

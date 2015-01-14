@@ -14,15 +14,9 @@
 #import "MBProgressHUD+CH.h"
 #import "UIColor+CH.h"
 #import "GAI+CH.h"
-#import "FunctionDayVC.h"
-
 #import "UIImage+CH.h"
-
-#import "FunctionsPageVC.h"
-
-#import "Theater.h"
 #import "FunctionsVC.h"
-
+#import "Theater.h"
 #import "SIAlertView.h"
 
 NSInteger const kMaxTheaterDistance = 26000;
@@ -177,7 +171,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
 
     AnnotationTheater *annotation = view.annotation;
-    FunctionDayVC *functionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionDayVC"];
+    FunctionsVC *functionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionsVC"];
     
     NSDictionary *theaterDict = @{
                                   @"id": [NSNumber numberWithInteger:annotation.theaterID],
@@ -293,7 +287,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
                                     fromJSONDictionary:theaterDict
                                                  error:nil];
     
-    FunctionDayVC *functionsVC = [segue destinationViewController];
+    FunctionsVC *functionsVC = [segue destinationViewController];
     functionsVC.theater = newTheater;
 }
 

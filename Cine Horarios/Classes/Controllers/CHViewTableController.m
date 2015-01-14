@@ -11,7 +11,6 @@
 #import "UIColor+CH.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIFont+CH.h"
-#import "UIViewController+ScrollingNavbar.h"
 
 @interface CHViewTableController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate> {
     @protected
@@ -60,12 +59,8 @@
     [_refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:_refreshControl];
     
-    
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;
-    
-    // Just call this line to enable the scrolling navbar
-    [self followScrollView:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,16 +68,6 @@
     // Dispose of any resources that can be recreated.
     
     NSLog(@"Low Memory warning");
-}
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self showNavBarAnimated:NO];
-}
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self showNavBarAnimated:NO];
 }
 -(NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;

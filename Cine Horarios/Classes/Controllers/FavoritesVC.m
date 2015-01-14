@@ -12,7 +12,7 @@
 #import "BasicCell.h"
 #import "BasicCell+Theater.h"
 #import "GAI+CH.h"
-#import "FunctionDayVC.h"
+#import "FunctionsVC.h"
 #import "FavoritesManager.h"
 #import "ImageViewTableHeader.h"
 #import "UIImage+CH.h"
@@ -51,7 +51,9 @@ static const NSString *kCinema = @"CinemasArray";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (viewAppeared) [self gotDataSoReload];
+    if (viewAppeared){
+        [self gotDataSoReload];
+    }
     viewAppeared = YES;
 }
 
@@ -171,9 +173,9 @@ static const NSString *kCinema = @"CinemasArray";
     }
     else {
         self.buttonEdit.enabled = YES;
-        [self createFavoriteTheatersSectionsArray];
         [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];
     }
+    [self createFavoriteTheatersSectionsArray];
     [self.tableView reloadData];
 }
 
@@ -209,7 +211,7 @@ static const NSString *kCinema = @"CinemasArray";
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    FunctionDayVC *functionsVC = [segue destinationViewController];
+    FunctionsVC *functionsVC = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Theater *theater = self.favoriteTheatersSections[indexPath.section][kTheatersArray][indexPath.row];
     functionsVC.theater = theater;

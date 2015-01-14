@@ -208,7 +208,6 @@ static NSString * const kShouldDownloadFavoriteTheaters = @"ShouldDownloadFavori
                                   @"longitude": theater.longitude,
                                   @"web_url": theater.webURL,
                                   @"information": theater.information,
-                                  @"date": theater.date
                                   };
     Theater *newTheater = [MTLJSONAdapter modelOfClass:Theater.class
                                     fromJSONDictionary:theaterDict

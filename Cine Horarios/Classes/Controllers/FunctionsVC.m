@@ -14,7 +14,6 @@
 #import "NSDate+CH.h"
 #import "UIColor+CH.h"
 #import "FavoritesManager.h"
-#import "UIViewController+ScrollingNavbar.h"
 
 const NSInteger numberOfVCs = 7;
 
@@ -24,6 +23,7 @@ const NSInteger numberOfVCs = 7;
 @property (nonatomic, assign) BOOL favorite;
 @property (weak, nonatomic) IBOutlet UIView *TopView;
 @property (weak, nonatomic) IBOutlet UILabel *TopLabel;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @end
 
@@ -40,28 +40,34 @@ const NSInteger numberOfVCs = 7;
     
     [self createButtonItems];
     
+    self.pageControl.backgroundColor = [UIColor clearColor];
+    self.pageControl.numberOfPages = numberOfVCs;
+    self.pageControl.tintColor = [UIColor lightGrayColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     self.TopView.backgroundColor = [UIColor navColor];
     self.TopLabel.text = self.theater.name;
+    self.title = self.theater.name;
     
     NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:numberOfVCs];
     for (int i=0; i<numberOfVCs; i++) {
-//        NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*24*(i+1)];
-//        FunctionDayVC *functionDayVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionDayVC"];
-//        functionDayVC.theaterName = self.theater.name;
-//        functionDayVC.theaterID = self.theater.theaterID;
-//        functionDayVC.title = [[date getShortDateString] capitalizedString];
-//        functionDayVC.date = date;
-//        [viewControllers addObject:functionDayVC];
+        NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*24*i];
+        FunctionDayVC *functionDayVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionDayVC"];
+        functionDayVC.theater = self.theater;
+        functionDayVC.title = [[date getShortDateString] capitalizedString];
+        functionDayVC.date = date;
+        [viewControllers addObject:functionDayVC];
     }
     self.viewControllers = viewControllers;
     
     __weak __typeof(self)weakSelf = self;
     self.didChangedPageCompleted = ^(NSInteger cuurentPage, NSString *title) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
-//        FunctionDayVC *functionDayVC = strongSelf.viewControllers[cuurentPage];
-//        [functionDayVC getDataForceDownload:NO];
+        FunctionDayVC *functionDayVC = strongSelf.viewControllers[cuurentPage];
+        [functionDayVC getDataForceDownload:NO];
+        strongSelf.pageControl.currentPage = cuurentPage;
     };
     
+    [self setupFavorites];
     [self reloadData];
 }
 -(void)viewDidDisappear:(BOOL)animated {
@@ -70,10 +76,12 @@ const NSInteger numberOfVCs = 7;
     self.favoriteButtonItem.enabled = NO;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    if (!viewAppeared) [self setupFavorites];
+    if (viewAppeared){
+        [self setupFavorites];
+    }
     viewAppeared = YES;
 }
 
@@ -112,9 +120,7 @@ const NSInteger numberOfVCs = 7;
     
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     
-    self.navigationItem.rightBarButtonItem = menuButtonItem;
-    self.navigationItem.leftItemsSupplementBackButton = YES;
-    self.navigationItem.leftBarButtonItem = self.favoriteButtonItem;
+    self.navigationItem.rightBarButtonItems = @[menuButtonItem, self.favoriteButtonItem];
 }
 
 - (void)popBack

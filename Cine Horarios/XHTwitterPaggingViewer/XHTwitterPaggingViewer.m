@@ -7,8 +7,6 @@
 //
 
 #import "XHTwitterPaggingViewer.h"
-
-#import "XHPaggingNavbar.h"
 #import "FunctionsScrollView.h"
 
 @interface XHTwitterPaggingViewer () <UIScrollViewDelegate>
@@ -17,11 +15,6 @@
  *  显示内容的容器
  */
 @property (nonatomic, weak) IBOutlet FunctionsScrollView *paggingScrollView;
-
-/**
- *  显示title集合的容器
- */
-@property (nonatomic, strong) XHPaggingNavbar *paggingNavbar;
 
 /**
  *  标识当前页码
@@ -44,7 +37,6 @@
 }
 
 - (void)setCurrentPage:(NSInteger)currentPage animated:(BOOL)animated {
-    self.paggingNavbar.currentPage = currentPage;
     self.currentPage = currentPage;
     
     CGFloat pageWidth = CGRectGetWidth(self.paggingScrollView.frame);
@@ -70,23 +62,12 @@
 
     [self.paggingScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.bounds) * self.viewControllers.count, 0)];
     
-    self.paggingNavbar.titles = [self.viewControllers valueForKey:@"title"];
-    [self.paggingNavbar reloadData];
-    
     [self setupScrollToTop];
     
     [self callBackChangedPage];
 }
 
 #pragma mark - Properties
-
-- (XHPaggingNavbar *)paggingNavbar {
-    if (!_paggingNavbar) {
-        _paggingNavbar = [[XHPaggingNavbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds) / 2.0, 44)];
-        _paggingNavbar.backgroundColor = [UIColor clearColor];
-    }
-    return _paggingNavbar;
-}
 
 - (UIViewController *)getPageViewControllerAtIndex:(NSInteger)index {
     if (index < self.viewControllers.count) {
@@ -100,8 +81,6 @@
     if (_currentPage == currentPage)
         return;
     _currentPage = currentPage;
-    
-    self.paggingNavbar.currentPage = currentPage;
     
     [self setupScrollToTop];
     [self callBackChangedPage];
@@ -117,17 +96,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setupNavigationBar];
-    
     [self reloadData];
-}
-
-- (void)setupNavigationBar {
-    if ([self respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)]) {
-        [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    }
-    
-    self.navigationItem.titleView = self.paggingNavbar;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,9 +105,6 @@
 }
 
 - (void)dealloc {
-    
-    self.paggingNavbar = nil;
-    
     self.viewControllers = nil;
     
     self.didChangedPageCompleted = nil;
@@ -185,7 +151,6 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    self.paggingNavbar.contentOffset = scrollView.contentOffset;
     
     CGFloat pageWidth = CGRectGetWidth(self.paggingScrollView.frame);
     NSInteger newPage = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
