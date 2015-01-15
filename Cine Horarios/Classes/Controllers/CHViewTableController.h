@@ -17,4 +17,6 @@ typedef NS_ENUM(NSUInteger, CHDownloadStat) {
 
 @interface CHViewTableController : UIViewController <UITableViewDelegate>
 
+@property (nonatomic, assign, readonly) CHDownloadStat downloadStatus;
+
 @end

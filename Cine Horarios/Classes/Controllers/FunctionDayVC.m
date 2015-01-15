@@ -19,17 +19,23 @@
 #import "MovieVC.h"
 #import "Function.h"
 #import "Theater.h"
+#import "EmptyDataView.h"
+#import "WebVC.h"
+#import "OpenInChromeController.h"
 
 const NSUInteger kNumberOfDays = 7;
 
-@interface FunctionDayVC ()
+@interface FunctionDayVC () <UIActionSheetDelegate>
 
 @property (nonatomic, strong) ArrayDataSource *dataSource;
+
+@property (nonatomic, strong) EmptyDataView *emptyDataView;
 
 @end
 
 @implementation FunctionDayVC {
     BOOL viewAppeared;
+    CGFloat headerHeight;
 }
 
 - (void)viewDidLoad {
@@ -64,15 +70,24 @@ const NSUInteger kNumberOfDays = 7;
 #pragma mark - Fetch Data
 
 - (void) getDataForceDownload:(BOOL)forceDownload {
-    NSLog(@"fetching data ");
     if (forceDownload) {
         [self downloadTheater];
     }
     else {
+        if (self.downloadStatus == CHDownloadStatFailed || self.downloadStatus == CHDownloadStatNoDataFound) {
+            [self showEmptyDataView];
+            return;
+        }
         Theater *theater = [Theater loadTheaterWithTheaterID:self.theater.theaterID date:self.date];
-        if (theater && theater.functions.count > 0) {
+        if (theater) {
             self.theater = theater;
-            self.dataSource.items = self.theater.functions;
+            if (theater.functions.count > 0) {
+                self.dataSource.items = self.theater.functions;
+            }
+            else {
+                [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
+                [self showEmptyDataView];
+            }
             [self.tableView reloadData];
             [self.refreshControl endRefreshing];
         }
@@ -82,6 +97,7 @@ const NSUInteger kNumberOfDays = 7;
     }
 }
 -(void) downloadTheater {
+    self.emptyDataView.buttonReload.enabled = NO;
     self.tableView.scrollEnabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [Theater getTheaterWithBlock:^(Theater *theater, NSError *error) {
@@ -89,16 +105,22 @@ const NSUInteger kNumberOfDays = 7;
             self.theater = theater;
             if (self.theater.functions.count > 0) {
                 self.dataSource.items = self.theater.functions;
+                [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];
+                [self hideEmptyDataView];
             }
             else {
+                [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
+                [self showEmptyDataView];
             }
         }
         else {
-            NSLog(@"%@",error.localizedDescription);
+            [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
+            [self showEmptyDataView];
         }
         [self.tableView reloadData];
         self.tableView.scrollEnabled = YES;
         [self.refreshControl endRefreshing];
+        self.emptyDataView.buttonReload.enabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     } theaterID:self.theater.theaterID date:self.date];
 }
@@ -126,7 +148,87 @@ const NSUInteger kNumberOfDays = 7;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     Function *function = self.theater.functions[indexPath.row];
-    return [FunctionCell2 heightForRowWithFunction:function headFont:self.fontBigBold bodyFont:self.fontNormal showtimesFont:self.fontNormal];
+    return headerHeight = [FunctionCell2 heightForRowWithFunction:function headFont:self.fontBigBold bodyFont:self.fontNormal showtimesFont:self.fontNormal];
+}
+
+#pragma mark - EmptyDataView
+
+- (EmptyDataView *)emptyDataView
+{
+    if (!_emptyDataView)
+    {
+        _emptyDataView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyDataView" owner:self options:nil] firstObject];
+        CGRect frame = self.tableView.frame;
+        frame.origin.y = [UIView heightForHeaderViewWithText:self.title];
+        _emptyDataView.frame = frame;
+//        [_emptyDataView addSubview:[UIView headerViewForText:self.title height:0 textAlignment:NSTextAlignmentCenter]];
+        [_emptyDataView.buttonReload addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_emptyDataView.buttonGoWebPage addTarget:self action:@selector(goTheaterWeb) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _emptyDataView;
+}
+
+- (void) showEmptyDataView {
+    [self reloadEmptyDataViewData];
+    [self.tableView addSubview:self.emptyDataView];
+}
+- (void) hideEmptyDataView {
+    [self.emptyDataView removeFromSuperview];
+}
+
+- (void) reloadEmptyDataViewData {
+    switch (self.downloadStatus) {
+        case CHDownloadStatFailed:
+            self.emptyDataView.titleLabel.text = @"Ocurrió un problema con la descarga";
+            break;
+            
+        case CHDownloadStatNoDataFound:
+            self.emptyDataView.titleLabel.text = @"Aún no tenemos horarios disponibles para este día";
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void) goTheaterWeb {
+    NSString *actionSheetTitle = @"Abrir enlace en:";
+    NSString *cancelTitle = @"Cancelar";
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:actionSheetTitle
+                                  delegate:self
+                                  cancelButtonTitle:cancelTitle
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"App", @"Safari", nil];
+    if ([self.openInChromeController isChromeInstalled]) {
+        [actionSheet addButtonWithTitle:@"Chrome"];
+    }
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *urlString = self.theater.webURL;
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    
+    if ([buttonTitle isEqualToString:@"App"]) {
+        WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+        wvc.urlString = urlString;
+        [self.navigationController pushViewController:wvc animated:YES];
+    }
+    else if ([buttonTitle isEqualToString:@"Safari"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
+    else if ([buttonTitle isEqualToString:@"Chrome"]) {
+        if ([self.openInChromeController isChromeInstalled]) {
+            [self.openInChromeController openInChrome:[NSURL URLWithString:urlString]
+                                      withCallbackURL:nil
+                                         createNewTab:YES];
+        }
+    }
 }
 
 @end

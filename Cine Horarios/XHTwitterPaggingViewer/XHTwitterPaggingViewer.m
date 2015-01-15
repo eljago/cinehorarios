@@ -54,7 +54,8 @@
     [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) {
         CGRect contentViewFrame = viewController.view.bounds;
         contentViewFrame.origin.x = idx * CGRectGetWidth(self.view.bounds);
-        contentViewFrame.size.height = contentViewFrame.size.height - 22.f;
+//        contentViewFrame.size.height = contentViewFrame.size.height;
+        contentViewFrame.size.height = self.paggingScrollView.bounds.size.height;
         viewController.view.frame = contentViewFrame;
         [self.paggingScrollView addSubview:viewController.view];
         [self addChildViewController:viewController];

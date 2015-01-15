@@ -9,10 +9,10 @@
 #import "CHViewTableController.h"
 #import "CHViewTableController_Protected.h"
 #import "UIColor+CH.h"
-#import "UIScrollView+EmptyDataSet.h"
 #import "UIFont+CH.h"
+#import "OpenInChromeController.h"
 
-@interface CHViewTableController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate> {
+@interface CHViewTableController () {
     @protected
     UIFont *fontBody;
     UIFont *fontHeadline;
@@ -20,10 +20,8 @@
     UITableView *tableView;
     UIRefreshControl *refreshControl;
     NSLayoutConstraint *topLayoutConstraint;
+    OpenInChromeController *openInChromeController;
 }
-
-@property (nonatomic, assign, readwrite) CHDownloadStat downloadStatus;
-@property (nonatomic, assign, readwrite) BOOL shouldShowEmptyDataSet;
 
 @end
 
@@ -34,13 +32,11 @@
 @synthesize fontSmall = _fontSmall;
 @synthesize refreshControl = _refreshControl;
 @synthesize topLayoutConstraint = _topLayoutConstraint;
+@synthesize openInChromeController = _openInChromeController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.tableView.emptyDataSetSource = self;
-    self.tableView.emptyDataSetDelegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
@@ -48,6 +44,7 @@
                                                object:nil];
     
     
+    self.view.backgroundColor = [UIColor tableViewColor];
     //    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.backgroundColor = [UIColor tableViewColor];
     
@@ -58,6 +55,9 @@
     _refreshControl.tintColor = [UIColor blackColor];
     [_refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:_refreshControl];
+    
+    
+    self.openInChromeController = [[OpenInChromeController alloc] init];
     
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;
@@ -124,81 +124,7 @@
 - (void) downloadEndedWithDownloadStatus:(CHDownloadStat)newDownloadStatus {
     _downloadStatus = newDownloadStatus;
     if (_downloadStatus == CHDownloadStatFailed || _downloadStatus == CHDownloadStatNoDataFound) {
-        _shouldShowEmptyDataSet = YES;
     }
-}
-
-#pragma mark - Empty Data Set DataSource
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    
-    NSDictionary *attributes = @{
-                                 NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]
-                                 };
-    
-    NSString *text;
-    switch (self.downloadStatus) {
-        case CHDownloadStatFailed:
-            text = @"Descarga Fallida";
-            break;
-            
-        case CHDownloadStatNoDataFound:
-            text = @"Datos aún no disponibles";
-            break;
-            
-        default:
-            text = @"Datos aún no disponibles";
-            break;
-    }
-    
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-    
-    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    paragraph.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary *attributes = @{NSFontAttributeName: self.fontBigBold,
-                                 NSForegroundColorAttributeName: [UIColor grayColor],
-                                 NSParagraphStyleAttributeName: paragraph};
-    
-    NSString *text = @"";
-    
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
-    
-    NSDictionary *attributes = @{NSFontAttributeName: self.fontNormal,
-                                 NSForegroundColorAttributeName: [UIColor grayColor]};
-    
-    return [[NSAttributedString alloc] initWithString:@"Reintentar" attributes:attributes];
-}
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"Ghost"];
-}
-- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-    
-    return [UIColor tableViewColor];
-}
-- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
-    
-    return self.shouldShowEmptyDataSet;
-}
-- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
-    
-    return YES;
-}
-- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView {
-    
-    return YES;
-}
-- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
-    
-}
-- (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView {
-    [self refreshData];
 }
 
 @end

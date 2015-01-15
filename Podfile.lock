@@ -21,15 +21,14 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DACircularProgress (2.2.0)
-  - DZNEmptyDataSet (1.5)
   - GoogleAnalytics-iOS-SDK (3.10):
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
-  - Harpy (3.1.2)
+  - Harpy (3.3.0)
   - iOS-Hierarchy-Viewer (1.4.7)
-  - Mantle (1.5.1):
-    - Mantle/extobjc (= 1.5.1)
-  - Mantle/extobjc (1.5.1)
+  - Mantle (1.5.3):
+    - Mantle/extobjc (= 1.5.3)
+  - Mantle/extobjc (1.5.3)
   - MBProgressHUD (0.9)
   - MWPhotoBrowser (1.4.1):
     - DACircularProgress
@@ -50,7 +49,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
-  - DZNEmptyDataSet
   - GoogleAnalytics-iOS-SDK
   - Harpy
   - iOS-Hierarchy-Viewer
@@ -66,11 +64,10 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
-  DZNEmptyDataSet: 15b1425ebba29e5a04d2fac9623a7384e3eaf775
   GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
-  Harpy: 890d679b49a85622f54146e33c4a1d8f313f6369
+  Harpy: 5c328179d689e44b5da72a102b2d7cb4eb31dd2b
   iOS-Hierarchy-Viewer: f795abaeb8ccec8f652abd0891c396ad77d211d3
-  Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
+  Mantle: 8d84cacd6c2a69ff6fbce985a2b51298a5495de3
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   MWPhotoBrowser: be05b3b7521e961382a4ba5579685bf5a00b93d8
   OpenInChrome: b7c73ddf8fe0a1788dc0549c3c4c70e3c84da578

@@ -9,7 +9,6 @@ pod 'Mantle'
 pod 'UIActivityIndicator-for-SDWebImage'
 pod 'SpinKit'
 pod 'Harpy'
-pod 'DZNEmptyDataSet'
 pod 'OpenInChrome'
 pod 'SIAlertView'
 pod 'RFRateMe', "~> 1.0.0"

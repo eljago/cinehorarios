@@ -3,23 +3,25 @@
 
 ---
 ### About
-**Harpy** is a utility that checks a user's currently installed version of your iOS application against the version that is currently available in the App Store. If a new version is available, an instance of UIAlertView (iOS 6, 7) or UIAlertController (iOS 8) is presented to the user informing them of the newer version, and giving them the option to update the application. 
+**Harpy** checks a user's currently installed version of your iOS app against the version that is currently available in the App Store. If a new version is available, an alert can be presented to the user informing them of the newer version, and giving them the option to update the application. 
 
 This library is built to work with the [Semantic Versioning](http://semver.org/) system.
 
+### Swift Support
+[Aaron Brager](http://twitter.com/GetAaron) and I have ported Harpy to Swift. We've called it [Siren](https://github.com/ArtSabintsev/Siren) and it can be found [here](https://github.com/ArtSabintsev/Siren).
+
 ### Changelog
-#### 3.1.2
-- Added Hebrew localization support (Issue [#64](https://github.com/ArtSabintsev/Harpy/pull/64) - Thanks [Daniel](https://github.com/danieltskv))
+#### 3.3.0
+- Removed all macros in favor of static strings and methods.
+- Addressed issue with NSBundle and projects containing multiple targets (thanks to [frranck](https://github.com/frranck)).
 
 ### Features
-- Cocoapods Support
-- SUpport for UIAlertController (iOS 8+) and UIAlertView (Older versions of iOS)
-- Three types of alerts to present to the end-user (see **Screenshots** section)
-- Optional delegate and delegate methods (see **Optional Delegate** section)
-- Localized for 18 languages: Basque, Chinese (Simplified), Chinese (Traditional), Danish, Dutch, English, French, German, Hebrew, Italian, Japanese, Korean, Portuguese, Russian, Slovenian, Swedish, Spanish, and Turkish.
-	- Optional ability to override an iOS device's default language to force the localization of your choice 
-	- Refer to the **Force Localization** section
-- ~~Check for Supported Devices~~
+- [x] CocoaPods Support
+- [x] Support for `UIAlertController` (iOS 8+) and `UIAlertView` (iOS 7)
+- [x] Three types of alerts (see **Screenshots & Alert Types**)
+- [x] Optional delegate methods (see **Optional Delegate** section)
+- [x] Localized for 18 languages
+- [x] ~~Check for Supported Devices~~
 	- Removed in 2.7.1. See **Supported Devices Compatibility** section.
 
 ### Screenshots
@@ -65,7 +67,7 @@ Copy the 'Harpy' folder into your Xcode project. It contains the Harpy.h and Har
 	// Set the UIViewController that will present an instance of UIAlertController
 	[[Harpy sharedInstance] setPresentingViewController:_window.rootViewController];
 	
-	// OPTIONAL: The tintColor for the alertController
+	// (Optional) The tintColor for the alertController
 	[[Harpy sharedInstance] setAlertControllerTintColor:@"<#alert_controller_tint_color#>"];
 	
 	// (Optional) Set the App Name for your app

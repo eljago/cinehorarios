@@ -54,12 +54,6 @@
 #define COCOAPODS_VERSION_MINOR_DACircularProgress 2
 #define COCOAPODS_VERSION_PATCH_DACircularProgress 0
 
-// DZNEmptyDataSet
-#define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
-#define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1
-#define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 5
-#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 0
-
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK 3
@@ -75,8 +69,8 @@
 // Harpy
 #define COCOAPODS_POD_AVAILABLE_Harpy
 #define COCOAPODS_VERSION_MAJOR_Harpy 3
-#define COCOAPODS_VERSION_MINOR_Harpy 1
-#define COCOAPODS_VERSION_PATCH_Harpy 2
+#define COCOAPODS_VERSION_MINOR_Harpy 3
+#define COCOAPODS_VERSION_PATCH_Harpy 0
 
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
@@ -94,13 +88,13 @@
 #define COCOAPODS_POD_AVAILABLE_Mantle
 #define COCOAPODS_VERSION_MAJOR_Mantle 1
 #define COCOAPODS_VERSION_MINOR_Mantle 5
-#define COCOAPODS_VERSION_PATCH_Mantle 1
+#define COCOAPODS_VERSION_PATCH_Mantle 3
 
 // Mantle/extobjc
 #define COCOAPODS_POD_AVAILABLE_Mantle_extobjc
 #define COCOAPODS_VERSION_MAJOR_Mantle_extobjc 1
 #define COCOAPODS_VERSION_MINOR_Mantle_extobjc 5
-#define COCOAPODS_VERSION_PATCH_Mantle_extobjc 1
+#define COCOAPODS_VERSION_PATCH_Mantle_extobjc 3
 
 // OpenInChrome
 #define COCOAPODS_POD_AVAILABLE_OpenInChrome

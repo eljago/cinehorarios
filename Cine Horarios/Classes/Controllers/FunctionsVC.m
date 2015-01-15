@@ -40,6 +40,7 @@ const NSInteger numberOfVCs = 7;
     
     [self createButtonItems];
     
+    self.view.backgroundColor = [UIColor tableViewColor];
     self.pageControl.backgroundColor = [UIColor clearColor];
     self.pageControl.numberOfPages = numberOfVCs;
     self.pageControl.tintColor = [UIColor lightGrayColor];
@@ -52,7 +53,7 @@ const NSInteger numberOfVCs = 7;
     for (int i=0; i<numberOfVCs; i++) {
         NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*24*i];
         FunctionDayVC *functionDayVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FunctionDayVC"];
-        functionDayVC.theater = self.theater;
+        functionDayVC.theater = [self.theater copy];
         functionDayVC.title = [[date getShortDateString] capitalizedString];
         functionDayVC.date = date;
         [viewControllers addObject:functionDayVC];
@@ -62,9 +63,9 @@ const NSInteger numberOfVCs = 7;
     __weak __typeof(self)weakSelf = self;
     self.didChangedPageCompleted = ^(NSInteger cuurentPage, NSString *title) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
+        strongSelf.pageControl.currentPage = cuurentPage;
         FunctionDayVC *functionDayVC = strongSelf.viewControllers[cuurentPage];
         [functionDayVC getDataForceDownload:NO];
-        strongSelf.pageControl.currentPage = cuurentPage;
     };
     
     [self setupFavorites];

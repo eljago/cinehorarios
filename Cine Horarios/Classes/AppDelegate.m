@@ -31,7 +31,6 @@ static int const kGaDispatchPeriod = 30;
 
 @implementation AppDelegate
 
-
 @synthesize miLaunchOptions,miNotificationsOptions;
 
 

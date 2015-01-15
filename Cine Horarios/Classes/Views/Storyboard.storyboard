@@ -246,8 +246,6 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="delegate" destination="O81-oZ-Jhn" id="VnY-2q-sU9"/>
-                                    <outlet property="emptyDataSetDelegate" destination="O81-oZ-Jhn" id="0Jo-3k-SEE"/>
-                                    <outlet property="emptyDataSetSource" destination="O81-oZ-Jhn" id="Fh2-uH-b3S"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -1317,16 +1315,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="lrZ-SW-o1J" secondAttribute="trailing" id="Osu-fc-n3y"/>
-                            <constraint firstItem="lrZ-SW-o1J" firstAttribute="top" secondItem="KQM-cu-8Kw" secondAttribute="bottom" id="SSt-Cu-8xQ"/>
-                            <constraint firstItem="B4m-Xw-ARF" firstAttribute="top" secondItem="lrZ-SW-o1J" secondAttribute="bottom" id="gyC-Km-ieP"/>
-                            <constraint firstItem="lrZ-SW-o1J" firstAttribute="leading" secondItem="Ga6-s3-SuI" secondAttribute="leading" id="ues-Is-Bid"/>
+                            <constraint firstAttribute="trailing" secondItem="lrZ-SW-o1J" secondAttribute="trailing" id="7fW-8R-MWA"/>
+                            <constraint firstItem="lrZ-SW-o1J" firstAttribute="leading" secondItem="Ga6-s3-SuI" secondAttribute="leading" id="ZMi-Tf-bM2"/>
+                            <constraint firstItem="lrZ-SW-o1J" firstAttribute="top" secondItem="KQM-cu-8Kw" secondAttribute="bottom" id="bQC-aG-jdN"/>
+                            <constraint firstItem="B4m-Xw-ARF" firstAttribute="top" secondItem="lrZ-SW-o1J" secondAttribute="bottom" id="nWr-wB-qCE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VxE-fN-wFl"/>
                     <connections>
                         <outlet property="tableView" destination="lrZ-SW-o1J" id="LHU-jS-BQg"/>
-                        <outlet property="topLayoutConstraint" destination="SSt-Cu-8xQ" id="Owi-6s-Qmy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42K-az-vuZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

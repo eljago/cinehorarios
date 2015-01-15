@@ -13,9 +13,9 @@
 		25037A701A55D3E60087D124 /* XHTwitterPaggingViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer.m */; };
 		25037A731A562ACB0087D124 /* FunctionsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A721A562ACB0087D124 /* FunctionsScrollView.m */; };
 		2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2503D0BD1A1054B200E1876B /* NSDate+CH.m */; };
-		25710C951A0DB3230066864C /* FunctionsPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25710C941A0DB3230066864C /* FunctionsPageVC.m */; };
-		257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */; };
 		259550421A3DD4380052A8FB /* FavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 259550411A3DD4380052A8FB /* FavoritesManager.m */; };
+		25C00D941A661615001FDD00 /* EmptyDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C00D931A661615001FDD00 /* EmptyDataView.xib */; };
+		25C00D971A6619E0001FDD00 /* EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C00D961A6619E0001FDD00 /* EmptyDataView.m */; };
 		25C498AA1A47A96700EFE197 /* CHViewTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C498A91A47A96700EFE197 /* CHViewTableController.m */; };
 		25C66F7A1A2AD70300366BE8 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F791A2AD70300366BE8 /* UIDevice+Hardware.m */; };
 		25C66F7F1A2AD70C00366BE8 /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7C1A2AD70C00366BE8 /* NSObject+Utilidades.m */; };
@@ -93,7 +93,6 @@
 		6EC0068918DC7CBB003DECC8 /* CloseTheatersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0066218DC7CBB003DECC8 /* CloseTheatersVC.m */; };
 		6EC0068A18DC7CBB003DECC8 /* ComingSoonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0066418DC7CBB003DECC8 /* ComingSoonVC.m */; };
 		6EC0068B18DC7CBB003DECC8 /* FavoritesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0066618DC7CBB003DECC8 /* FavoritesVC.m */; };
-		6EC0068C18DC7CBB003DECC8 /* FuncionesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0066818DC7CBB003DECC8 /* FuncionesVC.m */; };
 		6EC0068D18DC7CBB003DECC8 /* GlobalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0066A18DC7CBB003DECC8 /* GlobalNavigationController.m */; };
 		6EC0068F18DC7CBB003DECC8 /* MovieCinemasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0066E18DC7CBB003DECC8 /* MovieCinemasVC.m */; };
 		6EC0069118DC7CBB003DECC8 /* MovieFunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0067218DC7CBB003DECC8 /* MovieFunctionsVC.m */; };
@@ -164,11 +163,12 @@
 		2503D0BC1A1054B200E1876B /* NSDate+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+CH.h"; path = "Utilities/Categories/NSDate+CH.h"; sourceTree = "<group>"; };
 		2503D0BD1A1054B200E1876B /* NSDate+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+CH.m"; path = "Utilities/Categories/NSDate+CH.m"; sourceTree = "<group>"; };
 		25710C931A0DB3230066864C /* FunctionsPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsPageVC.h; path = Classes/Controllers/FunctionsPageVC.h; sourceTree = "<group>"; };
-		25710C941A0DB3230066864C /* FunctionsPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsPageVC.m; path = Classes/Controllers/FunctionsPageVC.m; sourceTree = "<group>"; };
 		257BEE691A107B5400BD3920 /* FunctionsContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsContainerVC.h; path = Classes/Controllers/FunctionsContainerVC.h; sourceTree = "<group>"; };
-		257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsContainerVC.m; path = Classes/Controllers/FunctionsContainerVC.m; sourceTree = "<group>"; };
 		259550401A3DD4380052A8FB /* FavoritesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesManager.h; path = Classes/Models/FavoritesManager.h; sourceTree = "<group>"; };
 		259550411A3DD4380052A8FB /* FavoritesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesManager.m; path = Classes/Models/FavoritesManager.m; sourceTree = "<group>"; };
+		25C00D931A661615001FDD00 /* EmptyDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataView.xib; path = Classes/Views/Nibs/EmptyDataView.xib; sourceTree = "<group>"; };
+		25C00D951A6619E0001FDD00 /* EmptyDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyDataView.h; path = Classes/Views/Nibs/EmptyDataView.h; sourceTree = "<group>"; };
+		25C00D961A6619E0001FDD00 /* EmptyDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyDataView.m; path = Classes/Views/Nibs/EmptyDataView.m; sourceTree = "<group>"; };
 		25C498A81A47A96700EFE197 /* CHViewTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHViewTableController.h; path = Classes/Controllers/CHViewTableController.h; sourceTree = "<group>"; };
 		25C498A91A47A96700EFE197 /* CHViewTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHViewTableController.m; path = Classes/Controllers/CHViewTableController.m; sourceTree = "<group>"; };
 		25C498AB1A47FF7A00EFE197 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -310,7 +310,6 @@
 		6EC0066518DC7CBB003DECC8 /* FavoritesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesVC.h; path = Classes/Controllers/FavoritesVC.h; sourceTree = "<group>"; };
 		6EC0066618DC7CBB003DECC8 /* FavoritesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesVC.m; path = Classes/Controllers/FavoritesVC.m; sourceTree = "<group>"; };
 		6EC0066718DC7CBB003DECC8 /* FuncionesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FuncionesVC.h; path = Classes/Controllers/FuncionesVC.h; sourceTree = "<group>"; };
-		6EC0066818DC7CBB003DECC8 /* FuncionesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FuncionesVC.m; path = Classes/Controllers/FuncionesVC.m; sourceTree = "<group>"; };
 		6EC0066918DC7CBB003DECC8 /* GlobalNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlobalNavigationController.h; path = Classes/Controllers/GlobalNavigationController.h; sourceTree = "<group>"; };
 		6EC0066A18DC7CBB003DECC8 /* GlobalNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalNavigationController.m; path = Classes/Controllers/GlobalNavigationController.m; sourceTree = "<group>"; };
 		6EC0066D18DC7CBB003DECC8 /* MovieCinemasVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieCinemasVC.h; path = Classes/Controllers/MovieCinemasVC.h; sourceTree = "<group>"; };
@@ -545,9 +544,6 @@
 				6EC0066218DC7CBB003DECC8 /* CloseTheatersVC.m */,
 				6EC0066418DC7CBB003DECC8 /* ComingSoonVC.m */,
 				6EC0066618DC7CBB003DECC8 /* FavoritesVC.m */,
-				6EC0066818DC7CBB003DECC8 /* FuncionesVC.m */,
-				257BEE6A1A107B5400BD3920 /* FunctionsContainerVC.m */,
-				25710C941A0DB3230066864C /* FunctionsPageVC.m */,
 				6EC0066A18DC7CBB003DECC8 /* GlobalNavigationController.m */,
 				6EC0066E18DC7CBB003DECC8 /* MovieCinemasVC.m */,
 				6EC0067218DC7CBB003DECC8 /* MovieFunctionsVC.m */,
@@ -832,6 +828,9 @@
 				25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */,
 				25FDAFCD1A32D40600CDD34E /* ImageViewTableHeader.h */,
 				25FDAFCE1A32D40600CDD34E /* ImageViewTableHeader.m */,
+				25C00D931A661615001FDD00 /* EmptyDataView.xib */,
+				25C00D951A6619E0001FDD00 /* EmptyDataView.h */,
+				25C00D961A6619E0001FDD00 /* EmptyDataView.m */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -939,6 +938,7 @@
 				6EC006D718DC7D67003DECC8 /* Localizable.strings in Resources */,
 				162414A417BC946E00083708 /* Images.xcassets in Resources */,
 				6EC006D518DC7D67003DECC8 /* icloud.plist in Resources */,
+				25C00D941A661615001FDD00 /* EmptyDataView.xib in Resources */,
 				6E704FB71A5B1A9F00FBBE18 /* developers.p12 in Resources */,
 				6E704FB61A5B1A9F00FBBE18 /* developers.der in Resources */,
 				6EC006D918DC7D67003DECC8 /* Menu.plist in Resources */,
@@ -1008,7 +1008,6 @@
 				6EC0065518DC7BC6003DECC8 /* VideoCell.m in Sources */,
 				6EC0073C18DC7EE1003DECC8 /* UIFont+CH.m in Sources */,
 				6EC0071418DC7E3C003DECC8 /* AnnotationGroup.m in Sources */,
-				257BEE6B1A107B5400BD3920 /* FunctionsContainerVC.m in Sources */,
 				25C498AA1A47A96700EFE197 /* CHViewTableController.m in Sources */,
 				6EC0068618DC7CBB003DECC8 /* CastVC.m in Sources */,
 				6EC0068B18DC7CBB003DECC8 /* FavoritesVC.m in Sources */,
@@ -1018,7 +1017,6 @@
 				6EC0062F18DC7B77003DECC8 /* BillboardCell+BasicMovie.m in Sources */,
 				6EC0064F18DC7BC6003DECC8 /* CastDirectorCell.m in Sources */,
 				25FDAFCF1A32D40600CDD34E /* ImageViewTableHeader.m in Sources */,
-				6EC0068C18DC7CBB003DECC8 /* FuncionesVC.m in Sources */,
 				6EC0073B18DC7EE1003DECC8 /* UIColor+CH.m in Sources */,
 				6EC0071B18DC7E3C003DECC8 /* Cinema.m in Sources */,
 				6EC0065018DC7BC6003DECC8 /* CinemaCell.m in Sources */,
@@ -1053,7 +1051,7 @@
 				6EC0063518DC7B77003DECC8 /* MovieCastCell+Person.m in Sources */,
 				25C66F7F1A2AD70C00366BE8 /* NSObject+Utilidades.m in Sources */,
 				25F1A0241A53F94200EF7E89 /* FunctionsTableView.m in Sources */,
-				25710C951A0DB3230066864C /* FunctionsPageVC.m in Sources */,
+				25C00D971A6619E0001FDD00 /* EmptyDataView.m in Sources */,
 				6EC0063218DC7B77003DECC8 /* CinemaCell+Cinema.m in Sources */,
 				6EC0069518DC7CBB003DECC8 /* MovieVC.m in Sources */,
 				6EC0071E18DC7E3C003DECC8 /* MTLModelPersistable.m in Sources */,
