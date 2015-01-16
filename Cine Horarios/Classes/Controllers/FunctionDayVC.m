@@ -158,12 +158,11 @@ const NSUInteger kNumberOfDays = 7;
     if (!_emptyDataView)
     {
         _emptyDataView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyDataView" owner:self options:nil] firstObject];
+        _emptyDataView.backgroundColor = [UIColor tableViewColor];
         CGRect frame = self.tableView.frame;
         frame.origin.y = [UIView heightForHeaderViewWithText:self.title];
         _emptyDataView.frame = frame;
-//        [_emptyDataView addSubview:[UIView headerViewForText:self.title height:0 textAlignment:NSTextAlignmentCenter]];
         [_emptyDataView.buttonReload addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
-        
         [_emptyDataView.buttonGoWebPage addTarget:self action:@selector(goTheaterWeb) forControlEvents:UIControlEventTouchUpInside];
     }
     return _emptyDataView;
@@ -181,10 +180,12 @@ const NSUInteger kNumberOfDays = 7;
     switch (self.downloadStatus) {
         case CHDownloadStatFailed:
             self.emptyDataView.titleLabel.text = @"Ocurrió un problema con la descarga";
+            self.emptyDataView.labelButtonReload.text = @"Reintentar Descarga";
             break;
             
         case CHDownloadStatNoDataFound:
             self.emptyDataView.titleLabel.text = @"Aún no tenemos horarios disponibles para este día";
+            self.emptyDataView.labelButtonReload.text = @"Volver a Descargar";
             break;
             
         default:

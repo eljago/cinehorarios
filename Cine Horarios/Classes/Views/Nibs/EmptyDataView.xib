@@ -62,6 +62,8 @@
             <connections>
                 <outlet property="buttonGoWebPage" destination="Qih-R3-JXR" id="df3-iv-u9b"/>
                 <outlet property="buttonReload" destination="the-DO-3xB" id="I2k-R4-auI"/>
+                <outlet property="labelButtonGoWebPage" destination="0xN-HH-4Mh" id="pzu-EW-kI1"/>
+                <outlet property="labelButtonReload" destination="p01-x0-9Kn" id="7j9-J0-N56"/>
                 <outlet property="titleLabel" destination="VXg-u4-lXc" id="igD-Wf-B0v"/>
             </connections>
             <point key="canvasLocation" x="693" y="525"/>

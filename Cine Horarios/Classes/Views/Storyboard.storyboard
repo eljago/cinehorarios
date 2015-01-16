@@ -1904,10 +1904,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="AB2-sO-Rhv"/>
-        <segue reference="myH-t2-gkg"/>
-        <segue reference="JSE-a5-e9o"/>
+        <segue reference="8A5-0g-abl"/>
         <segue reference="t87-J4-gFw"/>
+        <segue reference="JSE-a5-e9o"/>
+        <segue reference="AB2-sO-Rhv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

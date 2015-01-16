@@ -11,6 +11,8 @@
 @interface EmptyDataView : UIView
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *labelButtonReload;
+@property (nonatomic, weak) IBOutlet UILabel *labelButtonGoWebPage;
 @property (nonatomic, weak) IBOutlet UIButton *buttonReload;
 @property (nonatomic, weak) IBOutlet UIButton *buttonGoWebPage;
 
