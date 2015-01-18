@@ -13,7 +13,9 @@
 		25037A701A55D3E60087D124 /* XHTwitterPaggingViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer.m */; };
 		25037A731A562ACB0087D124 /* FunctionsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A721A562ACB0087D124 /* FunctionsScrollView.m */; };
 		2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2503D0BD1A1054B200E1876B /* NSDate+CH.m */; };
+		2536EAC81A6A414E00F2E6B4 /* UITextView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2536EAC71A6A414E00F2E6B4 /* UITextView+CH.m */; };
 		259550421A3DD4380052A8FB /* FavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 259550411A3DD4380052A8FB /* FavoritesManager.m */; };
+		25A58D4A1A6B827D00743F4A /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A58D491A6B827D00743F4A /* MovieViewController.m */; };
 		25C00D941A661615001FDD00 /* EmptyDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C00D931A661615001FDD00 /* EmptyDataView.xib */; };
 		25C00D971A6619E0001FDD00 /* EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C00D961A6619E0001FDD00 /* EmptyDataView.m */; };
 		25C498AA1A47A96700EFE197 /* CHViewTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C498A91A47A96700EFE197 /* CHViewTableController.m */; };
@@ -162,10 +164,14 @@
 		25037A721A562ACB0087D124 /* FunctionsScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsScrollView.m; path = Classes/Views/FunctionsScrollView.m; sourceTree = "<group>"; };
 		2503D0BC1A1054B200E1876B /* NSDate+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+CH.h"; path = "Utilities/Categories/NSDate+CH.h"; sourceTree = "<group>"; };
 		2503D0BD1A1054B200E1876B /* NSDate+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+CH.m"; path = "Utilities/Categories/NSDate+CH.m"; sourceTree = "<group>"; };
+		2536EAC61A6A414E00F2E6B4 /* UITextView+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CH.h"; path = "Utilities/Categories/UITextView+CH.h"; sourceTree = "<group>"; };
+		2536EAC71A6A414E00F2E6B4 /* UITextView+CH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CH.m"; path = "Utilities/Categories/UITextView+CH.m"; sourceTree = "<group>"; };
 		25710C931A0DB3230066864C /* FunctionsPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsPageVC.h; path = Classes/Controllers/FunctionsPageVC.h; sourceTree = "<group>"; };
 		257BEE691A107B5400BD3920 /* FunctionsContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsContainerVC.h; path = Classes/Controllers/FunctionsContainerVC.h; sourceTree = "<group>"; };
 		259550401A3DD4380052A8FB /* FavoritesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesManager.h; path = Classes/Models/FavoritesManager.h; sourceTree = "<group>"; };
 		259550411A3DD4380052A8FB /* FavoritesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesManager.m; path = Classes/Models/FavoritesManager.m; sourceTree = "<group>"; };
+		25A58D481A6B827D00743F4A /* MovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieViewController.h; path = Classes/Controllers/MovieViewController.h; sourceTree = "<group>"; };
+		25A58D491A6B827D00743F4A /* MovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieViewController.m; path = Classes/Controllers/MovieViewController.m; sourceTree = "<group>"; };
 		25C00D931A661615001FDD00 /* EmptyDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataView.xib; path = Classes/Views/Nibs/EmptyDataView.xib; sourceTree = "<group>"; };
 		25C00D951A6619E0001FDD00 /* EmptyDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyDataView.h; path = Classes/Views/Nibs/EmptyDataView.h; sourceTree = "<group>"; };
 		25C00D961A6619E0001FDD00 /* EmptyDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyDataView.m; path = Classes/Views/Nibs/EmptyDataView.m; sourceTree = "<group>"; };
@@ -558,6 +564,8 @@
 				25037A651A5544770087D124 /* FunctionsVC.m */,
 				25037A671A5545200087D124 /* FunctionDayVC.h */,
 				25037A681A5545200087D124 /* FunctionDayVC.m */,
+				25A58D481A6B827D00743F4A /* MovieViewController.h */,
+				25A58D491A6B827D00743F4A /* MovieViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -583,6 +591,8 @@
 				6EC0073618DC7EE1003DECC8 /* UIView+CH.m */,
 				6E176F071A05DEAE00775DC7 /* MBProgressHUD+CH.h */,
 				6E176F081A05DEAE00775DC7 /* MBProgressHUD+CH.m */,
+				2536EAC61A6A414E00F2E6B4 /* UITextView+CH.h */,
+				2536EAC71A6A414E00F2E6B4 /* UITextView+CH.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1014,6 +1024,7 @@
 				6EC0061518DC7AE1003DECC8 /* CineHorariosApiClient.m in Sources */,
 				6EC0063118DC7B77003DECC8 /* CastDirectorCell+Person.m in Sources */,
 				6EC0061618DC7AE1003DECC8 /* FileHandler.m in Sources */,
+				2536EAC81A6A414E00F2E6B4 /* UITextView+CH.m in Sources */,
 				6EC0062F18DC7B77003DECC8 /* BillboardCell+BasicMovie.m in Sources */,
 				6EC0064F18DC7BC6003DECC8 /* CastDirectorCell.m in Sources */,
 				25FDAFCF1A32D40600CDD34E /* ImageViewTableHeader.m in Sources */,
@@ -1036,6 +1047,7 @@
 				25037A731A562ACB0087D124 /* FunctionsScrollView.m in Sources */,
 				6EC0071D18DC7E3C003DECC8 /* Movie.m in Sources */,
 				2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */,
+				25A58D4A1A6B827D00743F4A /* MovieViewController.m in Sources */,
 				6EC0063418DC7B77003DECC8 /* FunctionCell2+Function.m in Sources */,
 				6EC0071618DC7E3C003DECC8 /* BasicItem.m in Sources */,
 				6EC0063718DC7B77003DECC8 /* VideoCell+Video.m in Sources */,

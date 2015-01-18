@@ -21,7 +21,7 @@
 #import <mach-o/dyld.h>
 
 
-#define COMPILE_GEOFARO false
+#define COMPILE_GEOFARO true
 
 /** GOOGLE ANALYTIC CONSTANTS **/
 static NSString *const kGaPropertyId = @"UA-41569093-1"; // Placeholder property ID.

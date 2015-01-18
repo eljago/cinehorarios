@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) OpenInChromeController *openInChromeController;
 
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification;
 - (void) refreshData;
 - (void) downloadEndedWithDownloadStatus: (CHDownloadStat) downloadStatus;
 @end

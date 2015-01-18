@@ -8,19 +8,13 @@
 
 #import "MovieVC.h"
 #import "Movie.h"
-#import "UIFont+CH.h"
-#import "UIColor+CH.h"
 #import "CastVC.h"
 #import "WebVC.h"
-#import "UIImageView+CH.h"
 #import "MWPhoto.h"
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+CH.h"
 #import "MovieFunctionsVC.h"
 #import "VideoVC.h"
-#import "GAI+CH.h"
-#import "UIView+CH.h"
-#import "GlobalNavigationController.h"
 #import "Person.h"
 #import "ArrayDataSource.h"
 #import "MovieImageCell.h"
@@ -31,20 +25,35 @@
 #import "RFRateMe.h"
 #import "NSObject+Utilidades.h"
 #import "OpenInChromeController.h"
+#import "GAI+CH.h"
 
-@interface MovieVC () <UICollectionViewDelegate, UIScrollViewDelegate, MWPhotoBrowserDelegate, UIActionSheetDelegate>
+#import "UIView+CH.h"
+#import "UIFont+CH.h"
+#import "UIColor+CH.h"
+#import "UITextView+CH.h"
+#import "UIImageView+CH.h"
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintMovieNameTrailing;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintMovieCoverImageViewTop;
+typedef NS_ENUM(NSUInteger, CHDownloadStat) {
+    CHDownloadStatNone,
+    CHDownloadStatNoDataFound,
+    CHDownloadStatFailed,
+    CHDownloadStatSuccessful
+};
+
+@interface MovieVC () <UICollectionViewDelegate, MWPhotoBrowserDelegate, UIActionSheetDelegate>
+
+@property (nonatomic, strong) UIFont *fontNormal;
+@property (nonatomic, strong) UIFont *fontBigBold;
+@property (nonatomic, strong) UIFont *fontSmall;
+@property (nonatomic, strong) OpenInChromeController *openInChromeController;
+@property (nonatomic, assign, readonly) CHDownloadStat downloadStatus;
 
 @property (weak, nonatomic) IBOutlet UITextView *textViewSynopsis;
 @property (weak, nonatomic) IBOutlet UITextView *textViewMovieDetails;
 @property (weak, nonatomic) IBOutlet UIView *viewOverLabelMovieName;
 @property (weak, nonatomic) IBOutlet UILabel *labelMovieName;
 @property (weak, nonatomic) IBOutlet UIImageView *portraitImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageViewPortraitDropShadow;
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
-@property (nonatomic, strong) Movie *movie;
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionViewActors;
@@ -54,25 +63,22 @@
 @property (nonatomic, weak) IBOutlet UILabel *labelScoreMetacritic;
 @property (nonatomic, weak) IBOutlet UILabel *labelScoreImdb;
 @property (nonatomic, weak) IBOutlet UILabel *labelScoreRottenTomatoes;
+@property (nonatomic, weak) IBOutlet UILabel *labelMetacritic;
+@property (nonatomic, weak) IBOutlet UILabel *labelImdb;
+@property (nonatomic, weak) IBOutlet UILabel *labelRottenTomatoes;
 @property (nonatomic, weak) IBOutlet UILabel *labelBuscarHorarios;
 @property (nonatomic, weak) IBOutlet UILabel *labelVideos;
 
+@property (nonatomic, strong) Movie *movie;
 @property (nonatomic, strong) Cast *cast;
-
-@property (nonatomic, strong) ArrayDataSource *collectionViewImagesDataSource;
-@property (nonatomic, strong) ArrayDataSource *collectionViewCastDataSource;
-
-@property (nonatomic, strong) UIFont *smallerFont;
-@property (nonatomic, strong) UIFont *normalFont;
-@property (nonatomic, strong) UIFont *bigBoldFont;
 
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic, strong) NSArray *thumbPhotos;
 
-
-@property (nonatomic, strong) OpenInChromeController *openInChromeController;
-
 @property (nonatomic, strong) NSString *imdbCodeSelected;
+
+@property (nonatomic, strong) ArrayDataSource *collectionViewImagesDataSource;
+@property (nonatomic, strong) ArrayDataSource *collectionViewCastDataSource;
 @end
 
 @implementation MovieVC
@@ -88,11 +94,6 @@
     
     self.photos = nil;
     
-    self.openInChromeController = [[OpenInChromeController alloc] init];
-    
-    UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 90, 30)];
-    self.textViewSynopsis.textContainer.exclusionPaths = @[exclusionPath];
-    
     [GAI trackPage:@"INFO PELICULA"];
     [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Peliculas Visitadas" label:self.movieName];
     
@@ -102,35 +103,27 @@
     topView.tag = 999;
     [self.view addSubview:topView];
     
-    // Defining and setting fonts
-    [self setFontsWithPreferedContentSizeCategory: [[UIApplication sharedApplication] preferredContentSizeCategory]];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(preferredContentSizeChanged:)
-                                                 name:UIContentSizeCategoryDidChangeNotification
-                                               object:nil];
-    
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
-    
     [RFRateMe showRateAlert];
     
     if (self.portraitImageURL) {
         [self.portraitImageView setImageWithStringURL:self.portraitImageURL movieImageType:MovieImageTypePortrait placeholderImage:nil];
     }
-    else {
-        self.constraintMovieCoverImageViewTop.constant = 10.;
-        self.viewOverLabelMovieName.backgroundColor = [UIColor clearColor];
-        self.labelMovieName.textColor = [UIColor blackColor];
-        self.portraitImageView.hidden = YES;
-        self.imageViewPortraitDropShadow.hidden = YES;
-    }
     if (self.coverImageURL) {
         [self.coverImageView setImageWithStringURL:self.coverImageURL movieImageType:MovieImageTypeCover];
     }
-//    self.constraintMovieNameTrailing.constant = -self.viewOverLabelMovieName.bounds.size.width;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(preferredContentSizeChanged:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+    self.view.backgroundColor = [UIColor tableViewColor];
+    self.tableView.backgroundColor = [UIColor tableViewColor];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    self.openInChromeController = [[OpenInChromeController alloc] init];
+    
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.navigationItem.rightBarButtonItem = menuButtonItem;
     
     [self getMovieForceRemote:NO];
 }
@@ -142,10 +135,31 @@
     self.collectionView.dataSource = self.collectionViewImagesDataSource;
     
     self.collectionViewCastDataSource = [[ArrayDataSource alloc] initWithItems:self.cast.actors cellIdentifier:@"Cell" configureCellBlock:^(MovieCastCell *cell, Person *person) {
-        [cell configureForPerson:person font:self.smallerFont];
+        [cell configureForPerson:person font:self.fontSmall];
     }];
     self.collectionViewActors.dataSource = self.collectionViewCastDataSource;
 }
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+#pragma mark - Attributes
+- (UIFont *) fontNormal {
+    if(_fontNormal) return _fontNormal;
+    _fontNormal = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize: [[UIApplication sharedApplication] preferredContentSizeCategory]];
+    return _fontNormal;
+}
+- (UIFont *) fontBigBold {
+    if(_fontBigBold) return _fontBigBold;
+    _fontBigBold = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize: [[UIApplication sharedApplication] preferredContentSizeCategory]];
+    return _fontBigBold;
+}
+- (UIFont *) fontSmall {
+    if(_fontSmall) return _fontSmall;
+    _fontSmall = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize: [[UIApplication sharedApplication] preferredContentSizeCategory]];
+    return _fontSmall;
+}
+
 
 #pragma mark Row & Height Calculators
 
@@ -163,7 +177,7 @@
         return 0.01f;
     }
     else {
-        return [UIView heightForHeaderViewWithText:@"Javier"];
+        return [UIView heightForHeaderViewWithText:@"Arturo"];
     }
 }
 
@@ -191,6 +205,7 @@
     }
 }
 - (void) downloadMovie {
+    [self.refreshControl beginRefreshing];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [Movie getCinemaWithBlock:^(Movie *movie, NSError *error) {
         if (!error) {
@@ -211,7 +226,6 @@
     } movieID:self.movieID];
 }
 -(void)refreshData {
-    [self.refreshControl beginRefreshing];
     [self getMovieForceRemote:YES];
 }
 
@@ -222,7 +236,6 @@
     NSMutableArray *actorsMutable = [[NSMutableArray alloc] init];
     NSMutableArray *directorsMutable = [[NSMutableArray alloc] init];
     for (Person *person in self.movie.people) {
-        
         if (person.actor) {
             [actorsMutable addObject:person];
         }
@@ -251,48 +264,48 @@
         NSMutableAttributedString *text = [NSMutableAttributedString new];
         if (self.movie.nameOriginal.length > 0) {
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Nombre Original: "
-                                                                         attributes:@{NSFontAttributeName: self.bigBoldFont}]];
+                                                                         attributes:@{NSFontAttributeName: self.fontBigBold}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:self.movie.nameOriginal
-                                                                         attributes:@{NSFontAttributeName: self.normalFont}]];
+                                                                         attributes:@{NSFontAttributeName: self.fontNormal}]];
             placeLineBreak = YES;
         }
         if (self.movie.duration) {
             if (placeLineBreak)
                 [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
-                                                                             attributes:@{NSFontAttributeName: self.normalFont}]];
+                                                                             attributes:@{NSFontAttributeName: self.fontNormal}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Duración: "
-                                                                         attributes:@{NSFontAttributeName: self.bigBoldFont}]];
+                                                                         attributes:@{NSFontAttributeName: self.fontBigBold}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%lu minutos", (long)self.movie.duration.integerValue]
-                                                                         attributes:@{NSFontAttributeName: self.normalFont}]];
+                                                                         attributes:@{NSFontAttributeName: self.fontNormal}]];
             placeLineBreak = YES;
         }
         if (self.movie.year) {
             if (placeLineBreak)
                 [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
-                                                                             attributes:@{NSFontAttributeName: self.normalFont}]];
+                                                                             attributes:@{NSFontAttributeName: self.fontNormal}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Año: "
-                                                                         attributes:@{NSFontAttributeName: self.bigBoldFont}]];
+                                                                         attributes:@{NSFontAttributeName: self.fontBigBold}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%lu",(long)self.movie.year.integerValue]
-                                                                         attributes:@{NSFontAttributeName: self.normalFont}]];
+                                                                         attributes:@{NSFontAttributeName: self.fontNormal}]];
             placeLineBreak = YES;
         }
         if (self.movie.rating) {
             if (placeLineBreak)
-                [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: self.normalFont}]];
+                [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: self.fontNormal}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Calificación: "
-                                                                         attributes:@{NSFontAttributeName: self.bigBoldFont}]];
+                                                                         attributes:@{NSFontAttributeName: self.fontBigBold}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:self.movie.rating
-                                                                         attributes:@{NSFontAttributeName: self.normalFont}]];
+                                                                         attributes:@{NSFontAttributeName: self.fontNormal}]];
             placeLineBreak = YES;
         }
         if (self.movie.debut > 0) {
             if (placeLineBreak)
                 [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
-                                                                             attributes:@{NSFontAttributeName: self.normalFont}]];
+                                                                             attributes:@{NSFontAttributeName: self.fontNormal}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Estreno: "
-                                                                         attributes:@{NSFontAttributeName: self.bigBoldFont}]];
+                                                                         attributes:@{NSFontAttributeName: self.fontBigBold}]];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:self.movie.debut
-                                                                         attributes:@{NSFontAttributeName: self.normalFont}]];
+                                                                         attributes:@{NSFontAttributeName: self.fontNormal}]];
         }
         self.textViewMovieDetails.attributedText = text;
     }
@@ -356,11 +369,6 @@
         
         [frontView removeFromSuperview];
         self.tableView.scrollEnabled = YES;
-//        [self.viewOverLabelMovieName.superview layoutIfNeeded];
-//        [UIView animateWithDuration:0.3 animations:^{
-//            self.constraintMovieNameTrailing.constant = 0;
-//            [self.viewOverLabelMovieName.superview layoutIfNeeded];
-//        }];
     }];
 }
 
@@ -383,20 +391,14 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            CGSize size = [self.textViewSynopsis sizeThatFits:CGSizeMake(self.textViewSynopsis.frame.size.width, CGFLOAT_MAX)];
-            CGFloat origin = self.textViewSynopsis.frame.origin.y;
-            if (!self.portraitImageURL) {
-                origin = 94;
-            }
-            return origin + size.height + 10;
+            return self.textViewSynopsis.frame.origin.y + [self.textViewSynopsis measureHeightUsingFont:self.fontNormal] + 10.f;
         }
         else if (indexPath.row == 1) {
             if (!self.movie.year && !self.movie.rating && self.movie.nameOriginal.length == 0 && !self.movie.duration && self.movie.debut.length == 0) {
                 return 0.;
             }
             else {
-                CGFloat height = [self.textViewMovieDetails sizeThatFits:CGSizeMake(self.textViewMovieDetails.frame.size.width, CGFLOAT_MAX)].height;
-                return height + 10.;
+                return self.textViewMovieDetails.frame.origin.y + [self.textViewMovieDetails measureHeightUsingFont:self.fontNormal] + 8.;
             }
         }
         else if (indexPath.row == 2) {
@@ -427,7 +429,7 @@
             }
             CGRect nameLabelRect = [[directorsNames componentsJoinedByString:@", "] boundingRectWithSize: size
                                                                                                  options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                                                                              attributes: [NSDictionary dictionaryWithObject:self.normalFont forKey:NSFontAttributeName]
+                                                                                              attributes: @{NSFontAttributeName: self.fontNormal}
                                                                                                  context: nil];
             
             CGFloat totalHeight = 10.0f + nameLabelRect.size.height + 10.0f;
@@ -464,6 +466,7 @@
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     NSString *text;
@@ -505,12 +508,49 @@
     NSInteger height = [UIView heightForHeaderViewWithText:text];
     return [UIView headerViewForText:text height:height];
 }
+
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ((indexPath.section == 0 && indexPath.row == 1) || (indexPath.section == 0 && indexPath.row == 3) || (indexPath.section == 4 && indexPath.row == 1)) {
-        cell.backgroundColor = [UIColor lighterGrayColor];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            self.textViewSynopsis.font = self.fontNormal;
+            self.labelMovieName.font = self.fontNormal;
+            cell.backgroundColor = [UIColor whiteColor];
+        }
+        else if (indexPath.row == 1) {
+            self.textViewMovieDetails.font = self.fontNormal;
+            cell.backgroundColor = [UIColor lighterGrayColor];
+        }
+        else if (indexPath.row == 2) {
+            self.labelVideos.font = self.fontNormal;
+            cell.backgroundColor = [UIColor whiteColor];
+        }
+        else if (indexPath.row == 3) {
+            self.labelBuscarHorarios.font = self.fontNormal;
+            cell.backgroundColor = [UIColor lighterGrayColor];
+        }
     }
-    else {
-        cell.backgroundColor = [UIColor whiteColor];
+    else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            self.labelDirector.font = self.fontNormal;
+            cell.backgroundColor = [UIColor whiteColor];
+        }
+    }
+    else if (indexPath.section == 4) {
+        if (indexPath.row == 0) {
+            self.labelScoreMetacritic.font = self.fontNormal;
+            self.labelMetacritic.font = self.fontNormal;
+            cell.backgroundColor = [UIColor whiteColor];
+        }
+        else if (indexPath.row == 1) {
+            self.labelScoreImdb.font = self.fontNormal;
+            self.labelImdb.font = self.fontNormal;
+            cell.backgroundColor = [UIColor lighterGrayColor];
+        }
+        else if (indexPath.row == 2) {
+            self.labelScoreRottenTomatoes.font = self.fontNormal;
+            self.labelRottenTomatoes.font = self.fontNormal;
+            cell.backgroundColor = [UIColor whiteColor];
+        }
     }
 }
 
@@ -758,6 +798,7 @@
     self.imdbCodeSelected = person.imdbCode;
     [actionSheet showInView:self.view];
 }
+
 #pragma mark - UIActionSheetDelegate
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -785,33 +826,13 @@
     }
 }
 
-#pragma mark - Interface Orientation
-
--(NSUInteger)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
 #pragma mark - Notification Observer method
 
--(void) setFontsWithPreferedContentSizeCategory:(NSString *)preferredContentSizeCategory {
-    self.smallerFont = [UIFont getSizeForCHFont:CHFontStyleSmaller forPreferedContentSize: preferredContentSizeCategory];
-    self.normalFont = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize: preferredContentSizeCategory];
-    self.bigBoldFont = [UIFont getSizeForCHFont:CHFontStyleNormalBold forPreferedContentSize: preferredContentSizeCategory];
-    self.labelMovieName.font = self.bigBoldFont;
-    self.textViewSynopsis.font = self.normalFont;
-    self.textViewMovieDetails.font = self.normalFont;
-    self.labelScoreImdb.font = self.normalFont;
-    self.labelScoreMetacritic.font = self.normalFont;
-    self.labelScoreRottenTomatoes.font = self.normalFont;
-    self.labelDirector.font = self.normalFont;
-    self.labelBuscarHorarios.font = self.normalFont;
-    self.labelVideos.font = self.normalFont;
-    ((UILabel *)[self.labelScoreImdb.superview viewWithTag:102]).font = self.normalFont;
-    ((UILabel *)[self.labelScoreMetacritic.superview viewWithTag:102]).font = self.normalFont;
-    ((UILabel *)[self.labelScoreRottenTomatoes.superview viewWithTag:102]).font = self.normalFont;
-}
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    [self setFontsWithPreferedContentSizeCategory:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    _fontNormal = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    _fontBigBold = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    _fontSmall = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+        
     [self.tableView reloadData];
     [self.collectionViewActors reloadData];
 }
