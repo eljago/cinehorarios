@@ -10,4 +10,9 @@
 
 @interface MovieViewController : CHViewTableController
 
+@property (nonatomic, assign) NSUInteger movieID;
+@property (nonatomic, strong) NSString *movieName;
+@property (nonatomic, strong) NSString *portraitImageURL;
+@property (nonatomic, strong) NSString *coverImageURL;
+
 @end

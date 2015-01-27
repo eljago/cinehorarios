@@ -7,28 +7,21 @@
 //
 
 #import "CastVC.h"
-#import "UIFont+CH.h"
-#import "UIColor+CH.h"
-#import "MWPhotoBrowser.h"
-#import "GAI+CH.h"
+#import "CHViewTableController_Protected.h"
 #import "GlobalNavigationController.h"
+#import "Person.h"
+#import "WebVC.h"
+#import "Cast.h"
+#import "GAI+CH.h"
+#import "UIViewController+WebOpener.h"
+
+#import "MWPhotoBrowser.h"
+
 #import "UIView+CH.h"
 #import "CastActorCell.h"
 #import "CastActorCell+Person.h"
 #import "CastDirectorCell.h"
 #import "CastDirectorCell+Person.h"
-#import "Person.h"
-#import "WebVC.h"
-#import "OpenInChromeController.h"
-
-@interface CastVC () <UIActionSheetDelegate>
-
-@property (nonatomic, strong) UIFont *fontName;
-@property (nonatomic, strong) UIFont *fontRole;
-
-@property (nonatomic, strong) NSString *imdbCodeSelected;
-@property (nonatomic, strong) OpenInChromeController *openInChromeController;
-@end
 
 @implementation CastVC
 
@@ -47,22 +40,12 @@
 	// Do any additional setup after loading the view.
     
     [GAI trackPage:@"PELICULA REPARTO"];
-    
-    self.fontName = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    self.fontRole = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(preferredContentSizeChanged:)
-                                                 name:UIContentSizeCategoryDidChangeNotification
-                                               object:nil];
-    
-    self.openInChromeController = [[OpenInChromeController alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     GlobalNavigationController *nvc = (GlobalNavigationController *)self.navigationController;
-    
     [nvc.navigationBar setShadowImage:[UIImage new]];
 }
 
@@ -73,6 +56,7 @@
 }
 
 #pragma mark - UITableView Delegate
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
@@ -152,10 +136,10 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return [CastDirectorCell heightForRowWithPerson:self.cast.directors[indexPath.row] fontName:self.fontName];
+        return [CastDirectorCell heightForRowWithPerson:self.cast.directors[indexPath.row] fontName:self.fontNormal];
     }
     else {
-        return [CastActorCell heightForRowWithPerson:self.cast.actors[indexPath.row] fontName:self.fontName fontRole:self.fontRole];
+        return [CastActorCell heightForRowWithPerson:self.cast.actors[indexPath.row] fontName:self.fontNormal fontRole:self.fontSmall];
     }
 }
 
@@ -166,12 +150,12 @@
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     if (indexPath.section == 0) {
         CastDirectorCell *cellDirector = (CastDirectorCell *)cell;
-        cellDirector.nameLabel.font = self.fontName;
+        cellDirector.nameLabel.font = self.fontNormal;
     }
     else {
         CastActorCell *cellActor = (CastActorCell *)cell;
-        cellActor.nameLabel.font = self.fontName;
-        cellActor.characterLabel.font = self.fontRole;
+        cellActor.nameLabel.font = self.fontNormal;
+        cellActor.characterLabel.font = self.fontSmall;
     }
 }
 
@@ -205,7 +189,7 @@
         return 0.01;
     }
     else {
-        return [UIView heightForHeaderViewWithText:@"Javier"];
+        return [UIView heightForHeaderViewWithText:@"Arturo"];
     }
 }
 
@@ -222,15 +206,6 @@
     return nil;
 }
 
-#pragma mark - Content Size Changed
-
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    
-    self.fontName = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    self.fontRole = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    [self.tableView reloadData];
-}
-
 #pragma mark - GoImdb
 
 -(IBAction)goImdb:(id)sender {
@@ -245,52 +220,9 @@
         person = (Person *)self.cast.actors[indexPath.row];
     }
     
-    NSString *actionSheetTitle = @"Abrir enlace en:";
-    NSString *cancelTitle = @"Cancelar";
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:actionSheetTitle
-                                  delegate:self
-                                  cancelButtonTitle:cancelTitle
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:@"App", @"Safari", nil];
-    
-    if ([self.openInChromeController isChromeInstalled]) {
-        [actionSheet addButtonWithTitle:@"Chrome"];
-    }
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"imdb:///name/%@/",person.imdbCode]];
-    if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        [actionSheet addButtonWithTitle:@"App Imdb"];
-    }
-    
-    self.imdbCodeSelected = person.imdbCode;
-    [actionSheet showInView:self.view];
-}
-#pragma mark - UIActionSheetDelegate
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",self.imdbCodeSelected];
-    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-    
-    if ([buttonTitle isEqualToString:@"App"]) {
-        WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
-        wvc.urlString = urlString;
-        [self.navigationController pushViewController:wvc animated:YES];
-    }
-    else if ([buttonTitle isEqualToString:@"Safari"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-    }
-    else if ([buttonTitle isEqualToString:@"Chrome"]) {
-        if ([self.openInChromeController isChromeInstalled]) {
-            [self.openInChromeController openInChrome:[NSURL URLWithString:urlString]
-                                      withCallbackURL:nil
-                                         createNewTab:YES];
-        }
-    }
-    else if ([buttonTitle isEqualToString:@"App Imdb"]) {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"imdb:///name/%@/",self.imdbCodeSelected]];
-        [[UIApplication sharedApplication] openURL:url];
-    }
+    NSString *urlString = [NSString stringWithFormat:@"http://m.imdb.com/name/%@/",person.imdbCode];
+    NSString *appUrlString = [NSString stringWithFormat:@"imdb:///name/%@/",person.imdbCode];
+    [self goWebPageWithUrlString:urlString imdbAppUrlString:appUrlString];
 }
 
 @end

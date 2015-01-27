@@ -33,13 +33,6 @@
 #import "UITextView+CH.h"
 #import "UIImageView+CH.h"
 
-typedef NS_ENUM(NSUInteger, CHDownloadStat) {
-    CHDownloadStatNone,
-    CHDownloadStatNoDataFound,
-    CHDownloadStatFailed,
-    CHDownloadStatSuccessful
-};
-
 @interface MovieVC () <UICollectionViewDelegate, MWPhotoBrowserDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) UIFont *fontNormal;
@@ -205,7 +198,6 @@ typedef NS_ENUM(NSUInteger, CHDownloadStat) {
     }
 }
 - (void) downloadMovie {
-    [self.refreshControl beginRefreshing];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES spinnerStyle:RTSpinKitViewStyleWave];
     [Movie getCinemaWithBlock:^(Movie *movie, NSError *error) {
         if (!error) {

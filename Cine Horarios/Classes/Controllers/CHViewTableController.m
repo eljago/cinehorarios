@@ -10,17 +10,15 @@
 #import "CHViewTableController_Protected.h"
 #import "UIColor+CH.h"
 #import "UIFont+CH.h"
-#import "OpenInChromeController.h"
 
 @interface CHViewTableController () {
     @protected
-    UIFont *fontBody;
-    UIFont *fontHeadline;
-    UIFont *fontFootnote;
+    UIFont *fontNormal;
+    UIFont *fontBigBold;
+    UIFont *fontSmall;
     UITableView *tableView;
     UIRefreshControl *refreshControl;
     NSLayoutConstraint *topLayoutConstraint;
-    OpenInChromeController *openInChromeController;
 }
 
 @end
@@ -32,7 +30,6 @@
 @synthesize fontSmall = _fontSmall;
 @synthesize refreshControl = _refreshControl;
 @synthesize topLayoutConstraint = _topLayoutConstraint;
-@synthesize openInChromeController = _openInChromeController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,9 +52,6 @@
     _refreshControl.tintColor = [UIColor blackColor];
     [_refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:_refreshControl];
-    
-    
-    self.openInChromeController = [[OpenInChromeController alloc] init];
     
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;

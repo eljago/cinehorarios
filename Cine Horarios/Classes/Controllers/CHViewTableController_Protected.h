@@ -7,7 +7,6 @@
 //
 
 #import "CHViewTableController.h"
-#import "OpenInChromeController.h"
 
 @interface CHViewTableController ()
 @property (nonatomic, strong, readonly) UIFont *fontNormal;
@@ -19,8 +18,6 @@
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *topLayoutConstraint;
-
-@property (nonatomic, strong) OpenInChromeController *openInChromeController;
 
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification;
 - (void) refreshData;

@@ -16,12 +16,12 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+CH.h"
 #import "UIView+CH.h"
-#import "MovieVC.h"
+#import "MovieViewController.h"
 #import "Function.h"
 #import "Theater.h"
 #import "EmptyDataView.h"
 #import "WebVC.h"
-#import "OpenInChromeController.h"
+#import "UIViewController+WebOpener.h"
 
 const NSUInteger kNumberOfDays = 7;
 
@@ -52,12 +52,12 @@ const NSUInteger kNumberOfDays = 7;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    MovieVC *movieVC = segue.destinationViewController;
+    MovieViewController *movieViewController = segue.destinationViewController;
     Function *function = self.theater.functions[indexPath.row];
-    movieVC.movieID = function.movieID;
-    movieVC.movieName = function.name;
-    movieVC.portraitImageURL = function.portraitImageURL;
-    movieVC.coverImageURL = function.imageURL;
+    movieViewController.movieID = function.movieID;
+    movieViewController.movieName = function.name;
+    movieViewController.portraitImageURL = function.portraitImageURL;
+    movieViewController.coverImageURL = function.imageURL;
 }
 
 -(void) setupDataSource {
@@ -196,40 +196,7 @@ const NSUInteger kNumberOfDays = 7;
 #pragma mark - UIActionSheetDelegate
 
 - (void) goTheaterWeb {
-    NSString *actionSheetTitle = @"Abrir enlace en:";
-    NSString *cancelTitle = @"Cancelar";
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:actionSheetTitle
-                                  delegate:self
-                                  cancelButtonTitle:cancelTitle
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:@"App", @"Safari", nil];
-    if ([self.openInChromeController isChromeInstalled]) {
-        [actionSheet addButtonWithTitle:@"Chrome"];
-    }
-    [actionSheet showInView:self.view];
-}
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString *urlString = self.theater.webURL;
-    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-    
-    if ([buttonTitle isEqualToString:@"App"]) {
-        WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
-        wvc.urlString = urlString;
-        [self.navigationController pushViewController:wvc animated:YES];
-    }
-    else if ([buttonTitle isEqualToString:@"Safari"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-    }
-    else if ([buttonTitle isEqualToString:@"Chrome"]) {
-        if ([self.openInChromeController isChromeInstalled]) {
-            [self.openInChromeController openInChrome:[NSURL URLWithString:urlString]
-                                      withCallbackURL:nil
-                                         createNewTab:YES];
-        }
-    }
+    [self goWebPageWithUrlString:self.theater.webURL imdbAppUrlString:nil];
 }
 
 @end

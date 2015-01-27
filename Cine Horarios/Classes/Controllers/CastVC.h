@@ -6,10 +6,11 @@
 //  Copyright (c) 2013 Arturo Espinoza Carrasco. All rights reserved.
 //
 #import "MWPhotoBrowser.h"
-#import "CineHorariosTableViewController.h"
-#import "Cast.h"
+#import "CHViewTableController.h"
 
-@interface CastVC : CineHorariosTableViewController  <MWPhotoBrowserDelegate>
+@class Cast;
+
+@interface CastVC : CHViewTableController <MWPhotoBrowserDelegate>
 
 @property (nonatomic, strong) Cast *cast;
 @property (nonatomic, strong) NSMutableArray *photos;

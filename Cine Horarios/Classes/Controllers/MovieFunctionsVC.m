@@ -7,24 +7,25 @@
 //
 
 #import "MovieFunctionsVC.h"
-#import "MBProgressHUD.h"
-#import "MBProgressHUD+CH.h"
+#import "CHViewTableController_Protected.h"
+
 #import "Function.h"
 #import "Theater.h"
-#import "UIFont+CH.h"
-#import "UIColor+CH.h"
+
 #import "GAI+CH.h"
 #import "UIView+CH.h"
+#import "FavoritesManager.h"
+
 #import "BasicItemImage.h"
 #import "UIImage+CH.h"
+
 #import "ImageViewTableHeader.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+CH.h"
 
 @interface MovieFunctionsVC ()
-@property (nonatomic, strong) NSMutableArray *favoriteTheaters;
+@property (nonatomic, strong) NSArray *cinemasTheatersFunctions;
 @property (nonatomic, strong) NSArray *theaterFuctions;
-@property (nonatomic, strong) NSMutableArray *cinemas;
-@property (nonatomic, strong) UIFont *tableFont;
-@property (nonatomic, strong) UIFont *showtimesFonts;
 @end
 
 @implementation MovieFunctionsVC
@@ -37,24 +38,10 @@
     
     [GAI trackPage:@"PELICULA FUNCIONES"];
     
-    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormalBold forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    self.showtimesFonts = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(preferredContentSizeChanged:)
-                                                 name:UIContentSizeCategoryDidChangeNotification
-                                               object:nil];
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
-    
     self.tableView.separatorInset = UIEdgeInsetsMake(0, self.view.bounds.size.width, 0, 0);
     
-    [self loadCinemas];
-    // loads favorite theaters
-    [self loadFavorites];
-    
-    if (self.favoriteTheaters.count > 0) {
+    FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
+    if (favoritesManager.favoriteTheaters.count > 0) {
         [self downloadMovieFunctions];
     }
 }
@@ -71,6 +58,7 @@
             NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"cinemaID" ascending:YES];
             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
             self.theaterFuctions = [self.theaterFuctions sortedArrayUsingDescriptors:sortDescriptors];
+            [self loadCinemasTheatersFunctionsArray];
             
             [self.tableView reloadData];
         }
@@ -83,18 +71,12 @@
             [self.refreshControl endRefreshing];
         }
         
-    } movieID:self.movieID theaters:self.favoriteTheaters];
+    } movieID:self.movieID theaters:[FavoritesManager sharedManager].favoriteTheaters];
 }
 
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
     [self downloadMovieFunctions];
-}
-#pragma mark - Content Size Changed
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    self.tableFont = [UIFont getSizeForCHFont:CHFontStyleNormalBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
-    self.showtimesFonts = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:[[UIApplication sharedApplication] preferredContentSizeCategory]];
-    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,11 +96,11 @@
         
         CGRect typesLabelRect = [function.functionTypes boundingRectWithSize: size
                                                              options: NSStringDrawingUsesLineFragmentOrigin
-                                                          attributes: [NSDictionary dictionaryWithObject:self.tableFont forKey:NSFontAttributeName]
+                                                          attributes: [NSDictionary dictionaryWithObject:self.fontNormal forKey:NSFontAttributeName]
                                                              context: nil];
         CGRect showtimesLabelRect = [function.showtimes boundingRectWithSize: size
                                                                      options: NSStringDrawingUsesLineFragmentOrigin
-                                                                  attributes: [NSDictionary dictionaryWithObject:self.showtimesFonts forKey:NSFontAttributeName]
+                                                                  attributes: [NSDictionary dictionaryWithObject:self.fontNormal forKey:NSFontAttributeName]
                                                                      context: nil];
         CGFloat typesHeight = typesLabelRect.size.height;
         if (!function.functionTypes || [function.functionTypes isEqualToString:@""]) {
@@ -135,13 +117,21 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.theaterFuctions.count;
+    return self.cinemasTheatersFunctions.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    Theater *theater = self.theaterFuctions[section];
-    return theater.functions.count;
+    return [self.cinemasTheatersFunctions[section][@"Theaters"] count];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    
+    UILabel *functionTypes = (UILabel *)[cell viewWithTag:1];
+    UILabel *functionShowtimes = (UILabel *)[cell viewWithTag:2];
+    functionTypes.font = self.fontNormal;
+    functionShowtimes.font = self.fontNormal;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -156,8 +146,6 @@
     UILabel *functionShowtimes = (UILabel *)[cell viewWithTag:2];
     functionTypes.text = [function.functionTypes stringByAppendingString:@":"];
     functionShowtimes.text = function.showtimes;
-    functionTypes.font = self.tableFont;
-    functionShowtimes.font = self.showtimesFonts;
     
     return cell;
 }
@@ -168,7 +156,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     Theater *theater = self.theaterFuctions[section];
-    BasicItemImage *cinema = self.cinemas[section];
+    BasicItemImage *cinema = [FavoritesManager sharedManager].cinemasArray[section];
     ImageViewTableHeader *headerView = [[[NSBundle mainBundle] loadNibNamed:@"ImageViewTableHeader" owner:self options:nil] lastObject];
     headerView.imageView.image = [UIImage imageWithCinemaID:cinema.itemID theaterID:theater.theaterID];
     headerView.textLabel.text = theater.name;
@@ -176,38 +164,24 @@
 }
 
 
-- (void) loadFavorites {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"icloud.plist"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
-    {
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-        NSDictionary *favorites = [dict valueForKey:@"Favorites"];
-        self.favoriteTheaters = [[NSMutableArray alloc] initWithCapacity:[favorites count]];
-        NSArray *keys = [favorites allKeys];
-        NSArray *values = [favorites allValues];
-        for (int i=0;i<[favorites count];i++){
-            NSDictionary *theaterDictionary = @{@"theaterID": [NSNumber numberWithInt:[[keys objectAtIndex:i] intValue]],
-                                                @"name": [values objectAtIndex:i]};
-            Theater *theater = [[Theater alloc] initWithDictionary:theaterDictionary error:NULL];
-            [self.favoriteTheaters insertObject:theater atIndex:i];
+- (void) loadCinemasTheatersFunctionsArray {
+    NSMutableArray *cinemasTheatersArray = [NSMutableArray new];
+    
+    for (BasicItemImage *cinema in [FavoritesManager sharedManager].cinemasArray) {
+        NSMutableArray *theaters = [NSMutableArray new];
+        for (Theater *theater in self.theaterFuctions) {
+            if (theater.cinemaID == cinema.itemID) {
+                [theaters addObject:theater];
+            }
         }
+        [cinemasTheatersArray addObject:theaters];
     }
-    else {
-        self.favoriteTheaters = [NSMutableArray array];
-    }
-}
-- (void) loadCinemas {
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Cinemas" ofType:@"plist"];
-    NSArray *cinemasLocal = [NSArray arrayWithContentsOfFile:filePath];
-    self.cinemas = [NSMutableArray array];
-    
-    for (NSDictionary *dict in cinemasLocal) {
-        BasicItemImage *cinema = [MTLJSONAdapter modelOfClass:BasicItem.class fromJSONDictionary:dict error:NULL];
-        [self.cinemas addObject:cinema];
-    }
+    [cinemasTheatersArray enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
+        if ([dict[@"Theaters"] count] <= 0) {
+            [cinemasTheatersArray removeObject:dict];
+        }
+    }];
+    self.cinemasTheatersFunctions = [NSArray arrayWithArray:cinemasTheatersArray];
 }
 
 @end

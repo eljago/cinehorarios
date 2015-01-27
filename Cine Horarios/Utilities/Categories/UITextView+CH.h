@@ -11,5 +11,6 @@
 @interface UITextView (CH)
 
 - (CGFloat)measureHeightUsingFont:(UIFont *)textViewFont;
+- (CGFloat)measureAttributedTextViewHeight;
 
 @end
