@@ -12,7 +12,7 @@
 @interface MovieCellTextView (Movie)
 
 - (void)configureSynpsisForMovie:(Movie *)movie;
-- (void)configureMovieInfoForMovie:(Movie *)movie boldFont:(UIFont *)boldFont normalFont:(UIFont *)normalFont;
+- (void)configureMovieInfoForMovie:(Movie *)movie boldFont:(UIFont *)boldFont normalFont:(UIFont *)normalFont smallerFont:(UIFont *)smallerFont smallestBoldFont:(UIFont *)smallestBoldFont;
 - (CGFloat) heightForRowWithFont:(UIFont *)font;
 - (CGFloat) heightForAttributedTextView;
 

@@ -16,6 +16,8 @@
     UIFont *fontNormal;
     UIFont *fontBigBold;
     UIFont *fontSmall;
+    UIFont *fontSmaller;
+    UIFont *fontSmallestBold;
     UITableView *tableView;
     UIRefreshControl *refreshControl;
     NSLayoutConstraint *topLayoutConstraint;
@@ -28,6 +30,8 @@
 @synthesize fontNormal = _fontNormal;
 @synthesize fontBigBold = _fontBigBold;
 @synthesize fontSmall = _fontSmall;
+@synthesize fontSmaller = _fontSmaller;
+@synthesize fontSmallestBold = _fontSmallestBold;
 @synthesize refreshControl = _refreshControl;
 @synthesize topLayoutConstraint = _topLayoutConstraint;
 
@@ -80,6 +84,16 @@
     _fontSmall = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize: [[UIApplication sharedApplication] preferredContentSizeCategory]];
     return _fontSmall;
 }
+- (UIFont *) fontSmaller {
+    if(_fontSmaller) return _fontSmaller;
+    _fontSmaller = [UIFont getSizeForCHFont:CHFontStyleSmaller forPreferedContentSize: [[UIApplication sharedApplication] preferredContentSizeCategory]];
+    return _fontSmaller;
+}
+- (UIFont *) fontSmallestBold {
+    if(_fontSmallestBold) return _fontSmallestBold;
+    _fontSmallestBold = [UIFont getSizeForCHFont:CHFontStyleSmallestBold forPreferedContentSize: [[UIApplication sharedApplication] preferredContentSizeCategory]];
+    return _fontSmallestBold;
+}
 
 #pragma mark - UITableViewController
 #pragma mark UITableViewDelegate
@@ -99,6 +113,8 @@
     _fontNormal = [UIFont getSizeForCHFont:CHFontStyleNormal forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     _fontBigBold = [UIFont getSizeForCHFont:CHFontStyleBigBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     _fontSmall = [UIFont getSizeForCHFont:CHFontStyleSmall forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    _fontSmaller = [UIFont getSizeForCHFont:CHFontStyleSmaller forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
+    _fontSmallestBold = [UIFont getSizeForCHFont:CHFontStyleSmallestBold forPreferedContentSize:aNotification.userInfo[UIContentSizeCategoryNewValueKey]];
     
     [self.tableView setNeedsLayout];
 }

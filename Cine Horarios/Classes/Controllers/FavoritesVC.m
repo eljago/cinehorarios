@@ -7,7 +7,6 @@
 //
 
 #import "FavoritesVC.h"
-#import "FuncionesVC.h"
 #import "Theater.h"
 #import "BasicCell.h"
 #import "BasicCell+Theater.h"
@@ -112,7 +111,7 @@ static const NSString *kCinema = @"CinemasArray";
 #pragma mark - UITableViewDelegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 50.0;
+    return 36.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

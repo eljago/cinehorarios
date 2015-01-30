@@ -11,7 +11,7 @@
 #import "VideoGroup.h"
 #import "Video.h"
 
-#import "MovieVC.h"
+#import "MovieViewController.h"
 #import "VideoVC.h"
 #import "BasicMovie.h"
 
@@ -160,13 +160,13 @@ const int kLoadingCellTag = 1234;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender{
     if ([[segue identifier] isEqualToString:@"VideosVCToMovieVC"]) {
+        MovieViewController *movieViewController = segue.destinationViewController;
         Video *video = self.videoGroup.videos[sender.tag];
         BasicMovie *basicMovie = video.movie;
-        MovieVC *movieVC = segue.destinationViewController;
-        movieVC.movieID = basicMovie.movieID;
-        movieVC.movieName = basicMovie.name;
-        movieVC.portraitImageURL = basicMovie.portraitImageURL;
-        movieVC.coverImageURL = basicMovie.imageURL;
+        movieViewController.movieID = basicMovie.movieID;
+        movieViewController.movieName = basicMovie.name;
+        movieViewController.portraitImageURL = basicMovie.portraitImageURL;
+        movieViewController.coverImageURL = basicMovie.imageURL;
     }
     else if ([[segue identifier] isEqualToString:@"VideosVCToVideoVC"]) {
         VideoVC *videoVC = segue.destinationViewController;

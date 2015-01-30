@@ -30,9 +30,6 @@
     if (portraitImageURL) {
         [self.imagePortrait setImageWithStringURL:portraitImageURL movieImageType:MovieImageTypePortrait];
     }
-    if (movie.name) {
-        self.labelMovieName.text = movie.name;
-    }
 }
 
 + (CGFloat) heightForRow {

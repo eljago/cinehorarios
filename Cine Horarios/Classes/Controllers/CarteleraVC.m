@@ -15,7 +15,7 @@
 #import "MBProgressHUD+CH.h"
 
 #import "BasicMovie.h"
-#import "MovieVC.h"
+#import "MovieViewController.h"
 #import "Billboard.h"
 #import "BillboardCell.h"
 #import "BillboardCell+BasicMovie.h"
@@ -101,13 +101,13 @@
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    MovieVC *movieVC = segue.destinationViewController;
+    MovieViewController *movieViewController = segue.destinationViewController;
     NSInteger row = [self.tableView indexPathForSelectedRow].row;
     BasicMovie *basicMovie = self.billboard.movies[row];
-    movieVC.movieID = basicMovie.movieID;
-    movieVC.movieName = basicMovie.name;
-    movieVC.portraitImageURL = basicMovie.portraitImageURL;
-    movieVC.coverImageURL = basicMovie.imageURL;
+    movieViewController.movieID = basicMovie.movieID;
+    movieViewController.movieName = basicMovie.name;
+    movieViewController.portraitImageURL = basicMovie.portraitImageURL;
+    movieViewController.coverImageURL = basicMovie.imageURL;
 }
 
 @end

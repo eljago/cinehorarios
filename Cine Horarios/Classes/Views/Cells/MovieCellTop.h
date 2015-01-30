@@ -10,7 +10,6 @@
 
 @interface MovieCellTop : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel *labelMovieName;
 @property (nonatomic, weak) IBOutlet UIImageView *imageCover;
 @property (nonatomic, weak) IBOutlet UIImageView *imagePortrait;
 

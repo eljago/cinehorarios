@@ -8,7 +8,6 @@
 
 #import "WebVC.h"
 #import "GAI+CH.h"
-#import "FuncionesVC.h"
 
 @interface WebVC ()
 @property (nonatomic, strong) IBOutlet UIWebView *webView;

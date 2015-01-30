@@ -12,6 +12,8 @@
 @property (nonatomic, strong, readonly) UIFont *fontNormal;
 @property (nonatomic, strong, readonly) UIFont *fontBigBold;
 @property (nonatomic, strong, readonly) UIFont *fontSmall;
+@property (nonatomic, strong, readonly) UIFont *fontSmaller;
+@property (nonatomic, strong, readonly) UIFont *fontSmallestBold;
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 

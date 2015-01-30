@@ -18,9 +18,9 @@
     }
 }
 
-- (void)configureMovieInfoForMovie:(Movie *)movie boldFont:(UIFont *)boldFont normalFont:(UIFont *)normalFont {
+- (void)configureMovieInfoForMovie:(Movie *)movie boldFont:(UIFont *)boldFont normalFont:(UIFont *)normalFont smallerFont:(UIFont *)smallerFont smallestBoldFont:(UIFont *)smallestBoldFont {
     if (movie.year || movie.rating || movie.nameOriginal.length > 0 || movie.duration || movie.debut.length > 0) {
-        self.textView.attributedText = [MovieCellTextView textForMovieInforWithMovie:movie boldFont:boldFont normalFont:normalFont];
+        self.textView.attributedText = [MovieCellTextView textForMovieInforWithMovie:movie boldFont:boldFont normalFont:normalFont smallerFont:smallerFont smallestBoldFont:(UIFont *)smallestBoldFont];
     }
 }
 
@@ -33,53 +33,63 @@
     return 3.f + [self.textView measureAttributedTextViewHeight] + 3.f;
 }
 
-+ (NSMutableAttributedString *) textForMovieInforWithMovie:(Movie *)movie boldFont:(UIFont *)boldFont normalFont:(UIFont *)normalFont {
-    BOOL placeLineBreak = NO;
++ (NSMutableAttributedString *) textForMovieInforWithMovie:(Movie *)movie boldFont:(UIFont *)boldFont normalFont:(UIFont *)normalFont smallerFont:(UIFont *)smallerFont smallestBoldFont:(UIFont *)smallestBoldFont{
+    
     NSMutableAttributedString *text = [NSMutableAttributedString new];
-    if (movie.nameOriginal.length > 0) {
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Nombre Original: "
-                                                                     attributes:@{NSFontAttributeName: boldFont}]];
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:movie.nameOriginal
-                                                                     attributes:@{NSFontAttributeName: normalFont}]];
-        placeLineBreak = YES;
-    }
-    if (movie.duration) {
-        if (placeLineBreak)
-            [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
-                                                                         attributes:@{NSFontAttributeName: normalFont}]];
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Duración: "
-                                                                     attributes:@{NSFontAttributeName: boldFont}]];
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%lu minutos", (long)movie.duration.integerValue]
-                                                                     attributes:@{NSFontAttributeName: normalFont}]];
-        placeLineBreak = YES;
-    }
+    
+    [text appendAttributedString:[[NSAttributedString alloc] initWithString:movie.name
+                                                                 attributes:@{NSFontAttributeName: boldFont}]];
+    
     if (movie.year) {
-        if (placeLineBreak)
-            [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
-                                                                         attributes:@{NSFontAttributeName: normalFont}]];
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Año: "
-                                                                     attributes:@{NSFontAttributeName: boldFont}]];
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%lu",(long)movie.year.integerValue]
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" (%lu)",(long)movie.year.integerValue]
                                                                      attributes:@{NSFontAttributeName: normalFont}]];
-        placeLineBreak = YES;
     }
-    if (movie.rating) {
-        if (placeLineBreak)
-            [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: normalFont}]];
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Calificación: "
-                                                                     attributes:@{NSFontAttributeName: boldFont}]];
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:movie.rating
+    
+    if (movie.nameOriginal.length > 0) {
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
                                                                      attributes:@{NSFontAttributeName: normalFont}]];
-        placeLineBreak = YES;
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:movie.nameOriginal
+                                                                     attributes:@{NSFontAttributeName: smallerFont}]];
+    }
+    
+    
+    if (movie.duration || movie.rating.length > 0 || movie.genres.length > 0) {
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
+                                                                     attributes:@{NSFontAttributeName: normalFont}]];
+        
+        if (movie.duration) {
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%lu min", (long)movie.duration.integerValue]
+                                                                         attributes:@{NSFontAttributeName: smallestBoldFont}]];
+            if (movie.rating || movie.genres.length > 0) {
+                [text appendAttributedString:[[NSAttributedString alloc] initWithString:@" - "
+                                                                             attributes:@{NSFontAttributeName: normalFont}]];
+            }
+        }
+        if (movie.genres.length > 0) {
+            NSArray *ratingsArray = [movie.genres componentsSeparatedByString:@", "];
+            [ratingsArray enumerateObjectsUsingBlock:^(NSString *rating, NSUInteger idx, BOOL *stop) {
+                [text appendAttributedString:[[NSAttributedString alloc] initWithString:rating
+                                                                             attributes:@{NSFontAttributeName: smallestBoldFont}]];
+                if (![rating isEqual:[ratingsArray lastObject]]) {
+                    [text appendAttributedString:[[NSAttributedString alloc] initWithString:@" | "
+                                                                                 attributes:@{NSFontAttributeName: smallerFont}]];
+                }
+            }];
+            if (movie.rating.length > 0) {
+                [text appendAttributedString:[[NSAttributedString alloc] initWithString:@" - "
+                                                                             attributes:@{NSFontAttributeName: normalFont}]];
+            }
+        }
+        if (movie.rating.length > 0) {
+            [text appendAttributedString:[[NSAttributedString alloc] initWithString:movie.rating
+                                                                         attributes:@{NSFontAttributeName: smallestBoldFont}]];
+        }
     }
     if (movie.debut > 0) {
-        if (placeLineBreak)
-            [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
-                                                                         attributes:@{NSFontAttributeName: normalFont}]];
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"Estreno: "
-                                                                     attributes:@{NSFontAttributeName: boldFont}]];
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:movie.debut
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"
                                                                      attributes:@{NSFontAttributeName: normalFont}]];
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"Estreno: %@", movie.debut]
+                                                                     attributes:@{NSFontAttributeName: smallestBoldFont}]];
     }
     return text;
 }

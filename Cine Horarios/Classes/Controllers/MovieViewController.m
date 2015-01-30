@@ -18,6 +18,7 @@
 #import "WebVC.h"
 #import "VideoVC.h"
 #import "MovieFunctionsVC.h"
+#import "RFRateMe.h"
 
 #import "MBProgressHUD+CH.h"
 #import "UIImageView+CH.h"
@@ -63,6 +64,8 @@
     
     [GAI trackPage:@"INFO PELICULA"];
     [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Peliculas Visitadas" label:self.movieName];
+    
+    [RFRateMe showRateAlert];
     
     [self getMovieForceRemote:YES];
 }
@@ -155,16 +158,16 @@
         [movieCell0 configureForMovie:self.movie coverImageURL:self.coverImageURL portraitImageURL:self.portraitImageURL];
         [sectionArray addObject:movieCell0];
     }
+    if (self.movie.year || self.movie.rating || self.movie.nameOriginal.length > 0 || self.movie.duration || self.movie.debut.length > 0) {
+        MovieCellTextView *movieCell1 = [self.tableView dequeueReusableCellWithIdentifier:@"MovieCellTextView"];
+        movieCell1.tag = 201;
+        [movieCell1 configureMovieInfoForMovie:self.movie boldFont:self.fontBigBold normalFont:self.fontNormal smallerFont:self.fontSmaller smallestBoldFont:self.fontSmallestBold];
+        [sectionArray addObject:movieCell1];
+    }
     if (self.movie.information.length > 0) {
         MovieCellTextView *movieCell1 = [self.tableView dequeueReusableCellWithIdentifier:@"MovieCellTextView"];
         movieCell1.tag = 200;
         [movieCell1 configureSynpsisForMovie:self.movie];
-        [sectionArray addObject:movieCell1];
-    }
-    if (self.movie.year || self.movie.rating || self.movie.nameOriginal.length > 0 || self.movie.duration || self.movie.debut.length > 0) {
-        MovieCellTextView *movieCell1 = [self.tableView dequeueReusableCellWithIdentifier:@"MovieCellTextView"];
-        movieCell1.tag = 201;
-        [movieCell1 configureMovieInfoForMovie:self.movie boldFont:self.fontBigBold normalFont:self.fontNormal];
         [sectionArray addObject:movieCell1];
     }
     if (self.movie.videos.count > 0) {
@@ -287,13 +290,12 @@
     
     if ([cell isKindOfClass:[MovieCellTop class]]) {
         MovieCellTop *movieCell0 = (MovieCellTop *)cell;
-        movieCell0.labelMovieName.font = self.fontNormal;
         [movieCell0.superview bringSubviewToFront:movieCell0];
     }
     if ([cell isKindOfClass:[MovieCellTextView class]]) {
         MovieCellTextView *movieCell1 = (MovieCellTextView *)cell;
         if (cell.tag == 201) {
-            [movieCell1 configureMovieInfoForMovie:self.movie boldFont:self.fontBigBold normalFont:self.fontNormal];
+            [movieCell1 configureMovieInfoForMovie:self.movie boldFont:self.fontBigBold normalFont:self.fontNormal smallerFont:self.fontSmaller smallestBoldFont:self.fontSmallestBold];
         }
         else {
             movieCell1.textView.font = self.fontNormal;
@@ -406,36 +408,108 @@
     }
 }
 
+#pragma mark - Push View Controllers Methods
+
+- (void) prepareToPushPhotoBrowserWithGrid {
+    MovieImageType movieImageType = [UIImageView getFullscreenMovieImageType];
+    
+    self.photos = nil;
+    NSMutableArray *mutArray = [NSMutableArray new];
+    for (NSString *imagePath in self.movie.images) {
+        [mutArray addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:imagePath imageType:movieImageType]]]];
+    }
+    self.photos = mutArray;
+    
+    self.thumbPhotos = nil;
+    mutArray = [NSMutableArray new];
+    for (NSString *imagePath in self.movie.images) {
+        [mutArray addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:imagePath imageType:MovieImageTypeCover]]]];
+    }
+    self.thumbPhotos = mutArray;
+}
+- (CastVC *) instantiateCastVC {
+    CastVC *castVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CastVC"];
+    [self setPropertyValuesToCastVC:castVC];
+    return castVC;
+}
+- (void) setPropertyValuesToCastVC:(CastVC *)castVC {
+    castVC.cast = self.cast;
+    MovieImageType movieImageType = [UIImageView getFullscreenMovieImageType];
+    castVC.photos = [NSMutableArray array];
+    for (Person *director in self.cast.directors) {
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:director.imageURL imageType:movieImageType]]];
+        photo.caption = [NSString stringWithFormat:@"Nombre: %@\nDirector",director.name];
+        [castVC.photos addObject:photo];
+    }
+    for (Person *actor in self.cast.actors) {
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:actor.imageURL imageType:movieImageType]]];
+        photo.caption = [NSString stringWithFormat:@"Nombre: %@",actor.name];
+        if (!actor.character || ![actor.character isEqualToString:@""]) {
+            photo.caption = [photo.caption stringByAppendingFormat:@"\nPersonaje: %@",actor.character];
+        }
+        [castVC.photos addObject:photo];
+    }
+}
+- (MWPhotoBrowser *) getPhotoBrowserWithIndex:(NSUInteger) index {
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
+    browser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)
+    browser.zoomPhotosToFill = NO; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+    browser.enableGrid = YES;
+    [browser setCurrentPhotoIndex:index];
+    return browser;
+}
+
+#pragma mark Gesture Recognizer IBActions
+
+-(IBAction)pushPhotoCollection:(id)sender {
+    MWPhotoBrowser *browser = [self getPhotoBrowserWithIndex:0];
+    [self prepareToPushPhotoBrowserWithGrid];
+    browser.startOnGrid = YES;
+    [self.navigationController pushViewController:browser animated:YES];
+}
+-(IBAction)pushCastVC:(id)sender {
+    CastVC *viewController = [self instantiateCastVC];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+-(IBAction)pushMovieCover:(id)sender {
+    [self prepareToPushPhotoBrowserWithGrid];
+    MWPhotoBrowser *browser = [self getPhotoBrowserWithIndex:self.movie.images.count-1];
+    [self.navigationController pushViewController:browser animated:YES];
+}
+-(IBAction)pushPortraitImage:(id)sender {
+    MWPhotoBrowser *browser;
+    [self prepareToPushPhotoBrowserWithGrid];
+    for (int i=0; i<self.movie.images.count; i++) {
+        if ([self.movie.images[i] isEqualToString:self.portraitImageURL]) {
+            browser = [self getPhotoBrowserWithIndex:i];
+            [self.navigationController pushViewController:browser animated:YES];
+            break;
+        }
+    }
+}
+#pragma mark - Go imdb actor profile
+
+-(IBAction)goImdb:(id)sender {
+    UIButton *buttonImdb = (UIButton *)sender;
+    MovieCastCell *castCell = (MovieCastCell *)buttonImdb.superview.superview;
+    UICollectionView *collectionView = (UICollectionView *)castCell.superview;
+    NSIndexPath *indexPath = [collectionView indexPathForCell: castCell];
+    Person *person = (Person *)self.cast.actors[indexPath.row];
+    
+    NSString *webToOpenUrlString = [NSString stringWithFormat:@"http://www.imdb.com/name/%@/",person.imdbCode];
+    NSString *imdbAppUrlString = [NSString stringWithFormat:@"imdb:///name/%@/",person.imdbCode];
+    [self goWebPageWithUrlString:webToOpenUrlString imdbAppUrlString:imdbAppUrlString];
+}
+
 #pragma mark - UICollectionViewDelegate
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     if ([cell isKindOfClass:[MovieImageCell class]]) {
-        
-        MovieImageType movieImageType = [UIImageView getFullscreenMovieImageType];
-        
-        self.photos = nil;
-        NSMutableArray *mutArray = [NSMutableArray new];
-        for (NSString *imagePath in self.movie.images) {
-            [mutArray addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:imagePath imageType:movieImageType]]]];
-        }
-        self.photos = mutArray;
-        
-        self.thumbPhotos = nil;
-        mutArray = [NSMutableArray new];
-        for (NSString *imagePath in self.movie.images) {
-            [mutArray addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:imagePath imageType:MovieImageTypeCover]]]];
-        }
-        self.thumbPhotos = mutArray;
-        
-        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-        browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
-        browser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)
-        browser.zoomPhotosToFill = NO; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
-        browser.enableGrid = YES;
-        [browser setCurrentPhotoIndex:indexPath.row];
-        
+        [self prepareToPushPhotoBrowserWithGrid];
+        MWPhotoBrowser *browser = [self getPhotoBrowserWithIndex:indexPath.row];
         [self.navigationController pushViewController:browser animated:YES];
         
         
@@ -458,7 +532,6 @@
     }
     
 }
-
 
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([cell isKindOfClass:[MovieCastCell class]]) {
@@ -484,25 +557,6 @@
     return [self.thumbPhotos objectAtIndex:index];
 }
 
-
-- (void) setPropertyValuesToCastVC:(CastVC *)castVC {
-    castVC.cast = self.cast;
-    MovieImageType movieImageType = [UIImageView getFullscreenMovieImageType];
-    castVC.photos = [NSMutableArray array];
-    for (Person *director in self.cast.directors) {
-        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:director.imageURL imageType:movieImageType]]];
-        photo.caption = [NSString stringWithFormat:@"Nombre: %@\nDirector",director.name];
-        [castVC.photos addObject:photo];
-    }
-    for (Person *actor in self.cast.actors) {
-        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[UIImageView imageURLForPath:actor.imageURL imageType:movieImageType]]];
-        photo.caption = [NSString stringWithFormat:@"Nombre: %@",actor.name];
-        if (!actor.character || ![actor.character isEqualToString:@""]) {
-            photo.caption = [photo.caption stringByAppendingFormat:@"\nPersonaje: %@",actor.character];
-        }
-        [castVC.photos addObject:photo];
-    }
-}
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

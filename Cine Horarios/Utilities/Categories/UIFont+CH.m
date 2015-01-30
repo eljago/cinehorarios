@@ -18,6 +18,10 @@ NSString *const kHelveticaNeueBold = @"Helvetica";
     NSString *fontName;
     
     switch (cHFontStyle) {
+        case CHFontStyleSmallest:
+            fontSize -= 3;
+            fontName = kHelveticaNeue;
+            break;
         case CHFontStyleSmaller:
             fontSize -= 2;
             fontName = kHelveticaNeue;
@@ -36,6 +40,10 @@ NSString *const kHelveticaNeueBold = @"Helvetica";
         case CHFontStyleBigger:
             fontSize += 2;
             fontName = kHelveticaNeue;
+            break;
+        case CHFontStyleSmallestBold:
+            fontSize -= 3;
+            fontName = kHelveticaNeueBold;
             break;
         case CHFontStyleSmallerBold:
             fontSize -= 2;
