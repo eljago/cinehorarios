@@ -34,6 +34,9 @@
 + (UIColor *)peterRiver{
     return DO_RGB(52, 152, 219);
 }
++ (UIColor *)alertViewColort{
+    return DO_RGB(0, 122, 255);
+}
 + (UIColor *)orange{
     return DO_RGB(243, 156, 18);
 }

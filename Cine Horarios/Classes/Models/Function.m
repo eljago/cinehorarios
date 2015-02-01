@@ -24,7 +24,8 @@ NSString *const RemoteMovieTheaterFunctionsPath = @"/api/shows/%lu/favorite_thea
              };
 }
 
-+ (void)getMovieTheatersFavoritesWithBlock:(void (^)(NSArray *theaterFunctions, NSError *error))block movieID:(NSUInteger )movieID theaters:(NSArray *)theaters {
++ (void)getMovieTheatersFavoritesWithBlock:(void (^)(NSArray *theaterFunctions, NSError *error))block movieID:(NSUInteger )movieID theaters:(NSArray *)theaters date:(NSDate *)date {
+    NSString *stringDate = [self getStringFromDate:date];
     NSString *path = [NSString stringWithFormat:RemoteMovieTheaterFunctionsPath,(unsigned long)movieID];
     NSString *theatersString = [NSString stringWithFormat:@"%lu",(unsigned long)((Theater *)[theaters firstObject]).theaterID];
     for (int i=1; i<theaters.count;i++) {
@@ -32,7 +33,7 @@ NSString *const RemoteMovieTheaterFunctionsPath = @"/api/shows/%lu/favorite_thea
         theatersString = [theatersString stringByAppendingFormat:@",%lu",(unsigned long)theater.theaterID];
     }
     
-    [[CineHorariosApiClient sharedClient] GET:path parameters:@{ @"favorites": theatersString } success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    [[CineHorariosApiClient sharedClient] GET:path parameters:@{ @"favorites": theatersString, @"date": stringDate } success:^(NSURLSessionDataTask * __unused task, id JSON) {
         
         NSArray *theaterFunctions = [JSON fkbMap:^Theater *(NSDictionary *theaterFunctionsDictionary) {
             return [MTLJSONAdapter modelOfClass:Theater.class fromJSONDictionary:theaterFunctionsDictionary error:NULL];
@@ -46,6 +47,25 @@ NSString *const RemoteMovieTheaterFunctionsPath = @"/api/shows/%lu/favorite_thea
             block(nil, error);
         }
     }];
+}
+
++ (NSString *) getStringFromDate:(NSDate *)date {
+    //    NSCalendar *calendar = [NSCalendar currentCalendar];
+    //    NSDateComponents *components = [calendar components:NSDayCalendarUnit|NSMonthCalendarUnit fromDate:date];
+    //    NSInteger day = [components day];
+    //    NSInteger month = [components month];
+    //    NSInteger year = [components year];
+    
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setLocale:[NSLocale currentLocale]];
+    //    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *dateString = [formatter stringFromDate:date];
+    //    NSString *dateString2 = [NSString stringWithFormat:@"%ld-%ld-%ld",year,month,day];
+    //    NSLog(@"%@\n%@",dateString, dateString2);
+    
+    return dateString;
 }
 
 @end

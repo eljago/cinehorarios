@@ -20,15 +20,17 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Appirater (2.0.4)
   - DACircularProgress (2.2.0)
   - GoogleAnalytics-iOS-SDK (3.10):
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
-  - Harpy (3.3.0)
+  - Harpy (3.3.1)
+  - ionicons (2.0.1)
   - iOS-Hierarchy-Viewer (1.4.7)
-  - Mantle (1.5.3):
-    - Mantle/extobjc (= 1.5.3)
-  - Mantle/extobjc (1.5.3)
+  - Mantle (1.5.4):
+    - Mantle/extobjc (= 1.5.4)
+  - Mantle/extobjc (1.5.4)
   - MBProgressHUD (0.9)
   - MWPhotoBrowser (1.4.1):
     - DACircularProgress
@@ -38,7 +40,6 @@ PODS:
   - OpenInChrome (0.0.1)
   - PSTCollectionView (1.2.3)
   - REMenu (1.10)
-  - RFRateMe (1.0.0)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
@@ -49,31 +50,33 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
+  - Appirater
   - GoogleAnalytics-iOS-SDK
   - Harpy
+  - ionicons
   - iOS-Hierarchy-Viewer
   - Mantle
   - MWPhotoBrowser (~> 1.4)
   - OpenInChrome
   - REMenu
-  - RFRateMe (~> 1.0.0)
   - SIAlertView
   - SpinKit
   - UIActivityIndicator-for-SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  Appirater: cbdb7f305562cfde585300bfff86da01ae559deb
   DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
   GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
-  Harpy: 5c328179d689e44b5da72a102b2d7cb4eb31dd2b
+  Harpy: 289cafd8e69ff94e787a1aa2847e70c4326d5d66
+  ionicons: 8c24f4af67e3b333a721cdfe2d39219e542769f2
   iOS-Hierarchy-Viewer: f795abaeb8ccec8f652abd0891c396ad77d211d3
-  Mantle: 8d84cacd6c2a69ff6fbce985a2b51298a5495de3
+  Mantle: d5fbaf30fbc58031223af13812c060e15934a1fe
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   MWPhotoBrowser: be05b3b7521e961382a4ba5579685bf5a00b93d8
   OpenInChrome: b7c73ddf8fe0a1788dc0549c3c4c70e3c84da578
   PSTCollectionView: d9f466e4554cc83260ca9bde7beb27f308e8fd76
   REMenu: e3988747d83f9e8f49f244bd3f1fb8b0900e8741
-  RFRateMe: 794c36dadb7d61716f9b130868c8e3bc0872cc59
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   SIAlertView: d00609a1faa9d82f17b9f0b4eede64e84a577b10
   SpinKit: 11fa465172473ce3d59a80bf0449020b850e5229

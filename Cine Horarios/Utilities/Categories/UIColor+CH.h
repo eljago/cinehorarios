@@ -17,6 +17,8 @@
 + (UIColor *)midnightBlueLight;
 + (UIColor *)wetAsphalt;
 + (UIColor *)belizeHole;
++ (UIColor *)peterRiver;
++ (UIColor *)alertViewColort;
 + (UIColor *)orange2;
 + (UIColor *)orange;
 + (UIColor *)carrot;

@@ -35,21 +35,9 @@
 {
     [super viewDidLoad];
     
-    self.title = self.movieName;
-    
     [GAI trackPage:@"PELICULA FUNCIONES"];
     
     self.tableView.separatorInset = UIEdgeInsetsMake(0, self.view.bounds.size.width, 0, 0);
-    
-    FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
-    if (favoritesManager.favoriteTheaters.count > 0) {
-        [self downloadMovieFunctions];
-    }
-    else {
-        self.labelNotice.text = @"No tiene cines favoritos";
-        self.labelNotice.hidden = NO;
-        self.tableView.hidden = YES;
-    }
 }
 -(void) downloadMovieFunctions{
     self.tableView.scrollEnabled = NO;
@@ -87,18 +75,51 @@
             [self.refreshControl endRefreshing];
         }
         
-    } movieID:self.movieID theaters:[FavoritesManager sharedManager].favoriteTheaters];
+    } movieID:self.movieID theaters:[FavoritesManager sharedManager].favoriteTheaters date:self.date];
+}
+
+- (void) getDataForceDownload:(BOOL)forceDownload {
+    FavoritesManager *favoritesManager = [FavoritesManager sharedManager];
+    if (favoritesManager.favoriteTheaters.count > 0) {
+        
+        if (forceDownload) {
+            [self downloadMovieFunctions];
+        }
+        else {
+            if (self.downloadStatus == CHDownloadStatFailed || self.downloadStatus == CHDownloadStatNoDataFound) {
+                [self showEmptyDataView];
+                return;
+            }
+            if (self.cinemasTheatersFunctions.count > 0) {
+                
+            }
+            else {
+                [self downloadMovieFunctions];
+            }
+        }
+    }
+    else {
+        self.labelNotice.text = @"No tiene cines favoritos";
+        self.labelNotice.hidden = NO;
+        self.tableView.hidden = YES;
+    }
 }
 
 -(void)refreshData {
     [self.refreshControl beginRefreshing];
-    [self downloadMovieFunctions];
+    [self getDataForceDownload:YES];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) showEmptyDataView {
+    self.labelNotice.text = [NSString stringWithFormat:@"%@ no tiene funciones en sus cines favoritos para este día", self.movieName];
+    self.labelNotice.hidden = NO;
+    self.tableView.hidden = YES;
 }
 
 #pragma mark - Table view data source

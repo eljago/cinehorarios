@@ -10,4 +10,7 @@
 
 @interface MovieFunctionsContainerVC : XHTwitterPaggingViewer
 
+@property (nonatomic, assign) NSUInteger movieID;
+@property (nonatomic, strong) NSString *movieName;
+
 @end

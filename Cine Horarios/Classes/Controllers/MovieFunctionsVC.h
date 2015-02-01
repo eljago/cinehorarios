@@ -8,6 +8,11 @@
 #import "CHViewTableController.h"
 
 @interface MovieFunctionsVC : CHViewTableController
+
 @property (nonatomic, assign) NSUInteger movieID;
 @property (nonatomic, strong) NSString *movieName;
+@property (nonatomic, strong) NSDate *date;
+
+- (void) getDataForceDownload:(BOOL)forceDownload;
+
 @end

@@ -82,6 +82,7 @@ static NSString * const kShouldDownloadFavoriteTheaters = @"ShouldDownloadFavori
     return [[NSUserDefaults standardUserDefaults] boolForKey:kShouldDownloadFavoriteTheaters];
 }
 
+// method used to set as parameter when downloading. output= "1,5,6,12"
 + (NSString *) favoriteTheaterIdsParameter {
     NSArray *favoriteTheatersIds = [self getFavoriteTheatersIdsFromUserDefaults];
     NSString *theatersString;

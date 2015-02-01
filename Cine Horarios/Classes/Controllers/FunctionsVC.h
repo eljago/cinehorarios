@@ -12,7 +12,6 @@
 
 @interface FunctionsVC : XHTwitterPaggingViewer
 
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *topLayoutConstraint;
 @property (nonatomic, strong) Theater *theater;
 
 @end

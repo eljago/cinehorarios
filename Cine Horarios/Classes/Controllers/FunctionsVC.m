@@ -14,15 +14,15 @@
 #import "NSDate+CH.h"
 #import "UIColor+CH.h"
 #import "FavoritesManager.h"
+#import "IonIcons.h"
 
-const NSInteger numberOfVCs = 7;
+static const NSInteger numberOfVCs = 7;
 
 @interface FunctionsVC ()
 
 @property (nonatomic, strong) UIBarButtonItem *favoriteButtonItem;
 @property (nonatomic, assign) BOOL favorite;
 @property (weak, nonatomic) IBOutlet UIView *TopView;
-@property (weak, nonatomic) IBOutlet UILabel *TopLabel;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @end
@@ -46,7 +46,6 @@ const NSInteger numberOfVCs = 7;
     self.pageControl.tintColor = [UIColor lightGrayColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     self.TopView.backgroundColor = [UIColor navColor];
-    self.TopLabel.text = self.theater.name;
     self.title = self.theater.name;
     
     NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:numberOfVCs];
@@ -89,17 +88,8 @@ const NSInteger numberOfVCs = 7;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"Memory Warning en FunctionsVC");
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - Supported Interface Orientation
 
@@ -121,12 +111,14 @@ const NSInteger numberOfVCs = 7;
     
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     
-    self.navigationItem.rightBarButtonItems = @[menuButtonItem, self.favoriteButtonItem];
+    UIImage *infoImage = [IonIcons imageWithIcon:ion_information_circled iconColor:[UIColor whiteColor] iconSize:27.f imageSize:CGSizeMake(44.f, 44.f)];
+    UIBarButtonItem *infoButtonItem = [[UIBarButtonItem alloc] initWithImage:infoImage style:UIBarButtonItemStylePlain target:self action:@selector(showTheaterInfo)];
+    
+    self.navigationItem.rightBarButtonItems = @[menuButtonItem, self.favoriteButtonItem, infoButtonItem];
 }
 
-- (void)popBack
-{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void) showTheaterInfo {
+    NSLog(@"show theaterin fo");
 }
 
 - (void) setupFavorites{

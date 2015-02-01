@@ -50,6 +50,8 @@ install_resource()
           install_resource "Harpy/Harpy/Harpy.bundle"
                     install_resource "MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle"
                     install_resource "SIAlertView/SIAlertView/SIAlertView.bundle"
+                    install_resource "ionicons/ionicons/ionicons.ttf"
+                    install_resource "${BUILT_PRODUCTS_DIR}/Appirater.bundle"
           
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

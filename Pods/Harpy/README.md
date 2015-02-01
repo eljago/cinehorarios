@@ -11,9 +11,10 @@ This library is built to work with the [Semantic Versioning](http://semver.org/)
 [Aaron Brager](http://twitter.com/GetAaron) and I have ported Harpy to Swift. We've called it [Siren](https://github.com/ArtSabintsev/Siren) and it can be found [here](https://github.com/ArtSabintsev/Siren).
 
 ### Changelog
-#### 3.3.0
-- Removed all macros in favor of static strings and methods.
-- Addressed issue with NSBundle and projects containing multiple targets (thanks to [frranck](https://github.com/frranck)).
+#### 3.3.1
+- Addressed issue with skip button logic not properly 
+	- More info here: https://github.com/ArtSabintsev/Harpy/issues/71 
+	- Thanks to [Nathan Hosselton](https://github.com/nathanhosselton).
 
 ### Features
 - [x] CocoaPods Support
@@ -163,6 +164,9 @@ There are some situations where a developer may want to the update dialog to *al
 ``` obj-c 
 [[Harpy sharedInstance] setForceLanguageLocalization<#HarpyLanguageConstant#>];
 ```
+
+### How to test Harpy
+Temporarily change the version string in Xcode to an older version than the one that's currently available in the App Store. Afterwards, build and run your app, and you should see the alert.
 
 ### Supported Devices Compatibility
 As of **v2.7.1**, this feature was removed, as Apple  stopped updating the `supportedDevices` key in the iTunes Lookup API route.

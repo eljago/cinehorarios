@@ -11,5 +11,6 @@ pod 'SpinKit'
 pod 'Harpy'
 pod 'OpenInChrome'
 pod 'SIAlertView'
-pod 'RFRateMe', "~> 1.0.0"
+pod 'Appirater'
 pod 'iOS-Hierarchy-Viewer'
+pod 'ionicons'

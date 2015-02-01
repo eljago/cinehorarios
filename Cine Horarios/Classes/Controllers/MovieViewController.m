@@ -17,8 +17,7 @@
 #import "UIView+CH.h"
 #import "WebVC.h"
 #import "VideoVC.h"
-#import "MovieFunctionsVC.h"
-#import "RFRateMe.h"
+#import "MovieFunctionsContainerVC.h"
 
 #import "MBProgressHUD+CH.h"
 #import "UIImageView+CH.h"
@@ -64,27 +63,15 @@
     
     [GAI trackPage:@"INFO PELICULA"];
     [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Peliculas Visitadas" label:self.movieName];
-    
-    [RFRateMe showRateAlert];
-    
-    [self getMovieForceRemote:YES];
+        
+    [self getMovieForceRemote:NO];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"Memory Warning");
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 #pragma mark - Fetch Data
 
@@ -113,9 +100,6 @@
             self.movie = movie;
             [self setupTableViews];
             [self.tableView reloadData];
-        }
-        else {
-            
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (self.refreshControl.refreshing) {
@@ -395,7 +379,7 @@
     }
     else if ([cell isKindOfClass:[MovieCellImageLabel class]]) {
         if (cell.tag == 600) {
-            MovieFunctionsVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MovieFunctionsVC"];
+            MovieFunctionsContainerVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MovieFunctionsContainerVC"];
             vc.movieID = self.movieID;
             vc.movieName = self.movieName;
             [self.navigationController pushViewController:vc animated:YES];

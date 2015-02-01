@@ -34,6 +34,10 @@
 	<string>Cine Horarios utiliza su ubicación para mostrar los cines cercanos.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Cine Horarios utiliza su ubicación para mostrar los cines cercanos.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ionicons.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -60,9 +64,9 @@
 			<key>TintColor</key>
 			<dict>
 				<key>Blue</key>
-				<real>0.203921568627451</real>
+				<real>0.20392156862745101</real>
 				<key>Green</key>
-				<real>0.2509803921568627</real>
+				<real>0.25098039215686269</real>
 				<key>Red</key>
 				<real>0.8666666666666667</real>
 			</dict>
