@@ -161,6 +161,7 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     
     NSUInteger row = 0;
     if (indexPath.section == 0) {

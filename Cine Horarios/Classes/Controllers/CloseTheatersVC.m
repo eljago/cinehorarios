@@ -146,7 +146,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 //        } no:^(DoAlertView *alertView) {
 //            
 //        }];
-        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"SIAlertView" andMessage:error.userInfo[@"NSLocalizedRecoverySuggestion"]];
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Error" andMessage:error.userInfo[@"NSLocalizedRecoverySuggestion"]];
         
         [alertView addButtonWithTitle:@"Cancelar"
                                  type:SIAlertViewButtonTypeCancel
@@ -254,6 +254,7 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CLLocationCoordinate2D coordinate = [self.annotations[indexPath.row] coordinate];
     [self zoomMapAtCoordinate:coordinate];
 }

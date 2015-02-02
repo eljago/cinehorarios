@@ -27,6 +27,7 @@
 		25ADEFBC1A75CE400016EC31 /* MovieCellRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ADEFBB1A75CE400016EC31 /* MovieCellRating.m */; };
 		25ADEFBF1A75D06C0016EC31 /* MovieCellRating+Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ADEFBE1A75D06C0016EC31 /* MovieCellRating+Movie.m */; };
 		25ADEFC21A75F9720016EC31 /* UIViewController+WebOpener.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ADEFC11A75F9720016EC31 /* UIViewController+WebOpener.m */; };
+		25B2D7B21A7EC6B000FA3F6B /* CuponesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2D7B11A7EC6B000FA3F6B /* CuponesVC.m */; };
 		25B7A0CE1A7DE05700F1A2AB /* AppDelegate+Geofaro.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B7A0CD1A7DE05700F1A2AB /* AppDelegate+Geofaro.m */; };
 		25BCD4A91A6F2EEB00ED6ECB /* MovieCellCast.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BCD4A81A6F2EEB00ED6ECB /* MovieCellCast.m */; };
 		25BCD4AC1A6F2F2900ED6ECB /* MovieCellCast+Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BCD4AB1A6F2F2900ED6ECB /* MovieCellCast+Movie.m */; };
@@ -203,6 +204,8 @@
 		25ADEFBE1A75D06C0016EC31 /* MovieCellRating+Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MovieCellRating+Movie.m"; path = "Classes/Views/CellCategories/MovieCellRating+Movie.m"; sourceTree = "<group>"; };
 		25ADEFC01A75F9720016EC31 /* UIViewController+WebOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+WebOpener.h"; path = "Utilities/Categories/UIViewController+WebOpener.h"; sourceTree = "<group>"; };
 		25ADEFC11A75F9720016EC31 /* UIViewController+WebOpener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+WebOpener.m"; path = "Utilities/Categories/UIViewController+WebOpener.m"; sourceTree = "<group>"; };
+		25B2D7B01A7EC6B000FA3F6B /* CuponesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CuponesVC.h; path = Classes/Controllers/CuponesVC.h; sourceTree = "<group>"; };
+		25B2D7B11A7EC6B000FA3F6B /* CuponesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CuponesVC.m; path = Classes/Controllers/CuponesVC.m; sourceTree = "<group>"; };
 		25B7A0CC1A7DE05700F1A2AB /* AppDelegate+Geofaro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Geofaro.h"; sourceTree = "<group>"; };
 		25B7A0CD1A7DE05700F1A2AB /* AppDelegate+Geofaro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Geofaro.m"; sourceTree = "<group>"; };
 		25BCD4A71A6F2EEB00ED6ECB /* MovieCellCast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieCellCast.h; path = Classes/Views/Cells/MovieCellCast.h; sourceTree = "<group>"; };
@@ -605,6 +608,8 @@
 				25037A651A5544770087D124 /* FunctionsVC.m */,
 				25037A681A5545200087D124 /* FunctionDayVC.m */,
 				25A58D491A6B827D00743F4A /* MovieViewController.m */,
+				25B2D7B01A7EC6B000FA3F6B /* CuponesVC.h */,
+				25B2D7B11A7EC6B000FA3F6B /* CuponesVC.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1091,6 +1096,7 @@
 				6EC0071C18DC7E3C003DECC8 /* Function.m in Sources */,
 				6EC0071818DC7E3C003DECC8 /* BasicMovie.m in Sources */,
 				6EC0069A18DC7CBB003DECC8 /* WebVC.m in Sources */,
+				25B2D7B21A7EC6B000FA3F6B /* CuponesVC.m in Sources */,
 				6EC0071A18DC7E3C003DECC8 /* Cast.m in Sources */,
 				6EC0071718DC7E3C003DECC8 /* BasicItemImage.m in Sources */,
 				6EC0072218DC7E3C003DECC8 /* VideoGroup.m in Sources */,

@@ -57,7 +57,7 @@
     [_refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:_refreshControl];
     
-    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = menuButtonItem;
 }
 
@@ -97,6 +97,11 @@
 
 #pragma mark - UITableViewController
 #pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row % 2 == 0) {

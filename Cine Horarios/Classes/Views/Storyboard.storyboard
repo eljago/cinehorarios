@@ -451,6 +451,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="labelDirectors" destination="Ded-rU-vn0" id="OPx-WY-5nc"/>
+                                            <segue destination="sWn-4R-Z23" kind="push" identifier="MovieToDirectorCast" id="1y0-Z8-3AO"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MovieCellCast" rowHeight="201" id="BTs-eV-JNH" customClass="MovieCellCast">
@@ -986,7 +987,7 @@
                         <viewControllerLayoutGuide type="bottom" id="RE1-UH-mIr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="plw-oU-XRi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79L-zg-LAn">
@@ -1005,7 +1006,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIF-Jv-Tzc" customClass="FunctionsScrollView">
-                                <rect key="frame" x="0.0" y="13" width="320" height="491"/>
+                                <rect key="frame" x="0.0" y="13" width="320" height="555"/>
                                 <connections>
                                     <outlet property="delegate" destination="9N7-no-XBh" id="xzz-aw-TfK"/>
                                 </connections>
@@ -1480,6 +1481,54 @@
             </objects>
             <point key="canvasLocation" x="1575" y="-994"/>
         </scene>
+        <!--Cupones-->
+        <scene sceneID="3nc-hl-Wdw">
+            <objects>
+                <viewController storyboardIdentifier="CuponesVC" title="Cupones" id="EHV-cc-yuh" customClass="CuponesVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1Ff-sj-CaJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="zPd-Np-zzj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5CS-7W-R7R">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aBc-dX-E4K">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CuponesTableViewCell" rowHeight="150" id="iwD-IZ-dOG">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iwD-IZ-dOG" id="o6S-vV-oBj">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbb-sn-zLU">
+                                                    <rect key="frame" x="21" y="65" width="261" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="EHV-cc-yuh" id="vR7-74-Lmw"/>
+                                    <outlet property="delegate" destination="EHV-cc-yuh" id="0SB-za-yIC"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tablaCupones" destination="aBc-dX-E4K" id="lZ4-XI-gOe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZGT-Sg-PWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1990" y="-996"/>
+        </scene>
         <!--Movie Functions ContainerVC-->
         <scene sceneID="jfM-KX-b15">
             <objects>
@@ -1765,8 +1814,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="m8Z-tv-jxt"/>
-        <segue reference="60k-Yd-cWb"/>
+        <segue reference="KAs-5Z-mY4"/>
+        <segue reference="1y0-Z8-3AO"/>
+        <segue reference="cJN-yi-Ft4"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

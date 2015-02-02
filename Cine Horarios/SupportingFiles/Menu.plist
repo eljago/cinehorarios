@@ -58,5 +58,13 @@
 		<key>name</key>
 		<string>Ajustes</string>
 	</dict>
+	<dict>
+		<key>image</key>
+		<string>IconSettings</string>
+		<key>storyboardID</key>
+		<string>CuponesVC</string>
+		<key>name</key>
+		<string>Cupones</string>
+	</dict>
 </array>
 </plist>

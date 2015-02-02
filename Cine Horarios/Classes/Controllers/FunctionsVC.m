@@ -111,14 +111,14 @@ static const NSInteger numberOfVCs = 7;
     
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
     
-    UIImage *infoImage = [IonIcons imageWithIcon:ion_information_circled iconColor:[UIColor whiteColor] iconSize:27.f imageSize:CGSizeMake(44.f, 44.f)];
-    UIBarButtonItem *infoButtonItem = [[UIBarButtonItem alloc] initWithImage:infoImage style:UIBarButtonItemStylePlain target:self action:@selector(showTheaterInfo)];
+//    UIImage *infoImage = [IonIcons imageWithIcon:ion_information_circled iconColor:[UIColor whiteColor] iconSize:27.f imageSize:CGSizeMake(44.f, 44.f)];
+//    UIBarButtonItem *infoButtonItem = [[UIBarButtonItem alloc] initWithImage:infoImage style:UIBarButtonItemStylePlain target:self action:@selector(showTheaterInfo)];
     
-    self.navigationItem.rightBarButtonItems = @[menuButtonItem, self.favoriteButtonItem, infoButtonItem];
+    self.navigationItem.rightBarButtonItems = @[menuButtonItem, self.favoriteButtonItem];
 }
 
 - (void) showTheaterInfo {
-    NSLog(@"show theaterin fo");
+    
 }
 
 - (void) setupFavorites{

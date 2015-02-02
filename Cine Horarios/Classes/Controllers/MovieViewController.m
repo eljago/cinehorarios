@@ -358,6 +358,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     
     UITableViewCell *cell = self.tableViewCells[indexPath.section][indexPath.row];
     if ([cell isKindOfClass:[MovieCellRating class]]) {
@@ -545,7 +546,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([[segue identifier] isEqualToString:@"MovieToCast"]) {
+    if ([[segue identifier] isEqualToString:@"MovieToCast"] || [[segue identifier] isEqualToString:@"MovieToDirectorCast"]) {
         CastVC *castVC = [segue destinationViewController];
         [self setPropertyValuesToCastVC:castVC];
     }
