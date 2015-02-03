@@ -67,10 +67,10 @@ static const NSInteger numberOfVCs = 7;
     for (int i=0; i<numberOfVCs; i++) {
         NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*24*i];
         MovieFunctionsVC *movieFunctionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MovieFunctionsVC"];
-        movieFunctionsVC.title = [[date getShortDateString] capitalizedString];
         movieFunctionsVC.movieID = self.movieID;
         movieFunctionsVC.movieName = self.movieName;
         movieFunctionsVC.date = date;
+        movieFunctionsVC.title = [[date getShortDateString] capitalizedString];
         [viewControllers addObject:movieFunctionsVC];
     }
     self.viewControllers = viewControllers;
@@ -80,6 +80,8 @@ static const NSInteger numberOfVCs = 7;
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         strongSelf.pageControl.currentPage = cuurentPage;
         MovieFunctionsVC *movieFunctionsVC = strongSelf.viewControllers[cuurentPage];
+        NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*24*cuurentPage];
+        strongSelf.title = [[date getShortDateString] capitalizedString];
         [movieFunctionsVC getDataForceDownload:NO];
     };
     

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014年 曾宪华 QQ群: (142557668) QQ:543413507  Gmail:xhzengAIB@gmail.com. All rights reserved.
 //
 
-#import "XHTwitterPaggingViewer.h"
+#import "XHTwitterPaggingViewer2.h"
 #import "FunctionsScrollView.h"
 
-@interface XHTwitterPaggingViewer () <UIScrollViewDelegate>
+@interface XHTwitterPaggingViewer2 () <UIScrollViewDelegate>
 
 /**
  *  显示内容的容器
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation XHTwitterPaggingViewer
+@implementation XHTwitterPaggingViewer2
 
 #pragma mark - DataSource
 

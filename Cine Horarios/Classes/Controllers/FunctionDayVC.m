@@ -180,12 +180,12 @@ const NSUInteger kNumberOfDays = 7;
     switch (self.downloadStatus) {
         case CHDownloadStatFailed:
             self.emptyDataView.titleLabel.text = @"Ocurrió un problema con la descarga";
-            self.emptyDataView.labelButtonReload.text = @"Reintentar Descarga";
+            [self.emptyDataView.buttonReload setTitle:@"Reintentar Descarga" forState:UIControlStateNormal];
             break;
             
         case CHDownloadStatNoDataFound:
             self.emptyDataView.titleLabel.text = @"Aún no tenemos horarios disponibles para este día";
-            self.emptyDataView.labelButtonReload.text = @"Volver a Descargar";
+            [self.emptyDataView.buttonReload setTitle:@"Volver a Descargar" forState:UIControlStateNormal];
             break;
             
         default:

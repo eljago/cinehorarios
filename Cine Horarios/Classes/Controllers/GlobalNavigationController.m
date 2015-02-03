@@ -42,10 +42,9 @@ const CGFloat kButtonWidth = 50.f;
     
     self.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:identifier]];
     
-    [self.navigationBar setBackgroundImage:[UIImage new]
-                                            forBarPosition:UIBarPositionAny
-                                                barMetrics:UIBarMetricsDefault];
-    [self.navigationBar setShadowImage:[UIImage new]];
+    // Set the background and shadow image to get rid of the line.
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     
     UISwipeGestureRecognizer *swipeGestureDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRecognized:)];
     swipeGestureDown.direction = UISwipeGestureRecognizerDirectionRight;

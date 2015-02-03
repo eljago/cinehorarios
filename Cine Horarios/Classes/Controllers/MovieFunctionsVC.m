@@ -27,6 +27,8 @@
 @property (nonatomic, strong) NSArray *cinemasTheatersFunctions;
 @property (nonatomic, strong) NSArray *theaterFuctions;
 @property (nonatomic, weak) IBOutlet UILabel *labelNotice;
+@property (nonatomic, weak) IBOutlet UIImageView *imageGhost;
+@property (weak, nonatomic) IBOutlet UILabel *labelDate;
 @end
 
 @implementation MovieFunctionsVC
@@ -36,6 +38,8 @@
     [super viewDidLoad];
     
     [GAI trackPage:@"PELICULA FUNCIONES"];
+    
+    self.labelDate.text = self.title;
     
     self.tableView.separatorInset = UIEdgeInsetsMake(0, self.view.bounds.size.width, 0, 0);
 }
@@ -55,19 +59,14 @@
                 self.theaterFuctions = [self.theaterFuctions sortedArrayUsingDescriptors:sortDescriptors];
                 [self loadCinemasTheatersFunctionsArray];
                 
-                self.tableView.hidden = NO;
-                [self.tableView reloadData];
+                [self showTableViewWithDownloadSuccessful];
             }
             else {
-                self.labelNotice.text = [NSString stringWithFormat:@"%@ no tiene funciones en sus cines favoritos para este día", self.movieName];
-                self.labelNotice.hidden = NO;
-                self.tableView.hidden = YES;
+                [self showNoFunctionOnFavoritesView];
             }
         }
         else {
-            self.tableView.hidden = YES;
-            self.labelNotice.text = @"Ha ocurrido un error";
-            self.labelNotice.hidden = NO;
+            [self showDownloadErrorDataView];
         }
         self.tableView.scrollEnabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -86,21 +85,20 @@
             [self downloadMovieFunctions];
         }
         else {
-            if (self.downloadStatus == CHDownloadStatFailed || self.downloadStatus == CHDownloadStatNoDataFound) {
-                [self showEmptyDataView];
-                return;
-            }
             if (self.cinemasTheatersFunctions.count > 0) {
-                
+                [self showTableViewWithDownloadSuccessful];
             }
             else {
-                [self downloadMovieFunctions];
+                if (self.downloadStatus == CHDownloadStatNone) {
+                    [self downloadMovieFunctions];
+                }
             }
         }
     }
     else {
         self.labelNotice.text = @"No tiene cines favoritos";
         self.labelNotice.hidden = NO;
+        self.imageGhost.hidden = NO;
         self.tableView.hidden = YES;
     }
 }
@@ -116,10 +114,33 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) showEmptyDataView {
+-(void) showTableViewWithDownloadSuccessful {
+    [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];
+    [self.tableView reloadData];
+    self.tableView.hidden = NO;
+    self.labelNotice.hidden = YES;
+    self.imageGhost.hidden = YES;
+}
+-(void) showNoFunctionOnFavoritesView {
+    [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
     self.labelNotice.text = [NSString stringWithFormat:@"%@ no tiene funciones en sus cines favoritos para este día", self.movieName];
-    self.labelNotice.hidden = NO;
     self.tableView.hidden = YES;
+    self.labelNotice.hidden = NO;
+    self.imageGhost.hidden = NO;
+}
+-(void) showNoFavoritesDataView {
+    [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
+    self.labelNotice.text = @"No tiene cines favoritos";
+    self.tableView.hidden = YES;
+    self.labelNotice.hidden = NO;
+    self.imageGhost.hidden = NO;
+}
+-(void)showDownloadErrorDataView {
+    [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
+    self.labelNotice.text = @"Ha ocurrido un error";
+    self.tableView.hidden = YES;
+    self.labelNotice.hidden = NO;
+    self.imageGhost.hidden = NO;
 }
 
 #pragma mark - Table view data source

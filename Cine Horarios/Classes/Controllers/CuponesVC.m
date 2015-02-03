@@ -17,12 +17,16 @@
 @interface CuponesVC () <UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tablaCupones;
+@property (weak, nonatomic) IBOutlet UIImageView *emptyDataImageView;
+@property (weak, nonatomic) IBOutlet UILabel *emptyDataLabel;
 
 @property (nonatomic,strong) NSMutableArray *listaCupones;
 
 @end
 
-@implementation CuponesVC
+@implementation CuponesVC {
+    BOOL viewAppeared;
+}
 
 -(void)viewDidLoad {
     [super viewDidLoad];
@@ -31,19 +35,55 @@
         
         GFKInterface *interface =[NSClassFromString(@"GFKInterface") sharedGFKInterface];
         _listaCupones = [[NSMutableArray alloc] initWithArray:[interface listaAnunciosGuardados]];
-        [_tablaCupones reloadData];
     }else{
         
         Geofaro *miGeofaro = [Geofaro sharedGeofaro];
         _listaCupones = [[NSMutableArray alloc] initWithArray:[miGeofaro promociones]];
-        [_tablaCupones reloadData];
         
     }
+    if (_listaCupones.count == 0) {
+        self.emptyDataImageView.hidden = YES;
+        self.emptyDataLabel.hidden = YES;
+        self.tablaCupones.hidden = NO;
+        [_tablaCupones reloadData];
+    }
+    else {
+        self.emptyDataImageView.hidden = NO;
+        self.emptyDataLabel.hidden = NO;
+        self.tablaCupones.hidden = YES;
+    }
+    
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.navigationItem.rightBarButtonItem = menuButtonItem;
+    
+    
+    self.view.backgroundColor = [UIColor tableViewColor];
+    self.tablaCupones.backgroundColor = [UIColor tableViewColor];
+    self.tablaCupones.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
+
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-    [_tablaCupones reloadData];
+    
+    if (viewAppeared) {
+        if (_listaCupones.count == 0) {
+            self.emptyDataImageView.hidden = YES;
+            self.emptyDataLabel.hidden = YES;
+            self.tablaCupones.hidden = NO;
+            [_tablaCupones reloadData];
+        }
+        else {
+            self.emptyDataImageView.hidden = NO;
+            self.emptyDataLabel.hidden = NO;
+            self.tablaCupones.hidden = YES;
+        }
+    }
+    viewAppeared = YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -63,11 +103,13 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CuponesTableViewCell"];
     UILabel *labelTitulo = (UILabel *)[cell viewWithTag:100];
+    UIImageView *imgView = (UIImageView *)[cell viewWithTag:101];
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         Anuncios *anuncio = [_listaCupones objectAtIndex:indexPath.row];
         labelTitulo.text = anuncio.titulo;
+        UIImage *imagen = [[UIImage alloc] initWithData:anuncio.media];
+        imgView.image = imagen;
     }else{
-        
         NSDictionary *dk = [_listaCupones objectAtIndex:indexPath.row];
         NSLog(@"%@",dk);
         labelTitulo.text = [dk valueForKey:@"Titulo"];

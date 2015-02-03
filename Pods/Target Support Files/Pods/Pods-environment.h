@@ -150,6 +150,12 @@
 #define COCOAPODS_VERSION_MINOR_UIActivityIndicator_for_SDWebImage 2
 #define COCOAPODS_VERSION_PATCH_UIActivityIndicator_for_SDWebImage 0
 
+// XHTwitterPaggingViewer
+#define COCOAPODS_POD_AVAILABLE_XHTwitterPaggingViewer
+#define COCOAPODS_VERSION_MAJOR_XHTwitterPaggingViewer 0
+#define COCOAPODS_VERSION_MINOR_XHTwitterPaggingViewer 5
+#define COCOAPODS_VERSION_PATCH_XHTwitterPaggingViewer 0
+
 // iOS-Hierarchy-Viewer
 #define COCOAPODS_POD_AVAILABLE_iOS_Hierarchy_Viewer
 #define COCOAPODS_VERSION_MAJOR_iOS_Hierarchy_Viewer 1

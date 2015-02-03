@@ -47,6 +47,7 @@ PODS:
   - SpinKit (1.2.0)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
+  - XHTwitterPaggingViewer (0.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - SIAlertView
   - SpinKit
   - UIActivityIndicator-for-SDWebImage
+  - XHTwitterPaggingViewer
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
@@ -81,5 +83,6 @@ SPEC CHECKSUMS:
   SIAlertView: d00609a1faa9d82f17b9f0b4eede64e84a577b10
   SpinKit: 11fa465172473ce3d59a80bf0449020b850e5229
   UIActivityIndicator-for-SDWebImage: 8bd92c15280fbe54816448c6b14674145eee05c7
+  XHTwitterPaggingViewer: 5fd6b5cd85e460de8d00934fd4b774c0ca606722
 
 COCOAPODS: 0.35.0

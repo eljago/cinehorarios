@@ -65,6 +65,8 @@
     [GAI sendEventWithCategory:@"Preferencias Usuario" action:@"Peliculas Visitadas" label:self.movieName];
         
     [self getMovieForceRemote:NO];
+    
+    self.title = self.movieName;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,7 +132,7 @@
 
 #pragma mark - Set TableView values
 
-- (void) setupTableViews {
+- (void) setupTableViews {    
     [self setPeople];
     
     NSMutableArray *arrayCells = [NSMutableArray new]; // hold the rows of a section

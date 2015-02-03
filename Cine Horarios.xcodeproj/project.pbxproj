@@ -10,7 +10,7 @@
 		162414A417BC946E00083708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 162414A317BC946E00083708 /* Images.xcassets */; };
 		25037A661A5544770087D124 /* FunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A651A5544770087D124 /* FunctionsVC.m */; };
 		25037A691A5545200087D124 /* FunctionDayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A681A5545200087D124 /* FunctionDayVC.m */; };
-		25037A701A55D3E60087D124 /* XHTwitterPaggingViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer.m */; };
+		25037A701A55D3E60087D124 /* XHTwitterPaggingViewer2.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer2.m */; };
 		25037A731A562ACB0087D124 /* FunctionsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A721A562ACB0087D124 /* FunctionsScrollView.m */; };
 		2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2503D0BD1A1054B200E1876B /* NSDate+CH.m */; };
 		2536EAC81A6A414E00F2E6B4 /* UITextView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2536EAC71A6A414E00F2E6B4 /* UITextView+CH.m */; };
@@ -34,6 +34,9 @@
 		25C00D941A661615001FDD00 /* EmptyDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C00D931A661615001FDD00 /* EmptyDataView.xib */; };
 		25C00D971A6619E0001FDD00 /* EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C00D961A6619E0001FDD00 /* EmptyDataView.m */; };
 		25C498AA1A47A96700EFE197 /* CHViewTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C498A91A47A96700EFE197 /* CHViewTableController.m */; };
+		25C6173C1A804EB60093777B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9E18AB6653007B50A5 /* AVFoundation.framework */; };
+		25C6173D1A804EBB0093777B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7106170A516B00EC3E51 /* Foundation.framework */; };
+		25C6173E1A804EEF0093777B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981417E5AA28001A371D /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		25C66F7A1A2AD70300366BE8 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F791A2AD70300366BE8 /* UIDevice+Hardware.m */; };
 		25C66F7F1A2AD70C00366BE8 /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7C1A2AD70C00366BE8 /* NSObject+Utilidades.m */; };
 		25C66F801A2AD70C00366BE8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7E1A2AD70C00366BE8 /* Reachability.m */; };
@@ -47,10 +50,8 @@
 		25FDAFCC1A32D00B00CDD34E /* ImageViewTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25FDAFCB1A32D00B00CDD34E /* ImageViewTableHeader.xib */; };
 		25FDAFCF1A32D40600CDD34E /* ImageViewTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FDAFCE1A32D40600CDD34E /* ImageViewTableHeader.m */; };
 		2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6762D0B3F59498CA72154F7 /* libPods.a */; };
-		3D29981517E5AA28001A371D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981417E5AA28001A371D /* UIKit.framework */; };
 		3D29981717E5AA33001A371D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981617E5AA33001A371D /* SystemConfiguration.framework */; };
 		3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D29981817E5AA46001A371D /* QuartzCore.framework */; };
-		3DDB7107170A516B00EC3E51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7106170A516B00EC3E51 /* Foundation.framework */; };
 		3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB7108170A516B00EC3E51 /* CoreGraphics.framework */; };
 		6E176F091A05DEAE00775DC7 /* MBProgressHUD+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E176F081A05DEAE00775DC7 /* MBProgressHUD+CH.m */; };
 		6E2B61901A28CAC00071DE50 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2B618F1A28CAC00071DE50 /* CoreData.framework */; };
@@ -76,7 +77,6 @@
 		6E704FEB1A5B1F8C00FBBE18 /* GeoFaroKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = 6E704FB11A5B1A9F00FBBE18 /* GeoFaroKit.framework */; };
 		6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */; };
 		6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9C18AB664D007B50A5 /* AudioToolbox.framework */; };
-		6EBF1E9F18AB6653007B50A5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9E18AB6653007B50A5 /* AVFoundation.framework */; };
 		6EBF1EA118AB666A007B50A5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA018AB666A007B50A5 /* CoreTelephony.framework */; };
 		6EBF1EA318AB6673007B50A5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA218AB6673007B50A5 /* MessageUI.framework */; };
 		6EC005F918DC7949003DECC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC005F818DC7949003DECC8 /* AppDelegate.m */; };
@@ -170,8 +170,8 @@
 		25037A651A5544770087D124 /* FunctionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsVC.m; path = Classes/Controllers/FunctionsVC.m; sourceTree = "<group>"; };
 		25037A671A5545200087D124 /* FunctionDayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionDayVC.h; path = Classes/Controllers/FunctionDayVC.h; sourceTree = "<group>"; };
 		25037A681A5545200087D124 /* FunctionDayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionDayVC.m; path = Classes/Controllers/FunctionDayVC.m; sourceTree = "<group>"; };
-		25037A6D1A55D3E60087D124 /* XHTwitterPaggingViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTwitterPaggingViewer.h; sourceTree = "<group>"; };
-		25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTwitterPaggingViewer.m; sourceTree = "<group>"; };
+		25037A6D1A55D3E60087D124 /* XHTwitterPaggingViewer2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTwitterPaggingViewer2.h; sourceTree = "<group>"; };
+		25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTwitterPaggingViewer2.m; sourceTree = "<group>"; };
 		25037A711A562ACB0087D124 /* FunctionsScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsScrollView.h; path = Classes/Views/FunctionsScrollView.h; sourceTree = "<group>"; };
 		25037A721A562ACB0087D124 /* FunctionsScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsScrollView.m; path = Classes/Views/FunctionsScrollView.m; sourceTree = "<group>"; };
 		2503D0BC1A1054B200E1876B /* NSDate+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+CH.h"; path = "Utilities/Categories/NSDate+CH.h"; sourceTree = "<group>"; };
@@ -433,6 +433,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25C6173E1A804EEF0093777B /* UIKit.framework in Frameworks */,
+				25C6173D1A804EBB0093777B /* Foundation.framework in Frameworks */,
+				25C6173C1A804EB60093777B /* AVFoundation.framework in Frameworks */,
 				3D29981717E5AA33001A371D /* SystemConfiguration.framework in Frameworks */,
 				6E57396D182755A300ADB8D9 /* CoreLocation.framework in Frameworks */,
 				6E704FBE1A5B1AC700FBBE18 /* libdl.dylib in Frameworks */,
@@ -445,13 +448,10 @@
 				6EBF1EA118AB666A007B50A5 /* CoreTelephony.framework in Frameworks */,
 				25C66F921A2ADCC100366BE8 /* Crashlytics.framework in Frameworks */,
 				3DDB7109170A516B00EC3E51 /* CoreGraphics.framework in Frameworks */,
-				6EBF1E9F18AB6653007B50A5 /* AVFoundation.framework in Frameworks */,
 				6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */,
 				6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */,
 				6E57396518273C9900ADB8D9 /* MapKit.framework in Frameworks */,
 				3D29981917E5AA46001A371D /* QuartzCore.framework in Frameworks */,
-				3D29981517E5AA28001A371D /* UIKit.framework in Frameworks */,
-				3DDB7107170A516B00EC3E51 /* Foundation.framework in Frameworks */,
 				2B2B30865DEB412FAC228ABA /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,8 +470,8 @@
 		25037A6A1A55D3E60087D124 /* XHTwitterPaggingViewer */ = {
 			isa = PBXGroup;
 			children = (
-				25037A6D1A55D3E60087D124 /* XHTwitterPaggingViewer.h */,
-				25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer.m */,
+				25037A6D1A55D3E60087D124 /* XHTwitterPaggingViewer2.h */,
+				25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer2.m */,
 			);
 			path = XHTwitterPaggingViewer;
 			sourceTree = "<group>";
@@ -479,6 +479,7 @@
 		25D9270A1A2E6ACC007B255D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				25B2D7B01A7EC6B000FA3F6B /* CuponesVC.h */,
 				25D6F2F11A7B406300FBD782 /* MovieFunctionsContainerVC.h */,
 				6EC0066918DC7CBB003DECC8 /* GlobalNavigationController.h */,
 				25C498AC1A480D1800EFE197 /* CHViewTableController_Protected.h */,
@@ -608,7 +609,6 @@
 				25037A651A5544770087D124 /* FunctionsVC.m */,
 				25037A681A5545200087D124 /* FunctionDayVC.m */,
 				25A58D491A6B827D00743F4A /* MovieViewController.m */,
-				25B2D7B01A7EC6B000FA3F6B /* CuponesVC.h */,
 				25B2D7B11A7EC6B000FA3F6B /* CuponesVC.m */,
 			);
 			name = Controllers;
@@ -1101,7 +1101,7 @@
 				6EC0071718DC7E3C003DECC8 /* BasicItemImage.m in Sources */,
 				6EC0072218DC7E3C003DECC8 /* VideoGroup.m in Sources */,
 				6EC0073A18DC7EE1003DECC8 /* NSArray+FKBMap.m in Sources */,
-				25037A701A55D3E60087D124 /* XHTwitterPaggingViewer.m in Sources */,
+				25037A701A55D3E60087D124 /* XHTwitterPaggingViewer2.m in Sources */,
 				259550421A3DD4380052A8FB /* FavoritesManager.m in Sources */,
 				6EC0064D18DC7BC6003DECC8 /* BillboardCell.m in Sources */,
 				6EC0062E18DC7B77003DECC8 /* BasicCell+Theater.m in Sources */,
