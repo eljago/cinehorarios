@@ -7,7 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "Constants.h"
+
+#if COMPILE_GEOFARO
 #import "AppDelegate+Geofaro.h"
+#endif
+
 #import "FileHandler.h"
 #import "UIColor+CH.h"
 #import "Harpy.h"
@@ -43,7 +48,9 @@ static int const kGaDispatchPeriod = 30;
     [self setupHarpy];
     [self setup_appirater];
     
+#if COMPILE_GEOFARO
     [self geofaroApplication:application didFinishLaunchingWithOptions:launchOptions];
+#endif
     
     return YES;
 }
@@ -58,14 +65,18 @@ static int const kGaDispatchPeriod = 30;
 {
     [[GAI sharedInstance] dispatch];
     
+#if COMPILE_GEOFARO
     [self geofaroApplicationDidEnterBackground:application];
+#endif
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [Appirater appEnteredForeground:YES];
     
+#if COMPILE_GEOFARO
     [self geofaroApplicationWillEnterForeground:application];
+#endif
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

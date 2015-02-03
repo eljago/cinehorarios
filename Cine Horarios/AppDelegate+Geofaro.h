@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "Constants.h"
 
+#if COMPILE_GEOFARO
 #import <GeoFaroKit/GFKManager.h>
 #import <GeoFaroKit/GFKManagerOptions.h>
 #import <GeoFaroKit/PromocionViewController.h>
@@ -33,5 +35,11 @@
 
 
 -(void)reachabilityChanged:(NSNotification*)note;
+
+#else
+
+@interface AppDelegate (Geofaro)
+
+#endif
 
 @end

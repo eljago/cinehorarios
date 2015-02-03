@@ -7,6 +7,9 @@
 //
 
 #import "CuponesVC.h"
+#import "Constants.h"
+
+#if COMPILE_GEOFARO
 
 #import <GeoFaroKit/PromocionViewController.h>
 #import <GeoFaroKit/GFKInterface.h>
@@ -168,5 +171,27 @@
         [alertView show];
     }
 }
+#else
+
+@interface CuponesVC () <UITableViewDataSource,UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tablaCupones;
+@property (weak, nonatomic) IBOutlet UIImageView *emptyDataImageView;
+@property (weak, nonatomic) IBOutlet UILabel *emptyDataLabel;
+
+@end
+
+@implementation CuponesVC
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+#endif
+
 
 @end
