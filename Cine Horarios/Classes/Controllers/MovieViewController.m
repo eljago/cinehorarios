@@ -67,6 +67,12 @@
     [self getMovieForceRemote:NO];
     
     self.title = self.movieName;
+    
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"Atrás"
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -167,6 +173,10 @@
         movieCell2.tag = 600;
         [movieCell2 configureShowtimesCellForMovie:self.movie];
         [sectionArray addObject:movieCell2];
+        
+        UIBarButtonItem *menuButtonHorarios = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconHorarios"] style:UIBarButtonItemStylePlain target:self action:@selector(goToFunciones)];
+        UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+        self.navigationItem.rightBarButtonItems = @[menuButtonItem, menuButtonHorarios];
     }
     if (sectionArray.count > 0) {
         [arrayCells addObject:[NSArray arrayWithArray:sectionArray]];
@@ -382,10 +392,7 @@
     }
     else if ([cell isKindOfClass:[MovieCellImageLabel class]]) {
         if (cell.tag == 600) {
-            MovieFunctionsContainerVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MovieFunctionsContainerVC"];
-            vc.movieID = self.movieID;
-            vc.movieName = self.movieName;
-            [self.navigationController pushViewController:vc animated:YES];
+            [self goToFunciones];
         }
         else if (cell.tag == 601 ) {
             VideoVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"VideoVC"];
@@ -393,6 +400,13 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
+}
+
+- (void) goToFunciones {
+    MovieFunctionsContainerVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MovieFunctionsContainerVC"];
+    vc.movieID = self.movieID;
+    vc.movieName = self.movieName;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Push View Controllers Methods

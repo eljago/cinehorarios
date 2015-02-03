@@ -50,8 +50,6 @@ install_resource()
           install_resource "Harpy/Harpy/Harpy.bundle"
                     install_resource "MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle"
                     install_resource "SIAlertView/SIAlertView/SIAlertView.bundle"
-                    install_resource "XHTwitterPaggingViewer/XHTwitterPaggingViewer/Assets/thumbnail_normal@2x.png"
-                    install_resource "XHTwitterPaggingViewer/XHTwitterPaggingViewer/Assets/thumbnail_selected@2x.png"
                     install_resource "ionicons/ionicons/ionicons.ttf"
                     install_resource "${BUILT_PRODUCTS_DIR}/Appirater.bundle"
           

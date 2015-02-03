@@ -31,7 +31,11 @@ static const NSInteger numberOfVCs = 7;
     
     [GAI trackPage:@"PELICULA FUNCIONES"];
     
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"IconMenu"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(revealMenu:)];
+    self.navigationItem.rightBarButtonItem = menuButtonItem;
+    
     self.view.backgroundColor = [UIColor tableViewColor];
+    [[[self.view subviews] firstObject] setBackgroundColor:[UIColor tableViewColor]];
     self.pageControl.backgroundColor = [UIColor clearColor];
     self.pageControl.numberOfPages = numberOfVCs;
     self.pageControl.tintColor = [UIColor lightGrayColor];
@@ -80,8 +84,6 @@ static const NSInteger numberOfVCs = 7;
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         strongSelf.pageControl.currentPage = cuurentPage;
         MovieFunctionsVC *movieFunctionsVC = strongSelf.viewControllers[cuurentPage];
-        NSDate *date = [[NSDate date] dateByAddingTimeInterval:60*60*24*cuurentPage];
-        strongSelf.title = [[date getShortDateString] capitalizedString];
         [movieFunctionsVC getDataForceDownload:NO];
     };
     

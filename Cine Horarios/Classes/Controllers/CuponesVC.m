@@ -41,7 +41,7 @@
         _listaCupones = [[NSMutableArray alloc] initWithArray:[miGeofaro promociones]];
         
     }
-    if (_listaCupones.count == 0) {
+    if (_listaCupones.count > 0) {
         self.emptyDataImageView.hidden = YES;
         self.emptyDataLabel.hidden = YES;
         self.tablaCupones.hidden = NO;
@@ -67,7 +67,7 @@
     [super viewDidAppear:animated];
     
     if (viewAppeared) {
-        if (_listaCupones.count == 0) {
+        if (_listaCupones.count > 0) {
             self.emptyDataImageView.hidden = YES;
             self.emptyDataLabel.hidden = YES;
             self.tablaCupones.hidden = NO;

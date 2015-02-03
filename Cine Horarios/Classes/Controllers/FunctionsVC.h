@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Arturo Espinoza Carrasco. All rights reserved.
 //
 
-#import "XHTwitterPaggingViewer2.h"
+#import "XHTwitterPaggingViewer.h"
 
 @class Theater;
 
-@interface FunctionsVC : XHTwitterPaggingViewer2
+@interface FunctionsVC : XHTwitterPaggingViewer
 
 @property (nonatomic, strong) Theater *theater;
 

@@ -10,7 +10,6 @@
 		162414A417BC946E00083708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 162414A317BC946E00083708 /* Images.xcassets */; };
 		25037A661A5544770087D124 /* FunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A651A5544770087D124 /* FunctionsVC.m */; };
 		25037A691A5545200087D124 /* FunctionDayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A681A5545200087D124 /* FunctionDayVC.m */; };
-		25037A701A55D3E60087D124 /* XHTwitterPaggingViewer2.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer2.m */; };
 		25037A731A562ACB0087D124 /* FunctionsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25037A721A562ACB0087D124 /* FunctionsScrollView.m */; };
 		2503D0BE1A1054B200E1876B /* NSDate+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2503D0BD1A1054B200E1876B /* NSDate+CH.m */; };
 		2536EAC81A6A414E00F2E6B4 /* UITextView+CH.m in Sources */ = {isa = PBXBuildFile; fileRef = 2536EAC71A6A414E00F2E6B4 /* UITextView+CH.m */; };
@@ -41,6 +40,8 @@
 		25C66F7F1A2AD70C00366BE8 /* NSObject+Utilidades.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7C1A2AD70C00366BE8 /* NSObject+Utilidades.m */; };
 		25C66F801A2AD70C00366BE8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C66F7E1A2AD70C00366BE8 /* Reachability.m */; };
 		25C66F921A2ADCC100366BE8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C66F911A2ADCC100366BE8 /* Crashlytics.framework */; };
+		25C90F391A8071BB0007455E /* XHTwitterPaggingViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C90F381A8071BB0007455E /* XHTwitterPaggingViewer.m */; };
+		25C90F3B1A807D320007455E /* EmptyDataView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C90F3A1A807D320007455E /* EmptyDataView2.xib */; };
 		25D0F3EF1A746C8A002473E3 /* MovieCellImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D0F3EE1A746C8A002473E3 /* MovieCellImages.m */; };
 		25D0F3F21A746CD0002473E3 /* MovieCellImages+Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D0F3F11A746CD0002473E3 /* MovieCellImages+Movie.m */; };
 		25D6F2F31A7B406300FBD782 /* MovieFunctionsContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D6F2F21A7B406300FBD782 /* MovieFunctionsContainerVC.m */; };
@@ -170,8 +171,6 @@
 		25037A651A5544770087D124 /* FunctionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsVC.m; path = Classes/Controllers/FunctionsVC.m; sourceTree = "<group>"; };
 		25037A671A5545200087D124 /* FunctionDayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionDayVC.h; path = Classes/Controllers/FunctionDayVC.h; sourceTree = "<group>"; };
 		25037A681A5545200087D124 /* FunctionDayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionDayVC.m; path = Classes/Controllers/FunctionDayVC.m; sourceTree = "<group>"; };
-		25037A6D1A55D3E60087D124 /* XHTwitterPaggingViewer2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTwitterPaggingViewer2.h; sourceTree = "<group>"; };
-		25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTwitterPaggingViewer2.m; sourceTree = "<group>"; };
 		25037A711A562ACB0087D124 /* FunctionsScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionsScrollView.h; path = Classes/Views/FunctionsScrollView.h; sourceTree = "<group>"; };
 		25037A721A562ACB0087D124 /* FunctionsScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionsScrollView.m; path = Classes/Views/FunctionsScrollView.m; sourceTree = "<group>"; };
 		2503D0BC1A1054B200E1876B /* NSDate+CH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+CH.h"; path = "Utilities/Categories/NSDate+CH.h"; sourceTree = "<group>"; };
@@ -226,6 +225,9 @@
 		25C66F7D1A2AD70C00366BE8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Utilities/Reachability.h; sourceTree = "<group>"; };
 		25C66F7E1A2AD70C00366BE8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Utilities/Reachability.m; sourceTree = "<group>"; };
 		25C66F911A2ADCC100366BE8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		25C90F371A8071BB0007455E /* XHTwitterPaggingViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTwitterPaggingViewer.h; sourceTree = "<group>"; };
+		25C90F381A8071BB0007455E /* XHTwitterPaggingViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTwitterPaggingViewer.m; sourceTree = "<group>"; };
+		25C90F3A1A807D320007455E /* EmptyDataView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataView2.xib; path = Classes/Views/Nibs/EmptyDataView2.xib; sourceTree = "<group>"; };
 		25D0F3ED1A746C8A002473E3 /* MovieCellImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieCellImages.h; path = Classes/Views/Cells/MovieCellImages.h; sourceTree = "<group>"; };
 		25D0F3EE1A746C8A002473E3 /* MovieCellImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieCellImages.m; path = Classes/Views/Cells/MovieCellImages.m; sourceTree = "<group>"; };
 		25D0F3F01A746CD0002473E3 /* MovieCellImages+Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MovieCellImages+Movie.h"; path = "Classes/Views/CellCategories/MovieCellImages+Movie.h"; sourceTree = "<group>"; };
@@ -462,18 +464,19 @@
 		16F008A1180DED1300A15060 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				25037A6A1A55D3E60087D124 /* XHTwitterPaggingViewer */,
+				25C90F361A8071BB0007455E /* XHTwitterPaggingViewer */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
 		};
-		25037A6A1A55D3E60087D124 /* XHTwitterPaggingViewer */ = {
+		25C90F361A8071BB0007455E /* XHTwitterPaggingViewer */ = {
 			isa = PBXGroup;
 			children = (
-				25037A6D1A55D3E60087D124 /* XHTwitterPaggingViewer2.h */,
-				25037A6E1A55D3E60087D124 /* XHTwitterPaggingViewer2.m */,
+				25C90F371A8071BB0007455E /* XHTwitterPaggingViewer.h */,
+				25C90F381A8071BB0007455E /* XHTwitterPaggingViewer.m */,
 			);
-			path = XHTwitterPaggingViewer;
+			name = XHTwitterPaggingViewer;
+			path = Vendor/XHTwitterPaggingViewer;
 			sourceTree = "<group>";
 		};
 		25D9270A1A2E6ACC007B255D /* Headers */ = {
@@ -897,6 +900,7 @@
 				25C00D931A661615001FDD00 /* EmptyDataView.xib */,
 				25C00D951A6619E0001FDD00 /* EmptyDataView.h */,
 				25C00D961A6619E0001FDD00 /* EmptyDataView.m */,
+				25C90F3A1A807D320007455E /* EmptyDataView2.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -988,6 +992,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25C90F3B1A807D320007455E /* EmptyDataView2.xib in Resources */,
 				6E704FEB1A5B1F8C00FBBE18 /* GeoFaroKit.framework in Resources */,
 				6E704FB51A5B1A9F00FBBE18 /* ConfigGeofaro.plist in Resources */,
 				6E704FE71A5B1DD800FBBE18 /* PromocionGeoViewController.xib in Resources */,
@@ -1088,6 +1093,7 @@
 				6EC0064F18DC7BC6003DECC8 /* CastDirectorCell.m in Sources */,
 				25BCD4A91A6F2EEB00ED6ECB /* MovieCellCast.m in Sources */,
 				25FDAFCF1A32D40600CDD34E /* ImageViewTableHeader.m in Sources */,
+				25C90F391A8071BB0007455E /* XHTwitterPaggingViewer.m in Sources */,
 				6EC0073B18DC7EE1003DECC8 /* UIColor+CH.m in Sources */,
 				6EC0071B18DC7E3C003DECC8 /* Cinema.m in Sources */,
 				6EC0065018DC7BC6003DECC8 /* CinemaCell.m in Sources */,
@@ -1101,7 +1107,6 @@
 				6EC0071718DC7E3C003DECC8 /* BasicItemImage.m in Sources */,
 				6EC0072218DC7E3C003DECC8 /* VideoGroup.m in Sources */,
 				6EC0073A18DC7EE1003DECC8 /* NSArray+FKBMap.m in Sources */,
-				25037A701A55D3E60087D124 /* XHTwitterPaggingViewer2.m in Sources */,
 				259550421A3DD4380052A8FB /* FavoritesManager.m in Sources */,
 				6EC0064D18DC7BC6003DECC8 /* BillboardCell.m in Sources */,
 				6EC0062E18DC7B77003DECC8 /* BasicCell+Theater.m in Sources */,

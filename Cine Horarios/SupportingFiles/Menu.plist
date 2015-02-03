@@ -60,7 +60,7 @@
 	</dict>
 	<dict>
 		<key>image</key>
-		<string>IconSettings</string>
+		<string>CuponsIcon</string>
 		<key>storyboardID</key>
 		<string>CuponesVC</string>
 		<key>name</key>

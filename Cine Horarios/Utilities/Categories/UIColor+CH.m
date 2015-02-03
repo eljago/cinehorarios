@@ -128,6 +128,10 @@
             // Ajustes
             return [UIColor brownColor];
             break;
+        case 7:
+            // Ajustes
+            return DO_RGB(46, 204, 113);
+            break;
         default:
             return [UIColor whiteColor];
             break;

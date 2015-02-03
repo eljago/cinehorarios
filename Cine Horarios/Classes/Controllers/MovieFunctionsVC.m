@@ -15,6 +15,7 @@
 #import "GAI+CH.h"
 #import "UIView+CH.h"
 #import "FavoritesManager.h"
+#import "UIColor+CH.h"
 
 #import "BasicItemImage.h"
 #import "UIImage+CH.h"
@@ -26,9 +27,11 @@
 @interface MovieFunctionsVC ()
 @property (nonatomic, strong) NSArray *cinemasTheatersFunctions;
 @property (nonatomic, strong) NSArray *theaterFuctions;
-@property (nonatomic, weak) IBOutlet UILabel *labelNotice;
-@property (nonatomic, weak) IBOutlet UIImageView *imageGhost;
 @property (weak, nonatomic) IBOutlet UILabel *labelDate;
+
+@property (nonatomic, strong) UIView *emptyDataView;
+@property (nonatomic, strong) UILabel *labelNotice;
+
 @end
 
 @implementation MovieFunctionsVC
@@ -40,6 +43,8 @@
     [GAI trackPage:@"PELICULA FUNCIONES"];
     
     self.labelDate.text = self.title;
+    
+    self.labelDate.superview.backgroundColor = [UIColor navColor];
     
     self.tableView.separatorInset = UIEdgeInsetsMake(0, self.view.bounds.size.width, 0, 0);
 }
@@ -68,11 +73,11 @@
         else {
             [self showDownloadErrorDataView];
         }
-        self.tableView.scrollEnabled = YES;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if (self.refreshControl.refreshing) {
             [self.refreshControl endRefreshing];
         }
+        self.tableView.scrollEnabled = YES;
         
     } movieID:self.movieID theaters:[FavoritesManager sharedManager].favoriteTheaters date:self.date];
 }
@@ -96,10 +101,7 @@
         }
     }
     else {
-        self.labelNotice.text = @"No tiene cines favoritos";
-        self.labelNotice.hidden = NO;
-        self.imageGhost.hidden = NO;
-        self.tableView.hidden = YES;
+        [self showNoFavoritesDataView];
     }
 }
 
@@ -117,30 +119,36 @@
 -(void) showTableViewWithDownloadSuccessful {
     [self downloadEndedWithDownloadStatus:CHDownloadStatSuccessful];
     [self.tableView reloadData];
-    self.tableView.hidden = NO;
-    self.labelNotice.hidden = YES;
-    self.imageGhost.hidden = YES;
+    [self.emptyDataView removeFromSuperview];
 }
 -(void) showNoFunctionOnFavoritesView {
     [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
-    self.labelNotice.text = [NSString stringWithFormat:@"%@ no tiene funciones en sus cines favoritos para este día", self.movieName];
-    self.tableView.hidden = YES;
-    self.labelNotice.hidden = NO;
-    self.imageGhost.hidden = NO;
+    [self.tableView addSubview:self.emptyDataView];
+    self.labelNotice.text = [NSString stringWithFormat:@"Esta película no tiene funciones en sus cines favoritos para este día, o aún no tenemos la información disponible"];
 }
 -(void) showNoFavoritesDataView {
     [self downloadEndedWithDownloadStatus:CHDownloadStatNoDataFound];
-    self.labelNotice.text = @"No tiene cines favoritos";
-    self.tableView.hidden = YES;
-    self.labelNotice.hidden = NO;
-    self.imageGhost.hidden = NO;
+    [self.tableView addSubview:self.emptyDataView];
+    self.labelNotice.text = @"Agregue cines a favoritos para buscar horarios de una película";
 }
 -(void)showDownloadErrorDataView {
     [self downloadEndedWithDownloadStatus:CHDownloadStatFailed];
+    [self.tableView addSubview:self.emptyDataView];
     self.labelNotice.text = @"Ha ocurrido un error";
-    self.tableView.hidden = YES;
-    self.labelNotice.hidden = NO;
-    self.imageGhost.hidden = NO;
+}
+
+#pragma mark - EmptyDataView
+
+- (UIView *)emptyDataView
+{
+    if (!_emptyDataView)
+    {
+        _emptyDataView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyDataView2" owner:self options:nil] firstObject];
+        _emptyDataView.backgroundColor = [UIColor tableViewColor];
+        _emptyDataView.frame = self.tableView.bounds;
+        self.labelNotice = (UILabel *)[_emptyDataView viewWithTag:100];
+    }
+    return _emptyDataView;
 }
 
 #pragma mark - Table view data source
