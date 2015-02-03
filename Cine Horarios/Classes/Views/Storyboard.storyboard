@@ -337,6 +337,7 @@
                                                         </imageView>
                                                         <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ffC-L9-IkV" userLabel="Cover">
                                                             <rect key="frame" x="0.0" y="0.0" width="90" height="135"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="90" id="HvN-Za-8ac"/>

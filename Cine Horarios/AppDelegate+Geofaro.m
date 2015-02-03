@@ -30,15 +30,15 @@
 - (void)geofaroApplication:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.miLaunchOptions = launchOptions;
     
-//    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
-//        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
-//        [application registerForRemoteNotifications];
-//    }else{
-//#pragma GCC diagnostic push
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-//        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeNewsstandContentAvailability)];
-//#pragma GCC diagnostic pop
-//    }
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+        [application registerForRemoteNotifications];
+    }else{
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeNewsstandContentAvailability)];
+#pragma GCC diagnostic pop
+    }
 }
 
 - (void)geofaroApplicationDidEnterBackground:(UIApplication *)application {

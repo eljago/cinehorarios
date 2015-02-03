@@ -19,13 +19,9 @@
 #import <Crashlytics/Crashlytics.h>
 #import "NSArray+FKBMap.h"
 #import "FavoritesManager.h"
-#import "Constants.h"
 //#import "iOSHierarchyViewer.h"
 #import "Appirater.h"
 
-#include <stdio.h>
-#include <dlfcn.h>
-#import <mach-o/dyld.h>
 
 NSString *const kAppID = @"469612283";
 /** GOOGLE ANALYTIC CONSTANTS **/
