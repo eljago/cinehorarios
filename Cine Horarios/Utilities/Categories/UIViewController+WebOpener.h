@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 @class OpenInChromeController;
 
-@interface UIViewController (WebOpener) <UIActionSheetDelegate>
+@interface UIViewController (WebOpener)
 
 -(void)goWebPageWithUrlString:(NSString *)urlString imdbAppUrlString:(NSString *)appImdbUrlString;
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end

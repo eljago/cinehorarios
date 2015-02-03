@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "OpenInChromeController.h"
 #import "WebVC.h"
+#import "SIAlertView.h"
 
 @implementation UIViewController (WebOpener)
 
@@ -33,54 +34,50 @@
     self.imdbAppUrlString = appImdbUrlString;
     self.webToOpenUrlString = urlString;
     
-    NSString *actionSheetTitle = @"Abrir enlace en:";
-    NSString *cancelTitle = @"Cancelar";
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Abrir enlace en:" andMessage:nil];
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:actionSheetTitle
-                                  delegate:self
-                                  cancelButtonTitle:cancelTitle
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:@"App", @"Safari", nil];
-    
+    [alertView addButtonWithTitle:@"App"
+                             type:SIAlertViewButtonTypeCancel
+                          handler:^(SIAlertView *alert) {
+                              WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
+                              wvc.urlString = self.webToOpenUrlString;
+                              [self.navigationController pushViewController:wvc animated:YES];
+                          }];
+    [alertView addButtonWithTitle:@"Safari"
+                             type:SIAlertViewButtonTypeCancel
+                          handler:^(SIAlertView *alert) {
+                              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.webToOpenUrlString]];
+                          }];
     if ([self.openInChromeController isChromeInstalled]) {
-        [actionSheet addButtonWithTitle:@"Chrome"];
+        [alertView addButtonWithTitle:@"Chrome"
+                                 type:SIAlertViewButtonTypeCancel
+                              handler:^(SIAlertView *alert) {
+                                  if ([self.openInChromeController isChromeInstalled]) {
+                                      [self.openInChromeController openInChrome:[NSURL URLWithString:self.webToOpenUrlString]
+                                                                withCallbackURL:nil
+                                                                   createNewTab:YES];
+                                  }
+                              }];
     }
     
     if (appImdbUrlString) {
         NSURL *nsurl = [NSURL URLWithString:appImdbUrlString];
         if ([[UIApplication sharedApplication] canOpenURL:nsurl]) {
-            [actionSheet addButtonWithTitle:@"App Imdb"];
+            [alertView addButtonWithTitle:@"App Imdb"
+                                     type:SIAlertViewButtonTypeCancel
+                                  handler:^(SIAlertView *alert) {
+                                      NSURL *url = [NSURL URLWithString:self.imdbAppUrlString];
+                                      [[UIApplication sharedApplication] openURL:url];
+                                  }];
         }
     }
     
-    [actionSheet showInView:self.view];
-}
-
-#pragma mark - UIActionSheetDelegate
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    [alertView addButtonWithTitle:@"Cancelar"
+                             type:SIAlertViewButtonTypeDestructive
+                          handler:nil];
     
-    if ([buttonTitle isEqualToString:@"App"]) {
-        WebVC *wvc = [self.storyboard instantiateViewControllerWithIdentifier:@"WebVC"];
-        wvc.urlString = self.webToOpenUrlString;
-        [self.navigationController pushViewController:wvc animated:YES];
-    }
-    else if ([buttonTitle isEqualToString:@"Safari"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.webToOpenUrlString]];
-    }
-    else if ([buttonTitle isEqualToString:@"Chrome"]) {
-        if ([self.openInChromeController isChromeInstalled]) {
-            [self.openInChromeController openInChrome:[NSURL URLWithString:self.webToOpenUrlString]
-                                      withCallbackURL:nil
-                                         createNewTab:YES];
-        }
-    }
-    else if ([buttonTitle isEqualToString:@"App Imdb"]) {
-        NSURL *url = [NSURL URLWithString:self.imdbAppUrlString];
-        [[UIApplication sharedApplication] openURL:url];
-    }
+    alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+    [alertView show];
 }
 
 @end

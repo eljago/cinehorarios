@@ -15,7 +15,7 @@
 #import "NSArray+FKBMap.h"
 #import "FavoritesManager.h"
 #import "Constants.h"
-#import "iOSHierarchyViewer.h"
+//#import "iOSHierarchyViewer.h"
 #import "Appirater.h"
 
 #include <stdio.h>
@@ -79,7 +79,7 @@ static int const kGaDispatchPeriod = 30;
     // Check if new app version is available
     [self checkHarpy];
     
-    [iOSHierarchyViewer start];
+//    [iOSHierarchyViewer start];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
