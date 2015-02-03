@@ -13,14 +13,17 @@
 #import "Geofaro.h"
 #import "PromocionGeoViewController.h"
 #import "UIColor+CH.h"
+#import "SIAlertView.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface CuponesVC () <UITableViewDataSource,UITableViewDelegate>
+@interface CuponesVC () <UITableViewDataSource,UITableViewDelegate, CBCentralManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tablaCupones;
 @property (weak, nonatomic) IBOutlet UIImageView *emptyDataImageView;
 @property (weak, nonatomic) IBOutlet UILabel *emptyDataLabel;
 
 @property (nonatomic,strong) NSMutableArray *listaCupones;
+@property (strong, nonatomic) CBCentralManager *bluetoothManager;
 
 @end
 
@@ -60,6 +63,8 @@
     self.view.backgroundColor = [UIColor tableViewColor];
     self.tablaCupones.backgroundColor = [UIColor tableViewColor];
     self.tablaCupones.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:@{CBCentralManagerOptionShowPowerAlertKey:[NSNumber numberWithBool:NO]}];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -141,6 +146,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     NSLog(@"Memory Warning CuponesVC");
+}
+
+
+#pragma mark - CBCentralManagerDelegate
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+    if (central.state == CBCentralManagerStatePoweredOn) {
+        //Do what you intend to do
+    } else if(central.state == CBCentralManagerStatePoweredOff) {
+        //Bluetooth is disabled. ios pops-up an alert automatically
+        
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Bluetooth está desactivado" andMessage:@"Para recibir tus cupones necesitas tener el Bluetooth encendido"];
+        
+        [alertView addButtonWithTitle:@"Cerrar"
+                                 type:SIAlertViewButtonTypeCancel
+                              handler:^(SIAlertView *alert) {
+                                  
+                              }];
+        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+        [alertView show];
+    }
 }
 
 @end
