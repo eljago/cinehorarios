@@ -148,16 +148,26 @@ NSInteger const kMaxNumberOfCloseTheaters = 3;
 //        }];
         SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Error" andMessage:error.userInfo[@"NSLocalizedRecoverySuggestion"]];
         
-        [alertView addButtonWithTitle:@"Cancelar"
-                                 type:SIAlertViewButtonTypeCancel
-                              handler:^(SIAlertView *alert) {
-                                  
-                              }];
-        [alertView addButtonWithTitle:@"Activar"
-                                 type:SIAlertViewButtonTypeDestructive
-                              handler:^(SIAlertView *alert) {
-                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                              }];
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+            [alertView addButtonWithTitle:@"Cancelar"
+                                     type:SIAlertViewButtonTypeCancel
+                                  handler:^(SIAlertView *alert) {
+                                      
+                                  }];
+            [alertView addButtonWithTitle:@"Activar"
+                                     type:SIAlertViewButtonTypeDestructive
+                                  handler:^(SIAlertView *alert) {
+                                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                  }];
+        }
+        else {
+            [alertView addButtonWithTitle:@"Cerrar"
+                                     type:SIAlertViewButtonTypeCancel
+                                  handler:^(SIAlertView *alert) {
+                                      
+                                  }];
+        }
+        
         alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
         
         [alertView show];

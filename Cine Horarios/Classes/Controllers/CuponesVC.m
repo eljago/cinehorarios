@@ -163,7 +163,7 @@
         SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Bluetooth está desactivado" andMessage:@"Para recibir tus cupones necesitas tener el Bluetooth encendido"];
         
         [alertView addButtonWithTitle:@"Cerrar"
-                                 type:SIAlertViewButtonTypeCancel
+                                 type:SIAlertViewButtonTypeDestructive
                               handler:^(SIAlertView *alert) {
                                   
                               }];

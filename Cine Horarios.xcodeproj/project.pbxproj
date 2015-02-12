@@ -75,7 +75,6 @@
 		6E704FE81A5B1DD800FBBE18 /* RegionesGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E704FDC1A5B1DD800FBBE18 /* RegionesGeofaro.plist */; };
 		6E704FE91A5B1DD800FBBE18 /* ServiciosGeofaro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E704FDD1A5B1DD800FBBE18 /* ServiciosGeofaro.plist */; };
 		6E704FEA1A5B1DD800FBBE18 /* libGeofaro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E704FDF1A5B1DD800FBBE18 /* libGeofaro.a */; };
-		6E704FEB1A5B1F8C00FBBE18 /* GeoFaroKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = 6E704FB11A5B1A9F00FBBE18 /* GeoFaroKit.framework */; };
 		6EBF1E9B18AB6642007B50A5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9A18AB6642007B50A5 /* AdSupport.framework */; };
 		6EBF1E9D18AB664D007B50A5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1E9C18AB664D007B50A5 /* AudioToolbox.framework */; };
 		6EBF1EA118AB666A007B50A5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF1EA018AB666A007B50A5 /* CoreTelephony.framework */; };
@@ -993,7 +992,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				25C90F3B1A807D320007455E /* EmptyDataView2.xib in Resources */,
-				6E704FEB1A5B1F8C00FBBE18 /* GeoFaroKit.framework in Resources */,
 				6E704FB51A5B1A9F00FBBE18 /* ConfigGeofaro.plist in Resources */,
 				6E704FE71A5B1DD800FBBE18 /* PromocionGeoViewController.xib in Resources */,
 				6E704FE51A5B1DD800FBBE18 /* Images.xcassets in Resources */,
